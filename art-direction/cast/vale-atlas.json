@@ -1,0 +1,78 @@
+{
+  "frame": {
+    "w": 16,
+    "h": 24
+  },
+  "anchor": {
+    "name": "feet_bc",
+    "x": 8,
+    "y": 24
+  },
+  "footprint_cells": [
+    1,
+    1
+  ],
+  "animations": {
+    "vale_idle_s": {
+      "row": 0,
+      "frames": 2,
+      "ms": 500
+    },
+    "vale_idle_n": {
+      "row": 1,
+      "frames": 2,
+      "ms": 500
+    },
+    "vale_idle_e": {
+      "row": 2,
+      "frames": 2,
+      "ms": 500
+    },
+    "vale_idle_w": {
+      "row": 3,
+      "frames": 2,
+      "ms": 500
+    },
+    "vale_walk_s": {
+      "row": 4,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "vale_walk_n": {
+      "row": 5,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "vale_walk_e": {
+      "row": 6,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "vale_walk_w": {
+      "row": 7,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    }
+  },
+  "shadow": "drawn by the renderer at the anchor, not baked into frames"
+}

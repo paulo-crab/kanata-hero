@@ -1,6 +1,6 @@
 # Vale — executive liaison
 
-**Status:** after gate 1. Shared rules: [README](README.md).
+**Status:** idle ×4 and walk ×4 approved by the director 2026-10-02. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) supersedes the provisional and open rows below. Shared rules: [README](README.md).
 
 ## Identity
 

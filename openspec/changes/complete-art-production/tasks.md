@@ -36,7 +36,7 @@
 - [ ] 6.1 Noor idle ×4 and walk ×4 with NOOR_SPEC.md; verify the checker and a Records-palette room render
 - [ ] 6.2 Hal idle ×4 and walk ×4 with HAL_SPEC.md; verify the checker and a Systems render
 - [ ] 6.3 Ada idle ×4 and walk ×4 with ADA_SPEC.md and a lantern rim-light ruling; verify the checker and a Night Shift render
-- [ ] 6.4 Vale idle ×4 and walk ×4 with VALE_SPEC.md; verify the checker and an Executive render
+- [x] 6.4 Vale idle ×4 and walk ×4 with VALE_SPEC.md; verify the checker and an Executive render
 
 ## 7. District kits and landmarks
 
