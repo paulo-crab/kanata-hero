@@ -1,0 +1,215 @@
+{
+  "status": "Candidate, pending director review",
+  "frame": {
+    "w": 16,
+    "h": 24
+  },
+  "anchor": {
+    "name": "feet_bc",
+    "x": 8,
+    "y": 24
+  },
+  "footprint_cells": [
+    1,
+    1
+  ],
+  "animations": {
+    "bgworker_a_idle_s": {
+      "row": 0,
+      "frames": 2,
+      "ms": 500
+    },
+    "bgworker_a_idle_n": {
+      "row": 1,
+      "frames": 2,
+      "ms": 500
+    },
+    "bgworker_a_idle_e": {
+      "row": 2,
+      "frames": 2,
+      "ms": 500
+    },
+    "bgworker_a_idle_w": {
+      "row": 3,
+      "frames": 2,
+      "ms": 500
+    },
+    "bgworker_a_walk_s": {
+      "row": 4,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "bgworker_a_walk_n": {
+      "row": 5,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "bgworker_a_walk_e": {
+      "row": 6,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    },
+    "bgworker_a_walk_w": {
+      "row": 7,
+      "frames": 4,
+      "ms": 133,
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ]
+    }
+  },
+  "variants": {
+    "bgworker_a_idle_phone_s": {
+      "row": 8,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "start_offset_ms": "random 0-999, per worker"
+    },
+    "bgworker_a_idle_coffee_s": {
+      "row": 9,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "start_offset_ms": "random 0-999, per worker"
+    },
+    "bgworker_a_idle_typing_s": {
+      "row": 10,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "start_offset_ms": "random 0-999, per worker"
+    }
+  },
+  "palettes": {
+    "default": "slate",
+    "slate": {
+      "atlas": "bgworker_a-atlas.png",
+      "slots": {
+        "hair": [
+          "#1F1B25",
+          "#352D34",
+          "#4C4041",
+          "#675856"
+        ],
+        "skin": [
+          "#8A5E4E",
+          "#B38468",
+          "#D2A68A",
+          "#EACBB2"
+        ],
+        "jacket": [
+          "#33405A",
+          "#46556F",
+          "#5C6C86",
+          "#7A8AA0"
+        ],
+        "under": [
+          "#8E8E98",
+          "#B4B3B8",
+          "#D2D0CF"
+        ],
+        "trousers": [
+          "#2B2F45",
+          "#3A3F58"
+        ]
+      }
+    },
+    "olive": {
+      "atlas": "bgworker_a-atlas-olive.png",
+      "slots": {
+        "hair": [
+          "#14111A",
+          "#221D24",
+          "#332C33",
+          "#483E43"
+        ],
+        "skin": [
+          "#5A3A32",
+          "#744A38",
+          "#8C5C44",
+          "#A87852"
+        ],
+        "jacket": [
+          "#3B4130",
+          "#4F5A3F",
+          "#65714F",
+          "#848F68"
+        ],
+        "under": [
+          "#A89E8C",
+          "#C9BFA9",
+          "#E0D8C6"
+        ],
+        "trousers": [
+          "#352F35",
+          "#463F46"
+        ]
+      }
+    },
+    "ash": {
+      "atlas": "bgworker_a-atlas-ash.png",
+      "slots": {
+        "hair": [
+          "#1E1E24",
+          "#55545C",
+          "#6E6D75",
+          "#9D9AA3"
+        ],
+        "skin": [
+          "#4A3222",
+          "#A87850",
+          "#C79C72",
+          "#E0BC96"
+        ],
+        "jacket": [
+          "#4F4844",
+          "#665E58",
+          "#807770",
+          "#9C938A"
+        ],
+        "under": [
+          "#8A9098",
+          "#B0B5B8",
+          "#D0D3D2"
+        ],
+        "trousers": [
+          "#2F3550",
+          "#40486A"
+        ]
+      }
+    },
+    "note": "palettes are ramp swaps on the same key grids; pick one per worker instance"
+  },
+  "silhouette": {
+    "atlas": "bgworker_a-atlas-silhouette.png",
+    "atlas_lit_edge": "bgworker_a-atlas-silhouette-lit.png",
+    "fill": "#343650",
+    "contour": "#202337",
+    "lit_edge": "#535971",
+    "use": "distant or through-glass figures; same rows and frame timing as the full-colour atlas"
+  },
+  "sync": {
+    "walk_clock": "frame = floor(t_ms / 133) % 4 on one shared clock, with no per-actor offset, so every worker in a synced group is on the same frame at the same moment",
+    "synced_state": "orientation before level 06: groups share the clock and walk the same loop",
+    "relaxed_state": "after level 06: each worker picks an idle or variant with a random start_offset_ms and the shared clock is dropped"
+  },
+  "shadow": "drawn by the renderer at the anchor, not baked into frames"
+}

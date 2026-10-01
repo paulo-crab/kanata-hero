@@ -31,6 +31,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Pace: wayfinding icon and signage (18 pieces) | [pace/PACE_SPEC.md](pace/PACE_SPEC.md) | pace/pace_art.py | 2026-10-02 (director) |
 | UI kit: tokens, contrast check, components, reference page | [ui-kit/UI_KIT_SPEC.md](ui-kit/UI_KIT_SPEC.md) | ui-kit/tokens.css, ui-kit/reference.html | 2026-10-02 (director) |
 | District palettes (Records, Systems, Night Shift, Executive) and Noor/Hal/Ada/Vale skin and hair ramps | [palettes/PALETTES_SPEC.md](palettes/PALETTES_SPEC.md), STYLE_BIBLE §3 | palettes/district_palettes.py | 2026-10-02 (director) |
+| Background workers: 2 bodies × 3 palettes, synced walk, idle variants, silhouettes | [cast/BACKGROUND_WORKERS_SPEC.md](cast/BACKGROUND_WORKERS_SPEC.md) | cast/bgworker_{common,a_sprites,b_sprites}.py | 2026-10-02 (director) |
 
 ## Plan
 
