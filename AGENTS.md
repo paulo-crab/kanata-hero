@@ -26,3 +26,5 @@ file owns which topic.
 - Keep commit messages and PR descriptions brief.
 - Use Conventional Commits for commit subject lines (e.g. `feat:`, `fix:`,
   `docs:`, `chore:`, `refactor:`).
+- `main` is protected: always create a feature branch for any new feature or
+  unit of work and open a PR; never work or commit directly on `main`.
