@@ -1,6 +1,6 @@
 # Kanata Hero — art production status
 
-This is the living handoff file. Any agent continuing the art work should read this first, then [STYLE_BIBLE.md](STYLE_BIBLE.md) and the approved specs listed below. Update it after every approval.
+This is the living production file. **Developers start at [ART_HANDOFF.md](ART_HANDOFF.md)**, which indexes every approved asset and its formats; `build_all.py` rebuilds and checks everything. Any agent continuing the art work should read this first, then [STYLE_BIBLE.md](STYLE_BIBLE.md) and the approved specs listed below. Update it after every approval.
 
 **Authority.** Since 2026-10-02 the player has delegated every art-direction decision and gate approval to the art director. The director self-reviews: automated checks, then a coordinator review, plus a Sonnet validator pass when useful. When the review passes, the director approves, records the result, and moves on. Never mark something approved unless its review passed.
 
@@ -48,6 +48,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Systems kit (78 entries, 14 state sets), routing machine before/after, reference room | [kit/SYSTEMS_KIT_SPEC.md](kit/SYSTEMS_KIT_SPEC.md) | kit/systems_kit.py | 2026-10-02 (director) |
 | Executive kit (63 entries), atrium tree before/after, reference room | [kit/EXECUTIVE_KIT_SPEC.md](kit/EXECUTIVE_KIT_SPEC.md) | kit/executive_kit.py | 2026-10-02 (director) |
 | Night Shift kit (61 entries), long interior window before/after, reference room, readability report | [kit/NIGHTSHIFT_KIT_SPEC.md](kit/NIGHTSHIFT_KIT_SPEC.md) | kit/nightshift_kit.py | 2026-10-02 (director) |
+| Developer handoff: asset index, formats, anchors, layers, tokens, rebuild (build_all.py, check_handoff.py) | [ART_HANDOFF.md](ART_HANDOFF.md) | build_all.py, check_handoff.py | 2026-10-02 (director) |
 
 ## Plan
 
