@@ -1,0 +1,82 @@
+{
+  "frame": {
+    "w": 16,
+    "h": 24
+  },
+  "anchor": {
+    "name": "feet_bc",
+    "x": 8,
+    "y": 24
+  },
+  "states": 7,
+  "state_block": {
+    "w": 64,
+    "h": 192,
+    "x_of_state_k": "k * 64"
+  },
+  "block_layout": "rows S N E W idle (2 frames), then S N E W walk (4 frames), exactly as mira-atlas.png",
+  "state_meaning": "state k wears patches 1..k; state 0 equals mira-atlas.png",
+  "patches": [
+    {
+      "n": 1,
+      "id": "first_delivery",
+      "name": "First Delivery",
+      "earned_on": "Morning Mail (after level 02)",
+      "district": "Orientation",
+      "design": "peach bar",
+      "portrait_icon": "envelope: peach body, coral flap"
+    },
+    {
+      "n": 2,
+      "id": "clear_address",
+      "name": "Clear Address",
+      "earned_on": "Courier Loop (after level 07)",
+      "district": "Records",
+      "design": "lime bar",
+      "portrait_icon": "map pin: lime ring, green hole"
+    },
+    {
+      "n": 3,
+      "id": "archive_loop",
+      "name": "Archive Loop",
+      "earned_on": "Lost Folios (after level 11)",
+      "district": "Records",
+      "design": "brass bar",
+      "portrait_icon": "loop: brass ring with a glint"
+    },
+    {
+      "n": 4,
+      "id": "signed_and_sent",
+      "name": "Signed and Sent",
+      "earned_on": "Payroll Run (after level 13)",
+      "district": "Systems",
+      "design": "navy bar",
+      "portrait_icon": "check mark in navy ink"
+    },
+    {
+      "n": 5,
+      "id": "signal_keeper",
+      "name": "Signal Keeper",
+      "earned_on": "Glyph Dispatch (after level 16)",
+      "district": "Systems",
+      "design": "pale gold bar",
+      "portrait_icon": "three rising pale-gold bars"
+    },
+    {
+      "n": 6,
+      "id": "night_courier",
+      "name": "Night Courier",
+      "earned_on": "Lights-Out Delivery (after level 18)",
+      "district": "Night Shift",
+      "design": "brass glint beside navy",
+      "portrait_icon": "navy crescent with a brass star"
+    }
+  ],
+  "colour_keys": {
+    "i": "#F6B18E",
+    "j": "#B2CE78",
+    "g": "#EDCB7A",
+    "a": "#E1AC62",
+    "b": "#F5D580"
+  }
+}

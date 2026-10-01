@@ -35,6 +35,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Orientation kit: 48-entry tile/prop atlas, JSON schema, garden before/after, room rebuilt from layout (zero diff) | [kit/ORIENTATION_KIT_SPEC.md](kit/ORIENTATION_KIT_SPEC.md) | kit/kitlib.py, kit/orientation_kit.py | 2026-10-02 (director) |
 | Extra sets for the Engineer, Ivo and Mira: interact, two reactions each, Ivo wave/nod/laugh/tablet flash, Engineer quick turn | gate1 spec, IVO_SPEC, MIRA_SPEC (Extra animation sets) | EXTRA in engineer_sprites.py, ivo_sprites.py, mira_sprites.py | 2026-10-02 (director) |
 | Glitches: displaced stapler, duplicate chair shadow, folded form (roam + misregister) | [glitches/GLITCHES_SPEC.md](glitches/GLITCHES_SPEC.md) | glitches/glitch_sprites.py | 2026-10-02 (director) |
+| Portrait template and rules; Engineer, Ivo, Mira portraits (neutral, concerned, pleased); Mira's six patches | [portraits/PORTRAITS_SPEC.md](portraits/PORTRAITS_SPEC.md), [portraits/PORTRAIT_RULES.md](portraits/PORTRAIT_RULES.md), [cast/MIRA_PATCHES_SPEC.md](cast/MIRA_PATCHES_SPEC.md) | portraits/portrait_*.py, cast/mira_patches.py | 2026-10-02 (director) |
 
 ## Plan
 

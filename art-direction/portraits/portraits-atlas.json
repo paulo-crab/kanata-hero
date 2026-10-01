@@ -1,0 +1,189 @@
+{
+  "frame": {
+    "w": 48,
+    "h": 48
+  },
+  "columns": [
+    "neutral",
+    "concerned",
+    "pleased"
+  ],
+  "rows": [
+    "engineer",
+    "ivo",
+    "mira",
+    "mira_patch1",
+    "mira_patch2",
+    "mira_patch3",
+    "mira_patch4",
+    "mira_patch5",
+    "mira_patch6"
+  ],
+  "zoom": "same integer factor as the world (x4 at 1366x768, x6 at 1920x1080); never fractional",
+  "origin": "top-left of the 48x48 cell sits on the dialogue panel's portrait slot; background is transparent",
+  "mira_patch_rows": "mira_patchK is Mira wearing patches 1..K (the row 'mira' is K = 0)",
+  "portraits": {
+    "engineer_neutral": {
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48
+    },
+    "engineer_concerned": {
+      "x": 48,
+      "y": 0,
+      "w": 48,
+      "h": 48
+    },
+    "engineer_pleased": {
+      "x": 96,
+      "y": 0,
+      "w": 48,
+      "h": 48
+    },
+    "ivo_neutral": {
+      "x": 0,
+      "y": 48,
+      "w": 48,
+      "h": 48
+    },
+    "ivo_concerned": {
+      "x": 48,
+      "y": 48,
+      "w": 48,
+      "h": 48
+    },
+    "ivo_pleased": {
+      "x": 96,
+      "y": 48,
+      "w": 48,
+      "h": 48
+    },
+    "mira_neutral": {
+      "x": 0,
+      "y": 96,
+      "w": 48,
+      "h": 48
+    },
+    "mira_concerned": {
+      "x": 48,
+      "y": 96,
+      "w": 48,
+      "h": 48
+    },
+    "mira_pleased": {
+      "x": 96,
+      "y": 96,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch1_neutral": {
+      "x": 0,
+      "y": 144,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch1_concerned": {
+      "x": 48,
+      "y": 144,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch1_pleased": {
+      "x": 96,
+      "y": 144,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch2_neutral": {
+      "x": 0,
+      "y": 192,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch2_concerned": {
+      "x": 48,
+      "y": 192,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch2_pleased": {
+      "x": 96,
+      "y": 192,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch3_neutral": {
+      "x": 0,
+      "y": 240,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch3_concerned": {
+      "x": 48,
+      "y": 240,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch3_pleased": {
+      "x": 96,
+      "y": 240,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch4_neutral": {
+      "x": 0,
+      "y": 288,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch4_concerned": {
+      "x": 48,
+      "y": 288,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch4_pleased": {
+      "x": 96,
+      "y": 288,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch5_neutral": {
+      "x": 0,
+      "y": 336,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch5_concerned": {
+      "x": 48,
+      "y": 336,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch5_pleased": {
+      "x": 96,
+      "y": 336,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch6_neutral": {
+      "x": 0,
+      "y": 384,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch6_concerned": {
+      "x": 48,
+      "y": 384,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch6_pleased": {
+      "x": 96,
+      "y": 384,
+      "w": 48,
+      "h": 48
+    }
+  }
+}
