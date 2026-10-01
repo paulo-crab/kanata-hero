@@ -18,11 +18,14 @@ for sub in ("portraits", "gate1", "cast", "scale-test"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
 import build_scale_test as bst  # noqa: E402
 import portrait_engineer  # noqa: E402
+import portrait_hal  # noqa: E402
 import portrait_ivo  # noqa: E402
 import portrait_mira  # noqa: E402
+import portrait_vale  # noqa: E402
 import portrait_template as T  # noqa: E402
 
-CHARACTERS = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira)]
+CHARACTERS = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira),
+              ("vale", portrait_vale), ("hal", portrait_hal)]
 EXPRESSIONS = list(T.KIT)
 ZOOM = 4          # the world's zoom on 1366x768; portraits are shown at the same factor
 BG = "#151C2B"
@@ -211,7 +214,7 @@ def build_sheet():
     sw, sh = 16 * z, 24 * z
     cell = pw + 24
     W = max(24 + 140 + 130 + 3 * cell, 1000)
-    H = 70 + 3 * (pw + 110)
+    H = 70 + len(CHARACTERS) * (pw + 110)
     sheet = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(sheet)
     d.text((24, 16), "Portraits beside the world sprite · x4 · every portrait key is a key of the sprite's PAL",
@@ -239,6 +242,7 @@ def build_sheet():
 def build_atlas():
     rows = [("engineer", portrait_engineer, 0), ("ivo", portrait_ivo, 0), ("mira", portrait_mira, 0)]
     rows += [(f"mira_patch{k}", portrait_mira, k) for k in range(1, 7)]
+    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0)]
     atlas = Image.new("RGBA", (48 * len(EXPRESSIONS), 48 * len(rows)), (0, 0, 0, 0))
     entries = {}
     for r, (name, mod, k) in enumerate(rows):

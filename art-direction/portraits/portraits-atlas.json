@@ -17,7 +17,8 @@
     "mira_patch3",
     "mira_patch4",
     "mira_patch5",
-    "mira_patch6"
+    "mira_patch6",
+    "vale"
   ],
   "zoom": "same integer factor as the world (x4 at 1366x768, x6 at 1920x1080); never fractional",
   "origin": "top-left of the 48x48 cell sits on the dialogue panel's portrait slot; background is transparent",
@@ -182,6 +183,24 @@
     "mira_patch6_pleased": {
       "x": 96,
       "y": 384,
+      "w": 48,
+      "h": 48
+    },
+    "vale_neutral": {
+      "x": 0,
+      "y": 432,
+      "w": 48,
+      "h": 48
+    },
+    "vale_concerned": {
+      "x": 48,
+      "y": 432,
+      "w": 48,
+      "h": 48
+    },
+    "vale_pleased": {
+      "x": 96,
+      "y": 432,
       "w": 48,
       "h": 48
     }

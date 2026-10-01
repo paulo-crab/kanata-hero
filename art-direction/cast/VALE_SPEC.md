@@ -70,3 +70,21 @@ Coordinator review (to be ticked by the director after looking at `vale-sheet.pn
 - [x] The suit separates from the Executive wall panel, the glass bay, the alcove wall and the navy seating, and carries the silhouette on the pale floor
 - [x] The rigid walk reads as stiff and still-armed, and the side stride stays clear of the frame edge
 - [x] Gold stays small, with no teal-hued or violet clothing
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+Tasks 8.1 (interact) and 8.2 (reactions). Same format as the Engineer, Ivo and Mira: `EXTRA`, `EXTRA_MS`, `EXTRA_MODE` and `EXTRA_ASYMMETRIC` in `vale_sprites.py`, built from the approved idle frames plus hand-placed stamps. `IDLE`, `WALK` and `PAL` are unchanged (dumped and diffed before and after). `build_cast.py vale` adds `vale-extra.gif`, the extra rows of `vale-atlas.png`/`.json` (rows 8–19) and the extra frames on `vale-sheet.png`. `check_gate1.py vale_sprites`: 56 frames checked (24 base + 32 extra), 0 failures.
+
+| Set | Facings | Frames | Timing | Mode |
+| --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 ms | once, hold last |
+| `react_displeased` | S N E W | 3 | 300 ms | once, hold last |
+| `react_reconsidering` | S N E W | 3 | 300 ms | once, hold last |
+
+### Extra decisions
+
+15. **Interact: the audit.** vale.md says "receiving or releasing the audit". Vale carries a 5×4 pale sheet low, then holds a 6×5 sheet out (it grows because it is nearer the player, as Ivo's tablet does). The sheet is a dark rim, alternating `w`/`x` lines read as text, and one `c` copper clip on the top edge. S: at Vale's right (screen-left), the hand grips its lower edge. E and W: held out toward the facing. N: only the back of the sheet shows past the shoulder. The sheet stays inside 16×24, so it uses columns 0–5 on S, W and N. It uses no new key, and `y` stays inside its glint limit. `EXTRA_ASYMMETRIC` includes `interact`.
+16. **Reaction: displeased (stiff).** vale.md's "composed" is the idle, so reaction (a) is the stiff counterpart: the head bows a notch (`dip`), a level brow pixel is added above the eyes, and the mouth corners drop onto the chin. On S the fists clench on the last frame (hands take the skin shadow steps) and the figure settles 1 px (`lower`). The face is the sprite's single ink pixels, so it reads through the brow and mouth, not through eye shape. A 2 px dark furrow was tried and read as an eye patch; it was dropped.
+17. **Reaction: reconsidering (the first softening).** vale.md's reaction (b) is "unsettled on seeing raw evidence". It is the first step of the arc, so it plays the first softening state's change: the head tilts 1 px, the hard corners of the shoulder line are cut (`sag`: the shoulders drop 1 px), and the figure settles. The last frame is the state-1 silhouette, so the same `sag` can be applied to the idle frames when the engine switches to repair 1.
+18. **Held frame.** Both reactions end on a frame that is a valid resting pose; the engine holds it until the dialogue closes.
+19. **Open.** The state 2 and 3 poses (arms relax, weight on one leg, open stance) and the portrait expressions are still to do. N has no face, so its reactions only move the head and shoulders.

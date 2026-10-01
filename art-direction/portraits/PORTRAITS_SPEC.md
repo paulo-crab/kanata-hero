@@ -67,3 +67,30 @@ Coordinator review (to be completed by the director):
 - [x] Ramps match the sprite in `portraits-sheet.png`
 
 Review history: one self-review pass of three cycles. Cycle 1 failed on a helmet-like Engineer fringe and a brick pattern of strand dashes (both redrawn as swept tufts and continuous strand lines), a flat Ivo hairline (redrawn as a toothed fringe), tilt seams that exposed tufts or put a darkest step inside hair (the tilt now starts at row 0 and the hair/skin separation runs after the tilt), and an ear seam in a darkest-step key (now ink). Cycle 2 passed the checker. Director review then required Ivo's crown to be rebuilt from strand clusters because the first version read as a smooth mound; it was, and the checker and sheet were rerun.
+
+## Vale (task 9.3, approved by the director 2026-10-02)
+
+**Status:** Candidate, pending director review. `portrait_vale.py` is built on the same template and checked by the same `check_portraits.py` (30 grids, 0 failures). `build_portraits.py` adds Vale to `portraits-sheet.png` (fourth row) and to `portraits-atlas.png`/`.json` (row `vale`, appended after the Mira patch rows so no existing row moves). Sources: `design/characters/vale.md`, `cast/vale_sprites.py`, `cast/VALE_SPEC.md`.
+
+| | Vale |
+| --- | --- |
+| Hair | Graphite `ABCD`: the sprite's cowlick (a tuft above the crown, standing out of a lower crown), the 1 px skin-coloured side part (`k`) left of centre, diagonal strand lines sweeping to the right, a lit `D` band on the upper left, and an uneven fringe: a long centre lock, a short lock at the right, a high left lock, and temple points. The ears show below the hair. |
+| Skin | `klmn` as the sprite (pale ivory) |
+| Clothing | Navy suit `pqrs` with the hard, square shoulder line (full width on row 37, not 40–41), a lit `s` edge on the left shoulder and sleeve, `o` seams between sleeves and torso, and a cool-white shirt V `wxy` |
+| Accent | Green tie `tuv` (the knot's `v` glint on 1 px) and the copper badge `bcde` on screen-right (4×5, one `e` glint), as the sprite |
+| Identity at 1× | Square shoulders, dark swept hair with a part, green tie, copper badge |
+
+### Vale decisions
+
+15. **Hair matches the sprite's idea, not its pixels.** The sprite's three features survive at ×2.4: the cowlick, the side part and the uneven fringe. The 3× larger head allows strand lines, which carry the "not a helmet" read where the narrow graphite ramp gives little contrast. The fringe stays put under the tilt (the tilt covers rows 0–10, as Ivo's covers 0–11).
+16. **Brows use `B`** (graphite shadow), because the lightest hair step is much darker than the skin and `A` would read as black bars.
+17. **Square shoulders.** The shoulder line drops from the neck to full width in two steps (rows 35–37) instead of sloping to row 40–41. The rules allow a per-character override (Ivo, row 39). Vale is the only cast member with flat shoulders.
+18. **Seams are ink.** The sleeve seams use `#202337`, not the suit's darkest step: an `p` line inside one ramp breaks the contour-only rule (as for Mira's sleeve). `p` appears only on the lapel edges, beside the tie and the badge.
+19. **Pleased is restrained: an almost-smile.** The kit's closed eyes and wide smile would read as warm and open, which is wrong for Vale's arc ("starts rigid, softens"). The `pleased` portrait keeps the neutral open eyes and the arched brows, with a 4 px mouth whose corners rise 1 px (`STAMPS["pleased"]` in `portrait_vale.py`). It tilts right like the other characters. The three expressions differ by well over 40 px.
+20. **Mapping to the brief.** vale.md names composed (rigid), unsettled (evidence shown) and resolved (releases the audit): neutral is composed, concerned is unsettled, pleased is resolved, shown as the almost-smile.
+21. **No extra palette steps.** Every key is a key of `vale_sprites.PAL` with the same hex; `EXTRA` is empty. `HAIR_SKIN_SEPARATED` is off for the same reason as on the sprite (the graphite hair is 29 L* darker than the skin).
+
+Review: `check_portraits.py` ended at 30 portraits checked, 0 failures. Cycles: the first version had a flat fringe line and a light, blocky hair mass, and failed the row-0 rule, the crop-row outline (side outlines on columns 2 and 45 instead of 1 and 46), the darkest-step rule (a `p` sleeve seam) and the open silhouette under the tilt; the hair was then rebuilt with strand lines and a toothed fringe, and the tilt boundary was moved to row 10 with matching edge columns on rows 10 and 11. Coordinator review (to be completed by the director):
+- [ ] Vale reads as the same person as the sprite at ×4 (hair, tie, badge, shoulders)
+- [ ] Hair does not read as a helmet
+- [ ] Neutral, concerned and the almost-smile are distinguishable at ×4

@@ -72,6 +72,78 @@
         0,
         2
       ]
+    },
+    "vale_interact_s": {
+      "row": 8,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "vale_interact_n": {
+      "row": 9,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "vale_interact_e": {
+      "row": 10,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "vale_interact_w": {
+      "row": 11,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "vale_react_displeased_s": {
+      "row": 12,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_displeased_e": {
+      "row": 13,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_displeased_w": {
+      "row": 14,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_displeased_n": {
+      "row": 15,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_reconsidering_s": {
+      "row": 16,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_reconsidering_n": {
+      "row": 17,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_reconsidering_e": {
+      "row": 18,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "vale_react_reconsidering_w": {
+      "row": 19,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"
