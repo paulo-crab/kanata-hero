@@ -41,6 +41,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Hal: idle ×4, walk ×4 | [cast/HAL_SPEC.md](cast/HAL_SPEC.md) | cast/hal_sprites.py | 2026-10-02 (director) |
 | Records kit (48 entries), circular archive desk before/after, walkable reference room | [kit/RECORDS_KIT_SPEC.md](kit/RECORDS_KIT_SPEC.md) | kit/shared_pieces.py, kit/records_kit.py | 2026-10-02 (director) |
 | Vale: interact, displeased and reconsidering reactions; 48×48 portrait (neutral, concerned, restrained pleased) | cast/VALE_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Vale) | EXTRA in cast/vale_sprites.py, portraits/portrait_vale.py | 2026-10-02 (director) |
+| Noor: idle ×4, walk ×4 | [cast/NOOR_SPEC.md](cast/NOOR_SPEC.md) | cast/noor_sprites.py | 2026-10-02 (director) |
 
 ## Plan
 

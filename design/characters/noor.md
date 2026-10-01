@@ -1,6 +1,6 @@
 # Noor — archive clerk
 
-**Status:** after gate 1. Shared rules: [README](README.md).
+**Status:** idle ×4 and walk ×4 approved by the director 2026-10-02. The pixel spec [NOOR_SPEC.md](../../art-direction/cast/NOOR_SPEC.md) supersedes the provisional and open rows below. Shared rules: [README](README.md).
 
 ## Identity
 
