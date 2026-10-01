@@ -42,7 +42,7 @@ SHADOW_CORE = bst.hx("#343650")
 
 def frame_rgba(frame, pal=None):
     pal = pal or eng.PAL
-    img = np.zeros((24, 16, 4), np.uint8)
+    img = np.zeros((len(frame), len(frame[0]), 4), np.uint8)
     for y, row in enumerate(frame):
         for x, ch in enumerate(row):
             c = pal[ch]
