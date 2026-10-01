@@ -70,7 +70,7 @@ Player:
 
 ## Extra animation sets (approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. Tasks 8.1 to 8.3. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `ivo_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". `build_cast.py ivo` appends the rows to `ivo-atlas.png/.json` (animations `ivo_<set>_<facing>`), adds the frames to `ivo-sheet.png` and writes `ivo-extra.gif`.
+**Status:** Approved by the director 2026-10-02. Tasks 8.1 to 8.3. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `ivo_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". `build_cast.py ivo` appends the rows to `ivo-atlas.png/.json` (animations `ivo_<set>_<facing>`), adds the frames to `ivo-sheet.png` and writes `ivo-extra.gif`.
 
 | Set | Facings | Frames | ms per frame | Mode | Pose |
 | --- | --- | --- | --- | --- | --- |

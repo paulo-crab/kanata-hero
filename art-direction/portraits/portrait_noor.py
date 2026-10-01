@@ -1,6 +1,6 @@
 """Noor portraits, 48x48 logical px, three expressions.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
 Every key is a key of noor_sprites.PAL (hair ABCD blue-black, skin klmn light olive, shirt pqrs grey
 oatmeal, coral folder cdef edge `d`/`e`/`f`, sea-blue tabs ghjJ). No extra steps. The hair is the sprite's short
 swept crop: two crown tufts with a notch between them, light strand clusters from the upper left, a stepped

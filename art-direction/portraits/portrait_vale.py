@@ -1,6 +1,6 @@
 """Vale portraits, 48x48 logical px, three expressions.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
 Every key is a key of vale_sprites.PAL (hair ABCD graphite, skin klmn ivory, suit pqrs, shirt wxy,
 tie tuv, copper badge bcde). No extra steps. The hair keeps the sprite's cowlick, skin-coloured side
 part, uneven fringe and ears; the shoulders are square, as on the sprite.

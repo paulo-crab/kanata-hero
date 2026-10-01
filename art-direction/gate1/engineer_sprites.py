@@ -280,7 +280,7 @@ WALK = {"s": walk_front_back(S, LEGS_S), "n": walk_front_back(N, LEGS_N), "e": w
 WALK_E = WALK["e"]
 
 
-# --- Extra animation sets (tasks 8.1-8.4, candidate) -----------------------------------------
+# --- Extra animation sets (tasks 8.1-8.4, approved 2026-10-02) -----------------------------------------
 # EXTRA frames are the approved idle frames with hand-placed stamps: each stamp is a small key
 # grid pasted at (x, y). A space keeps the pixel underneath, "." clears it. The approved IDLE and
 # WALK frames above are never edited. Format: EXTRA[set][key] = [frames]; EXTRA_MS[set] = ms.

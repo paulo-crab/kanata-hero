@@ -1,8 +1,8 @@
 {
-  "status": "Candidate, pending director review",
+  "status": "Approved by the director 2026-10-02",
   "tile": 16,
   "placement": "sprite top-left = footprint cell top-left minus origin_px",
-  "layers": "floor -> wall and floor-marking -> rear-prop -> contact shadows -> actors -> front props",
+  "layers": "floor -> rear_wall and floor_marking -> rear_prop -> contact shadows -> actors -> front props",
   "states": {
     "default": "orderly bars",
     "repeat": "errors accumulating: bars repeat at one length",
@@ -30,7 +30,7 @@
         "y": 32,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "rear-prop",
+      "layer": "rear_prop",
       "collision_cells": [
         [
           0,
@@ -66,7 +66,7 @@
         "y": 32,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "rear-prop",
+      "layer": "rear_prop",
       "collision_cells": [
         [
           0,
@@ -102,7 +102,7 @@
         "y": 32,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "rear-prop",
+      "layer": "rear_prop",
       "collision_cells": [
         [
           0,
@@ -138,7 +138,7 @@
         "y": 32,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -165,7 +165,7 @@
         "y": 32,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -192,7 +192,7 @@
         "y": 24,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": null,
       "baked_shadow": true,
@@ -219,7 +219,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -246,7 +246,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -273,7 +273,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -300,7 +300,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -327,7 +327,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -354,7 +354,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "floor-marking",
+      "layer": "floor_marking",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -381,7 +381,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,
@@ -408,7 +408,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": null,
       "baked_shadow": true,
@@ -435,7 +435,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": "default",
       "baked_shadow": true,
@@ -462,7 +462,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": "optional",
       "baked_shadow": true,
@@ -489,7 +489,7 @@
         "y": 16,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": "repeat",
       "baked_shadow": true,
@@ -516,7 +516,7 @@
         "y": 8,
         "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
       },
-      "layer": "wall",
+      "layer": "rear_wall",
       "collision_cells": [],
       "state": null,
       "baked_shadow": false,

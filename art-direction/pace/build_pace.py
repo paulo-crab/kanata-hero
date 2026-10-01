@@ -136,15 +136,15 @@ def build_atlas(pieces):
             "collision_cells": [list(c) for c in s["collision"]],
             "state": s["state"],
             "baked_shadow": n in ("pace_directory", "pace_directory_repeat", "pace_directory_optional")
-                            or s["layer"] == "wall" and n != "pace_icon_16" and n != "pace_icon_8",
+                            or s["layer"] == "rear_wall" and n != "pace_icon_16" and n != "pace_icon_8",
             "note": s["note"],
         }
     atlas.save(os.path.join(HERE, "pace-atlas.png"))
     meta = {
-        "status": "Candidate, pending director review",
+        "status": "Approved by the director 2026-10-02",
         "tile": 16,
         "placement": "sprite top-left = footprint cell top-left minus origin_px",
-        "layers": "floor -> wall and floor-marking -> rear-prop -> contact shadows -> actors -> front props",
+        "layers": "floor -> rear_wall and floor_marking -> rear_prop -> contact shadows -> actors -> front props",
         "states": {"default": "orderly bars", "repeat": "errors accumulating: bars repeat at one length",
                    "optional": "epilogue: unlit stone, optional guidance"},
         "entries": entries,

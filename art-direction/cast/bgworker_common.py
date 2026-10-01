@@ -1,6 +1,6 @@
 """Shared kit for the background office workers (two bodies, three palettes).
 
-Status: Candidate, pending director review. Spec: BACKGROUND_WORKERS_SPEC.md.
+Status: Approved by the director 2026-10-02. Spec: BACKGROUND_WORKERS_SPEC.md.
 The key layout is shared by both bodies, so a palette is a ramp swap on the same
 grids (STYLE_BIBLE section 3, GATE1 spec "Customization swaps ramps in PAL only").
 

@@ -1,6 +1,6 @@
 """Hal portraits, 48x48 logical px, three expressions.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md (Hal), rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md (Hal), rules: PORTRAIT_RULES.md.
 Every key is a key of hal_sprites.PAL (hair ABCD sandy blond, skin klmn, vest pqrs, sleeves wxy,
 roll EFGH, tool tips hj). No extra steps. The hair keeps the sprite's reading: a dome with spikes,
 uneven fringe, ears showing. His brows use outline ink, because the blond hair steps and the golden

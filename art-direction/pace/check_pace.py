@@ -52,11 +52,11 @@ for name, a in pieces.items():
     # On the grid: half-cell multiples (as for the 16x24 person), whole cells for floor markings.
     if w % 8 or h % 8:
         fails.append(f"{name}: {w}x{h} off the 8 px grid")
-    if spec["layer"] == "floor-marking" and (w % 16 or h % 16):
+    if spec["layer"] == "floor_marking" and (w % 16 or h % 16):
         fails.append(f"{name}: floor marking {w}x{h} is not whole cells")
     if name != "pace_icon_8":
         ox, oy = spec["origin"]
-        if spec["layer"] == "rear-prop":
+        if spec["layer"] == "rear_prop":
             if (w, h) != (fp[0] * 16 + ox, oy + fp[1] * 16):
                 fails.append(f"{name}: {w}x{h} does not match footprint + origin")
         elif w > fp[0] * 16 or h > fp[1] * 16:
@@ -94,7 +94,7 @@ for name, a in pieces.items():
     if bad:
         fails.append(f"{name}: non-contour pixels on the edge {bad[:3]}")
     # Floor glyphs stay legible on their slab.
-    if spec["layer"] == "floor-marking":
+    if spec["layer"] == "floor_marking":
         c = contrast(pa.PAL["f"], pa.PAL["s"])
         if c < 3:
             fails.append(f"{name}: glyph contrast {c:.1f}:1 on the slab (min 3:1)")
@@ -118,7 +118,7 @@ if os.path.exists(atlas_png) and os.path.exists(atlas_json):
         x, y, w, h = e["rect"]
         if not np.array_equal(atlas[y:y + h, x:x + w], a):
             fails.append(f"atlas pixels differ from source for {name}")
-        if e["layer"] not in ("wall", "floor-marking", "rear-prop"):
+        if e["layer"] not in ("rear_wall", "floor_marking", "rear_prop"):
             fails.append(f"{name}: bad layer {e['layer']}")
 else:
     fails.append("atlas not built yet (run build_pace.py)")

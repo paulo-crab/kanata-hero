@@ -1,6 +1,6 @@
 """Mira's six delivery patches as overlay data on the approved world sprite and portrait.
 
-Status: Candidate, pending director review. Spec: MIRA_PATCHES_SPEC.md.
+Status: Approved by the director 2026-10-02. Spec: MIRA_PATCHES_SPEC.md.
 Does not edit mira_sprites.py: every state is built by painting the patches onto the
 approved frames. State k (0..6) shows patches 1..k, added in route order (mira.md "Patch
 states"). Coordinates are for a frame at rest (idle frame 0, dy = 0); the 1 px settle

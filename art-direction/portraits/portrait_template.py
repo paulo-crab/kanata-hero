@@ -1,6 +1,6 @@
 """Shared geometry, expression kit and helpers for 48x48 head-and-shoulders portraits.
 
-Status: Candidate, pending director review. Rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Rules: PORTRAIT_RULES.md.
 
 A portrait grid is 48 rows of 48 keys. Source files write each row as three 16-key
 blocks separated by spaces (one block is one world tile; the face axis falls between

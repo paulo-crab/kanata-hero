@@ -1,6 +1,6 @@
 """Hal (systems technician) frames, hand-placed at 16x24 logical px.
 
-Status: Candidate, pending director review. Built on the person rules approved at Gate 1
+Status: Approved by the director 2026-10-02. Built on the person rules approved at Gate 1
 (gate1/GATE1_ENGINEER_SPEC.md) and the cast frame rule (IVO_SPEC.md). Spec: HAL_SPEC.md.
 Skin and hair come from CAST_RAMPS in palettes/district_palettes.py (never retyped here).
 """
@@ -169,7 +169,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (tasks 8.1-8.2, candidate) ------------------------------------------------
+# --- Extra animation sets (tasks 8.1-8.2, approved 2026-10-02) ------------------------------------------------
 # Same format as the Engineer's (engineer_sprites.EXTRA). Frames are built from the raw (rollless) grids
 # above plus hand-placed stamps, then finish() paints the roll, so the roll never deforms. IDLE and WALK
 # above are never edited. Stamp rule (eng.stamp): a space keeps the pixel beneath, "." clears it.

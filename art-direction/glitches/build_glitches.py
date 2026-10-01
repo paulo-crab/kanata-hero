@@ -79,7 +79,7 @@ def build_atlas():
                                                   "while lifted 2 px or more"},
                        "flippable": False}
     atlas.save(os.path.join(HERE, "glitches-atlas.png"))
-    meta = {"status": "Candidate, pending director review",
+    meta = {"status": "Approved by the director 2026-10-02",
             "atlas": {"w": 128, "h": 16 * len(rows), "row_h": 16,
                       "note": "each animation is one row, frames left to right at the archetype's frame width"},
             "archetypes": archs, "animations": anims,

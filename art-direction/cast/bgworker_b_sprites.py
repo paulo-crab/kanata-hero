@@ -1,6 +1,6 @@
 """Background worker, body B ("long hair"): frames hand-placed at 16x24 logical px.
 
-Status: Candidate, pending director review. Spec: BACKGROUND_WORKERS_SPEC.md.
+Status: Approved by the director 2026-10-02. Spec: BACKGROUND_WORKERS_SPEC.md.
 A 12 px sweater silhouette under a centre-parted, chin-to-shoulder cut whose ends
 flick out unevenly (with the ear tucked on the worker's left), an under-shirt hem
 peeking below the sweater, and a level stance. No signature prop. Palette swaps

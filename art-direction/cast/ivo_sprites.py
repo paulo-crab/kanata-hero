@@ -167,7 +167,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (tasks 8.1-8.3, candidate) ----------------------------------------------
+# --- Extra animation sets (tasks 8.1-8.3, approved 2026-10-02) ----------------------------------------------
 # Same format as the Engineer's (engineer_sprites.EXTRA): the approved idle frames plus hand-placed
 # stamps. IDLE and WALK above are never edited.
 stamp, stamps, dip, tilt = eng.stamp, eng.stamps, eng.dip, eng.tilt

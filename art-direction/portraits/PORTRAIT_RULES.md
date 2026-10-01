@@ -1,6 +1,6 @@
 # Portrait rules (48×48 head and shoulders)
 
-**Status:** Candidate, pending director review. These rules apply to every recurring character's dialogue portrait. They extend the person rules in the [Gate 1 spec](../gate1/GATE1_ENGINEER_SPEC.md) and the Portraits requirement in `openspec/changes/complete-art-production/specs/character-sprites/spec.md`. The template sheet is `portrait-template.png`; the geometry lives in `portrait_template.py`.
+**Status:** Approved by the director 2026-10-02. These rules apply to every recurring character's dialogue portrait. They extend the person rules in the [Gate 1 spec](../gate1/GATE1_ENGINEER_SPEC.md) and the Portraits requirement in `openspec/changes/complete-art-production/specs/character-sprites/spec.md`. The template sheet is `portrait-template.png`; the geometry lives in `portrait_template.py`.
 
 ## Frame and display
 

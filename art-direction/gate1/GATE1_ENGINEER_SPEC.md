@@ -87,7 +87,7 @@ Use this prompt only to request a re-draw. `engineer_sprites.py` remains the pix
 
 ## Extra animation sets (approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. Tasks 8.1, 8.2 and 8.4. The approved idle and walk frames are unchanged (verified by dump and diff). The new frames live in `engineer_sprites.EXTRA`, built from the idle frames plus hand-placed stamps.
+**Status:** Approved by the director 2026-10-02. Tasks 8.1, 8.2 and 8.4. The approved idle and walk frames are unchanged (verified by dump and diff). The new frames live in `engineer_sprites.EXTRA`, built from the idle frames plus hand-placed stamps.
 
 **Format (shared by every character).** `EXTRA[set][key] = [frames]`, `EXTRA_MS[set] = ms per frame`, optional `EXTRA_MODE[set]` (`"once"` = play, then hold the last frame; `"loop"`), optional `EXTRA_ASYMMETRIC` (sets whose arm moves mass off the anchor). Keys are facings `s n e w`; the `turn` set uses adjacent pairs `se en nw ws`. Frames are 16×24 with the approved anchor. `build_cast.py engineer` writes `engineer-full-atlas.png/.json` (idle and walk rows 0-7, then one extra row per set and key, named `engineer_<set>_<key>`), `engineer-full-sheet.png` and `engineer-extra.gif` into this folder. The approved `engineer-atlas.*` is still built by `build_gate1.py`.
 

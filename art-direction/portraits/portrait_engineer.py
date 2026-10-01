@@ -1,6 +1,6 @@
 """Engineer portraits, 48x48 logical px, three expressions.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
 Every key is a key of engineer_sprites.PAL, so the portrait wears the world sprite's
 ramps exactly (hair ABCD, skin klmn, jacket pqrs, collar wxy, badge bcd). No extra steps.
 Ruler:  0123456789012345 0123456789012345 0123456789012345  (the axis falls between 23|24)

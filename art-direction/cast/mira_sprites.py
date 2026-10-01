@@ -231,7 +231,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (tasks 8.1-8.2, candidate) ------------------------------------------------
+# --- Extra animation sets (tasks 8.1-8.2, approved 2026-10-02) ------------------------------------------------
 # Same format as the Engineer's (engineer_sprites.EXTRA). Frames are built from the raw (bagless) grids
 # above plus hand-placed stamps, then finish() paints strap shading and the bag, so the bag never
 # deforms. IDLE and WALK are never edited. Stamps avoid the keys y, G, d inside the torso rows,

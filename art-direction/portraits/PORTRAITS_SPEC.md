@@ -70,7 +70,7 @@ Review history: one self-review pass of three cycles. Cycle 1 failed on a helmet
 
 ## Vale (task 9.3, approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. `portrait_vale.py` is built on the same template and checked by the same `check_portraits.py` (30 grids, 0 failures). `build_portraits.py` adds Vale to `portraits-sheet.png` (fourth row) and to `portraits-atlas.png`/`.json` (row `vale`, appended after the Mira patch rows so no existing row moves). Sources: `design/characters/vale.md`, `cast/vale_sprites.py`, `cast/VALE_SPEC.md`.
+**Status:** Approved by the director 2026-10-02. `portrait_vale.py` is built on the same template and checked by the same `check_portraits.py` (30 grids, 0 failures). `build_portraits.py` adds Vale to `portraits-sheet.png` (fourth row) and to `portraits-atlas.png`/`.json` (row `vale`, appended after the Mira patch rows so no existing row moves). Sources: `design/characters/vale.md`, `cast/vale_sprites.py`, `cast/VALE_SPEC.md`.
 
 | | Vale |
 | --- | --- |
@@ -97,7 +97,7 @@ Review: `check_portraits.py` ended at 30 portraits checked, 0 failures. Cycles: 
 
 ## Hal (task 9.3, approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. `portrait_hal.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). It imports `hal_sprites` and copies its `PAL`. It is registered in `check_portraits.py` and `build_portraits.py` and in the atlas (the last row, `hal`). `python3 check_portraits.py` reports 0 failures.
+**Status:** Approved by the director 2026-10-02. `portrait_hal.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). It imports `hal_sprites` and copies its `PAL`. It is registered in `check_portraits.py` and `build_portraits.py` and in the atlas (the last row, `hal`). `python3 check_portraits.py` reports 0 failures.
 
 | | Hal |
 | --- | --- |
@@ -118,7 +118,7 @@ Director decisions:
 
 ## Ada (task 9.3, approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. `portrait_ada.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). Check: `check_portraits.py` ends at `36 portraits checked, 0 failures`. The sheet row and the atlas row are named `ada`.
+**Status:** Approved by the director 2026-10-02. `portrait_ada.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). Check: `check_portraits.py` ends at `36 portraits checked, 0 failures`. The sheet row and the atlas row are named `ada`.
 
 | | Ada |
 | --- | --- |
@@ -149,7 +149,7 @@ Coordinator review (to be completed by the director):
 
 ## Noor (task 9.3, approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. `portrait_noor.py` is built on the same template and checked by the same `check_portraits.py` (39 grids, 0 failures). `build_portraits.py` adds Noor to `portraits-sheet.png` (last row) and to `portraits-atlas.png`/`.json` (row `noor`, appended after the existing rows so no row moves). Sources: `design/characters/noor.md`, `cast/noor_sprites.py`, `cast/NOOR_SPEC.md`.
+**Status:** Approved by the director 2026-10-02. `portrait_noor.py` is built on the same template and checked by the same `check_portraits.py` (39 grids, 0 failures). `build_portraits.py` adds Noor to `portraits-sheet.png` (last row) and to `portraits-atlas.png`/`.json` (row `noor`, appended after the existing rows so no row moves). Sources: `design/characters/noor.md`, `cast/noor_sprites.py`, `cast/NOOR_SPEC.md`.
 
 | | Noor |
 | --- | --- |

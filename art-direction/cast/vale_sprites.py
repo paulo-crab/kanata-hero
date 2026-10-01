@@ -1,6 +1,6 @@
 """Vale (executive liaison) frames, hand-placed at 16x24 logical px.
 
-Status: candidate, pending director review. Built on the person rules approved at Gate 1
+Status: Approved by the director 2026-10-02. Built on the person rules approved at Gate 1
 (art-direction/gate1/GATE1_ENGINEER_SPEC.md) and the cast frame rule (cast/IVO_SPEC.md).
 Spec: VALE_SPEC.md. This is softening state 0 (0 repairs): rigid, square shoulders, arms tight,
 feet together. Later states (shoulders drop, arms relax, asymmetric stance) are EXTRA sets.
@@ -177,7 +177,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (tasks 8.1-8.2, candidate) ----------------------------------------------
+# --- Extra animation sets (tasks 8.1-8.2, approved 2026-10-02) ----------------------------------------------
 # Same format as the Engineer's (engineer_sprites.EXTRA): the approved idle frames plus hand-placed
 # stamps. IDLE and WALK above are never edited. Vale stays stiff: arms stay at the sides except where
 # a set needs them, and the head moves in whole 1 px steps.

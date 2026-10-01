@@ -79,7 +79,7 @@ def build_atlases():
                                          "start_offset_ms": "random 0-999, per worker"}
                     for i, v in enumerate(VARIANTS)}
         meta = {
-            "status": "Candidate, pending director review",
+            "status": "Approved by the director 2026-10-02",
             "frame": {"w": 16, "h": 24},
             "anchor": {"name": "feet_bc", "x": 8, "y": 24},
             "footprint_cells": [1, 1],

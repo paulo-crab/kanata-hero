@@ -1,6 +1,6 @@
 """Ada (night caretaker) frames, hand-placed at 16x24 logical px.
 
-Status: Candidate, pending director review. Built on the approved person rules (Gate 1 spec) and the
+Status: Approved by the director 2026-10-02. Built on the approved person rules (Gate 1 spec) and the
 cast frame rule (IVO_SPEC.md). Spec and the lantern rim-light ruling: ADA_SPEC.md.
 
 Frames are written as raw grids (coat, head, boots) plus one small overlay per facing for the hand and
@@ -243,7 +243,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (candidate) ---------------------------------------------------------------
+# --- Extra animation sets (approved 2026-10-02) ---------------------------------------------------------------
 # Same format as the Engineer's, Ivo's and Mira's (EXTRA, EXTRA_MS, EXTRA_MODE, EXTRA_ASYMMETRIC). Frames are
 # built from the raw grids above (never the finished IDLE/WALK frames, which are not edited), with hand-placed
 # stamps; the hand and lantern are painted last, so the lantern keeps its shape and its baked rim follows it.

@@ -1,6 +1,6 @@
 """Mira portraits, 48x48 logical px, three expressions, plus the six patch states.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
 Every key is a key of mira_sprites.PAL (hair ABCD, skin klmn, ochre panel wxyz, green panel
 EFGH, coral strap and bag cdef). No extra steps. Patch overlays come from
 ../cast/mira_patches.py (PORTRAIT_PATCHES) and are applied by `with_patches`.

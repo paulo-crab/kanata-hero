@@ -1,6 +1,6 @@
 """Ivo portraits, 48x48 logical px, three expressions.
 
-Status: Candidate, pending director review. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
+Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
 Every key is a key of ivo_sprites.PAL (hair ABCD silver, skin klmn, cardigan pqrs, shirt
 strip xyz, tablet ghjJ). No extra steps. Ivo's shoulders are broader than the template
 (the slope reaches full width on row 39), which PORTRAIT_RULES.md allows per character.

@@ -1,6 +1,6 @@
 """Noor (Records archive clerk) frames, hand-placed at 16x24 logical px.
 
-Status: Candidate, pending director review. Built on the person rules approved at Gate 1
+Status: Approved by the director 2026-10-02. Built on the person rules approved at Gate 1
 (gate1/GATE1_ENGINEER_SPEC.md) and the cast frame rule (IVO_SPEC.md): 16x24, anchor between
 columns 7|8, feet on row 23, darkest step on contours only, renderer-drawn shadow.
 Spec: NOOR_SPEC.md. Skin and hair come from CAST_RAMPS (palettes/district_palettes.py).
@@ -190,7 +190,7 @@ WALK = {
 }
 
 
-# --- Extra animation sets (tasks 8.1-8.2, candidate) ----------------------------------------------
+# --- Extra animation sets (tasks 8.1-8.2, approved 2026-10-02) ----------------------------------------------
 # Same format as the Engineer's (engineer_sprites.EXTRA): EXTRA[set][facing] = [frames]. Frames are built from
 # the raw (propless) grids above, with the head moved by eng.dip / eng.tilt and the props painted by
 # finish_x, so the stamp and folder never deform. IDLE and WALK above are never edited.

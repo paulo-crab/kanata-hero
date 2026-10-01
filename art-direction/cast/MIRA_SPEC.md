@@ -77,7 +77,7 @@ Player:
 
 ## Extra animation sets (approved by the director 2026-10-02)
 
-**Status:** Candidate, pending director review. Tasks 8.1 and 8.2. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `mira_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". Frames are built from the raw bagless grids plus stamps, then `finish()` paints strap shading and the bag, so the bag keeps its shape on lowered frames. `build_cast.py mira` appends the rows to `mira-atlas.png/.json`, adds the frames to `mira-sheet.png` and writes `mira-extra.gif`. Her patches are owned elsewhere and are not touched.
+**Status:** Approved by the director 2026-10-02. Tasks 8.1 and 8.2. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `mira_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". Frames are built from the raw bagless grids plus stamps, then `finish()` paints strap shading and the bag, so the bag keeps its shape on lowered frames. `build_cast.py mira` appends the rows to `mira-atlas.png/.json`, adds the frames to `mira-sheet.png` and writes `mira-extra.gif`. Her patches are owned elsewhere and are not touched.
 
 | Set | Facings | Frames | ms per frame | Mode | Pose |
 | --- | --- | --- | --- | --- | --- |

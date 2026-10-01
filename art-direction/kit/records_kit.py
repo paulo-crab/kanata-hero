@@ -595,7 +595,7 @@ def atlas_json(pieces, rects, anims, lms):
         "image": "records-atlas.png",
         "tile": T,
         "layers": kitlib.LAYERS,
-        "status": "Candidate, pending director review",
+        "status": "Approved by the director 2026-10-02",
         "source": "Orientation pieces recoloured by exact hex swap (records_kit.py), new pieces from shared_pieces.py, Records landmark; build_records.py",
         "entries": [p.entry(rects[p.name]) for p in pieces],
         "animations": anims,

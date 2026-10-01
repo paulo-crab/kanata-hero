@@ -1,6 +1,6 @@
 """Background worker, body A ("slim"): frames hand-placed at 16x24 logical px.
 
-Status: Candidate, pending director review. Spec: BACKGROUND_WORKERS_SPEC.md.
+Status: Approved by the director 2026-10-02. Spec: BACKGROUND_WORKERS_SPEC.md.
 Narrow 10 px shoulders, a short side-parted crop with ears showing, a collared
 shirt, hands at the hips and a level stance. No signature prop. Palette swaps
 live in bgworker_common.PALETTES; the key layout never changes.

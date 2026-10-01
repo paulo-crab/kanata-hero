@@ -1,6 +1,6 @@
 """Glitch sprites (misregistered office objects), hand-placed on the 16 px grid.
 
-Status: candidate, pending director review. Spec: GLITCHES_SPEC.md.
+Status: Approved by the director 2026-10-02. Spec: GLITCHES_SPEC.md.
 
 Three archetypes, each with a roam set and a misregister set:
   stapler  32x16 (2x1 cells) a grey desk stapler that hops, with a violet outline ghost

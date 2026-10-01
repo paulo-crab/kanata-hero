@@ -611,7 +611,7 @@ def atlas_json(pieces, rects, anims, landmarks):
         "image": "orientation-atlas.png",
         "tile": T,
         "layers": kitlib.LAYERS,
-        "status": "Candidate, pending director review",
+        "status": "Approved by the director 2026-10-02",
         "source": "extracted from art-direction/gate1/environment.py (approved review room); build_kit.py",
         "entries": entries,
         "animations": anims,
