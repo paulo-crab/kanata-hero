@@ -1,0 +1,1035 @@
+{
+ "kit": "records",
+ "atlas": "records-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Records reference room, built only from records-atlas. Floor is a cell grid; every other element is a placement at cell + pixel offset of its footprint origin. Draw order = layer order, then list order. The Engineer is added by the renderer, not the layout. The main route enters at the bottom (cols 10-11), runs north, turns east along rows 4-5 and ends at the door.",
+ "states": {
+  "archive_door": "closed",
+  "lamp": "on",
+  "archive_desk": "before",
+  "file_wall": "closed"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    3
+   ],
+   "offset": [
+    8,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    7
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    13,
+    8
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    8
+   ],
+   "offset": [
+    3,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    8,
+    9
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    6
+   ],
+   "offset": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    2
+   ],
+   "offset": [
+    12,
+    14
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    3,
+    3
+   ],
+   "offset": [
+    10,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    9
+   ],
+   "offset": [
+    3,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    10
+   ],
+   "offset": [
+    14,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    8
+   ],
+   "offset": [
+    0,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    1,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    8
+   ],
+   "offset": [
+    6,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    5
+   ],
+   "offset": [
+    12,
+    15
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    15,
+    9
+   ],
+   "offset": [
+    11,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    5
+   ],
+   "offset": [
+    7,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    3,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    3,
+    0
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    6,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    12,
+    0
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    14,
+    0
+   ],
+   "offset": [
+    14,
+    9
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    8
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    10
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    11
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "archive_door",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    17,
+    2
+   ],
+   "offset": [
+    5,
+    13
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    17,
+    7
+   ],
+   "offset": [
+    5,
+    7
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    11,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    12,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    13,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    14,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    16,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    17,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    12,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    13,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    14,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    15,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    16,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay",
+   "cell": [
+    17,
+    5
+   ],
+   "offset": [
+    0,
+    15
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    6
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    6
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    7
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    7
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    8
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    8
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    9
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    9
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    10
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    10
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    10,
+    11
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    11,
+    11
+   ],
+   "offset": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "route_arrow_n",
+   "cell": [
+    10,
+    7
+   ],
+   "offset": [
+    8,
+    14
+   ]
+  },
+  {
+   "entry": "route_arrow_n",
+   "cell": [
+    10,
+    10
+   ],
+   "offset": [
+    8,
+    6
+   ]
+  },
+  {
+   "entry": "route_arrow_e",
+   "cell": [
+    13,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "route_arrow_e",
+   "cell": [
+    16,
+    4
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "shelf_2x1_a",
+   "cell": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "shelf_1x1",
+   "cell": [
+    2,
+    2
+   ]
+  },
+  {
+   "entry": "cabinet_2x1",
+   "cell": [
+    9,
+    2
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    11,
+    2
+   ]
+  },
+  {
+   "anim": "file_wall",
+   "cell": [
+    12,
+    2
+   ]
+  },
+  {
+   "entry": "light_shaft",
+   "cell": [
+    12,
+    2
+   ],
+   "offset": [
+    6,
+    2
+   ]
+  },
+  {
+   "entry": "light_shaft",
+   "cell": [
+    14,
+    2
+   ],
+   "offset": [
+    14,
+    2
+   ]
+  },
+  {
+   "landmark": "archive_desk",
+   "cell": [
+    3,
+    3
+   ]
+  },
+  {
+   "entry": "partition_2x1",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "partition_2x1",
+   "cell": [
+    14,
+    7
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "partition_1x1",
+   "cell": [
+    16,
+    7
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "terminal_desk",
+   "cell": [
+    13,
+    9
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    13,
+    10
+   ],
+   "offset": [
+    11,
+    6
+   ]
+  },
+  {
+   "entry": "desk_a",
+   "cell": [
+    16,
+    9
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    16,
+    10
+   ],
+   "offset": [
+    11,
+    6
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    0,
+    6
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    9,
+    3
+   ],
+   "offset": [
+    2,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_d",
+   "cell": [
+    9,
+    8
+   ],
+   "offset": [
+    2,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    3,
+    2
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    8,
+    2
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    6,
+    9
+   ],
+   "offset": [
+    0,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_d",
+   "cell": [
+    1,
+    9
+   ],
+   "offset": [
+    2,
+    6
+   ]
+  }
+ ]
+}

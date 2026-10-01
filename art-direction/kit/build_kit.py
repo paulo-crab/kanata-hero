@@ -46,7 +46,10 @@ def build_atlas():
     return pieces, meta, layout
 
 
-def atlas_sheet(pieces, meta):
+def atlas_sheet(pieces, meta, rank_fn=None, sections=None, title=None, out="orientation-atlas-sheet.png"):
+    """rank_fn, sections, title and out default to the Orientation sheet; other districts pass their own."""
+    rank_fn = rank_fn or ok.group_rank
+    sections = SECTIONS if sections is None else sections
     Z = 4
     f_name, f_small, f_head = bst.font(15, bold=True), bst.font(13), bst.font(20, bold=True)
     max_w = 2480
@@ -65,7 +68,7 @@ def atlas_sheet(pieces, meta):
     pos, x, y, row_h, rank = {}, pad, 70, 0, None
     for c in cells:
         p, e, x0, y0, bw, bh = c
-        r = ok.group_rank(p)
+        r = rank_fn(p)
         if r != rank:
             x, y = pad, y + row_h + (36 if rank is not None else 0)
             row_h, rank = 0, r
@@ -80,11 +83,12 @@ def atlas_sheet(pieces, meta):
     H = y + row_h + pad
     sheet = Image.new("RGB", (max_w + pad, H), BG)
     d = ImageDraw.Draw(sheet)
-    d.text((pad, 16), "Orientation kit atlas, x4 on a checker. Coral box: footprint cells. Coral cross: anchor. "
-           "Tags under each name: layer, footprint, size in px.", font=f_head, fill="#F4F2EC")
-    for r, title in SECTIONS:
+    title = title or ("Orientation kit atlas, x4 on a checker. Coral box: footprint cells. Coral cross: anchor. "
+                      "Tags under each name: layer, footprint, size in px.")
+    d.text((pad, 16), title, font=f_head, fill="#F4F2EC")
+    for r, sec in sections:
         if ("head", r) in pos:
-            d.text(pos[("head", r)], title, font=f_head, fill="#E6B750")
+            d.text(pos[("head", r)], sec, font=f_head, fill="#E6B750")
     for p, e, x0, y0, bw, bh in cells:
         px, py = pos[p.name]
         # checker
@@ -119,7 +123,7 @@ def atlas_sheet(pieces, meta):
                + ("" if e["composite"]["mode"] == "over" else " · where_color"), font=f_small, fill="#C5CED0")
     d.text((pad, H - 26), "Heavy coral cell outline = blocked, thin = walkable. Teal rectangle = contact shadow baked "
            "into the sprite.", font=f_small, fill="#9FB3BD")
-    sheet.save(os.path.join(HERE, "orientation-atlas-sheet.png"))
+    sheet.save(os.path.join(HERE, out))
 
 
 def garden_states(layout, atlas):

@@ -1,0 +1,2365 @@
+{
+ "schema": "atlas.schema.json",
+ "kit": "records",
+ "image": "records-atlas.png",
+ "tile": 16,
+ "layers": [
+  "floor",
+  "rear_wall",
+  "floor_marking",
+  "rear_prop",
+  "shadow",
+  "actor",
+  "front_prop",
+  "light"
+ ],
+ "status": "Candidate, pending director review",
+ "source": "Orientation pieces recoloured by exact hex swap (records_kit.py), new pieces from shared_pieces.py, Records landmark; build_records.py",
+ "entries": [
+  {
+   "name": "floor_j",
+   "kind": "tile",
+   "rect": [
+    0,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Records floor, slab corner: joint on the top row and the left column. Pale sea blue, broad slabs, no grain"
+  },
+  {
+   "name": "floor_h",
+   "kind": "tile",
+   "rect": [
+    16,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Records floor, slab edge: joint on the top row. Pale sea blue, broad slabs, no grain"
+  },
+  {
+   "name": "floor_v",
+   "kind": "tile",
+   "rect": [
+    32,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Records floor, slab edge: joint on the left column. Pale sea blue, broad slabs, no grain"
+  },
+  {
+   "name": "floor_p",
+   "kind": "tile",
+   "rect": [
+    48,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Records floor, slab interior, plain. Pale sea blue, broad slabs, no grain"
+  },
+  {
+   "name": "floor_chip",
+   "kind": "tile",
+   "rect": [
+    64,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    2,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "wear"
+   ],
+   "note": "2x1 px wear mark on the floor layer; placed with a pixel offset"
+  },
+  {
+   "name": "route_inlay",
+   "kind": "tile",
+   "rect": [
+    80,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route"
+   ],
+   "note": "1 px inlay line in the deep sea-blue floor step that guides the eye along the route; repeat every 16 px (horizontal). One step darker than Orientation's, because the Records floor is darker and cooler"
+  },
+  {
+   "name": "route_inlay_v",
+   "kind": "tile",
+   "rect": [
+    96,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    1,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route"
+   ],
+   "note": "route_inlay turned 90 degrees: the same line for vertical corridor edges"
+  },
+  {
+   "name": "route_arrow_e",
+   "kind": "tile",
+   "rect": [
+    112,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wayfinding",
+    "route"
+   ],
+   "note": "cherry wayfinding arrow inlaid in the floor, pointing east; Records signage uses the wood ramp, not brass"
+  },
+  {
+   "name": "route_arrow_n",
+   "kind": "tile",
+   "rect": [
+    128,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wayfinding",
+    "route"
+   ],
+   "note": "the same arrow pointing north"
+  },
+  {
+   "name": "wall_n_plain",
+   "kind": "wall",
+   "rect": [
+    144,
+    0,
+    16,
+    48
+   ],
+   "size_px": [
+    16,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "north",
+    "top plane"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    16,
+    2
+   ],
+   "note": "north wall segment: ink cap with a lit trim, linen face, baseboard and cast shadow; tiles horizontally"
+  },
+  {
+   "name": "wall_n_window_a",
+   "kind": "wall",
+   "rect": [
+    160,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "high window overlay for the north wall: dark frame, cool lower pane, one stepped reflection band, lit sill"
+  },
+  {
+   "name": "wall_n_window_b",
+   "kind": "wall",
+   "rect": [
+    192,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "high window overlay for the north wall: dark frame, cool lower pane, one stepped reflection band, lit sill"
+  },
+  {
+   "name": "wall_e_plain",
+   "kind": "wall",
+   "rect": [
+    224,
+    0,
+    32,
+    16
+   ],
+   "size_px": [
+    28,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     -4,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    12,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "east",
+    "side plane"
+   ],
+   "note": "east wall segment, side plane; tiles vertically. Content starts 4 px into the first cell"
+  },
+  {
+   "name": "archive_door_closed",
+   "kind": "door",
+   "rect": [
+    256,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "closed"
+   ],
+   "note": "both glass leaves shut: cherry frame, leaves, seam, pulls, linen RECORDS sign with a coral folder"
+  },
+  {
+   "name": "archive_door_half",
+   "kind": "door",
+   "rect": [
+    288,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "half"
+   ],
+   "note": "leaves slid 8 px into the jamb pockets: the corridor and a cabinet show through"
+  },
+  {
+   "name": "archive_door_open",
+   "kind": "door",
+   "rect": [
+    320,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "00",
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "open"
+   ],
+   "note": "leaves fully in the pockets (15 px): the doorway is open and the threshold is lit"
+  },
+  {
+   "name": "lamp",
+   "kind": "prop",
+   "rect": [
+    352,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "floor lamp: dark post, linen lamp head with one lit step, contact shadow"
+  },
+  {
+   "name": "lamp_off",
+   "kind": "prop",
+   "rect": [
+    368,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent",
+    "off"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "unlit lamp: head in the ink ramp, no glow"
+  },
+  {
+   "name": "lamp_glow_on",
+   "kind": "light",
+   "rect": [
+    384,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    11,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -1
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    6,
+    15
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#BCD0D4"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "on"
+   ],
+   "note": "glow, one hard linen step (radius 5.2). Paints only where the floor is the bare fill #BCD0D4, so it never washes over joints, inlays, props or walls"
+  },
+  {
+   "name": "lamp_glow_pulse",
+   "kind": "light",
+   "rect": [
+    400,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    13,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    7,
+    16
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#BCD0D4"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "pulse"
+   ],
+   "note": "pulse frame of the glow, radius 6.4; alternate with lamp_glow_on at about 600 ms each"
+  },
+  {
+   "name": "desk_a",
+   "kind": "prop",
+   "rect": [
+    416,
+    0,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell cherry desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves); the chair is a separate entry"
+  },
+  {
+   "name": "desk_b",
+   "kind": "prop",
+   "rect": [
+    464,
+    0,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell cherry desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves); the chair is a separate entry"
+  },
+  {
+   "name": "chair",
+   "kind": "prop",
+   "rect": [
+    512,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    2,
+    10,
+    10,
+    1
+   ],
+   "note": "sea-blue task chair seen from above; place 11 px right and 18 px below a desk origin"
+  },
+  {
+   "name": "pot_plant_a",
+   "kind": "prop",
+   "rect": [
+    528,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    560,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_c",
+   "kind": "prop",
+   "rect": [
+    592,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_d",
+   "kind": "prop",
+   "rect": [
+    0,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    21,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     5,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    13,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    6,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "shelf_1x1",
+   "kind": "prop",
+   "rect": [
+    32,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    17,
+    2
+   ],
+   "note": "1-cell archive shelving: top plane, front face with three bays, boxes in colour clusters (coral, linen, sea blue, cherry), kick plate"
+  },
+  {
+   "name": "shelf_2x1_a",
+   "kind": "prop",
+   "rect": [
+    64,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell archive shelving: top plane, front face with three bays, boxes in colour clusters (coral, linen, sea blue, cherry), kick plate; a and b differ only in the box layout"
+  },
+  {
+   "name": "shelf_2x1_b",
+   "kind": "prop",
+   "rect": [
+    112,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell archive shelving: top plane, front face with three bays, boxes in colour clusters (coral, linen, sea blue, cherry), kick plate; a and b differ only in the box layout"
+  },
+  {
+   "name": "partition_1x1",
+   "kind": "prop",
+   "rect": [
+    160,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    17,
+    2
+   ],
+   "note": "free-standing glass partition, one cell: dark frame with lit cap, cool pane, one reflection band, floor rail"
+  },
+  {
+   "name": "partition_2x1",
+   "kind": "prop",
+   "rect": [
+    192,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "free-standing glass partition, two cells, with a middle post and a reflection band per pane"
+  },
+  {
+   "name": "terminal_desk",
+   "kind": "prop",
+   "rect": [
+    240,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    36,
+    25
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     7
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    23
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "terminal",
+    "desk",
+    "interact"
+   ],
+   "contact_shadow": [
+    1,
+    23,
+    35,
+    2
+   ],
+   "note": "two-cell console desk: ink terminal housing first, then a screen with one body step and one lit step in the glass ramp, a one-step glow on the desk top, keyboard and card reader"
+  },
+  {
+   "name": "cabinet_1x1",
+   "kind": "prop",
+   "rect": [
+    288,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    17,
+    2
+   ],
+   "note": "cherry filing cabinet, one cell: paper stack on the top plane, three drawers with label plates"
+  },
+  {
+   "name": "cabinet_2x1",
+   "kind": "prop",
+   "rect": [
+    320,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "cherry filing cabinet, two cells wide"
+  },
+  {
+   "name": "light_shaft",
+   "kind": "light",
+   "rect": [
+    368,
+    80,
+    64,
+    48
+   ],
+   "size_px": [
+    50,
+    36
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000",
+    "0000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    32,
+    48
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#BCD0D4"
+   },
+   "tags": [
+    "light",
+    "window",
+    "daylight"
+   ],
+   "note": "two bands of daylight falling from a window pair to the lower right, one hard linen step; paints only on the bare floor fill, so shelves, desks and joints stay untouched. Place at the window's bottom-left"
+  },
+  {
+   "name": "file_wall_closed",
+   "kind": "prop",
+   "rect": [
+    432,
+    80,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "011110"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    48,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "file wall",
+    "state",
+    "closed"
+   ],
+   "note": "two shelf units meet in the middle (cells 1-4 block); the wall reads as one run of shelving. Contact shadows are baked per unit"
+  },
+  {
+   "name": "file_wall_open",
+   "kind": "prop",
+   "rect": [
+    528,
+    80,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "110011"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    48,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "file wall",
+    "state",
+    "open"
+   ],
+   "note": "the units have slid one cell outward along the rail (cells 0-1 and 4-5 block); cells 2-3 are a two-cell corridor. Contact shadows are baked per unit"
+  },
+  {
+   "name": "file_wall_rail",
+   "kind": "tile",
+   "rect": [
+    0,
+    128,
+    96,
+    16
+   ],
+   "size_px": [
+    96,
+    5
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     1
+    ],
+    "origin_px": [
+     0,
+     -8
+    ]
+   },
+   "collision": [
+    "000000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    48,
+    8
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "file wall",
+    "rail"
+   ],
+   "note": "floor rail the file wall slides on, with end stops. Place at the same cell as the file wall, 12 px below the sprite top; it shows in the open state"
+  },
+  {
+   "name": "archive_ring_inlay",
+   "kind": "landmark_part",
+   "rect": [
+    96,
+    128,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "inlay",
+    "ring"
+   ],
+   "note": "floor inlay: two sea-blue rings around the desk, echoing the luminous ceiling ring"
+  },
+  {
+   "name": "archive_desk_back",
+   "kind": "landmark_part",
+   "rect": [
+    224,
+    128,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "11111",
+    "11111",
+    "11011",
+    "11011"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "desk",
+    "base",
+    "back"
+   ],
+   "contact_shadow": [
+    36,
+    36,
+    70,
+    49
+   ],
+   "note": "the ring desk's north half: cherry top plane with an inlaid line, panelled face, inner north face, cast shadow. Carries the collision of the whole desk; people walk in through the opening to the south"
+  },
+  {
+   "name": "archive_desk_front",
+   "kind": "landmark_part",
+   "rect": [
+    352,
+    128,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "desk",
+    "front",
+    "occluder"
+   ],
+   "note": "the ring desk's south arc, drawn after actors so a person standing inside is hidden by the near desk edge; one cell opening at the bottom centre"
+  },
+  {
+   "name": "archive_desk_items",
+   "kind": "landmark_part",
+   "rect": [
+    480,
+    128,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "items",
+    "terminal"
+   ],
+   "note": "card-index drawer, small terminal, stamp and ink pad, on the north half"
+  },
+  {
+   "name": "archive_ledger_before",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    224,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "quest state",
+    "before"
+   ],
+   "note": "before: open ledger with a coral cross, the stamp mark rejected"
+  },
+  {
+   "name": "archive_ledger_after",
+   "kind": "landmark_part",
+   "rect": [
+    128,
+    224,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "quest state",
+    "after"
+   ],
+   "note": "after: the same ledger with a coral tick and a stamped seal, the mark accepted"
+  },
+  {
+   "name": "archive_folders_before",
+   "kind": "landmark_part",
+   "rect": [
+    256,
+    224,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "quest state",
+    "before",
+    "folders"
+   ],
+   "note": "before: two folder stacks, every folder and label the same dull linen"
+  },
+  {
+   "name": "archive_folders_after",
+   "kind": "landmark_part",
+   "rect": [
+    384,
+    224,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "quest state",
+    "after",
+    "folders"
+   ],
+   "note": "after: the same stacks, labels regained: coral, sea blue and linen folders with lit label tabs"
+  },
+  {
+   "name": "archive_ring_glow_after",
+   "kind": "landmark_part",
+   "rect": [
+    512,
+    224,
+    128,
+    96
+   ],
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     20
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    64,
+    84
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#BCD0D4"
+   },
+   "tags": [
+    "landmark",
+    "archive desk",
+    "quest state",
+    "after",
+    "light"
+   ],
+   "note": "after: the luminous ceiling ring lights a linen pool on the floor inside the inlay; paints only on the bare floor fill"
+  }
+ ],
+ "animations": {
+  "archive_door": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "archive_door_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "archive_door_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "archive_door_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach, backward on leave; the same frames as Orientation's door, recoloured"
+  },
+  "lamp": {
+   "kind": "state_set",
+   "default": "on",
+   "states": {
+    "off": {
+     "entries": [
+      "lamp_off"
+     ]
+    },
+    "on": {
+     "entries": [
+      "lamp",
+      "lamp_glow_on"
+     ]
+    },
+    "pulse": {
+     "entries": [
+      "lamp",
+      "lamp_glow_pulse"
+     ]
+    }
+   },
+   "loop": [
+    "on",
+    "pulse"
+   ],
+   "ms_per_frame": 600,
+   "note": "glow states: off, on (steady), pulse (wider ring). Wake = off -> on; idle breathing = on <-> pulse."
+  },
+  "file_wall": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "file_wall_rail",
+      "file_wall_closed"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "file_wall_rail",
+      "file_wall_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "open"
+   ],
+   "ms_per_frame": 200,
+   "note": "the sliding file wall. Slide each unit one cell outward over about 4 steps (4 px per 50 ms) when the review completes; the open state leaves a two-cell corridor."
+  }
+ },
+ "landmarks": {
+  "archive_desk": {
+   "note": "Records landmark: the circular archive desk under a luminous ceiling ring. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The desk is split into a back half (rear_prop, carries collision) and a front arc (front_prop) so a person inside the ring stands between them.",
+   "size_px": [
+    128,
+    96
+   ],
+   "footprint_origin_px": [
+    24,
+    20
+   ],
+   "default_state": "before",
+   "states": {
+    "before": {
+     "parts": [
+      "archive_ring_inlay",
+      "archive_desk_back",
+      "archive_desk_items",
+      "archive_ledger_before",
+      "archive_folders_before",
+      "archive_desk_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -26,
+        2
+       ],
+       [
+        90,
+        2
+       ],
+       [
+        -26,
+        52
+       ],
+       [
+        90,
+        52
+       ]
+      ]
+     }
+    },
+    "after": {
+     "parts": [
+      "archive_ring_inlay",
+      "archive_desk_back",
+      "archive_desk_items",
+      "archive_ledger_after",
+      "archive_folders_after",
+      "archive_ring_glow_after",
+      "archive_desk_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -26,
+        2
+       ],
+       [
+        90,
+        2
+       ],
+       [
+        -26,
+        52
+       ],
+       [
+        90,
+        52
+       ]
+      ]
+     }
+    }
+   },
+   "part_roles": {
+    "archive_ring_inlay": "floor inlay",
+    "archive_desk_back": "base desk",
+    "archive_desk_front": "base desk",
+    "archive_desk_items": "desk items",
+    "archive_ledger_before": "quest state",
+    "archive_ledger_after": "quest state",
+    "archive_folders_before": "quest state",
+    "archive_folders_after": "quest state",
+    "archive_ring_glow_after": "quest state",
+    "lamp": "light accents"
+   },
+   "changes_after": [
+    "the folder stacks regain colour: coral, sea-blue and linen folders with lit labels (levels.md 11: folder labels regain coral and sea-blue variation)",
+    "the luminous ceiling ring lights a pool on the floor around the desk (levels.md 11: beneath the luminous ring)",
+    "the ledger's rejected mark (cross) becomes an accepted tick and a stamped seal (levels.md 08: stamp mark rejected to accepted)",
+    "all four ring lamps switch from the steady glow to the wider pulse glow"
+   ]
+  }
+ }
+}

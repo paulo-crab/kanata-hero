@@ -39,6 +39,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Vale: idle ×4, walk ×4 (softening state 0) | [cast/VALE_SPEC.md](cast/VALE_SPEC.md) | cast/vale_sprites.py | 2026-10-02 (director) |
 | Ada: idle ×4, walk ×4, lantern rim-light ruling | [cast/ADA_SPEC.md](cast/ADA_SPEC.md) | cast/ada_sprites.py | 2026-10-02 (director) |
 | Hal: idle ×4, walk ×4 | [cast/HAL_SPEC.md](cast/HAL_SPEC.md) | cast/hal_sprites.py | 2026-10-02 (director) |
+| Records kit (48 entries), circular archive desk before/after, walkable reference room | [kit/RECORDS_KIT_SPEC.md](kit/RECORDS_KIT_SPEC.md) | kit/shared_pieces.py, kit/records_kit.py | 2026-10-02 (director) |
 
 ## Plan
 

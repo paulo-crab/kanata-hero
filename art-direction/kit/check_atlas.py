@@ -1,4 +1,4 @@
-"""Validate every *-atlas.json in this folder (and the layouts that reference them).
+"""Validate every *-atlas.json in this folder (and the *-review-room.json / *-reference-room.json layouts that reference them).
 
 Run: python3 check_atlas.py [file.json ...]   (Pillow + numpy; jsonschema is used when installed)
 Checks:
@@ -249,7 +249,7 @@ def main():
         if m:
             atlases[os.path.basename(p)] = m
     if not args:
-        for p in sorted(glob.glob(os.path.join(HERE, "*-review-room.json"))):
+        for p in sorted(glob.glob(os.path.join(HERE, "*-review-room.json")) + glob.glob(os.path.join(HERE, "*-reference-room.json"))):
             check_layout(p, atlases)
     print("ATLAS CHECK", "FAILED" if fails else "PASSED")
     sys.exit(1 if fails else 0)
