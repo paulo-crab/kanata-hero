@@ -1,0 +1,2350 @@
+{
+ "schema": "atlas.schema.json",
+ "kit": "orientation",
+ "image": "orientation-atlas.png",
+ "tile": 16,
+ "layers": [
+  "floor",
+  "rear_wall",
+  "floor_marking",
+  "rear_prop",
+  "shadow",
+  "actor",
+  "front_prop",
+  "light"
+ ],
+ "status": "Candidate, pending director review",
+ "source": "extracted from art-direction/gate1/environment.py (approved review room); build_kit.py",
+ "entries": [
+  {
+   "name": "floor_j",
+   "kind": "tile",
+   "rect": [
+    0,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "slab corner: joint on the top row and the left column"
+  },
+  {
+   "name": "floor_h",
+   "kind": "tile",
+   "rect": [
+    16,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "slab edge: joint on the top row"
+  },
+  {
+   "name": "floor_v",
+   "kind": "tile",
+   "rect": [
+    32,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "slab edge: joint on the left column"
+  },
+  {
+   "name": "floor_p",
+   "kind": "tile",
+   "rect": [
+    48,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "slab interior, plain"
+  },
+  {
+   "name": "floor_chip",
+   "kind": "tile",
+   "rect": [
+    64,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    2,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "wear"
+   ],
+   "note": "2x1 px wear mark, placed with a pixel offset; drawn on the floor layer so walls and props cover it"
+  },
+  {
+   "name": "route_inlay",
+   "kind": "tile",
+   "rect": [
+    80,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route"
+   ],
+   "note": "1 px inlay line that guides the eye along the route; repeat every 16 px"
+  },
+  {
+   "name": "records_mat",
+   "kind": "tile",
+   "rect": [
+    96,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    29,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wayfinding",
+    "route",
+    "RECORDS"
+   ],
+   "note": "RECORDS mat: brightest floor in the room, lettering and arrow in dark brass; trimmed 3 px short of the door so the door threshold finishes it"
+  },
+  {
+   "name": "wall_n_plain",
+   "kind": "wall",
+   "rect": [
+    128,
+    0,
+    16,
+    48
+   ],
+   "size_px": [
+    16,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "north",
+    "top plane"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    16,
+    2
+   ],
+   "note": "north wall segment: top plane (cap and lit trim), stone face, baseboard and the wall's cast shadow on the floor; tiles horizontally"
+  },
+  {
+   "name": "wall_n_window_a",
+   "kind": "wall",
+   "rect": [
+    144,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "glass bay overlay for the north wall: dark frame, cool lower pane, one stepped reflection band, lit sill. Phase a and b differ only in the band position."
+  },
+  {
+   "name": "wall_n_window_b",
+   "kind": "wall",
+   "rect": [
+    176,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "glass bay overlay for the north wall: dark frame, cool lower pane, one stepped reflection band, lit sill. Phase a and b differ only in the band position."
+  },
+  {
+   "name": "wall_n_alcove",
+   "kind": "wall",
+   "rect": [
+    208,
+    0,
+    80,
+    32
+   ],
+   "size_px": [
+    68,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    40,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "alcove",
+    "sign"
+   ],
+   "note": "brighter stone alcove with a brass wayfinding plaque, behind the printer terminal"
+  },
+  {
+   "name": "wall_e_plain",
+   "kind": "wall",
+   "rect": [
+    288,
+    0,
+    32,
+    16
+   ],
+   "size_px": [
+    28,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     -4,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    12,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "east",
+    "side plane"
+   ],
+   "note": "east wall segment, side plane: dark mass with a lit trim line; tiles vertically. Content starts 4 px into the first cell (the wall's offset in the room)."
+  },
+  {
+   "name": "records_door_closed",
+   "kind": "door",
+   "rect": [
+    320,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "RECORDS",
+    "closed"
+   ],
+   "note": "both glass leaves shut: frame, leaves, seam, pulls, lit RECORDS sign"
+  },
+  {
+   "name": "records_door_half",
+   "kind": "door",
+   "rect": [
+    352,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "RECORDS",
+    "half"
+   ],
+   "note": "leaves slid 8 px into the jamb pockets: Records floor and cabinet show"
+  },
+  {
+   "name": "records_door_open",
+   "kind": "door",
+   "rect": [
+    384,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "00",
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "RECORDS",
+    "open"
+   ],
+   "note": "leaves fully in the pockets (15 px): doorway open, lit threshold"
+  },
+  {
+   "name": "lamp",
+   "kind": "prop",
+   "rect": [
+    416,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "floor lamp: dark post, brass lamp head with one lit step, contact shadow"
+  },
+  {
+   "name": "lamp_glow_on",
+   "kind": "light",
+   "rect": [
+    432,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    11,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -1
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    6,
+    15
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F0DEC0"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "on"
+   ],
+   "note": "glow, one hard brass step (radius 5.2). Paints only where the floor is lit stone #F0DEC0, so it never washes over slab joints, inlays, props or walls."
+  },
+  {
+   "name": "lamp_off",
+   "kind": "prop",
+   "rect": [
+    448,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent",
+    "off"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "unlit lamp: same post, head in the ink ramp, no glow"
+  },
+  {
+   "name": "lamp_glow_pulse",
+   "kind": "light",
+   "rect": [
+    464,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    13,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    7,
+    16
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F0DEC0"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "pulse"
+   ],
+   "note": "pulse frame of the glow, radius 6.4; alternate with lamp_glow_on at about 600 ms each"
+  },
+  {
+   "name": "pot_plant_a",
+   "kind": "prop",
+   "rect": [
+    480,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    512,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_c",
+   "kind": "prop",
+   "rect": [
+    544,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_d",
+   "kind": "prop",
+   "rect": [
+    576,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    21,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     5,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    13,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    6,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_e",
+   "kind": "prop",
+   "rect": [
+    608,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    22,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_f",
+   "kind": "prop",
+   "rect": [
+    0,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    19,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_g",
+   "kind": "prop",
+   "rect": [
+    32,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_h",
+   "kind": "prop",
+   "rect": [
+    64,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    23,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     5,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    13,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    6,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_i",
+   "kind": "prop",
+   "rect": [
+    96,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    21,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     13
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    29
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    21,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_j",
+   "kind": "prop",
+   "rect": [
+    128,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_k",
+   "kind": "prop",
+   "rect": [
+    160,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_l",
+   "kind": "prop",
+   "rect": [
+    192,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    21,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     5,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    13,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    6,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "sofa",
+   "kind": "prop",
+   "rect": [
+    224,
+    80,
+    32,
+    16
+   ],
+   "size_px": [
+    32,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    14,
+    31,
+    2
+   ],
+   "note": "terracotta lounge sofa seen from above"
+  },
+  {
+   "name": "side_table",
+   "kind": "prop",
+   "rect": [
+    256,
+    80,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     1
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    17
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "plant"
+   ],
+   "contact_shadow": [
+    2,
+    10,
+    10,
+    1
+   ],
+   "note": "round slate side table with a small plant"
+  },
+  {
+   "name": "printer",
+   "kind": "prop",
+   "rect": [
+    272,
+    80,
+    64,
+    32
+   ],
+   "size_px": [
+    62,
+    26
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     1
+    ],
+    "origin_px": [
+     0,
+     7
+    ]
+   },
+   "collision": [
+    "1111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    23
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "terminal"
+   ],
+   "contact_shadow": [
+    1,
+    24,
+    61,
+    2
+   ],
+   "note": "badge printer terminal: stone housing, teal screen, card slot, three badges. Sits in the north alcove."
+  },
+  {
+   "name": "desk_a",
+   "kind": "prop",
+   "rect": [
+    336,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell wood desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves). The chair is a separate entry."
+  },
+  {
+   "name": "desk_b",
+   "kind": "prop",
+   "rect": [
+    384,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell wood desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves). The chair is a separate entry."
+  },
+  {
+   "name": "chair",
+   "kind": "prop",
+   "rect": [
+    432,
+    80,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    2,
+    10,
+    10,
+    1
+   ],
+   "note": "coral task chair seen from above; place 11 px right and 18 px below a desk origin"
+  },
+  {
+   "name": "bench",
+   "kind": "prop",
+   "rect": [
+    448,
+    80,
+    48,
+    16
+   ],
+   "size_px": [
+    34,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    10,
+    33,
+    2
+   ],
+   "note": "slatted wood bench"
+  },
+  {
+   "name": "mail_counter",
+   "kind": "prop",
+   "rect": [
+    496,
+    80,
+    64,
+    32
+   ],
+   "size_px": [
+    54,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "counter",
+    "occluder"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    53,
+    2
+   ],
+   "note": "mailroom counter with parcels and a coral courier strap; drawn after actors so people pass behind it"
+  },
+  {
+   "name": "garden_ring",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    112,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "ring path"
+   ],
+   "note": "ring path: inlay border and four corner squares, registered at the landmark origin"
+  },
+  {
+   "name": "garden_base",
+   "kind": "landmark_part",
+   "rect": [
+    128,
+    112,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "11111",
+    "11111",
+    "11111",
+    "11111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "base",
+    "water"
+   ],
+   "contact_shadow": [
+    25,
+    78,
+    81,
+    2
+   ],
+   "note": "rim, jointed side face, cast shadow, planted bed, stream with pool and lily pads"
+  },
+  {
+   "name": "garden_foliage",
+   "kind": "landmark_part",
+   "rect": [
+    256,
+    112,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "foliage"
+   ],
+   "note": "eight shrub clusters around the bed edge"
+  },
+  {
+   "name": "garden_rocks",
+   "kind": "landmark_part",
+   "rect": [
+    384,
+    112,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "rocks"
+   ],
+   "note": "two rocks by the water"
+  },
+  {
+   "name": "garden_centrepiece",
+   "kind": "landmark_part",
+   "rect": [
+    512,
+    112,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "centrepiece",
+    "tree"
+   ],
+   "note": "the tree: trunk with root flare and a layered canopy that overhangs the rim"
+  },
+  {
+   "name": "garden_canopy_shadow",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    224,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "shadow"
+   ],
+   "note": "one cool step of shadow on the bed below the crown"
+  },
+  {
+   "name": "garden_blooms",
+   "kind": "landmark_part",
+   "rect": [
+    128,
+    224,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "blooms"
+   ],
+   "note": "five coral flower clusters with a brass centre pixel"
+  },
+  {
+   "name": "garden_after_path",
+   "kind": "landmark_part",
+   "rect": [
+    256,
+    224,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "after",
+    "path"
+   ],
+   "note": "after: a built opening in the south rim (end caps, stepped threshold, inlaid path strip) with flagstones leading into the clearing, so the cut-through reads as reopened"
+  },
+  {
+   "name": "garden_after_blooms",
+   "kind": "landmark_part",
+   "rect": [
+    384,
+    224,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "after",
+    "blooms",
+    "glints"
+   ],
+   "note": "after: a new cluster of four coral blooms with brass centres and three brass glints in the clearing"
+  }
+ ],
+ "animations": {
+  "records_door": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "records_door_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "records_door_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "records_door_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach, backward on leave; the build room's door_for() opens it over 32 px of approach"
+  },
+  "lamp": {
+   "kind": "state_set",
+   "default": "on",
+   "states": {
+    "off": {
+     "entries": [
+      "lamp_off"
+     ]
+    },
+    "on": {
+     "entries": [
+      "lamp",
+      "lamp_glow_on"
+     ]
+    },
+    "pulse": {
+     "entries": [
+      "lamp",
+      "lamp_glow_pulse"
+     ]
+    }
+   },
+   "loop": [
+    "on",
+    "pulse"
+   ],
+   "ms_per_frame": 600,
+   "note": "glow states: off, on (approved look), pulse (wider ring). Wake = off -> on; idle breathing = on <-> pulse."
+  }
+ },
+ "landmarks": {
+  "garden": {
+   "note": "Orientation landmark. Every part is a full-size sprite registered at the same origin, so a state is just a list of parts drawn in order; place them all at the same footprint origin.",
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint_origin_px": [
+    24,
+    22
+   ],
+   "default_state": "before",
+   "states": {
+    "before": {
+     "parts": [
+      "garden_ring",
+      "garden_base",
+      "garden_foliage",
+      "garden_rocks",
+      "garden_centrepiece",
+      "garden_canopy_shadow",
+      "garden_blooms"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -11,
+        -13
+       ],
+       [
+        77,
+        -13
+       ],
+       [
+        77,
+        45
+       ]
+      ]
+     }
+    },
+    "after": {
+     "parts": [
+      "garden_ring",
+      "garden_base",
+      "garden_foliage",
+      "garden_rocks",
+      "garden_centrepiece",
+      "garden_canopy_shadow",
+      "garden_blooms",
+      "garden_after_path",
+      "garden_after_blooms"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -11,
+        -13
+       ],
+       [
+        77,
+        -13
+       ],
+       [
+        77,
+        45
+       ]
+      ]
+     }
+    }
+   },
+   "part_roles": {
+    "garden_ring": "ring path",
+    "garden_base": "base bed",
+    "garden_foliage": "foliage masses",
+    "garden_rocks": "foliage masses",
+    "garden_centrepiece": "centrepiece",
+    "garden_canopy_shadow": "centrepiece",
+    "garden_blooms": "foliage masses",
+    "garden_after_path": "quest state",
+    "garden_after_blooms": "quest state",
+    "lamp": "light accents"
+   },
+   "changes_after": [
+    "a built opening in the south rim (end caps, stepped threshold, inlay strip) with three flagstones: the reopened cut-through",
+    "a new cluster of four coral blooms with brass centres and three brass glints",
+    "all three garden lamps switch from the steady glow to the wider pulse glow"
+   ]
+  }
+ }
+}

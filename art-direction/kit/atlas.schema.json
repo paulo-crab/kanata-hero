@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "kanata-hero/kit/atlas.schema.json",
+  "title": "Kanata Hero district tile and prop atlas",
+  "description": "Generic schema reused by every district kit (<district>-atlas.json). See ORIENTATION_KIT_SPEC.md.",
+  "type": "object",
+  "required": ["kit", "image", "tile", "layers", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"type": "string"},
+    "kit": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "image": {"type": "string", "pattern": "\\.png$"},
+    "tile": {"type": "integer", "enum": [16]},
+    "layers": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/definitions/layer"}
+    },
+    "status": {"type": "string"},
+    "source": {"type": "string"},
+    "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/entry"}},
+    "animations": {"type": "object", "additionalProperties": {"$ref": "#/definitions/state_set"}},
+    "landmarks": {"type": "object", "additionalProperties": {"$ref": "#/definitions/landmark"}}
+  },
+  "definitions": {
+    "layer": {"type": "string", "enum": ["floor", "rear_wall", "floor_marking", "rear_prop", "shadow", "actor", "front_prop", "light"]},
+    "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "int2": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer"}},
+    "pos_int2": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}},
+    "entry": {
+      "type": "object",
+      "required": ["name", "kind", "rect", "size_px", "footprint", "collision", "layer", "anchor"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"$ref": "#/definitions/name"},
+        "kind": {"type": "string", "enum": ["tile", "wall", "door", "prop", "light", "landmark_part"]},
+        "rect": {
+          "description": "[x, y, w, h] in the atlas PNG. All four are multiples of 16. Content sits at the rect's top-left.",
+          "type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "integer", "minimum": 0}
+        },
+        "size_px": {"description": "Tight content size inside the rect.", "$ref": "#/definitions/pos_int2"},
+        "footprint": {
+          "type": "object",
+          "required": ["cells", "origin_px"],
+          "additionalProperties": false,
+          "properties": {
+            "cells": {"description": "[w, h] in 16 px cells.", "$ref": "#/definitions/pos_int2"},
+            "origin_px": {"description": "Footprint top-left corner, in sprite pixels (may be negative).", "$ref": "#/definitions/int2"}
+          }
+        },
+        "collision": {
+          "description": "One string per footprint row, one character per cell: 1 blocks movement, 0 is walkable.",
+          "type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[01]+$"}
+        },
+        "layer": {"$ref": "#/definitions/layer"},
+        "y_sort": {"description": "True: the renderer sorts it with actors by anchor y.", "type": "boolean"},
+        "anchor": {"description": "Floor contact point in sprite pixels: bottom-centre of the footprint.", "$ref": "#/definitions/int2"},
+        "contact_shadow": {
+          "description": "[x, y, w, h] in sprite pixels where the baked contact shadow sits.",
+          "type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "integer"}
+        },
+        "composite": {
+          "type": "object",
+          "required": ["mode"],
+          "additionalProperties": false,
+          "properties": {
+            "mode": {"type": "string", "enum": ["over", "where_color"]},
+            "color": {"description": "where_color: draw only where the destination pixel is exactly this colour.", "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}
+          }
+        },
+        "tags": {"type": "array", "items": {"type": "string"}},
+        "note": {"type": "string"}
+      }
+    },
+    "state_set": {
+      "type": "object",
+      "required": ["kind", "default", "states"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"type": "string", "enum": ["state_set"]},
+        "default": {"type": "string"},
+        "states": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["entries"],
+            "additionalProperties": false,
+            "properties": {
+              "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/name"}},
+              "blocked": {"type": "boolean"}
+            }
+          }
+        },
+        "play": {"type": "array", "items": {"type": "string"}},
+        "loop": {"type": "array", "items": {"type": "string"}},
+        "ms_per_frame": {"type": "integer", "minimum": 1},
+        "note": {"type": "string"}
+      }
+    },
+    "landmark": {
+      "type": "object",
+      "required": ["size_px", "default_state", "states"],
+      "additionalProperties": false,
+      "properties": {
+        "note": {"type": "string"},
+        "size_px": {"$ref": "#/definitions/pos_int2"},
+        "footprint_origin_px": {"$ref": "#/definitions/int2"},
+        "default_state": {"type": "string"},
+        "states": {
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["parts"],
+            "additionalProperties": false,
+            "properties": {
+              "parts": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/name"}},
+              "lamps": {
+                "type": "object",
+                "required": ["anim", "state", "offsets_px"],
+                "additionalProperties": false,
+                "properties": {
+                  "anim": {"$ref": "#/definitions/name"},
+                  "state": {"type": "string"},
+                  "offsets_px": {"type": "array", "items": {"$ref": "#/definitions/int2"}}
+                }
+              }
+            }
+          }
+        },
+        "part_roles": {"type": "object", "additionalProperties": {"type": "string"}},
+        "changes_after": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

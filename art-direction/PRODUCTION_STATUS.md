@@ -32,6 +32,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | UI kit: tokens, contrast check, components, reference page | [ui-kit/UI_KIT_SPEC.md](ui-kit/UI_KIT_SPEC.md) | ui-kit/tokens.css, ui-kit/reference.html | 2026-10-02 (director) |
 | District palettes (Records, Systems, Night Shift, Executive) and Noor/Hal/Ada/Vale skin and hair ramps | [palettes/PALETTES_SPEC.md](palettes/PALETTES_SPEC.md), STYLE_BIBLE §3 | palettes/district_palettes.py | 2026-10-02 (director) |
 | Background workers: 2 bodies × 3 palettes, synced walk, idle variants, silhouettes | [cast/BACKGROUND_WORKERS_SPEC.md](cast/BACKGROUND_WORKERS_SPEC.md) | cast/bgworker_{common,a_sprites,b_sprites}.py | 2026-10-02 (director) |
+| Orientation kit: 48-entry tile/prop atlas, JSON schema, garden before/after, room rebuilt from layout (zero diff) | [kit/ORIENTATION_KIT_SPEC.md](kit/ORIENTATION_KIT_SPEC.md) | kit/kitlib.py, kit/orientation_kit.py | 2026-10-02 (director) |
 
 ## Plan
 

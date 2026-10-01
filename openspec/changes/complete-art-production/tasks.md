@@ -21,10 +21,10 @@
 
 ## 4. Orientation environment kit
 
-- [ ] 4.1 Extract `environment.py` pieces into a named 16 px tile and prop atlas (PNG); verify that every piece renders identically to the approved room
-- [ ] 4.2 Atlas JSON with footprint, collision mask, draw layer, anchor and animation frames (door slide, lamp glow); verify a JSON schema check
-- [ ] 4.3 Garden landmark as layered parts with before and after quest states; verify that the after state changes at least two visible things
-- [ ] 4.4 Rebuild the review room from atlas data plus a cell layout; verify a pixel diff of zero against the approved room
+- [x] 4.1 Extract `environment.py` pieces into a named 16 px tile and prop atlas (PNG); verify that every piece renders identically to the approved room
+- [x] 4.2 Atlas JSON with footprint, collision mask, draw layer, anchor and animation frames (door slide, lamp glow); verify a JSON schema check
+- [x] 4.3 Garden landmark as layered parts with before and after quest states; verify that the after state changes at least two visible things
+- [x] 4.4 Rebuild the review room from atlas data plus a cell layout; verify a pixel diff of zero against the approved room
 
 ## 5. District palettes
 
