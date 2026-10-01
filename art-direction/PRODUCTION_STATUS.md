@@ -38,6 +38,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Portrait template and rules; Engineer, Ivo, Mira portraits (neutral, concerned, pleased); Mira's six patches | [portraits/PORTRAITS_SPEC.md](portraits/PORTRAITS_SPEC.md), [portraits/PORTRAIT_RULES.md](portraits/PORTRAIT_RULES.md), [cast/MIRA_PATCHES_SPEC.md](cast/MIRA_PATCHES_SPEC.md) | portraits/portrait_*.py, cast/mira_patches.py | 2026-10-02 (director) |
 | Vale: idle ×4, walk ×4 (softening state 0) | [cast/VALE_SPEC.md](cast/VALE_SPEC.md) | cast/vale_sprites.py | 2026-10-02 (director) |
 | Ada: idle ×4, walk ×4, lantern rim-light ruling | [cast/ADA_SPEC.md](cast/ADA_SPEC.md) | cast/ada_sprites.py | 2026-10-02 (director) |
+| Hal: idle ×4, walk ×4 | [cast/HAL_SPEC.md](cast/HAL_SPEC.md) | cast/hal_sprites.py | 2026-10-02 (director) |
 
 ## Plan
 
