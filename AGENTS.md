@@ -28,3 +28,6 @@ file owns which topic.
   `docs:`, `chore:`, `refactor:`).
 - `main` is protected: always create a feature branch for any new feature or
   unit of work and open a PR; never work or commit directly on `main`.
+- Use sensible, descriptive branch names and commit messages — name them for
+  what the change actually does (e.g. `feat/level-schema-validator`,
+  `fix/gate1-foot-offset`), not generic placeholders like `update` or `wip`.
