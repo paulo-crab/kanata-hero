@@ -1,0 +1,222 @@
+{
+  "status": "Candidate, pending director review",
+  "atlas": {
+    "w": 128,
+    "h": 96,
+    "row_h": 16,
+    "note": "each animation is one row, frames left to right at the archetype's frame width"
+  },
+  "archetypes": {
+    "stapler": {
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "anchor": {
+        "name": "base_bc",
+        "x": 16,
+        "y": 16,
+        "note": "pixel edge at the bottom centre of the frame"
+      },
+      "contact_shadow": {
+        "x0": 4,
+        "x1": 26,
+        "row": 14,
+        "note": "drawn by the renderer under the real object; shrink 2 px while lifted 2 px or more"
+      },
+      "flippable": false
+    },
+    "chair": {
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "anchor": {
+        "name": "base_bc",
+        "x": 16,
+        "y": 16,
+        "note": "pixel edge at the bottom centre of the frame"
+      },
+      "contact_shadow": {
+        "x0": 20,
+        "x1": 30,
+        "row": 14,
+        "note": "drawn by the renderer under the real object; shrink 2 px while lifted 2 px or more"
+      },
+      "flippable": false
+    },
+    "form": {
+      "frame": {
+        "w": 16,
+        "h": 16
+      },
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "anchor": {
+        "name": "base_bc",
+        "x": 8,
+        "y": 16,
+        "note": "pixel edge at the bottom centre of the frame"
+      },
+      "contact_shadow": {
+        "x0": 4,
+        "x1": 12,
+        "row": 15,
+        "note": "drawn by the renderer under the real object; shrink 2 px while lifted 2 px or more"
+      },
+      "flippable": false
+    }
+  },
+  "animations": {
+    "stapler_roam": {
+      "archetype": "stapler",
+      "row": 0,
+      "x": 0,
+      "y": 0,
+      "frames": 4,
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "ms": 120,
+      "loop": true,
+      "move_px_per_frame": [
+        0,
+        2,
+        2,
+        0
+      ],
+      "lift_px": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "note": "hop: rise, apex, land; travels 4 px per 480 ms cycle"
+    },
+    "stapler_misregister": {
+      "archetype": "stapler",
+      "row": 1,
+      "x": 0,
+      "y": 16,
+      "frames": 2,
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "ms": 80,
+      "loop": false,
+      "play": "flicker",
+      "note": "show each frame once for its ms, then return to the roam frame; trigger every 1.2-2.4 s while roaming or idle, and on contact"
+    },
+    "chair_roam": {
+      "archetype": "chair",
+      "row": 2,
+      "x": 0,
+      "y": 32,
+      "frames": 4,
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "ms": 200,
+      "loop": true,
+      "move_px_per_frame": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "lift_px": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "the chair drifts 4 px per 800 ms cycle; its wrong shadow drifts away up-left and stretches"
+    },
+    "chair_misregister": {
+      "archetype": "chair",
+      "row": 3,
+      "x": 0,
+      "y": 48,
+      "frames": 2,
+      "frame": {
+        "w": 32,
+        "h": 16
+      },
+      "ms": 80,
+      "loop": false,
+      "play": "flicker",
+      "note": "show each frame once for its ms, then return to the roam frame; trigger every 1.2-2.4 s while roaming or idle, and on contact"
+    },
+    "form_roam": {
+      "archetype": "form",
+      "row": 4,
+      "x": 0,
+      "y": 64,
+      "frames": 4,
+      "frame": {
+        "w": 16,
+        "h": 16
+      },
+      "ms": 120,
+      "loop": true,
+      "move_px_per_frame": [
+        0,
+        2,
+        2,
+        0
+      ],
+      "lift_px": [
+        0,
+        1,
+        2,
+        0
+      ],
+      "note": "flutter: the flap opens edge-on as the page lifts; travels 4 px per 480 ms cycle"
+    },
+    "form_misregister": {
+      "archetype": "form",
+      "row": 5,
+      "x": 0,
+      "y": 80,
+      "frames": 2,
+      "frame": {
+        "w": 16,
+        "h": 16
+      },
+      "ms": 80,
+      "loop": false,
+      "play": "flicker",
+      "note": "show each frame once for its ms, then return to the roam frame; trigger every 1.2-2.4 s while roaming or idle, and on contact"
+    }
+  },
+  "palette": {
+    "o": "#202337",
+    "i": "#343650",
+    "j": "#535971",
+    "k": "#777A8C",
+    "a": "#413755",
+    "b": "#67547C",
+    "c": "#9477AF",
+    "d": "#C3A6D6",
+    "D": "#B65761",
+    "E": "#E67A70",
+    "F": "#F6B18E",
+    "p": "#C7B7A0",
+    "q": "#E2D6C2",
+    "r": "#F4F2EC"
+  },
+  "rules": "violet is the anomaly only; light from the upper left, so frames are never mirrored"
+}
