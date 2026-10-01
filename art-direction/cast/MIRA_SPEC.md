@@ -74,3 +74,21 @@ Coordinator review:
 
 Player:
 - [x] Approved 2026-10-02 (self-review under the player's delegation)
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+**Status:** Candidate, pending director review. Tasks 8.1 and 8.2. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `mira_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". Frames are built from the raw bagless grids plus stamps, then `finish()` paints strap shading and the bag, so the bag keeps its shape on lowered frames. `build_cast.py mira` appends the rows to `mira-atlas.png/.json`, adds the frames to `mira-sheet.png` and writes `mira-extra.gif`. Her patches are owned elsewhere and are not touched.
+
+| Set | Facings | Frames | ms per frame | Mode | Pose |
+| --- | --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 | once | Handing over a letter. S: hands meet at the belt, then hold the letter up. E and W: the near arm reaches out, then the letter appears above the hand. N: the elbows flare, then the right hand is out with the letter |
+| `react_pleased` | S N E W | 3 | 300 | once | A clean run. S: hands on hips, fist pump, settle. E and W: idle, fist pump, settle. N: hands on hips, breath |
+| `react_confiding` | S N E W | 3 (N, E, W: 2) | 300 | once | The erased-routes admission: head bows; S adds a hand gripping the strap, then sags. Others bow only |
+
+**Director decisions**
+
+1. **Reactions chosen from the brief.** Pleased on a clean run and confiding for the route-copies scene, both from the Animation table in `design/characters/mira.md`. Reason: they are the two beats her story names.
+2. **Paper keys.** `PAL` gains `r`, `s`, `q` (`#F4F2EC`, `#E2D6C2`, `#C7B7A0`) for the letter. No approved pixel uses them. Reason: the interact pose needs something to hand over, and her ramps have no off-white. The letter has a dark rim because the stone floor is pale.
+3. **Coral stays on the bag and strap only.** The letter is cream, not coral or gold. The glint limits (`z`, `H`, `f` at most 1 px) hold on every extra frame.
+4. **Check rules.** `interact` and `react_pleased` are in `EXTRA_ASYMMETRIC` (anchor-mass tolerance 30%). Letter and hand pixels sit on rows 10 and below, except dark rim pixels, because head rows may hold only hair, skin and outline.
+5. **Lowered frames** use the approved idle-1 recipe (`lower()` on the raw grid, then `finish(..., dy=1)`).

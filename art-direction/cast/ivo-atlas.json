@@ -72,6 +72,150 @@
         0,
         2
       ]
+    },
+    "ivo_interact_s": {
+      "row": 8,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ivo_interact_n": {
+      "row": 9,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ivo_interact_e": {
+      "row": 10,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ivo_interact_w": {
+      "row": 11,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ivo_wave_s": {
+      "row": 12,
+      "frames": 3,
+      "ms": 250,
+      "mode": "loop"
+    },
+    "ivo_nod_s": {
+      "row": 13,
+      "frames": 3,
+      "ms": 140,
+      "mode": "once"
+    },
+    "ivo_nod_n": {
+      "row": 14,
+      "frames": 3,
+      "ms": 140,
+      "mode": "once"
+    },
+    "ivo_nod_e": {
+      "row": 15,
+      "frames": 3,
+      "ms": 140,
+      "mode": "once"
+    },
+    "ivo_nod_w": {
+      "row": 16,
+      "frames": 3,
+      "ms": 140,
+      "mode": "once"
+    },
+    "ivo_laugh_s": {
+      "row": 17,
+      "frames": 4,
+      "ms": 160,
+      "mode": "loop"
+    },
+    "ivo_laugh_n": {
+      "row": 18,
+      "frames": 4,
+      "ms": 160,
+      "mode": "loop"
+    },
+    "ivo_laugh_e": {
+      "row": 19,
+      "frames": 4,
+      "ms": 160,
+      "mode": "loop"
+    },
+    "ivo_laugh_w": {
+      "row": 20,
+      "frames": 4,
+      "ms": 160,
+      "mode": "loop"
+    },
+    "ivo_tablet_flash_s": {
+      "row": 21,
+      "frames": 2,
+      "ms": 350,
+      "mode": "loop"
+    },
+    "ivo_tablet_flash_e": {
+      "row": 22,
+      "frames": 2,
+      "ms": 350,
+      "mode": "loop"
+    },
+    "ivo_tablet_flash_w": {
+      "row": 23,
+      "frames": 2,
+      "ms": 350,
+      "mode": "loop"
+    },
+    "ivo_react_questioning_s": {
+      "row": 24,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_questioning_n": {
+      "row": 25,
+      "frames": 2,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_questioning_e": {
+      "row": 26,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_questioning_w": {
+      "row": 27,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_relieved_s": {
+      "row": 28,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_relieved_n": {
+      "row": 29,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_relieved_e": {
+      "row": 30,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ivo_react_relieved_w": {
+      "row": 31,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"

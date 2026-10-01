@@ -165,3 +165,87 @@ WALK = {
     "e": walk(E, SIDE_LEGS),
     "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE_LEGS]),
 }
+
+
+# --- Extra animation sets (tasks 8.1-8.3, candidate) ----------------------------------------------
+# Same format as the Engineer's (engineer_sprites.EXTRA): the approved idle frames plus hand-placed
+# stamps. IDLE and WALK above are never edited.
+stamp, stamps, dip, tilt = eng.stamp, eng.stamps, eng.dip, eng.tilt
+
+TAB5 = ["ggggg", "gJjjg", "gjhjg", "ggggg"]                                   # the approved 5x4 tablet
+TAB6 = ["gggggg", "gJjjjg", "gjhhjg", "gjjjjg", "gggggg"]                      # nearer to the player: 6x5
+BACK5 = ["SSSSS", "STTTS", "STTTS", "SSSSS"]                                   # N: the back, enlarged
+FLASH_BRIGHT = str.maketrans({"j": "J", "h": "j"})   # screen up 1-2 steps, content mark stays darker
+FLASH_DIM = str.maketrans({"J": "h", "j": "h", "h": "g"})
+
+
+def lift(frame):
+    """Head tipped back: it rises 1 px on a stretched neck (the chin row repeats). Torso and legs stay."""
+    return frame[1:10] + [frame[9]] + frame[10:]
+
+
+def flash(frame, table):
+    """Recolour only the tablet glass (keys g h j J are used nowhere else on Ivo)."""
+    return [row.translate(table) for row in frame]
+
+
+def _extra():
+    s0, n0, e0, w0 = S, N, E, W
+    # ---- 8.1 interact: the tablet is raised, then held out toward the player (it grows: it is nearer) ----
+    s_i0 = stamps(s0, (9, 15, ["qqqqq"]), (9, 11, TAB5), (9, 14, ["m"]))
+    s_i1 = stamps(s0, (9, 11, TAB6), (15, 11, ["o", "o", "o", "o", "o"]), (8, 15, ["m"]))
+    e_i0 = stamps(e0, (10, 15, ["qqo.."]), (10, 11, TAB5), (10, 14, ["m"]))
+    e_i1 = stamps(e0, (10, 11, TAB6), (9, 15, ["m"]))
+    w_i0 = stamps(w0, (1, 15, ["..oqq"]), (1, 11, TAB5), (5, 14, ["m"]))
+    w_i1 = stamps(w0, (0, 11, TAB6), (6, 15, ["m"]))
+    n_i0 = stamps(n0, (2, 15, ["qqq"]), (2, 12, ["SSS", "STS", "SSS"]), (1, 12, ["o"]))
+    n_i1 = stamps(n0, (2, 15, ["qqq"]), (1, 11, BACK5), (0, 11, ["o", "o", "o", "o"]))
+    interact = {"s": [s_i0, s_i1], "n": [n_i0, n_i1], "e": [e_i0, e_i1], "w": [w_i0, w_i1]}
+
+    # ---- 8.3 scripted wave (free hand beside the head; hand rows <10 are skin only) ----------------------
+    raise_arm = [(0, 10, ["oqs"]), (2, 16, ["q"])]
+    wave0 = stamps(s0, *raise_arm, (0, 10, ["oqs"]), (1, 9, ["lm"]))
+    wave_a = stamps(s0, *raise_arm, (1, 6, ["oo"]), (0, 7, ["onm"]), (0, 8, ["olm"]), (0, 9, ["olm"]))
+    wave_b = stamps(s0, *raise_arm, (0, 5, ["oo"]), (0, 6, ["onm"]), (0, 7, ["olm"]), (1, 8, ["lm"]), (1, 9, ["lm"]))
+    wave = {"s": [wave0, wave_a, wave_b]}
+
+    # ---- 8.3 nod: the head bows onto the shoulders and returns ---------------------------------------------
+    nod = {f: [dip(g), dip(g, 2), dip(g)] for f, g in (("s", s0), ("n", n0), ("e", e0), ("w", w0))}
+
+    # ---- 8.3 unscripted laugh: shoulders heave (head thrown back, then bent forward) -----------------------
+    belly = [(4, 15, ["nm"]), (4, 16, ["lm"])]
+    # Closed eyes: a 2 px wide horizontal ink line per eye (S) or per profile eye (E, W). The skin and
+    # hair-shadow steps (k, A) were tried and vanish at 1x, so ink is used; the lines are 2 px wide, so
+    # they read as a squint, not as the open 1 px dot eyes.
+    sq = {"s": [(5, 7, ["oo"]), (9, 7, ["oo"])], "e": [(9, 7, ["oo"])], "w": [(5, 7, ["oo"])], "n": []}
+    base = {"s": stamps(s0, *sq["s"], *belly), "n": n0, "e": stamps(e0, *sq["e"]), "w": stamps(w0, *sq["w"])}
+
+    def laugh_set(g):
+        # 4 phases against fixed feet: head tipped back / torso up, level / down, back / down, level / up.
+        return [lift(g), lower(g), g[:10] + [g[9]] + lower(g)[11:], g]
+    laugh = {f: laugh_set(g) for f, g in base.items()}
+
+    # ---- 8.3 Level 03 tablet flash: glass steps only, a hard 1-2 step glow, no halo, no marker hex ---------
+    tab_flash = {f: [flash(g, FLASH_BRIGHT), flash(g, FLASH_DIM)] for f, g in (("s", s0), ("e", e0), ("w", w0))}
+
+    # ---- 8.2 reactions ---------------------------------------------------------------------------------------
+    def fist(x, d):
+        y = 9 + d
+        return [(x, y, ["onmo"]), (x, y + 1, ["olmo"]), (x + 1, y + 2, ["oo"])]
+    gone = [(2, 15, ["q"]), (2, 16, ["q"])]
+    quest = {
+        "s": [dip(s0), stamps(dip(s0), *gone, *fist(4, 1)), lower(stamps(dip(s0), *gone, *fist(4, 1)))],
+        "n": [dip(n0), lower(dip(n0))],
+        "e": [dip(e0), stamps(dip(e0), *fist(8, 1)), lower(stamps(dip(e0), *fist(8, 1)))],
+        "w": [dip(w0), stamps(dip(w0), *fist(3, 1)), lower(stamps(dip(w0), *fist(3, 1)))],
+    }
+    relieved = {f: [lower(g), lower(dip(g)), lower(g)] for f, g in (("s", s0), ("n", n0), ("e", e0), ("w", w0))}
+    return {"interact": interact, "wave": wave, "nod": nod, "laugh": laugh, "tablet_flash": tab_flash,
+            "react_questioning": quest, "react_relieved": relieved}
+
+
+EXTRA = _extra()
+EXTRA_MS = {"interact": 250, "wave": 250, "nod": 140, "laugh": 160, "tablet_flash": 350,
+            "react_questioning": 300, "react_relieved": 300}
+EXTRA_MODE = {"wave": "loop", "laugh": "loop", "tablet_flash": "loop"}
+EXTRA_ASYMMETRIC = {"interact", "wave", "react_questioning"}

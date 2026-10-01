@@ -49,8 +49,8 @@
 
 - [ ] 8.1 Interact pose for every recurring character; verify the checker and the sheet
 - [ ] 8.2 Two reusable reactions per recurring character (Engineer: concerned and satisfied); verify the checker and the sheet
-- [ ] 8.3 Ivo scripted wave, nod, unscripted laugh and Level 03 tablet flash; verify a sheet and GIFs
-- [ ] 8.4 Engineer quick turn; verify GIF timing
+- [x] 8.3 Ivo scripted wave, nod, unscripted laugh and Level 03 tablet flash; verify a sheet and GIFs
+- [x] 8.4 Engineer quick turn; verify GIF timing
 - [ ] 8.5 Mira's six patch designs as 1–2 px states; verify that each is distinct at ×4 and in her portrait
 
 ## 9. Portraits

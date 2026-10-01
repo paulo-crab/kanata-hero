@@ -33,6 +33,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | District palettes (Records, Systems, Night Shift, Executive) and Noor/Hal/Ada/Vale skin and hair ramps | [palettes/PALETTES_SPEC.md](palettes/PALETTES_SPEC.md), STYLE_BIBLE §3 | palettes/district_palettes.py | 2026-10-02 (director) |
 | Background workers: 2 bodies × 3 palettes, synced walk, idle variants, silhouettes | [cast/BACKGROUND_WORKERS_SPEC.md](cast/BACKGROUND_WORKERS_SPEC.md) | cast/bgworker_{common,a_sprites,b_sprites}.py | 2026-10-02 (director) |
 | Orientation kit: 48-entry tile/prop atlas, JSON schema, garden before/after, room rebuilt from layout (zero diff) | [kit/ORIENTATION_KIT_SPEC.md](kit/ORIENTATION_KIT_SPEC.md) | kit/kitlib.py, kit/orientation_kit.py | 2026-10-02 (director) |
+| Extra sets for the Engineer, Ivo and Mira: interact, two reactions each, Ivo wave/nod/laugh/tablet flash, Engineer quick turn | gate1 spec, IVO_SPEC, MIRA_SPEC (Extra animation sets) | EXTRA in engineer_sprites.py, ivo_sprites.py, mira_sprites.py | 2026-10-02 (director) |
 
 ## Plan
 

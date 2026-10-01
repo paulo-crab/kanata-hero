@@ -67,3 +67,25 @@ Coordinator review:
 
 Player:
 - [x] Ivo reviewed in the room and on the sheet (approved 2026-10-02, after a tablet and hair revision)
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+**Status:** Candidate, pending director review. Tasks 8.1 to 8.3. Idle and walk frames are unchanged (verified by dump and diff). Frames live in `ivo_sprites.EXTRA`; format as in `gate1/GATE1_ENGINEER_SPEC.md` "Extra animation sets". `build_cast.py ivo` appends the rows to `ivo-atlas.png/.json` (animations `ivo_<set>_<facing>`), adds the frames to `ivo-sheet.png` and writes `ivo-extra.gif`.
+
+| Set | Facings | Frames | ms per frame | Mode | Pose |
+| --- | --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 | once | The tablet rises 1 px, then is held out toward the player and grows to 6×5 because it is nearer. N shows the enlarged back |
+| `wave` | S | 3 | 250 | loop | Scripted greeting. Frame 0 raises the free hand, frames 1 and 2 alternate two stiff hand tilts. Play 0, alternate 1-2 for the beats, then 0 reversed. Mechanical, so no easing |
+| `nod` | S N E W | 3 | 140 | once | Head dips 1 px, 2 px, 1 px onto the shoulders. Replaces the wave after the Lobby route |
+| `laugh` | S N E W | 4 | 160 | loop | Unscripted laugh. Closed eyes (2 px wide ink line per eye on S, one 2 px line in profile on E and W), then four phases against fixed feet: head tipped back 1 px with the torso up, head level with the torso down 1 px, head back with the torso down, head level with the torso up. S keeps a hand on the belly throughout. N has no face, so it shows the head tip and the bounce only. Replaces the wave after the Orientation review |
+| `tablet_flash` | S E W | 2 (bright, dim) | 350 | loop | Level 03 |
+| `react_questioning` | S N E W | 3 (N: 2) | 300 | once | Doubting the script: head bows, free fist at the chin, sag. N bows only |
+| `react_relieved` | S N E W | 3 | 300 | once | After the Clock: shoulders drop, head dips, then recovers |
+
+**Director decisions**
+
+1. **Reactions chosen from the brief.** Questioning and relieved, taken from the portrait arc ("begins to question the script") and from the Level 03 resolution (the tablet stops flashing). Reason: the brief names no reactions, and these are the two beats the story needs.
+2. **Level 03 flash.** The flash means "the scheduling form is broken and Ivo's tablet keeps alerting until The Clock is solved". It is a hard two-state change of the glass steps only. Bright: the screen goes up 1-2 steps (`j`→`J`, `h`→`j`), so the glint rule of 1 px `#A0DDD4` is deliberately exceeded on these frames. Dim: down 1-2 steps (`J`,`j`→`h`, `h`→`g`). The bezel, thumb and content mark stay, so the tablet reads as a tablet in both states. No halo, no marker hex, no new colours. The cycle is 700 ms, about 1.4 flashes per second, under the 3 per second limit. Reduced motion: hold the idle frame. When The Clock is solved, return to idle. The flash is absent in N because the tablet shows only its ink back there.
+3. **Laugh (revised after director review).** No mouth, because STYLE_BIBLE §5 limits the face to two eyes. An earlier sideways head slide read as a head shake and was replaced. The laugh is now closed eyes plus a head tipped back plus a 1 px torso bounce. The squint is ink (`#202337`), not a skin or hair-shadow step, because `k` and `A` vanish at 1×; it reads as closed because it is 2 px wide, where the open eye is a 1 px dot. The raised head is the head rows shifted up 1 px with the chin row repeated, so rows 0-9 still hold only hair, skin and outline.
+4. **Wave rows.** The raised hand uses skin keys only above row 10, because the head rows may hold only hair and skin. The sleeve starts on row 10.
+5. **Check rules.** `interact`, `wave` and `react_questioning` are in `EXTRA_ASYMMETRIC` (anchor-mass tolerance 30%). `HAIR_SKIN_SEPARATED` still applies to every extra frame.

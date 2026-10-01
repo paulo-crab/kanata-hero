@@ -278,3 +278,114 @@ def walk_w():
 IDLE = {f: [fr, lower(fr)] for f, fr in (("s", S), ("n", N), ("e", E), ("w", W))}
 WALK = {"s": walk_front_back(S, LEGS_S), "n": walk_front_back(N, LEGS_N), "e": walk_e(), "w": walk_w()}
 WALK_E = WALK["e"]
+
+
+# --- Extra animation sets (tasks 8.1-8.4, candidate) -----------------------------------------
+# EXTRA frames are the approved idle frames with hand-placed stamps: each stamp is a small key
+# grid pasted at (x, y). A space keeps the pixel underneath, "." clears it. The approved IDLE and
+# WALK frames above are never edited. Format: EXTRA[set][key] = [frames]; EXTRA_MS[set] = ms.
+def stamp(frame, x, y, art):
+    """Paste a key grid onto a frame at column x, row y and return the new frame."""
+    out = [list(r) for r in frame]
+    for j, line in enumerate(art):
+        for i, ch in enumerate(line):
+            if ch != " ":
+                out[y + j][x + i] = ch
+    return ["".join(r) for r in out]
+
+
+def stamps(frame, *parts):
+    """Apply several (x, y, art) stamps in order."""
+    for x, y, art in parts:
+        frame = stamp(frame, x, y, art)
+    return frame
+
+
+def dip(frame, n=1):
+    """Head only (rows 0-9) drops n px onto the shoulders: a nod or a bowed head. Torso and legs stay."""
+    out = [list(r) for r in frame]
+    for y in range(10):
+        out[y] = ["."] * 16
+    for y in range(10):
+        for x, ch in enumerate(frame[y]):
+            if ch != ".":
+                out[y + n][x] = ch
+    return ["".join(r) for r in out]
+
+
+def tilt(frame, dx):
+    """Head only (rows 0-9) slides dx px sideways over the shoulders: a head tilt. Torso and legs stay."""
+    out = [list(r) for r in frame]
+    for y in range(10):
+        out[y] = ["."] * 16
+    for y in range(10):
+        for x, ch in enumerate(frame[y]):
+            if ch != "." and 0 <= x + dx < 16:
+                out[y][x + dx] = ch
+    return ["".join(r) for r in out]
+
+
+# Shared arm stamps for S and N (torso columns are identical there): the near arms flare 1 px out.
+FLARE_L = [(1, 12, ["pspr"]), (1, 13, ["pspr"]), (1, 14, ["ospr"])]   # screen-left elbow out
+FLARE_R_S = [(13, 12, ["qo"]), (13, 13, ["qo"]), (13, 14, ["qo"])]    # screen-right elbow out (S)
+FLARE_R_N = [(11, 12, ["rpqo"]), (11, 13, ["rpqo"]), (11, 14, ["rpqo"])]
+
+
+def _extra():
+    # ---- interact: reach, then hold ------------------------------------------------------------
+    # S: the forearms come forward and the hands meet at the belt (terminal, handover).
+    s_i0 = stamps(S, (2, 14, ["osprqnmqqpqo"]), (2, 15, ["oqppplmqqpmo"]), (2, 16, [".."]))
+    s_i1 = stamps(S, (2, 14, ["osprqnmmqpqo"]), (2, 15, ["oqppplmlqpqo"]), (2, 16, [".."]), (12, 16, [".."]))
+    # N: the left arm reaches up past the shoulder (half, then hand beside the head); hand rows <10 are skin.
+    n_hand = [(1, 7, ["oo"]), (0, 8, ["onm"]), (0, 9, ["olm"]), (1, 10, ["oss"])]
+    n_i0 = stamps(N, *FLARE_L, (3, 15, ["q"]), (2, 16, [".."]), (0, 12, ["onm"]), (0, 13, ["olm"]))
+    n_i1 = stamps(N, *n_hand, (3, 15, ["q"]), (2, 16, [".."]))
+    # E: the near forearm extends toward the facing, hand half out, then fully out.
+    e_i0 = stamps(E, (8, 13, ["rrr"]), (8, 14, ["pppnm"]), (11, 15, ["oo"]), (7, 15, ["qq"]), (7, 16, ["PP"]))
+    e_i1 = stamps(E, (12, 12, ["oo "]), (8, 13, ["rrrrnmo"]), (8, 14, ["pppplmo"]), (12, 15, ["ooo"]),
+                  (7, 15, ["qq"]), (7, 16, ["PP"]))
+    # W: the same toward the left.
+    w_i0 = stamps(W, (6, 14, ["mn"]), (3, 14, ["opp"]), (7, 15, ["qq"]), (7, 16, ["PP"]))
+    w_i1 = stamps(W, (1, 12, ["oo "]), (0, 13, ["onmsrrr"]), (0, 14, ["olmpppp"]), (0, 15, ["ooo"]),
+                  (7, 15, ["qq"]), (7, 16, ["PP"]))
+    interact = {"s": [s_i0, s_i1], "n": [n_i0, n_i1], "e": [e_i0, e_i1], "w": [w_i0, w_i1]}
+
+    # ---- reaction: concerned (head bows, hand to the chin; N only bows) ---------------------------
+    no_hand_r = [(12, 15, ["q"]), (12, 16, [".."])]
+    def fist(x, d):
+        """Outlined fist at the chin for a head dipped by d px: 4x3 with a dark rim."""
+        y = 9 + d
+        return [(x, y, ["onmo"]), (x, y + 1, ["olmo"]), (x + 1, y + 2, ["oo"])]
+    s_c0 = stamps(dip(S), *FLARE_R_S, *no_hand_r)
+    s_c1 = stamps(dip(S), *FLARE_R_S, *no_hand_r, *fist(9, 1))
+    s_c2 = lower(stamps(dip(S), *FLARE_R_S, *no_hand_r, *fist(9, 1)))
+    gone = [(7, 15, ["qq"]), (7, 16, ["PP"])]
+    e_c0 = stamps(dip(E), *gone)
+    e_c1 = stamps(dip(E), *gone, *fist(10, 1))
+    e_c2 = lower(stamps(dip(E), *gone, *fist(10, 1)))
+    w_c0 = stamps(dip(W), *gone)
+    w_c1 = stamps(dip(W), *gone, *fist(3, 1))
+    w_c2 = lower(stamps(dip(W), *gone, *fist(3, 1)))
+    concerned = {"s": [s_c0, s_c1, s_c2], "n": [dip(N), lower(dip(N))],
+                 "e": [e_c0, e_c1, e_c2], "w": [w_c0, w_c1, w_c2]}
+
+    # ---- reaction: satisfied (hands on hips, then a fist pump; the pump settles with a breath) ------
+    s_ak = stamps(S, *FLARE_L, *FLARE_R_S)
+    s_fist = stamps(S, (13, 7, ["oo"]), (13, 8, ["nmo"]), (12, 9, [".lmo"]), (12, 10, ["qqpo"]),
+                    (13, 11, ["qpo"]), (13, 12, ["po"]), (12, 15, ["q"]), (12, 16, [".."]))
+    n_ak = stamps(N, *FLARE_L, *FLARE_R_N)
+    e_fist = stamps(E, (13, 9, ["o"]), (12, 10, ["nmo"]), (12, 11, ["lmo"]), (9, 12, ["pppoo"]),
+                    *gone)
+    w_fist = stamps(W, (2, 9, ["o"]), (1, 10, ["onm"]), (1, 11, ["olm"]), (1, 12, ["oopp"]),
+                    *gone)
+    satisfied = {"s": [s_ak, s_fist, lower(s_fist)], "n": [n_ak, lower(n_ak), n_ak],
+                 "e": [E, e_fist, lower(e_fist)], "w": [W, w_fist, lower(w_fist)]}
+
+    # ---- quick turn: one in-between frame per adjacent pair, the head leads -------------------------
+    turn = {"se": [E[:10] + S[10:]], "en": [N[:10] + E[10:]], "nw": [W[:10] + N[10:]], "ws": [S[:10] + W[10:]]}
+    return {"interact": interact, "react_concerned": concerned, "react_satisfied": satisfied, "turn": turn}
+
+
+EXTRA = _extra()
+EXTRA_MS = {"interact": 250, "react_concerned": 300, "react_satisfied": 300, "turn": 60}
+EXTRA_ASYMMETRIC = {"interact", "react_satisfied"}

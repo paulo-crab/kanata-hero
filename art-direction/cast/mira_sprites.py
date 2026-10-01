@@ -26,6 +26,8 @@ PAL = {
     "O": "#2C3352", "P": "#3E4870",
     # shoes (ink ramp)
     "S": "#343650", "T": "#535971", "U": "#777A8C",
+    # paper (the letter she hands over; tasks 8.1-8.2): lit, mid, shade. Appended; no approved pixel uses them.
+    "r": "#F4F2EC", "s": "#E2D6C2", "q": "#C7B7A0",
 }
 
 SLOTS = {"hair": "ABCD", "skin": "klmn", "jacket": "wxyzEFGH", "trousers": "OP"}
@@ -227,3 +229,74 @@ WALK = {
     "e": walk(E, SIDE, "e"),
     "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE], "w"),
 }
+
+
+# --- Extra animation sets (tasks 8.1-8.2, candidate) ------------------------------------------------
+# Same format as the Engineer's (engineer_sprites.EXTRA). Frames are built from the raw (bagless) grids
+# above plus hand-placed stamps, then finish() paints strap shading and the bag, so the bag never
+# deforms. IDLE and WALK are never edited. Stamps avoid the keys y, G, d inside the torso rows,
+# because finish() steps those down a tone.
+stamp, stamps, dip = eng.stamp, eng.stamps, eng.dip
+LETTER = ["ooooo", "orrro", "osqso", "ooooo"]       # an envelope with a dark rim (the stone floor is pale)
+LETTER_V = ["oooo", "rrrr", "sqqs", "oooo"]         # the same, narrower, held above a reaching hand (rows 9-12)
+
+
+def fin(f, g):
+    return finish(g, f)
+
+
+def fin_low(f, g):
+    """Lower the raw grid 1 px and finish it with the bag offset by 1 (the approved idle-1 recipe)."""
+    return finish(lower(g), f, dy=1)
+
+
+def _extra():
+    s0, n0, e0, w0 = S, N, E, W
+    # ---- 8.1 interact: handing over a letter (reach, then hold it out) --------------------------------
+    s_i0 = stamps(s0, (5, 14, ["nm"]), (5, 15, ["lm"]), (3, 15, ["FF"]), (3, 16, ["F"]))
+    s_i1 = stamps(s0, (4, 12, LETTER), (3, 14, ["n"]), (3, 15, ["m"]), (9, 13, ["n"]), (9, 14, ["m"]), (3, 16, ["F"]))
+    # N: the hands go forward out of sight; the elbows flare (right first, then both).
+    flare_r = [(13, 12, ["Eo"]), (13, 13, ["Eo"]), (13, 14, ["Fo"]), (12, 15, ["F"]), (12, 16, ["F"])]
+    flare_l = [(1, 12, ["ox"]), (1, 13, ["ox"]), (1, 14, ["ox"])]
+    n_i0 = stamps(n0, *flare_r)
+    n_i1 = stamps(n0, (12, 13, ["Enmo"]), (12, 14, ["Elmo"]), (12, 15, ["F"]), (12, 16, ["F"]),
+                  (12, 9, LETTER_V), *flare_l)
+    # E: forearm and hand reach toward the facing; then the letter is held up above the hand.
+    e_reach = [(9, 13, ["FFFFFnm"]), (14, 14, ["lm"]), (8, 15, ["FF"]), (8, 16, ["FF"])]
+    e_i0 = stamps(e0, *e_reach)
+    e_i1 = stamps(e0, *e_reach, (12, 9, LETTER_V))
+    # W: the same toward the left, above her bag.
+    w_reach = [(0, 13, ["nmxxxx"]), (0, 14, ["lm"]), (8, 15, ["x"]), (8, 16, ["x"])]
+    w_i0 = stamps(w0, *w_reach)
+    w_i1 = stamps(w0, *w_reach, (0, 9, LETTER_V))
+    interact = {"s": [fin("s", s_i0), fin("s", s_i1)], "n": [fin("n", n_i0), fin("n", n_i1)],
+                "e": [fin("e", e_i0), fin("e", e_i1)], "w": [fin("w", w_i0), fin("w", w_i1)]}
+
+    # ---- 8.2 reaction: pleased (a clean run): hands on hips, then a fist pump, then it settles ---------------
+    s_ak = stamps(s0, (1, 12, ["oF"]), (1, 13, ["oF"]), (1, 14, ["oF"]), (13, 12, ["xo"]), (13, 13, ["xo"]), (13, 14, ["xo"]))
+    s_fist = stamps(s0, (1, 7, ["oo"]), (0, 8, ["onm"]), (0, 9, ["olm"]), (0, 10, ["oFFF"]), (1, 11, ["oFF"]),
+                    (1, 12, ["oF"]), (3, 15, ["F"]), (3, 16, ["F"]))
+    n_ak = stamps(n0, *flare_l, (13, 12, ["Eo"]), (13, 13, ["Eo"]), (13, 14, ["Fo"]))
+    e_fist = stamps(e0, (13, 9, ["o"]), (12, 10, ["nmo"]), (12, 11, ["lmo"]), (9, 12, ["FFFoo"]), (8, 15, ["FF"]), (8, 16, ["FF"]))
+    w_fist = stamps(w0, (2, 9, ["o"]), (1, 10, ["onm"]), (1, 11, ["olm"]), (1, 12, ["oxxx"]), (8, 15, ["x"]), (8, 16, ["x"]))
+    pleased = {
+        "s": [fin("s", s_ak), fin("s", s_fist), fin_low("s", s_fist)],
+        "n": [fin("n", n_ak), fin_low("n", n_ak), fin("n", n_ak)],
+        "e": [fin("e", e0), fin("e", e_fist), fin_low("e", e_fist)],
+        "w": [fin("w", w0), fin("w", w_fist), fin_low("w", w_fist)],
+    }
+
+    # ---- 8.2 reaction: confiding (the erased-routes admission): head bows, a hand grips the strap -----------
+    s_grip = stamps(dip(s0), (5, 12, ["nm"]), (5, 13, ["lm"]), (3, 15, ["F"]), (3, 16, ["F"]))
+    confiding = {
+        "s": [fin("s", dip(s0)), fin("s", s_grip), fin_low("s", s_grip)],
+        "n": [fin("n", dip(n0)), fin_low("n", dip(n0))],
+        "e": [fin("e", dip(e0)), fin_low("e", dip(e0))],
+        "w": [fin("w", dip(w0)), fin_low("w", dip(w0))],
+    }
+    return {"interact": interact, "react_pleased": pleased, "react_confiding": confiding}
+
+
+EXTRA = _extra()
+EXTRA_MS = {"interact": 250, "react_pleased": 300, "react_confiding": 300}
+EXTRA_ASYMMETRIC = {"interact", "react_pleased"}

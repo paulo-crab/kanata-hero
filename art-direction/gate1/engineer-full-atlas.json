@@ -13,27 +13,27 @@
     1
   ],
   "animations": {
-    "mira_idle_s": {
+    "engineer_idle_s": {
       "row": 0,
       "frames": 2,
       "ms": 500
     },
-    "mira_idle_n": {
+    "engineer_idle_n": {
       "row": 1,
       "frames": 2,
       "ms": 500
     },
-    "mira_idle_e": {
+    "engineer_idle_e": {
       "row": 2,
       "frames": 2,
       "ms": 500
     },
-    "mira_idle_w": {
+    "engineer_idle_w": {
       "row": 3,
       "frames": 2,
       "ms": 500
     },
-    "mira_walk_s": {
+    "engineer_walk_s": {
       "row": 4,
       "frames": 4,
       "ms": 133,
@@ -43,7 +43,7 @@
         2
       ]
     },
-    "mira_walk_n": {
+    "engineer_walk_n": {
       "row": 5,
       "frames": 4,
       "ms": 133,
@@ -53,7 +53,7 @@
         2
       ]
     },
-    "mira_walk_e": {
+    "engineer_walk_e": {
       "row": 6,
       "frames": 4,
       "ms": 133,
@@ -63,7 +63,7 @@
         2
       ]
     },
-    "mira_walk_w": {
+    "engineer_walk_w": {
       "row": 7,
       "frames": 4,
       "ms": 133,
@@ -73,77 +73,121 @@
         2
       ]
     },
-    "mira_interact_s": {
+    "engineer_interact_s": {
       "row": 8,
       "frames": 2,
       "ms": 250,
       "mode": "once"
     },
-    "mira_interact_n": {
+    "engineer_interact_n": {
       "row": 9,
       "frames": 2,
       "ms": 250,
       "mode": "once"
     },
-    "mira_interact_e": {
+    "engineer_interact_e": {
       "row": 10,
       "frames": 2,
       "ms": 250,
       "mode": "once"
     },
-    "mira_interact_w": {
+    "engineer_interact_w": {
       "row": 11,
       "frames": 2,
       "ms": 250,
       "mode": "once"
     },
-    "mira_react_pleased_s": {
+    "engineer_react_concerned_s": {
       "row": 12,
       "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_pleased_n": {
+    "engineer_react_concerned_n": {
       "row": 13,
-      "frames": 3,
+      "frames": 2,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_pleased_e": {
+    "engineer_react_concerned_e": {
       "row": 14,
       "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_pleased_w": {
+    "engineer_react_concerned_w": {
       "row": 15,
       "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_confiding_s": {
+    "engineer_react_satisfied_s": {
       "row": 16,
       "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_confiding_n": {
+    "engineer_react_satisfied_n": {
       "row": 17,
-      "frames": 2,
+      "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_confiding_e": {
+    "engineer_react_satisfied_e": {
       "row": 18,
-      "frames": 2,
+      "frames": 3,
       "ms": 300,
       "mode": "once"
     },
-    "mira_react_confiding_w": {
+    "engineer_react_satisfied_w": {
       "row": 19,
-      "frames": 2,
+      "frames": 3,
       "ms": 300,
       "mode": "once"
+    },
+    "engineer_turn_se": {
+      "row": 20,
+      "frames": 1,
+      "ms": 60,
+      "mode": "once",
+      "between": [
+        "s",
+        "e"
+      ],
+      "note": "play between the two idle facings; the same frame serves both directions"
+    },
+    "engineer_turn_en": {
+      "row": 21,
+      "frames": 1,
+      "ms": 60,
+      "mode": "once",
+      "between": [
+        "e",
+        "n"
+      ],
+      "note": "play between the two idle facings; the same frame serves both directions"
+    },
+    "engineer_turn_nw": {
+      "row": 22,
+      "frames": 1,
+      "ms": 60,
+      "mode": "once",
+      "between": [
+        "n",
+        "w"
+      ],
+      "note": "play between the two idle facings; the same frame serves both directions"
+    },
+    "engineer_turn_ws": {
+      "row": 23,
+      "frames": 1,
+      "ms": 60,
+      "mode": "once",
+      "between": [
+        "w",
+        "s"
+      ],
+      "note": "play between the two idle facings; the same frame serves both directions"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"

@@ -23,6 +23,25 @@ def hsl(h):
 frames = {f"idle_{f}_{i}": fr for f, fs in eng.IDLE.items() for i, fr in enumerate(fs)}
 frames.update({f"walk_{f}_{i}": fr for f, fs in eng.WALK.items() for i, fr in enumerate(fs)})
 
+# Extra animation sets (task 8): EXTRA[set][key] = [frames]. Keys are facings (s n e w) or, for
+# "turn", facing pairs (se en nw ws). Same per-frame rules as idle; the stride-edge rule applies
+# only to walk-like sets (names starting "walk"). Sets listed in EXTRA_ASYMMETRIC (a reaching or
+# waving arm moves mass off the anchor) use the relaxed balance tolerance ASYM_TOL.
+EXTRA = getattr(eng, "EXTRA", {})
+EXTRA_MS = getattr(eng, "EXTRA_MS", {})
+EXTRA_ASYMMETRIC = set(getattr(eng, "EXTRA_ASYMMETRIC", ()))
+ASYM_TOL = 0.30
+for set_name, by_key in EXTRA.items():
+    ms = EXTRA_MS.get(set_name)
+    if not isinstance(ms, int) or ms <= 0:
+        fails.append(f"extra {set_name}: EXTRA_MS missing or not a positive int")
+    for key, fs in by_key.items():
+        for i, fr in enumerate(fs):
+            frames[f"extra_{set_name}_{key}_{i}"] = fr
+for set_name in EXTRA_ASYMMETRIC - set(EXTRA):
+    fails.append(f"EXTRA_ASYMMETRIC names unknown set {set_name}")
+n_base = len(frames) - sum(len(fs) for by_key in EXTRA.values() for fs in by_key.values())
+
 for name, fr in frames.items():
     if len(fr) != 24 or any(len(r) != 16 for r in fr):
         fails.append(f"{name}: not 16x24")
@@ -31,8 +50,9 @@ for name, fr in frames.items():
         fails.append(f"{name}: nothing rests on row 23")
     left = sum(ch != "." for r in fr for ch in r[:8])
     right = sum(ch != "." for r in fr for ch in r[8:])
-    if abs(left - right) / (left + right) > 0.2:
-        fails.append(f"{name}: mass off anchor (L {left} / R {right})")
+    tol = ASYM_TOL if any(name.startswith(f"extra_{a}_") for a in EXTRA_ASYMMETRIC) else 0.2
+    if abs(left - right) / (left + right) > tol:
+        fails.append(f"{name}: mass off anchor (L {left} / R {right}, tolerance {tol})")
     head_keys = set(eng.SLOTS["hair"] + eng.SLOTS["skin"] + "o.")
     for y, r in enumerate(fr[:10]):
         bad = set(r) - head_keys
@@ -75,5 +95,5 @@ assert all(eng.PAL[k] for slot in eng.SLOTS.values() for k in slot)
 
 for f in fails:
     print("FAIL", f)
-print(f"{len(frames)} frames checked, {len(fails)} failures")
+print(f"{len(frames)} frames checked ({n_base} base + {len(frames) - n_base} extra), {len(fails)} failures")
 sys.exit(1 if fails else 0)
