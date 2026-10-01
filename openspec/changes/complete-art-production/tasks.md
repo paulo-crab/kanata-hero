@@ -41,7 +41,7 @@
 ## 7. District kits and landmarks
 
 - [x] 7.1 Records kit and circular archive desk landmark (before and after); verify an atlas JSON and a reference room render with a clear two-cell route
-- [ ] 7.2 Systems kit and routing machine landmark; verify the same
+- [x] 7.2 Systems kit and routing machine landmark; verify the same
 - [ ] 7.3 Night Shift kit and long interior window landmark, with strap and edge readability on dark floors; verify the same
 - [ ] 7.4 Executive kit and atrium tree landmark; verify the same
 
