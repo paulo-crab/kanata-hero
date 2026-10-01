@@ -38,6 +38,7 @@ When documents disagree, the owner below wins. Fix the other document instead of
 - **Mira** idle ×4 and walk ×4 were built and **approved 2026-10-02** (`art-direction/cast/MIRA_SPEC.md`). All three Orientation people in the review room now use hand-placed cast sprites.
 - **Old art drafts discarded** by the player. They stay on disk until moved to the Trash; nothing may reference them.
 - **Pace** wayfinding icon and signage (stone-ring badge with a blue-glass screen, wall/floor/directory pieces, no lettering, no marker colours) **approved by the director 2026-10-02** (`art-direction/pace/PACE_SPEC.md`). The small wall plate reads slightly like a monitor; it is accepted because it sits on a wall, away from desks.
+- **UI kit** (`art-direction/ui-kit/`) **approved by the director 2026-10-02**. The six anchor hexes keep their roles. Lighter text tokens (`#36C3B6`, `#F2928A`, `#B79FEA`) carry teal, coral and violet text at WCAG AA. No text sits on violet fills. Body text is 18 px, with a 16 px minimum. A held key is never shown by colour alone. Markers are a speech bubble, a monitor, a diamond with a doorway and a folded page, and stay distinct in greyscale. The inset header names the `nav` layer and holds the timing. Proposed key bindings: Return to continue, Esc to skip, Tab for the journal, `?` for Layout help. Layout help draws only the `nav` tab; the other tabs are specified in `COMPONENTS.md`.
 
 ## Open decisions
 

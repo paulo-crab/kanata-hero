@@ -61,8 +61,8 @@
 
 ## 10. UI presentation
 
-- [ ] 10.1 UI tokens file (CSS custom properties) and a contrast check; verify text contrast reaches WCAG AA on panels
-- [ ] 10.2 Component spec and static reference page (keycap, keyboard inset, dialogue, HUD, prompt, journal, Layout help); verify it at 1366×768 with the inset open
+- [x] 10.1 UI tokens file (CSS custom properties) and a contrast check; verify text contrast reaches WCAG AA on panels
+- [x] 10.2 Component spec and static reference page (keycap, keyboard inset, dialogue, HUD, prompt, journal, Layout help); verify it at 1366×768 with the inset open
 
 ## 11. Developer handoff
 

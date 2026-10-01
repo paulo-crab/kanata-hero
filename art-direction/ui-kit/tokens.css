@@ -1,0 +1,111 @@
+/*
+ * Kanata Hero UI tokens (task 10.1).
+ * Every UI component takes its colours, spacing, radii, type and layers from
+ * this file only. check_contrast.py parses this file and asserts WCAG AA for
+ * each text-on-panel pair it lists, so keep values as plain hex or var().
+ * Roles never change between districts; values may be tuned after contrast checks.
+ */
+:root {
+  /* ---- Anchor colours (roles are fixed) ---------------------------------- */
+  --ink: #182B38;          /* panels, outlines, text on light faces */
+  --paper: #F4F2EC;        /* text on panels, keycap faces */
+  --teal: #19AFA2;         /* terminals and held keys: "you can use this" */
+  --coral: #EC776D;        /* people with an available conversation */
+  --violet: #9876D5;       /* glitches only */
+  --gold: #E6B750;         /* completed or newly opened: effect, routes, discovery */
+
+  /* ---- Panel surfaces (derived from ink) ---------------------------------- */
+  --panel: var(--ink);
+  --panel-alpha: 0.96;                       /* nearly opaque; checked over white, the worst case */
+  --panel-bg: rgb(24 43 56 / 0.96);          /* ink at --panel-alpha */
+  --panel-raised: #233C4E;                   /* cards, rows and key wells inside a panel */
+  --panel-sunken: #10202A;                   /* recessed wells, code and journal rows */
+  --border: #7A94A5;                         /* panel and card edges, at least 3:1 on panel and panel-raised */
+  --border-strong: var(--teal);              /* the inset and focused panels */
+  --scrim: rgb(14 24 32 / 0.72);             /* dims the world behind journal and Layout help */
+  --letterbox: #0E1822;                      /* bars around the 1280x720 stage */
+
+  /* ---- Text ----------------------------------------------------------------- */
+  --text: var(--paper);
+  --text-muted: #B7C6CE;                     /* labels and captions; still AA on every panel surface */
+  --text-on-light: var(--ink);               /* text on paper, teal, coral and gold faces */
+  --focus: #8FE3DA;                          /* focus ring: 2 px ring plus 2 px ink gap */
+
+  /* ---- Role accents used as text or glyphs on panels ------------------------ */
+  /* Text variants are lightened tints of the anchors so they stay AA on raised cards;
+     fills, glyphs and outlines keep the anchor hex itself. */
+  --accent-terminal: #36C3B6;
+  --accent-conversation: #F2928A;
+  --accent-glitch: #B79FEA;
+  --accent-discovery: var(--gold);
+
+  /* ---- Keycap components ---------------------------------------------------- */
+  --key-face: var(--paper);
+  --key-edge: #A8A396;                       /* the 4 px lower edge that makes a cap look raised */
+  --key-text: var(--ink);
+  --key-held-face: var(--teal);              /* a held key is teal, sunk 3 px and carries a "hold" tag */
+  --key-held-edge: #0E7F75;
+  --key-held-text: var(--ink);
+  --key-dim-face: #2B4558;                   /* neighbouring keys in the position diagram */
+  --key-dim-edge: #1B2F3E;
+  --key-dim-text: var(--text-muted);
+  --key-silent-face: #1F3140;                /* XX keys on the practice layer */
+  --key-silent-text: #B7C6CE;
+  --key-unit: 64px;                          /* one 1u keycap in the Layout help diagram */
+  --key-gap: 6px;
+  --key-size-inset: 56px;                    /* 1u keycap in the keyboard teaching inset */
+
+  /* ---- Spacing scale (4 px base) -------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --stage-margin: var(--space-4);            /* gap between a HUD or inset panel and the stage edge */
+
+  /* ---- Radius scale ---------------------------------------------------------- */
+  --radius-sm: 6px;                          /* keycaps */
+  --radius-md: 10px;                         /* chips, rows, prompt */
+  --radius-lg: 16px;                         /* panels */
+  --radius-pill: 999px;
+
+  /* ---- Type scale: nothing below 16 px; body is a modern sans-serif --------- */
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-display: "Avenir Next", "Trebuchet MS", "Segoe UI", system-ui, "Helvetica Neue", sans-serif;
+  --text-sm: 16px;                           /* labels, captions, key legends */
+  --text-base: 18px;                         /* body and dialogue */
+  --text-lg: 20px;                           /* panel titles, HUD objective */
+  --text-xl: 24px;                           /* inset action, speaker name */
+  --text-2xl: 32px;                          /* section headings */
+  --text-display: 48px;                      /* big titles only */
+  --leading-tight: 1.2;
+  --leading-body: 1.5;
+  --weight-regular: 400;
+  --weight-bold: 700;
+  --tracking-label: 0.08em;                  /* uppercase labels */
+
+  /* ---- Z layers -------------------------------------------------------------- */
+  --z-world: 0;
+  --z-world-fx: 10;
+  --z-marker: 20;
+  --z-hud: 30;
+  --z-prompt: 40;
+  --z-inset: 50;
+  --z-dialogue: 60;
+  --z-overlay: 80;                           /* journal and Layout help over a scrim */
+  --z-toast: 90;
+
+  /* ---- Stage: integer world zoom, 1280x720 letterboxed ----------------------- */
+  --world-w: 320px;
+  --world-h: 180px;
+  --world-zoom: 4;                           /* whole numbers only, never fractional */
+  --stage-w: 1280px;                         /* = world-w * world-zoom */
+  --stage-h: 720px;                          /* = world-h * world-zoom */
+  --portrait-native: 48px;
+  --portrait-size: 192px;                    /* = portrait-native * world-zoom */
+  --marker-size: 64px;                       /* marker glyph box on the stage */
+}
