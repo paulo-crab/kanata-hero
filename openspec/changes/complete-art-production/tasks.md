@@ -17,7 +17,7 @@
 
 - [ ] 3.1 Background workers: two bodies × three muted palettes, a 4-frame synchronized loop walk, 2–3 individual idles and a silhouette variant; verify the checker passes and that the review room shows a synced pair
 - [ ] 3.2 Glitches: stapler, chair shadow and folded form at 16–32 px, with roam (2–4 frames) and misregister (1–2 px flicker) frames, violet only; verify a sheet and an in-room render, with a glow that never erases the silhouette
-- [ ] 3.3 Pace: wayfinding icon and in-world signage on the 16 px grid, avoiding the violet, teal, coral and gold markers; verify an in-room render
+- [x] 3.3 Pace: wayfinding icon and in-world signage on the 16 px grid, avoiding the violet, teal, coral and gold markers; verify an in-room render
 
 ## 4. Orientation environment kit
 

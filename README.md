@@ -37,6 +37,7 @@ When documents disagree, the owner below wins. Fix the other document instead of
 - **Cast frame rule (decided 2026-10-02):** every person sprite stays inside 16×24, and props are held against the body, never overhanging. **Ivo** idle ×4 and walk ×4 were built under the Gate 1 contract (`art-direction/cast/IVO_SPEC.md`) and were **approved by the player 2026-10-02**, after a revision that made the tablet a bezelled device held flat and took the helmet look out of the hair.
 - **Mira** idle ×4 and walk ×4 were built and **approved 2026-10-02** (`art-direction/cast/MIRA_SPEC.md`). All three Orientation people in the review room now use hand-placed cast sprites.
 - **Old art drafts discarded** by the player. They stay on disk until moved to the Trash; nothing may reference them.
+- **Pace** wayfinding icon and signage (stone-ring badge with a blue-glass screen, wall/floor/directory pieces, no lettering, no marker colours) **approved by the director 2026-10-02** (`art-direction/pace/PACE_SPEC.md`). The small wall plate reads slightly like a monitor; it is accepted because it sits on a wall, away from desks.
 
 ## Open decisions
 

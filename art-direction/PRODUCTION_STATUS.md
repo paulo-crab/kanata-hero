@@ -28,6 +28,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Orientation review room, the environment quality bar | gate1 spec, "Scene" | gate1/environment.py | 2026-10-02 (player) |
 | Ivo: idle ×4, walk ×4 | [cast/IVO_SPEC.md](cast/IVO_SPEC.md) | cast/ivo_sprites.py | 2026-10-02 (player) |
 | Mira: idle ×4, walk ×4 | [cast/MIRA_SPEC.md](cast/MIRA_SPEC.md) | cast/mira_sprites.py | 2026-10-02 (director) |
+| Pace: wayfinding icon and signage (18 pieces) | [pace/PACE_SPEC.md](pace/PACE_SPEC.md) | pace/pace_art.py | 2026-10-02 (director) |
 
 ## Plan
 

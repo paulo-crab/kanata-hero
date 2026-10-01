@@ -1,0 +1,526 @@
+{
+  "status": "Candidate, pending director review",
+  "tile": 16,
+  "placement": "sprite top-left = footprint cell top-left minus origin_px",
+  "layers": "floor -> wall and floor-marking -> rear-prop -> contact shadows -> actors -> front props",
+  "states": {
+    "default": "orderly bars",
+    "repeat": "errors accumulating: bars repeat at one length",
+    "optional": "epilogue: unlit stone, optional guidance"
+  },
+  "entries": {
+    "pace_directory": {
+      "rect": [
+        0,
+        0,
+        32,
+        32
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        16
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 32,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "rear-prop",
+      "collision_cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "state": "default",
+      "baked_shadow": true,
+      "note": "Standing directory board on two legs."
+    },
+    "pace_directory_optional": {
+      "rect": [
+        34,
+        0,
+        32,
+        32
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        16
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 32,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "rear-prop",
+      "collision_cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "state": "optional",
+      "baked_shadow": true,
+      "note": "Epilogue: unlit stone board, optional guidance."
+    },
+    "pace_directory_repeat": {
+      "rect": [
+        68,
+        0,
+        32,
+        32
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        16
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 32,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "rear-prop",
+      "collision_cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "state": "repeat",
+      "baked_shadow": true,
+      "note": "Errors accumulating: every entry repeats at one length."
+    },
+    "pace_floor_arrow_n": {
+      "rect": [
+        102,
+        0,
+        16,
+        32
+      ],
+      "footprint_cells": [
+        1,
+        2
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 32,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Arrow plate with icon, north."
+    },
+    "pace_floor_arrow_s": {
+      "rect": [
+        120,
+        0,
+        16,
+        32
+      ],
+      "footprint_cells": [
+        1,
+        2
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 32,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Arrow plate with icon, south."
+    },
+    "pace_hanging_sign": {
+      "rect": [
+        138,
+        0,
+        16,
+        24
+      ],
+      "footprint_cells": [
+        1,
+        2
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 24,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": true,
+      "note": "Brass chains from a wall rail; the 16x16 icon is the plate."
+    },
+    "pace_floor_arrow_e": {
+      "rect": [
+        156,
+        0,
+        32,
+        16
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Arrow plate with icon, east."
+    },
+    "pace_floor_arrow_w": {
+      "rect": [
+        0,
+        34,
+        32,
+        16
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Arrow plate with icon, west."
+    },
+    "pace_floor_chevron_e": {
+      "rect": [
+        34,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Route chevron slab, east."
+    },
+    "pace_floor_chevron_n": {
+      "rect": [
+        52,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Route chevron slab, north."
+    },
+    "pace_floor_chevron_s": {
+      "rect": [
+        70,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Route chevron slab, south."
+    },
+    "pace_floor_chevron_w": {
+      "rect": [
+        88,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "floor-marking",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "Route chevron slab, west."
+    },
+    "pace_icon_16": {
+      "rect": [
+        106,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "The Pace icon: a rounded badge, three bars and a route chevron. No face."
+    },
+    "pace_logo_plate_1x1": {
+      "rect": [
+        124,
+        34,
+        16,
+        16
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": true,
+      "note": "Icon on a small wall plate with cast shadow."
+    },
+    "pace_wall_sign_2x1": {
+      "rect": [
+        142,
+        34,
+        32,
+        16
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": "default",
+      "baked_shadow": true,
+      "note": "Wall sign: icon and three bars."
+    },
+    "pace_wall_sign_2x1_optional": {
+      "rect": [
+        0,
+        52,
+        32,
+        16
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": "optional",
+      "baked_shadow": true,
+      "note": "Epilogue: unlit stone plaque, ink bars, optional guidance."
+    },
+    "pace_wall_sign_2x1_repeat": {
+      "rect": [
+        34,
+        52,
+        32,
+        16
+      ],
+      "footprint_cells": [
+        2,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 16,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": "repeat",
+      "baked_shadow": true,
+      "note": "Errors accumulating: the three bars repeat at one length."
+    },
+    "pace_icon_8": {
+      "rect": [
+        68,
+        52,
+        8,
+        8
+      ],
+      "footprint_cells": [
+        1,
+        1
+      ],
+      "origin_px": [
+        0,
+        0
+      ],
+      "anchor": {
+        "name": "footprint_bl",
+        "x": 0,
+        "y": 8,
+        "note": "bottom-left pixel corner of the footprint, clamped to the sprite bottom"
+      },
+      "layer": "wall",
+      "collision_cells": [],
+      "state": null,
+      "baked_shadow": false,
+      "note": "8x8 small variant for inside signs, not placed alone."
+    }
+  }
+}
