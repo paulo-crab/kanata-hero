@@ -18,6 +18,7 @@ import portrait_engineer  # noqa: E402
 import portrait_hal  # noqa: E402
 import portrait_ivo  # noqa: E402
 import portrait_mira  # noqa: E402
+import portrait_noor  # noqa: E402
 import portrait_vale  # noqa: E402
 import portrait_template as T  # noqa: E402
 
@@ -129,7 +130,7 @@ def diff(a, b):
     return sum(x != y for ra, rb in zip(a, b) for x, y in zip(ra, rb))
 
 
-for cname, mod in (("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira), ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada)):
+for cname, mod in (("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira), ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada), ("noor", portrait_noor)):
     # extras: recorded, at most one per ramp
     per_ramp = {}
     for key, info in mod.EXTRA.items():

@@ -20,7 +20,8 @@
     "mira_patch6",
     "vale",
     "hal",
-    "ada"
+    "ada",
+    "noor"
   ],
   "zoom": "same integer factor as the world (x4 at 1366x768, x6 at 1920x1080); never fractional",
   "origin": "top-left of the 48x48 cell sits on the dialogue panel's portrait slot; background is transparent",
@@ -239,6 +240,24 @@
     "ada_pleased": {
       "x": 96,
       "y": 528,
+      "w": 48,
+      "h": 48
+    },
+    "noor_neutral": {
+      "x": 0,
+      "y": 576,
+      "w": 48,
+      "h": 48
+    },
+    "noor_concerned": {
+      "x": 48,
+      "y": 576,
+      "w": 48,
+      "h": 48
+    },
+    "noor_pleased": {
+      "x": 96,
+      "y": 576,
       "w": 48,
       "h": 48
     }

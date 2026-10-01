@@ -22,11 +22,12 @@ import portrait_engineer  # noqa: E402
 import portrait_hal  # noqa: E402
 import portrait_ivo  # noqa: E402
 import portrait_mira  # noqa: E402
+import portrait_noor  # noqa: E402
 import portrait_vale  # noqa: E402
 import portrait_template as T  # noqa: E402
 
 CHARACTERS = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira),
-              ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada)]
+              ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada), ("noor", portrait_noor)]
 EXPRESSIONS = list(T.KIT)
 ZOOM = 4          # the world's zoom on 1366x768; portraits are shown at the same factor
 BG = "#151C2B"
@@ -243,7 +244,7 @@ def build_sheet():
 def build_atlas():
     rows = [("engineer", portrait_engineer, 0), ("ivo", portrait_ivo, 0), ("mira", portrait_mira, 0)]
     rows += [(f"mira_patch{k}", portrait_mira, k) for k in range(1, 7)]
-    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0), ("ada", portrait_ada, 0)]
+    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0), ("ada", portrait_ada, 0), ("noor", portrait_noor, 0)]
     atlas = Image.new("RGBA", (48 * len(EXPRESSIONS), 48 * len(rows)), (0, 0, 0, 0))
     entries = {}
     for r, (name, mod, k) in enumerate(rows):

@@ -146,3 +146,29 @@ Coordinator review (to be completed by the director):
 - [ ] Hair does not read as a helmet or a cap
 - [ ] Eyes and brows read on her skin in all three expressions
 - [ ] Neutral, concerned and pleased are distinguishable at ×4
+
+## Noor (task 9.3, approved by the director 2026-10-02)
+
+**Status:** Candidate, pending director review. `portrait_noor.py` is built on the same template and checked by the same `check_portraits.py` (39 grids, 0 failures). `build_portraits.py` adds Noor to `portraits-sheet.png` (last row) and to `portraits-atlas.png`/`.json` (row `noor`, appended after the existing rows so no row moves). Sources: `design/characters/noor.md`, `cast/noor_sprites.py`, `cast/NOOR_SPEC.md`.
+
+| | Noor |
+| --- | --- |
+| Hair | Blue-black `ABCD`: the sprite's short swept crop with two crown tufts of different sizes and a notch between them, light `D` strand bands from the upper left, a stepped `A` hairline on the right with a dipping tip, a heavy left lock with uneven tips, and both ears showing |
+| Skin | `klmn` as the sprite (light olive) |
+| Clothing | Grey-oatmeal shirt `pqrs`: a narrow slope (full width on row 40, columns 5–42), a V neck flanked by the dark `p` neck line, a centre placket, sleeve seams in `q`, and a lit `s` left shoulder |
+| Accent | The coral folder from the sprite sits behind her left (screen-left) shoulder: two tabs (sea-blue `j`/`J` and coral `e`), a coral face with a pale `f` highlight and a sea-blue label |
+| Identity at 1× | Blue-black crop with tufts, pale shirt with a neck line, the folder behind the shoulder |
+
+### Noor decisions
+
+22. **Narrow shoulders.** The slope reaches full width on row 40 at columns 5–42, 6 px narrower than the template, because Noor is the narrowest person in the cast. The rules allow a per-character override (Ivo is wider, Vale is square).
+23. **Hair is a crop, not a mound.** The sprite's tufts, stepped hairline and left lock survive. The strand bands carry the "not a helmet" read, the notch between the crown tufts breaks the top silhouette, and the ears show. The tilt covers rows 0–11 only, so the fringe stays put (as Ivo's and Vale's).
+24. **Hair against skin.** The ramp gap is narrow (13 L*), so `HAIR_SKIN_SEPARATED` is on: skin touching light hair becomes `k`, and the right-hand hairline is the darkest step `A`. Brows use `A` so they do not take a `k` halo.
+25. **Stamp not shown.** The stamp sits at her left hip on the sprite, below the portrait crop. Only the folder hint fits at the shoulder. Its pale `f` face is limited to 8 px (the sprite's limit of 8 times 4 is 32).
+26. **Mapping to the brief.** noor.md: dry neutral is `neutral`, skeptical or defiant is `concerned`, quietly satisfied is `pleased`. The kit's closed eyes and smile read as warm but small on the narrow face, which suits her.
+27. **No extra palette steps.** Every key is a key of `noor_sprites.PAL` with the same hex; `EXTRA` is empty.
+
+Review: `check_portraits.py` ended at 39 portraits checked, 0 failures. The first run failed on `A` used as fill in the hairline tip (two stacked `A` rows); the tip's upper row is now `B`. Coordinator review (to be completed by the director):
+- [ ] Noor reads as the same person as the sprite at ×4 (hair, shirt, neck line, folder)
+- [ ] Hair does not read as a helmet
+- [ ] Neutral, concerned and pleased are distinguishable at ×4

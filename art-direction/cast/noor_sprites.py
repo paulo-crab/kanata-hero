@@ -188,3 +188,59 @@ WALK = {
     "e": walk(E, SIDE_LEGS, "e"),
     "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE_LEGS], "w"),
 }
+
+
+# --- Extra animation sets (tasks 8.1-8.2, candidate) ----------------------------------------------
+# Same format as the Engineer's (engineer_sprites.EXTRA): EXTRA[set][facing] = [frames]. Frames are built from
+# the raw (propless) grids above, with the head moved by eng.dip / eng.tilt and the props painted by
+# finish_x, so the stamp and folder never deform. IDLE and WALK above are never edited.
+dip, tilt = eng.dip, eng.tilt
+FACING_RAW = {"s": S, "n": N, "e": E, "w": W}
+# One pixel of heavy lid: a skin shadow `k` on the forehead row, directly above the sprite's eye pixel.
+LID = {"s": (6, 9), "e": (6, 10), "w": (6, 5)}
+
+
+def finish_x(frame, facing, dy=0, stamp_dy=0):
+    """finish() with the stamp offset separately from the body (a raise or a press)."""
+    for x, y, art, under in PROPS[facing]:
+        frame = paint(frame, x, y + dy + (stamp_dy if art in (STAMP_A, STAMP_B) else 0), art, under)
+    return frame
+
+
+def lid(frame, facing):
+    if facing not in LID:
+        return frame
+    r, c = LID[facing]
+    row = list(frame[r])
+    row[c] = "k"
+    return frame[:r] + ["".join(row)] + frame[r + 1:]
+
+
+def _extra():
+    raw = FACING_RAW
+    # ---- 8.1 interact: the stamp-down. Frame 0 raises the stamp, frame 1 presses it down as the body settles. ----
+    interact = {f: [finish_x(g, f, 0, -1), finish_x(lower(g), f, 1, 3)] for f, g in raw.items()}
+
+    # ---- 8.2 reaction (a): dry, unimpressed. The head tilts, then bows a notch under a heavy lid, and settles. ----
+    unimpressed = {}
+    for f, g in raw.items():
+        dx = -1 if f in ("s", "e") else 1
+        t = tilt(g, dx)
+        t2 = dip(lid(t, f))
+        unimpressed[f] = [finish_x(t, f), finish_x(t2, f), finish_x(lower(lid(tilt(g, dx), f)), f, 1)]
+
+    # ---- 8.2 reaction (b): quiet satisfaction. A small nod, a lift of the stamp, then settle. ----------------------
+    satisfied = {f: [finish_x(dip(g), f), finish_x(dip(g), f, 0, -1), finish_x(lower(g), f, 1)] for f, g in raw.items()}
+
+    # ---- posture: stooped over the desk to upright (cast table: straightens as the cabinets open). The base idle
+    # is the upright pose, so the last frame is idle 0 and the engine can hold it. ------------------------------------
+    posture = {f: [finish_x(lower(dip(g)), f, 1), finish_x(dip(g), f), finish_x(g, f)] for f, g in raw.items()}
+    return {"interact": interact, "react_unimpressed": unimpressed, "react_satisfied": satisfied,
+            "posture_upright": posture}
+
+
+EXTRA = _extra()
+EXTRA_MS = {"interact": 250, "react_unimpressed": 300, "react_satisfied": 300, "posture_upright": 300}
+EXTRA_ASYMMETRIC = {"interact"}
+EXTRA_MODE = {"interact": "once", "react_unimpressed": "once", "react_satisfied": "once",
+              "posture_upright": "once"}   # play, then hold the last frame

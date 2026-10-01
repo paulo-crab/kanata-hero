@@ -47,8 +47,8 @@
 
 ## 8. Extra animation sets
 
-- [ ] 8.1 Interact pose for every recurring character; verify the checker and the sheet
-- [ ] 8.2 Two reusable reactions per recurring character (Engineer: concerned and satisfied); verify the checker and the sheet
+- [x] 8.1 Interact pose for every recurring character; verify the checker and the sheet
+- [x] 8.2 Two reusable reactions per recurring character (Engineer: concerned and satisfied); verify the checker and the sheet
 - [x] 8.3 Ivo scripted wave, nod, unscripted laugh and Level 03 tablet flash; verify a sheet and GIFs
 - [x] 8.4 Engineer quick turn; verify GIF timing
 - [x] 8.5 Mira's six patch designs as 1–2 px states; verify that each is distinct at ×4 and in her portrait
@@ -57,7 +57,7 @@
 
 - [x] 9.1 48×48 portrait template and rules; verify a template sheet
 - [x] 9.2 Engineer, Ivo and Mira portraits, three expressions each; verify their ramps match the world sprites
-- [ ] 9.3 Noor, Hal, Ada and Vale portraits; verify the same
+- [x] 9.3 Noor, Hal, Ada and Vale portraits; verify the same
 
 ## 10. UI presentation
 

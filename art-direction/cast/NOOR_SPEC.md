@@ -60,3 +60,23 @@ Coordinator review (the self-review of this candidate):
 - [x] Legible against the Records floor: 60–64 % of body pixels at 3:1 and a 9.7:1 outline. The shirt separates from the skin (min ΔL* 11.2).
 - [x] Hair is not a helmet: two tufts with a notch, light strand clusters, a stepped hairline, ears and a tapered nape
 - [x] Director: confirm the revised shirt, hair and props
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+Tasks 8.1 (interact) and 8.2 (reactions), plus the posture change from noor.md. Same format as the Engineer, Ivo, Mira and Vale: `EXTRA`, `EXTRA_MS`, `EXTRA_MODE` and `EXTRA_ASYMMETRIC` in `noor_sprites.py`. Frames are the raw (propless) grids with the head moved by `eng.dip` or `eng.tilt`, and the stamp and folder painted afterwards by `finish_x`, so the props never deform. `IDLE`, `WALK` and `PAL` are unchanged (dumped and compared before and after: identical). `build_cast.py noor` adds `noor-extra.gif`, rows 8–19 of `noor-atlas.png`/`.json` and the extra frames on `noor-sheet.png`. `check_gate1.py noor_sprites`: 68 frames checked (24 base + 44 extra), 0 failures.
+
+| Set | Facings | Frames | Timing | Mode |
+| --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 ms | once, hold last |
+| `react_unimpressed` | S N E W | 3 | 300 ms | once, hold last |
+| `react_satisfied` | S N E W | 3 | 300 ms | once, hold last |
+| `posture_upright` | S N E W | 3 | 300 ms | once, hold last |
+
+### Extra decisions
+
+14. **Interact: the stamp-down (level 08).** Frame 0 raises the stamp 1 px (the head rows above it must stay hair and skin, so the raise is small); frame 1 settles the body 1 px and presses the stamp 3 px down, so the plate lands over the hip. The props use their idle art and side rules. `EXTRA_ASYMMETRIC` includes `interact`.
+15. **Reaction (a): dry, unimpressed.** The head tilts 1 px (toward the facing's left, away on W), then bows a notch under a heavy lid (one `k` pixel on the forehead row above the eye, S, E and W), then the figure settles 1 px. N only tilts and bows, because it has no face.
+16. **Reaction (b): quiet satisfaction.** A small nod (`dip`), the stamp lifts 1 px in a short flourish, and the figure settles. The last frame equals idle frame 1.
+17. **Posture: stooped to upright.** The base idle is the upright pose. The set starts stooped (head 2 px down, torso 1 px down), rises to a 1 px stoop, and ends on idle frame 0. The engine plays it once per cabinet step and holds the final frame (cast table "straightens as the cabinets open").
+18. **Held frames.** Every set ends on a valid resting pose (idle 0 or idle 1) for the engine to hold until the dialogue closes.
+19. **Open.** The "step out from behind the desk" move (level 07) is a scripted walk and needs no pixels of its own. The stamp mark (rejected to accepted) is a world prop, not a sprite change.

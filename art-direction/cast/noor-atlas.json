@@ -72,6 +72,102 @@
         0,
         2
       ]
+    },
+    "noor_interact_s": {
+      "row": 8,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "noor_interact_n": {
+      "row": 9,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "noor_interact_e": {
+      "row": 10,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "noor_interact_w": {
+      "row": 11,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "noor_react_unimpressed_s": {
+      "row": 12,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_unimpressed_n": {
+      "row": 13,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_unimpressed_e": {
+      "row": 14,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_unimpressed_w": {
+      "row": 15,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_satisfied_s": {
+      "row": 16,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_satisfied_n": {
+      "row": 17,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_satisfied_e": {
+      "row": 18,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_react_satisfied_w": {
+      "row": 19,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_posture_upright_s": {
+      "row": 20,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_posture_upright_n": {
+      "row": 21,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_posture_upright_e": {
+      "row": 22,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "noor_posture_upright_w": {
+      "row": 23,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"
