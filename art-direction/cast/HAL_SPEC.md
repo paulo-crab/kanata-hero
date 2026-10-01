@@ -55,3 +55,21 @@ Coordinator review (to be ticked by the director):
 - [x] The roll reads as a rolled tool bag in all four facings
 - [x] Hair is not a helmet: tufts, uneven fringe, ears and nape
 - [x] Hal reads on the Systems floor in `hal-in-systems.png`
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+`EXTRA`, `EXTRA_MS`, `EXTRA_ASYMMETRIC` in `hal_sprites.py`, in the format of the Engineer's, Ivo's and Mira's. Every frame is a raw base grid plus hand-placed stamps, with `finish()` painting the roll afterwards (so the roll keeps its shape). `IDLE` and `WALK` are byte-identical to the approved set (dumped and diffed). `build_cast.py hal` writes the extra rows to `hal-atlas.png/json`, the frames to `hal-sheet.png`, and `hal-extra.gif`. `check_gate1.py hal_sprites`: 56 frames (24 base + 32 extra), 0 failures.
+
+| Set | Facings | Frames | Timing | Mode |
+| --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 ms | once, holds the last frame |
+| `react_puzzled` | S N E W | 3 | 300 ms | once, holds the last frame |
+| `react_anxious` | S N E W | 3 | 300 ms | once, holds the last frame |
+
+Decisions:
+
+1. **Interact is "using a tool at a panel".** In S and N the free glove lifts a steel tool (an ink-ramp shaft and tip, 2–3 px, with an outline) toward the panel, one row higher on the second frame. In E and W the forearm (stone sleeve) comes forward past the belt, the glove passes the front edge and the tool points ahead. The roll stays under the other arm.
+2. **Reactions from hal.md.** Puzzled is hal.md's "head tilt / scratch": the head tilts 1 px, then the free glove comes up open, then the body settles 1 px. The scratch itself is dropped, because a glove beside the head would break the rule that rows 0–9 hold only hair, skin and outline keys. Anxious is the "Anxious" portrait state: the head sinks onto the shoulders (1 px, then 2 px) and the body settles. The second reaction is anxious, because relief and focus have no pose in hal.md.
+3. **No head-row exceptions and no new hexes.** Gloves and tools stay on row 10 or below, and every key is already in `PAL`. `H` is never used in an extra frame.
+4. **Asymmetric sets.** `interact` and `react_puzzled` move an arm off the anchor, so they use the checker's relaxed mass tolerance (`EXTRA_ASYMMETRIC`).
+5. **Crouched repair and seated-on-stool** (the other hal.md poses) wait for the stool prop, which is a separate sprite.

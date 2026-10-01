@@ -94,3 +94,24 @@ Review: `check_portraits.py` ended at 30 portraits checked, 0 failures. Cycles: 
 - [ ] Vale reads as the same person as the sprite at ×4 (hair, tie, badge, shoulders)
 - [ ] Hair does not read as a helmet
 - [ ] Neutral, concerned and the almost-smile are distinguishable at ×4
+
+## Hal (task 9.3, approved by the director 2026-10-02)
+
+**Status:** Candidate, pending director review. `portrait_hal.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). It imports `hal_sprites` and copies its `PAL`. It is registered in `check_portraits.py` and `build_portraits.py` and in the atlas (the last row, `hal`). `python3 check_portraits.py` reports 0 failures.
+
+| | Hal |
+| --- | --- |
+| Hair | Sandy blond `ABCD`: a dome with three outline-capped spikes at the crown (the sprite's two spikes, one more for the larger head), strand lines in `B` running down-right, an uneven fringe that dips to a `k` shadow row and fringe tips, side locks that stop above the ears, and ears showing below them |
+| Skin | `klmn` as the sprite. Light on the upper left, shadow on the right columns. A lit-skin `n` socket surrounds each eye. |
+| Clothing | Cobalt utility vest `pqrs` with a lit left shoulder slope, a stone shirt V at the neck (`wxy`), a zip line in `q`, a chest pocket on the left, and stone sleeves at both edges |
+| Prop | The orange tool roll `EFGH` at the lower right, under his left arm: a cream cord band, two steel tool tips (`h`, `j`) poking out of the top, one `H` glint. Its bottom row has no side outline, because the crop row carries none. |
+
+Director decisions:
+
+1. **One skull.** The face fill, eye line, mouth and chin are the shared template geometry, built on the Ivo head with Hal's own hair and torso.
+2. **Brows use outline ink `o`.** Hair `A` is as dark as his skin `m`, so it would vanish, and the skin's darkest step `k` as a 5 px line fails the contour-only rule (all four neighbours are skin). Ink gives clear brows on his skin at ×4.
+3. **Eyes in lit sockets.** The `BASE` carries `n` on rows 18–21 around the right eye (the left side is already lit), so the template's eye stamps sit on the lightest skin step. This follows the sprite revision.
+4. **Hair and skin (`HAIR_SKIN_SEPARATED = True`).** Blond and golden skin are 13 L* apart, so light hair never touches `l`, `m` or `n`: the fringe shadow and the temples take `k`, as on the sprite. The tilt covers rows 0–11 only (crown tilts, fringe stays), as for Ivo.
+5. **Vest slope and silhouette.** The slope is stepped with `#202337` outline along the upper edges, reaching full width on row 41 (the template's default).
+6. **No extra palette steps.** `EXTRA` is empty. Every key is a key of `hal_sprites.PAL` with the same hex; the zip line uses `q` and not `p`, so the vest's darkest step stays on seams beside the stone collar and sleeves.
+7. **Mapping to the brief.** Neutral is focused and practical, concerned is anxious (hal.md "Anxious", before the Alarm Glyphs fix), pleased is the settled "Focused" look after it. hal.md's third portrait, puzzled, is a later extra built with `STAMPS`.
