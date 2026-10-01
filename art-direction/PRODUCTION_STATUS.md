@@ -31,7 +31,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 
 ## Plan
 
-The plan is tracked OpenSpec-style in [`production/`](production/): [proposal.md](production/proposal.md) (why and what), [design.md](production/design.md) (cross-cutting decisions) and [tasks.md](production/tasks.md) (numbered checkboxes). Tick a task only when its review has passed and its decision records are written. Work the first unticked task unless a dependency says otherwise.
+The plan lives in the OpenSpec change [`complete-art-production`](../openspec/changes/complete-art-production/): `proposal.md` (why and what), `design.md` (cross-cutting decisions), `specs/` (five capability contracts) and `tasks.md` (numbered checkboxes). Tick a task only when its review has passed and its decision records are written. Work the first unticked task unless a dependency says otherwise. The interim `art-direction/production/` folder is retired and must not be used.
 
 ## Carry-forward lessons (player feedback)
 
