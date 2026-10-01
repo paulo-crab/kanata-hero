@@ -1,6 +1,6 @@
 # Pace — campus performance system
 
-**Status:** after gate 1. Shared rules: [README](README.md). Pace has **no body sprite and no portrait**.
+**Status:** art approved by the director 2026-10-02. The pixel spec [PACE_SPEC.md](../../art-direction/pace/PACE_SPEC.md) is canonical where it differs from this brief, and [ART_HANDOFF.md](../../art-direction/ART_HANDOFF.md) indexes the files. Shared rules: [README](README.md). Pace has **no body sprite and no portrait**.
 
 ## Identity
 

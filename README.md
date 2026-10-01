@@ -27,7 +27,7 @@ When documents disagree, the owner below wins. Fix the other document instead of
 
 ## Decisions
 
-**Production in progress:** see [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) for the plan, what is done, and how to continue. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
+**Art production complete (2026-10-02):** developers start at [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md); [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) holds the approvals and pipeline. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
 
 
 - **Scale (decided 2026-10-01):** 16×16 tiles, 16×24 people, 48×48 portraits, a 320×180 view scaled by whole numbers (×4 on 1366×768, ×6 on 1920×1080). Chosen by the player from [`art-direction/scale-test/`](art-direction/scale-test/). Recorded in the game spec, `levels.md`, the style bible, style board, and art brief.

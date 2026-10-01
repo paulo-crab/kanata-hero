@@ -1,6 +1,6 @@
 # Mira — courier
 
-**Status:** idle ×4 and walk ×4 **APPROVED 2026-10-02**: [`art-direction/cast/MIRA_SPEC.md`](../../art-direction/cast/MIRA_SPEC.md). Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [MIRA_SPEC.md](../../art-direction/cast/MIRA_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 

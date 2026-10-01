@@ -1,6 +1,6 @@
 # Glitches — misregistered office objects
 
-**Status:** after gate 1. Shared rules: [README](README.md).
+**Status:** art approved by the director 2026-10-02. The pixel spec [GLITCHES_SPEC.md](../../art-direction/glitches/GLITCHES_SPEC.md) is canonical where it differs from this brief, and [ART_HANDOFF.md](../../art-direction/ART_HANDOFF.md) indexes the files. Shared rules: [README](README.md).
 
 ## Identity
 

@@ -1,6 +1,6 @@
 # Kanata Hero — character design sheets
 
-**Status:** draft art direction, 2026-10-01. One file per character, compiled from the project documents. These sheets add no new lore. Anything a source document does not state is marked **Assumption** or **Open**, and must be approved before it becomes canon.
+**Status:** art direction brief, 2026-10-01; all characters drawn and approved 2026-10-02 (see each sheet's status and [ART_HANDOFF.md](../../art-direction/ART_HANDOFF.md)). One file per character, compiled from the project documents. These sheets add no new lore. Anything a source document does not state is marked **Assumption** or **Open**, and must be approved before it becomes canon.
 
 ## Source order
 

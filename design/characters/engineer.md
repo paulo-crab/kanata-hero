@@ -1,6 +1,6 @@
 # Engineer — player avatar
 
-**Status:** gate 1 character. **Gate 1 APPROVED by the player 2026-10-02:** [`art-direction/gate1/`](../../art-direction/gate1/GATE1_ENGINEER_SPEC.md). Only four idle facings and one walk cycle until the player approves (STYLE_BIBLE §8). Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the player; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [GATE1_ENGINEER_SPEC.md](../../art-direction/gate1/GATE1_ENGINEER_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 

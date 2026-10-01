@@ -1,6 +1,6 @@
 # Vale — executive liaison
 
-**Status:** idle ×4 and walk ×4 approved by the director 2026-10-02. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) supersedes the provisional and open rows below. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 

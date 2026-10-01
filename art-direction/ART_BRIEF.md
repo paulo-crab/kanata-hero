@@ -14,4 +14,6 @@ Orientation starts warm and welcoming. Pace's control appears through repeated a
 
 ## Current workflow
 
-The player has discarded all earlier character and environment drafts, including every 72×96 Engineer experiment; do not use anything in `character-current/`, `characters/`, `environment/`, `ui/`, or `director-sketches/` as reference. New work starts from `scale-test/`, which sets the 16 px layout, palette use, and on-screen size with placeholder art. Next gate: the Engineer's four idle facings and one walk cycle at 16×24 in that scene at ×4 on 1366×768, judged against references 02, 04, 07, and 08, before the rest of the cast, portraits, atlases, environment, or UI.
+**Art production is complete (2026-10-02).** Gate 1 passed, and the player delegated every later gate to the art director, who self-reviews and approves. Every asset is now approved, and developers start at [`ART_HANDOFF.md`](ART_HANDOFF.md). The pipeline, approvals and carry-forward lessons are in [`PRODUCTION_STATUS.md`](PRODUCTION_STATUS.md). Any new art follows the same loop: hand-placed source module, automated check, ×8 sheet and ×4 in-room review, a spec with Director decisions, then a rebuild with `build_all.py`.
+
+The player discarded all earlier character and environment drafts, including every 72×96 Engineer experiment. Do not use anything in `character-current/`, `characters/`, `environment/`, `ui/` or `director-sketches/` as reference. `scale-test/` remains the record of the scale decision.
