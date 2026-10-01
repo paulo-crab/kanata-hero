@@ -116,7 +116,7 @@ Director decisions:
 6. **No extra palette steps.** `EXTRA` is empty. Every key is a key of `hal_sprites.PAL` with the same hex; the zip line uses `q` and not `p`, so the vest's darkest step stays on seams beside the stone collar and sleeves.
 7. **Mapping to the brief.** Neutral is focused and practical, concerned is anxious (hal.md "Anxious", before the Alarm Glyphs fix), pleased is the settled "Focused" look after it. hal.md's third portrait, puzzled, is a later extra built with `STAMPS`.
 
-## Ada (task 9.3)
+## Ada (task 9.3, approved by the director 2026-10-02)
 
 **Status:** Candidate, pending director review. `portrait_ada.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). Check: `check_portraits.py` ends at `36 portraits checked, 0 failures`. The sheet row and the atlas row are named `ada`.
 
