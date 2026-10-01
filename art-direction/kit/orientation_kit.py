@@ -6,7 +6,9 @@ pixels it painted (kitlib.capture), so the atlas is pixel-identical to the room 
 construction, and build_room.py proves it with a zero-pixel diff.
 
 New art lives only in the "new art" section at the bottom: the lamp's off and pulse
-states and the garden's "after" quest overlays. They use palette constants only.
+states, the garden's "after" quest overlays, and the shelving and glass partitions drawn
+by shared_pieces.py in the Orientation palette (spec coverage; the review room has none).
+They use palette constants only.
 """
 import os
 import sys
@@ -14,11 +16,13 @@ import sys
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-for sub in ("gate1", "scale-test", "cast"):
+for sub in ("gate1", "scale-test", "cast", "palettes"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
 import build_scale_test as bst  # noqa: E402
+import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
 import kitlib  # noqa: E402
+import shared_pieces as shp  # noqa: E402
 
 T = 16
 W, H = env.W, env.H  # 320 x 192
@@ -521,6 +525,44 @@ def lamp_glow_pulse(lamp_body_mask, cx, cy, fp):
                  tags=["lamp", "glow", "pulse"])
 
 
+# ---- shelving and glass partitions (spec coverage; not placed in the review room)
+
+PAL = shp.Pal("orientation")
+
+
+def shelf_triples():
+    """(light, body, dark) file-box colours: brass, stone and wood mostly. Coral and garden green are one
+    slot in twelve each, so a run of them reads as the occasional odd box, not a rainbow."""
+    def tri(r):
+        return (r[3], r[2], r[1])
+    D = dp.DISTRICTS["orientation"]
+    brass, stone, wood = tri(D["accent"]), tri(D["floor"]), tri(D["wood"])
+    return [brass, stone, wood] * 3 + [tri(dp.ORIENTATION_EXTRA["coral"]), tri(D["foliage"]), stone]
+
+
+def shared_pieces():
+    out = []
+    sx, sy = 64, 64
+    tri = [tuple(bst.hx(h) for h in t) for t in shelf_triples()]
+    note_shelf = ("{n}-cell archive shelving: blue-glass frame with a lit top plane, front face with three bays, "
+                  "file boxes in brass, stone and wood runs with the odd coral or garden box, kick plate")
+    out.append(make("shelf_1x1", lambda r: shp.shelf(r, sx, sy, 1, PAL, 3, tri), (sx, sy + shp.SHELF_H - 16), (1, 1), ["1"],
+                    "rear_prop", "prop", y_sort=True, note=note_shelf.format(n=1), tags=["shelf", "shelving", "archive"]))
+    for nm, seed in (("shelf_2x1_a", 1), ("shelf_2x1_b", 2)):
+        out.append(make(nm, lambda r, seed=seed: shp.shelf(r, sx, sy, 2, PAL, seed, tri), (sx, sy + shp.SHELF_H - 16), (2, 1), ["11"],
+                        "rear_prop", "prop", y_sort=True, note=note_shelf.format(n=2) + "; a and b differ only in the box layout",
+                        tags=["shelf", "shelving", "archive"]))
+    out.append(make("partition_1x1", lambda r: shp.partition(r, sx, sy, 1, PAL), (sx, sy + shp.PART_H - 16), (1, 1), ["1"],
+                    "rear_prop", "prop", y_sort=True,
+                    note="free-standing glass partition, one cell: dark frame with lit cap, cool pane, one reflection band, floor rail",
+                    tags=["partition", "glass"]))
+    out.append(make("partition_2x1", lambda r: shp.partition(r, sx, sy, 2, PAL), (sx, sy + shp.PART_H - 16), (2, 1), ["11"],
+                    "rear_prop", "prop", y_sort=True,
+                    note="free-standing glass partition, two cells, with a middle post and a reflection band per pane",
+                    tags=["partition", "glass"]))
+    return out
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -548,6 +590,7 @@ def build_pieces():
     extract_props(pieces, placements)
     extract_garden(pieces, placements)
     pieces.extend(garden_after_pieces())
+    pieces.extend(shared_pieces())
     mail = [p for p in placements if p[0] == "mail_counter"]
     placements = [p for p in placements if p[0] != "mail_counter"] + mail
     return pieces, placements, anims
@@ -600,6 +643,8 @@ def group_rank(p):
         return 3
     if n.startswith("garden_"):
         return 5
+    if n.startswith(("shelf_", "partition_")):
+        return 6
     return 4
 
 

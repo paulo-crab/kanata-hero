@@ -2190,6 +2190,244 @@
     "glints"
    ],
    "note": "after: a new cluster of four coral blooms with brass centres and three brass glints in the clearing"
+  },
+  {
+   "name": "shelf_1x1",
+   "kind": "prop",
+   "rect": [
+    512,
+    224,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "shelving",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    17,
+    2
+   ],
+   "note": "1-cell archive shelving: blue-glass frame with a lit top plane, front face with three bays, file boxes in brass, stone and wood runs with the odd coral or garden box, kick plate"
+  },
+  {
+   "name": "shelf_2x1_a",
+   "kind": "prop",
+   "rect": [
+    544,
+    224,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "shelving",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell archive shelving: blue-glass frame with a lit top plane, front face with three bays, file boxes in brass, stone and wood runs with the odd coral or garden box, kick plate; a and b differ only in the box layout"
+  },
+  {
+   "name": "shelf_2x1_b",
+   "kind": "prop",
+   "rect": [
+    592,
+    224,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "shelving",
+    "archive"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell archive shelving: blue-glass frame with a lit top plane, front face with three bays, file boxes in brass, stone and wood runs with the odd coral or garden box, kick plate; a and b differ only in the box layout"
+  },
+  {
+   "name": "partition_1x1",
+   "kind": "prop",
+   "rect": [
+    0,
+    336,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    17,
+    2
+   ],
+   "note": "free-standing glass partition, one cell: dark frame with lit cap, cool pane, one reflection band, floor rail"
+  },
+  {
+   "name": "partition_2x1",
+   "kind": "prop",
+   "rect": [
+    32,
+    336,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "free-standing glass partition, two cells, with a middle post and a reflection band per pane"
   }
  ],
  "animations": {

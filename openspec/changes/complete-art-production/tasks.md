@@ -67,4 +67,4 @@
 ## 11. Developer handoff
 
 - [x] 11.1 `ART_HANDOFF.md` covering the asset index, atlas and JSON formats, anchors, layers, tokens and rebuild steps; verify every listed file exists
-- [ ] 11.2 Final consistency pass across specs, briefs and the README log; verify `openspec validate complete-art-production` passes and the change is ready to archive
+- [x] 11.2 Final consistency pass across specs, briefs and the README log; verify `openspec validate complete-art-production` passes and the change is ready to archive

@@ -49,6 +49,7 @@ This is the living production file. **Developers start at [ART_HANDOFF.md](ART_H
 | Executive kit (63 entries), atrium tree before/after, reference room | [kit/EXECUTIVE_KIT_SPEC.md](kit/EXECUTIVE_KIT_SPEC.md) | kit/executive_kit.py | 2026-10-02 (director) |
 | Night Shift kit (61 entries), long interior window before/after, reference room, readability report | [kit/NIGHTSHIFT_KIT_SPEC.md](kit/NIGHTSHIFT_KIT_SPEC.md) | kit/nightshift_kit.py | 2026-10-02 (director) |
 | Developer handoff: asset index, formats, anchors, layers, tokens, rebuild (build_all.py, check_handoff.py) | [ART_HANDOFF.md](ART_HANDOFF.md) | build_all.py, check_handoff.py | 2026-10-02 (director) |
+| Final consistency pass: Orientation shelving and partitions added (53 entries), statuses, briefs, Pace layer names, handoff | ART_HANDOFF.md, kit/ORIENTATION_KIT_SPEC.md | kit/orientation_kit.py | 2026-10-02 (director) |
 
 ## Plan
 

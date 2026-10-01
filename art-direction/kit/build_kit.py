@@ -27,7 +27,8 @@ import build_scale_test as bst  # noqa: E402
 CORAL_MARK = "#EC776D"
 BG = "#151C2B"
 SECTIONS = [(0, "FLOOR AND ROUTE"), (1, "WALLS"), (2, "SLIDING GLASS DOOR (closed, half, open)"),
-            (3, "LAMP (post, off, glow states)"), (4, "PROPS"), (5, "GARDEN LANDMARK (registered parts)")]
+            (3, "LAMP (post, off, glow states)"), (4, "PROPS"), (5, "GARDEN LANDMARK (registered parts)"),
+            (6, "SHELVING AND GLASS PARTITIONS (spec coverage, not placed in the review room)")]
 
 
 def build_atlas():
