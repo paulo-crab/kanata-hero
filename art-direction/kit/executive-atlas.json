@@ -1,0 +1,3134 @@
+{
+ "schema": "atlas.schema.json",
+ "kit": "executive",
+ "image": "executive-atlas.png",
+ "tile": 16,
+ "layers": [
+  "floor",
+  "rear_wall",
+  "floor_marking",
+  "rear_prop",
+  "shadow",
+  "actor",
+  "front_prop",
+  "light"
+ ],
+ "status": "Approved by the director 2026-10-02",
+ "source": "Orientation pieces recoloured by exact hex swap (executive_kit.py), shared pieces from shared_pieces.py, Executive-only pieces and the atrium tree landmark; build_executive.py",
+ "entries": [
+  {
+   "name": "floor_j",
+   "kind": "tile",
+   "rect": [
+    0,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Executive floor, slab corner: joint on the top row and the left column. Pale limestone, broad slabs, no grain"
+  },
+  {
+   "name": "floor_h",
+   "kind": "tile",
+   "rect": [
+    16,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Executive floor, slab edge: joint on the top row. Pale limestone, broad slabs, no grain"
+  },
+  {
+   "name": "floor_v",
+   "kind": "tile",
+   "rect": [
+    32,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Executive floor, slab edge: joint on the left column. Pale limestone, broad slabs, no grain"
+  },
+  {
+   "name": "floor_p",
+   "kind": "tile",
+   "rect": [
+    48,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "slab"
+   ],
+   "note": "Executive floor, slab interior, plain. Pale limestone, broad slabs, no grain"
+  },
+  {
+   "name": "floor_chip",
+   "kind": "tile",
+   "rect": [
+    64,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    2,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "wear"
+   ],
+   "note": "2x1 px wear mark on the floor layer; placed with a pixel offset"
+  },
+  {
+   "name": "route_inlay",
+   "kind": "tile",
+   "rect": [
+    80,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    1
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route"
+   ],
+   "note": "1 px inlay line in floor step 1 along a route edge; repeat every 16 px (horizontal). Neutral stone: copper is kept for the landmark's floor lines and the arrows"
+  },
+  {
+   "name": "route_inlay_v",
+   "kind": "tile",
+   "rect": [
+    96,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    1,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route"
+   ],
+   "note": "route_inlay turned 90 degrees: the same line for vertical corridor edges"
+  },
+  {
+   "name": "route_arrow_e",
+   "kind": "tile",
+   "rect": [
+    112,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wayfinding",
+    "route"
+   ],
+   "note": "copper wayfinding arrow inlaid in the floor, pointing east; Executive wayfinding uses the copper ramp"
+  },
+  {
+   "name": "route_arrow_n",
+   "kind": "tile",
+   "rect": [
+    128,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wayfinding",
+    "route"
+   ],
+   "note": "the same arrow pointing north"
+  },
+  {
+   "name": "wall_n_plain",
+   "kind": "wall",
+   "rect": [
+    144,
+    0,
+    16,
+    48
+   ],
+   "size_px": [
+    16,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "north",
+    "top plane"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    16,
+    2
+   ],
+   "note": "north wall segment: ink cap with a sky-glass trim, navy face, baseboard and cast shadow; tiles horizontally"
+  },
+  {
+   "name": "wall_n_window_a",
+   "kind": "wall",
+   "rect": [
+    160,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "high window overlay, daylight state: dark frame, sky-blue pane, one stepped reflection band, lit sill. Phase a and b differ only in the band position"
+  },
+  {
+   "name": "wall_n_window_b",
+   "kind": "wall",
+   "rect": [
+    192,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "glass"
+   ],
+   "note": "high window overlay, daylight state: dark frame, sky-blue pane, one stepped reflection band, lit sill. Phase a and b differ only in the band position"
+  },
+  {
+   "name": "wall_n_window_a_dim",
+   "kind": "wall",
+   "rect": [
+    224,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "overcast"
+   ],
+   "note": "high window overlay, overcast state (before the third repair): flat dark panes, no reflection band, a dull sill. The daylight state is wall_n_window_a"
+  },
+  {
+   "name": "wall_n_window_b_dim",
+   "kind": "wall",
+   "rect": [
+    256,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "window",
+    "overcast"
+   ],
+   "note": "high window overlay, overcast state (before the third repair): flat dark panes, no reflection band, a dull sill. The daylight state is wall_n_window_b"
+  },
+  {
+   "name": "wall_n_alcove",
+   "kind": "wall",
+   "rect": [
+    288,
+    0,
+    80,
+    32
+   ],
+   "size_px": [
+    68,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    40,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "alcove",
+    "sign"
+   ],
+   "note": "brighter navy alcove with a copper nameplate bar and three inked marks, behind a reception console or Vale's post"
+  },
+  {
+   "name": "wall_e_plain",
+   "kind": "wall",
+   "rect": [
+    368,
+    0,
+    32,
+    16
+   ],
+   "size_px": [
+    28,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     -4,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    12,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "east",
+    "side plane"
+   ],
+   "note": "east wall segment, side plane in the navy ramp with a sky-glass lit trim; tiles vertically. Content starts 4 px into the first cell"
+  },
+  {
+   "name": "wall_n_trim",
+   "kind": "wall",
+   "rect": [
+    400,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    3
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "copper",
+    "trim"
+   ],
+   "note": "copper picture rail for the north wall face, 16 x 3 px, lit top row, studs every 8 px; place at wall y 22 under the window overlays"
+  },
+  {
+   "name": "final_door_closed",
+   "kind": "door",
+   "rect": [
+    416,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "final door",
+    "closed"
+   ],
+   "note": "both glass leaves shut: copper frame, sky-glass leaves, seam, pulls, sunrise sign; a daylit terrace shows through"
+  },
+  {
+   "name": "final_door_half",
+   "kind": "door",
+   "rect": [
+    448,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "11",
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "final door",
+    "half"
+   ],
+   "note": "leaves slid 8 px into the jamb pockets: the terrace and its hedge show through"
+  },
+  {
+   "name": "final_door_open",
+   "kind": "door",
+   "rect": [
+    480,
+    0,
+    32,
+    80
+   ],
+   "size_px": [
+    31,
+    68
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     3
+    ],
+    "origin_px": [
+     -1,
+     22
+    ]
+   },
+   "collision": [
+    "00",
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    15,
+    70
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "final door",
+    "open"
+   ],
+   "note": "leaves fully in the pockets (15 px): the doorway is open and bright with daylight"
+  },
+  {
+   "name": "lamp",
+   "kind": "prop",
+   "rect": [
+    512,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "floor lamp: dark post, copper lamp head with one lit step, contact shadow"
+  },
+  {
+   "name": "lamp_off",
+   "kind": "prop",
+   "rect": [
+    528,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "light accent",
+    "off"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "unlit lamp: head in the ink ramp, no glow"
+  },
+  {
+   "name": "lamp_glow_on",
+   "kind": "light",
+   "rect": [
+    544,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    11,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -1
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    6,
+    15
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F1EEE6"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "on"
+   ],
+   "note": "glow, one hard warm step (radius 5.2). Paints only where the floor is the bare fill #F1EEE6, so it never washes over joints, inlays, props or walls"
+  },
+  {
+   "name": "lamp_glow_pulse",
+   "kind": "light",
+   "rect": [
+    560,
+    0,
+    16,
+    16
+   ],
+   "size_px": [
+    13,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    7,
+    16
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F1EEE6"
+   },
+   "tags": [
+    "lamp",
+    "glow",
+    "pulse"
+   ],
+   "note": "pulse frame of the glow, radius 6.4; alternate with lamp_glow_on at about 600 ms each"
+  },
+  {
+   "name": "desk_a",
+   "kind": "prop",
+   "rect": [
+    576,
+    0,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell walnut desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves); the chair is a separate entry"
+  },
+  {
+   "name": "desk_b",
+   "kind": "prop",
+   "rect": [
+    0,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     5
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    35,
+    2
+   ],
+   "note": "two-cell walnut desk with monitor, keyboard, paper and a small plant (a and b differ only in the plant leaves); the chair is a separate entry"
+  },
+  {
+   "name": "chair",
+   "kind": "prop",
+   "rect": [
+    48,
+    80,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    2,
+    10,
+    10,
+    1
+   ],
+   "note": "dark navy task chair seen from above; place 11 px right and 18 px below a desk origin"
+  },
+  {
+   "name": "sofa",
+   "kind": "prop",
+   "rect": [
+    64,
+    80,
+    32,
+    16
+   ],
+   "size_px": [
+    32,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "navy"
+   ],
+   "contact_shadow": [
+    1,
+    14,
+    31,
+    2
+   ],
+   "note": "dark navy lounge sofa seen from above: the seating Vale has to read against (suit lit-edge step)"
+  },
+  {
+   "name": "bench",
+   "kind": "prop",
+   "rect": [
+    96,
+    80,
+    48,
+    16
+   ],
+   "size_px": [
+    34,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    10,
+    33,
+    2
+   ],
+   "note": "slatted walnut bench"
+  },
+  {
+   "name": "side_table",
+   "kind": "prop",
+   "rect": [
+    144,
+    80,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     1
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    17
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "plant"
+   ],
+   "contact_shadow": [
+    2,
+    10,
+    10,
+    1
+   ],
+   "note": "round slate side table with a small plant"
+  },
+  {
+   "name": "pot_plant_a",
+   "kind": "prop",
+   "rect": [
+    160,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    192,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_c",
+   "kind": "prop",
+   "rect": [
+    224,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    20,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     4,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    12,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    5,
+    20,
+    13,
+    2
+   ],
+   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_d",
+   "kind": "prop",
+   "rect": [
+    256,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    21,
+    21
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     5,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    13,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    6,
+    19,
+    13,
+    2
+   ],
+   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "shelf_1x1",
+   "kind": "prop",
+   "rect": [
+    288,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "bookcase"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    17,
+    2
+   ],
+   "note": "1-cell walnut bookcase: top plane, front face with three bays, bound volumes in clusters (copper, navy, pale stone, sky blue), kick plate"
+  },
+  {
+   "name": "shelf_2x1_a",
+   "kind": "prop",
+   "rect": [
+    320,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "bookcase"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell walnut bookcase: top plane, front face with three bays, bound volumes in clusters (copper, navy, pale stone, sky blue), kick plate; a and b differ only in the volume layout"
+  },
+  {
+   "name": "shelf_2x1_b",
+   "kind": "prop",
+   "rect": [
+    368,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "shelf",
+    "bookcase"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "2-cell walnut bookcase: top plane, front face with three bays, bound volumes in clusters (copper, navy, pale stone, sky blue), kick plate; a and b differ only in the volume layout"
+  },
+  {
+   "name": "partition_1x1",
+   "kind": "prop",
+   "rect": [
+    416,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    17,
+    2
+   ],
+   "note": "free-standing glass partition, one cell: sky-blue frame with lit cap, pale pane, one reflection band, floor rail"
+  },
+  {
+   "name": "partition_2x1",
+   "kind": "prop",
+   "rect": [
+    448,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "partition",
+    "glass"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "free-standing glass partition, two cells, with a middle post and a reflection band per pane"
+  },
+  {
+   "name": "terminal_desk",
+   "kind": "prop",
+   "rect": [
+    496,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    36,
+    25
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     7
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    23
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "terminal",
+    "desk",
+    "interact"
+   ],
+   "contact_shadow": [
+    1,
+    23,
+    35,
+    2
+   ],
+   "note": "two-cell reception console: navy top, sky-blue front, ink terminal housing first, then a screen with one body step and one lit step, a one-step glow on the desk top, keyboard and card reader"
+  },
+  {
+   "name": "cabinet_1x1",
+   "kind": "prop",
+   "rect": [
+    544,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "credenza"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    17,
+    2
+   ],
+   "note": "walnut credenza, one cell: paper stack on the top plane, three drawers with pale label plates"
+  },
+  {
+   "name": "cabinet_2x1",
+   "kind": "prop",
+   "rect": [
+    576,
+    80,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "credenza"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "walnut credenza, two cells wide"
+  },
+  {
+   "name": "light_shaft_cool",
+   "kind": "light",
+   "rect": [
+    0,
+    112,
+    64,
+    48
+   ],
+   "size_px": [
+    50,
+    36
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000",
+    "0000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    32,
+    48
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F1EEE6"
+   },
+   "tags": [
+    "light",
+    "window",
+    "daylight"
+   ],
+   "note": "overcast: two bands of pale sky light from a window pair, one hard step that barely lifts the floor; paints only on the bare floor fill, so shelves, desks and joints stay untouched. Place at the window's bottom-left; state set window_light switches between the two"
+  },
+  {
+   "name": "light_shaft_warm",
+   "kind": "light",
+   "rect": [
+    64,
+    112,
+    64,
+    48
+   ],
+   "size_px": [
+    50,
+    36
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000",
+    "0000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    32,
+    48
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F1EEE6"
+   },
+   "tags": [
+    "light",
+    "window",
+    "daylight"
+   ],
+   "note": "daylight: the same two bands once the window views resolve, one hard warm step; paints only on the bare floor fill, so shelves, desks and joints stay untouched. Place at the window's bottom-left; state set window_light switches between the two"
+  },
+  {
+   "name": "boardroom_table",
+   "kind": "prop",
+   "rect": [
+    128,
+    112,
+    80,
+    48
+   ],
+   "size_px": [
+    66,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1111",
+    "1111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "boardroom",
+    "copper"
+   ],
+   "contact_shadow": [
+    1,
+    32,
+    65,
+    2
+   ],
+   "note": "long boardroom table, 4 x 2 cells: walnut top plane with a copper inlay border, pale runner, papers at eight stations, water glasses and a conference puck, copper studs on the front face. Chairs are separate entries"
+  },
+  {
+   "name": "boardroom_chair",
+   "kind": "prop",
+   "rect": [
+    208,
+    112,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "navy",
+    "boardroom"
+   ],
+   "contact_shadow": [
+    2,
+    15,
+    12,
+    1
+   ],
+   "note": "dark navy high-back boardroom chair seen from above, copper stud row on the back; place 1 cell south of the table's south edge (or north of its north edge, mirrored by the layout)"
+  },
+  {
+   "name": "glass_rail_1x1",
+   "kind": "prop",
+   "rect": [
+    224,
+    112,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    19
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "balustrade",
+    "glass",
+    "copper"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    17,
+    2
+   ],
+   "note": "glass balustrade, one cell: copper cap and base, pale pane, one reflection band, a post on the left edge; run several to edge an atrium well or mezzanine"
+  },
+  {
+   "name": "glass_rail_2x1",
+   "kind": "prop",
+   "rect": [
+    256,
+    112,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     3
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    19
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "balustrade",
+    "glass",
+    "copper"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    33,
+    2
+   ],
+   "note": "glass balustrade, two cells, a post every cell"
+  },
+  {
+   "name": "glass_rail_side",
+   "kind": "prop",
+   "rect": [
+    304,
+    112,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -4,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    4,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "balustrade",
+    "glass",
+    "copper",
+    "side"
+   ],
+   "note": "balustrade side run seen from above: a 6 px copper and glass edge, one cell tall; place down the east or west side of a well, the sprite sits centred in its cell"
+  },
+  {
+   "name": "atrium_well",
+   "kind": "landmark_part",
+   "rect": [
+    320,
+    112,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "well",
+    "base"
+   ],
+   "note": "the sunken well: octagonal coping ring in the stone mid step, a shaded inner north face, a bright floor, a copper ring inlay around the planter and three steps down through the three-cell south gap"
+  },
+  {
+   "name": "atrium_inlay_before",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    272,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "before",
+    "copper lines"
+   ],
+   "note": "before: copper floor lines leave the well rigid and wandering, with right-angle jogs, knots and dead-end stubs that connect to nothing"
+  },
+  {
+   "name": "atrium_inlay_after",
+   "kind": "landmark_part",
+   "rect": [
+    176,
+    272,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "after",
+    "copper lines"
+   ],
+   "note": "after: the same lines straightened into three clean paths with chevrons, east, west and south, running to the box edge where the routes continue (levels.md 20: copper floor lines straighten into useful paths)"
+  },
+  {
+   "name": "atrium_planter",
+   "kind": "landmark_part",
+   "rect": [
+    352,
+    272,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "1111111",
+    "1011101",
+    "1011101",
+    "1000001",
+    "1100011"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "planter",
+    "base"
+   ],
+   "contact_shadow": [
+    71,
+    58,
+    43,
+    31
+   ],
+   "note": "raised round planter: pale stone face with a copper band, lit rim, dark soil, ground cover and two roots over the rim. Carries the collision of the whole well (rail ring, planter, open steps)"
+  },
+  {
+   "name": "atrium_nameplates_before",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    432,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "before",
+    "nameplates"
+   ],
+   "note": "before: five identical blank pale nameplates on the planter face"
+  },
+  {
+   "name": "atrium_nameplates_after",
+   "kind": "landmark_part",
+   "rect": [
+    176,
+    432,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "after",
+    "nameplates"
+   ],
+   "note": "after: the same five plates distinct: different widths, copper, navy and pale, each with its own inked mark (levels.md 20: nameplates become distinct)"
+  },
+  {
+   "name": "atrium_trunk",
+   "kind": "landmark_part",
+   "rect": [
+    352,
+    432,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "tree",
+    "trunk"
+   ],
+   "note": "slim walnut trunk with a root flare and a fork under the crown"
+  },
+  {
+   "name": "atrium_rail_back",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    592,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "balustrade"
+   ],
+   "note": "north, west and east runs of the glass balustrade: copper caps and bases, pale panes, posts every cell"
+  },
+  {
+   "name": "atrium_pots_before",
+   "kind": "landmark_part",
+   "rect": [
+    176,
+    592,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "before",
+    "pots"
+   ],
+   "note": "before: four corner pots with identical square-clipped box cubes (repeated geometry)"
+  },
+  {
+   "name": "atrium_pots_after",
+   "kind": "landmark_part",
+   "rect": [
+    352,
+    592,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "after",
+    "pots"
+   ],
+   "note": "after: the same four pots with soft shrubs of different sizes and copper blossoms (repeated geometry becomes varied)"
+  },
+  {
+   "name": "atrium_canopy",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    752,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "tree",
+    "canopy",
+    "centrepiece"
+   ],
+   "note": "the crown: nine leaf clusters in a tall oval with an airy skirt, a different silhouette from the garden's wide dome; separate part so a renderer can sway it"
+  },
+  {
+   "name": "atrium_canopy_shadow",
+   "kind": "landmark_part",
+   "rect": [
+    176,
+    752,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "shadow",
+   "y_sort": false,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "shadow"
+   ],
+   "note": "one cool stone step on the well floor, lower right of the planter"
+  },
+  {
+   "name": "atrium_rail_front",
+   "kind": "landmark_part",
+   "rect": [
+    352,
+    752,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "balustrade",
+    "occluder"
+   ],
+   "note": "south runs of the balustrade flanking the steps, with newel posts; drawn after actors so a person on the steps passes behind the rail ends"
+  },
+  {
+   "name": "atrium_daylight_after",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    912,
+    176,
+    160
+   ],
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint": {
+    "cells": [
+     7,
+     5
+    ],
+    "origin_px": [
+     32,
+     34
+    ]
+   },
+   "collision": [
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000",
+    "0000000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    88,
+    114
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#D9D5CB"
+   },
+   "tags": [
+    "landmark",
+    "atrium tree",
+    "quest state",
+    "after",
+    "light"
+   ],
+   "note": "after: a warm pool of daylight on the well floor around the planter; paints only on the bare well floor (levels.md 20: window light warms)"
+  }
+ ],
+ "animations": {
+  "final_door": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "final_door_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "final_door_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "final_door_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "the last door, visible from the entrance; it opens after the third accurate repair. Same frames as Orientation's sliding door, recoloured; the doorway shows a daylit terrace"
+  },
+  "lamp": {
+   "kind": "state_set",
+   "default": "on",
+   "states": {
+    "off": {
+     "entries": [
+      "lamp_off"
+     ]
+    },
+    "on": {
+     "entries": [
+      "lamp",
+      "lamp_glow_on"
+     ]
+    },
+    "pulse": {
+     "entries": [
+      "lamp",
+      "lamp_glow_pulse"
+     ]
+    }
+   },
+   "loop": [
+    "on",
+    "pulse"
+   ],
+   "ms_per_frame": 600,
+   "note": "glow states: off, on (steady), pulse (wider ring). Wake = off -> on; idle breathing = on <-> pulse."
+  },
+  "window_a": {
+   "kind": "state_set",
+   "default": "overcast",
+   "states": {
+    "overcast": {
+     "entries": [
+      "wall_n_window_a_dim"
+     ]
+    },
+    "daylight": {
+     "entries": [
+      "wall_n_window_a"
+     ]
+    }
+   },
+   "play": [
+    "overcast",
+    "daylight"
+   ],
+   "ms_per_frame": 300,
+   "note": "window views resolve into real daylight (levels.md 20): overcast flat panes, then the reflecting sky"
+  },
+  "window_b": {
+   "kind": "state_set",
+   "default": "overcast",
+   "states": {
+    "overcast": {
+     "entries": [
+      "wall_n_window_b_dim"
+     ]
+    },
+    "daylight": {
+     "entries": [
+      "wall_n_window_b"
+     ]
+    }
+   },
+   "play": [
+    "overcast",
+    "daylight"
+   ],
+   "ms_per_frame": 300,
+   "note": "the second reflection phase of window_a"
+  },
+  "window_light": {
+   "kind": "state_set",
+   "default": "overcast",
+   "states": {
+    "overcast": {
+     "entries": [
+      "light_shaft_cool"
+     ]
+    },
+    "daylight": {
+     "entries": [
+      "light_shaft_warm"
+     ]
+    }
+   },
+   "play": [
+    "overcast",
+    "daylight"
+   ],
+   "ms_per_frame": 300,
+   "note": "the light shaft under a window pair: barely-there cool light, then warm daylight"
+  }
+ },
+ "landmarks": {
+  "atrium_tree": {
+   "note": "Executive landmark: a tall single tree in a raised round planter, inside a sunken atrium well edged with a glass balustrade. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The canopy is its own part (draws over the rail and the trunk); the south rail runs are front_prop so a person on the steps passes behind the newel posts.",
+   "size_px": [
+    176,
+    160
+   ],
+   "footprint_origin_px": [
+    32,
+    34
+   ],
+   "default_state": "before",
+   "states": {
+    "before": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_before",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_before",
+      "atrium_trunk",
+      "atrium_pots_before",
+      "atrium_canopy_shadow",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "after": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_after",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_after",
+      "atrium_trunk",
+      "atrium_pots_after",
+      "atrium_canopy_shadow",
+      "atrium_daylight_after",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    }
+   },
+   "part_roles": {
+    "atrium_well": "base well",
+    "atrium_rail_back": "base balustrade",
+    "atrium_rail_front": "base balustrade",
+    "atrium_planter": "base planter",
+    "atrium_trunk": "centrepiece",
+    "atrium_canopy": "centrepiece",
+    "atrium_canopy_shadow": "centrepiece",
+    "atrium_inlay_before": "quest state",
+    "atrium_inlay_after": "quest state",
+    "atrium_nameplates_before": "quest state",
+    "atrium_nameplates_after": "quest state",
+    "atrium_pots_before": "quest state",
+    "atrium_pots_after": "quest state",
+    "atrium_daylight_after": "quest state",
+    "lamp": "light accents"
+   },
+   "changes_after": [
+    "the copper floor lines straighten into three clean paths with chevrons (levels.md 20: copper floor lines straighten into useful paths)",
+    "the five nameplates on the planter become distinct plates with their own marks (levels.md 20: nameplates become distinct)",
+    "the four corner pots go from identical clipped cubes to soft, varied shrubs with copper blossoms (levels.md district row: repeated geometry becomes varied)",
+    "a warm pool of daylight lights the well floor around the planter (levels.md 20: window light warms)",
+    "all four atrium lamps switch from the steady glow to the wider pulse glow"
+   ]
+  }
+ }
+}

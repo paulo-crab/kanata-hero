@@ -46,6 +46,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Ada: interact (lantern lift), nod and explaining reactions; 48×48 portrait | cast/ADA_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Ada) | EXTRA in cast/ada_sprites.py, portraits/portrait_ada.py | 2026-10-02 (director) |
 | Noor: stamp-down interact, unimpressed and satisfied reactions, posture_upright; 48×48 portrait | cast/NOOR_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Noor) | EXTRA in cast/noor_sprites.py, portraits/portrait_noor.py | 2026-10-02 (director) |
 | Systems kit (78 entries, 14 state sets), routing machine before/after, reference room | [kit/SYSTEMS_KIT_SPEC.md](kit/SYSTEMS_KIT_SPEC.md) | kit/systems_kit.py | 2026-10-02 (director) |
+| Executive kit (63 entries), atrium tree before/after, reference room | [kit/EXECUTIVE_KIT_SPEC.md](kit/EXECUTIVE_KIT_SPEC.md) | kit/executive_kit.py | 2026-10-02 (director) |
 
 ## Plan
 
