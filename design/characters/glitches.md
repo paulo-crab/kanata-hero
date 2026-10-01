@@ -53,5 +53,5 @@ Keep them out of text-editing focus areas. A wrong key gets a local reaction, ne
 
 ## Open questions
 
-1. Final choice of the three archetypes, and which variants appear in which district.
-2. What a repaired glitch becomes: an ordinary prop, or gone.
+1. ~~Final choice of the three archetypes~~ Decided 2026-10-02: displaced stapler, duplicate chair shadow and folded form (`art-direction/glitches/GLITCHES_SPEC.md`). Still open: which palette and behaviour variants appear in which district.
+2. ~~What a repaired glitch becomes~~ Decided 2026-10-02: it snaps into register for one frame, then stays as the ordinary prop and stops roaming.
