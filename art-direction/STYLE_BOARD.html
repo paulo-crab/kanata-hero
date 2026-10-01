@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanata Hero — Visual Style Bible</title>
+<style>
+  :root { color-scheme: dark; --ink:#202337; --paper:#f0dec0; --muted:#aeb9bd; }
+  * { box-sizing:border-box }
+  body { margin:0; background:#151c2b; color:#edf1e8; font:16px/1.45 system-ui, sans-serif; }
+  main { max-width:1380px; margin:auto; padding:36px 24px 64px }
+  h1,h2,h3,p { margin:0 }
+  h1 { font-size:clamp(32px,4vw,58px); letter-spacing:-.04em; line-height:1 }
+  h2 { font-size:24px; margin-bottom:14px; letter-spacing:-.02em }
+  h3 { font-size:17px; margin-bottom:6px }
+  p { color:#c5ced0 }
+  small { color:#aeb9bd }
+  .eyebrow { color:#f5d580; text-transform:uppercase; font-size:12px; font-weight:800; letter-spacing:.18em; margin-bottom:12px }
+  header { display:flex; justify-content:space-between; align-items:end; gap:24px; padding-bottom:24px; border-bottom:1px solid #4a5364 }
+  header p { max-width:540px }
+  section { margin-top:34px }
+  .hero { display:grid; grid-template-columns:minmax(0,2.1fr) minmax(260px,1fr); gap:18px }
+  .frame { background:#212b3d; border:1px solid #49556a; padding:12px }
+  .frame img { display:block; width:100%; height:auto; image-rendering:pixelated }
+  .frame figcaption { padding:12px 4px 2px; color:#dce4e0 }
+  .badge { display:inline-block; background:#e1ac62; color:#202337; padding:3px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.09em; margin-right:8px }
+  .rules { display:grid; gap:12px; align-content:start }
+  .rule { background:#263144; border-left:4px solid #5aa3ae; padding:16px }
+  .rule strong { color:#f0dec0 }
+  .refs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px }
+  .ref { background:#232d40; border:1px solid #465266; overflow:hidden }
+  .ref img { display:block; width:100%; height:145px; object-fit:cover; image-rendering:pixelated }
+  .ref div { padding:11px 12px 14px }
+  .ref b { color:#f0dec0 }
+  .ref p { font-size:13px }
+  .palette { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px }
+  .ramp { border:1px solid #465266; background:#232d40; padding:13px }
+  .ramp .swatches { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; margin:10px 0 7px }
+  .swatch { height:54px }
+  .hex { display:flex; justify-content:space-between; gap:3px; color:#aeb9bd; font:10px ui-monospace,monospace }
+  .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
+  .metric { background:#263144; border-top:3px solid #e1ac62; padding:18px }
+  .metric b { display:block; color:#f5d580; font-size:31px; line-height:1.1; margin-bottom:8px }
+  .metric p { font-size:14px }
+  .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
+  .principles article { padding:16px; background:#263144; border:1px solid #465266 }
+  .principles p { font-size:14px }
+  .note { padding:15px 18px; background:#302f40; border-left:4px solid #9477af; margin-top:20px }
+  a { color:#a0ddd4 }
+  @media(max-width:900px) { .hero { grid-template-columns:1fr } .refs,.palette { grid-template-columns:repeat(2,1fr) } }
+  @media(max-width:620px) { header { display:block } header p { margin-top:12px } .refs,.palette,.metrics,.principles { grid-template-columns:1fr } }
+</style>
+<main>
+  <header>
+    <div><div class="eyebrow">Art direction · 01 October 2026</div><h1>Kanata Hero<br>Visual Style Bible</h1></div>
+    <p>Overhead office adventure. Authentic 16-bit-era pixel craft: hard pixels, hand-placed clusters, expressive characters, open readable routes. The approved overhead concept leads; seven player screenshots support it.</p>
+  </header>
+
+  <section class="hero">
+    <figure class="frame" style="margin:0">
+      <img src="references/08-approved-overhead-direction.png" alt="Approved high overhead Kanata Hero office concept">
+      <figcaption><span class="badge">Primary authority</span>Camera, office world, palette relationship, garden landmark, and route hierarchy.</figcaption>
+    </figure>
+    <div class="rules">
+      <div class="rule"><strong>Camera</strong><p>High orthographic three-quarter overhead. No horizon, perspective convergence, or side-scrolling parallax.</p></div>
+      <div class="rule"><strong>Pixel craft</strong><p>One uniform logical pixel grid. Hard edges and deliberate clusters. No blur, gradients, antialiasing, or filter-made pixels.</p></div>
+      <div class="rule"><strong>Detail budget</strong><p>Give people and one district landmark the richest clusters. Keep ordinary floors, walls, and props reusable and calm.</p></div>
+      <div class="rule"><strong>Light</strong><p>Warm upper-left highlights; deep blue-purple shadows. Selective dark contours and compact contact shadows.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Secondary image guidance</h2>
+    <div class="refs">
+      <div class="ref"><img src="references/01-route-readability.png" alt=""><div><b>01 · Routes</b><p>Paths and targets read before decoration.</p></div></div>
+      <div class="ref"><img src="references/02-crisp-pixel-shapes.png" alt=""><div><b>02 · Pixel clusters</b><p>Sharp contours, organized local color, small figures.</p></div></div>
+      <div class="ref"><img src="references/03-modular-town.png" alt=""><div><b>03 · Modules</b><p>Repeated kit with generous circulation.</p></div></div>
+      <div class="ref"><img src="references/04-material-depth.png" alt=""><div><b>04 · Materials</b><p>Top/side planes, paving, contact shadows.</p></div></div>
+      <div class="ref"><img src="references/05-light-and-ui-contrast.png" alt=""><div><b>05 · Local light</b><p>Focused pools and opaque readable overlays.</p></div></div>
+      <div class="ref"><img src="references/06-prop-atlas.png" alt=""><div><b>06 · Prop scale</b><p>Small consistent kit, one light direction.</p></div></div>
+      <div class="ref"><img src="references/07-focal-richness.png" alt=""><div><b>07 · Focal finish</b><p>Expressive characters and selected landmarks.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Orientation palette · 32 starting colors</h2>
+    <div class="palette">
+      <div class="ramp"><h3>Ink / outline</h3><div class="swatches"><i class="swatch" style="background:#202337"></i><i class="swatch" style="background:#343650"></i><i class="swatch" style="background:#535971"></i><i class="swatch" style="background:#777a8c"></i></div><div class="hex"><span>#202337</span><span>#343650</span><span>#535971</span><span>#777A8C</span></div></div>
+      <div class="ramp"><h3>Warm stone</h3><div class="swatches"><i class="swatch" style="background:#665d65"></i><i class="swatch" style="background:#968a85"></i><i class="swatch" style="background:#c7b7a0"></i><i class="swatch" style="background:#f0dec0"></i></div><div class="hex"><span>#665D65</span><span>#968A85</span><span>#C7B7A0</span><span>#F0DEC0</span></div></div>
+      <div class="ramp"><h3>Blue glass</h3><div class="swatches"><i class="swatch" style="background:#203a50"></i><i class="swatch" style="background:#366479"></i><i class="swatch" style="background:#5aa3ae"></i><i class="swatch" style="background:#a0ddd4"></i></div><div class="hex"><span>#203A50</span><span>#366479</span><span>#5AA3AE</span><span>#A0DDD4</span></div></div>
+      <div class="ramp"><h3>Wood / terracotta</h3><div class="swatches"><i class="swatch" style="background:#523d4c"></i><i class="swatch" style="background:#85565a"></i><i class="swatch" style="background:#ba785f"></i><i class="swatch" style="background:#e4aa73"></i></div><div class="hex"><span>#523D4C</span><span>#85565A</span><span>#BA785F</span><span>#E4AA73</span></div></div>
+      <div class="ramp"><h3>Garden</h3><div class="swatches"><i class="swatch" style="background:#21484a"></i><i class="swatch" style="background:#326d60"></i><i class="swatch" style="background:#5fa06d"></i><i class="swatch" style="background:#b2ce78"></i></div><div class="hex"><span>#21484A</span><span>#326D60</span><span>#5FA06D</span><span>#B2CE78</span></div></div>
+      <div class="ramp"><h3>Brass / discovery</h3><div class="swatches"><i class="swatch" style="background:#705056"></i><i class="swatch" style="background:#ac7655"></i><i class="swatch" style="background:#e1ac62"></i><i class="swatch" style="background:#f5d580"></i></div><div class="hex"><span>#705056</span><span>#AC7655</span><span>#E1AC62</span><span>#F5D580</span></div></div>
+      <div class="ramp"><h3>Coral / people</h3><div class="swatches"><i class="swatch" style="background:#71394f"></i><i class="swatch" style="background:#b65761"></i><i class="swatch" style="background:#e67a70"></i><i class="swatch" style="background:#f6b18e"></i></div><div class="hex"><span>#71394F</span><span>#B65761</span><span>#E67A70</span><span>#F6B18E</span></div></div>
+      <div class="ramp"><h3>Violet / anomaly</h3><div class="swatches"><i class="swatch" style="background:#413755"></i><i class="swatch" style="background:#67547c"></i><i class="swatch" style="background:#9477af"></i><i class="swatch" style="background:#c3a6d6"></i></div><div class="hex"><span>#413755</span><span>#67547C</span><span>#9477AF</span><span>#C3A6D6</span></div></div>
+    </div>
+    <div class="note">Default outer outline: <b>#202337</b>. Highlights move warm; shadows move blue-purple. Choose separate skin and hair ramps per character. These colors are a starting production palette, not a limit on every district.</div>
+  </section>
+
+  <section>
+    <h2>Scale · decided 2026-10-01</h2>
+    <div class="metrics">
+      <div class="metric"><b>16×16</b><h3>Floor cell</h3><p>One logical grid for every world asset.</p></div>
+      <div class="metric"><b>16×24</b><h3>Person frame</h3><p>1 cell wide by 1.5 high, feet on a one-cell footprint. Expression lives in 48×48 portraits.</p></div>
+      <div class="metric"><b>320×180</b><h3>Logical view</h3><p>20×11 cells. Whole-number scaling only: ×4 on 1366×768, ×6 on 1920×1080.</p></div>
+    </div>
+    <div class="note">Chosen from the side-by-side test in <a href="scale-test/">scale-test/</a>. The earlier 32×32 / 48×64 and 48×48 / 72×96 proposals are retired. Never mix pixel sizes.</div>
+  </section>
+
+  <section>
+    <h2>Rules artists can check on every asset</h2>
+    <div class="principles">
+      <article><h3>Characters</h3><p>Visible crown and shoulder tops; expressive face at 1×; asymmetric human stance; hair and clothing shaped by clusters, not texture noise.</p></article>
+      <article><h3>Materials</h3><p>Stone uses broad slabs; glass gets one stepped reflection; wood has light top/dark side; brass gets tiny warm glints; foliage grows in grouped masses.</p></article>
+      <article><h3>Layering</h3><p>Floor → rear walls/props → contact shadows → actors → front occluders → hard-edged local light → crisp DOM UI.</p></article>
+      <article><h3>Outline</h3><p>Deep blue-purple on overlap and underside. Break lit edges with local dark color. Avoid thick full black rings.</p></article>
+      <article><h3>Texture</h3><p>One coherent pixel size, few clusters on ordinary tiles, restrained dithering only on large transitions. No isolated noise.</p></article>
+      <article><h3>Readability</h3><p>Two-cell routes, exits, people, terminals, and task markers survive the keyboard inset. Focal garden stays bounded.</p></article>
+    </div>
+  </section>
+  <section><small>Full production guidance: <a href="STYLE_BIBLE.md">STYLE_BIBLE.md</a>. Reference screenshots are used for internal art direction only; new game assets must be original.</small></section>
+</main>
+</html>
