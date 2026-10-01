@@ -1,6 +1,6 @@
 # Mira — courier
 
-**Status:** idle ×4 and walk ×4 built 2026-10-02, awaiting player review: [`art-direction/cast/MIRA_SPEC.md`](../../art-direction/cast/MIRA_SPEC.md). Shared rules: [README](README.md).
+**Status:** idle ×4 and walk ×4 **APPROVED 2026-10-02**: [`art-direction/cast/MIRA_SPEC.md`](../../art-direction/cast/MIRA_SPEC.md). Shared rules: [README](README.md).
 
 ## Identity
 

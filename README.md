@@ -26,13 +26,16 @@ When documents disagree, the owner below wins. Fix the other document instead of
 
 ## Decisions
 
+**Production in progress:** see [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) for the plan, what is done, and how to continue. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
+
+
 - **Scale (decided 2026-10-01):** 16×16 tiles, 16×24 people, 48×48 portraits, a 320×180 view scaled by whole numbers (×4 on 1366×768, ×6 on 1920×1080). Chosen by the player from [`art-direction/scale-test/`](art-direction/scale-test/). Recorded in the game spec, `levels.md`, the style bible, style board, and art brief.
 - **Clothing vs. interaction markers (decided 2026-10-01):** muted teal is allowed on clothing (hue 160°–200° steps at or below 60% HSL saturation, never a marker hex); no person wears violet. Recorded in STYLE_BIBLE §3, the character README, and `engineer.md`.
 - **Gate 1 animation contract (decided 2026-10-01):** anchor on the pixel edge between columns 7 and 8, feet on row 23; walk 4 frames × 133 ms per direction, 2 cells per cycle; idle 2 frames × 500 ms. Recorded in STYLE_BIBLE §5; may be revised after the gate.
 - **Style foundation reconciliation (2026-10-01):** `REFERENCE_NOTES.md` no longer carries 32×32 / 48×64 sizes or its old gate; `docs/game-design.md` now matches the bible on selective outlines, hard-edged light, and draw order.
 - **Engineer Gate 1 candidate (2026-10-01):** hand-placed frames, scene and sheets in [`art-direction/gate1/`](art-direction/gate1/GATE1_ENGINEER_SPEC.md). The spec lists its Director decisions: hair sweep side, badge visibility, idle and walk motion, foot offset, contact-shadow shape, tone rule, and color-only hair customization. **Approved by the player 2026-10-02.** Its Director decisions are canon, and the review room in `environment.py` (08-finish floor, walls, garden, sliding glass Records door with a RECORDS mat) is the environment quality bar. Other characters may now start, one at a time, through the same review workflow.
 - **Cast frame rule (decided 2026-10-02):** every person sprite stays inside 16×24, and props are held against the body, never overhanging. **Ivo** idle ×4 and walk ×4 were built under the Gate 1 contract (`art-direction/cast/IVO_SPEC.md`) and were **approved by the player 2026-10-02**, after a revision that made the tablet a bezelled device held flat and took the helmet look out of the hair.
-- **Mira** idle ×4 and walk ×4 were built 2026-10-02 (`art-direction/cast/MIRA_SPEC.md`) and are awaiting player review. All three Orientation people in the review room now use hand-placed cast sprites.
+- **Mira** idle ×4 and walk ×4 were built and **approved 2026-10-02** (`art-direction/cast/MIRA_SPEC.md`). All three Orientation people in the review room now use hand-placed cast sprites.
 - **Old art drafts discarded** by the player. They stay on disk until moved to the Trash; nothing may reference them.
 
 ## Open decisions

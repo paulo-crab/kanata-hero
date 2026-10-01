@@ -1,6 +1,6 @@
 """Mira (courier) frames, hand-placed at 16x24 logical px.
 
-Status: REVIEW_REQUIRED. Built on the approved person rules (Gate 1 spec)
+Status: APPROVED 2026-10-02. Built on the approved person rules (Gate 1 spec)
 and the cast frame rule (IVO_SPEC.md). Spec: MIRA_SPEC.md.
 """
 import os
@@ -33,21 +33,21 @@ SLOTS = {"hair": "ABCD", "skin": "klmn", "jacket": "wxyzEFGH", "trousers": "OP"}
 # S: puff on her left (screen-right); green panel on her right (screen-left);
 # strap from her right shoulder down to the bag at her left hip (screen-right).
 S = [
-    "..........ooo...",
-    "......oooooDDo..",
-    "....ooCCDDoCDo..",
+    "..........oooo..",
+    "......ooooDDCDo.",
+    "....ooCCDDoCDCo.",
     "...oCCDCCCBCBo..",
     "...oCCCCCBBBBo..",
-    "...oCBAAAAABo...",
+    "...oCBAAABCBo...",
     "...oBnnnnmnBo...",
     "...omnonnonmo...",
     "...omnnnnnnmo...",
     "....ommmmmmo....",
     "...oHeGFyyyxo...",
-    "..oHGdeFyyxyxo..",
+    "..oGGdeFyyyxxo..",
     "..oGGFdeyyxyxo..",
     "..oGFFFdeyxyxo..",
-    "..oFEFFFdexwxo..",
+    "..oFEFFFdexxxo..",
     "..omFFFFxxoeffo.",
     "..olFFFFxxodeeo.",
     "....oOPPOPocddo.",
@@ -62,21 +62,21 @@ S = [
 # N: puff at screen-left; green panel at screen-right; strap's back runs from
 # screen-right shoulder to the bag at screen-left hip.
 N = [
-    "...ooo..........",
-    "..oDDooooo......",
-    "..oDCoDDCCCBo...",
-    "..oBCCCCCCCBo...",
-    "...oCCCCCCBBo...",
-    "...oCCCCBBBBo...",
+    "..ooo...........",
+    ".oDDCooooo......",
+    ".oCDCoDDCCCBo...",
+    "..oBCCDDCCCBo...",
+    "...oCDDCCCBBo...",
+    "...oCCCBBCBBo...",
     "...oBCCBBBBBo...",
     "...omBBBBBBmo...",
-    "...omBAAAABmo...",
+    "...ommBAABmmo...",
     "....ommmmmmo....",
     "...oyyyxGGeFo...",
     "..oyyyxxGedFFo..",
     "..oyyxxxedGFEo..",
     "..oyxxxedFFFEo..",
-    "..oxwxedFFFFFo..",
+    "..oxxxedFFFFFo..",
     ".oeffoxxFFFFmo..",
     ".oeedoxxFFFFlo..",
     ".oddcoPPOPPo....",
@@ -91,9 +91,9 @@ N = [
 # E: head 1 px ahead of the body (the lean); green near flank and sleeve;
 # strap from the near shoulder back to the bag on the far hip, showing behind.
 E = [
-    "...ooo..........",
-    "..oDDoooooo.....",
-    "..oCDoCDDCCo....",
+    "..ooo...........",
+    ".oDDCoooooo.....",
+    ".oCDCoCDDCCo....",
     "..oBCCCDCCCCo...",
     "...oCCCCCBBCo...",
     "...oBCCCBBAAo...",
@@ -102,7 +102,7 @@ E = [
     "...oBBmnnnnmo...",
     "....oAmmmmmo....",
     "...oHGGGeyyo....",
-    "..oHGGGedyyxo...",
+    "..oGGGGedyyxo...",
     "..oGGGedFFyxo...",
     "..oGGedGFFyxo...",
     ".oceedGGFFxwo...",
@@ -120,9 +120,9 @@ E = [
 # W: head 1 px ahead (left); ochre near flank; bag on the near hip, forward of
 # the body edge; strap from the far shoulder down across the chest to the bag.
 W = [
-    "..........ooo...",
-    "......ooooooDo..",
-    "....ooDDCCCoDo..",
+    ".........oooo...",
+    "......ooooDDCo..",
+    "....ooDDCCoDCo..",
     "...oDDCCCCCCBo..",
     "..oDCCCCCBBBo...",
     "..oAACCCBBBBo...",
@@ -150,81 +150,80 @@ W = [
 # line, a buckle, a #B65761 body (never the marker coral), a lit lip.
 BAG_FRONT = ["ofeeeo", "occcco", "oddUdo", "odddco", ".oooo."]
 BAG_BACK = ["oeeedo", "oddddo", "oddddo", "occcco", ".oooo."]
+BAG_SIDE = ["ofeeo", "occco", "odUdo", "oddco", ".ooo."]   # far hip, behind the body
+# facing: (top row, rest column, swing dx on passing frames, art)
 BAGS = {
-    "s": (15, 10, BAG_FRONT),   # her left hip, screen-right
-    "n": (15, 0, BAG_BACK),     # her left hip seen from behind, screen-left
-    "w": (14, 2, BAG_FRONT),    # near hip, forward of the body edge
-}  # "e": the bag is on the far hip, drawn behind the body in the grid
+    "s": (15, 9, -1, BAG_FRONT),   # her left hip, screen-right; swings in toward her
+    "n": (15, 1, 1, BAG_BACK),     # her left hip from behind, screen-left
+    "e": (14, 1, -1, BAG_SIDE),    # far hip, trailing behind her back
+    "w": (14, 2, -1, BAG_FRONT),   # near hip, forward of the body edge
+}
+GLINT_LIMITS = {"z": 1, "H": 1, "f": 1}  # enforced by check_gate1.py
 
 
-def finish(frame, facing):
+def lower(frame):
+    """1 px settle: head and torso down, dropping the top leg row. The bag is
+    painted afterwards at the same 1 px offset, so it never changes shape."""
+    return ["." * 16] + frame[0:18] + frame[19:24]
+
+
+def finish(frame, facing, dy=0, swing=False):
     """Panel fills step down away from the lit shoulder, the strap shadow is the
-    coral contour step, and the bag is painted on top."""
+    coral contour step, and the bag is painted on top (offset by dy, swung by 1 px)."""
     out = []
     for y, row in enumerate(frame):
-        if 12 <= y <= 17:
+        if 12 + dy <= y <= 17 + dy:
             row = row.replace("y", "x").replace("G", "F")
-        if 10 <= y <= 17:
+        if 10 + dy <= y <= 17 + dy:
             row = row.replace("d", "c")
         out.append(row)
-    if facing in BAGS:
-        r0, c0, bag = BAGS[facing]
-        for i, line in enumerate(bag):
-            row = list(out[r0 + i])
-            for j, ch in enumerate(line):
-                if ch != ".":
-                    row[c0 + j] = ch
-            out[r0 + i] = "".join(row)
+    r0, c0, dx, bag = BAGS[facing]
+    c0 += dx if swing else 0
+    for i, line in enumerate(bag):
+        row = list(out[r0 + dy + i])
+        for j, ch in enumerate(line):
+            if ch != ".":
+                row[c0 + j] = ch
+        out[r0 + dy + i] = "".join(row)
     return out
 
 
-# Longer side-view stride than the shared poses (feet one column further apart).
+# Mira's energy in the side walk comes from the trailing heel lifting off; the
+# stride stays inside the approved Gate 1 overhead limit (columns 2-14).
 STRIDE_C0 = [
     "....oOPPoPPPo...",
-    "..oOPPo..oPPPo..",
-    "..oOPo....oPPPo.",
-    ".oSTTo....oTUUTo",
-    ".oSSo.....oSTTTo",
-    ".oo.......oooooo",
+    "...oOPPo.oPPo...",
+    "..oSTTo..oPPPo..",
+    "..oSSo...oTUUTo.",
+    "..oo.....oSTTTo.",
+    ".........oooooo.",
 ]
 STRIDE_C2 = [
     "....oPPPoOOOo...",
-    "..oPPPo..oOOOo..",
-    "..oPPo....oOOOo.",
-    ".oTUUo....oSTTSo",
-    ".oTTo.....oSSSTo",
-    ".oo.......oooooo",
+    "...oPPPo.oOOo...",
+    "..oTUUo..oOOOo..",
+    "..oTTo...oSTTSo.",
+    "..oo.....oSSSTo.",
+    ".........oooooo.",
 ]
 SIDE = (STRIDE_C0, eng.LEG_P1, STRIDE_C2, eng.LEG_P3)
 
 
-def lower_front(frame):
-    """S/N settle: head and torso down 1 px, dropping row 17 (legs keep the bag's base row)."""
-    return ["." * 16] + frame[0:17] + frame[18:24]
-
-
-def lower_side(frame):
-    """E/W settle: keep row 17 (the bag's base), drop the top leg row instead."""
-    return ["." * 16] + frame[0:18] + frame[19:24]
-
-
-def walk(base, legs, lower, facing):
+def walk(base, legs, facing):
     out = []
     for i, lg in enumerate(legs):
-        fr = finish(base[0:18] + lg, facing)
-        out.append(lower(fr) if i % 2 == 0 else fr)
+        raw = base[0:18] + lg
+        if i % 2 == 0:   # contact: 1 px lower
+            out.append(finish(lower(raw), facing, dy=1))
+        else:            # passing: the bag swings 1 px
+            out.append(finish(raw, facing, swing=True))
     return out
 
 
-IDLE = {
-    "s": [finish(S, "s"), lower_front(finish(S, "s"))],
-    "n": [finish(N, "n"), lower_front(finish(N, "n"))],
-    "e": [finish(E, "e"), lower_side(finish(E, "e"))],
-    "w": [finish(W, "w"), lower_side(finish(W, "w"))],
-}
+IDLE = {f: [finish(g, f), finish(lower(g), f, dy=1)] for f, g in (("s", S), ("n", N), ("e", E), ("w", W))}
 WALK = {
-    "s": walk(S, eng.LEGS_S, lower_front, "s"),
-    "n": walk(N, eng.LEGS_N, lower_front, "n"),
-    "e": walk(E, SIDE, lower_side, "e"),
-    "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE], lower_side, "w"),
+    "s": walk(S, eng.LEGS_S, "s"),
+    "n": walk(N, eng.LEGS_N, "n"),
+    "e": walk(E, SIDE, "e"),
+    "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE], "w"),
 }

@@ -53,6 +53,12 @@ for name, fr in frames.items():
                          for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)))]
         if touch:
             fails.append(f"{name}: light hair touches skin at {touch[:4]}")
+    for key, limit in getattr(eng, "GLINT_LIMITS", {}).items():
+        n = sum(r.count(key) for r in fr)
+        if n > limit:
+            fails.append(f"{name}: {n} px of glint key {key!r} (limit {limit})")
+    if name.startswith("walk_") and any(r[0] != "." or r[15] != "." for r in fr[18:]):
+        fails.append(f"{name}: stride touches the frame edge (Gate 1 overhead limit)")
     used = {eng.PAL[ch] for r in fr for ch in r if ch != "."}
     if used & MARKERS:
         fails.append(f"{name}: UI marker hex {used & MARKERS}")
