@@ -241,3 +241,70 @@ WALK = {
     "e": walk(E, SIDE_LEGS, "e"),
     "w": walk(W, [[r[::-1] for r in lg] for lg in SIDE_LEGS], "w"),
 }
+
+
+# --- Extra animation sets (candidate) ---------------------------------------------------------------
+# Same format as the Engineer's, Ivo's and Mira's (EXTRA, EXTRA_MS, EXTRA_MODE, EXTRA_ASYMMETRIC). Frames are
+# built from the raw grids above (never the finished IDLE/WALK frames, which are not edited), with hand-placed
+# stamps; the hand and lantern are painted last, so the lantern keeps its shape and its baked rim follows it.
+stamp, stamps, dip = eng.stamp, eng.stamps, eng.dip
+RAW = {"s": S, "n": N, "e": E, "w": W}
+LANT_ART = {"s": LANT_FRONT, "n": LANT_BACK, "e": LANT_FRONT, "w": LANT_FRONT}
+BASE_LX = {f: LANTERN[f][1] for f in "snew"}   # the rest columns of the lantern: 8, 3, 8, 3
+
+
+def hold(frame, facing, lant_row=LANT_ROW, lx=None):
+    """Paint hand and lantern onto a raw frame at any height and column, with the baked rim following it:
+    on each lantern row, the first contour or empty pixel beside the lantern (within 3 px, on the lantern's
+    side) becomes R. At rest this is the same pixel finish() bakes."""
+    lx = BASE_LX[facing] if lx is None else lx
+    art = LANT_ART[facing]
+    out = [list(r) for r in frame]
+    for i, ch in enumerate("nm"):
+        out[lant_row - 1][lx + 1 + i] = ch
+    for j, line in enumerate(art):
+        for i, ch in enumerate(line):
+            if ch != ".":
+                out[lant_row + j][lx + i] = ch
+    right = facing in "se"
+    for j, line in enumerate(art):
+        row = out[lant_row + j]
+        edge = lx + max(i for i, ch in enumerate(line) if ch != ".") if right else lx + min(i for i, ch in enumerate(line) if ch != ".")
+        for step in (1, 2, 3):
+            x = edge + step if right else edge - step
+            if 0 <= x < 16 and row[x] in ".o":
+                row[x] = "R"
+                break
+    return ["".join(r) for r in out]
+
+
+def _extra():
+    # ---- interact: raise the lantern toward a panel (the hand lifts, the light moves out and up) --------
+    # (lift 1, out 1) then (lift 2, out 2): the ring never rises above row 10, so the head rows stay clean.
+    out = {"s": (1, 2), "n": (-0, -1), "e": (1, 2), "w": (-1, -2)}
+    interact = {}
+    for f in "snew":
+        a, b = out[f]
+        interact[f] = [hold(RAW[f], f, LANT_ROW - 1, BASE_LX[f] + a), hold(RAW[f], f, LANT_ROW - 2, BASE_LX[f] + b)]
+
+    # ---- reaction: calm nod. The head bows onto the shoulders and comes back up; the lantern stays still. ----
+    nod = {f: [hold(dip(RAW[f]), f), hold(dip(RAW[f], 2), f), hold(dip(RAW[f]), f)] for f in "snew"}
+
+    # ---- reaction: serious, explaining the recovery steps. The head bows and holds; S gestures with her free
+    # hand (her right, screen-left), E and W present the lantern a little higher; N only bows.
+    s_free = [(3, 14, ["rq"]), (3, 15, ["qq"])]                 # the free hand leaves the hip
+    s_g0 = stamps(dip(S), *s_free, (3, 13, ["nm"]), (3, 14, ["ml"]))   # forearm up, palm out at the belt
+    s_g1 = stamps(dip(S), *s_free, (4, 11, ["nm"]), (4, 12, ["ml"]))   # the palm rises to the chest
+    explaining = {
+        "s": [hold(dip(S), "s"), hold(s_g0, "s"), hold(s_g1, "s")],
+        "n": [hold(dip(N), "n"), hold(eng.lower(dip(N)), "n")],
+        "e": [hold(dip(E), "e"), hold(dip(E), "e", LANT_ROW - 1, BASE_LX["e"] + 1), hold(dip(E), "e", LANT_ROW - 2, BASE_LX["e"] + 2)],
+        "w": [hold(dip(W), "w"), hold(dip(W), "w", LANT_ROW - 1, BASE_LX["w"] - 1), hold(dip(W), "w", LANT_ROW - 2, BASE_LX["w"] - 2)],
+    }
+    return {"interact": interact, "react_nod": nod, "react_explaining": explaining}
+
+
+EXTRA = _extra()
+EXTRA_MS = {"interact": 250, "react_nod": 300, "react_explaining": 300}
+EXTRA_MODE = {}   # all three play once and hold the last frame
+EXTRA_ASYMMETRIC = {"interact", "react_explaining"}

@@ -13,6 +13,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 for sub in ("portraits", "gate1", "cast"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
+import portrait_ada  # noqa: E402
 import portrait_engineer  # noqa: E402
 import portrait_hal  # noqa: E402
 import portrait_ivo  # noqa: E402
@@ -128,7 +129,7 @@ def diff(a, b):
     return sum(x != y for ra, rb in zip(a, b) for x, y in zip(ra, rb))
 
 
-for cname, mod in (("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira), ("vale", portrait_vale), ("hal", portrait_hal)):
+for cname, mod in (("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira), ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada)):
     # extras: recorded, at most one per ramp
     per_ramp = {}
     for key, info in mod.EXTRA.items():

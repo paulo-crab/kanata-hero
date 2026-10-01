@@ -17,6 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 for sub in ("portraits", "gate1", "cast", "scale-test"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
 import build_scale_test as bst  # noqa: E402
+import portrait_ada  # noqa: E402
 import portrait_engineer  # noqa: E402
 import portrait_hal  # noqa: E402
 import portrait_ivo  # noqa: E402
@@ -25,7 +26,7 @@ import portrait_vale  # noqa: E402
 import portrait_template as T  # noqa: E402
 
 CHARACTERS = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira),
-              ("vale", portrait_vale), ("hal", portrait_hal)]
+              ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada)]
 EXPRESSIONS = list(T.KIT)
 ZOOM = 4          # the world's zoom on 1366x768; portraits are shown at the same factor
 BG = "#151C2B"
@@ -242,7 +243,7 @@ def build_sheet():
 def build_atlas():
     rows = [("engineer", portrait_engineer, 0), ("ivo", portrait_ivo, 0), ("mira", portrait_mira, 0)]
     rows += [(f"mira_patch{k}", portrait_mira, k) for k in range(1, 7)]
-    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0)]
+    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0), ("ada", portrait_ada, 0)]
     atlas = Image.new("RGBA", (48 * len(EXPRESSIONS), 48 * len(rows)), (0, 0, 0, 0))
     entries = {}
     for r, (name, mod, k) in enumerate(rows):

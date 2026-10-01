@@ -43,6 +43,7 @@ This is the living handoff file. Any agent continuing the art work should read t
 | Vale: interact, displeased and reconsidering reactions; 48×48 portrait (neutral, concerned, restrained pleased) | cast/VALE_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Vale) | EXTRA in cast/vale_sprites.py, portraits/portrait_vale.py | 2026-10-02 (director) |
 | Noor: idle ×4, walk ×4 | [cast/NOOR_SPEC.md](cast/NOOR_SPEC.md) | cast/noor_sprites.py | 2026-10-02 (director) |
 | Hal: interact, puzzled and anxious reactions; 48×48 portrait | cast/HAL_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Hal) | EXTRA in cast/hal_sprites.py, portraits/portrait_hal.py | 2026-10-02 (director) |
+| Ada: interact (lantern lift), nod and explaining reactions; 48×48 portrait | cast/ADA_SPEC.md (Extra sets), portraits/PORTRAITS_SPEC.md (Ada) | EXTRA in cast/ada_sprites.py, portraits/portrait_ada.py | 2026-10-02 (director) |
 
 ## Plan
 

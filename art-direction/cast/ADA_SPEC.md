@@ -81,3 +81,24 @@ Coordinator review (to be ticked by the director after looking at `ada-sheet.png
 - [x] The lantern reads as a lantern at ×4 (frame, lit glass, ring, hand), including from behind
 - [x] The silhouette and edges read on the dark Night Shift floor and inside a lamp pool
 - [x] The rim ruling is accepted
+
+## Extra animation sets (approved by the director 2026-10-02)
+
+Tasks 8.1 and 8.2. Same format as the Engineer's, Ivo's and Mira's: `EXTRA[set][facing]`, `EXTRA_MS`, `EXTRA_MODE` and `EXTRA_ASYMMETRIC` in `ada_sprites.py`, built into `ada-atlas.png` / `.json` (one row per set and facing, after the eight base rows), `ada-sheet.png` and `ada-extra.gif`. Check: `check_gate1.py ada_sprites` prints `55 frames checked (24 base + 31 extra), 0 failures`. `IDLE` and `WALK` are unchanged: a dump taken before and after matches pixel for pixel.
+
+| Set | Facings | Frames | Timing | Mode |
+| --- | --- | --- | --- | --- |
+| `interact` | S N E W | 2 | 250 ms | once, hold last |
+| `react_nod` (ada.md reaction a, "calm nod") | S N E W | 3 | 300 ms | once, hold last |
+| `react_explaining` (reaction b, "serious, explaining the recovery steps") | S N E W | S 3, N 2, E 3, W 3 | 300 ms | once, hold last |
+
+Director decisions (proposals):
+
+1. **Built from the raw grids.** Extra frames start from the raw `S N E W` grids (coat, head, boots), apply stamps or `eng.dip`, and paint the hand and lantern last with `hold()`. The finished `IDLE` and `WALK` frames are never edited.
+2. **Interact: raise the lantern toward a panel.** Frame 0 lifts the lantern 1 px and moves it 1 px toward the facing; frame 1 lifts it 2 px and moves it 2 px (S and E to screen-right, N and W to screen-left; N moves it 1 px). The hand follows on the ring. The ring never rises above row 10, so the head rows stay clean. In E and W the lantern leaves the body: it reaches column 14 in E and column 1 in W, and S reaches column 14.
+3. **The baked rim follows the lantern.** On each lantern row the first contour or empty pixel beside the lantern, on its side and within 3 px, becomes `R` (`#F9D79A`). At rest this is the same pixel the base frames bake. When the lantern leaves the body, the rim is drawn on the empty column beside it, so the light still outlines the prop. Six pixels per frame at most (`GLINT_LIMITS`), never on the head rows. The renderer's rim pass is unchanged: it recolours only `#202337`, so `R` is skipped.
+4. **Lantern still during reactions.** In the nod and the explaining bow the head dips with `eng.dip` while the lantern, hand and rim stay at their rest position, as in the idle. Only the explaining set in E and W lifts the lantern (1 px, then 2 px), as a presenting gesture.
+5. **Nod.** Head down 1 px, down 2 px, back to 1 px, on all four facings. It holds the last frame, so it ends slightly bowed, and the engine returns to idle.
+6. **Explaining.** The head bows and holds. In S her free hand (her right, screen-left) leaves the hip, comes to the belt with the palm out (frame 1) and rises to the chest (frame 2): a 2×2 hand of `n m / m l` on the coat, with no outline, as on Mira's and Ivo's stamps. N only bows and settles 1 px, since her hands are out of sight. E and W present the lantern as described above, because her free hand is on the far side.
+7. **Balance.** `interact` and `react_explaining` are listed in `EXTRA_ASYMMETRIC` because the raised lantern and the gesturing hand move mass off the anchor. The checker's relaxed tolerance of 30% applies to them.
+8. **Not included.** Walk alongside (a base walk at NPC speed, engine side), expression variants beyond these two, and the light-up props of Night Shift levels 17–19 stay for later.

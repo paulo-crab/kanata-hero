@@ -115,3 +115,34 @@ Director decisions:
 5. **Vest slope and silhouette.** The slope is stepped with `#202337` outline along the upper edges, reaching full width on row 41 (the template's default).
 6. **No extra palette steps.** `EXTRA` is empty. Every key is a key of `hal_sprites.PAL` with the same hex; the zip line uses `q` and not `p`, so the vest's darkest step stays on seams beside the stone collar and sleeves.
 7. **Mapping to the brief.** Neutral is focused and practical, concerned is anxious (hal.md "Anxious", before the Alarm Glyphs fix), pleased is the settled "Focused" look after it. hal.md's third portrait, puzzled, is a later extra built with `STAMPS`.
+
+## Ada (task 9.3)
+
+**Status:** Candidate, pending director review. `portrait_ada.py` holds the hand-placed 48×48 `BASE` and the three built expressions (`neutral`, `concerned`, `pleased`). Check: `check_portraits.py` ends at `36 portraits checked, 0 failures`. The sheet row and the atlas row are named `ada`.
+
+| | Ada |
+| --- | --- |
+| Hair | Warm white `ABCD`, a fluffy crop built from clusters: three crown tufts with notches between them, a stepped outline with two side notches, lit `D` tops on the upper left of each cluster, `B` strand lines where clusters meet, and a fringe of uneven locks whose tips are `A` over an `l` cast-shadow row. Ears show below the hair. |
+| Skin | `klmn` as the sprite, the deepest in the cast. Light on the upper left; a lit `n` band runs across both brow bones, the nose bridge and both cheekbones, so each eye sits in a lit socket. The right columns of the face and the neck take `l`. |
+| Clothing | Moss coat `pqrs`: a lit left shoulder slope, a V neck of `l` skin with `p` edges, two lapel creases and a placket in `q`, two `w` buttons |
+| Prop | The lantern's top at the lower right: a hand (`n m l`) on the ring, a cap with a `w` lit lip, and a glass of `g` core (5 px) and `f` glow in a `u`/`v` frame. It is cropped by the bottom edge. |
+
+Director decisions (proposals):
+
+1. **One skull.** The face fill, eye line, mouth and chin are the shared template geometry, built on the Ivo skeleton, with Ada's own hair, face shading and torso.
+2. **Eyes and brows read on deep skin.** The eyes are the kit's 4×2 stamps with the lightest skin step `n` as the sclera. To make them read, the `BASE` puts `n` on row 18 across both brow bones, on the nose bridge (rows 19–21) and on rows 21–22 under both eyes. The neutral and pleased eyes, and the concerned heavy lids with their `l` under-eye shadow, therefore sit in a lit socket. The brows use the hair's mid step `B` (warm-white brows): `A` is too close to her skin in value, and the checker allows light hair beside skin here.
+3. **Expression mapping (ada.md).** Neutral is calm, concerned is serious and instructive (practice-mode safety and recovery), pleased is warm (break room and service corridor lit). The kit's pleased arcs and smile read as warm on her face and need no override. The default tilt stays (concerned left, pleased right).
+4. **Hair is clusters, not a cap.** Cluster centres are shaded individually, so light falls from the upper left on each tuft. The outline is notched on the crown and on both sides, and the fringe is uneven (the centre forelock hangs lowest). The 25 px hair box leaves ears visible.
+5. **Hair and skin (`HAIR_SKIN_SEPARATED = False`).** Warm-white hair and deep skin are 21.9 L* apart (PALETTES_SPEC decision 9), so no separator is needed and the brows can use `B`. The fringe still sits on an `l` shadow row so the hair reads as lifted off the forehead, as for the others.
+6. **No face rim, recorded.** A 1 px `R` column down the right cheek was tried to carry the lantern's rim (ada.md "warm light on one side of the face"). At ×8 it read as an earring beside the ear, so the portrait carries the lantern as a prop at the lower right instead and no `R` appears on the face. The `R` key stays a sprite-only key.
+7. **Coat and slope.** The slope is stepped with `#202337` along its upper edges and reaches full width on row 41 (the template's default). The lapel creases and the placket use `q`, not `p`: a `p` line inside one ramp breaks the contour-only rule, as for Mira's sleeve and Vale's seams.
+8. **Lantern.** `g` is limited to 8 px by the sprite's glint limit times four (5 used). The lantern is the sprite's colours exactly, and its frame uses the ink steps `u`, `v`, `w` as the sprite does.
+9. **No extra palette steps.** `EXTRA` is empty. Every key is a key of `ada_sprites.PAL` with the same hex.
+
+Review: `check_portraits.py` ended at 36 portraits checked, 0 failures. Cycles: the first version had a rectangular hair block that read as a cap and a noisy dither of `B` and `C` (rebuilt as shaded clusters with notches), `p` lapel lines and a `p` placket that failed the contour-only rule (now `q`), tuft pixels on the clear row 1 (moved to rows 2–3), and dark eyes lost in a dark face (the `n` brow-bone and cheekbone bands).
+
+Coordinator review (to be completed by the director):
+- [ ] Ada reads as the same person as the sprite at ×4 (hair, coat, lantern)
+- [ ] Hair does not read as a helmet or a cap
+- [ ] Eyes and brows read on her skin in all three expressions
+- [ ] Neutral, concerned and pleased are distinguishable at ×4

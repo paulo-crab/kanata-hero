@@ -72,6 +72,78 @@
         0,
         2
       ]
+    },
+    "ada_interact_s": {
+      "row": 8,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ada_interact_n": {
+      "row": 9,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ada_interact_e": {
+      "row": 10,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ada_interact_w": {
+      "row": 11,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once"
+    },
+    "ada_react_nod_s": {
+      "row": 12,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_nod_n": {
+      "row": 13,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_nod_e": {
+      "row": 14,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_nod_w": {
+      "row": 15,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_explaining_s": {
+      "row": 16,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_explaining_n": {
+      "row": 17,
+      "frames": 2,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_explaining_e": {
+      "row": 18,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
+    },
+    "ada_react_explaining_w": {
+      "row": 19,
+      "frames": 3,
+      "ms": 300,
+      "mode": "once"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"
