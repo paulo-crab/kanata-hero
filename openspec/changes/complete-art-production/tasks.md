@@ -28,8 +28,8 @@
 
 ## 5. District palettes
 
-- [ ] 5.1 Hex sheets for Records, Systems, Night Shift and Executive appended to STYLE_BIBLE §3; verify the marker-collision and floor-contrast script passes
-- [ ] 5.2 Skin and hair ramps for Noor, Hal, Ada and Vale; verify they are distinct from the existing cast at 1× and separate hair from skin
+- [x] 5.1 Hex sheets for Records, Systems, Night Shift and Executive appended to STYLE_BIBLE §3; verify the marker-collision and floor-contrast script passes
+- [x] 5.2 Skin and hair ramps for Noor, Hal, Ada and Vale; verify they are distinct from the existing cast at 1× and separate hair from skin
 
 ## 6. Remaining cast
 

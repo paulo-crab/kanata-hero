@@ -48,6 +48,23 @@ The outer outline defaults to **`#202337`**. Replace short sections with a mater
 
 **Clothing vs. interaction markers (decided 2026-10-01).** No person wears violet. Teal may appear on clothing, including the Engineer's default jacket and its customization options, only as a muted ramp: every step with a hue between 160° and 200° keeps HSL saturation at or below 60% (terminal teal `#19AFA2` is about 75%), and no step uses a UI marker hex. Terminals stay distinct through their glow steps and their place inside furniture. Coral and gold on people keep their existing limits: coral is the people/upholstery family and the conversation marker is carried by the speech-bubble shape; gold stays small (badges, latches).
 
+### District palettes (Director decision 2026-10-02)
+
+Each district is 8 ramps of 4 steps, shadow to light, in the same roles as Orientation: ink, floor, wall, glass/metal, wood, foliage, accent and violet. **Ink and violet are copied verbatim into every district**, so contours, cool shadows and glitches look identical everywhere. Floor step 3 is the broad fill and step 2 the slab mid tone, the same indices `environment.py` uses for stone. The darkest step of a ramp goes on contours and joints only. Orientation keeps the table above (its walls share the stone ramp, and coral stays its people ramp). Full derivation, check results and the cast ramps: [palettes/PALETTES_SPEC.md](palettes/PALETTES_SPEC.md); hex sheet: [palettes/palettes-sheet.png](palettes/palettes-sheet.png).
+
+| Ramp | Records | Systems | Night Shift | Executive |
+| --- | --- | --- | --- | --- |
+| floor | `#46606C` `#6C8996` `#92AEB8` `#BCD0D4` | `#7C8996` `#A2AEB9` `#C8D1D8` `#E8EDF0` | `#12161A` `#242C34` `#364049` `#4C5865` | `#8D8A86` `#B7B3AB` `#D9D5CB` `#F1EEE6` |
+| wall | `#756F66` `#A09A8A` `#CDC8B4` `#EBE7D6` | `#3C4A66` `#55698A` `#7C90B0` `#AEBDD3` | `#1B2145` `#283063` `#38437F` `#5062A0` | `#1D2B52` `#2B4079` `#3F5A9E` `#6B84BE` |
+| glass / metal | `#1F3745` `#31566A` `#527F94` `#8DB6C2` | `#172B66` `#2347B0` `#2F63D9` `#8CB0F2` | `#2C3560` `#4C5A8E` `#8E96B8` `#D0D4E4` | `#3B5F82` `#6A93B5` `#A5C8DD` `#E1F0F5` |
+| wood | `#47202F` `#7B3442` `#A94C47` `#D08060` | `#4B4558` `#7E6F6A` `#B39A7E` `#DCC8A4` | `#3A2230` `#5E3A3E` `#8C5A4A` `#BC8260` | `#3A2630` `#5E3B38` `#8A5A45` `#B98862` |
+| foliage | `#2C463F` `#476B59` `#7B9E7F` `#B8CC9E` | `#1D3F46` `#2C7A70` `#5ED0A8` `#B4F0D6` (mint circuitry) | `#1C3A38` `#2A5A4E` `#3F7A63` `#7EA880` | `#1B4A34` `#2F7A45` `#5FAF55` `#B6DB7A` |
+| accent | `#6B2F45` `#A9414F` `#D4606A` `#F4B1A4` (coral files) | `#7A2F1B` `#C2521A` `#F2842B` `#FFB36B` (safety orange) | `#7A4A4A` `#B8745A` `#E8A55F` `#F9D79A` (lamp pools) | `#5E2F2B` `#A4573A` `#D88149` `#F2B98A` (copper) |
+
+- **Markers.** No step of any new district ramp is within CIE76 dE 10 of `#19AFA2`, `#EC776D`, `#9876D5` or `#E6B750`. Teal-hued steps (160-200 degrees) on non-device ramps stay at or below 60% saturation. `check_palettes.py` enforces both.
+- **Night Shift is a dark-floor district.** The `#202337` outline cannot carry a silhouette on it, so people get a 1 px hard rim in `#F9D79A` (accent step 3) on their upper-left contour, the contact shadow is floor step 0 over `#202337`, and desks sit in lamp pools drawn as floor fill to accent step 1 with joints in accent step 0. Outline on a pool is 4.2:1. The floor is a cool slate (hue 210, at most 18% saturation) and is deliberately not plum or indigo: no floor or wall step in any district may sit in hue 260-320 degrees above 12% saturation, so violet stays the glitch colour and glitches pop hardest here.
+- **Cast skin and hair.** Noor, Hal, Ada and Vale have their own ramps (see PALETTES_SPEC.md "Cast ramps"). Corresponding mid steps are at least dE 12 from every other cast member.
+
 ## 4. Camera, grid, and scale
 
 | Element | Production rule |
