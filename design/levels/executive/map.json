@@ -1834,8 +1834,7 @@
       "offset": [
         6,
         4
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "bench_w",
@@ -2190,7 +2189,6 @@
       ],
       "state_set": "elevator",
       "state": "closed",
-      "art_gap": true,
       "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
     },
     {
@@ -2203,8 +2201,7 @@
       "offset": [
         4,
         9
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_e_15",
@@ -2321,119 +2318,8 @@
       ]
     }
   ],
-  "art_gap_entries": {
-    "artifact_public_audit_copy": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "A bound audit copy lying on a side table (the document close-up uses the shared frame)",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "North-wall arrival elevator module, doors shut (Executive recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors half open (arrival and departure).",
-      "states": [
-        "half"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "101",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
-      "states": [
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          2
-        ],
-        "collision": [
-          "0",
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel one cell beside the elevator (Executive recolour); overlay on a plain wall column, placed with offset [4, 9].",
-      "states": [
-        "idle"
-      ]
-    }
-  },
+  "art_gap_entries": {},
   "art_gap_state_sets": {
-    "elevator": {
-      "default": "closed",
-      "states": {
-        "closed": {
-          "entries": [
-            "elevator_closed"
-          ],
-          "blocked": true
-        },
-        "half": {
-          "entries": [
-            "elevator_half"
-          ],
-          "blocked": true
-        },
-        "open": {
-          "entries": [
-            "elevator_open"
-          ],
-          "blocked": false
-        }
-      }
-    },
     "atrium_inlay": {
       "default": "before",
       "states": {

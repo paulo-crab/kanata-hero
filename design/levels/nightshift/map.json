@@ -581,8 +581,7 @@
       "cell": [
         27,
         2
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_w_corridor_3",
@@ -590,8 +589,7 @@
       "cell": [
         27,
         3
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_w_corridor_7",
@@ -599,8 +597,7 @@
       "cell": [
         27,
         7
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_w_corridor_8",
@@ -608,8 +605,7 @@
       "cell": [
         27,
         8
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_w_corridor_9",
@@ -617,8 +613,7 @@
       "cell": [
         27,
         9
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_w_corridor_10",
@@ -626,8 +621,7 @@
       "cell": [
         27,
         10
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "glass_ledger_s_18",
@@ -2639,8 +2633,7 @@
       "offset": [
         4,
         2
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "ledger_shelf_a",
@@ -2983,7 +2976,6 @@
       ],
       "state_set": "elevator",
       "state": "closed",
-      "art_gap": true,
       "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
     },
     {
@@ -2997,7 +2989,6 @@
         4,
         9
       ],
-      "art_gap": true,
       "state_set": "elevator_panel",
       "state": "base"
     },
@@ -3142,165 +3133,8 @@
       "state": "idle"
     }
   ],
-  "art_gap_entries": {
-    "wall_w_plain": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "West-wall side plane (the inner face of the wall between the service corridor and the hall). wall_e_plain cannot be mirrored: light is upper-left."
-    },
-    "artifact_ada_shift_book": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Small closed book lying on the ledger desk (document close-up uses the shared frame)",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "North-wall arrival elevator module, doors shut (Night Shift recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors half open (arrival and departure).",
-      "states": [
-        "half"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "101",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
-      "states": [
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          2
-        ],
-        "collision": [
-          "0",
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel one cell east of the elevator (Night Shift recolour); the Executive stop is dark until the Night seal. Placed with offset [4, 9].",
-      "states": [
-        "base"
-      ]
-    },
-    "elevator_call_panel_executive_lit": {
-      "footprint": {
-        "cells": [
-          1,
-          2
-        ],
-        "collision": [
-          "0",
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Same panel with the Executive stop lit (revealed by level 19).",
-      "states": [
-        "executive_lit"
-      ]
-    }
-  },
-  "art_gap_state_sets": {
-    "elevator": {
-      "default": "closed",
-      "states": {
-        "closed": {
-          "entries": [
-            "elevator_closed"
-          ],
-          "blocked": true
-        },
-        "half": {
-          "entries": [
-            "elevator_half"
-          ],
-          "blocked": true
-        },
-        "open": {
-          "entries": [
-            "elevator_open"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "elevator_panel": {
-      "default": "base",
-      "states": {
-        "base": {
-          "entries": [
-            "elevator_call_panel"
-          ]
-        },
-        "executive_lit": {
-          "entries": [
-            "elevator_call_panel_executive_lit"
-          ]
-        }
-      }
-    }
-  },
+  "art_gap_entries": {},
+  "art_gap_state_sets": {},
   "collision": [
     "1111111111111111111111111111111111",
     "1111111111111111111111111111111111",

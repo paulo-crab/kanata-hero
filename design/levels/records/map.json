@@ -1009,7 +1009,10 @@
       ],
       "state_set": "cabinet_gate",
       "state": "misaligned",
-      "art_gap": true
+      "offset": [
+        0,
+        8
+      ]
     },
     {
       "id": "divider_margin_3",
@@ -1095,18 +1098,6 @@
       "state": "before"
     },
     {
-      "id": "archive_ledger_mark",
-      "entry": "archive_ledger_mark_rejected",
-      "cell": [
-        21,
-        10
-      ],
-      "state_set": "ledger_mark",
-      "state": "rejected",
-      "art_gap": true,
-      "note": "Overlay on the circular desk's ledger; see NEEDS_ART."
-    },
-    {
       "id": "pace_directory_annex",
       "entry": "pace_directory",
       "cell": [
@@ -1144,8 +1135,7 @@
       "cell": [
         5,
         6
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "annex_desk",
@@ -1271,8 +1261,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_cabinet_2",
@@ -1282,8 +1271,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_cabinet_3",
@@ -1293,8 +1281,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_terminal",
@@ -1307,15 +1294,6 @@
         0,
         4
       ]
-    },
-    {
-      "id": "artifact_carbon_copy_a",
-      "entry": "artifact_carbon_copy_a",
-      "cell": [
-        13,
-        12
-      ],
-      "art_gap": true
     },
     {
       "id": "log_plant",
@@ -1348,15 +1326,6 @@
         6,
         2
       ]
-    },
-    {
-      "id": "artifact_margin_stamp",
-      "entry": "artifact_margin_stamp",
-      "cell": [
-        8,
-        5
-      ],
-      "art_gap": true
     },
     {
       "id": "gallery_shelf",
@@ -1421,15 +1390,6 @@
       ]
     },
     {
-      "id": "artifact_uncut_index",
-      "entry": "artifact_uncut_index",
-      "cell": [
-        15,
-        4
-      ],
-      "art_gap": true
-    },
-    {
       "id": "light_shaft_gallery",
       "entry": "light_shaft",
       "cell": [
@@ -1492,15 +1452,6 @@
         11,
         6
       ]
-    },
-    {
-      "id": "artifact_noor_annotation",
-      "entry": "artifact_noor_annotation",
-      "cell": [
-        30,
-        9
-      ],
-      "art_gap": true
     },
     {
       "id": "chamber_plant",
@@ -1845,7 +1796,6 @@
       ],
       "state_set": "elevator",
       "state": "closed",
-      "art_gap": true,
       "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
     },
     {
@@ -1858,8 +1808,7 @@
       "offset": [
         4,
         9
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "wall_e_annex_door_sill",
@@ -1986,343 +1935,87 @@
       ],
       "state_set": "courier_chute",
       "state": "idle"
+    },
+    {
+      "id": "artifact_carbon_copy_a",
+      "entry": "artifact_carbon_copy_a",
+      "cell": [
+        13,
+        14
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_margin_stamp",
+      "entry": "artifact_margin_stamp",
+      "cell": [
+        13,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_uncut_index",
+      "entry": "artifact_uncut_index",
+      "cell": [
+        15,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_noor_annotation",
+      "entry": "artifact_noor_annotation",
+      "cell": [
+        32,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "archive_ledger_mark",
+      "entry": "archive_ledger_mark_rejected",
+      "cell": [
+        20,
+        9
+      ],
+      "offset": [
+        10,
+        4
+      ],
+      "state_set": "ledger_mark",
+      "state": "rejected",
+      "note": "overlay at the archive_desk landmark origin (19,9) plus (26,4) px, as the kit proof room places it"
     }
   ],
-  "art_gap_entries": {
-    "door_panel_address_idle": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Wall panel beside the repair door with two text windows and a visible cursor and deletion side; the level 07 interaction.",
-      "states": [
-        "idle"
-      ]
-    },
-    "cabinet_gate_misaligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Two file cabinets pushed crooked across the margin-room doorway (level 08 gate, closed).",
-      "states": [
-        "misaligned"
-      ]
-    },
-    "cabinet_gate_aligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "00"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same cabinets squared up against the shelf line; the doorway is open (level 08 gate, open).",
-      "states": [
-        "aligned"
-      ]
-    },
-    "cabinet_labels_offset": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Cherry log cabinet, sea-blue folders with label tabs visibly offset (level 08, before).",
-      "states": [
-        "offset"
-      ]
-    },
-    "cabinet_labels_aligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same cabinet with every label tab aligned on one line (level 08, after).",
-      "states": [
-        "aligned"
-      ]
-    },
-    "archive_ledger_mark_rejected": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Small overlay on the circular desk's ledger: Noor's stamp mark as a rejection cross (levels 07 to 08). Can be cropped from archive_ledger_before.",
-      "states": [
-        "rejected"
-      ]
-    },
-    "archive_ledger_mark_accepted": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same overlay with a tick and a stamped seal (after level 08). Can be cropped from archive_ledger_after.",
-      "states": [
-        "accepted"
-      ]
-    },
-    "artifact_carbon_copy_a": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Carbon copy A, the first original route record (level 08).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_margin_stamp": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Margin stamp on a ledger corner (level 09).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_uncut_index": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Uncut index on a lectern (level 10).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_noor_annotation": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Noor's annotation on the correction copy (level 11).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "North-wall arrival elevator module, doors shut (Records recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors half open (arrival and departure).",
-      "states": [
-        "half"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "101",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
-      "states": [
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          2
-        ],
-        "collision": [
-          "0",
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel one cell beside the elevator (Records recolour); overlay on a plain wall column, placed with offset [4, 9].",
-      "states": [
-        "idle"
-      ]
-    }
-  },
-  "art_gap_state_sets": {
-    "elevator": {
-      "default": "closed",
-      "states": {
-        "closed": {
-          "entries": [
-            "elevator_closed"
-          ],
-          "blocked": true
-        },
-        "half": {
-          "entries": [
-            "elevator_half"
-          ],
-          "blocked": true
-        },
-        "open": {
-          "entries": [
-            "elevator_open"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "cabinet_gate": {
-      "default": "misaligned",
-      "states": {
-        "misaligned": {
-          "entries": [
-            "cabinet_gate_misaligned"
-          ],
-          "blocked": true
-        },
-        "aligned": {
-          "entries": [
-            "cabinet_gate_aligned"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "cabinet_labels": {
-      "default": "offset",
-      "states": {
-        "offset": {
-          "entries": [
-            "cabinet_labels_offset"
-          ]
-        },
-        "aligned": {
-          "entries": [
-            "cabinet_labels_aligned"
-          ]
-        }
-      }
-    },
-    "ledger_mark": {
-      "default": "rejected",
-      "states": {
-        "rejected": {
-          "entries": [
-            "archive_ledger_mark_rejected"
-          ]
-        },
-        "accepted": {
-          "entries": [
-            "archive_ledger_mark_accepted"
-          ]
-        }
-      }
-    }
-  },
+  "art_gap_entries": {},
+  "art_gap_state_sets": {},
   "collision": [
     "111111111111111111111111111111111111",
     "111111111111111111111111111111111111",
     "000011111111111111111111111111011011",
     "000001110000001000000000000011000011",
-    "110000110000001100000000000011000011",
-    "100000111000001011000000000011110011",
+    "110000110000001000000000000011000011",
+    "100000110000001011000000000011110011",
     "000001111111111111111111111111010011",
     "000000110000000100000000000011000011",
     "000000110000000000000000000011000011",
-    "000000110000000001011111100011100111",
+    "000000110000000001011111100011000111",
     "000001110000000000011111000011111111",
     "111111111110011000011011000111000011",
-    "111111111000011001011011100000100011",
+    "111111111000001001011011100000100011",
     "111111111100001000000000000000001111",
     "111111110000111000000000000000000011",
     "111111111111111111000000111011100011"
@@ -3004,24 +2697,17 @@
       "cells": [
         [
           13,
-          12
+          14
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            12,
-            12
-          ],
-          "facing": "e"
-        },
-        {
-          "cell": [
             13,
             13
           ],
-          "facing": "n"
+          "facing": "s"
         }
       ],
       "placement": "artifact_carbon_copy_a",
@@ -3194,25 +2880,18 @@
       "kind": "artifact",
       "cells": [
         [
-          8,
-          5
+          13,
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            9,
-            5
+            13,
+            3
           ],
-          "facing": "w"
-        },
-        {
-          "cell": [
-            8,
-            4
-          ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_margin_stamp",
@@ -3338,24 +3017,17 @@
       "cells": [
         [
           15,
-          4
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            16,
-            4
-          ],
-          "facing": "w"
-        },
-        {
-          "cell": [
             15,
             3
           ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_uncut_index",
@@ -3525,25 +3197,18 @@
       "kind": "artifact",
       "cells": [
         [
-          30,
-          9
+          32,
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            31,
-            9
+            32,
+            3
           ],
-          "facing": "w"
-        },
-        {
-          "cell": [
-            30,
-            8
-          ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_noor_annotation",

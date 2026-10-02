@@ -90,7 +90,7 @@
   "light_states": [
     {
       "id": "circuit-cobalt-lit",
-      "description": "After level 12: the payroll keypad nodes and the cobalt conduit from hub to payroll wing are lit; the payroll wing lamp comes on.",
+      "description": "After level 12: the ten payroll wall nodes and the keypad are lit, the cobalt conduit from hub to payroll wing is lit, the machine's nodes light (landmark after_12) and the payroll wing lamp comes on.",
       "applies_when": "t12-complete",
       "changes": [
         {
@@ -102,8 +102,16 @@
           "state": "lit"
         },
         {
+          "placement": "routing_node_10",
+          "state": "lit"
+        },
+        {
           "placement": "payroll_keypad",
           "state": "lit"
+        },
+        {
+          "placement": "routing_machine",
+          "state": "after_12"
         }
       ]
     },
@@ -119,12 +127,16 @@
         {
           "placement": "lamp_ledger",
           "state": "on"
+        },
+        {
+          "placement": "routing_machine",
+          "state": "after_13"
         }
       ]
     },
     {
       "id": "circuit-mint-lit",
-      "description": "After level 14: the mint conduit lights from the hub to the alarm hall, the six alarm lights take six hues and the alarm hall lamp comes on.",
+      "description": "After level 14: the mint conduit lights from the hub to the alarm hall, the six alarm lights take six hues, the machine's ports light (landmark after_14) and the alarm hall lamp comes on.",
       "applies_when": "t14-complete",
       "changes": [
         {
@@ -137,7 +149,11 @@
         },
         {
           "placement": "alarm_board",
-          "state": "separated"
+          "state": "labeled_6"
+        },
+        {
+          "placement": "routing_machine",
+          "state": "after_14"
         }
       ]
     },

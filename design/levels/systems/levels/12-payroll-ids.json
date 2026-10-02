@@ -969,6 +969,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "routing_node_1",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_cobalt_01",
           "state": "lit"
         }
@@ -978,6 +983,11 @@
       "id": "t12-d2",
       "when": "scene_success:systems-12-guided-d2",
       "then": [
+        {
+          "op": "set_state",
+          "target": "routing_node_2",
+          "state": "lit"
+        },
         {
           "op": "set_state",
           "target": "conduit_cobalt_02",
@@ -996,6 +1006,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "routing_node_3",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_cobalt_04",
           "state": "lit"
         }
@@ -1005,6 +1020,11 @@
       "id": "t12-d4",
       "when": "scene_success:systems-12-guided-d4",
       "then": [
+        {
+          "op": "set_state",
+          "target": "routing_node_4",
+          "state": "lit"
+        },
         {
           "op": "set_state",
           "target": "conduit_cobalt_05",
@@ -1023,8 +1043,8 @@
       "then": [
         {
           "op": "set_state",
-          "target": "payroll_keypad",
-          "state": "half"
+          "target": "routing_node_5",
+          "state": "lit"
         },
         {
           "op": "set_state",
@@ -1035,6 +1055,11 @@
           "op": "set_state",
           "target": "conduit_cobalt_08",
           "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "payroll_keypad",
+          "state": "half"
         }
       ]
     },
@@ -1042,6 +1067,11 @@
       "id": "t12-d6",
       "when": "scene_success:systems-12-guided-d6",
       "then": [
+        {
+          "op": "set_state",
+          "target": "routing_node_6",
+          "state": "lit"
+        },
         {
           "op": "set_state",
           "target": "conduit_cobalt_09",
@@ -1053,6 +1083,11 @@
       "id": "t12-d7",
       "when": "scene_success:systems-12-guided-d7",
       "then": [
+        {
+          "op": "set_state",
+          "target": "routing_node_7",
+          "state": "lit"
+        },
         {
           "op": "set_state",
           "target": "conduit_cobalt_10",
@@ -1071,6 +1106,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "routing_node_8",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_cobalt_12",
           "state": "lit"
         }
@@ -1080,6 +1120,11 @@
       "id": "t12-d9",
       "when": "scene_success:systems-12-guided-d9",
       "then": [
+        {
+          "op": "set_state",
+          "target": "routing_node_9",
+          "state": "lit"
+        },
         {
           "op": "set_state",
           "target": "conduit_cobalt_13",
@@ -1098,7 +1143,7 @@
       "then": [
         {
           "op": "set_state",
-          "target": "payroll_keypad",
+          "target": "routing_node_10",
           "state": "lit"
         },
         {
@@ -1109,6 +1154,11 @@
         {
           "op": "set_state",
           "target": "conduit_cobalt_16",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "payroll_keypad",
           "state": "lit"
         }
       ]
@@ -1174,6 +1224,11 @@
         {
           "op": "journal",
           "text": "Payroll IDs entered exactly. Bridge and return walkway open."
+        },
+        {
+          "op": "set_state",
+          "target": "routing_machine",
+          "state": "after_12"
         }
       ]
     },
@@ -1194,10 +1249,10 @@
     "visible_changes": [
       {
         "kind": "placement_state",
-        "target": "payroll_keypad",
-        "from": "off",
+        "target": "routing_node_10",
+        "from": "dark",
         "to": "lit",
-        "note": "kit payroll_keypad: five ID nodes lit after the fifth digit (half), all ten after the tenth (lit); every digit still lights its own conduit segment"
+        "note": "all ten wall nodes light, one per correct digit; the payroll keypad below shows five lit (half) after digit 5 and ten (lit) after digit 0"
       },
       {
         "kind": "placement_state",
@@ -1237,6 +1292,13 @@
         "kind": "gate",
         "target": "gate-bridge",
         "to": "open"
+      },
+      {
+        "kind": "landmark_state",
+        "target": "routing_machine",
+        "from": "before",
+        "to": "after_12",
+        "note": "the machine's nodes and stubs light (registered parts, no new pixels)"
       }
     ]
   },

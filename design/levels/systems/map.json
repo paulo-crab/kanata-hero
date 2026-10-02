@@ -2240,8 +2240,7 @@
       "offset": [
         2,
         0
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "desk_payroll",
@@ -2359,8 +2358,7 @@
       "offset": [
         3,
         0
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "rack_alarm_ne",
@@ -2457,13 +2455,13 @@
     },
     {
       "id": "formula_wall",
-      "entry": "formula_wall_dark",
+      "entry": "formula_wall_dim",
       "cell": [
         12,
         0
       ],
       "state_set": "formula_wall",
-      "state": "dark",
+      "state": "dim",
       "offset": [
         0,
         8
@@ -2504,8 +2502,7 @@
       "offset": [
         2,
         0
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "plant_formula",
@@ -2607,8 +2604,7 @@
       "offset": [
         2,
         0
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "plant_relay",
@@ -2637,7 +2633,6 @@
       ],
       "state_set": "elevator",
       "state": "closed",
-      "art_gap": true,
       "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
     },
     {
@@ -2650,8 +2645,7 @@
       "offset": [
         4,
         9
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "plant_gallery",
@@ -2704,16 +2698,6 @@
       "state": "off"
     },
     {
-      "id": "refund_sign",
-      "entry": "refund_sign_red",
-      "cell": [
-        3,
-        16
-      ],
-      "state_set": "refund_sign",
-      "state": "red"
-    },
-    {
       "id": "calc_display",
       "entry": "calc_display_charge",
       "cell": [
@@ -2724,20 +2708,6 @@
       "state": "charge"
     },
     {
-      "id": "alarm_board",
-      "entry": "alarm_strip_merged",
-      "cell": [
-        2,
-        0
-      ],
-      "offset": [
-        0,
-        9
-      ],
-      "state_set": "alarm_strip",
-      "state": "merged"
-    },
-    {
       "id": "courier_chute",
       "entry": "courier_chute_idle",
       "cell": [
@@ -2746,158 +2716,140 @@
       ],
       "state_set": "courier_chute",
       "state": "idle"
+    },
+    {
+      "id": "routing_node_1",
+      "entry": "routing_node_dark",
+      "cell": [
+        30,
+        9
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_6",
+      "entry": "routing_node_dark",
+      "cell": [
+        30,
+        10
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_2",
+      "entry": "routing_node_dark",
+      "cell": [
+        31,
+        9
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_7",
+      "entry": "routing_node_dark",
+      "cell": [
+        31,
+        10
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_3",
+      "entry": "routing_node_dark",
+      "cell": [
+        32,
+        9
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_8",
+      "entry": "routing_node_dark",
+      "cell": [
+        32,
+        10
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_4",
+      "entry": "routing_node_dark",
+      "cell": [
+        33,
+        9
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_9",
+      "entry": "routing_node_dark",
+      "cell": [
+        33,
+        10
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_5",
+      "entry": "routing_node_dark",
+      "cell": [
+        34,
+        9
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "routing_node_10",
+      "entry": "routing_node_dark",
+      "cell": [
+        34,
+        10
+      ],
+      "state_set": "routing_node",
+      "state": "dark"
+    },
+    {
+      "id": "refund_ledger",
+      "entry": "refund_ledger_charge",
+      "cell": [
+        3,
+        16
+      ],
+      "state_set": "refund_ledger",
+      "state": "charge"
+    },
+    {
+      "id": "refund_sign",
+      "entry": "refund_sign_red",
+      "cell": [
+        1,
+        16
+      ],
+      "state_set": "refund_sign",
+      "state": "red"
+    },
+    {
+      "id": "alarm_board",
+      "entry": "alarm_board_blank",
+      "cell": [
+        3,
+        0
+      ],
+      "state_set": "alarm_board",
+      "state": "blank"
     }
   ],
-  "art_gap_entries": {
-    "artifact_id_envelope": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "ID envelope lying on the payroll ID trays: addressed to a department that no longer exists."
-    },
-    "artifact_alarm_strip": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Alarm strip tucked in the alarm-hall rack: old alert names with an extra department."
-    },
-    "artifact_scoring_proof": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Scoring proof pinned to the formula-room shelf: a longer route earned a higher engagement total."
-    },
-    "artifact_original_routing_diagram": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Original routing diagram rolled on the relay cabinet, signed by several employees rather than Pace."
-    },
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "North-wall arrival elevator module, doors shut (Systems recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "111",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors half open (arrival and departure).",
-      "states": [
-        "half"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          3,
-          3
-        ],
-        "collision": [
-          "111",
-          "101",
-          "000"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
-      "states": [
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          2
-        ],
-        "collision": [
-          "0",
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel one cell beside the elevator (Systems recolour); overlay on a plain wall column, placed with offset [4, 9].",
-      "states": [
-        "idle"
-      ]
-    }
-  },
-  "art_gap_state_sets": {
-    "elevator": {
-      "default": "closed",
-      "states": {
-        "closed": {
-          "entries": [
-            "elevator_closed"
-          ],
-          "blocked": true
-        },
-        "half": {
-          "entries": [
-            "elevator_half"
-          ],
-          "blocked": true
-        },
-        "open": {
-          "entries": [
-            "elevator_open"
-          ],
-          "blocked": false
-        }
-      }
-    }
-  },
+  "art_gap_entries": {},
+  "art_gap_state_sets": {},
   "collision": [
     "11111111111111111111111111111111111111",
     "11111111111111111111111111111111111111",

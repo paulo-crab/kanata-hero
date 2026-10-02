@@ -410,6 +410,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "refund_ledger",
+          "state": "refund"
+        },
+        {
+          "op": "set_state",
           "target": "refund_sign",
           "state": "green"
         },
@@ -458,6 +463,11 @@
           "op": "set_state",
           "target": "courier_chute",
           "state": "ready"
+        },
+        {
+          "op": "set_state",
+          "target": "routing_machine",
+          "state": "after_13"
         }
       ]
     },
@@ -516,6 +526,20 @@
         "from": "idle",
         "to": "ready",
         "note": "Mira's chute shows a slip in the slot: she has a route to offer"
+      },
+      {
+        "kind": "placement_state",
+        "target": "refund_ledger",
+        "from": "charge",
+        "to": "refund",
+        "note": "the wall ledger above the desk flips from the orange charge to the green refund"
+      },
+      {
+        "kind": "landmark_state",
+        "target": "routing_machine",
+        "from": "after_12",
+        "to": "after_13",
+        "note": "the machine's warning beacon steadies as it joins the lit parts"
       }
     ]
   },

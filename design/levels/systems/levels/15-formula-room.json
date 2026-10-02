@@ -687,6 +687,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "formula_wall",
+          "state": "clause_1"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_orange_01",
           "state": "lit"
         }
@@ -696,6 +701,11 @@
       "id": "t15-c2",
       "when": "scene_success:systems-15-guided-star",
       "then": [
+        {
+          "op": "set_state",
+          "target": "formula_wall",
+          "state": "clause_2"
+        },
         {
           "op": "set_state",
           "target": "conduit_orange_02",
@@ -710,7 +720,7 @@
         {
           "op": "set_state",
           "target": "formula_wall",
-          "state": "half"
+          "state": "clause_3"
         },
         {
           "op": "set_state",
@@ -725,6 +735,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "formula_wall",
+          "state": "clause_4"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_orange_04",
           "state": "lit"
         }
@@ -736,6 +751,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "formula_wall",
+          "state": "clause_5"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_orange_05",
           "state": "lit"
         }
@@ -745,6 +765,11 @@
       "id": "t15-c6",
       "when": "scene_success:systems-15-guided-plus",
       "then": [
+        {
+          "op": "set_state",
+          "target": "formula_wall",
+          "state": "clause_6"
+        },
         {
           "op": "set_state",
           "target": "conduit_orange_06",
@@ -821,9 +846,9 @@
       {
         "kind": "placement_state",
         "target": "formula_wall",
-        "from": "dark",
+        "from": "dim",
         "to": "lit",
-        "note": "kit formula_wall has three steps: dark, half (three of the six clause boxes lit, set when the third guided clause is restored) and lit (all six, set when the recall scene passes); clauses 1, 2, 4, 5 and 6 light their orange conduit segments"
+        "note": "connected clauses illuminate one by one (clause_1 to clause_6) and the whole wall reads lit after the recall"
       },
       {
         "kind": "placement_state",

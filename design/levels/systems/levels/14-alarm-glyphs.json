@@ -641,6 +641,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "alarm_board",
+          "state": "labeled_1"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_mint_01",
           "state": "lit"
         }
@@ -650,6 +655,11 @@
       "id": "t14-c2",
       "when": "scene_success:systems-14-guided-at",
       "then": [
+        {
+          "op": "set_state",
+          "target": "alarm_board",
+          "state": "labeled_2"
+        },
         {
           "op": "set_state",
           "target": "conduit_mint_02",
@@ -668,6 +678,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "alarm_board",
+          "state": "labeled_3"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_mint_04",
           "state": "lit"
         },
@@ -684,6 +699,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "alarm_board",
+          "state": "labeled_4"
+        },
+        {
+          "op": "set_state",
           "target": "conduit_mint_06",
           "state": "lit"
         },
@@ -698,6 +718,11 @@
       "id": "t14-c5",
       "when": "scene_success:systems-14-guided-percent",
       "then": [
+        {
+          "op": "set_state",
+          "target": "alarm_board",
+          "state": "labeled_5"
+        },
         {
           "op": "set_state",
           "target": "conduit_mint_08",
@@ -717,7 +742,7 @@
         {
           "op": "set_state",
           "target": "alarm_board",
-          "state": "separated"
+          "state": "labeled_6"
         },
         {
           "op": "set_state",
@@ -769,6 +794,11 @@
         {
           "op": "journal",
           "text": "Alarm labels restored. The maintenance door joins the alarm hall to the formula room."
+        },
+        {
+          "op": "set_state",
+          "target": "routing_machine",
+          "state": "after_14"
         }
       ]
     }
@@ -780,9 +810,9 @@
       {
         "kind": "placement_state",
         "target": "alarm_board",
-        "from": "merged",
-        "to": "separated",
-        "note": "kit alarm_strip: six identical lights and blank plates become six hues with six pictograms once the sixth label is right (the conduit segments light per label); the Quiet Alarm side quest later mutes one light (`muted`)"
+        "from": "blank",
+        "to": "labeled_6",
+        "note": "six pictograms return and each light takes its own hue, one label at a time"
       },
       {
         "kind": "placement_state",
@@ -813,6 +843,13 @@
         "kind": "gate",
         "target": "gate-maintenance-door",
         "to": "open"
+      },
+      {
+        "kind": "landmark_state",
+        "target": "routing_machine",
+        "from": "after_13",
+        "to": "after_14",
+        "note": "the machine's ports light"
       }
     ]
   },

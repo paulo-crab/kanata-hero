@@ -11,19 +11,19 @@ Initial state, every gate closed. `#` blocked, `.` walkable. Letters mark intera
     012345678901234567890123456789012345
  0  ####################################
  1  EEEE################################
- 2  ....ss##TTTTRR#####TT###TT####.TT.##
+ 2  ....ss##TTTTRa#a###TT###TT####.Ta.##
  3  .....###......#.............DD....##
- 4  RR....##......#a............DD....##
- 5  #.....##a.....#.RR..........DDRR..##
+ 4  RR....##......#.............DD....##
+ 5  #.....##......#.RR..........DDRR..##
  6  .....P#####DD#########DD######.#..##
  7  ......DD.......#............##....##
  8  ......DD....................##....##
- 9  ......##.........#.######...##a..###
+ 9  ......##.........#.######...##...###
 10  .....###...........#####....###DD###
 11  ##########R..##....##N##...###....##
-12  #########....a#..#.##.###.....#...##
+12  #########.....#..#.##.###.....#...##
 13  ##########g...#................Mss##
-14  ########....TT#...................##
+14  ########....Ta#...................##
 15  ##########TT###RR#......#RR.###...##
 ```
 
@@ -103,5 +103,5 @@ Each task scene is a DOM overlay and the diagram sits in the inset, so the world
 6. **Hint lines** are copied from levels.md in the three-part hint grammar; every hint line uses the neutral portrait. The portrait key for Noor's signature is `unimpressed` (key `noor_unimpressed`).
 7. **Control + D.** Caps+X sends Control + D, which the panel's editor treats as forward delete; the feedback line names Control + D as the observed output.
 8. **N21 coverage.** levels.md lists N21 under both 06 and 11; Records 11 carries all three phases for it so coverage holds either way.
-9. **Wave 2 reconciliation.** Kit names adopted: `repair_door_*`, `shelf_end_light_*`, `courier_chute_idle/_ready` (replaces `mail_chute_*`), `folder_rack_*`, `ledger_table_*`, `report_table_*`, `rolling_ladder_closed/_open` (replaces `parked/moved`). The annex elevator is a north-wall 3 x 3 module with a call panel; the repair door is the kit's 2 x 2 piece, so its sill row (6-7, 9) is wall and the backtrack to the elevator runs along row 8. The ledger table's own end lamps replace the two lamp placements; the ladder is a four-cell piece that replaces a shelf on each side of the two-cell opening. Mira stands at (31,13) beside the two-cell chute at (32-33,13).
+9. **Wave 2 reconciliation.** Kit names adopted: `repair_door_*`, `shelf_end_light_*`, `courier_chute_idle/_ready` (replaces `mail_chute_*`), `folder_rack_*`, `ledger_table_*`, `report_table_*`, `rolling_ladder_closed/_open` (replaces `parked/moved`). The annex elevator is a north-wall 3 x 3 module with a call panel; the repair door is the kit's 2 x 2 piece, so its sill row (6-7, 9) is wall and the backtrack to the elevator runs along row 8. The ledger table's own end lamps replace the two lamp placements; the optional artifacts are the kit's overlay props placed on furniture (Carbon copy A on the log terminal desk at (13,14), Margin stamp on the second margin-room desk at (13,2), Uncut index on a gallery shelf at (15,2), Noor's annotation on the review terminal at (32,2)); the ledger mark overlay sits at the landmark origin plus (26,4) px, cell (20,9) offset [10,4];  the ladder is a four-cell piece that replaces a shelf on each side of the two-cell opening. Mira stands at (31,13) beside the two-cell chute at (32-33,13).
 10. **Glitch.** One folded-form glitch in the log room at level 08 (`form`, palette `standard`, behaviour `drift`, the Records first glitch; level 07 holds none). The level schema has no `behaviour` key, so the behaviour is written in the glitch `note`; see the producer handoff.
