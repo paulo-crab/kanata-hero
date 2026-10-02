@@ -12,7 +12,9 @@ engineer-full-sheet.png and engineer-extra.gif (gate1 folder) and leaves the app
 
 EXTRA (task 8): EXTRA[set][key] = [frames]; keys are facings s n e w (or adjacent facing pairs
 se en nw ws for "turn"); EXTRA_MS[set] = ms per frame; EXTRA_MODE[set] = "once" (play, then hold
-the last frame) or "loop" (default "once").
+the last frame) or "loop" (default "once"). A module may list walk-like sets in EXTRA_WALK: their atlas
+entries also carry px_per_frame (8) and contact_frames ([0, 2]), exactly like the base walks. EXTRA_META[set] is
+a dict merged into that set's atlas entries (prop pairing, notes).
 """
 import importlib
 import json
@@ -59,6 +61,9 @@ def build(name):
                                        "contact_frames": [0, 2]} for i, f in enumerate("snew")})
     for n, (sn, key, fs, ms, mode) in enumerate(extras):
         entry = {"row": 8 + n, "frames": len(fs), "ms": ms, "mode": mode}
+        if sn in getattr(mod, "EXTRA_WALK", ()):   # a walk-like set: same travel contract as the base walks
+            entry.update({"px_per_frame": 8, "contact_frames": [0, 2]})
+        entry.update(getattr(mod, "EXTRA_META", {}).get(sn, {}))   # per-set extras (prop pairing, notes)
         if sn == "turn":
             entry["between"] = [key[0], key[1]]
             entry["note"] = "play between the two idle facings; the same frame serves both directions"

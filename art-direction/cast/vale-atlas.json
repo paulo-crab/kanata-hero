@@ -144,6 +144,354 @@
       "frames": 3,
       "ms": 300,
       "mode": "once"
+    },
+    "vale_s1_idle_s": {
+      "row": 20,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 1,
+      "note": "replaces vale_idle_<facing> while 1 repair is done"
+    },
+    "vale_s1_idle_n": {
+      "row": 21,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 1,
+      "note": "replaces vale_idle_<facing> while 1 repair is done"
+    },
+    "vale_s1_idle_e": {
+      "row": 22,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 1,
+      "note": "replaces vale_idle_<facing> while 1 repair is done"
+    },
+    "vale_s1_idle_w": {
+      "row": 23,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 1,
+      "note": "replaces vale_idle_<facing> while 1 repair is done"
+    },
+    "vale_s1_walk_s": {
+      "row": 24,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 1,
+      "note": "replaces vale_walk_<facing> while 1 repair is done"
+    },
+    "vale_s1_walk_n": {
+      "row": 25,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 1,
+      "note": "replaces vale_walk_<facing> while 1 repair is done"
+    },
+    "vale_s1_walk_e": {
+      "row": 26,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 1,
+      "note": "replaces vale_walk_<facing> while 1 repair is done"
+    },
+    "vale_s1_walk_w": {
+      "row": 27,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 1,
+      "note": "replaces vale_walk_<facing> while 1 repair is done"
+    },
+    "vale_s1_interact_s": {
+      "row": 28,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 1,
+      "note": "replaces vale_interact_<facing> while 1 repair is done"
+    },
+    "vale_s1_interact_n": {
+      "row": 29,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 1,
+      "note": "replaces vale_interact_<facing> while 1 repair is done"
+    },
+    "vale_s1_interact_e": {
+      "row": 30,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 1,
+      "note": "replaces vale_interact_<facing> while 1 repair is done"
+    },
+    "vale_s1_interact_w": {
+      "row": 31,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 1,
+      "note": "replaces vale_interact_<facing> while 1 repair is done"
+    },
+    "vale_s2_idle_s": {
+      "row": 32,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 2,
+      "note": "replaces vale_idle_<facing> while 2 repairs are done"
+    },
+    "vale_s2_idle_n": {
+      "row": 33,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 2,
+      "note": "replaces vale_idle_<facing> while 2 repairs are done"
+    },
+    "vale_s2_idle_e": {
+      "row": 34,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 2,
+      "note": "replaces vale_idle_<facing> while 2 repairs are done"
+    },
+    "vale_s2_idle_w": {
+      "row": 35,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 2,
+      "note": "replaces vale_idle_<facing> while 2 repairs are done"
+    },
+    "vale_s2_walk_s": {
+      "row": 36,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 2,
+      "note": "replaces vale_walk_<facing> while 2 repairs are done"
+    },
+    "vale_s2_walk_n": {
+      "row": 37,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 2,
+      "note": "replaces vale_walk_<facing> while 2 repairs are done"
+    },
+    "vale_s2_walk_e": {
+      "row": 38,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 2,
+      "note": "replaces vale_walk_<facing> while 2 repairs are done"
+    },
+    "vale_s2_walk_w": {
+      "row": 39,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 2,
+      "note": "replaces vale_walk_<facing> while 2 repairs are done"
+    },
+    "vale_s2_interact_s": {
+      "row": 40,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 2,
+      "note": "replaces vale_interact_<facing> while 2 repairs are done"
+    },
+    "vale_s2_interact_n": {
+      "row": 41,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 2,
+      "note": "replaces vale_interact_<facing> while 2 repairs are done"
+    },
+    "vale_s2_interact_e": {
+      "row": 42,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 2,
+      "note": "replaces vale_interact_<facing> while 2 repairs are done"
+    },
+    "vale_s2_interact_w": {
+      "row": 43,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 2,
+      "note": "replaces vale_interact_<facing> while 2 repairs are done"
+    },
+    "vale_s3_idle_s": {
+      "row": 44,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 3,
+      "note": "replaces vale_idle_<facing> while 3 repairs are done"
+    },
+    "vale_s3_idle_n": {
+      "row": 45,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 3,
+      "note": "replaces vale_idle_<facing> while 3 repairs are done"
+    },
+    "vale_s3_idle_e": {
+      "row": 46,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 3,
+      "note": "replaces vale_idle_<facing> while 3 repairs are done"
+    },
+    "vale_s3_idle_w": {
+      "row": 47,
+      "frames": 2,
+      "ms": 500,
+      "mode": "loop",
+      "softening_state": 3,
+      "note": "replaces vale_idle_<facing> while 3 repairs are done"
+    },
+    "vale_s3_walk_s": {
+      "row": 48,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 3,
+      "note": "replaces vale_walk_<facing> while 3 repairs are done"
+    },
+    "vale_s3_walk_n": {
+      "row": 49,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 3,
+      "note": "replaces vale_walk_<facing> while 3 repairs are done"
+    },
+    "vale_s3_walk_e": {
+      "row": 50,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 3,
+      "note": "replaces vale_walk_<facing> while 3 repairs are done"
+    },
+    "vale_s3_walk_w": {
+      "row": 51,
+      "frames": 4,
+      "ms": 133,
+      "mode": "loop",
+      "px_per_frame": 8,
+      "contact_frames": [
+        0,
+        2
+      ],
+      "softening_state": 3,
+      "note": "replaces vale_walk_<facing> while 3 repairs are done"
+    },
+    "vale_s3_interact_s": {
+      "row": 52,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 3,
+      "note": "replaces vale_interact_<facing> while 3 repairs are done"
+    },
+    "vale_s3_interact_n": {
+      "row": 53,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 3,
+      "note": "replaces vale_interact_<facing> while 3 repairs are done"
+    },
+    "vale_s3_interact_e": {
+      "row": 54,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 3,
+      "note": "replaces vale_interact_<facing> while 3 repairs are done"
+    },
+    "vale_s3_interact_w": {
+      "row": 55,
+      "frames": 2,
+      "ms": 250,
+      "mode": "once",
+      "softening_state": 3,
+      "note": "replaces vale_interact_<facing> while 3 repairs are done"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"

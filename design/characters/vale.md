@@ -1,6 +1,6 @@
 # Vale — executive liaison
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `vale_softened`) approved by the player 2026-10-02. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `vale_softened`) approved by the player 2026-10-02. Softening states 1-3 (idle, walk and interact, all four facings) delivered by the poses branch as `vale_s<k>_<set>_<facing>`. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -49,15 +49,15 @@ Four pose states, one per repaired branch (*The Name*, *The Route*, *The Count*,
 | 2 repairs | Arms relax away from the body; weight on one leg |
 | 3 repairs / epilogue | Loosened silhouette; open, asymmetric stance |
 
-**Assumption:** the exact step-by-step changes are not specified, only "rigid → softens across three repairs".
+**Decision (VALE_SPEC decisions 20-30):** the steps are 1 = the outer shoulder line comes off (shoulders drop 1 px, the end of `react_reconsidering`); 2 = one shoulder lower, forearms angle away from the body, weight on one leg (profile: the hand drifts forward and the front foot steps out); 3 = both shoulders round off, arms open from the elbow, feet apart with one knee out, head leaning, collar open and the knot slipped. States 1-3 are delivered for S, N, E and W; the renderer picks `vale_s<k>_<set>_<facing>` with `k = min(repairs, 3)`.
 
 ## Animation
 
 | Set | Spec |
 | --- | --- |
-| Idle ×4 | One idle per softening state. **Assumption:** at least the south facing for every state. |
-| Walk ×4 | 4–6 frames; stiff at state 0, natural at state 3 |
-| Interact | Receiving or releasing the audit |
+| Idle ×4 | One idle per softening state and facing: delivered (states 1-3 as `vale_s<k>_idle_<facing>`). **Decision:** all four facings, not only S, so a swap never pops back to rigid. |
+| Walk ×4 | 4–6 frames; stiff at state 0, natural at state 3: delivered (4 frames per state and facing; state 0-1 swing nothing, state 2 swings one arm 1 px, state 3 swings both arms and the head sways) |
+| Interact | Receiving or releasing the audit: delivered for state 0 and, per state, as `vale_s<k>_interact_<facing>` (the epilogue release is state 3) |
 | Reaction ×2 | **Assumption:** (a) composed; (b) unsettled on seeing raw evidence |
 
 ## Portrait (48×48, chibi)
@@ -83,12 +83,12 @@ Cues follow the **number of repairs completed, not which branch**, because the p
 
 ## Assumptions
 
-1. Specific softening steps, shirt color, and reactions are derived from the brief.
+1. Shirt color and the reactions are derived from the brief (decided in VALE_SPEC). The softening steps are now decided (see Softening states).
 2. Copper maps to the brass ramp until an Executive palette exists.
 
 ## Open questions
 
 1. Skin and hair ramps.
 2. The Executive hex palette, including a true copper.
-3. Whether every facing needs all four softening states, or only S plus the epilogue.
+3. ~~Whether every facing needs all four softening states, or only S plus the epilogue.~~ Decided: every facing (VALE_SPEC decision 20).
 4. Pronouns.
