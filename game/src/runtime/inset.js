@@ -80,7 +80,7 @@ function clusterInset(manifestJson) {
     cells: {
       position: position(manifestJson, { target: '', held: ['Caps'], lit: ['h', 'j', 'k', 'l'] }),
       order: [{ key: miniKey('Caps', { held: true }), tag: 'Hold' }, { key: { key: 'hjkl', label: 'H J K L' }, tag: 'Tap' }],
-      output: { key: { key: 'Arrows', label: 'Arrows' }, name: 'Left, Down, Up, Right' },
+      output: { key: { key: 'Arrows', label: 'Arrows' }, name: 'Arrow keys' },
       effect: { text: 'Step on the grid' },
     },
     firstUse: false,

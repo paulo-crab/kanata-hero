@@ -1,6 +1,5 @@
 // Task 6.5: pipeline guard. Confirms the art and level pipelines still pass and that removing an
-// atlas name the level data uses is caught (by the data-side check always, by the game loader once
-// the engine exists).
+// atlas name the level data uses is caught (by the data-side check, by the game loader and by createGame).
 //   - validate_levels.py --all runs by default (about a second).
 //   - build_all.py (the full art rebuild, about a minute, rewrites then restores generated files)
 //     runs only with KH_FULL=1, e.g.  KH_FULL=1 node --test tests/checks/pipeline.test.js
@@ -9,7 +8,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import {
-  REPO_ROOT, loadRealData, loadRealAtlasJson, clone, diskFetch, stubLoadImage, ATLAS_PATHS, readJson, skipUnless,
+  REPO_ROOT, loadRealData, loadRealAtlasJson, clone, diskFetch, stubLoadImage, ATLAS_PATHS, readJson,
 } from '../harness/index.js';
 import { missingAtlasRefs } from './atlas-refs.js';
 
@@ -79,9 +78,7 @@ test('negative: removing an atlas entry, pose, glitch animation or portrait is d
   assert.ok(missingAtlasRefs(data, set).some((p) => p.includes('elevator')), 'state set');
 });
 
-test('the game loader refuses to start when an atlas entry named by the map is removed', {
-  skip: skipUnless('engine'),
-}, async () => {
+test('the game loader refuses to start when an atlas entry named by the map is removed', async () => {
   const { loadAtlasSet } = await import('../../src/engine/index.js');
   const { DataLoadError } = await import('../../src/shared/index.js');
   const data = loadRealData();
