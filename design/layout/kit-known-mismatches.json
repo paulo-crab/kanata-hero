@@ -1,0 +1,21 @@
+{
+ "note": "Disagreements between the UI kit's Layout help drawings (art-direction/ui-kit/kit_screens.py) and the layout manifest that the UI team has not fixed yet. check_layout.py lists them as warnings and fails on any mismatch that is not here; it also fails when an entry no longer applies, so remove entries as the kit is fixed. Owner: UI team. Details: design/layout/CONTRADICTIONS.md.",
+ "known_mismatches": [
+  {
+   "id": "nav:;:missing",
+   "reason": "kanata.kbd line 200 maps ; on nav to the plain semicolon (the Swedish handler, default case), so ; stays a literal ; while Caps is held, like A S F. The nav tab draws only A S F as 'stays a letter'. Fix: draw ; with '= ;' and the same dim style."
+  },
+  {
+   "id": "nav:r:missing",
+   "reason": "kanata.kbd line 200 keeps the reload chord on R in the nav layer (Control + Shift + R still reloads while Caps is held). The nav tab prints no 'reload' on R. Fix: draw R as on the base tab, or state on the tab that it is unchanged."
+  },
+  {
+   "id": "numbers-symbols:v:missing",
+   "reason": "kanata.kbd line 233 lists V in the numbers-symbols layer, so the Violento toggle chord works while Space is held. The numbers-symbols tab prints no 'toggle' on V (the base and practice tabs do). Fix: print toggle on V."
+  },
+  {
+   "id": "numbers-symbols:Cmd-R:missing",
+   "reason": "kanata.kbd line 232 keeps Right Command (and the Microsoft Right Alt) as a nav holder while Space is held (the comment on line 161 says so). The numbers-symbols tab does not draw Cmd-R with '+ nav'. Fix: print '+ nav' on Cmd-R, as the base tab does."
+  }
+ ]
+}
