@@ -52,6 +52,12 @@ def text_w(s, scale=1, gap=1):
     return len(s) * (3 * scale + gap) - gap
 
 
+def _paper(pal):
+    """The ramp used for paper, slips and label plates: the district's `paper` ramp if its Pal has one, else its wall ramp
+    (linen in Records; the other districts' wall ramps are dark, so their kits set `PAL.paper` to a light ramp)."""
+    return getattr(pal, "paper", pal.wall)
+
+
 def dot(r, x, y, c):
     r.img[y, x] = c
 
@@ -66,7 +72,7 @@ def courier_chute(r, x0, y0, pal, ready):
     darker front face) with a slot in the top, a tube that rises into the ceiling at the right, a catch tray on the
     face with a stack of slips, and an indicator lamp. `ready` (Mira has a route to offer): a slip stands in the slot
     and the lamp is lit in the district accent. Body x0..x0+31, y0+8..y0+27; the tube reaches y0. Contact shadow below."""
-    G, W, A = pal.glass, pal.wall, pal.accent
+    G, W, A = pal.glass, _paper(pal), pal.accent
     r.cast(x0, x0 + CHUTE_W, y0 + 28)
     body = r.mask(x0, y0 + 8, x0 + CHUTE_W, y0 + 28)
     r.img[body] = G[1]
@@ -121,7 +127,7 @@ def courier_chute(r, x0, y0, pal, ready):
 
 def decor_courier_loop(r, x0, y0, pal):
     """Courier Loop: a loop-arrow medal on a small stand (the route plaque). 12 x 12."""
-    A, W, WD = pal.accent, pal.wall, pal.wood
+    A, W, WD = pal.accent, _paper(pal), pal.wood
     base = r.mask(x0 + 2, y0 + 10, x0 + 10, y0 + 12)
     r.img[base] = WD[1]
     r.rect(x0 + 2, y0 + 10, x0 + 10, y0 + 11, WD[2])
@@ -143,7 +149,7 @@ def decor_courier_loop(r, x0, y0, pal):
 
 def decor_archive_folder(r, x0, y0, pal):
     """Archive Loop: a desk folder, the accent-colour cover with a lit tab and a sheet showing. 12 x 10."""
-    A, W = pal.accent, pal.wall
+    A, W = pal.accent, _paper(pal)
     r.rect(x0 + 1, y0 + 1, x0 + 10, y0 + 3, W[3])          # sheet
     r.rect(x0 + 2, y0 + 2, x0 + 7, y0 + 3, W[1])
     cov = r.mask(x0, y0 + 3, x0 + 12, y0 + 10)
@@ -161,12 +167,12 @@ def decor_archive_folder(r, x0, y0, pal):
 
 def decor_signed_sent(r, x0, y0, pal):
     """Signed and Sent: an envelope with a stamped seal and a signature line. 13 x 9."""
-    A, W = pal.accent, pal.wall
+    A, W = pal.accent, _paper(pal)
     env_m = r.mask(x0, y0, x0 + 13, y0 + 9)
     r.img[env_m] = W[3]
     r.rect(x0, y0 + 7, x0 + 13, y0 + 9, W[2])
     for i in range(6):                                      # the flap's V
-        r.img[y0 + 1 + i // 2 + (1 if i > 2 else 0) * 0, x0 + 1 + i] = W[1]
+        r.img[y0 + 1 + i // 2, x0 + 1 + i] = W[1]
         r.img[y0 + 1 + i // 2, x0 + 11 - i] = W[1]
     r.rect(x0 + 2, y0 + 6, x0 + 7, y0 + 7, INK[2])           # signature line
     r.img[y0 + 5, x0 + 3] = INK[2]
@@ -180,7 +186,7 @@ def decor_signed_sent(r, x0, y0, pal):
 
 def decor_relay(r, x0, y0, pal):
     """Signal Keeper: a miniature relay, a device block with a wound coil, two terminals and a lit LED. 12 x 11."""
-    G, A, F, W = pal.glass, pal.accent, pal.foliage, pal.wall
+    G, A, F, W = pal.glass, pal.accent, pal.foliage, _paper(pal)
     plate = r.mask(x0, y0 + 9, x0 + 12, y0 + 11)
     r.img[plate] = W[1]
     r.rect(x0, y0 + 9, x0 + 12, y0 + 10, W[2])
@@ -193,7 +199,8 @@ def decor_relay(r, x0, y0, pal):
     r.rect(x0 + 1, y0 + 8, x0 + 11, y0 + 9, G[1])
     for k in range(3):                                      # wound coil
         r.rect(x0 + 3, y0 + 3 + 2 * k, x0 + 8, y0 + 4 + 2 * k, A[2])
-        r.rect(x0 + 3, y0 + 4 + 2 * k, x0 + 8, y0 + 5 + 2 * k, A[1]) if k < 2 else None
+        if k < 2:
+            r.rect(x0 + 3, y0 + 4 + 2 * k, x0 + 8, y0 + 5 + 2 * k, A[1])
     r.rect(x0 + 3, y0 + 3, x0 + 8, y0 + 4, A[3])
     r.img[y0 + 3, x0 + 9] = F[3]                           # LED
     r.img[y0 + 4, x0 + 9] = F[2]
@@ -220,7 +227,6 @@ def decor_night_courier(r, x0, y0, pal):
     r.rect(x0 + 3, y0, x0 + 4, y0 + 3, A[3])
     r.rect(x0 + 5, y0 + 1, x0 + 9, y0 + 2, A[2])
     r.rect(x0 + 8, y0 + 1, x0 + 9, y0 + 3, A[1])
-    r.rect(x0 + 5, y0 + 1, x0 + 8, y0 + 2, A[3]) if False else None
     for (dx, dy) in ((7, 4), (8, 4), (6, 5), (6, 6), (7, 7)):   # crescent charm
         r.img[y0 + dy, x0 + dx] = G[3]
     r.img[y0 + 5, x0 + 9] = A[3]

@@ -32,6 +32,7 @@ import kitlib  # noqa: E402
 import systems_kit as sk  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
+import hal_sprites as hal  # noqa: E402
 
 T = 16
 W_CELLS, H_CELLS = br.W_CELLS, br.H_CELLS
@@ -249,6 +250,102 @@ def route_image(layout, atlas, canvas):
     Image.alpha_composite(img, ov).convert("RGB").save(os.path.join(HERE, "systems-reference-room-route.png"))
 
 
+# ------------------------------------------------------------------ quest props: second composition and proofs
+# QUEST_PROP_AUDIT.md rows S1 to S25. The reference room above is untouched. The quest room places every new Systems quest
+# entry in its before and after state; the helpers come from build_records (br).
+
+QUEST_BEFORE = {"payroll_keypad": "off", "bridge_span": "retracted", "refund_sign": "red", "calc_display": "charge", "alarm_strip": "merged",
+                "bridge_shutter": "closed", "formula_wall": "dark", "courier_chute": "idle", "lamp": "on"}
+QUEST_AFTER = {"payroll_keypad": "lit", "bridge_span": "extended", "refund_sign": "green", "calc_display": "refund", "alarm_strip": "separated",
+               "bridge_shutter": "open", "formula_wall": "lit", "courier_chute": "ready", "lamp": "pulse"}
+SPAN_CELL = (10, 6)   # the bridge span's cell (4 x 2); rails run along the rows above and below it
+QUEST_PEOPLE = [(br.mira, br.mira.IDLE["s"][0], 236, 150), (hal, hal.IDLE["s"][0], 122, 92), (br.eng, br.eng.IDLE["e"][0], 140, 128)]
+QUEST_REQUIRED = {"alarm strip": (8, 9, 72, 27), "formula wall": (84, 8, 180, 30), "refund sign": (186, 10, 210, 24),
+                  "payroll keypad": (6, 38, 40, 70), "calculator display": (56, 50, 92, 68), "bridge span": (160, 96, 224, 128),
+                  "courier chute": (244, 116, 278, 159), "shutters": (222, 9, 288, 29)}
+
+
+def quest_layout():
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(37)
+    n = 0
+    while n < 16:
+        x, y = rnd.randrange(4, 300), rnd.randrange(40, 180)
+        if 156 <= x < 228 and 76 <= y < 150:
+            continue
+        entry("floor_chip", x, y)
+        n += 1
+    for c in range(W_CELLS):
+        entry("wall_n_plain", c * T, 0)
+    for y in range(34, H_CELLS * T, T):
+        entry("wall_e_plain", 288, y)
+    # the wall run, left to right: alarm strip, formula wall, refund sign, two shuttered windows
+    anim("alarm_strip", 8, 9)
+    anim("formula_wall", 84, 8)
+    anim("refund_sign", 186, 10)
+    anim("bridge_shutter", 222, 9)
+    anim("bridge_shutter", 256, 9)
+    # the payroll wing and the side room
+    anim("payroll_keypad", 6, 52)
+    anim("calc_display", 56, 50)
+    entry("folding_stool", 98, 68)
+    entry("cabinet_1x1", 128, 52)
+    entry("mira_decor_signed_sent", 129, 31)
+    entry("cabinet_2x1", 150, 52)
+    entry("mira_decor_relay", 160, 30)
+    # the bridge: span in the middle, glass rails above and below it
+    anim("bridge_span", SPAN_CELL[0] * T, SPAN_CELL[1] * T)
+    for x in range(160, 224, T):
+        entry("bridge_rail", x, 80)
+        entry("bridge_rail", x, 128)
+    # Mira's chute at the end of the bridge
+    anim("courier_chute", 244, 128)
+    for x, y in ((120, 96), (232, 84), (277, 160)):
+        anim("lamp", x, y)
+    for nm, x, y in (("pot_plant_a", 6, 146), ("pot_plant_b", 100, 140), ("pot_plant_a", 272, 52)):
+        entry(nm, x, y + 4)
+    return {
+        "kit": "systems", "atlas": "systems-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
+        "note": "Systems quest-prop room, built only from systems-atlas (QUEST_PROP_AUDIT.md S1-S25). Every new quest entry appears in it; "
+                "the state sets are switched between the before and after renders. The north wall carries the alarm strip, formula wall, "
+                "refund sign and shutters; the bridge span crosses the middle of the room to Mira's chute. People are added by the renderer.",
+        "states": dict(QUEST_BEFORE),
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": br.ok_floor_rows()},
+        "placements": pl,
+    }
+
+
+def render_quest(layout, atlas, states, people=QUEST_PEOPLE):
+    return br.render_quest(layout, atlas, states, people)
+
+
+def quest_proofs(atlas, meta):
+    layout = quest_layout()
+    layout_ok = br.write_quest_layout("systems", layout, meta)
+    before, after = br.quest_images("systems", layout, atlas, QUEST_BEFORE, QUEST_AFTER, render_quest)
+    print(f"systems quest props: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    cx, cy = SPAN_CELL
+    retracted = br.blocked_grid(layout, atlas, dict(QUEST_BEFORE))
+    extended = br.blocked_grid(layout, atlas, dict(QUEST_BEFORE, bridge_span="extended"))
+    mid = [(cx + 1, cy), (cx + 2, cy), (cx + 1, cy + 1), (cx + 2, cy + 1)]
+    ends = [(cx, cy), (cx + 3, cy), (cx, cy + 1), (cx + 3, cy + 1)]
+    path = br.corridor_route(extended, (cx - 1, cy), (cx + 4, cy))
+    extra = [("the retracted bridge span blocks its two middle columns and the extended span is walkable end to end",
+              all(retracted[y, x] for x, y in mid) and not any(retracted[y, x] for x, y in ends) and not any(extended[y, x] for x, y in mid + ends),
+              "4 pit cells blocked, 4 end cells free, 8 cells free when extended"),
+             ("the extended span is a two-cell-wide walkway between its rails (BFS on the collision grid)", path is not None, f"{len(path)} steps" if path else "no path"),
+             ("the retracted span leaves no two-cell-wide way across", br.corridor_route(retracted, (cx - 1, cy), (cx + 4, cy)) is None, "")]
+    ok_ = br.quest_review("systems", layout, atlas, sk.QUEST_NAMES, QUEST_BEFORE, QUEST_AFTER, QUEST_REQUIRED, extra=extra)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -279,7 +376,8 @@ def main():
     route_image(layout, atlas, before)
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
-    sys.exit(0 if ok_ else 1)
+    qok = quest_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok else 1)
 
 
 if __name__ == "__main__":
