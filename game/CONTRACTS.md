@@ -549,6 +549,19 @@ Hint-grammar text always comes from the level data (`hint.action`, `hint.key`, `
 
 `main.js` creates the bus, clock, loads `GameData` and `AtlasSet`, builds `World`, `ProgressStore`, `SceneMachine`, `KeyInterpreter`, mounts the UI, starts `GameLoop`, and routes `DataLoadError` to the `error` scene. In the skeleton it only loads nothing and shows a "skeleton" notice; integration (group 7) fills it.
 
+## 8a. Runtime and engine additions (producer, 2026-10-02)
+
+Additive changes fixed by the first implementations; they are part of the contract.
+
+- `vm:markers` and `vm:prompt` carry `cell: [x, y]` and `at: {x, y}` in map pixels (cell * 16, top-left), not stage pixels; the UI converts with `worldToStage`.
+- `ProgressDoc.levels[levelId]` gains `facts: string[]` and `sceneProgress: {[sceneId]: number}` for resume.
+- `SceneContext` gains `machine`, `dialogue`, `manifest`, `actions` and `held`; `input` is the input module namespace, injected by `createSession`.
+- `World.serialize()` and `World.restore()` use the slice `{placements: {id: state}, npcs: {id: stateName}, gates: [ids], avatar: {cell, facing}, glitches}`.
+- `DialogueRuntime` emits `dialogue:open` and `dialogue:closed {id, by}`; `RuleRuntime` emits `rules:step-start` and `rules:step-done`.
+- `World` options are `{bus, random, reducedMotion, avatarCharacter, spawn}`; it also exposes `setReducedMotion`, `setMarkers(list)`, `camera()`, `glitch(id)` and `avatarFrame()`. `engine:glitch-repaired` fires when the snap frame starts.
+- `createSession` wires machine, rules, dialogue, evidence, progress, world and bus. `session.update(ms)` updates the machine only, so boot must also call `world.update(ms)` and `world.setReducedMotion`.
+- A `reach_cell` fact counts only while the step whose walk scene uses that cell is current.
+
 ## 9. Worked example: one Escape press through the whole stack
 
 Situation: level 01, step `o01.s.popup`, the welcome popup (scene `o01-popup`, a `form` scene) is open, the player taps Caps. Kanata sends Escape.
