@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kanata Hero UI preview</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/game/css/main.css">
+</head>
+<body>
+  <!-- Dev-only harness: the real UI mounted over the kit's reference world image, fed fixture view-models.
+       Serve from the repo root and open /game/tests/ui/preview.html#world (or #journal, #layout-nav, ...). -->
+  <div id="stage" class="stage" role="application" aria-label="Kanata Hero preview">
+    <img class="world" src="/art-direction/ui-kit/world-native.png" width="320" height="180" alt="">
+    <div id="ui" class="ui"></div>
+  </div>
+  <div id="live" class="visually-hidden" aria-live="polite" role="status"></div>
+  <script type="module" src="/game/tests/ui/preview.js"></script>
+</body>
+</html>

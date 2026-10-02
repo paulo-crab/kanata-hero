@@ -1,10 +1,18 @@
 // UI module public surface. Contract: game/CONTRACTS.md sections 6 and 7.
-// Stubs: workstream D replaces the throwing bodies. Pure helpers are already real.
+// Depends on shared only: it renders view-models from the bus and sends ui:command back.
 import { INSET_STAGE_RECT } from '../shared/layout.js';
 
-const nyi = () => {
-  throw new Error('not implemented');
-};
+export { mountUi, stageClasses } from './mount.js';
+export { Component, nextFocusIndex } from './component.js';
+export { keycap, keyunit, keycapForName, keycapName } from './keycap.js';
+export { hudView, promptView, markersView } from './play.js';
+export { dialogueView, hintCardView, portraitView } from './dialogue.js';
+export { insetView } from './inset.js';
+export { sceneBarView, feedbackView, fieldView } from './scene.js';
+export { layoutHelpView, diagramView, legendKinds } from './layout-help.js';
+export { journalView, controlsView, settingsView } from './journal.js';
+export { setupScreenView, calibrationBody, createScreenState } from './setup.js';
+export { toastsView, errorView, TOAST_MS, TOAST_MAX } from './misc.js';
 
 export const COMPONENTS = [
   'keycap', 'inset', 'dialogue', 'hud', 'prompt', 'markers', 'journal', 'layout-help',
@@ -17,14 +25,6 @@ export const VIEW_MODEL_TOPICS = [
   'vm:layout-help', 'vm:setup', 'vm:calibration', 'vm:scene-bar', 'vm:feedback',
   'vm:hint-card', 'vm:controls', 'vm:settings', 'vm:toast', 'vm:announce', 'vm:error',
 ];
-
-export function mountUi(root, params) { nyi(); }
-
-export class Component {
-  constructor(host, bus) { nyi(); }
-  render(vm) { nyi(); }
-  destroy() { nyi(); }
-}
 
 /** Keyboard inset rectangle in stage px (x4 reference). Pure. */
 export function insetRect(zoom = 4) {
