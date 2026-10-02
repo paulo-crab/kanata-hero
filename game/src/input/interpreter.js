@@ -12,9 +12,13 @@ const IGNORED_KEYS = new Set([
 
 const NO_MODS = Object.freeze({ alt: false, ctrl: false, meta: false, shift: false });
 
-/** The output name for a raw event: event.key, with ' ' -> 'Space' and the grave key -> 'Backquote'. */
+/**
+ * The output name for a raw event: event.key, with ' ' -> 'Space' and the grave key -> 'Backquote'.
+ * The grave key is keyed by code; an event with no code at all (an on-screen keyboard, a speech or switch device,
+ * a test driver) falls back to the character, so Hint stays reachable for them.
+ */
 function outputOf(raw) {
-  if (raw.code === 'Backquote') return 'Backquote';
+  if (raw.code === 'Backquote' || (raw.key === '`' && !raw.code)) return 'Backquote';
   if (raw.key === ' ') return 'Space';
   return raw.key;
 }

@@ -15,7 +15,7 @@ function cell(n, label, body) {
 /** Target key at full strength, held keys held, everything else dim: only the relevant keys are bright. */
 function miniRow(keys, target) {
   const caps = keys.map((k) => {
-    const lit = k.held || k.key === target || k.label === target;
+    const lit = k.held || k.lit || k.key === target || k.label === target;
     const k2 = { ...k, dim: !lit };
     return keycap(k2, { sm: true, cls: k.label === 'Caps' ? 'cap' : '' });
   });

@@ -24,6 +24,8 @@ export const VM_TOPIC = {
   controls: 'vm:controls', settings: 'vm:settings', error: 'vm:error',
 };
 
+const OVERLAYS = new Set(['journal', 'layout-help', 'controls', 'settings']);
+
 const DEFAULT_KEYS = {
   typing: false, enter: 'none', esc: 'none', arrows: 'none', journal: false, hint: false,
   layoutHelp: true, surfaceFocused: true, consumes: [],
@@ -81,6 +83,8 @@ export class SceneMachine {
     const below = this.top;
     if (below) {
       below.enter(this.ctx, { restore: this._saved.get(below) });
+      // Publish first: the UI only returns focus once the closed layer's view-model is gone.
+      this.publish();
       this.ctx.bus.emit('ui:restore-focus', { sceneId: below.id });
     }
     this._after();
@@ -166,10 +170,18 @@ export class SceneMachine {
   /** Publish the view-model of the top-most layer per topic; null when a topic has no layer. */
   publish() {
     const want = new Map();
-    for (const layer of this.layers) {
+    // Overlay screens do not stack: while one sits above another (Settings opened from the journal), only the top
+    // one is drawn, so a translucent panel never shows the screen under it.
+    let topOverlay = -1;
+    this.layers.forEach((l, i) => { if (OVERLAYS.has(l.kind)) topOverlay = i; });
+    for (const [i, layer] of this.layers.entries()) {
       const topic = VM_TOPIC[layer.kind];
       if (!topic) continue;
+      if (OVERLAYS.has(layer.kind) && i < topOverlay) continue;
       want.set(topic, layer.viewModel ? layer.viewModel() : null);
+      // A scene may feed a second topic (the setup screen carries the calibration steps and diagram).
+      const extra = layer.extraViewModels ? layer.extraViewModels() : {};
+      for (const [t, vm] of Object.entries(extra)) if (!want.has(t)) want.set(t, vm);
     }
     for (const topic of new Set([...this._vms.keys(), ...want.keys()])) {
       const vm = want.has(topic) ? want.get(topic) : null;

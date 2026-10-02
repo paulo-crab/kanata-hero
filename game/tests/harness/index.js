@@ -5,6 +5,5 @@ export * from './paths.js';
 export * from './fixtures.js';
 export * from './input-player.js';
 export * from './level-model.js';
-export * from './status.js';
 export * from './bus-recorder.js';
 export * from './game-factory.js';

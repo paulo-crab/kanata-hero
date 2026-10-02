@@ -245,10 +245,17 @@ export class RuleRuntime {
     for (const sc of this.stepScenes(step)) {
       if (!this.facts.has(`scene_success:${sc.id}`)) this._emit({ type: 'openScene', kind: sc.kind, sceneId: sc.id });
     }
-    for (const d of this.level.dialogue || []) {
-      if (d.when === `step_start:${step.id}` && d.hint) {
-        this._emit({ type: 'say', dialogueId: d.id, modal: false });
-      }
+    // Re-show the instruction the player was on: the last instruction line that was said but whose key was never
+    // observed (a chain such as journal, hint key, Layout help would otherwise restart at its first line and strand
+    // the player, because the later lines were already said). With none pending, the step's own opening line.
+    const lines = (this.level.dialogue || []).filter((d) => d.hint && !d.on_request && d.modal !== true);
+    const pending = lines.filter((d) => this.facts.has(`said:${d.id}`) && !this.facts.has(`dialogue_done:${d.id}`));
+    if (pending.length) {
+      this._emit({ type: 'say', dialogueId: pending[pending.length - 1].id, modal: false });
+      return;
+    }
+    for (const d of lines) {
+      if (d.when === `step_start:${step.id}`) this._emit({ type: 'say', dialogueId: d.id, modal: false });
     }
   }
 

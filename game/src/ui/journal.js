@@ -20,7 +20,7 @@ function closeButton() {
 }
 
 export function journalView(vm) {
-  const groups = vm.groups.map((g) => html`<div class="group ${g.id}"><h3>${icon(GROUP_ICON[g.id] || 'seal', 24)} ${g.heading}</h3>
+  const groups = vm.groups.filter((g) => g.rows.length).map((g) => html`<div class="group ${g.id}"><h3>${icon(GROUP_ICON[g.id] || 'seal', 24)} ${g.heading}</h3>
     ${g.rows.map((r) => {
       const [ic, word] = STATE[r.state] || STATE.locked;
       return html`<button type="button" class="qrow${r.selected ? ' sel' : ''}" data-fid="row-${r.id}" data-row="${r.id}" aria-current="${r.selected ? 'true' : 'false'}"
@@ -29,9 +29,9 @@ export function journalView(vm) {
     })}</div>`);
   const d = vm.detail;
   const detail = d
-    ? html`<div class="detail" aria-live="polite"><h3>${d.title}</h3>
+    ? html`<div class="detail" aria-live="polite" tabindex="0" role="region" aria-label="${d.title}: steps and keys"><h3>${d.title}</h3>
       <ul class="steps">${d.steps.map((s) => html`<li class="${s.state === 'current' ? 'next' : s.state}"><span class="dot">${STEP_ICON[s.state] ? icon(STEP_ICON[s.state], 14) : ''}</span> <span>${s.text}</span><span class="vh"> (${s.state === 'current' ? 'current' : s.state === 'done' ? 'done' : 'to do'})</span></li>`)}</ul>
-      ${d.keys.length ? html`<div class="keysline">${d.keys.map((k) => html`${keycap(k.key, { sm: true })} <span class="mono">${k.output}</span> <span class="g">${k.gesture}</span>`)}</div>` : ''}
+      ${d.keys.length ? html`<div class="keysline">${d.keys.map((k) => html`<span class="kk">${keycap(k.key, { sm: true })}${k.output ? html` <span class="mono">${k.output}</span>` : ''} <span class="g">${k.gesture}</span></span>`)}</div>` : ''}
       <p class="stars" aria-label="Stars ${d.stars} of 3">Stars ${d.stars} / 3</p>
       <p class="rowkeys">${JOURNAL_COPY.choose}</p></div>`
     : html`<div class="detail"><p>${JOURNAL_COPY.empty}</p></div>`;

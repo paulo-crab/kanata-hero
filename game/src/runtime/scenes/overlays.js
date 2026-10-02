@@ -1,6 +1,7 @@
 // Overlay scenes: dialogue layer, Layout help, journal, Controls, settings, error.
 import { BaseScene } from './base.js';
 import { keycap, KEY_GESTURE } from '../common.js';
+import { hintOutputs } from '../dialogue.js';
 
 export class DialogueScene extends BaseScene {
   constructor() {
@@ -53,6 +54,12 @@ export class LayoutHelpScene extends BaseScene {
 
   select(patch) {
     Object.assign(this.state, patch);
+    // A key that the other keyboard does not have (Win-L on the Microsoft board) cannot stay selected.
+    const m = this.ctx.manifest;
+    if (patch.variant && this.state.selectedKey && m && m.keyboard) {
+      const ids = new Set(m.keyboard(this.state.variant).rows.flat().map((k) => k.id));
+      if (!ids.has(this.state.selectedKey)) this.state.selectedKey = null;
+    }
   }
 
   handle(ev) {
@@ -126,6 +133,15 @@ export class JournalScene extends BaseScene {
     return true;
   }
 
+  /** Mouse selection: select the row; the Also rows are actions and open at once. */
+  choose(id) {
+    const flat = this._flat();
+    const at = flat.findIndex((r) => r.id === id);
+    if (at < 0) return;
+    this.sel = at;
+    this.activate(flat[at]);
+  }
+
   activate(row) {
     if (!row || row.group !== 'also') return;
     const m = this.ctx.machine;
@@ -171,13 +187,19 @@ export class JournalScene extends BaseScene {
     };
   }
 
+  /** Keys the player has learned so far: one entry per hint line whose key sequence was observed. */
   _keys(level) {
     const seen = new Set();
     const out = [];
     for (const d of level.dialogue) {
-      if (!d.hint || seen.has(d.hint.key)) continue;
+      if (!d.hint || seen.has(d.hint.key) || !this.ctx.rules.holds(`dialogue_done:${d.id}`)) continue;
       seen.add(d.hint.key);
-      out.push({ key: keycap(d.hint.key.length === 1 ? d.hint.key : d.hint.key), output: d.hint.key, gesture: d.hint.gesture });
+      const outputs = hintOutputs(d.hint.key);
+      out.push({
+        key: outputs.length === 1 ? keycap(outputs[0]) : { key: outputs[0], label: d.hint.key },
+        output: outputs.length === 1 ? '' : outputs.join(' '),
+        gesture: d.hint.gesture,
+      });
     }
     return out;
   }
@@ -219,6 +241,12 @@ export class SettingsScene extends BaseScene {
     this.sel = 0;
     this.confirmReset = false;
     this.keys = { typing: false, enter: 'confirm', esc: 'back', arrows: 'choose', journal: false, hint: false };
+  }
+
+  /** First press of Reset progress, by mouse or key: opens the confirm card. Nothing is erased yet. */
+  askReset() {
+    this.confirmReset = true;
+    this.sel = ROWS.indexOf('reset');
   }
 
   set(key, value) {

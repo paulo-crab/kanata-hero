@@ -16,7 +16,7 @@
 /* ---- Journal ------------------------------------------------------------------------------------------------- */
 .kh-journal { display: grid; grid-template-columns: 540px 1fr; gap: var(--space-5); flex: 1; min-height: 0; }
 .kh-journal .list { display: flex; flex-direction: column; gap: var(--space-3); overflow: hidden; }
-.kh-journal .side { display: flex; flex-direction: column; gap: var(--space-3); }
+.kh-journal .side { display: flex; flex-direction: column; gap: var(--space-3); min-height: 0; }
 .kh-journal .group h3 { display: flex; align-items: center; gap: var(--space-2); font: var(--weight-bold) var(--text-lg)/1.2 var(--font-display); margin-bottom: var(--space-2); }
 .kh-journal .group.requests h3 { color: var(--accent-conversation); }
 .kh-journal .group.speed h3 { color: var(--accent-terminal); }
@@ -28,7 +28,7 @@
 .state.active { color: var(--accent-terminal); }
 .state.locked { color: var(--text-muted); }
 .state.done { color: var(--accent-discovery); }
-.kh-journal .detail { background: var(--panel-raised); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.kh-journal .detail { flex: 1 1 auto; min-height: 0; overflow-y: auto; background: var(--panel-raised); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
 .kh-journal .detail h3 { font-size: var(--text-xl); }
 .kh-journal .stars { margin: 0; color: var(--accent-discovery); font-weight: var(--weight-bold); }
 .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
@@ -37,13 +37,14 @@
 .steps li.next .dot { border-color: var(--accent-terminal); color: var(--accent-terminal); }
 .steps li.todo { color: var(--text-muted); }
 .steps .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.keysline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; background: var(--panel-sunken); border-radius: var(--radius-md); padding: var(--space-3); }
+.keysline { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: var(--space-2) var(--space-4); background: var(--panel-sunken); border-radius: var(--radius-md); padding: var(--space-3); }
+.keysline .kk { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 .keysline .g { font-family: var(--font-mono); color: var(--text-muted); font-size: var(--text-sm); }
 .rowkeys { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
-.also { display: flex; flex-direction: column; gap: var(--space-2); }
+.also { display: flex; flex-direction: column; gap: var(--space-2); flex: none; }
 
 /* ---- Layout help ---------------------------------------------------------------------------------------------- */
-.lh-overlay { overflow-y: auto; --key-unit: 46px; left: 16px; right: 16px; top: 16px; bottom: 16px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
+.lh-overlay { overflow-y: auto; --key-unit: 40px; left: 16px; right: 16px; top: 8px; bottom: 8px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
 .lh-overlay .top { gap: var(--space-4); }
 .lh-overlay .top h2 { font-size: var(--text-xl); }
 .lh-how { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
@@ -65,8 +66,8 @@
 .lh-detail .big .kh-key { min-width: 48px; height: 48px; font-size: var(--text-xl); }
 .lh-detail.empty { padding: var(--space-1) var(--space-5); }
 .lh-detail.empty p { margin: 0; }
-.lh-detail dl { margin: 0; display: grid; gap: var(--space-1); }
-.lh-detail dd { margin: 0; font-size: var(--text-base); }
+.lh-detail dl { margin: 0; display: block; column-count: 2; column-gap: var(--space-5); }
+.lh-detail dd { margin: 0 0 var(--space-1); font-size: var(--text-base); break-inside: avoid; }
 .lh-legend { display: flex; gap: var(--space-4); align-items: center; font-size: var(--text-sm); color: var(--text-muted); flex-wrap: wrap; }
 .lh-legend > span { display: inline-flex; align-items: center; gap: var(--space-2); }
 .lh-legend .kh-lk { width: 44px; height: 36px; margin: 0; }

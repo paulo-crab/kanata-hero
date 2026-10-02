@@ -4,9 +4,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  loadRealData, insetViolations, insetStageRect, rectsOverlap, cellStageRect, cameraFor, level01Legs, STAGE_ZOOM,
+  loadRealData, insetViolations, insetStageRect, rectsOverlap, cellStageRect, cameraFor, level01Legs, targetDisplay, STAGE_ZOOM,
 } from '../harness/index.js';
 import { INSET_STAGE_RECT } from '../../src/shared/layout.js';
+import { DIALOGUE_STAGE_RECT } from '../../src/ui/index.js';
 
 const data = loadRealData();
 const fmt = (v) => v.map((x) => `${x.leg}: avatar cell (${x.cell}) ${x.what}${x.target ? ` (target ${x.target})` : ''}`);
@@ -33,12 +34,33 @@ test('the avatar never stands inside the inset along level 01 (cell listed on fa
   assert.deepEqual(fmt(v), []);
 });
 
-// The level sheet claims "No keyboard-inset conflict is documented"; the model finds the lap marker
-// and the west desk drawn under the inset while the avatar approaches. Kept as a todo so the run stays
-// green but the cells are printed; flip to a normal test when the level data or the inset moves.
-test('the current target is never hidden by the inset', { todo: 'level data contradiction, see report' }, () => {
+// The level data's camera model draws the first lap marker (3,12) and the west desk (7,10) under the inset while the
+// avatar approaches. The UI keeps the inset where the kit puts it and shows the current target as an edge arrow in the
+// free area instead (ui/world-space.js targetIndicator), so the visible indicator is never under the inset.
+test('the current target is never hidden by the inset (a covered marker becomes an edge arrow)', () => {
   const v = insetViolations(data).filter((x) => x.what === 'target');
   assert.deepEqual(fmt(v), []);
+});
+
+test('the edge arrow is used exactly where the marker is under the inset or off the stage, and keeps clear of avatar and dialogue', () => {
+  const bounds = data.district.camera_bounds;
+  const inset = insetStageRect(STAGE_ZOOM);
+  const used = new Set();
+  for (const leg of level01Legs(data).filter((l) => l.inset)) {
+    for (const cell of leg.cells) {
+      const shown = targetDisplay(cell, leg, bounds);
+      if (shown.kind === 'edge-arrow') {
+        used.add(leg.id);
+        assert.equal(rectsOverlap(shown.rect, inset), false, `${leg.id} (${cell}) arrow under the inset`);
+        assert.equal(rectsOverlap(shown.rect, shown.avatar), false, `${leg.id} (${cell}) arrow over the avatar`);
+        assert.equal(rectsOverlap(shown.rect, DIALOGUE_STAGE_RECT), false, `${leg.id} (${cell}) arrow under the dialogue panel`);
+      } else {
+        assert.equal(rectsOverlap(shown.rect, inset), false, `${leg.id} (${cell}) marker under the inset`);
+      }
+    }
+  }
+  // the west walkway lap leg and the west desk leg sit under the inset; the lap's north-going leg has its marker above the stage
+  assert.deepEqual([...used].sort(), ['loop-down', 'loop-up', 'stop-west']);
 });
 
 test('x4 and x6 share the same logical stage model', () => {

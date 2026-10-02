@@ -48,6 +48,14 @@ test('Return and typed letters', () => {
   assert.equal(cap.combo, 'W');
 });
 
+test('an event with no code (on-screen keyboard, test driver) still reaches Backquote by its character', () => {
+  const bq = interpretKey({ key: '`', code: '', repeat: false });
+  assert.equal(bq.output, 'Backquote');
+  assert.equal(bq.text, null);
+  // a grave character on another physical key (code set) is not the Hint key
+  assert.equal(interpretKey({ key: '`', code: 'IntlBackslash' }).output, '`');
+});
+
 test('Space output and text; Backquote by code; ? and Backquote are never text', () => {
   const sp = interpretKey(ev(' ', { code: 'Space' }));
   assert.equal(sp.output, 'Space');

@@ -2,10 +2,9 @@
 // `createGame` boot export exist (see harness/game-factory.js); then it runs unchanged.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildHeadlessGame, fullStackSkipReason, MemoryStorage } from '../harness/index.js';
+import { buildHeadlessGame, MemoryStorage, ScriptedInput } from '../harness/index.js';
 import { playLevel01, SCRIPT_DATA } from './level01-script.js';
 
-const skip = await fullStackSkipReason();
 
 async function run(opts, storage) {
   const built = await buildHeadlessGame(storage ? { storage } : {});
@@ -13,10 +12,11 @@ async function run(opts, storage) {
   return { ...built, ...out };
 }
 
-test('level 01 plays through setup skip, arrival, popup, lap, desks, label and recall', { skip }, async () => {
+test('level 01 plays through setup skip, arrival, popup, lap, desks, label and recall', async () => {
   const { checkpoints: c } = await run({});
   assert.equal(c.afterSetup.setupDone, true, 'Escape in setup skips the whole setup');
-  assert.deepEqual(c.elevatorStates, ['half', 'open'], 'elevator plays closed -> half -> open (120 ms each)');
+  assert.deepEqual(c.elevatorStates, ['closed', 'half', 'open'], 'elevator plays closed -> half -> open');
+  assert.ok(c.elevatorStateMs[1] >= 100 && c.elevatorStateMs[1] <= 150, `the half state lasts about 120 ms, got ${c.elevatorStateMs[1]}`);
   assert.equal(c.elevatorFinal, 'open');
   assert.equal(c.welcome, 'o01.d.welcome');
   assert.equal(c.popupOpen, 'o01-popup');
@@ -43,7 +43,7 @@ test('level 01 plays through setup skip, arrival, popup, lap, desks, label and r
   assert.equal(c.recallSuccess, true);
 });
 
-test('level 01 changes the world: turnstile, Ivo, gate, markers, journal, glitch', { skip }, async () => {
+test('level 01 changes the world: turnstile, Ivo, gate, markers, journal, glitch', async () => {
   const { checkpoints: c } = await run({});
   assert.equal(c.world.turnstile, 'open');
   assert.equal(c.world.gateOpen, true);
@@ -57,17 +57,17 @@ test('level 01 changes the world: turnstile, Ivo, gate, markers, journal, glitch
   assert.ok(c.progress.journal.includes('Desk Walker: Right, Up, Left and Down used on the garden loop.'));
 });
 
-test('stars: 3 clean without a recall hint, 2 with the forfeited recall hint, 1 after sloppy walking', { skip }, async () => {
-  const clean = await run({});
+test('stars: 3 clean without a recall hint, 2 with the forfeited recall hint, 1 after sloppy walking', async () => {
+  const clean = await run({ wrongTries: false });
   assert.equal(clean.checkpoints.levelComplete.stars, 3);
-  const hinted = await run({ recallHint: true });
+  const hinted = await run({ recallHint: true, wrongTries: false });
   assert.ok(hinted.checkpoints.hintCard.text.includes('forfeits the third star'));
   assert.equal(hinted.checkpoints.levelComplete.stars, 2);
-  const sloppy = await run({ wrongDetours: 6 });
+  const sloppy = await run({ wrongDetours: 6, wrongTries: false });
   assert.equal(sloppy.checkpoints.levelComplete.stars, 1);
 });
 
-test('the scenario is deterministic: two runs give identical input logs, bus events and checkpoints', { skip }, async () => {
+test('the scenario is deterministic: two runs give identical input logs, bus events and checkpoints', async () => {
   const a = await run({});
   const b = await run({});
   assert.deepEqual(a.log, b.log);
@@ -75,7 +75,7 @@ test('the scenario is deterministic: two runs give identical input logs, bus eve
   assert.deepEqual(a.checkpoints, b.checkpoints);
 });
 
-test('reload mid-lap restores step, avatar and world state from local progress', { skip }, async () => {
+test('reload mid-lap restores step, avatar and world state from local progress', async () => {
   const storage = new MemoryStorage();
   const first = await run({ stopAfter: 'lap-leg-1' }, storage);
   const cellBefore = [...first.game.world.avatar.cell];
@@ -85,7 +85,21 @@ test('reload mid-lap restores step, avatar and world state from local progress',
   assert.equal(second.game.world.npc('ivo').pose, 'ivo_wave_s');
 });
 
-test('blocked storage falls back to memory and the scenario still plays', { skip }, async () => {
+test('reload in the middle of the key lines shows the pending instruction, so the step can still finish', async () => {
+  const storage = new MemoryStorage();
+  await run({ stopAfter: 'keys-hint' }, storage);       // journal and hint key done; the Layout help line is on screen
+  const second = await buildHeadlessGame({ storage });
+  const { game } = second;
+  assert.equal(game.rules.currentStep.id, 'o01.s.keys');
+  assert.equal(game.dialogue.instruction().id, 'o01.d.layout-help', 'the line the player was on comes back');
+  const player = new ScriptedInput({ target: game.interpreter, advance: (ms) => { game.clock.advance(ms); game.loop.advance(ms); } });
+  player.tap('?');
+  player.tap('Escape');
+  player.wait(4);
+  assert.ok(game.rules.stepsDone.includes('o01.s.keys'), 'the keys step completes after the reload');
+});
+
+test('blocked storage falls back to memory and the scenario still plays', async () => {
   const { checkpoints: c } = await run({}, new MemoryStorage({ throwing: true }));
   assert.equal(c.levelComplete.level, 'orientation-01');
 });
