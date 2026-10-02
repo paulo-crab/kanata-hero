@@ -398,7 +398,8 @@
    "text": "This workstation has four approval stamps and one hand to work them. Holding a familiar letter briefly turns it into a modifier.",
    "hint": null,
    "when": "step_start:o04.s.talk",
-   "cue": "Ivo 04: neutral"
+   "cue": "Ivo 04: neutral",
+   "modal": true
   },
   {
    "id": "o04.d.command",
@@ -411,7 +412,8 @@
     "gesture": "Command is tap-hold D, then I on the other hand."
    },
    "speaker_kind": "object",
-   "when": "step_start:o04.s.stamps"
+   "when": "step_start:o04.s.stamps",
+   "modal": false
   },
   {
    "id": "o04.d.shift",
@@ -424,7 +426,8 @@
     "gesture": "Shift is tap-hold F."
    },
    "speaker_kind": "object",
-   "when": "step_start:o04.s.stamps"
+   "when": "step_start:o04.s.stamps",
+   "modal": false
   },
   {
    "id": "o04.d.d",
@@ -437,7 +440,8 @@
     "gesture": "tap D. No hold, no modifier."
    },
    "speaker_kind": "object",
-   "when": "step_start:o04.s.variation"
+   "when": "step_start:o04.s.variation",
+   "modal": false
   },
   {
    "id": "o04.d.option",
@@ -450,7 +454,8 @@
     "gesture": "Option is tap-hold S, then K on the other hand."
    },
    "speaker_kind": "object",
-   "when": "step_start:o04.s.stamps"
+   "when": "step_start:o04.s.stamps",
+   "modal": false
   },
   {
    "id": "o04.d.control",
@@ -463,7 +468,8 @@
     "gesture": "Control is tap-hold A, then L on the other hand."
    },
    "speaker_kind": "object",
-   "when": "step_start:o04.s.stamps"
+   "when": "step_start:o04.s.stamps",
+   "modal": false
   },
   {
    "id": "o04.d.success",
@@ -472,7 +478,8 @@
    "text": "Four stamps, four sheets, and the lamp is on. The pinboard will want them.",
    "hint": null,
    "when": "scene_success:o04-recall",
-   "cue": "Ivo 04: neutral"
+   "cue": "Ivo 04: neutral",
+   "modal": true
   },
   {
    "id": "o04.d.training-card",
@@ -481,7 +488,8 @@
    "text": "That training card describes a shorter workflow than the script I was given.",
    "hint": null,
    "when": "interact:artifact_training_card",
-   "cue": "Ivo 04: when the player shows the optional Training card"
+   "cue": "Ivo 04: when the player shows the optional Training card",
+   "modal": true
   },
   {
    "id": "o04.d.badge-note",
@@ -490,7 +498,8 @@
    "text": "The first printing lists fewer steps than Pace's current script.",
    "hint": null,
    "when": "interact:artifact_training_card",
-   "cue": "Engineer: inspecting a tampering artifact (Training card, first printing)"
+   "cue": "Engineer: inspecting a tampering artifact (Training card, first printing)",
+   "modal": true
   }
  ],
  "triggers": [
@@ -501,6 +510,11 @@
     {
      "op": "light_state",
      "light_state": "ls.desk-left-lit"
+    },
+    {
+     "op": "set_state",
+     "target": "pinboard",
+     "state": "before"
     },
     {
      "op": "set_flag",
@@ -518,8 +532,8 @@
   }
  ],
  "state_changes": {
-  "before": "The cherry desk is dark and the corridor stripe beside it is off.",
-  "after": "The desk lamp and the corridor stripe light together; the approved sheets are done.",
+  "before": "The cherry desk is dark, the corridor stripe beside it is unlit and the pinboard beside the elevator is empty.",
+  "after": "The desk lamp wakes and the corridor stripe lights; the four approved sheets join the pinboard.",
   "visible_changes": [
    {
     "kind": "placement_state",
@@ -530,10 +544,17 @@
    },
    {
     "kind": "placement_state",
-    "target": "lamp_corridor_w",
-    "from": "off",
-    "to": "on",
-    "note": "corridor stripe"
+    "target": "stripe_left_1",
+    "from": "unlit",
+    "to": "lit",
+    "note": "corridor stripe (three cells: stripe_left_1..3, same state set)"
+   },
+   {
+    "kind": "placement_state",
+    "target": "pinboard",
+    "from": "empty",
+    "to": "before",
+    "note": "the four approved sheets join the pinboard"
    },
    {
     "kind": "light_state",

@@ -21,15 +21,15 @@
   {
    "id": "elevator-arrival",
    "cell": [
-    2,
-    12
+    3,
+    2
    ],
-   "facing": "e",
+   "facing": "s",
    "from": {
     "district": "orientation",
     "link": "link.elevator.orientation"
    },
-   "note": "the elevator opens (closed, half, open) and the avatar steps out"
+   "note": "the elevator on the north wall opens (closed, half, open) and the avatar steps out onto the LIFT mat"
   },
   {
    "id": "records-door-return",
@@ -64,17 +64,17 @@
  ],
  "elevator": {
   "cell": [
-   1,
-   12
+   2,
+   0
   ],
-  "facing": "e",
+  "facing": "s",
   "placement": "elevator",
   "link": "link.elevator.orientation",
   "arrival_cell": [
-   2,
-   12
+   3,
+   2
   ],
-  "note": "west wall, southwest of the garden (rows 11-13); the call panel at (1,10) opens the elevator map, which only lists unlocked stops"
+  "note": "north wall, west end: a 3x3 module at x2-4 (wall rows 0-1, LIFT mat row y2); the car is the centre cell (3,1). The call panel at x5 opens the elevator map with Interact (Return); it only lists unlocked stops."
  },
  "light_states": [
   {
@@ -90,7 +90,7 @@
   },
   {
    "id": "ls.desk-left-lit",
-   "description": "The left desk lamp and the adjacent corridor stripe light together.",
+   "description": "The left desk lamp wakes and the corridor stripe beside it lights together.",
    "applies_when": "o04.t.left-lit",
    "changes": [
     {
@@ -98,14 +98,22 @@
      "state": "on"
     },
     {
-     "placement": "lamp_corridor_w",
-     "state": "on"
+     "placement": "stripe_left_1",
+     "state": "lit"
+    },
+    {
+     "placement": "stripe_left_2",
+     "state": "lit"
+    },
+    {
+     "placement": "stripe_left_3",
+     "state": "lit"
     }
    ]
   },
   {
    "id": "ls.desk-right-lit",
-   "description": "The right desk gets a warmer lamp and its corridor stripe.",
+   "description": "The right desk gets its warmer lamp and its corridor stripe.",
    "applies_when": "o05.t.right-lit",
    "changes": [
     {
@@ -113,14 +121,22 @@
      "state": "on"
     },
     {
-     "placement": "lamp_corridor_e",
-     "state": "on"
+     "placement": "stripe_right_1",
+     "state": "lit"
+    },
+    {
+     "placement": "stripe_right_2",
+     "state": "lit"
+    },
+    {
+     "placement": "stripe_right_3",
+     "state": "lit"
     }
    ]
   },
   {
    "id": "ls.garden-wake",
-   "description": "Garden lamps wake to the wider pulse glow, coral blooms appear and the cut-through opens (north rim too).",
+   "description": "Garden lamps wake to the wider pulse glow, coral blooms appear, the cut-through opens along column x12 and the seating nook is revealed.",
    "applies_when": "o06.t.seal",
    "changes": [
     {
@@ -128,8 +144,8 @@
      "state": "after"
     },
     {
-     "placement": "garden_north_rim",
-     "state": "open"
+     "placement": "seating_nook",
+     "state": "shown"
     }
    ]
   }
@@ -221,7 +237,8 @@
      "text": "Five planters were duplicated overnight and nobody knows which is which. Could you tag each one?",
      "hint": null,
      "when": "interact:ivo",
-     "cue": "Ivo: Plant Tags before the Orientation review: neutral"
+     "cue": "Ivo: Plant Tags before the Orientation review: neutral",
+     "modal": true
     },
     {
      "id": "pt.d.done",
@@ -230,7 +247,8 @@
      "text": "All five tagged. I can finally tell the ferns from the flax.",
      "hint": null,
      "when": "scene_success:pt-labels",
-     "cue": "Ivo: Plant Tags before the review: neutral"
+     "cue": "Ivo: Plant Tags before the review: neutral",
+     "modal": true
     }
    ],
    "reward": {
@@ -253,8 +271,9 @@
   }
  ],
  "notes": [
-  "Hub: the garden loop (bands x8-9, x17-18, y4-5, y12-13) is the one-camera hub. Exits visible from it: the printer (north), the east corridor to the Records door, the mailroom (southeast), the elevator (southwest).",
-  "Hub, short branch, task room, changed return route: printer branch (level 02) returns past a steady task light; the clock room (03) opens its glass door; the left (04) and right (05) desk branches light their corridor stripes; the review table (06) opens the east door and the garden cut-through.",
-  "Not placed: the previously hidden seating nook the levels.md revisit payoff mentions (kit has sofa and side_table; place it after the cut-through opens, see LEVEL_SHEET.md)."
+  "Hub: the garden loop (bands x8-9, x17-18, y4-5, y12-13) is the one-camera hub. Exits visible from it: the printer (north), the east corridor to the Records door, the mailroom (southeast), the elevator (north-west).",
+  "Hub, short branch, task room, changed return route: printer branch (level 02) returns past a steady task light; the north-wall meeting room (03) opens its glass door; the left (04) and right (05) desk branches light their lamps and corridor stripes and change the pinboard beside the arrival; the review table (06) opens the east door and the garden cut-through and reveals the seating nook.",
+  "Arrival (north wall, west end) was moved from the south-west by a player decision: it keeps the keyboard inset clear and the first lap starts on the camera's top-left. The first lap is the counter-clockwise loop reached from the LIFT mat: down the west walkway (x3), right along row 12, up column 17, left along row 5.",
+  "The garden cut-through is the garden landmark's `after` state (column x12, y7-10, parts `garden_base_open` and `garden_north_rim_open`). The seating nook (`seating_nook_after`, 3x2 at (20,7)) is placed hidden and shown by `ls.garden-wake`; both are in the kit branch feat/art-orientation-completion, so the nook is flagged `art_gap` here until that branch merges."
  ]
 }

@@ -359,7 +359,8 @@
    "text": "The badge printer keeps printing generic names. Please restore my badge and three coworkers' labels.",
    "hint": null,
    "when": "step_start:o02.s.talk",
-   "cue": "Ivo 01-03: neutral"
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
   },
   {
    "id": "o02.d.hint-b",
@@ -372,7 +373,8 @@
     "gesture": "tap B. It only jumps by word while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-w",
@@ -385,7 +387,8 @@
     "gesture": "tap W. It only jumps by word while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-r",
@@ -398,7 +401,8 @@
     "gesture": "tap R. A plain R types r; reload is Control + Shift + R."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-n",
@@ -411,7 +415,8 @@
     "gesture": "tap N. It only submits (Return) while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-u",
@@ -424,7 +429,8 @@
     "gesture": "tap U. It only pages up while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-m",
@@ -437,7 +443,8 @@
     "gesture": "tap M. It only deletes backward while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-t",
@@ -450,7 +457,8 @@
     "gesture": "tap T. It only jumps to the document start while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-x",
@@ -463,7 +471,8 @@
     "gesture": "tap X. It only deletes forward (Control + D) while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-v",
@@ -476,7 +485,8 @@
     "gesture": "tap V. V alone still types v; the practice toggle needs the physical modifiers."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-40",
@@ -489,7 +499,8 @@
     "gesture": "tap 4, tap 0. Plain taps stay digits on base."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-comma",
@@ -502,7 +513,8 @@
     "gesture": "tap comma. It only deletes forward while nav is held."
    },
    "speaker_kind": "object",
-   "when": "step_start:o02.s.guided"
+   "when": "step_start:o02.s.guided",
+   "modal": false
   },
   {
    "id": "o02.d.hint-request",
@@ -516,7 +528,8 @@
    },
    "when": "request:o02.d.hint-b",
    "cue": "hint lines are neutral",
-   "on_request": true
+   "on_request": true,
+   "modal": false
   },
   {
    "id": "o02.d.success",
@@ -525,7 +538,8 @@
    "text": "Every card says what it should. The task light has steadied. Mira is in the mailroom if you want a loop to learn.",
    "hint": null,
    "when": "scene_success:o02-recall",
-   "cue": "Ivo 01-03: neutral"
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
   },
   {
    "id": "o02.d.mira-early",
@@ -534,7 +548,8 @@
    "text": "Once the printer is honest, find me in the mailroom. I will teach you the loop.",
    "hint": null,
    "when": "interact:mira_early",
-   "cue": "Mira: offering any route"
+   "cue": "Mira: offering any route",
+   "modal": true
   },
   {
    "id": "o02.d.badge-note",
@@ -543,7 +558,8 @@
    "text": "The old badge names a department that does not match today's sign.",
    "hint": null,
    "when": "interact:artifact_unissued_badge",
-   "cue": "Engineer: inspecting a tampering artifact (Unissued badge)"
+   "cue": "Engineer: inspecting a tampering artifact (Unissued badge)",
+   "modal": true
   }
  ],
  "triggers": [

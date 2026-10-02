@@ -469,7 +469,8 @@
    "text": "I brought a spare keyboard to the garden desk. The roster has one row of native editing and one row of alternate navigation. Pace calls this a consistency review.",
    "hint": null,
    "when": "step_start:o06.s.talk",
-   "cue": "Ivo 06: neutral"
+   "cue": "Ivo 06: neutral",
+   "modal": true
   },
   {
    "id": "o06.d.pace-review",
@@ -478,7 +479,8 @@
    "text": "A consistency review. It rarely asks whether a route is consistent with what people need.",
    "hint": null,
    "when": "dialogue_done:o06.d.ask",
-   "cue": "Ivo 06: when Pace calls the review a 'consistency review'"
+   "cue": "Ivo 06: when Pace calls the review a 'consistency review'",
+   "modal": true
   },
   {
    "id": "o06.d.up",
@@ -491,7 +493,8 @@
     "gesture": "Up Arrow is also physical Right Command + K on base, the same as tap-hold Caps + K."
    },
    "when": "step_start:o06.s.rcmd",
-   "cue": "hint lines are neutral"
+   "cue": "hint lines are neutral",
+   "modal": false
   },
   {
    "id": "o06.d.backspace",
@@ -504,7 +507,8 @@
     "gesture": "On base, the physical Backspace key still works. You'll learn tap-hold Caps + M in Records."
    },
    "speaker_kind": "object",
-   "when": "step_start:o06.s.native"
+   "when": "step_start:o06.s.native",
+   "modal": false
   },
   {
    "id": "o06.d.microsoft",
@@ -517,7 +521,8 @@
     "gesture": "Command is physical Alt on that device; Windows is Option."
    },
    "speaker_kind": "object",
-   "when": "step_start:o06.s.setup"
+   "when": "step_start:o06.s.setup",
+   "modal": false
   },
   {
    "id": "o06.d.seal",
@@ -526,7 +531,8 @@
    "text": "Orientation seal earned. The east door and the garden route are open.",
    "hint": null,
    "when": "scene_success:o06-roster",
-   "cue": "Engineer: each seal (06): pleased"
+   "cue": "Engineer: each seal (06): pleased",
+   "modal": true
   },
   {
    "id": "o06.d.laugh",
@@ -535,7 +541,8 @@
    "text": "I have never seen the roster do that. Please, go through the east door. Take the garden shortcut when you come back.",
    "hint": null,
    "when": "trigger:o06.t.seal",
-   "cue": "Ivo: ivo_laugh after the 06 seal"
+   "cue": "Ivo: ivo_laugh after the 06 seal",
+   "modal": true
   },
   {
    "id": "o06.d.receipt",
@@ -544,7 +551,8 @@
    "text": "Pace counted a detour as a successful movement.",
    "hint": null,
    "when": "interact:artifact_first_route_receipt",
-   "cue": "Engineer: inspecting a tampering artifact (First route receipt)"
+   "cue": "Engineer: inspecting a tampering artifact (First route receipt)",
+   "modal": true
   }
  ],
  "triggers": [
@@ -614,7 +622,7 @@
  ],
  "state_changes": {
   "before": "The east Records door is closed with its seal sign, the garden is closed on every side, the two workers pace in step.",
-  "after": "The Records door is open, a flagstone cut-through opens the garden's south rim and a north rim, the garden lamps pulse and coral blooms appear, the workers idle independently, Ivo laughs.",
+  "after": "The Records door is open, a flagstone cut-through opens the garden's south rim and a north rim, the garden lamps pulse and coral blooms appear, the seating nook is revealed, the workers idle independently, Ivo laughs.",
   "visible_changes": [
    {
     "kind": "placement_state",
@@ -650,6 +658,13 @@
     "from": "closed",
     "to": "open",
     "note": "garden cut-through"
+   },
+   {
+    "kind": "placement_state",
+    "target": "seating_nook",
+    "from": "hidden",
+    "to": "shown",
+    "note": "the previously hidden seating nook (art gap seating_nook_after)"
    }
   ]
  },

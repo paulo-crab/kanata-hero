@@ -7,7 +7,7 @@
  "requires": [
   "orientation-02"
  ],
- "story": "A meeting-room clock shows different times on its two faces, one on each side of the glass, and Ivo's scheduling form has lost its spaces and tabs. The engineer tells a tapped Space from a held one, a tapped Tab from a held one, and sees that a modifier pressed first keeps both ordinary.",
+ "story": "A meeting-room clock beside the north-wall glass door shows different times on its two faces, and Ivo's scheduling form has lost its spaces and tabs. The engineer tells a tapped Space from a held one, a tapped Tab from a held one, and sees that a modifier pressed first keeps both ordinary.",
  "steps": [
   {
    "id": "o03.s.talk",
@@ -25,8 +25,8 @@
    "interaction": "form_wall",
    "completes_when": "scene_success:o03-guided-space & scene_success:o03-guided-tab",
    "target_cell": [
-    3,
-    8
+    24,
+    2
    ]
   },
   {
@@ -35,8 +35,8 @@
    "interaction": "form_wall",
    "completes_when": "scene_success:o03-guided-modfirst",
    "target_cell": [
-    3,
-    8
+    24,
+    2
    ]
   },
   {
@@ -45,8 +45,8 @@
    "interaction": "form_wall",
    "completes_when": "scene_success:o03-variation",
    "target_cell": [
-    3,
-    8
+    24,
+    2
    ]
   },
   {
@@ -55,8 +55,8 @@
    "interaction": "form_wall",
    "completes_when": "scene_success:o03-recall",
    "target_cell": [
-    3,
-    8
+    24,
+    2
    ]
   }
  ],
@@ -441,7 +441,8 @@
    "text": "The meeting-room clock disagrees with itself, and my scheduling form lost its spaces and tabs. Can you put them back?",
    "hint": null,
    "when": "step_start:o03.s.talk",
-   "cue": "Ivo 01-03: neutral"
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
   },
   {
    "id": "o03.d.space",
@@ -454,7 +455,8 @@
     "gesture": "tap Space. Tap-hold would enter numbers-symbols."
    },
    "when": "step_start:o03.s.guided",
-   "cue": "hint lines are neutral"
+   "cue": "hint lines are neutral",
+   "modal": false
   },
   {
    "id": "o03.d.tab",
@@ -467,7 +469,8 @@
     "gesture": "tap Tab. Tap-hold Tab sends Shift + Command + Space for Homerow."
    },
    "when": "scene_success:o03-guided-space",
-   "cue": "hint lines are neutral"
+   "cue": "hint lines are neutral",
+   "modal": false
   },
   {
    "id": "o03.d.shift-tab",
@@ -480,7 +483,8 @@
     "gesture": "tap-hold F (Shift) first, then tap Tab. A held modifier keeps Tab ordinary."
    },
    "when": "scene_success:o03-guided-tab",
-   "cue": "hint lines are neutral"
+   "cue": "hint lines are neutral",
+   "modal": false
   },
   {
    "id": "o03.d.space-request",
@@ -494,7 +498,8 @@
    },
    "when": "request:o03.d.space",
    "cue": "hint lines are neutral",
-   "on_request": true
+   "on_request": true,
+   "modal": false
   },
   {
    "id": "o03.d.homerow",
@@ -503,7 +508,8 @@
    "text": "If Homerow opened, tell the form so; if not, tell it that too. Neither answer changes the score.",
    "hint": null,
    "when": "scene_success:o03-guided-space",
-   "cue": "Ivo 01-03: neutral"
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
   },
   {
    "id": "o03.d.success",
@@ -512,7 +518,8 @@
    "text": "The hands agree. Two times, one clock, and my tablet has stopped flashing.",
    "hint": null,
    "when": "scene_success:o03-recall",
-   "cue": "Ivo 03: when the clock hands synchronize: pleased"
+   "cue": "Ivo 03: when the clock hands synchronize: pleased",
+   "modal": true
   }
  ],
  "triggers": [
@@ -549,7 +556,7 @@
     },
     {
      "op": "journal",
-     "text": "Orientation 03 complete: the clock room is open."
+     "text": "Orientation 03 complete: the meeting-room door is open."
     },
     {
      "op": "complete_level",
@@ -559,8 +566,8 @@
   }
  ],
  "state_changes": {
-  "before": "The twin clock shows two different times, the clock room's glass door is closed, Ivo's tablet flashes.",
-  "after": "Both faces agree, the glass door has slid aside and the room is walkable, Ivo's tablet is steady.",
+  "before": "The twin clock shows two different times, the meeting room's glass door is closed, Ivo's tablet flashes.",
+  "after": "Both faces agree, the glass door has slid aside on its closed, half and open frames, Ivo's tablet is steady.",
   "visible_changes": [
    {
     "kind": "placement_state",
@@ -597,5 +604,5 @@
    "placement": "pace_wall_sign"
   }
  ],
- "review_notes": "At 1366x768 the form wall (2..4,7) and its approach (3,8) lie in the northwest. With the camera clamped at the map's west edge the avatar sits at screen x 56 and y about 56 at this stop, above the keyboard inset (y from 103), so the form is readable with the inset open. The Tab practice region announces itself and Escape (tap Caps) leaves it."
+ "review_notes": "At 1366x768 the projected form (x21-24 on the north wall) and its approach (24,2) lie in the north-east. With the camera clamped at the north and east edges the avatar sits at screen (264,48) at this stop, far from the keyboard inset (x 4-147, y 103-176), so the form is readable with the inset open. The Tab practice region announces itself and Escape (tap Caps) leaves it."
 }
