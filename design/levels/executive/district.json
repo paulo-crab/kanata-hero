@@ -1,0 +1,421 @@
+{
+  "id": "executive",
+  "name": "Executive Floor",
+  "size_cells": [
+    30,
+    20
+  ],
+  "kit": "art-direction/kit/executive-atlas.json",
+  "palette": "executive",
+  "camera_bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 20
+  },
+  "hub_cell": [
+    14,
+    13
+  ],
+  "entrances": [
+    {
+      "id": "enter-elevator",
+      "cell": [
+        27,
+        16
+      ],
+      "facing": "w",
+      "from": {
+        "district": "executive",
+        "link": "link.elevator.executive"
+      },
+      "note": "Arrival from the Executive elevator stop (east wall, south-east). The stop opens with the Night seal."
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit-elevator",
+      "cell": [
+        27,
+        16
+      ],
+      "to": {
+        "district": "executive",
+        "link": "link.elevator.executive"
+      },
+      "note": "The elevator returns to every unlocked district; the final door leads to a daylit terrace that is scenery, not a district link."
+    }
+  ],
+  "elevator": {
+    "cell": [
+      28,
+      15
+    ],
+    "facing": "w",
+    "placement": "elevator",
+    "link": "link.elevator.executive",
+    "arrival_cell": [
+      27,
+      16
+    ],
+    "note": "Door faces west into the atrium; the call panel is at (28,14)."
+  },
+  "light_states": [
+    {
+      "id": "ls-20-name-repaired",
+      "description": "The Name repaired: the five identical blank nameplates on the planter become distinct plates with their own marks.",
+      "applies_when": "tr-20-name-repaired",
+      "changes": [
+        {
+          "placement": "atrium_nameplates",
+          "state": "after"
+        }
+      ]
+    },
+    {
+      "id": "ls-20-route-repaired",
+      "description": "The Route repaired: the copper floor lines straighten into three clean paths with chevrons to the final door.",
+      "applies_when": "tr-20-route-repaired",
+      "changes": [
+        {
+          "placement": "atrium_inlay",
+          "state": "after"
+        }
+      ]
+    },
+    {
+      "id": "ls-20-count-repaired",
+      "description": "The Count repaired: window views resolve into real daylight, a warm pool of light reaches the planter and the four corner cubes become soft shrubs.",
+      "applies_when": "tr-20-count-repaired",
+      "changes": [
+        {
+          "placement": "atrium_pots",
+          "state": "after",
+          "note": "atrium_pots_after plus atrium_daylight_after"
+        },
+        {
+          "placement": "win_a_0",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_0",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_a_1",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_1",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_a_2",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_2",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_a_3",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_3",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_a_4",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_4",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_a_5",
+          "state": "daylight"
+        },
+        {
+          "placement": "win_b_5",
+          "state": "daylight"
+        },
+        {
+          "placement": "shaft_w",
+          "state": "daylight",
+          "note": "warm shaft"
+        },
+        {
+          "placement": "shaft_e",
+          "state": "daylight",
+          "note": "warm shaft"
+        }
+      ]
+    },
+    {
+      "id": "ls-20-door-open",
+      "description": "Third repair: the final door slides open onto the daylit terrace and every lamp switches from the steady glow to the wider pulse.",
+      "applies_when": "tr-20-count3",
+      "changes": [
+        {
+          "placement": "final_door",
+          "state": "open"
+        },
+        {
+          "placement": "atrium_lamp_1",
+          "state": "pulse"
+        },
+        {
+          "placement": "atrium_lamp_2",
+          "state": "pulse"
+        },
+        {
+          "placement": "atrium_lamp_3",
+          "state": "pulse"
+        },
+        {
+          "placement": "atrium_lamp_4",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_fd_a",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_fd_b",
+          "state": "pulse"
+        }
+      ]
+    },
+    {
+      "id": "ls-20-epilogue",
+      "description": "After the final audit: the restored state is kept for the playable epilogue; the door stays open and the lamps keep pulsing.",
+      "applies_when": "tr-20-audit-done",
+      "changes": [
+        {
+          "placement": "final_door",
+          "state": "open"
+        },
+        {
+          "placement": "atrium_lamp_1",
+          "state": "pulse"
+        }
+      ]
+    }
+  ],
+  "ambient": "Spacious air, leaves, restrained piano-like discovery notes. Repeated geometry becomes varied, window light warms, and the final door opens to daylight. Sparse atrium ambience gains leaves, footsteps and a short seal melody as people return.",
+  "side_quests": [
+    {
+      "id": "names-on-the-wall",
+      "title": "Names on the Wall",
+      "giver": "vale",
+      "available_after": "executive-20",
+      "interactions": [
+        "int-names-wall"
+      ],
+      "terminal_scenes": [
+        {
+          "id": "n20-side-names-on-the-wall",
+          "kind": "form",
+          "task_summary": "Restore the staff credit list for the wall: six lines with capitals and a dash, using the known skills.",
+          "success_criteria": [
+            "Every line equals its target exactly.",
+            "No timer, no hardware requirement; the dash can come from the base minus key or from held Space."
+          ],
+          "retry": "instant",
+          "position_cue": false,
+          "confidence": "output-observed",
+          "task": {
+            "prompt": "Vale asks for the credit list to go back on the wall, spelled the way each person spells it.",
+            "items": [
+              {
+                "id": "n1",
+                "initial": "ivo  reception lead",
+                "target": "Ivo - reception lead"
+              },
+              {
+                "id": "n2",
+                "initial": "noor archive clerk",
+                "target": "Noor - archive clerk"
+              },
+              {
+                "id": "n3",
+                "initial": "hal  systems technician",
+                "target": "Hal - systems technician"
+              },
+              {
+                "id": "n4",
+                "initial": "ada  night caretaker",
+                "target": "Ada - night caretaker"
+              },
+              {
+                "id": "n5",
+                "initial": "mira courier",
+                "target": "Mira - courier"
+              },
+              {
+                "id": "n6",
+                "initial": "vale executive liaison",
+                "target": "Vale - executive liaison"
+              }
+            ],
+            "steps": [
+              {
+                "id": "caps",
+                "needs": "Shift capital from the home row (opposite hand), plain taps for the rest"
+              },
+              {
+                "id": "edit",
+                "needs": "Caps + 4 to the line end, Caps + B to words, Caps + M or Caps + comma to delete extra spaces"
+              },
+              {
+                "id": "dash",
+                "needs": "a minus: the base minus key or tap-hold Space + '; the output is what counts"
+              }
+            ],
+            "accepts": [
+              "all six lines"
+            ],
+            "rejects": [
+              "a line that differs by one character"
+            ],
+            "feedback": {
+              "diff": "A line differs from the target at the marked character. Retry instantly."
+            }
+          }
+        }
+      ],
+      "gestures": [
+        {
+          "id": "B03",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "B04",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "B05",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "N06",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "N08",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "N13",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        },
+        {
+          "id": "N15",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n20-side-names-on-the-wall"
+        }
+      ],
+      "dialogue": [
+        {
+          "id": "vale-names-offer",
+          "speaker": "vale",
+          "portrait": "softened",
+          "text": "The wall by the alcove lost its credits when the signs were renamed. Would you put them back, with the people spelled as they spell themselves?",
+          "hint": null,
+          "when": "interact:int-names-wall",
+          "cue": "Vale: Names on the Wall (softened)"
+        },
+        {
+          "id": "vale-names-thanks",
+          "speaker": "vale",
+          "portrait": "softened",
+          "text": "That is the list, and it belongs where everyone walks past. Take the small plaque for your desk.",
+          "hint": null,
+          "when": "scene_success:n20-side-names-on-the-wall",
+          "cue": "Vale: Names on the Wall (softened)"
+        }
+      ],
+      "reward": {
+        "desk_decoration": "desk_name_plaque",
+        "dialogue": "vale-names-thanks",
+        "world": "the alcove nameplate bar shows the restored credit list (alternate sight line)"
+      }
+    }
+  ],
+  "pace_signs": [
+    {
+      "placement": "pace_dir_name",
+      "state": "repeat",
+      "text": "Name updated for clarity. Name updated for clarity."
+    },
+    {
+      "placement": "pace_dir_name",
+      "state": "optional",
+      "text": "Guidance, if you want it.",
+      "after_level": "executive-20"
+    },
+    {
+      "placement": "pace_dir_route",
+      "state": "repeat",
+      "text": "Route score 98. Route score 98. Route score 98."
+    },
+    {
+      "placement": "pace_dir_route",
+      "state": "optional",
+      "text": "Guidance, if you want it.",
+      "after_level": "executive-20"
+    },
+    {
+      "placement": "pace_dir_count",
+      "state": "repeat",
+      "text": "Total 5100. Efficiency up. Total 5100."
+    },
+    {
+      "placement": "pace_dir_count",
+      "state": "optional",
+      "text": "Guidance, if you want it.",
+      "after_level": "executive-20"
+    },
+    {
+      "placement": "pace_dir_hub",
+      "state": "default",
+      "text": "Atrium: branches The Name, The Route, The Count."
+    },
+    {
+      "placement": "pace_dir_hub",
+      "state": "optional",
+      "text": "Guidance, if you want it: the shortest route to the final door.",
+      "after_level": "executive-20"
+    }
+  ],
+  "notes": [
+    "Layout: elevator (south-east) -> south ring (y 13-14) -> three steps into the well where Vale stands. The final door is on the east wall (rows 9-11) and is visible from the elevator arrival in the same camera view.",
+    "Branches (any order): The Name (north-west room, branch x 4-5), The Route (north-east room, branch x 24-25), The Count (south room, branch x 13-14). Each is hub -> short branch -> task room -> back to the ring.",
+    "Vale softening is by number of repairs: states executive-repairs-1/2/3 (poses stand in for the undrawn states 2 and 3). Rules: an npc op never moves an NPC to an earlier state; a dialogue plays at most once per save; when several dialogues match an interaction, the one with the most trigger atoms wins.",
+    "Arrival order of the coworkers: Ivo and Noor after the first repair, Hal and Ada after the second, Mira after the third as the final door opens. At its arrive cell an NPC is drawn as a silhouette; at its gather cell, as the sprite.",
+    "Mira has no route here. Her optional final story scene is the interaction int-mira-final with dialogue mira-final-1/2, available once the epilogue is reached and all six courier routes are cleared (see requires on the interaction).",
+    "The atrium landmark is split into registered parts at one cell so each repair swaps one part (nameplates, floor lines, pots plus daylight pool); the kit landmark atrium_tree lists the same parts as its before and after states."
+  ]
+}
