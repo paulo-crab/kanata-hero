@@ -272,3 +272,118 @@ def flower(r, x, y, pair=False):
     if pair:
         r.img[y - 1, x - 1] = YELLOW
         r.img[y - 1, x + 1] = YELLOW
+
+
+# ------------------------------------------------------------------ light passes (RICH_FINISH_SPEC.md section 4)
+# Applied to a finished 320x192 frame, after the room is drawn and recoloured and before the floating markers.
+# Every pass adds or multiplies by a constant on a mask, so each result is a flat colour step.
+
+WALL_Y = 34  # first floor row below the north wall
+
+
+def _tint(a, mask, mul=(1, 1, 1), add=(0, 0, 0)):
+    f = a[mask].astype(np.float32) * np.array(mul, np.float32) + np.array(add, np.float32)
+    a[mask] = np.clip(f, 0, 255).astype(np.uint8)
+
+
+def _shift(m, dx, dy):
+    out = np.zeros_like(m)
+    h, w = m.shape
+    ys, xs = slice(max(0, dy), min(h, h + dy)), slice(max(0, dx), min(w, w + dx))
+    yo, xo = slice(max(0, -dy), min(h, h - dy)), slice(max(0, -dx), min(w, w - dx))
+    out[ys, xs] = m[yo, xo]
+    return out
+
+
+def floor_mask(a, floor):
+    """Pixels of the plain floor, joints and inlay band; `floor` = [fill, joint, inlay] RGB triples."""
+    m = np.zeros(a.shape[:2], bool)
+    for c in floor:
+        m |= np.all(a == np.asarray(c, np.uint8), axis=2)
+    m[:WALL_Y] = False
+    return m
+
+
+def slab_variation(a, floor, seed=3):
+    """28% of the 32 px running-bond slabs drop a step, 22% rise one; 1.8% of floor pixels get a wear speck."""
+    rnd = np.random.RandomState(seed)
+    f = np.all(a == np.asarray(floor[0], np.uint8), axis=2)
+    f[:WALL_Y] = False
+    for row in range(0, 192, 32):
+        off = 16 if (row // 32) % 2 else 0
+        for col in range(off - 32, 320, 32):
+            m = np.zeros_like(f)
+            m[max(0, row + 1):row + 32, max(0, col + 1):col + 32] = True
+            m &= f
+            roll = rnd.rand()
+            if roll < 0.28:
+                _tint(a, m, add=(-7, -9, -12))
+            elif roll < 0.5:
+                _tint(a, m, add=(5, 5, 4))
+    g = floor_mask(a, floor)
+    _tint(a, g & (rnd.rand(*g.shape) < 0.018), add=(-14, -16, -20))
+
+
+def cast_shadows(a, objects, floor, dx=4, dy=3, mul=(0.80, 0.78, 0.86)):
+    """A flat shadow patch on the floor, offset away from the upper-left light, from every object pixel."""
+    fl = floor_mask(a, floor)
+    obj = objects & ~fl
+    obj[:WALL_Y] = False
+    sh = _shift(obj, dx, dy) & _shift(obj, dx // 2, dy // 2) & fl
+    _tint(a, sh, mul=mul)
+
+
+def lamp_glow(a, lamps, floor, glow_pixel, r_out=26, r_in=12, add_out=(9, 6, -3), add_in=(16, 11, -6)):
+    """Two hard-edged warm steps on the floor around each lamp (ellipse, vertical stretch 1.25)."""
+    fl = floor_mask(a, floor) | np.all(a == np.asarray(glow_pixel, np.uint8), axis=2)
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+    for cx, cy in lamps:
+        d = np.hypot(xx - cx, (yy - cy) * 1.25)
+        _tint(a, fl & (d < r_out) & (d >= r_in), add=add_out)
+        _tint(a, fl & (d < r_in), add=add_in)
+
+
+def light_shafts(a, windows, floor, slope=0.5, y_end=150, add=(11, 9, 2), add_core=(9, 7, 1)):
+    """Diagonal bands from the north windows, two flat steps; windows = [(x, width)]."""
+    fl = floor_mask(a, floor)
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+    for x0, w in windows:
+        sx = (yy - WALL_Y) * slope
+        band = (xx >= x0 + sx) & (xx < x0 + w + sx) & (yy < y_end)
+        core = (xx >= x0 + sx + w * 0.25) & (xx < x0 + w * 0.75 + sx) & (yy < y_end)
+        _tint(a, fl & band, add=add)
+        _tint(a, fl & core, add=add_core)
+
+
+def light_room(a, floor, lamps, windows, glow_pixel, canopy=None, no_shadow_from_x=292, rug=None):
+    """The whole light stage in spec order. `canopy` = (box, green colours) for the tree's larger shadow;
+    `rug` = a (y0, y1, x0, x1) box whose pixels cast no shadow. Modifies and returns a."""
+    slab_variation(a, floor)
+    fl = floor_mask(a, floor)
+    objects = ~fl
+    objects[:, no_shadow_from_x:] = False
+    if rug is not None:
+        y0, y1, x0, x1 = rug
+        objects[y0:y1, x0:x1] = False
+    cast_shadows(a, objects, floor)
+    if canopy is not None:
+        (y0, y1, x0, x1), greens = canopy
+        g = np.zeros(a.shape[:2], bool)
+        for c in greens:
+            g |= np.all(a == np.asarray(c, np.uint8), axis=2)
+        box = np.zeros_like(g)
+        box[y0:y1, x0:x1] = True
+        cast_shadows(a, g & box, floor, dx=10, dy=8, mul=(0.84, 0.84, 0.90))
+    lamp_glow(a, lamps, floor, glow_pixel)
+    light_shafts(a, windows, floor)
+    return a
+
+
+def light_orientation(a, bst):
+    """The reference light for the Orientation review room (Mock 2.1): five lamps, three north windows,
+    the tree's canopy shadow, and no shadow from the east wall mass or the rug at the doorway."""
+    floor = [bst.STONE[3], bst.STONE[2], bst.STONE[1]]
+    fol = [hx(h) for h in dp.FOLIAGE_TONES]
+    return light_room(a, floor, [(x, y - 1) for x, y in ((92, 72), (180, 72), (180, 130), (284, 52), (284, 126))],
+                      [(38, 26), (212, 26), (244, 26)], bst.BRASS[3], canopy=((56, 136, 90, 182), fol[1:]),
+                      rug=(76, 106, 260, 292))
