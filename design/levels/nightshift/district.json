@@ -1,0 +1,346 @@
+{
+  "id": "nightshift",
+  "name": "Night Shift",
+  "size_cells": [
+    34,
+    20
+  ],
+  "kit": "art-direction/kit/nightshift-atlas.json",
+  "palette": "nightshift",
+  "camera_bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 20
+  },
+  "hub_cell": [
+    28,
+    16
+  ],
+  "entrances": [
+    {
+      "id": "enter-elevator",
+      "cell": [
+        31,
+        16
+      ],
+      "facing": "w",
+      "from": {
+        "district": "nightshift",
+        "link": "link.elevator.nightshift"
+      },
+      "note": "Arrival from the Night Shift elevator stop (east wall of the break room). The stop opens with the Systems seal."
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit-elevator",
+      "cell": [
+        31,
+        16
+      ],
+      "to": {
+        "district": "nightshift",
+        "link": "link.elevator.nightshift"
+      },
+      "note": "The elevator returns to every unlocked district (Orientation, Records, Systems). Always available; the Executive stop appears on the panel after the Night seal."
+    }
+  ],
+  "elevator": {
+    "cell": [
+      32,
+      15
+    ],
+    "facing": "w",
+    "placement": "elevator",
+    "link": "link.elevator.nightshift",
+    "arrival_cell": [
+      31,
+      16
+    ],
+    "note": "Door faces west into the break room; the call panel at (31, 14) lights the Executive stop after level 19."
+  },
+  "light_states": [
+    {
+      "id": "ls-17-glass-open",
+      "description": "The security glass opens to a two-cell walkway and the landing lamp wakes.",
+      "applies_when": "tr-17-glass-open",
+      "changes": [
+        {
+          "placement": "vestibule_gate",
+          "state": "open"
+        },
+        {
+          "placement": "lamp_landing",
+          "state": "on"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-ticket-1",
+      "description": "Ticket 1 repaired: a different office lamp wakes along the lit route.",
+      "applies_when": "tr-18-ticket-1",
+      "changes": [
+        {
+          "placement": "lamp_b1",
+          "state": "on",
+          "note": "ticket 1 repaired: lamp 1 on the lit route wakes"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-ticket-2",
+      "description": "Ticket 2 repaired: a different office lamp wakes along the lit route.",
+      "applies_when": "tr-18-ticket-2",
+      "changes": [
+        {
+          "placement": "lamp_b2",
+          "state": "on",
+          "note": "ticket 2 repaired: lamp 2 on the lit route wakes"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-ticket-3",
+      "description": "Ticket 3 repaired: a different office lamp wakes along the lit route.",
+      "applies_when": "tr-18-ticket-3",
+      "changes": [
+        {
+          "placement": "lamp_b3",
+          "state": "on",
+          "note": "ticket 3 repaired: lamp 3 on the lit route wakes"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-ticket-4",
+      "description": "Ticket 4 repaired: a different office lamp wakes along the lit route.",
+      "applies_when": "tr-18-ticket-4",
+      "changes": [
+        {
+          "placement": "lamp_b4",
+          "state": "on",
+          "note": "ticket 4 repaired: lamp 4 on the lit route wakes"
+        },
+        {
+          "placement": "station_b1",
+          "state": "lit",
+          "note": "the west-side station lights with its pool"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-ticket-5",
+      "description": "Ticket 5 repaired: a different office lamp wakes along the lit route.",
+      "applies_when": "tr-18-ticket-5",
+      "changes": [
+        {
+          "placement": "lamp_b5",
+          "state": "on",
+          "note": "ticket 5 repaired: lamp 5 on the lit route wakes"
+        }
+      ]
+    },
+    {
+      "id": "ls-18-stair-open",
+      "description": "Ada opens the north stair: both ledger doors slide open and a silhouette appears behind the ledger glass.",
+      "applies_when": "tr-18-recall-done",
+      "changes": [
+        {
+          "placement": "door_stair",
+          "state": "open"
+        },
+        {
+          "placement": "door_service",
+          "state": "open"
+        }
+      ]
+    },
+    {
+      "id": "ls-19-lit",
+      "description": "Level 19: the break room window glows, the corridor is warm with moving silhouettes, and the Executive elevator stop appears.",
+      "applies_when": "tr-19-seal",
+      "changes": [
+        {
+          "placement": "long_window",
+          "state": "after",
+          "note": "break room behind the long window lights warm, silhouettes alternate (window_figs a/b at 700 ms), warm bands fall on the floor"
+        },
+        {
+          "placement": "lamp_br_a",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_br_b",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_c1",
+          "state": "pulse",
+          "note": "service corridor wakes"
+        },
+        {
+          "placement": "lamp_c2",
+          "state": "pulse",
+          "note": "service corridor wakes"
+        },
+        {
+          "placement": "lamp_c3",
+          "state": "pulse",
+          "note": "service corridor wakes"
+        },
+        {
+          "placement": "lamp_c4",
+          "state": "pulse",
+          "note": "service corridor wakes"
+        },
+        {
+          "placement": "elevator_panel",
+          "state": "executive_lit"
+        },
+        {
+          "placement": "station_dawn",
+          "state": "lit"
+        }
+      ]
+    }
+  ],
+  "ambient": "Quiet HVAC, isolated lamp clicks, footsteps with long room reverb. The break room and service corridor gain warm light and human silhouettes after the review. Silence is meaningful here: no music cue under tasks.",
+  "side_quests": [
+    {
+      "id": "desk-for-dawn",
+      "title": "Desk for Dawn",
+      "giver": "ada",
+      "available_after": "nightshift-18",
+      "interactions": [
+        "int-dawn-desk"
+      ],
+      "terminal_scenes": [
+        {
+          "id": "n18-side-desk-for-dawn",
+          "kind": "editor",
+          "task_summary": "Write Ada's handover note exactly, using only Caps editing and home-row modifiers that work on practice.",
+          "success_criteria": [
+            "The note equals the target text exactly.",
+            "No physical key silenced on practice is needed; the editor accepts the same output either way."
+          ],
+          "retry": "instant",
+          "position_cue": false,
+          "confidence": "output-observed",
+          "task": {
+            "prompt": "Ada left a handover note full of mistakes. Correct it so the day shift can trust it.",
+            "initial": "handover: kettle ON, lamp 3 stays on, ledgre locked, spare key on the shelf",
+            "target": "Handover: kettle off, lamp 3 stays on, ledger locked, spare key under the plant",
+            "steps": [
+              {
+                "id": "cap",
+                "needs": "Shift capital H (tap-hold F first; H is on the other hand)"
+              },
+              {
+                "id": "word",
+                "needs": "Caps + W/B to the word ON, Caps + M or Caps + comma to delete, type \"off\""
+              },
+              {
+                "id": "swap",
+                "needs": "fix \"ledgre\" with Caps navigation and a forward delete (Caps + comma)"
+              },
+              {
+                "id": "tail",
+                "needs": "Caps + 4 to the end, delete \"on the shelf\" (Caps + M repeated) and type \"under the plant\""
+              }
+            ],
+            "accepts": [
+              "the exact target text"
+            ],
+            "rejects": [
+              "a note that differs by one character"
+            ],
+            "feedback": {
+              "diff": "The note differs from the target at the marked character. Retry instantly."
+            }
+          }
+        }
+      ],
+      "gestures": [
+        {
+          "id": "N05",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n18-side-desk-for-dawn"
+        },
+        {
+          "id": "N06",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n18-side-desk-for-dawn"
+        },
+        {
+          "id": "N08",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n18-side-desk-for-dawn"
+        },
+        {
+          "id": "N13",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n18-side-desk-for-dawn"
+        },
+        {
+          "id": "N15",
+          "phases": [
+            "variation"
+          ],
+          "scene_id": "n18-side-desk-for-dawn"
+        }
+      ],
+      "dialogue": [
+        {
+          "id": "ada-dawn-offer",
+          "speaker": "ada",
+          "portrait": "concerned",
+          "text": "The day shift reads whatever I leave on that desk, so the note has to be exact. Would you fix it with the same habits you used on the lit route? Take your time.",
+          "hint": null,
+          "when": "interact:int-ada-stair",
+          "cue": "Ada: Desk for Dawn (concerned)"
+        },
+        {
+          "id": "ada-dawn-thanks",
+          "speaker": "ada",
+          "portrait": "concerned",
+          "text": "That is the note I meant to write. Take the little lamp for your own desk: it stays on until someone replaces it.",
+          "hint": null,
+          "when": "scene_success:n18-side-desk-for-dawn",
+          "cue": "Ada: Desk for Dawn (concerned)"
+        }
+      ],
+      "reward": {
+        "desk_decoration": "desk_dawn_lamp",
+        "dialogue": "ada-dawn-thanks",
+        "world": "the dawn desk station wakes (dead to lit) with its pool of light"
+      }
+    }
+  ],
+  "pace_signs": [
+    {
+      "placement": "pace_sign_hall",
+      "state": "repeat",
+      "text": "Walking is working. Walking is working."
+    },
+    {
+      "placement": "pace_directory",
+      "state": "repeat",
+      "text": "Route A: approved. Route A: approved. Route A: approved."
+    }
+  ],
+  "notes": [
+    "Layout: break room (hub, south-east) -> vestibule nook and glass -> hall with the lit Caps route B and the silent legacy route A -> north stair door -> ledger (north-centre) -> service door -> service corridor (east) -> break room. The loop never needs the old route.",
+    "Break room and window: levels.md calls the break room warmly lit in 17 and lighting up in 19. Here the entry anteroom keeps its own lamp pools from the start; the glazed inner lounge behind the long interior window (the kit landmark) is the part that lights in 19.",
+    "Practice toggle-out instruction: the exit card is pinned to the HUD from arrival (trigger tr-17-pin-exit-card), repeated on the break-room noticeboard and the ledger noticeboard.",
+    "Both the stair door and the service door are modelled with the kit service_door state set (east-wall plane that faces west); the corridor-side face needs the art gap wall_w_plain."
+  ]
+}
