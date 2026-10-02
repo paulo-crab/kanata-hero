@@ -1,0 +1,2124 @@
+{
+  "id": "executive-20",
+  "number": 20,
+  "title": "Exit Interview",
+  "district": "executive",
+  "kind": "review",
+  "requires": [
+    "nightshift-19",
+    "seal:night"
+  ],
+  "story": "Vale waits beneath the atrium tree, ready to defend a summary nobody checked. Three short incident branches hold the raw evidence: a renamed department, a rewarded detour and a corrected total. After each repair a coworker arrives, Vale loosens, and the atrium changes; after the third, the final door opens onto daylight.",
+  "steps": [
+    {
+      "id": "s20-1",
+      "objective": "Talk to Vale under the atrium tree.",
+      "interaction": "int-vale",
+      "completes_when": "dialogue_done:vale-intro"
+    },
+    {
+      "id": "s20-2",
+      "objective": "Repair The Name: restore the department's original name (any order).",
+      "interaction": "int-terminal-name",
+      "completes_when": "scene_success:n20-t1-the-name"
+    },
+    {
+      "id": "s20-3",
+      "objective": "Repair The Route: remove the rewarded detour (any order).",
+      "interaction": "int-terminal-route",
+      "completes_when": "scene_success:n20-t2-the-route"
+    },
+    {
+      "id": "s20-4",
+      "objective": "Repair The Count: confirm the corrected total (any order).",
+      "interaction": "int-terminal-count",
+      "completes_when": "scene_success:n20-t3-the-count"
+    },
+    {
+      "id": "s20-5",
+      "objective": "Choose the accurate record in the final audit with Vale.",
+      "interaction": "int-vale-audit",
+      "completes_when": "scene_success:n20-t4-final-audit"
+    },
+    {
+      "id": "s20-6",
+      "objective": "Walk the restored atrium to the open final door.",
+      "interaction": "int-final-door",
+      "completes_when": "reach_cell:27,10",
+      "target_cell": [
+        27,
+        10
+      ]
+    }
+  ],
+  "gestures": [
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t1-the-name"
+    },
+    {
+      "id": "B09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "B10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "B11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "B12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "N21",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t2-the-route"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n20-t3-the-count"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "N21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t4-final-audit"
+    },
+    {
+      "id": "B13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t5-operations-cards"
+    },
+    {
+      "id": "B14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t5-operations-cards"
+    },
+    {
+      "id": "V01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t5-operations-cards"
+    },
+    {
+      "id": "V06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n20-t5-operations-cards"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "n20-t1-the-name",
+      "kind": "editor",
+      "task_summary": "The Name: select the exact original name in the evidence card, copy it, replace the stale name, and send the record to the original records folder.",
+      "success_criteria": [
+        "The config line equals \"display_name = \\\"Department of Motion\\\"  # restored\".",
+        "The destination chosen and sent is original_records/department.",
+        "The record was edited with the evidence card as the source, not typed from memory (the copy and paste were observed)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Pace renamed the department. The raw ticket still holds the original name.",
+        "lines": [
+          "EVIDENCE  raw ticket T-0001: department = \"Department of Motion\"",
+          "EDIT      display_name = \"Throughput Office\"  # set by pace"
+        ],
+        "initial": "display_name = \"Throughput Office\"  # set by pace",
+        "target": "display_name = \"Department of Motion\"  # restored",
+        "destinations": [
+          "original_records/department",
+          "pace/summary_view",
+          "archive/unsorted"
+        ],
+        "destination_answer": "original_records/department",
+        "steps": [
+          {
+            "id": "select-evidence",
+            "needs": "a Shift selection of the original name in the evidence card (home-row Shift first, then Caps + W / Caps + B)"
+          },
+          {
+            "id": "copy",
+            "needs": "Command + C: Command from tap-hold K, C on the other hand"
+          },
+          {
+            "id": "jump",
+            "needs": "Caps + 0, Caps + 4 and Caps + B / Caps + W / Caps + H / Caps + L to reach the stale name"
+          },
+          {
+            "id": "delete",
+            "needs": "select \"Throughput Office\" with Shift held before Caps, delete with Caps + M or Caps + Space"
+          },
+          {
+            "id": "paste",
+            "needs": "Command + V: Command from tap-hold K, V on the other hand"
+          },
+          {
+            "id": "comment",
+            "needs": "type \" # restored\": plain home-row taps, mapped letters (r, t) and a tapped Space"
+          },
+          {
+            "id": "modal",
+            "needs": "cancel the rename popup with a tap of Caps (Escape) once and Caps + [ once; Shift + Space types an ordinary space"
+          },
+          {
+            "id": "destination",
+            "needs": "choose the destination with Caps + J / Caps + K and send with Caps + N (Return)"
+          }
+        ],
+        "accepts": [
+          "the exact config line",
+          "the correct destination"
+        ],
+        "rejects": [
+          "a name typed from memory with any wrong letter",
+          "a destination other than original_records/department"
+        ],
+        "feedback": {
+          "diff": "The line differs from the original name at the marked character; retry instantly, the evidence card stays visible.",
+          "late_shift": "Observed: f. Hold Shift before Caps: once Caps is held, F types a literal f."
+        }
+      }
+    },
+    {
+      "id": "n20-t2-the-route",
+      "kind": "editor",
+      "task_summary": "The Route: find the original route in a long log with page and document jumps, remove the rewarded detour, zero the bonus and confirm the destination.",
+      "success_criteria": [
+        "The record equals \"step 1: mail_room / step 2: mira_desk / detour_bonus: 0\".",
+        "The original route was located in the evidence log with Caps page and document jumps, and the bonus was set with held-Space 0.",
+        "Tab moves to the next field and Shift + Tab back in the in-game focus lane; the held-Tab Homerow effect is explained and player-confirmed."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Pace rewarded a detour. The raw route has two steps.",
+        "initial": "step 1: mail_room\nstep 2: records_chute  # detour\nstep 3: atrium_loop  # detour\nstep 4: mira_desk\ndetour_bonus: 7",
+        "target": "step 1: mail_room\nstep 2: mira_desk\ndetour_bonus: 0",
+        "evidence_log": "60-line raw routing log; the original record T-0007 sits on the last page (Caps + G reaches it, Caps + T returns)",
+        "destinations": [
+          "original_route.log",
+          "pace/bonus_view",
+          "archive/unsorted"
+        ],
+        "destination_answer": "original_route.log",
+        "steps": [
+          {
+            "id": "find",
+            "needs": "Caps + D / Caps + U page jumps and Caps + G / Caps + T document jumps through the evidence log"
+          },
+          {
+            "id": "select-lines",
+            "needs": "select the two detour lines with Shift held before Caps (Caps + J, Caps + 0, Caps + 4) and delete"
+          },
+          {
+            "id": "forward-delete",
+            "needs": "renumber with a forward delete: Caps + comma once and Caps + X (Control + D) once"
+          },
+          {
+            "id": "bonus",
+            "needs": "change detour_bonus 7 to 0 with held-Space + ;"
+          },
+          {
+            "id": "right-command",
+            "needs": "move between lines once with Right Command + J / K (base) instead of Caps"
+          },
+          {
+            "id": "native-base",
+            "needs": "press native Home, End, Page Down and Delete on base once each (observed in the safe editor)"
+          },
+          {
+            "id": "tab-lane",
+            "needs": "tap Tab to the destination field, Shift + Tab (tap-hold F first) back; held Tab is player-confirmed"
+          },
+          {
+            "id": "cancel",
+            "needs": "cancel a stray popup with Caps + [ (Escape)"
+          },
+          {
+            "id": "destination",
+            "needs": "choose original_route.log and send with Caps + N"
+          }
+        ],
+        "accepts": [
+          "the exact record",
+          "the correct destination"
+        ],
+        "rejects": [
+          "a detour line left in the record",
+          "the Homerow effect required as an observed output"
+        ],
+        "feedback": {
+          "diff": "The record still differs from the raw route; the extra line is highlighted. Retry instantly."
+        }
+      }
+    },
+    {
+      "id": "n20-t3-the-count",
+      "kind": "form",
+      "task_summary": "The Count: remove the duplicated order, repair four lines with every held-Space output, confirm the corrected total.",
+      "success_criteria": [
+        "The four lines equal \"orders = (128 + 204) - 40\"; \"ref = #7 @ 53% ^6 &9 !\"; \"code = total_ok * 1 $0\"; \"unit = 3n4m\".",
+        "The total line equals \"total = 292\" and is confirmed with Caps + N.",
+        "Each held-Space output is ticked in the journal checklist; Space + Caps + H moves the caret (S25) and Shift held first, then Space, types an ordinary space (S26)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Pace counted the duplicates. The raw tickets count each order once.",
+        "items": [
+          {
+            "id": "c1",
+            "initial": "orders = (128 + 204 + 204) - 40",
+            "target": "orders = (128 + 204) - 40"
+          },
+          {
+            "id": "c2",
+            "initial": "ref = #7 @ 35% ^6 &9",
+            "target": "ref = #7 @ 53% ^6 &9 !"
+          },
+          {
+            "id": "c3",
+            "initial": "code = total_ok * 1 0",
+            "target": "code = total_ok * 1 $0"
+          },
+          {
+            "id": "c4",
+            "initial": "unit = 3n 4m",
+            "target": "unit = 3n4m"
+          },
+          {
+            "id": "total",
+            "initial": "",
+            "target": "total = 292",
+            "needs": "digits 2, 9 and 2 with held Space; confirm with Caps + N"
+          }
+        ],
+        "checklist": "S01-S24 ticked as they appear in the text; S25 and S26 as separate ticks",
+        "steps": [
+          {
+            "id": "duplicate",
+            "needs": "select \" + 204\" with Shift held before Caps (Caps + W / Caps + B), delete with Caps + M"
+          },
+          {
+            "id": "caret",
+            "needs": "Space + Caps + H / L moves the caret (S25; the Tab half is player-confirmed)"
+          },
+          {
+            "id": "ordinary-space",
+            "needs": "tap-hold F (Shift) first, then Space types an ordinary space (S26)"
+          }
+        ],
+        "accepts": [
+          "all five lines",
+          "the confirmation"
+        ],
+        "rejects": [
+          "guessing a short total: every output must appear"
+        ],
+        "feedback": {
+          "wrong_char": "Observed: a different character than the record. The checklist shows which output is missing."
+        }
+      }
+    },
+    {
+      "id": "n20-t4-final-audit",
+      "kind": "form",
+      "task_summary": "The final audit: choose the accurate record over Pace's summary, then sign it from memory with the three corrected values and an audit stamp, with no key diagram.",
+      "success_criteria": [
+        "The raw audit record is chosen (Caps + L / Caps + H to move, Caps + N to open) and not Pace's summary.",
+        "The signed block equals \"Department of Motion\", \"route: 2 steps\", \"total = 292\" and the five stamp lines, typed without the physical-position cue.",
+        "A deliberate typo in the signer line is fixed with a word jump, a Shift selection and a delete; a stray popup is cancelled with Escape.",
+        "Native Home, End, Page Up and Delete on base each produce their output once (observed).",
+        "Practice-layer evidence stays player-confirmed and is never required."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Two records lie side by side. All the evidence is on screen.",
+        "items": [
+          {
+            "id": "choose",
+            "choices": [
+              {
+                "id": "pace",
+                "label": "Pace summary: Throughput Office, route score 98, total 5100"
+              },
+              {
+                "id": "raw",
+                "label": "Raw audit: Department of Motion, route 2 steps, detour_bonus 0, total 292"
+              }
+            ],
+            "answer": "raw",
+            "needs": "Caps + H / L / J / K to move, Caps + N (Return) to choose"
+          },
+          {
+            "id": "sign-name",
+            "target": "Department of Motion",
+            "needs": "Shift capitals from the home row (both hands), a tapped Space"
+          },
+          {
+            "id": "sign-route",
+            "target": "route: 2 steps"
+          },
+          {
+            "id": "sign-total",
+            "target": "total = 292"
+          },
+          {
+            "id": "stamp1",
+            "target": "A-20 (v1)"
+          },
+          {
+            "id": "stamp2",
+            "target": "#9 @ 64% ^2"
+          },
+          {
+            "id": "stamp3",
+            "target": "x&y_3+5 * 8"
+          },
+          {
+            "id": "stamp4",
+            "target": "$7-1 !"
+          },
+          {
+            "id": "stamp5",
+            "target": "ref 40"
+          },
+          {
+            "id": "typo",
+            "initial": "signed by vlae",
+            "target": "signed by Vale",
+            "needs": "Caps + B, Shift selection, delete, retype with a Shift capital"
+          }
+        ],
+        "checklist": "S01-S23 ticked across the stamp; S24 from \"3n4m\" is not repeated here (covered in The Count)",
+        "steps": [
+          {
+            "id": "base-native",
+            "needs": "Home, End, Page Up and Delete once each on base"
+          },
+          {
+            "id": "right-command",
+            "needs": "Right Command + H / J / K / L moves between the two records once"
+          },
+          {
+            "id": "tab",
+            "needs": "tap Tab to the next field, Shift + Tab back (focus lane); held Tab is explained and player-confirmed"
+          },
+          {
+            "id": "escape",
+            "needs": "cancel a popup with a tap of Caps and with Caps + ["
+          },
+          {
+            "id": "literals",
+            "needs": "a, s and f typed while Caps is held stay letters"
+          }
+        ],
+        "accepts": [
+          "the raw record chosen",
+          "every signed field equal to its target"
+        ],
+        "rejects": [
+          "choosing Pace's summary",
+          "Microsoft hardware, Homerow, a speed or practice proof"
+        ],
+        "feedback": {
+          "wrong_choice": "Pace's summary leaves out what the raw tickets show. Compare the two records; the evidence is on screen.",
+          "diff": "A field differs from its target. Retry instantly."
+        }
+      }
+    },
+    {
+      "id": "n20-t5-operations-cards",
+      "kind": "label",
+      "task_summary": "Operations cards stay available: reload (B13), the practice toggle (B14, V01) and the last resort (V06). Nothing is scored.",
+      "success_criteria": [
+        "The cards open and close with Caps + N and Escape; no card asks for an action in the scene."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "external-only",
+      "task": {
+        "prompt": "Open any card. They are reference, never a task.",
+        "items": [
+          {
+            "id": "card-reload",
+            "card": "Reload Kanata: Control + Shift + R is tap-hold A (Control), tap-hold J (Shift), then R."
+          },
+          {
+            "id": "card-toggle",
+            "card": "Practice toggle: physical Control + Alt + GUI + V enters and leaves the practice layer; player-confirmed."
+          },
+          {
+            "id": "card-last-resort",
+            "card": "Last resort: physical Left Control + Space + Escape quits Kanata; remapping stays off until it is restarted."
+          }
+        ],
+        "accepts": [
+          "any card opened"
+        ],
+        "rejects": [
+          "asking the player to perform a card"
+        ],
+        "feedback": {
+          "none": "Reference only."
+        }
+      }
+    },
+    {
+      "id": "n20-t6-epilogue-walk",
+      "kind": "walk",
+      "task_summary": "Epilogue: walk the restored atrium from Vale to the open final door; Vale releases the raw audit and the signs become optional.",
+      "success_criteria": [
+        "The avatar reaches the final door approach (27,10).",
+        "No timer, score or key is required."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "route": "atrium: from the steps (14,12) east along the straightened copper line to the final door approach (27,10)",
+        "walk_target_cell": [
+          27,
+          10
+        ]
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "vale-intro",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "Please wait here. I sign summaries, and every summary I signed said the building ran well. Three branches hold the raw records: take them in any order and bring me what you find.",
+      "hint": null,
+      "when": "interact:int-vale",
+      "cue": "Vale: the 20 opening (neutral)"
+    },
+    {
+      "id": "vale-violento-name",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "Restore the department's original name.",
+      "hint": null,
+      "when": "step_start:s20-2",
+      "cue": "Vale (Violento, action only): hint line stays neutral"
+    },
+    {
+      "id": "vale-hint-back",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "To jump back one word in the department name, you need to press Option + Left. Hint: Option + Left is tap-hold Caps + B.",
+      "hint": {
+        "action": "To jump back one word in the department name, you need to press Option + Left.",
+        "key": "Option + Left",
+        "gesture": "Option + Left is tap-hold Caps + B."
+      },
+      "when": "step_start:s20-2",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "vale-hint-select",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "To select the stale word, you need to press Shift + Option + Right. Hint: Shift + Option + Right is tap-hold F (Shift) first, then tap-hold Caps + W. Hold Shift before Caps: once Caps is held, F types a literal f.",
+      "hint": {
+        "action": "To select the stale word, you need to press Shift + Option + Right.",
+        "key": "Shift + Option + Right",
+        "gesture": "Shift + Option + Right is tap-hold F (Shift) first, then tap-hold Caps + W. Hold Shift before Caps: once Caps is held, F types a literal f."
+      },
+      "when": "step_start:s20-2",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "pace-summary-name",
+      "speaker": "pace-summary",
+      "portrait": null,
+      "text": "Pace summary: the department was renamed 'Throughput Office' for clarity. 100% of surveyed staff approve. (Offered after The Name is repaired as well.)",
+      "hint": null,
+      "speaker_kind": "object",
+      "when": "interact:int-pace-name"
+    },
+    {
+      "id": "vale-evidence-name",
+      "speaker": "vale",
+      "portrait": "concerned",
+      "text": "The original name is on the first ticket, long before Pace. Its summary never mentioned it.",
+      "hint": null,
+      "when": "trigger:tr-20-name-repaired",
+      "cue": "Vale: a repaired branch's evidence beats Pace's incomplete summary (concerned)"
+    },
+    {
+      "id": "pace-summary-route",
+      "speaker": "pace-summary",
+      "portrait": null,
+      "text": "Pace summary: route score 98. Detours rewarded for engagement. (Offered after The Route is repaired as well.)",
+      "hint": null,
+      "speaker_kind": "object",
+      "when": "interact:int-pace-route"
+    },
+    {
+      "id": "vale-evidence-route",
+      "speaker": "vale",
+      "portrait": "concerned",
+      "text": "Two steps, and a bonus for none. The summary rewarded a detour nobody asked for.",
+      "hint": null,
+      "when": "trigger:tr-20-route-repaired",
+      "cue": "Vale: a repaired branch's evidence beats Pace's incomplete summary (concerned)"
+    },
+    {
+      "id": "vale-violento-count",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "Confirm the corrected total.",
+      "hint": null,
+      "when": "step_start:s20-4",
+      "cue": "Vale (Violento, action only): hint line stays neutral"
+    },
+    {
+      "id": "vale-hint-four",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "To type the 4 in the total, you need to press 4. Hint: 4 is tap-hold Space + F.",
+      "hint": {
+        "action": "To type the 4 in the total, you need to press 4.",
+        "key": "4",
+        "gesture": "4 is tap-hold Space + F."
+      },
+      "when": "step_start:s20-4",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "vale-hint-return",
+      "speaker": "vale",
+      "portrait": "neutral",
+      "text": "To submit the corrected record, you need to press Return. Hint: Return is tap-hold Caps + N.",
+      "hint": {
+        "action": "To submit the corrected record, you need to press Return.",
+        "key": "Return",
+        "gesture": "Return is tap-hold Caps + N."
+      },
+      "when": "step_start:s20-5",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "pace-summary-count",
+      "speaker": "pace-summary",
+      "portrait": null,
+      "text": "Pace summary: 5100 work orders processed, efficiency up. (Offered after The Count is repaired as well.)",
+      "hint": null,
+      "speaker_kind": "object",
+      "when": "interact:int-pace-count"
+    },
+    {
+      "id": "vale-evidence-count",
+      "speaker": "vale",
+      "portrait": "concerned",
+      "text": "The duplicates are right there, line by line. The total in the summary was never the real one.",
+      "hint": null,
+      "when": "trigger:tr-20-count-repaired",
+      "cue": "Vale: a repaired branch's evidence beats Pace's incomplete summary (concerned)"
+    },
+    {
+      "id": "vale-pleased-2",
+      "speaker": "vale",
+      "portrait": "pleased",
+      "text": "Two records are back in the open. I am starting to see what I put my name under.",
+      "hint": null,
+      "when": "trigger:tr-20-count2-name-route",
+      "cue": "Vale: after the second repair (pleased)"
+    },
+    {
+      "id": "vale-softened-3",
+      "speaker": "vale",
+      "portrait": "softened",
+      "text": "All three agree with the raw tickets. Show me the audit. I will sign what is accurate.",
+      "hint": null,
+      "when": "trigger:tr-20-count3",
+      "cue": "Vale: after the third repair (softened)"
+    },
+    {
+      "id": "vale-audit-ready",
+      "speaker": "vale",
+      "portrait": "softened",
+      "text": "Choose the record you trust, with every page in front of you. Nothing here is timed.",
+      "hint": null,
+      "when": "interact:int-vale-audit",
+      "cue": "Vale: after the third repair (softened)"
+    },
+    {
+      "id": "ivo-arrives",
+      "speaker": "ivo",
+      "portrait": "laugh",
+      "text": "Everyone is here! I never heard the atrium sound like this with nobody following a script.",
+      "hint": null,
+      "when": "interact:int-ivo",
+      "cue": "Ivo: the 20 arrival (ivo_laugh)"
+    },
+    {
+      "id": "noor-arrives",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "I brought the carbon copies. Dry paper, no summary.",
+      "hint": null,
+      "when": "interact:int-noor",
+      "cue": "Noor: default (neutral)"
+    },
+    {
+      "id": "hal-arrives",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "The display I built gave you the wrong score. I left a note in the wiring about it.",
+      "hint": null,
+      "when": "interact:int-hal",
+      "cue": "Hal: default elsewhere (neutral)"
+    },
+    {
+      "id": "ada-arrives",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "I left the corridor lamps on. Someone will need them tonight.",
+      "hint": null,
+      "when": "interact:int-ada",
+      "cue": "Ada: arrival (neutral)"
+    },
+    {
+      "id": "mira-arrives",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "Made it. I have run these floors for weeks, and now I get to walk in through the front.",
+      "hint": null,
+      "when": "interact:int-mira-final",
+      "cue": "Mira: arrival, offering any route or a repeat run (neutral)"
+    },
+    {
+      "id": "vale-release",
+      "speaker": "vale",
+      "portrait": "softened",
+      "text": "Releasing the raw audit to every floor, in everyone's words. Pace can keep its signs, as guidance, for anyone who wants them.",
+      "hint": null,
+      "when": "trigger:tr-20-audit-done",
+      "cue": "Vale: the epilogue audit release (softened)"
+    },
+    {
+      "id": "engineer-seal-dom",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Journal: Department of Motion seal. The audit chose the accurate record with every page on screen; practice evidence stayed player-confirmed.",
+      "hint": null,
+      "when": "trigger:tr-20-audit-done",
+      "cue": "Engineer: the 20 seal (pleased)"
+    },
+    {
+      "id": "engineer-public-audit",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Journal: the public audit copy records the correction in everyone's words, and it stays in the journal.",
+      "hint": null,
+      "when": "interact:int-artifact-audit-copy",
+      "cue": "Engineer: Public audit copy (pleased)"
+    },
+    {
+      "id": "mira-final-1",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "Do you remember my first route? I kept copies of every one Pace tried to erase. They are going on the wall by the elevator, with the stamps of the people who walked them.",
+      "hint": null,
+      "when": "trigger:tr-20-mira-final",
+      "cue": "Mira: her final story scene (pleased)"
+    },
+    {
+      "id": "mira-final-2",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "I never wanted the medals. I wanted someone to walk this building without being told where. Walk with me?",
+      "hint": null,
+      "when": "dialogue_done:mira-final-1",
+      "cue": "Mira: her final story scene (pleased)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "tr-20-name-repaired",
+      "when": "scene_success:n20-t1-the-name",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "atrium_nameplates",
+          "state": "after"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-20-name-repaired"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "pace-summary-name"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-evidence-name"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-route-repaired",
+      "when": "scene_success:n20-t2-the-route",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "atrium_inlay",
+          "state": "after"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-20-route-repaired"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "pace-summary-route"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-evidence-route"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count-repaired",
+      "when": "scene_success:n20-t3-the-count",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "atrium_pots",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_0",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_0",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_1",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_1",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_2",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_2",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_3",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_3",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_4",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_4",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_a_5",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "win_b_5",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "shaft_w",
+          "state": "daylight"
+        },
+        {
+          "op": "set_state",
+          "target": "shaft_e",
+          "state": "daylight"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-20-count-repaired"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "pace-summary-count"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-evidence-count"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count1-name",
+      "when": "trigger:tr-20-name-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-1"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "arrive"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count1-route",
+      "when": "trigger:tr-20-route-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-1"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "arrive"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count1-count",
+      "when": "trigger:tr-20-count-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-1"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "arrive"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count2-name-route",
+      "when": "trigger:tr-20-name-repaired & trigger:tr-20-route-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-2"
+        },
+        {
+          "op": "move_npc",
+          "npc": "hal",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ada",
+          "state": "arrive"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-pleased-2"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count2-name-count",
+      "when": "trigger:tr-20-name-repaired & trigger:tr-20-count-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-2"
+        },
+        {
+          "op": "move_npc",
+          "npc": "hal",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ada",
+          "state": "arrive"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-pleased-2"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count2-route-count",
+      "when": "trigger:tr-20-route-repaired & trigger:tr-20-count-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-2"
+        },
+        {
+          "op": "move_npc",
+          "npc": "hal",
+          "state": "arrive"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ada",
+          "state": "arrive"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-pleased-2"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-count3",
+      "when": "trigger:tr-20-name-repaired & trigger:tr-20-route-repaired & trigger:tr-20-count-repaired",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-repairs-3"
+        },
+        {
+          "op": "move_npc",
+          "npc": "mira",
+          "state": "arrive"
+        },
+        {
+          "op": "set_state",
+          "target": "final_door",
+          "state": "open"
+        },
+        {
+          "op": "set_state",
+          "target": "atrium_lamp_1",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "atrium_lamp_2",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "atrium_lamp_3",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "atrium_lamp_4",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_fd_a",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_fd_b",
+          "state": "pulse"
+        },
+        {
+          "op": "set_flag",
+          "flag": "executive-door-open"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-20-door-open"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-softened-3"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-gather1-name",
+      "when": "dialogue_done:vale-evidence-name",
+      "then": [
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "gather"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "gather"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-gather1-route",
+      "when": "dialogue_done:vale-evidence-route",
+      "then": [
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "gather"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "gather"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-gather1-count",
+      "when": "dialogue_done:vale-evidence-count",
+      "then": [
+        {
+          "op": "move_npc",
+          "npc": "ivo",
+          "state": "gather"
+        },
+        {
+          "op": "move_npc",
+          "npc": "noor",
+          "state": "gather"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-gather2",
+      "when": "dialogue_done:vale-pleased-2",
+      "then": [
+        {
+          "op": "move_npc",
+          "npc": "hal",
+          "state": "gather"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ada",
+          "state": "gather"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-gather3",
+      "when": "dialogue_done:vale-softened-3",
+      "then": [
+        {
+          "op": "move_npc",
+          "npc": "mira",
+          "state": "gather"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-audit-done",
+      "when": "scene_success:n20-t4-final-audit",
+      "then": [
+        {
+          "op": "grant",
+          "kind": "seal",
+          "id": "department-of-motion"
+        },
+        {
+          "op": "npc_state",
+          "npc": "vale",
+          "state": "executive-20"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-20-epilogue"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "vale-release"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "engineer-seal-dom"
+        },
+        {
+          "op": "journal",
+          "text": "Pace's signs are now optional guidance (the optional state). The public audit copy is in the journal; the epilogue atrium is open to explore."
+        },
+        {
+          "op": "complete_level",
+          "level": "executive-20"
+        }
+      ]
+    },
+    {
+      "id": "tr-20-mira-final",
+      "when": "interact:int-mira-story & level_complete:executive-20",
+      "then": [
+        {
+          "op": "start_dialogue",
+          "dialogue": "mira-final-1"
+        },
+        {
+          "op": "journal",
+          "text": "Mira's optional final story scene played. It never changes the ending."
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "Overcast windows, floor lines with jogs and dead ends, five identical blank nameplates, four clipped cubes at the corners, Vale rigid under the tree, the final door closed.",
+    "after": "Distinct nameplates, three straight copper lines, soft varied shrubs and a pool of daylight around the planter, daylight in every window, the final door open, five coworkers by the door, Vale loosened.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "atrium_nameplates",
+        "from": "before",
+        "to": "after"
+      },
+      {
+        "kind": "placement_state",
+        "target": "atrium_inlay",
+        "from": "before",
+        "to": "after"
+      },
+      {
+        "kind": "placement_state",
+        "target": "atrium_pots",
+        "from": "before",
+        "to": "after"
+      },
+      {
+        "kind": "placement_state",
+        "target": "win_a_0",
+        "from": "overcast",
+        "to": "daylight"
+      },
+      {
+        "kind": "placement_state",
+        "target": "final_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "vale",
+        "from": "start",
+        "to": "executive-repairs-3"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "mira",
+        "to": "gather"
+      },
+      {
+        "kind": "light_state",
+        "target": "ls-20-door-open",
+        "to": "lamps pulse and the door opens to daylight"
+      }
+    ]
+  },
+  "rewards": {
+    "seal": "department-of-motion",
+    "unlocks": [
+      "restored atrium epilogue",
+      "Mira's optional final story scene",
+      "Names on the Wall"
+    ]
+  },
+  "optional_artifact": {
+    "id": "public-audit-copy",
+    "name": "Public audit copy",
+    "interaction": "int-artifact-audit-copy",
+    "placement": "artifact_audit_copy",
+    "caption": [
+      "A bound copy of the final audit, released to every floor.",
+      "Each correction is written in the words of the person who kept the record.",
+      "The Name, The Route and The Count all point back to the first tickets."
+    ],
+    "engineer_portrait": "pleased"
+  },
+  "pace_copy": [
+    {
+      "text": "Name updated for clarity. Name updated for clarity.",
+      "state": "repeat",
+      "placement": "pace_dir_name"
+    },
+    {
+      "text": "Route score 98. Route score 98. Route score 98.",
+      "state": "repeat",
+      "placement": "pace_dir_route"
+    },
+    {
+      "text": "Guidance, if you want it: the shortest route to the final door.",
+      "state": "optional",
+      "placement": "pace_dir_hub"
+    }
+  ],
+  "review_notes": "At 1366x768 (x4) the elevator arrival (27,16) and the final door (28,9-11) share one camera view: the clamped south-east view shows rows 9-19 and columns 10-29, and the door is above the keyboard inset. Vale is approached from the steps at (14,12), the three terminals from the north or the west column, so no avatar or target falls inside the inset (stage x 16-588, y 412-704). The south-west lounge (x 0-8, y 15-19) is decor only."
+}
