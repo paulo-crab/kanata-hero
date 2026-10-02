@@ -39,7 +39,8 @@
           "properties": {
             "id": {"$ref": "#/$defs/district_id"}, "name": {"$ref": "#/$defs/text"}, "order": {"type": "integer", "minimum": 1, "maximum": 5},
             "levels": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 20}, "minItems": 2, "maxItems": 2, "description": "first and last level number"},
-            "size_cells": {"$ref": "#/$defs/size_cells"},
+            "size_cells": {"anyOf": [{"$ref": "#/$defs/size_cells"}, {"type": "null"}]},
+            "size_hint": {"type": "string"},
             "elevator_stop": {"type": "object", "required": ["link", "unlocked_by"], "additionalProperties": false,
               "properties": {"link": {"$ref": "#/$defs/id"}, "unlocked_by": {"type": ["string", "null"], "description": "seal id, null for the first stop"}}},
             "review_level": {"$ref": "#/$defs/level_id"},

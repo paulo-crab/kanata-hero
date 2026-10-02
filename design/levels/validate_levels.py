@@ -331,7 +331,7 @@ class DistrictCheck:
         if d["id"] != self.id:
             rep.err(wd, f"id {d['id']!r} does not match directory {self.id!r}")
         world_d = next((x for x in (self.ref.world or {}).get("districts", []) if x["id"] == self.id), None)
-        if world_d and list(world_d["size_cells"]) != list(d["size_cells"]):
+        if world_d and world_d["size_cells"] is not None and list(world_d["size_cells"]) != list(d["size_cells"]):
             rep.err(wd, f"size_cells {d['size_cells']} differs from world.json {world_d['size_cells']}")
         if list(d["size_cells"]) != list(m["size_cells"]):
             rep.err(wm, f"size_cells {m['size_cells']} differs from district.json {d['size_cells']}")
@@ -1363,7 +1363,7 @@ def main(argv=None):
             rep.err(item, "directory not found")
             continue
         targets.append(p.resolve().name)
-    if not targets and not rep.errors:
+    if not targets and not args.all and not rep.errors:
         ap.error("give a district directory or --all")
 
     ref = Reference(rep)

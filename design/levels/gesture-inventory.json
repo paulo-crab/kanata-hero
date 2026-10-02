@@ -1,0 +1,1206 @@
+{
+ "version": "0.1",
+ "source": "docs/game-design.md v0.7, sections A to D (rows keep the source line of their table row; grouped rows share it)",
+ "note": "introduced_in is the level whose 'Cover ...' line in levels.md first owns the gesture; reviewed_in comes from the revisit and review lines. confidence follows the doc: external_only rows are never observed in the browser, player_confirmed rows are explained and confirmed by the player, the rest are output-observed.",
+ "rows": [
+  {
+   "id": "B01",
+   "layer": "base",
+   "input": "Plain letter, digit, and punctuation taps, including mapped B W 0 4 U T M X N V R ,",
+   "output": "Ordinary characters unless a documented chord/layer changes them",
+   "notes": "Type code, ticket text, and IDs; explicitly contrast plain keys with their Caps or Space variants.",
+   "source_line": 179,
+   "introduced_in": 2,
+   "reviewed_in": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B01"
+  },
+  {
+   "id": "B02",
+   "layer": "base",
+   "input": "Tap A/S/D/F and J/K/L/;",
+   "output": "Literal a s d f j k l ;",
+   "notes": "Accurate home-row typing, including rolls that should remain letters.",
+   "source_line": 180,
+   "introduced_in": 2,
+   "reviewed_in": [
+    5,
+    6,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B02"
+  },
+  {
+   "id": "B03",
+   "layer": "base",
+   "input": "Hold A/S/D/F about 200 ms",
+   "output": "Left Control / Option / Command / Shift",
+   "notes": "Teach each hold separately, then safe combined shortcuts and Shift capitals.",
+   "source_line": 181,
+   "introduced_in": 4,
+   "reviewed_in": [
+    5,
+    6,
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B03"
+  },
+  {
+   "id": "B04",
+   "layer": "base",
+   "input": "Hold J/K/L/; about 200 ms",
+   "output": "Right Shift / Command / Option / Control",
+   "notes": "Mirror B03; require both sides in separate rooms.",
+   "source_line": 182,
+   "introduced_in": 5,
+   "reviewed_in": [
+    6,
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B04"
+  },
+  {
+   "id": "B05",
+   "layer": "base",
+   "input": "Hold home-row modifier, then press an opposite-hand key",
+   "output": "Shortcut; same-hand rolls tend to type letters",
+   "notes": "Practice deliberate hold timing, release order, and opposite-hand choice. For multi-modifier chords, activate holds one at a time.",
+   "source_line": 183,
+   "introduced_in": 4,
+   "reviewed_in": [
+    6,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B05"
+  },
+  {
+   "id": "B06",
+   "layer": "base",
+   "input": "Tap Caps / hold Caps",
+   "output": "Escape / navigation",
+   "notes": "Teach tap-versus-hold and transition back to typing.",
+   "source_line": 184,
+   "introduced_in": 1,
+   "reviewed_in": [
+    6,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B06"
+  },
+  {
+   "id": "B07",
+   "layer": "base",
+   "input": "Tap Space / hold bare Space about 220 ms",
+   "output": "Space / numbers-symbols layer",
+   "notes": "Teach timing, no stray inserted space, and normal typing after release.",
+   "source_line": 185,
+   "introduced_in": 3,
+   "reviewed_in": [
+    12,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B07"
+  },
+  {
+   "id": "B08",
+   "layer": "base",
+   "input": "Hold a modifier before pressing Space",
+   "output": "Ordinary modified-Space shortcut",
+   "notes": "Contrast with B07; do not require OS-reserved shortcuts to be browser-verifiable. OS-reserved modified-Space shortcuts are demonstrated, not auto-scored; observable cases use an in-game text lane.",
+   "source_line": 186,
+   "introduced_in": 3,
+   "reviewed_in": [
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B08"
+  },
+  {
+   "id": "B09",
+   "layer": "base",
+   "input": "Tap Tab / hold bare Tab about 250 ms",
+   "output": "Tab / one Shift+Command+Space Homerow activation",
+   "notes": "Teach the hold, but mark the external Homerow effect player-confirmed; include a safe explanation if that app is absent. Tap Tab is observable; the held-Tab Homerow activation is external and player-confirmed.",
+   "source_line": 187,
+   "introduced_in": 3,
+   "reviewed_in": [
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "B09"
+  },
+  {
+   "id": "B10",
+   "layer": "base",
+   "input": "Hold a modifier before Tab",
+   "output": "Ordinary modified-Tab shortcut",
+   "notes": "Show the exception to B09, with OS-reserved cases demonstrated rather than auto-scored. OS-reserved modified-Tab cases are demonstrated, not auto-scored; observable cases use the in-game focus lane.",
+   "source_line": 188,
+   "introduced_in": 3,
+   "reviewed_in": [
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B10"
+  },
+  {
+   "id": "B11",
+   "layer": "base",
+   "input": "Hold Right Command + H/J/K/L",
+   "output": "Left/Down/Up/Right navigation; other Right Command shortcuts retain their normal meaning",
+   "notes": "Alternative navigation drill and shortcut-preservation example.",
+   "source_line": 189,
+   "introduced_in": 6,
+   "reviewed_in": [
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B11"
+  },
+  {
+   "id": "B12",
+   "layer": "base",
+   "input": "Physical editing/movement/modifier keys in base",
+   "output": "Native Backspace, Delete, Return, Escape, arrows, Home/End, Page Up/Down, and modifiers",
+   "notes": "Baseline comparison before practice mode.",
+   "source_line": 190,
+   "introduced_in": 6,
+   "reviewed_in": [
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "B12"
+  },
+  {
+   "id": "B13",
+   "layer": "base",
+   "input": "Control+Shift+R",
+   "output": "Reload Kanata configuration; plain Control+R remains available",
+   "notes": "Operations card, not an in-browser scored task; avoid accidental reload in play. Operations card only: never a scored in-browser task.",
+   "source_line": 191,
+   "introduced_in": 17,
+   "reviewed_in": [],
+   "external_only": true,
+   "player_confirmed": false,
+   "confidence": "external-only",
+   "group": "B13"
+  },
+  {
+   "id": "B14",
+   "layer": "base",
+   "input": "Physical Control+Alt+GUI+V",
+   "output": "Toggle Violento practice; ordinary V still types v",
+   "notes": "Guided manual transition and return exercise.",
+   "source_line": 192,
+   "introduced_in": 17,
+   "reviewed_in": [],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "B14"
+  },
+  {
+   "id": "B15",
+   "layer": "base",
+   "input": "Microsoft keyboard physical Alt/Windows positions",
+   "output": "Device-specific Alt→Command, Windows→Option; Right Alt acts as Right Command and navigation",
+   "notes": "Setup variant with physical diagram; MacBook diagram remains the default.",
+   "source_line": 193,
+   "introduced_in": 6,
+   "reviewed_in": [],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "B15"
+  },
+  {
+   "id": "N01",
+   "layer": "nav",
+   "input": "Caps + H",
+   "output": "Left",
+   "notes": "Four directions, including repeated movement and release-to-type.",
+   "source_line": 202,
+   "introduced_in": 1,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N01–N04"
+  },
+  {
+   "id": "N02",
+   "layer": "nav",
+   "input": "Caps + J",
+   "output": "Down",
+   "notes": "Four directions, including repeated movement and release-to-type.",
+   "source_line": 202,
+   "introduced_in": 1,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N01–N04"
+  },
+  {
+   "id": "N03",
+   "layer": "nav",
+   "input": "Caps + K",
+   "output": "Up",
+   "notes": "Four directions, including repeated movement and release-to-type.",
+   "source_line": 202,
+   "introduced_in": 1,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N01–N04"
+  },
+  {
+   "id": "N04",
+   "layer": "nav",
+   "input": "Caps + L",
+   "output": "Right",
+   "notes": "Four directions, including repeated movement and release-to-type.",
+   "source_line": 202,
+   "introduced_in": 1,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N01–N04"
+  },
+  {
+   "id": "N05",
+   "layer": "nav",
+   "input": "Caps + B",
+   "output": "Option+Left",
+   "notes": "Previous / next word in a code-like line.",
+   "source_line": 203,
+   "introduced_in": 8,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N05–N06"
+  },
+  {
+   "id": "N06",
+   "layer": "nav",
+   "input": "Caps + W",
+   "output": "Option+Right",
+   "notes": "Previous / next word in a code-like line.",
+   "source_line": 203,
+   "introduced_in": 8,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N05–N06"
+  },
+  {
+   "id": "N07",
+   "layer": "nav",
+   "input": "Caps + 0",
+   "output": "Command+Left",
+   "notes": "Start / end of line. The $ gesture also reaches line end when Shift+4 is used.",
+   "source_line": 204,
+   "introduced_in": 9,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N07–N08"
+  },
+  {
+   "id": "N08",
+   "layer": "nav",
+   "input": "Caps + 4",
+   "output": "Command+Right",
+   "notes": "Start / end of line. The $ gesture also reaches line end when Shift+4 is used.",
+   "source_line": 204,
+   "introduced_in": 9,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N07–N08"
+  },
+  {
+   "id": "N09",
+   "layer": "nav",
+   "input": "Caps + U",
+   "output": "Page Up",
+   "notes": "Traverse a long document; show viewport movement.",
+   "source_line": 205,
+   "introduced_in": 10,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N09–N10"
+  },
+  {
+   "id": "N10",
+   "layer": "nav",
+   "input": "Caps + D",
+   "output": "Page Down",
+   "notes": "Traverse a long document; show viewport movement.",
+   "source_line": 205,
+   "introduced_in": 10,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N09–N10"
+  },
+  {
+   "id": "N11",
+   "layer": "nav",
+   "input": "Caps + T",
+   "output": "Command+Up",
+   "notes": "Start / end of document.",
+   "source_line": 206,
+   "introduced_in": 10,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N11–N12"
+  },
+  {
+   "id": "N12",
+   "layer": "nav",
+   "input": "Caps + G",
+   "output": "Command+Down",
+   "notes": "Start / end of document.",
+   "source_line": 206,
+   "introduced_in": 10,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N11–N12"
+  },
+  {
+   "id": "N13",
+   "layer": "nav",
+   "input": "Caps + M",
+   "output": "Backspace",
+   "notes": "Both paths practiced independently.",
+   "source_line": 207,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N13–N14"
+  },
+  {
+   "id": "N14",
+   "layer": "nav",
+   "input": "Caps + Space",
+   "output": "Backspace",
+   "notes": "Both paths practiced independently.",
+   "source_line": 207,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N13–N14"
+  },
+  {
+   "id": "N15",
+   "layer": "nav",
+   "input": "Caps + comma",
+   "output": "Forward Delete",
+   "notes": "Both forward-delete routes; explain the different emitted shortcuts.",
+   "source_line": 208,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N15–N16"
+  },
+  {
+   "id": "N16",
+   "layer": "nav",
+   "input": "Caps + X",
+   "output": "Control+D",
+   "notes": "Both forward-delete routes; explain the different emitted shortcuts.",
+   "source_line": 208,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N15–N16"
+  },
+  {
+   "id": "N17",
+   "layer": "nav",
+   "input": "N",
+   "output": "Return",
+   "notes": "Submit/open a selected item, then return to typing.",
+   "source_line": 209,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N17"
+  },
+  {
+   "id": "N18",
+   "layer": "nav",
+   "input": "[",
+   "output": "Escape",
+   "notes": "Cancel a modal while Caps remains held; tap Caps is the other Escape route.",
+   "source_line": 210,
+   "introduced_in": 7,
+   "reviewed_in": [
+    11,
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N18"
+  },
+  {
+   "id": "N19",
+   "layer": "nav",
+   "input": "Shift + supported navigation gesture",
+   "output": "Selection where the destination supports it",
+   "notes": "Teach Shift holds on F/J or physical Shift in base. Establish the Shift hold before pressing Caps: once Caps is held, F types a literal f (N20) and J is Down. Note Caps+4 consumes Shift and goes to plain line end.",
+   "source_line": 211,
+   "introduced_in": 11,
+   "reviewed_in": [
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N19"
+  },
+  {
+   "id": "N20",
+   "layer": "nav",
+   "input": "A / S / F while Caps is held",
+   "output": "Literal a / s / f",
+   "notes": "Explicit exception: these do not become nav commands.",
+   "source_line": 212,
+   "introduced_in": 11,
+   "reviewed_in": [
+    18,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N20"
+  },
+  {
+   "id": "N21",
+   "layer": "nav",
+   "input": "Right Command + H/J/K/L",
+   "output": "Same four arrow directions",
+   "notes": "Alternative path; other Caps-only extended mappings are not granted by Right Command.",
+   "source_line": 213,
+   "introduced_in": 6,
+   "reviewed_in": [
+    11,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "N21"
+  },
+  {
+   "id": "S01",
+   "layer": "numbers-symbols",
+   "input": "Space held + A",
+   "output": "1",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S02",
+   "layer": "numbers-symbols",
+   "input": "Space held + S",
+   "output": "2",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S03",
+   "layer": "numbers-symbols",
+   "input": "Space held + D",
+   "output": "3",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S04",
+   "layer": "numbers-symbols",
+   "input": "Space held + F",
+   "output": "4",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S05",
+   "layer": "numbers-symbols",
+   "input": "Space held + G",
+   "output": "5",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S06",
+   "layer": "numbers-symbols",
+   "input": "Space held + H",
+   "output": "6",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S07",
+   "layer": "numbers-symbols",
+   "input": "Space held + J",
+   "output": "7",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S08",
+   "layer": "numbers-symbols",
+   "input": "Space held + K",
+   "output": "8",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S09",
+   "layer": "numbers-symbols",
+   "input": "Space held + L",
+   "output": "9",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S10",
+   "layer": "numbers-symbols",
+   "input": "Space held + ;",
+   "output": "0",
+   "notes": "Each digit appears in a guided mini-task and later in a shuffled code/ID recall task.",
+   "source_line": 222,
+   "introduced_in": 12,
+   "reviewed_in": [
+    13,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S01–S10"
+  },
+  {
+   "id": "S11",
+   "layer": "numbers-symbols",
+   "input": "apostrophe",
+   "output": "-",
+   "notes": "Negative number, range, or CLI flag task.",
+   "source_line": 223,
+   "introduced_in": 13,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S11"
+  },
+  {
+   "id": "S12",
+   "layer": "numbers-symbols",
+   "input": "Space held + Q",
+   "output": "!",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S13",
+   "layer": "numbers-symbols",
+   "input": "Space held + W",
+   "output": "@",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S14",
+   "layer": "numbers-symbols",
+   "input": "Space held + E",
+   "output": "#",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S15",
+   "layer": "numbers-symbols",
+   "input": "Space held + R",
+   "output": "$",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S16",
+   "layer": "numbers-symbols",
+   "input": "Space held + T",
+   "output": "%",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S17",
+   "layer": "numbers-symbols",
+   "input": "Space held + Y",
+   "output": "^",
+   "notes": "Each symbol appears in a guided mini-task and later in a shuffled expression recall task.",
+   "source_line": 224,
+   "introduced_in": 14,
+   "reviewed_in": [
+    15,
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S12–S17"
+  },
+  {
+   "id": "S18",
+   "layer": "numbers-symbols",
+   "input": "Space held + U",
+   "output": "&",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S19",
+   "layer": "numbers-symbols",
+   "input": "Space held + I",
+   "output": "*",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S20",
+   "layer": "numbers-symbols",
+   "input": "Space held + O",
+   "output": "(",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S21",
+   "layer": "numbers-symbols",
+   "input": "Space held + P",
+   "output": ")",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S22",
+   "layer": "numbers-symbols",
+   "input": "Space held + [",
+   "output": "_",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S23",
+   "layer": "numbers-symbols",
+   "input": "Space held + ]",
+   "output": "+",
+   "notes": "Same individual coverage, with brackets/parentheses visually distinguished.",
+   "source_line": 225,
+   "introduced_in": 15,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S18–S23"
+  },
+  {
+   "id": "S24",
+   "layer": "numbers-symbols",
+   "input": "Space held + N or M",
+   "output": "Literal n and m",
+   "notes": "Teach that these remain letters, not digits or editing.",
+   "source_line": 226,
+   "introduced_in": 13,
+   "reviewed_in": [
+    16,
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S24"
+  },
+  {
+   "id": "S25",
+   "layer": "numbers-symbols",
+   "input": "Caps while Space is held; Tab while Space is held",
+   "output": "Caps keeps navigation; Tab keeps its tap/hold behavior",
+   "notes": "One layer-interaction drill; external Tab hold is player-confirmed. Caps while Space is held is observable; the Tab part is the external Homerow behavior and is player-confirmed.",
+   "source_line": 227,
+   "introduced_in": 16,
+   "reviewed_in": [
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "S25"
+  },
+  {
+   "id": "S26",
+   "layer": "numbers-symbols",
+   "input": "Modifier-first Space",
+   "output": "Space stays a normal modified-Space shortcut when a modifier was already held",
+   "notes": "Demonstrate the exception without relying on OS-reserved shortcuts for score.",
+   "source_line": 228,
+   "introduced_in": 16,
+   "reviewed_in": [
+    19,
+    20
+   ],
+   "external_only": false,
+   "player_confirmed": false,
+   "confidence": "output-observed",
+   "group": "S26"
+  },
+  {
+   "id": "V01",
+   "layer": "practice",
+   "input": "Enter and leave",
+   "output": "Practice-layer skill",
+   "notes": "Show the physical Control+Alt+GUI+V sequence, wait for release, ask for player confirmation, and teach the same sequence to exit.",
+   "source_line": 237,
+   "introduced_in": 17,
+   "reviewed_in": [],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "V01"
+  },
+  {
+   "id": "V02",
+   "layer": "practice",
+   "input": "Verify likely state manually",
+   "output": "Practice-layer skill",
+   "notes": "Ask the player to try physical Shift with a letter or physical Backspace in a safe text box; explain that even this is a self-check, not app-level proof.",
+   "source_line": 238,
+   "introduced_in": 17,
+   "reviewed_in": [],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "V02"
+  },
+  {
+   "id": "V03",
+   "layer": "practice",
+   "input": "Replace physical modifiers",
+   "output": "Practice-layer skill",
+   "notes": "Complete Shift, Command, Option, and Control exercises with home-row holds on both sides.",
+   "source_line": 239,
+   "introduced_in": 18,
+   "reviewed_in": [
+    19
+   ],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "V03"
+  },
+  {
+   "id": "V04",
+   "layer": "practice",
+   "input": "Replace physical navigation/editing",
+   "output": "Practice-layer skill",
+   "notes": "Complete cursor, word, line, page, document, Return, Escape, Backspace, and forward-delete tasks with Caps gestures.",
+   "source_line": 240,
+   "introduced_in": 18,
+   "reviewed_in": [
+    19
+   ],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "V04"
+  },
+  {
+   "id": "V05",
+   "layer": "practice",
+   "input": "Use held-Space numbers/symbols",
+   "output": "Practice-layer skill",
+   "notes": "Complete a mixed 23-output task while practice mode is player-confirmed.",
+   "source_line": 241,
+   "introduced_in": 19,
+   "reviewed_in": [],
+   "external_only": false,
+   "player_confirmed": true,
+   "confidence": "player-confirmed",
+   "group": "V05"
+  },
+  {
+   "id": "V06",
+   "layer": "practice",
+   "input": "Recovery",
+   "output": "Practice-layer skill",
+   "notes": "Always expose the toggle-out sequence as the normal way back to base. Physical Left Control+Space+Escape is not a layer toggle: it is Kanata's built-in emergency exit, which quits the Kanata process and stops all remapping. On this machine the service does not restart it after that exit, so the player restarts Kanata (or reboots) to get any layer back. Present it only as a last resort, with that consequence and the restart step stated, and confirm the behavior on the target machine before calling it guaranteed. Last-resort recovery; confirm the behavior on the target machine before calling it guaranteed.",
+   "source_line": 242,
+   "introduced_in": 17,
+   "reviewed_in": [],
+   "external_only": true,
+   "player_confirmed": false,
+   "confidence": "external-only",
+   "group": "V06"
+  }
+ ]
+}
