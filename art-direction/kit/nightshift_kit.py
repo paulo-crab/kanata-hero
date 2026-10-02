@@ -986,6 +986,59 @@ def quest_pieces():
     return out, anims
 
 
+# ------------------------------------------------------------------ 6. wave 2: district integration
+# The shared elevator set and call panel, the Executive-stop panel, one artifact (quest_props.integration_pieces, drawn with the
+# Night Shift ramps and run through the same silver-edge and shadow passes as every other prop) and the Night Shift props the level
+# data names (design/levels/nightshift/NEEDS_ART.md): wall_w_plain and the desk_dawn_lamp reward. Night Shift has no desk_a or
+# desk_b (its desks are desk_dead_* and desk_lit_*), so there are no occluders here.
+
+INTEGRATION_NAMES = set()
+
+
+def _imk(name, draw, box, fp, cells, coll, layer, kind, shadow=True, shadow_rect=None, y_sort=False, note="", tags=()):
+    wall = layer == "rear_wall"
+    if name in ("elevator_closed", "elevator_half", "elevator_open"):
+        # the elevator is a full wall slice: its cap and casing already carry the wall's own trim, and a silver outline round the whole
+        # module would draw seams down the wall at its sides. Shadow re-key and the top-edge light only (as wall_n_plain), no side edges.
+        p = ok.make(name, draw, fp, cells, coll, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=list(tags))
+        p.shadow = shadow_rect
+        p.sprite = night_shadow(p.sprite, p.shadow)
+        p.sprite = edge_light(p.sprite, bg=WALL[1], shadow=p.shadow, sides=("up",))   # the same top-edge light as wall_n_plain, so the cap runs on
+    else:
+        p = _nq(name, draw, fp, cells, coll, layer, kind, note, list(tags), y_sort=y_sort, shadow=shadow, box=box, wall=wall, shadow_rect=shadow_rect)
+    INTEGRATION_NAMES.add(name)
+    QUEST_NAMES.discard(name)   # _nq registers every name as a quest prop; these belong to the integration proof room
+    return p
+
+
+def wall_w_plain():
+    """The west-wall side plane: 13 x 16 px, tiles vertically. The wall mass is the ink ramp; its room-facing edge is on the RIGHT and
+    faces away from the upper-left light, so it takes no lit trim there (a mirror of wall_e_plain would light the wrong edge): a 1 px silver line on the
+    left (the lit side, so the silhouette keeps its 3:1 edge), ink mass, a one-step indigo shoulder, and a dim wall-ramp edge line."""
+    a = np.zeros((16, 13, 4), np.uint8)
+    cols = [GLASS[3]] + [INK[0]] * 9 + [INK[1], WALL[1], WALL[2]]
+    for x, c in enumerate(cols):
+        a[:, x, :3] = rgb(c)
+        a[:, x, 3] = 255
+    return _px_piece("wall_w_plain", a, (1, 1), ["0"], "rear_wall", "wall",
+                     "west wall segment, side plane seen from inside (the face between the service corridor and the hall): ink mass with a 1 px silver line on its left (the edge that catches the upper-left light) and its room-facing edge on the right. "
+                     "That face looks away from the light, so its trim is a dim indigo step, not the silver of wall_e_plain, which cannot be mirrored. Tiles vertically; "
+                     "no collision of its own (the map blocks the wall elsewhere). Place so its right edge is the cell boundary: the sprite fills the cell's left 13 px",
+                     ["wall", "west", "side plane", "wave 2"])
+
+
+def _integration():
+    out, anims = qp.integration_pieces(lambda *a, **k: _imk(*a, **k), PAL, "nightshift", None)
+    x0, y0 = qp.IX0, qp.IY0
+    out.append(wall_w_plain())
+    INTEGRATION_NAMES.add("wall_w_plain")
+    out.append(_imk("desk_dawn_lamp", lambda r: qp.reward_decor(r, "dawn_lamp", x0, y0, PAL), (x0, y0, x0 + 10, y0 + 13), (x0 - 3, y0 + 13 - 16), (1, 1), ["0"], "front_prop", "prop",
+                    shadow=False, y_sort=False,
+                    note="Desk for Dawn reward: a small desk lamp (wood foot and stem under a warm shade with one lit step and a pale glint), 10 x 13, 1 x 1, no collision, "
+                         "silver edge. A desk decoration like mail_tray and desk_folder; never placed on the map", tags=["decor", "desk", "reward", "dawn"]))
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -1001,6 +1054,8 @@ def build_pieces():
     pieces += landmark_pieces()
     qpieces, qanims = quest_pieces()
     pieces += qpieces
+    ipieces, ianims = _integration()
+    pieces += ipieces
     anims = {
         "service_door": {
             "kind": "state_set", "default": "closed",
@@ -1046,11 +1101,14 @@ def build_pieces():
         },
     }
     anims.update(qanims)
+    anims.update(ianims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in INTEGRATION_NAMES:
+        return 9
     if n in QUEST_NAMES:
         return 8
     if n.startswith(("floor_", "route_")):
@@ -1075,7 +1133,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS (lit edges)"), (2, "S
             (5, "RECOLOURED ORIENTATION PROPS (dead and lit stations, chair, plants, sofa)"),
             (6, "NIGHT SHIFT KIT: shared pieces, break counter, ledger desk, vestibule gate"),
             (7, "LANDMARK: THE LONG INTERIOR WINDOW (registered parts)"),
-            (8, "QUEST PROPS (levels 17 to 19, Mira's route): reader pedestal, exit sign, north stair, rugs, courier chute, dim break counter, Mira decor")]
+            (8, "QUEST PROPS (levels 17 to 19, Mira's route): reader pedestal, exit sign, north stair, rugs, courier chute, dim break counter, Mira decor"),
+            (9, "DISTRICT INTEGRATION (wave 2): elevator set, call panel (base and Executive stop lit), west-wall side plane, Ada's shift book, the dawn lamp")]
 
 
 def atlas_json(pieces, rects, anims, lms):

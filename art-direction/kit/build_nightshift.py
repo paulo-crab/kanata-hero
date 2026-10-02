@@ -491,7 +491,7 @@ def review(layout, atlas, pieces):
         spr = atlas.sprite(p.name)
         bg = NIGHT["wall"][1] if (e["layer"] == "rear_wall" and e["kind"] in ("wall", "door") and p.name != "wall_n_plain") else FILL
         ul = upper_left_edge(spr)
-        if p.name == "wall_n_plain":      # a tile that repeats horizontally: only its top edge is a silhouette edge
+        if p.name in ("wall_n_plain", "elevator_closed", "elevator_half", "elevator_open"):   # wall modules that repeat or sit in a wall run: only the top edge is a silhouette edge
             ul = (np.arange(spr.shape[0])[:, None] == 0) & (spr[:, :, 3] > 0)
         sh = e.get("contact_shadow")
         low = 0
@@ -502,6 +502,8 @@ def review(layout, atlas, pieces):
                 continue   # the lit head of a lamp is a light source
             if p.name.startswith("service_door") or p.name == "wall_e_plain":
                 continue   # measured in the room against the wall mass (below)
+            if p.name == "wall_w_plain" and y == 0:
+                continue   # the top row of a vertically tiling wall is a seam between tiles, not a silhouette edge (its left edge is the lit line)
             if nk.contrast(spr[y, x, :3], bg) < nk.MIN_EDGE:
                 low += 1
         n_checked += 1
@@ -852,6 +854,49 @@ def quest_proofs(atlas, meta):
     return ok_ and layout_ok
 
 
+# ------------------------------------------------------------------ Night Shift integration proof
+
+INTEG_BEFORE = {"elevator": "closed", "elevator_panel": "base", "lamp": "on"}
+INTEG_AFTER = {"elevator": "open", "elevator_panel": "executive_lit", "lamp": "pulse"}
+INTEG_REQUIRED = {"elevators": (16, 0, 224, 48), "west wall": (296, 56, 320, 130), "desk and lamp": (224, 92, 262, 120),
+                  "artifact cabinet": (176, 130, 200, 170)}
+
+
+def nightshift_integration_layout():
+    extras = [{"entry": "desk_lit_a", **at(224, 100)}, {"entry": "desk_dawn_lamp", **at(224 + 24, 100 - 10)}]
+    for y in range(56, 136, T):
+        extras.append({"entry": "wall_w_plain", **at(300, y)})
+    return br.integration_layout("nightshift", "nightshift-atlas.json", ["ada_shift_book"], extras, panel={"anim": "elevator_panel"}, desks=False,
+                                 states=INTEG_BEFORE,
+                                 note="Night Shift integration proof room, built only from nightshift-atlas: the shared elevator set (closed, half, open) with the call panel "
+                                      "(the Executive stop lit in the after state), Ada's shift book on a cabinet, the dawn lamp on a lit desk and the west-wall side plane. "
+                                      "Night Shift has no desk_a or desk_b, so there is no occluder here. People are not placed.")
+
+
+def render_ns_integration(layout, atlas, states):
+    return br.render_integration(layout, atlas, states, people=[])
+
+
+def integration_proofs(atlas, meta):
+    layout = nightshift_integration_layout()
+    layout_ok = br.write_integration_layout("nightshift", layout, meta)
+    before, after = br.integration_images("nightshift", layout, atlas, INTEG_BEFORE, INTEG_AFTER, render_ns_integration, to_screen_fn=to_screen)
+    print(f"nightshift integration: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    reps = [prop_edge_report(layout, atlas, st) for st in (INTEG_BEFORE, INTEG_AFTER)]
+    fmin = min([min(d["floor"]) for rep in reps for d in rep.values() if "floor" in d] or [99.0])
+    elev = {n: atlas.entries[n] for n in ("elevator_closed", "elevator_half", "elevator_open", "elevator_call_panel", "elevator_call_panel_executive_lit")}
+    def shadow_dark(name):
+        sx, sy, sw, sh = atlas.entries[name]["contact_shadow"]
+        reg = atlas.sprite(name)[sy:sy + sh, sx:sx + sw]
+        px = reg[reg[:, :, 3] > 0][:, :3]
+        return len(px) > 0 and all(nk.luminance(c) <= nk.luminance(kitlib.hex2rgb(FILL)) for c in px)
+    extra = [("every free-standing integration prop's upper-left edge reaches >= 3:1 against the floor under it (both states)", fmin >= 3.0, f"min {fmin:.2f}:1"),
+             ("the Executive-lit panel has the base panel's geometry", all(elev["elevator_call_panel_executive_lit"][k] == elev["elevator_call_panel"][k] for k in ("size_px", "footprint", "collision", "layer", "anchor")), ""),
+             ("the elevator set's baked shadow rows are no lighter than the slate floor (re-keyed to the night ramp)", all(shadow_dark(n) for n in ("elevator_closed", "elevator_half", "elevator_open")), "3 states")]
+    ok_ = br.integration_review("nightshift", layout, atlas, meta, nk.INTEGRATION_NAMES, INTEG_BEFORE, INTEG_AFTER, INTEG_REQUIRED, desk_front_covers=False, extra=extra)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -975,7 +1020,8 @@ def main():
     readability_sheet(before)
     rim_final_image()
     qok = quest_proofs(atlas, meta)
-    ok_ = ok_ and qok
+    iok = integration_proofs(atlas, meta)
+    ok_ = ok_ and qok and iok
     print("NIGHT SHIFT BUILD", "PASSED" if ok_ else "FAILED")
     sys.exit(0 if ok_ else 1)
 

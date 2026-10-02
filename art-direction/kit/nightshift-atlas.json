@@ -3437,6 +3437,386 @@
     "counter"
    ],
    "note": "Break-counter pool, 62x22 px: centre 24 px right and 14 px below the break counter's footprint origin, so a state set can carry the counter and its pool together. This entry recolours the slab joints and wear chips (#364049) to #7A4A4A; place it with pool_breaktop_fill."
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    336,
+    352,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front. Orientation's module in the nightshift ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    384,
+    352,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Orientation's module in the nightshift ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    432,
+    352,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Orientation's module in the nightshift ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    480,
+    352,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "wave 2"
+   ],
+   "note": "wall call panel for the elevator, nightshift ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "elevator_call_panel_executive_lit",
+   "kind": "wall",
+   "rect": [
+    496,
+    352,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "executive",
+    "wave 2"
+   ],
+   "note": "the call panel with the Executive stop lit: the display's second bar and the up button in the lit warm step (revealed by level 19). Same geometry as elevator_call_panel"
+  },
+  {
+   "name": "artifact_ada_shift_book",
+   "kind": "prop",
+   "rect": [
+    512,
+    352,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "ada_shift_book",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    4,
+    14,
+    11,
+    1
+   ],
+   "note": "Ada's shift book (Night Shift level 19): a small closed book with a name label and a ribbon marker. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "wall_w_plain",
+   "kind": "wall",
+   "rect": [
+    528,
+    352,
+    16,
+    16
+   ],
+   "size_px": [
+    13,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "west",
+    "side plane",
+    "wave 2"
+   ],
+   "note": "west wall segment, side plane seen from inside (the face between the service corridor and the hall): ink mass with a 1 px silver line on its left (the edge that catches the upper-left light) and its room-facing edge on the right. That face looks away from the light, so its trim is a dim indigo step, not the silver of wall_e_plain, which cannot be mirrored. Tiles vertically; no collision of its own (the map blocks the wall elsewhere). Place so its right edge is the cell boundary: the sprite fills the cell's left 13 px"
+  },
+  {
+   "name": "desk_dawn_lamp",
+   "kind": "prop",
+   "rect": [
+    544,
+    352,
+    16,
+    16
+   ],
+   "size_px": [
+    10,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -3,
+     -3
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    5,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "decor",
+    "desk",
+    "reward",
+    "dawn"
+   ],
+   "note": "Desk for Dawn reward: a small desk lamp (wood foot and stem under a warm shade with one lit step and a pale glint), 10 x 13, 1 x 1, no collision, silver edge. A desk decoration like mail_tray and desk_folder; never placed on the map"
   }
  ],
  "animations": {
@@ -3732,6 +4112,54 @@
    ],
    "ms_per_frame": 300,
    "note": "level 19: the service corridor lights up. Place one per 4 to 5 cells along the corridor: an unlit lamp, then the lamp with a pool of route light centred on it"
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"
+  },
+  "elevator_panel": {
+   "kind": "state_set",
+   "default": "base",
+   "states": {
+    "base": {
+     "entries": [
+      "elevator_call_panel"
+     ]
+    },
+    "executive_lit": {
+     "entries": [
+      "elevator_call_panel_executive_lit"
+     ]
+    }
+   },
+   "note": "level 19: the Executive stop lights on the call panel"
   }
  },
  "landmarks": {

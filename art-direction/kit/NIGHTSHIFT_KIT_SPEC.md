@@ -189,3 +189,18 @@ State sets (each pair is cropped to one shared box): `reader_pedestal` (locked, 
 4. **The north stair is a north-wall door, like the repair door.** It carries the wall's cap and shadow rows exactly as `wall_n_plain` draws them, so it replaces two wall tiles without a seam. The existing `service_door` keeps its stair sign on the east wall for the service corridor.
 5. **Reader pedestals are separate from the gate.** `vestibule_gate` already has readers on its posts; the pedestals are free-standing extras the level designer can put at either end of the vestibule, and they do not change the gate's collision.
 6. **`corridor_light` and `break_room` reuse existing entries.** They are named state sets over entries that were already in the atlas (plus `break_counter_dim` and `pool_breaktop`), so "the service corridor lights up" is a state change, not repainting.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `nightshift-integration-room.json` and `nightshift-integration-proof-{before,after}-{native,1366x768}.png` (three elevators with the call panel, the Executive stop lit in the after state, Ada's shift book on a cabinet, the dawn lamp on a lit desk, the west-wall side plane).
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed/_half/_open` (set `elevator`) | 3x3, `111/111/000` (open `111/101/000`) | rear_wall | Orientation geometry in the Night Shift ramps. Shadow rows re-keyed to the night ramp; the top edge gets the silver light of `wall_n_plain`; no side edges (they would draw seams down the wall) |
+| `elevator_call_panel`, `elevator_call_panel_executive_lit` (set `elevator_panel`: base, executive_lit) | 1x2, `0/0` | rear_wall | Lit variant: the display's second bar and the up button in the lit warm step. Silver edge pass |
+| `artifact_ada_shift_book` | 1x1, `0` | front_prop | `artifact_prop` with paper = the silver glass ramp; silver edge and night shadow passes |
+| `wall_w_plain` | 1x1, `0` | rear_wall | 13x16 side plane, tiles vertically. 1 px silver line on the left (the lit side), ink mass, dim indigo room-facing edge on the right. `wall_e_plain` is not mirrored because light is upper-left |
+| `desk_dawn_lamp` | 1x1, `0` | front_prop | Reward desk decoration (Desk for Dawn), 10x13, silver edge; never placed on the map |
+
+No `desk_a` / `desk_b` exist in this kit (its desks are `desk_dead_*` and `desk_lit_*`), so there are no occluders. Rim rules: the warm rim stays the window silhouettes' only; the new props use only the silver edge; `build_nightshift.py` still ends PASSED (the lit-edge check treats the elevator like `wall_n_plain`: top edge only, and `wall_w_plain`'s top row is a tile seam). The level data declares a 2x3 east-wall elevator; the kit module is the 3x3 north-wall slice, so the map must adopt it.
