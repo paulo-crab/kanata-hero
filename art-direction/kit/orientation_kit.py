@@ -741,9 +741,9 @@ def garden_after_pieces():
 
 
 # After state: the same parts, but `garden_base_open` (identical pixels, collision with column 1 walkable) replaces
-# `garden_base`, and `garden_north_rim_open` is drawn last so the opening cuts through the crown.
-GARDEN_PARTS_AFTER = (["garden_base_open"] + GARDEN_PARTS_BEFORE[1:]
-                      + ["garden_after_path", "garden_after_blooms", "garden_north_rim_open"])
+# `garden_base`, and `garden_north_rim_open` is drawn right after the base so the crown overhangs the opening (the tree stays whole).
+GARDEN_PARTS_AFTER = (["garden_base_open", "garden_north_rim_open"] + GARDEN_PARTS_BEFORE[1:]
+                      + ["garden_after_path", "garden_after_blooms"])
 # Lamp footprint origins relative to the garden footprint origin (96, 78): lamp (cx, cy) -> (cx - 7 - 96, cy - 7 - 78)
 GARDEN_LAMP_OFFSETS = [[cx - 7 - GARDEN_FP[0], cy - 7 - GARDEN_FP[1]] for cx, cy in GARDEN_LAMPS]
 

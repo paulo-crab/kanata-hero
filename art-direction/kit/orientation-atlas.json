@@ -5280,14 +5280,14 @@
      "parts": [
       "garden_ring",
       "garden_base_open",
+      "garden_north_rim_open",
       "garden_foliage",
       "garden_rocks",
       "garden_centrepiece",
       "garden_canopy_shadow",
       "garden_blooms",
       "garden_after_path",
-      "garden_after_blooms",
-      "garden_north_rim_open"
+      "garden_after_blooms"
      ],
      "lamps": {
       "anim": "lamp",
