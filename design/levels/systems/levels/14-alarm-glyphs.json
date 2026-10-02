@@ -623,14 +623,9 @@
    "when": "step_done:s14-go",
    "then": [
     {
-     "op": "move_npc",
-     "npc": "hal",
-     "state": "alarm"
-    },
-    {
      "op": "npc_state",
      "npc": "hal",
-     "state": "anxious_14"
+     "state": "alarm_anxious"
     }
    ]
   },
@@ -776,7 +771,7 @@
     {
      "op": "npc_state",
      "npc": "hal",
-     "state": "systems-14"
+     "state": "alarm_settled"
     },
     {
      "op": "light_state",
@@ -823,8 +818,8 @@
    {
     "kind": "npc_pose",
     "target": "hal",
-    "from": "anxious_14",
-    "to": "systems-14",
+    "from": "alarm_anxious",
+    "to": "alarm_settled",
     "note": "anxious to settled focus"
    },
    {

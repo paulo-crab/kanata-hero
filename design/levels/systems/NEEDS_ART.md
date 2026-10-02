@@ -26,8 +26,8 @@ Props the Systems atlas (`art-direction/kit/systems-atlas.json`) lacks. Each is 
 
 | Beat | Data state | Proxy animation now | Wanted |
 | --- | --- | --- | --- |
-| Crouched repair at the machine and in the ledger room (levels 12, 13) | `systems-12` | `hal_interact_e` | `hal_crouch_repair_e` (and s/n/w) |
-| Seated on the stool at the end of 13 | `systems-13` | `hal_idle_s` | `hal_seated_stool_s` |
+| Crouched repair at the machine and in the ledger room (levels 12, 13) | `repair_hub`, `ledger_repair` | `hal_interact_e` | `hal_crouch_repair_e` (and s/n/w) |
+| Seated on the stool at the end of 13 | `ledger_seated` | `hal_idle_s` | `hal_seated_stool_s` |
 | Pulls down the false panel (16) | `panel_pull` | `hal_interact_n` | `hal_pull_panel_n`, one-shot |
 
 Drawn poses used as designed: `hal_react_puzzled_e/_s` (12 and 15), `hal_react_anxious_s` (start of 14), `hal_idle_s` (settled focus after the 14 fix).

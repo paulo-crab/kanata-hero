@@ -1159,7 +1159,7 @@
     {
      "op": "npc_state",
      "npc": "hal",
-     "state": "systems-12"
+     "state": "repair_hub"
     },
     {
      "op": "light_state",
@@ -1222,7 +1222,7 @@
     "kind": "npc_pose",
     "target": "hal",
     "from": "start",
-    "to": "systems-12",
+    "to": "repair_hub",
     "note": "puzzled to crouched repair (proxy animation until drawn)"
    },
    {

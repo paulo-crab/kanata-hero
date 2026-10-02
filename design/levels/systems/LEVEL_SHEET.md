@@ -99,8 +99,8 @@ Every other interaction approaches a target that is north of, or level with, the
 ## Data conventions and notes for developers
 
 - `map.json` `collision` is the initial state. Gates (`gates`) open for any level whose number exceeds `opens_after`; the gate placements are state sets (`bridge_span` retracted/extended, `service_door` closed/open).
-- Hal uses one NPC with `move_npc` (cells_by_state: hub, ledger, alarm, formula, relay, panel) and pose keys. Three in-level pose keys are not level ids (`anxious_14`, `puzzled_15`, `panel_pull`): the validator warns, they are intentional beats between level completions. The producer may add them as flags.
-- Mira moves from the chute to the relay room at level 16 (`cells_by_state`); her route offers are the interactions `mira-chute` (visible from state `systems-13`) and `mira-relay` (visible from state `systems-16`).
+- Hal is one NPC. Each state sets pose and cell together (`npc_state`): `start` and `repair_hub` (hub), `ledger_repair` and `ledger_seated` (ledger room), `alarm_anxious` and `alarm_settled` (alarm hall), `formula_idle` and `formula_puzzled` (formula room), `relay_idle` (relay room), `panel_pull` and `panel_done` (machine face). Mira's states: `start` and `offering` (chute), `relay_pleased` (relay room, after 16). `visible_when` strings on NPC interactions read `npc:<id>=<state>`.
+- The hub, ledger, alarm, formula and relay conversations are separate interactions bound to the same Hal (`hal-hub`, `hal-hub-13`, `hal-ledger`, `hal-alarm`, `hal-formula`, `hal-relay`); the one matching Hal's current state is live.
 - Systems exit and entrance links: `world.json` has no link between systems and nightshift, so the false-panel entrance and exit reuse `link.elevator.systems` with a note; the intended target is the Night Shift elevator stop.
 - Pace signs use the Pace atlas (`pace_wall_sign_2x1`, `pace_wall_sign_2x1_repeat`), listed in `district.json` `pace_signs`.
 - Held-Space evidence is output-observed only: the UI says the output was observed, never that Space was held. Tap-hold Tab (Homerow) is explained and player-confirmed in the S25 lane, never scored.

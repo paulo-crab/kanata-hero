@@ -852,14 +852,9 @@
    "when": "step_done:s16-go",
    "then": [
     {
-     "op": "move_npc",
-     "npc": "hal",
-     "state": "relay"
-    },
-    {
      "op": "npc_state",
      "npc": "hal",
-     "state": "systems-15"
+     "state": "relay_idle"
     }
    ]
   },
@@ -968,17 +963,7 @@
     {
      "op": "npc_state",
      "npc": "mira",
-     "state": "systems-16"
-    },
-    {
-     "op": "move_npc",
-     "npc": "mira",
-     "state": "relay"
-    },
-    {
-     "op": "move_npc",
-     "npc": "hal",
-     "state": "panel"
+     "state": "relay_pleased"
     },
     {
      "op": "npc_state",
@@ -1014,7 +999,7 @@
     {
      "op": "npc_state",
      "npc": "hal",
-     "state": "systems-16"
+     "state": "panel_done"
     },
     {
      "op": "journal",
@@ -1057,15 +1042,15 @@
    {
     "kind": "npc_pose",
     "target": "hal",
-    "from": "systems-15",
+    "from": "relay_idle",
     "to": "panel_pull",
     "note": "Hal pulls the false panel down (proxy hal_interact_n until drawn)"
    },
    {
     "kind": "npc_pose",
     "target": "mira",
-    "from": "start",
-    "to": "systems-16",
+    "from": "offering",
+    "to": "relay_pleased",
     "note": "Mira moves from the chute to the relay room and is pleased"
    }
   ]

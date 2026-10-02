@@ -391,9 +391,9 @@
    "when": "dialogue_done:s13-hal-intro",
    "then": [
     {
-     "op": "move_npc",
+     "op": "npc_state",
      "npc": "hal",
-     "state": "ledger"
+     "state": "ledger_repair"
     },
     {
      "op": "journal",
@@ -428,12 +428,12 @@
     {
      "op": "npc_state",
      "npc": "hal",
-     "state": "systems-13"
+     "state": "ledger_seated"
     },
     {
      "op": "npc_state",
      "npc": "mira",
-     "state": "systems-13"
+     "state": "offering"
     },
     {
      "op": "light_state",
@@ -491,8 +491,8 @@
    {
     "kind": "npc_pose",
     "target": "hal",
-    "from": "systems-12",
-    "to": "systems-13",
+    "from": "ledger_repair",
+    "to": "ledger_seated",
     "note": "crouched repair to seated on the stool (proxy animation until drawn)"
    },
    {

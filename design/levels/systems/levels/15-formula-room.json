@@ -669,9 +669,9 @@
    "when": "step_done:s15-go",
    "then": [
     {
-     "op": "move_npc",
+     "op": "npc_state",
      "npc": "hal",
-     "state": "formula"
+     "state": "formula_idle"
     }
    ]
   },
@@ -807,7 +807,7 @@
     {
      "op": "npc_state",
      "npc": "hal",
-     "state": "puzzled_15"
+     "state": "formula_puzzled"
     },
     {
      "op": "light_state",
@@ -867,8 +867,8 @@
    {
     "kind": "npc_pose",
     "target": "hal",
-    "from": "systems-14",
-    "to": "puzzled_15",
+    "from": "formula_idle",
+    "to": "formula_puzzled",
     "note": "puzzled at the detour score (proxy pose hal_react_puzzled_s)"
    },
    {

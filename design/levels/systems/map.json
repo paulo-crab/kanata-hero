@@ -2725,7 +2725,7 @@
    "npc": "hal",
    "dialogue_id": "s12-hal-intro",
    "level": "systems-12",
-   "visible_when": "state:start",
+   "visible_when": "npc:hal=start",
    "label": "Hal at the routing machine"
   },
   {
@@ -2742,7 +2742,7 @@
    "npc": "hal",
    "dialogue_id": "s13-hal-intro",
    "level": "systems-13",
-   "visible_when": "state:systems-12",
+   "visible_when": "npc:hal=repair_hub",
    "label": "Hal at the routing machine (level 13 briefing)"
   },
   {
@@ -2827,7 +2827,7 @@
     "level:systems-13"
    ],
    "label": "Mira at the mail chute: Payroll Run",
-   "visible_when": "state:systems-13"
+   "visible_when": "npc:mira=offering"
   },
   {
    "id": "mira-relay",
@@ -2846,7 +2846,7 @@
     "level:systems-16"
    ],
    "label": "Mira in the relay room: Glyph Dispatch",
-   "visible_when": "state:systems-16"
+   "visible_when": "npc:mira=relay_pleased"
   },
   {
    "id": "payroll-terminal",
@@ -3244,24 +3244,31 @@
    "facing": "e",
    "poses_by_state": {
     "start": "hal_react_puzzled_e",
-    "systems-12": "hal_interact_e",
-    "systems-13": "hal_idle_s",
-    "anxious_14": "hal_react_anxious_s",
-    "systems-14": "hal_idle_s",
-    "puzzled_15": "hal_react_puzzled_s",
-    "systems-15": "hal_idle_e",
+    "repair_hub": "hal_interact_e",
+    "ledger_repair": "hal_interact_e",
+    "ledger_seated": "hal_idle_s",
+    "alarm_anxious": "hal_react_anxious_s",
+    "alarm_settled": "hal_idle_s",
+    "formula_idle": "hal_idle_e",
+    "formula_puzzled": "hal_react_puzzled_s",
+    "relay_idle": "hal_idle_e",
     "panel_pull": "hal_interact_n",
-    "systems-16": "hal_idle_s"
+    "panel_done": "hal_idle_s"
    },
    "cells_by_state": {
-    "hub": [13, 11],
-    "ledger": [2, 18],
-    "alarm": [3, 12],
-    "formula": [17, 3],
-    "relay": [32, 7],
-    "panel": [15, 14]
+    "start": [13, 11],
+    "repair_hub": [13, 11],
+    "ledger_repair": [2, 18],
+    "ledger_seated": [2, 18],
+    "alarm_anxious": [3, 12],
+    "alarm_settled": [3, 12],
+    "formula_idle": [17, 3],
+    "formula_puzzled": [17, 3],
+    "relay_idle": [32, 7],
+    "panel_pull": [15, 14],
+    "panel_done": [15, 14]
    },
-   "note": "One Hal moves between rooms with move_npc. Crouched repair, seated on stool and the false-panel pull are not drawn yet: hal_interact_e, hal_idle_s and hal_interact_n stand in (NEEDS_ART.md). Custom pose keys anxious_14, puzzled_15 and panel_pull are in-level beats between level completions."
+   "note": "One Hal moves between rooms; each state sets pose and cell together (npc_state). Crouched repair, seated on the stool and the false-panel pull are not drawn yet: hal_interact_e, hal_idle_s and hal_interact_n stand in (NEEDS_ART.md)."
   },
   {
    "id": "mira",
@@ -3270,12 +3277,13 @@
    "facing": "s",
    "poses_by_state": {
     "start": "mira_idle_s",
-    "systems-13": "mira_interact_s",
-    "systems-16": "mira_react_pleased_s"
+    "offering": "mira_interact_s",
+    "relay_pleased": "mira_react_pleased_s"
    },
    "cells_by_state": {
-    "chute": [12, 9],
-    "relay": [29, 7]
+    "start": [12, 9],
+    "offering": [12, 9],
+    "relay_pleased": [29, 7]
    },
    "note": "At the chute until level 16 completes, then in the relay room (Glyph Dispatch); she offers both routes there."
   },
