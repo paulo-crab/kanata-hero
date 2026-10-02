@@ -5,7 +5,8 @@ Imported by build_reference.py after kit_screens.py. Static HTML/CSS/SVG, no scr
 """
 import math
 
-from kit_screens import ico, mk, kc, mico, shot, chip_practice
+import bindings
+from kit_screens import ico, mk, kc, mico, shot, chip_practice, hud_chips, inset_scene, mini, keycap, code_line
 
 # --------------------------------------------------------------------------- seals and patches
 SEALS = [
@@ -279,7 +280,9 @@ CSS = """
 .kh-prev .l1 b{color:var(--text)}
 .kh-prev .l2{color:var(--text-muted)}
 .kh-prev .l2 b{color:var(--text)}
-.kh-prev .gone{color:var(--text-muted);border:2px dashed var(--border);border-radius:var(--radius-sm);padding:0 var(--space-2);display:inline-flex;align-items:center;gap:var(--space-2);align-self:flex-start}
+.kh-prev .gone{color:var(--text-muted);border:2px dashed var(--border);border-radius:var(--radius-sm);padding:2px var(--space-2);display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;align-self:flex-start}
+.kh-prev .gone .gl{display:inline-flex;align-items:center;gap:var(--space-2);white-space:nowrap}
+.kh-prev .gone .gm{font-family:var(--font-mono);color:var(--text)}
 .kh-reset{display:flex;flex-direction:column;gap:var(--space-2);background:var(--panel-raised);border:3px solid var(--paper);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4)}
 .kh-reset .q{display:flex;align-items:center;gap:var(--space-3);font:var(--weight-bold) var(--text-lg)/1.3 var(--font-display)}
 .kh-reset p{margin:0;font-size:var(--text-base)}
@@ -353,15 +356,16 @@ def elevator_screen():
         <span class="kh-label">Seals</span>
         {seal_strip(1, 44, names=True)}
         <div class="keys">
-          <span>To pick a floor, you need to press <b>Up arrow</b> or <b>Down arrow</b>. Hint: they are <b>tap-hold Caps + K</b> and <b>tap-hold Caps + J</b>.</span>
-          <span>To ride to the chosen floor, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps</b> + <b>N</b>.</span>
+          <span>To pick a floor, you need to press <b>Up arrow</b> or <b>Down arrow</b>. Hint: <b>tap-hold Caps + K</b> or <b>J</b>.</span>
+          <span>To ride, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps + N</b>.</span>
+          <span>To stay, you need to press <b>Esc</b>. Hint: Esc is <b>tap Caps</b>.</span>
         </div>
       </div>
     </div>
   </div>
 </div>"""
     return shot("elevator-map", "Elevator map",
-                "Five stops, one per district. A locked stop shows the seal it needs and what to do next, never a blank door; the current floor has a filled marker and the words 'You are here'; Esc always goes back. Locked is a dashed floor badge, a lock and 'Needs …', so no state is colour alone.",
+                "Five stops, one per district. It opens with Return at the elevator's call panel (Interact); Up and Down pick a floor, Return rides, Esc goes back. A locked stop shows the seal it needs and what to do next, never a blank door; the current floor has a filled marker and the words 'You are here'. Locked is a dashed floor badge, a lock and 'Needs …', so no state is colour alone.",
                 inner)
 
 
@@ -399,7 +403,7 @@ def toast_screen():
   <span class="title">Visit Records</span><span class="count">0 / 4</span><span class="sep"></span>
   <span class="seals">{ico("seal", 24)} Seals 1</span>
 </div>
-<div class="kh-hud shortcuts"><span class="chip">Journal <span class="kh-key sm">Tab</span></span><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+{hud_chips("hint", "journal", "help")}
 {mk("route", style="left:1090px;top:252px")}
 <div class="kh-toasts" aria-live="polite">
   <div class="kh-toast"><span class="ic">{seal("orientation", 44)}</span><span class="t">Seal earned: <em>Orientation</em></span><span class="d">The Records door is open.</span></div>
@@ -501,8 +505,8 @@ def settings_screen():
             '<span class="l2">Hint: Return is <b>tap-hold Caps</b> + <b>N</b>.</span>', selected=True)
         + lvl("Focused", "Action and key. The gesture on request.",
               '<span class="l1">To submit the access code, you need to press <b>Return</b>.</span>',
-              '<span class="l2">Hint: hidden until you ask.</span>',
-              gone=f'<span class="gone">{ico("eye", 18)} Show hint</span>')
+              '<span class="l2">Hint: hidden.</span>',
+              gone=f'<span class="gone" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap."><span class="gl">{ico("eye", 18)} Show hint {kc("`")}</span><span class="gm">tap `</span></span>')
         + lvl("Violento", "Action only, once the gesture is introduced.",
               '<span class="l1">To submit the access code.</span>',
               '<span class="l2">Key and gesture are hidden.</span>')
@@ -520,7 +524,7 @@ def settings_screen():
     inner = f"""
 <div class="kh-panel overlay su" role="dialog" aria-label="Settings and accessibility">
   <div class="top"><h2>Settings</h2><span class="sub">Saved on this device.</span><span class="grow"></span>
-    <span class="kh-btn">Run setup again</span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+    <span class="kh-btn">Run setup again</span><span class="kh-btn">Controls</span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
   <div class="kh-set"><div class="col">{left}</div><div class="col">{right}</div></div>
 </div>"""
     return shot("settings", "Settings and accessibility",
@@ -528,9 +532,85 @@ def settings_screen():
                 inner)
 
 
+# --------------------------------------------------------------------------- key bindings: first use and the Controls screen
+def first_use_screen():
+    """Level 01 arrival: Ivo's welcome is a modal conversation, and the first Continue opens the inset."""
+    inset = inset_scene(
+        "Continue", "nav layer · tap-hold Caps · 200 ms",
+        mini(["z", "x", "c", "v", "b", "n", "m"], "n"),
+        mini(["Caps", "a", "s", "d", "f", "g", "h"], None, held="Caps"),
+        None, "N", ("↵", "Return"), "Next line",
+        "First use: this opens once, then closes on the first Return.", icon="play").replace("top row and home row", "bottom row and home row")
+    inner = f"""
+<div class="kh-hud obj" role="status">
+  <span class="title">Visit the four desks</span><span class="count">0 / 4</span><span class="sep"></span>
+  <span class="seals">{ico("seal", 24)} Seals 0</span>
+</div>
+{hud_chips("hint", "journal", "help")}
+{mk("talk", style="left:480px;top:92px")}
+{inset}
+<section class="kh-panel kh-dialogue" aria-label="Conversation with Ivo (modal)">
+  <div class="kh-portrait" role="img" aria-label="Portrait slot, 48 by 48 pixels shown at 4 times"><span>48 x 48 portrait<br>at x4 = 192 px</span></div>
+  <div class="body">
+    <div class="who">Ivo <span class="role">Reception lead</span></div>
+    <p class="say">Welcome to the Department of Motion. I'm Ivo, reception. Before your first ticket I need you to visit four desks.</p>
+    <div class="ctl">
+      <span aria-label="Continue. Key Return. Hint: Return is tap-hold Caps and N."><b>Continue</b> {kc("Return")} tap-hold Caps + N</span>
+      <span aria-label="Skip. Key Escape. Hint: Escape is tap Caps."><b>Skip</b> {kc("Esc")} tap Caps</span>
+    </div>
+  </div>
+</section>"""
+    return shot("first-use", "First use: a conversation and the Return inset",
+                "Level 01 arrival. Ivo's welcome is a modal conversation (no hint line), so the footer carries Continue and Skip as keycaps with their gestures, world input is paused and the world is not dimmed. The inset opens by itself for the first Continue and closes on the first Return. The three HUD chips are Hint (Backtick), Journal (Q) and Layout help (?).",
+                inner, scrim="none")
+
+
+def controls_screen():
+    by = {b["id"]: b for b in bindings.BINDINGS}
+    # Short wording for the table; the full rules (and the contexts these summarise) are in
+    # bindings.py and design/ui-key-bindings.md.
+    live = {"interact": "world, in range", "continue": "conversations, buttons", "skip": "conversations",
+            "back": "overlays, scenes, duels", "move": "world, lists", "hint": "all but Violento",
+            "journal": "world only", "help": "everywhere", "retry": "duel, after a wrong turn"}
+    alt = {"skip": "Caps + [ from level 07", "back": "Caps + [ from level 07", "help": "journal row, Return"}
+    order = ["interact", "continue", "skip", "back", "move", "hint", "journal", "help", "retry"]
+    arrows = "".join(f'<span class="kh-key sm">{ico(n, 18)}</span>' for n in ("arrow-left", "arrow-up", "arrow-down", "arrow-right"))
+    rows = ""
+    for i in order:
+        b = by[i]
+        key = arrows if i == "move" else kc(b["key"])
+        rows += (f'<div class="kh-crow" role="row" aria-label="{b["aria"]}">'
+                 f'<span class="ac">{b["action"]}</span><span class="k">{key}</span>'
+                 f'<span class="g">{b["gesture"]}</span><span class="w">{live[i]}</span>'
+                 f'<span class="alt">{alt.get(i, "mouse click")}</span></div>')
+    inner = f"""
+<div class="kh-panel overlay su" role="dialog" aria-label="Controls">
+  <div class="top"><h2>Controls</h2><span class="sub">Six keys run the game. Each is a normal key; the hint is the gesture that makes it on this layout.</span>
+    <span class="grow"></span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="ctl-ex">To open the journal, you need to press <b>Q</b>. Hint: Q is <b>tap Q</b>. Each row reads the same way.</p>
+  <div class="kh-ctable" role="table" aria-label="Key bindings">
+    <div class="kh-crow head" role="row"><span>Action</span><span>Key</span><span>Kanata gesture</span><span>Live in</span><span>Alternative</span></div>
+    {rows}
+  </div>
+  <div class="ctl-cards">
+    <div class="ctl-card">
+      <div class="wh">{ico("person-check", 24)}<span>Practice layer: all of these still work</span></div>
+      <p>Physical Return, Esc and the arrows are silent there, so the Caps gestures are the way.</p>
+    </div>
+    <div class="ctl-card dashed">
+      <div class="wh">{ico("shield-key", 24)}<span>Never game keys</span></div>
+      <p>Tab (outside a Tab region), Space, Command or Control combinations, F1 to F12. In typing scenes only {kc("?")} and {kc("`")} are commands. Esc does nothing in the open world.</p>
+    </div>
+  </div>
+</div>"""
+    return shot("controls", "Controls",
+                "Every binding in one place: action, key, the Kanata gesture, where it is live and the alternative. It is reached from the journal and from Settings, never needed to play. The table is generated from bindings.py, the same data the lint checks against design/ui-key-bindings.md.",
+                inner)
+
+
 def p1_sections():
     return (artifact_screen() + elevator_screen() + award_screen() + toast_screen() + results_screen()
-            + seals_sheet() + settings_screen())
+            + seals_sheet() + settings_screen() + first_use_screen() + controls_screen())
 
 
 CSS += """
@@ -539,4 +619,23 @@ CSS += """
 .seal-cell{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-3);display:flex;flex-direction:column;align-items:center;gap:var(--space-2);text-align:center;font-size:var(--text-sm)}
 .seal-cell span{color:var(--text-muted)}
 .seal-pair{display:flex;align-items:flex-end;gap:var(--space-3);color:var(--accent-discovery)}
+
+/* ---- Controls screen and first-use ------------------------------------------------------------- */
+.ctl-ex{margin:0;font-size:var(--text-base)}
+.ctl-ex b{color:var(--text)}
+.kh-ctable{display:flex;flex-direction:column;gap:4px}
+.kh-crow{display:grid;grid-template-columns:200px 150px 300px 1fr 1fr;gap:var(--space-3);align-items:center;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:0 var(--space-4);min-height:40px;font-size:var(--text-sm)}
+.kh-crow.head{background:transparent;border-color:transparent;min-height:0;padding-top:0;padding-bottom:0;font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+.kh-crow .ac{font:var(--weight-bold) var(--text-base)/1.2 var(--font-body)}
+.kh-crow .k{display:flex;gap:4px;align-items:center}
+.kh-crow .g{font-family:var(--font-mono);font-size:var(--text-sm)}
+.kh-crow .w,.kh-crow .alt{color:var(--text-muted);line-height:1.3}
+.ctl-cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+.ctl-card{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.ctl-card.dashed{border-style:dashed}
+.ctl-card .wh{display:flex;align-items:center;gap:var(--space-2);font:var(--weight-bold) var(--text-base)/1.2 var(--font-body)}
+.ctl-card p{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.ctl-card p b{color:var(--text)}
+.ctl-card p .kh-key{vertical-align:middle}
+.kh-dialogue .ctl{flex-wrap:wrap;row-gap:var(--space-1)}
 """

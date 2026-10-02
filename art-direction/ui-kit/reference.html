@@ -148,6 +148,9 @@ code,.mono{font-family:var(--font-mono)}
 .steps li.next .dot{border-color:var(--accent-terminal);color:var(--accent-terminal)}
 .steps li.todo{color:var(--text-muted)}
 .keysline{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;background:var(--panel-sunken);border-radius:var(--radius-md);padding:var(--space-3)}
+.rowkeys{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.rowkeys b{color:var(--text)}
+.kh-dialogue .ctl .keep{white-space:normal}
 .keysline .kh-key{height:40px;min-width:40px;font-size:var(--text-base);box-shadow:0 3px 0 var(--key-edge)}
 .keysline .kh-key.held{box-shadow:0 1px 0 var(--key-held-edge)}
 
@@ -201,6 +204,9 @@ b,strong{font-weight:var(--weight-bold)}
 .kh-btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .kh-btn.focus{outline:2px solid var(--focus);outline-offset:3px}
 .kh-btn .kh-key.sm{height:28px;min-width:28px;box-shadow:0 2px 0 var(--key-edge);margin-bottom:2px}
+.kh-btn .g{font:var(--weight-regular) var(--text-sm)/1 var(--font-mono);color:var(--text-muted)}
+.kh-btn.primary .g{color:var(--ink)}
+.kh-key.bt{font-size:var(--text-lg)}
 
 /* ---- Layout help ------------------------------------------------------------------------------ */
 .lh-overlay{left:16px;right:16px;top:16px;bottom:16px;gap:6px;padding:var(--space-2) var(--space-5) var(--space-3)}
@@ -503,7 +509,9 @@ b,strong{font-weight:var(--weight-bold)}
 .kh-prev .l1 b{color:var(--text)}
 .kh-prev .l2{color:var(--text-muted)}
 .kh-prev .l2 b{color:var(--text)}
-.kh-prev .gone{color:var(--text-muted);border:2px dashed var(--border);border-radius:var(--radius-sm);padding:0 var(--space-2);display:inline-flex;align-items:center;gap:var(--space-2);align-self:flex-start}
+.kh-prev .gone{color:var(--text-muted);border:2px dashed var(--border);border-radius:var(--radius-sm);padding:2px var(--space-2);display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;align-self:flex-start}
+.kh-prev .gone .gl{display:inline-flex;align-items:center;gap:var(--space-2);white-space:nowrap}
+.kh-prev .gone .gm{font-family:var(--font-mono);color:var(--text)}
 .kh-reset{display:flex;flex-direction:column;gap:var(--space-2);background:var(--panel-raised);border:3px solid var(--paper);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4)}
 .kh-reset .q{display:flex;align-items:center;gap:var(--space-3);font:var(--weight-bold) var(--text-lg)/1.3 var(--font-display)}
 .kh-reset p{margin:0;font-size:var(--text-base)}
@@ -514,6 +522,25 @@ b,strong{font-weight:var(--weight-bold)}
 .seal-cell{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-3);display:flex;flex-direction:column;align-items:center;gap:var(--space-2);text-align:center;font-size:var(--text-sm)}
 .seal-cell span{color:var(--text-muted)}
 .seal-pair{display:flex;align-items:flex-end;gap:var(--space-3);color:var(--accent-discovery)}
+
+/* ---- Controls screen and first-use ------------------------------------------------------------- */
+.ctl-ex{margin:0;font-size:var(--text-base)}
+.ctl-ex b{color:var(--text)}
+.kh-ctable{display:flex;flex-direction:column;gap:4px}
+.kh-crow{display:grid;grid-template-columns:200px 150px 300px 1fr 1fr;gap:var(--space-3);align-items:center;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:0 var(--space-4);min-height:40px;font-size:var(--text-sm)}
+.kh-crow.head{background:transparent;border-color:transparent;min-height:0;padding-top:0;padding-bottom:0;font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+.kh-crow .ac{font:var(--weight-bold) var(--text-base)/1.2 var(--font-body)}
+.kh-crow .k{display:flex;gap:4px;align-items:center}
+.kh-crow .g{font-family:var(--font-mono);font-size:var(--text-sm)}
+.kh-crow .w,.kh-crow .alt{color:var(--text-muted);line-height:1.3}
+.ctl-cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+.ctl-card{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.ctl-card.dashed{border-style:dashed}
+.ctl-card .wh{display:flex;align-items:center;gap:var(--space-2);font:var(--weight-bold) var(--text-base)/1.2 var(--font-body)}
+.ctl-card p{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.ctl-card p b{color:var(--text)}
+.ctl-card p .kh-key{vertical-align:middle}
+.kh-dialogue .ctl{flex-wrap:wrap;row-gap:var(--space-1)}
 </style>
 </head>
 <body>
@@ -715,11 +742,8 @@ b,strong{font-weight:var(--weight-bold)}
   <span class="sep"></span>
   <span class="seals"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seal"/></svg> Seals 0</span>
 </div>
-<div class="kh-hud shortcuts">
-  <span class="chip">Journal <span class="kh-key sm">Tab</span></span>
-  <span class="chip">Layout help <span class="kh-key sm">?</span></span>
-</div>
-<div class="kh-prompt" style="left:812px;top:128px;width:340px">
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Open the journal. Key Q. Hint: Q is a plain tap.">Journal <span class="kh-key sm">Q</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-prompt" style="left:812px;top:128px;width:340px" aria-label="Use the badge printer. Key Return. Hint: Return is tap-hold Caps and N.">
   <div class="action"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg> Use the badge printer</div>
   <div class="keys"><span class="kh-key sm">Return</span><span class="gesture">tap-hold Caps + N</span></div>
 </div>
@@ -750,15 +774,14 @@ b,strong{font-weight:var(--weight-bold)}
     </div>
   </div>
 </section>
-<section class="kh-panel kh-dialogue" aria-label="Dialogue with Ivo">
+<section class="kh-panel kh-dialogue" aria-label="Instruction line from Ivo (non-modal)">
   <div class="kh-portrait" role="img" aria-label="Portrait slot, 48 by 48 pixels shown at 4 times"><span>48 x 48 portrait<br>at x4 = 192 px</span></div>
   <div class="body">
     <div class="who">Ivo <span class="role">Reception lead</span></div>
     <p class="say">To walk to the east exit, you need to press <b>Right arrow</b>.</p>
     <p class="hint">Hint: Right arrow is <b>tap-hold Caps</b> + <b>L</b>.</p>
     <div class="ctl">
-      <span><b>Continue</b> <span class="kh-key sm">Return</span> tap-hold Caps + N</span>
-      <span><b>Skip</b> <span class="kh-key sm">Esc</span></span>
+      <span class="keep">Instruction line: stays until the step is done. Movement and Esc stay live.</span>
     </div>
   </div>
 </section>
@@ -807,14 +830,14 @@ b,strong{font-weight:var(--weight-bold)}
     <span class="kh-keyunit"><span class="kh-key focus">N</span></span>
     <span class="kh-keyunit"><span class="kh-key wide">Return</span></span>
     <span class="kh-keyunit"><span class="kh-key"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></span>
-    <div class="kh-keyunit"><span class="kh-key sm">Tab</span><p>Small keycap, used in prompts and the HUD</p></div>
+    <div class="kh-keyunit"><span class="kh-key sm">Q</span><p>Small keycap, used in prompts and the HUD</p></div>
   </div>
   <p class="lede" style="margin:var(--space-3) 0 0">From left: tap, held, neighbour (dim), silent on the practice layer (dashed, XX), keyboard focus (ring), wide, arrow output, small.</p>
 </div>
 
 <div class="sheet">
   <h2>Quest journal</h2>
-  <p class="lede">Opened on demand over a dimmed world. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
+  <p class="lede">Opened on demand with Q (tap Q, world only) over a dimmed world; Esc or Q closes it. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
   
 <div class="stage screen">
   <img class="world" src="world-native.png" width="320" height="180" alt="">
@@ -823,7 +846,7 @@ b,strong{font-weight:var(--weight-bold)}
 <div class="kh-panel overlay" role="dialog" aria-label="Quest journal">
   <div class="top"><h2>Quest journal</h2><span class="kh-label">Orientation</span><span class="grow"></span>
     <span class="seals" style="display:inline-flex;align-items:center;gap:var(--space-2);color:var(--accent-discovery);font-weight:var(--weight-bold)"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seal"/></svg> Clearance seals 0 / 5</span>
-    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close &middot; <span class="kh-key sm">Q</span> toggles it</span></div>
   <div class="kh-journal">
     <div class="list">
       <div class="group main"><h3><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seal"/></svg> Main work</h3>
@@ -848,8 +871,9 @@ b,strong{font-weight:var(--weight-bold)}
       </ul>
       <span class="kh-label">Keys for this step</span>
       <div class="keysline"><span class="kh-key held">Caps</span>+<span class="kh-key">L</span><span>Right arrow</span><span style="color:var(--text-muted)">tap-hold Caps + L</span></div>
-      <span class="kh-label">Layout reference</span>
-      <div class="keysline"><span class="kh-key sm">?</span><span>Open Layout help from here or anywhere</span></div>
+      <span class="kh-label">Also from here</span>
+      <div class="keysline"><span class="kh-btn focus">Layout help <span class="kh-key sm">?</span> <span class="g">tap-hold F, then /</span></span><span class="kh-btn">Settings</span><span class="kh-btn">Controls</span></div>
+      <p class="rowkeys">To open a row, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps</b> + <b>N</b>; Up and Down (tap-hold Caps + K / J) choose the row.</p>
     </div>
   </div>
 </div>
@@ -1069,7 +1093,7 @@ b,strong{font-weight:var(--weight-bold)}
       <span class="kh-chip skip"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-skip"/></svg> Skipped</span>
       <span class="d">To type a capital J, you need to press <b>Shift + J</b>. Hint: Shift is <b>tap-hold F</b>, then J.</span>
     </div>
-      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used.</p>
+      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used. Down (tap-hold Caps + J) moves to the next step; a step left alone is recorded as Skipped.</p>
     </div>
     <div class="su-side">
       <div class="su-diagram">
@@ -1146,7 +1170,7 @@ b,strong{font-weight:var(--weight-bold)}
       <span class="kh-chip skip"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-skip"/></svg> Skipped</span>
       <span class="d">To type a capital J, you need to press <b>Shift + J</b>. Hint: Shift is <b>tap-hold F</b>, then J.</span>
     </div>
-      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used.</p>
+      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used. Down (tap-hold Caps + J) moves to the next step; a step left alone is recorded as Skipped.</p>
     </div>
     <div class="su-side">
       <div class="su-diagram">
@@ -1182,7 +1206,7 @@ b,strong{font-weight:var(--weight-bold)}
   </div>
   <div class="kh-code" aria-label="Log, five lines"><div class="kh-line "><span class="no">1</span><span><span class="k">FROM</span>    records-desk</span></div><div class="kh-line "><span class="no">2</span><span><span class="k">TO</span>      harbour-street-12</span></div><div class="kh-line "><span class="no">3</span><span><span class="k">NOTE</span>    parcel <span class="sel">was moved</span><span class="cur"> </span>twice</span></div><div class="kh-line tl"><span class="no"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg>4</span><span><span class="k">NOTE</span>    <span class="tw">address</span> does not match the form</span><span class="tag"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> target line</span></div><div class="kh-line "><span class="no">5</span><span><span class="k">STATUS</span>  waiting for review</span></div></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
 <div class="kh-side" style="top:88px">
 <div class="kh-fb observed" style="" role="status">
   <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
@@ -1235,7 +1259,7 @@ b,strong{font-weight:var(--weight-bold)}
   </div>
   <div class="kh-code" aria-label="Log, five lines"><div class="kh-line "><span class="no">1</span><span><span class="k">FROM</span>    records-desk</span></div><div class="kh-line "><span class="no">2</span><span><span class="k">TO</span>      harbour-street-12</span></div><div class="kh-line "><span class="no">3</span><span><span class="k">NOTE</span>    parcel was moved twice</span></div><div class="kh-line tl"><span class="no"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>4</span><span><span class="k">NOTE</span>    <span class="sel">address</span><span class="cur"> </span>does not match the form</span><span class="tag"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> selected</span></div><div class="kh-line "><span class="no">5</span><span><span class="k">STATUS</span>  waiting for review</span></div></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
 <div class="kh-side" style="top:88px">
 <div class="kh-fb observed" style="" role="status">
   <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
@@ -1274,7 +1298,7 @@ b,strong{font-weight:var(--weight-bold)}
 </section>
 <section class="shot" aria-label="Terminal scene: Tab practice region">
   <span class="a" id="s-terminal-tab-practice"></span><span class="a g" id="s-terminal-tab-practice-grey"></span>
-  <div class="sheet-head"><h2>Terminal scene: Tab practice region</h2><p class="lede">Tab lessons run inside a dashed, labelled region. The announcement is written out (and read by screen readers); Esc leaves at any time, and the region never traps focus.</p></div>
+  <div class="sheet-head"><h2>Terminal scene: Tab practice region</h2><p class="lede">Tab lessons run inside a dashed, labelled region. The announcement is written out (and read by screen readers); Esc leaves at any time, and the region never traps focus. Only Hint and Layout help are live as chips: every other key is text here.</p></div>
   <div class="viewport"><div class="stage">
     <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
     
@@ -1296,7 +1320,7 @@ b,strong{font-weight:var(--weight-bold)}
   <div class="kh-announce" role="status"><span class="kh-label"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Announced</span>
     <span>You are in the Tab practice region. Tab moves between three fields. <b>Esc</b> (tap Caps) leaves it at any time.</span></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
 <div class="kh-side" style="top:88px">
 <div class="kh-fb observed" style="" role="status">
   <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
@@ -1334,7 +1358,7 @@ b,strong{font-weight:var(--weight-bold)}
 </section>
 <section class="shot" aria-label="Glitch-repair duel">
   <span class="a" id="s-glitch-duel"></span><span class="a g" id="s-glitch-duel-grey"></span>
-  <div class="sheet-head"><h2>Glitch-repair duel</h2><p class="lede">Turn-based and untimed. Violet frames and glyphs only; the title text uses the lighter glitch accent. Retry is a visible button; a wrong result gets a plain explanation.</p></div>
+  <div class="sheet-head"><h2>Glitch-repair duel</h2><p class="lede">Turn-based and untimed. Violet frames and glyphs only; the title text uses the lighter glitch accent. A wrong result moves focus to the Retry button (Return retries, Esc leaves) and gets a plain explanation; the Hint and Layout help chips stay, the journal chip is off because Q is text here.</p></div>
   <div class="viewport"><div class="stage">
     <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
     
@@ -1349,10 +1373,10 @@ b,strong{font-weight:var(--weight-bold)}
 <div class="kh-line "><span class="no">1</span><span><span class="k">ship_to</span> = "Harbour <span class="gl">Strret</span> 12"</span></div>
 <div class="kh-line "><span class="no">2</span><span><span class="k">items</span>   = 3</span></div>
 <div class="kh-line "><span class="no">3</span><span><span class="k">paid</span>    = true</span></div></div>
-  <div class="kh-retry"><span class="kh-btn focus"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-left"/></svg> Retry this turn <span class="kh-key sm">Return</span></span>
-    <span class="kh-btn">Leave the duel <span class="kh-key sm">Esc</span></span></div>
+  <div class="kh-retry"><span class="kh-btn focus"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-left"/></svg> Retry this turn <span class="kh-key sm">Return</span> <span class="g">tap-hold Caps + N</span></span>
+    <span class="kh-btn">Leave the duel <span class="kh-key sm">Esc</span> <span class="g">tap Caps</span></span></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
 <div class="kh-side" style="top:88px">
 <section class="kh-panel kh-turns" aria-label="Repair turns">
   <h3><svg class="kh-ico" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-glitch"/></svg> Turns</h3>
@@ -1375,7 +1399,7 @@ b,strong{font-weight:var(--weight-bold)}
   <div class="head"><h3>Delete a letter</h3><span class="layer">nav layer · tap-hold Caps · 200 ms</span></div>
   <div class="kh-cell">
     <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">bottom row and home row</span></div>
-    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Tab</span><span class="kh-key dim">Z</span><span class="kh-key dim">X</span><span class="kh-key dim">C</span><span class="kh-key dim">V</span><span class="kh-key dim">B</span><span class="kh-key dim">N</span><span class="kh-key">M</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Shift</span><span class="kh-key dim">Z</span><span class="kh-key dim">X</span><span class="kh-key dim">C</span><span class="kh-key dim">V</span><span class="kh-key dim">B</span><span class="kh-key dim">N</span><span class="kh-key">M</span></div>
     <div class="kh-mini" aria-label="Home row" style="margin-top:2px"><span class="kh-key cap held">Caps</span><span class="kh-key dim">A</span><span class="kh-key dim">S</span><span class="kh-key dim">D</span><span class="kh-key dim">F</span><span class="kh-key dim">G</span><span class="kh-key dim">H</span></div>
   </div>
   <div class="row">
@@ -1490,7 +1514,7 @@ b,strong{font-weight:var(--weight-bold)}
 </section>
 <section class="shot" aria-label="Elevator map">
   <span class="a" id="s-elevator-map"></span><span class="a g" id="s-elevator-map-grey"></span>
-  <div class="sheet-head"><h2>Elevator map</h2><p class="lede">Five stops, one per district. A locked stop shows the seal it needs and what to do next, never a blank door; the current floor has a filled marker and the words 'You are here'; Esc always goes back. Locked is a dashed floor badge, a lock and 'Needs …', so no state is colour alone.</p></div>
+  <div class="sheet-head"><h2>Elevator map</h2><p class="lede">Five stops, one per district. It opens with Return at the elevator's call panel (Interact); Up and Down pick a floor, Return rides, Esc goes back. A locked stop shows the seal it needs and what to do next, never a blank door; the current floor has a filled marker and the words 'You are here'. Locked is a dashed floor badge, a lock and 'Needs …', so no state is colour alone.</p></div>
   <div class="viewport"><div class="stage">
     <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
     
@@ -1537,8 +1561,9 @@ b,strong{font-weight:var(--weight-bold)}
         <span class="kh-label">Seals</span>
         <div class="seal-strip"><span class="seal-slot got" title="Orientation seal, earned"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-orientation"/></svg><span>Orientation</span></span><span class="seal-slot " title="Records seal, not yet"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-empty"/></svg><span>Records</span></span><span class="seal-slot " title="Systems seal, not yet"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-empty"/></svg><span>Systems</span></span><span class="seal-slot " title="Night Shift seal, not yet"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-empty"/></svg><span>Night Shift</span></span><span class="seal-slot " title="Executive seal, not yet"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-empty"/></svg><span>Executive</span></span></div>
         <div class="keys">
-          <span>To pick a floor, you need to press <b>Up arrow</b> or <b>Down arrow</b>. Hint: they are <b>tap-hold Caps + K</b> and <b>tap-hold Caps + J</b>.</span>
-          <span>To ride to the chosen floor, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps</b> + <b>N</b>.</span>
+          <span>To pick a floor, you need to press <b>Up arrow</b> or <b>Down arrow</b>. Hint: <b>tap-hold Caps + K</b> or <b>J</b>.</span>
+          <span>To ride, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps + N</b>.</span>
+          <span>To stay, you need to press <b>Esc</b>. Hint: Esc is <b>tap Caps</b>.</span>
         </div>
       </div>
     </div>
@@ -1583,7 +1608,7 @@ b,strong{font-weight:var(--weight-bold)}
   <span class="title">Visit Records</span><span class="count">0 / 4</span><span class="sep"></span>
   <span class="seals"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seal"/></svg> Seals 1</span>
 </div>
-<div class="kh-hud shortcuts"><span class="chip">Journal <span class="kh-key sm">Tab</span></span><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Open the journal. Key Q. Hint: Q is a plain tap.">Journal <span class="kh-key sm">Q</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
 <svg class="kh-marker " style="left:1090px;top:252px" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-route"/></svg>
 <div class="kh-toasts" aria-live="polite">
   <div class="kh-toast"><span class="ic"><svg class="kh-ico seal " width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><use href="#s-orientation"/></svg></span><span class="t">Seal earned: <em>Orientation</em></span><span class="d">The Records door is open.</span></div>
@@ -1648,7 +1673,7 @@ b,strong{font-weight:var(--weight-bold)}
     
 <div class="kh-panel overlay su" role="dialog" aria-label="Settings and accessibility">
   <div class="top"><h2>Settings</h2><span class="sub">Saved on this device.</span><span class="grow"></span>
-    <span class="kh-btn">Run setup again</span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+    <span class="kh-btn">Run setup again</span><span class="kh-btn">Controls</span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
   <div class="kh-set"><div class="col"><h3>Accessibility</h3><div class="kh-opt"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-text"/></svg><span class="nm">Larger text</span><span class="kh-sw off" role="switch" aria-checked="false"><span class="track"></span>Off</span><span class="ds">Body text 18 px becomes 22 px.</span></div><div class="kh-opt"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-contrast"/></svg><span class="nm">High contrast</span><span class="kh-sw off" role="switch" aria-checked="false"><span class="track"></span>Off</span><span class="ds">Panels and keycaps use the strongest pairs.</span></div><div class="kh-opt focus"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-motion"/></svg><span class="nm">Reduced motion</span><span class="kh-sw on" role="switch" aria-checked="true"><span class="track"></span>On</span><span class="ds">No idle loops, burst or fades.</span></div><h3>Sound</h3><div class="kh-opt"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sound-off"/></svg><span class="nm">Sound</span><span class="kh-sw off" role="switch" aria-checked="false"><span class="track"></span>Off</span><span class="ds">Off by default; effects and music are separate.</span></div><div class="kh-opt sub"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sound-off"/></svg><span class="nm">Effects</span><span class="kh-sw off" role="switch" aria-checked="false"><span class="track"></span>Off</span></div><div class="kh-opt sub"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sound-off"/></svg><span class="nm">Music</span><span class="kh-sw off" role="switch" aria-checked="false"><span class="track"></span>Off</span></div></div><div class="col">
 <h3>Difficulty <span class="kh-label" style="margin-left:var(--space-2)">hint lines fade; every story stays untimed</span></h3>
 <div class="kh-diff" role="radiogroup" aria-label="Difficulty">
@@ -1658,7 +1683,7 @@ b,strong{font-weight:var(--weight-bold)}
 </div>
 <div class="kh-lvl" role="radio" aria-checked="false">
   <h4>Focused<span class="pick">Not selected</span></h4><p class="what">Action and key. The gesture on request.</p>
-  <div class="kh-prev" aria-label="Hint preview"><span class="l1">To submit the access code, you need to press <b>Return</b>.</span><span class="l2">Hint: hidden until you ask.</span><span class="gone"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Show hint</span></div>
+  <div class="kh-prev" aria-label="Hint preview"><span class="l1">To submit the access code, you need to press <b>Return</b>.</span><span class="l2">Hint: hidden.</span><span class="gone" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap."><span class="gl"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Show hint <span class="kh-key sm">`</span></span><span class="gm">tap `</span></span></div>
 </div>
 <div class="kh-lvl" role="radio" aria-checked="false">
   <h4>Violento<span class="pick">Not selected</span></h4><p class="what">Action only, once the gesture is introduced.</p>
@@ -1671,6 +1696,83 @@ b,strong{font-weight:var(--weight-bold)}
   <p>Seals, stars, patches, artifacts and best scores are erased. Settings stay. This cannot be undone.</p>
   <div class="btns"><span class="kh-btn primary focus">Keep my progress <span class="kh-key sm">Esc</span></span><span class="kh-btn"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-reset"/></svg> Reset progress</span></div>
 </div></div></div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="First use: a conversation and the Return inset">
+  <span class="a" id="s-first-use"></span><span class="a g" id="s-first-use-grey"></span>
+  <div class="sheet-head"><h2>First use: a conversation and the Return inset</h2><p class="lede">Level 01 arrival. Ivo's welcome is a modal conversation (no hint line), so the footer carries Continue and Skip as keycaps with their gestures, world input is paused and the world is not dimmed. The inset opens by itself for the first Continue and closes on the first Return. The three HUD chips are Hint (Backtick), Journal (Q) and Layout help (?).</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt="">
+    
+<div class="kh-hud obj" role="status">
+  <span class="title">Visit the four desks</span><span class="count">0 / 4</span><span class="sep"></span>
+  <span class="seals"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seal"/></svg> Seals 0</span>
+</div>
+<div class="kh-hud shortcuts"><span class="chip" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone.">Hint <span class="kh-key sm">`</span></span><span class="chip" aria-label="Open the journal. Key Q. Hint: Q is a plain tap.">Journal <span class="kh-key sm">Q</span></span><span class="chip" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash.">Layout help <span class="kh-key sm">?</span></span></div>
+<svg class="kh-marker " style="left:480px;top:92px" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-talk"/></svg>
+
+<section class="kh-panel kh-inset inset-tall" aria-label="Keyboard teaching inset: Continue">
+  <div class="head"><h3>Continue</h3><span class="layer">nav layer · tap-hold Caps · 200 ms</span></div>
+  <div class="kh-cell">
+    <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">bottom row and home row</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Z</span><span class="kh-key dim">X</span><span class="kh-key dim">C</span><span class="kh-key dim">V</span><span class="kh-key dim">B</span><span class="kh-key">N</span><span class="kh-key dim">M</span></div>
+    <div class="kh-mini" aria-label="Home row" style="margin-top:2px"><span class="kh-key cap held">Caps</span><span class="kh-key dim">A</span><span class="kh-key dim">S</span><span class="kh-key dim">D</span><span class="kh-key dim">F</span><span class="kh-key dim">G</span><span class="kh-key dim">H</span></div>
+  </div>
+  <div class="row">
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">2</span> Hold order</div>
+      <div class="kh-hold"><span class="kh-keyunit"><span class="kh-key held">Caps</span><span class="kh-tag hold">Hold</span></span><span class="plus">+</span><span class="kh-keyunit"><span class="kh-key ">N</span><span class="kh-tag tap">Tap</span></span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">3</span> Output</div>
+      <div class="kh-out"><span class="kh-key">↵</span><span>Return</span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">4</span> Effect</div>
+      <div class="kh-effect"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span>Next line</span></div>
+    </div>
+  </div>
+  </section>
+<section class="kh-panel kh-dialogue" aria-label="Conversation with Ivo (modal)">
+  <div class="kh-portrait" role="img" aria-label="Portrait slot, 48 by 48 pixels shown at 4 times"><span>48 x 48 portrait<br>at x4 = 192 px</span></div>
+  <div class="body">
+    <div class="who">Ivo <span class="role">Reception lead</span></div>
+    <p class="say">Welcome to the Department of Motion. I'm Ivo, reception. Before your first ticket I need you to visit four desks.</p>
+    <div class="ctl">
+      <span aria-label="Continue. Key Return. Hint: Return is tap-hold Caps and N."><b>Continue</b> <span class="kh-key sm">Return</span> tap-hold Caps + N</span>
+      <span aria-label="Skip. Key Escape. Hint: Escape is tap Caps."><b>Skip</b> <span class="kh-key sm">Esc</span> tap Caps</span>
+    </div>
+  </div>
+</section>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Controls">
+  <span class="a" id="s-controls"></span><span class="a g" id="s-controls-grey"></span>
+  <div class="sheet-head"><h2>Controls</h2><p class="lede">Every binding in one place: action, key, the Kanata gesture, where it is live and the alternative. It is reached from the journal and from Settings, never needed to play. The table is generated from bindings.py, the same data the lint checks against design/ui-key-bindings.md.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay su" role="dialog" aria-label="Controls">
+  <div class="top"><h2>Controls</h2><span class="sub">Six keys run the game. Each is a normal key; the hint is the gesture that makes it on this layout.</span>
+    <span class="grow"></span><span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="ctl-ex">To open the journal, you need to press <b>Q</b>. Hint: Q is <b>tap Q</b>. Each row reads the same way.</p>
+  <div class="kh-ctable" role="table" aria-label="Key bindings">
+    <div class="kh-crow head" role="row"><span>Action</span><span>Key</span><span>Kanata gesture</span><span>Live in</span><span>Alternative</span></div>
+    <div class="kh-crow" role="row" aria-label="Interact, talk or use. Key Return. Hint: Return is tap-hold Caps and N."><span class="ac">Interact</span><span class="k"><span class="kh-key sm">Return</span></span><span class="g">tap-hold Caps + N</span><span class="w">world, in range</span><span class="alt">mouse click</span></div><div class="kh-crow" role="row" aria-label="Continue. Key Return. Hint: Return is tap-hold Caps and N."><span class="ac">Continue</span><span class="k"><span class="kh-key sm">Return</span></span><span class="g">tap-hold Caps + N</span><span class="w">conversations, buttons</span><span class="alt">mouse click</span></div><div class="kh-crow" role="row" aria-label="Skip the conversation. Key Escape. Hint: Escape is tap Caps."><span class="ac">Skip</span><span class="k"><span class="kh-key sm">Esc</span></span><span class="g">tap Caps</span><span class="w">conversations</span><span class="alt">Caps + [ from level 07</span></div><div class="kh-crow" role="row" aria-label="Back, close or leave. Key Escape. Hint: Escape is tap Caps."><span class="ac">Back, close, leave</span><span class="k"><span class="kh-key sm">Esc</span></span><span class="g">tap Caps</span><span class="w">overlays, scenes, duels</span><span class="alt">Caps + [ from level 07</span></div><div class="kh-crow" role="row" aria-label="Move or choose. Arrow keys. Hint: the arrows are tap-hold Caps and H, J, K or L."><span class="ac">Move or choose</span><span class="k"><span class="kh-key sm"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-left"/></svg></span><span class="kh-key sm"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-up"/></svg></span><span class="kh-key sm"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-down"/></svg></span><span class="kh-key sm"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></span><span class="g">tap-hold Caps + H, J, K, L</span><span class="w">world, lists</span><span class="alt">mouse click</span></div><div class="kh-crow" role="row" aria-label="Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone."><span class="ac">Show hint</span><span class="k"><span class="kh-key sm">`</span></span><span class="g">tap `</span><span class="w">all but Violento</span><span class="alt">mouse click</span></div><div class="kh-crow" role="row" aria-label="Open the journal. Key Q. Hint: Q is a plain tap."><span class="ac">Open the journal</span><span class="k"><span class="kh-key sm">Q</span></span><span class="g">tap Q</span><span class="w">world only</span><span class="alt">mouse click</span></div><div class="kh-crow" role="row" aria-label="Layout help. Key question mark. Hint: question mark is tap-hold F for Shift, then tap slash."><span class="ac">Layout help</span><span class="k"><span class="kh-key sm">?</span></span><span class="g">tap-hold F (Shift), then tap /</span><span class="w">everywhere</span><span class="alt">journal row, Return</span></div><div class="kh-crow" role="row" aria-label="Retry this turn. Key Return. Hint: Return is tap-hold Caps and N."><span class="ac">Retry this turn</span><span class="k"><span class="kh-key sm">Return</span></span><span class="g">tap-hold Caps + N</span><span class="w">duel, after a wrong turn</span><span class="alt">mouse click</span></div>
+  </div>
+  <div class="ctl-cards">
+    <div class="ctl-card">
+      <div class="wh"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-person-check"/></svg><span>Practice layer: all of these still work</span></div>
+      <p>Physical Return, Esc and the arrows are silent there, so the Caps gestures are the way.</p>
+    </div>
+    <div class="ctl-card dashed">
+      <div class="wh"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield-key"/></svg><span>Never game keys</span></div>
+      <p>Tab (outside a Tab region), Space, Command or Control combinations, F1 to F12. In typing scenes only <span class="kh-key sm">?</span> and <span class="kh-key sm">`</span> are commands. Esc does nothing in the open world.</p>
+    </div>
+  </div>
 </div>
   </div></div>
   
