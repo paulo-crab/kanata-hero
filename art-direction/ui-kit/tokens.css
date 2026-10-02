@@ -24,6 +24,21 @@
   --border-strong: var(--teal);              /* the inset and focused panels */
   --scrim: rgb(14 24 32 / 0.72);             /* dims the world behind journal and Layout help */
   --letterbox: #0E1822;                      /* bars around the 1280x720 stage */
+  --scrim-scene: rgb(14 24 32 / 0.58);       /* terminal and glitch scenes: the world stays readable behind them */
+
+  /* ---- Editor and terminal scenes ------------------------------------------- */
+  --selection-bg: #2B6A70;                   /* selected text; always paired with a 3 px bar under it */
+  --selection-text: var(--paper);
+  --cursor-face: var(--paper);               /* block cursor; its glyph is --cursor-text */
+  --cursor-text: var(--ink);
+
+  /* ---- Mira's patch colours (from art-direction/cast/MIRA_PATCHES_SPEC.md) ---- */
+  --patch-peach: #F6B18E;                    /* 1 First Delivery */
+  --patch-lime: #B2CE78;                     /* 2 Clear Address */
+  --patch-brass: #E1AC62;                    /* 3 Archive Loop */
+  --patch-navy: #2C3352;                     /* 4 Signed and Sent, 6 Night Courier */
+  --patch-pale: #EDCB7A;                     /* 5 Signal Keeper */
+  --patch-glint: #F5D580;                    /* glints on 3 and 6 */
 
   /* ---- Text ----------------------------------------------------------------- */
   --text: var(--paper);
@@ -54,6 +69,7 @@
   --key-unit: 64px;                          /* one 1u keycap in the Layout help diagram */
   --key-gap: 6px;
   --key-size-inset: 56px;                    /* 1u keycap in the keyboard teaching inset */
+  --key-unit-sm: 28px;                       /* 1u keycap in the compact setup diagram */
 
   /* ---- Spacing scale (4 px base) -------------------------------------------- */
   --space-1: 4px;
