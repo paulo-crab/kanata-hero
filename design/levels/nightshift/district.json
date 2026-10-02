@@ -21,23 +21,23 @@
     {
       "id": "enter-elevator",
       "cell": [
-        31,
-        16
+        27,
+        13
       ],
-      "facing": "w",
+      "facing": "s",
       "from": {
         "district": "nightshift",
         "link": "link.elevator.nightshift"
       },
-      "note": "Arrival from the Night Shift elevator stop (east wall of the break room). The stop opens with the Systems seal."
+      "note": "Arrival from the Night Shift elevator stop (north wall of the break room). The stop opens with the Systems seal, revealed behind the false panel in Systems."
     }
   ],
   "exits": [
     {
       "id": "exit-elevator",
       "cell": [
-        31,
-        16
+        27,
+        13
       ],
       "to": {
         "district": "nightshift",
@@ -48,17 +48,17 @@
   ],
   "elevator": {
     "cell": [
-      32,
-      15
+      26,
+      11
     ],
-    "facing": "w",
+    "facing": "s",
     "placement": "elevator",
     "link": "link.elevator.nightshift",
     "arrival_cell": [
-      31,
-      16
+      27,
+      13
     ],
-    "note": "Door faces west into the break room; the call panel at (31, 14) lights the Executive stop after level 19."
+    "note": "North-wall 3x3 module on the break room's north wall (x 26-28, lit mat on row 13) with its call panel at (29,11); the stop opens with the Systems seal. The service corridor mouth lies just east of it (x 30-31)."
   },
   "light_states": [
     {

@@ -60,6 +60,13 @@
       "objective": "Meet Ada at the north stair door.",
       "interaction": "int-ada-stair",
       "completes_when": "dialogue_done:ada-stair-open"
+    },
+    {
+      "id": "s18-chair",
+      "objective": "Optional: repair the chair with a wrong shadow.",
+      "interaction": "chair-shadow-glitch",
+      "completes_when": "scene_success:n18-glitch-chair",
+      "optional": true
     }
   ],
   "gestures": [
@@ -933,6 +940,34 @@
           "diff": "Observed text differs from the record at line 1 or 2. The mismatch is shown, and you can retry instantly."
         }
       }
+    },
+    {
+      "id": "n18-glitch-chair",
+      "kind": "label",
+      "task_summary": "Optional glitch repair: a chair with a wrong shadow lurks at the edge of a lamp pool. Type desk 7 to register it.",
+      "success_criteria": [
+        "Label equals 'desk 7'",
+        "Untimed; immediate retry"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The chair's tag should read desk 7. Type it to bring the shadow back into register.",
+        "initial": "",
+        "targets": [
+          "desk 7"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a missing space or digit"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the tag needs the word desk, a space, then 7."
+        },
+        "layout": "overlay shown"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical key positions."
     }
   ],
   "dialogue": [
@@ -1175,6 +1210,21 @@
         {
           "op": "complete_level",
           "level": "nightshift-18"
+        },
+        {
+          "op": "set_state",
+          "target": "courier_chute",
+          "state": "ready"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-chair-repaired",
+      "when": "scene_success:n18-glitch-chair",
+      "then": [
+        {
+          "op": "journal",
+          "text": "The chair's shadow falls where it should and the chair stays put."
         }
       ]
     }
@@ -1223,6 +1273,13 @@
         "target": "ada",
         "from": "landing",
         "to": "stair"
+      },
+      {
+        "kind": "placement_state",
+        "target": "courier_chute",
+        "from": "idle",
+        "to": "ready",
+        "note": "a slip stands in the chute's slot: Mira has the Lights-Out Delivery route to offer"
       }
     ]
   },
@@ -1246,5 +1303,16 @@
       "placement": "pace_directory"
     }
   ],
-  "review_notes": "At 1366x768 (x4) the lit route runs north through rows 3-10, above the keyboard inset (view y >= 103 only covers the lower-left). The ticket terminals are approached from the strip (south) or the lane (north), so the target stays in the same column as the avatar or to its right, and the avatar sits at screen y 100, above the inset. The recall desk and station 5 sit on row 2-3 under the window. Documented conflicts: see the Keyboard-inset conflicts section of the level sheet."
+  "review_notes": "At 1366x768 (x4) the lit route runs north through rows 3-10, above the keyboard inset (view y >= 103 only covers the lower-left). The ticket terminals are approached from the strip (south) or the lane (north), so the target stays in the same column as the avatar or to its right, and the avatar sits at screen y 100, above the inset. The recall desk and station 5 sit on row 2-3 under the window. Documented conflicts: see the Keyboard-inset conflicts section of the level sheet.",
+  "glitch": {
+    "archetype": "chair",
+    "variant": "standard",
+    "cell": [
+      10,
+      12
+    ],
+    "interaction": "chair-shadow-glitch",
+    "scene_id": "n18-glitch-chair",
+    "note": "The first Night Shift glitch (glitches-atlas.json districts.nightshift.first_glitch): chair, palette standard (token fix) drawn in dark_steps with the district chair recolour, behaviour lurk (hugs the edge of the lamp pool); 1 of the room limit 2. Level 17 holds none."
+  }
 }

@@ -250,26 +250,10 @@
       ]
     },
     {
-      "id": "wall_br_n_26",
-      "entry": "wall_n_plain",
-      "cell": [
-        26,
-        11
-      ]
-    },
-    {
-      "id": "wall_br_n_27",
-      "entry": "wall_n_plain",
-      "cell": [
-        27,
-        11
-      ]
-    },
-    {
       "id": "noticeboard_exit",
       "entry": "wall_n_noticeboard",
       "cell": [
-        26,
+        24,
         11
       ],
       "offset": [
@@ -458,32 +442,6 @@
       ]
     },
     {
-      "id": "elevator",
-      "entry": "elevator_closed",
-      "cell": [
-        32,
-        15
-      ],
-      "offset": [
-        0,
-        8
-      ],
-      "state_set": "elevator",
-      "state": "closed",
-      "art_gap": true
-    },
-    {
-      "id": "elevator_panel",
-      "entry": "elevator_call_panel",
-      "cell": [
-        31,
-        14
-      ],
-      "state_set": "elevator_panel",
-      "state": "base",
-      "art_gap": true
-    },
-    {
       "id": "wall_ledger_w_2",
       "entry": "wall_e_plain",
       "cell": [
@@ -602,20 +560,6 @@
         0,
         2
       ]
-    },
-    {
-      "id": "door_stair",
-      "entry": "service_door_closed",
-      "cell": [
-        16,
-        4
-      ],
-      "offset": [
-        0,
-        8
-      ],
-      "state_set": "service_door",
-      "state": "closed"
     },
     {
       "id": "door_service",
@@ -893,11 +837,13 @@
     },
     {
       "id": "break_counter",
-      "entry": "break_counter",
+      "entry": "break_counter_dim",
       "cell": [
         27,
         15
-      ]
+      ],
+      "state_set": "break_room",
+      "state": "dim"
     },
     {
       "id": "pool_break_fill",
@@ -2827,7 +2773,7 @@
       "entry": "lamp_off",
       "cell": [
         31,
-        12
+        13
       ],
       "offset": [
         8,
@@ -3027,101 +2973,176 @@
         14,
         14
       ]
+    },
+    {
+      "id": "elevator",
+      "entry": "elevator_closed",
+      "cell": [
+        26,
+        11
+      ],
+      "state_set": "elevator",
+      "state": "closed",
+      "art_gap": true,
+      "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
+    },
+    {
+      "id": "elevator_panel",
+      "entry": "elevator_call_panel",
+      "cell": [
+        29,
+        11
+      ],
+      "offset": [
+        4,
+        9
+      ],
+      "art_gap": true,
+      "state_set": "elevator_panel",
+      "state": "base"
+    },
+    {
+      "id": "wall_br_n_29",
+      "entry": "wall_n_plain",
+      "cell": [
+        29,
+        11
+      ]
+    },
+    {
+      "id": "wall_e_15",
+      "entry": "wall_e_plain",
+      "cell": [
+        32,
+        15
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_16",
+      "entry": "wall_e_plain",
+      "cell": [
+        32,
+        16
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_17",
+      "entry": "wall_e_plain",
+      "cell": [
+        32,
+        17
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "door_stair",
+      "entry": "north_stair_closed",
+      "cell": [
+        16,
+        4
+      ],
+      "state_set": "north_stair",
+      "state": "closed"
+    },
+    {
+      "id": "wall_ledger_w_6",
+      "entry": "wall_e_plain",
+      "cell": [
+        16,
+        6
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "reader_vestibule",
+      "entry": "reader_pedestal_locked",
+      "cell": [
+        19,
+        12
+      ],
+      "offset": [
+        4,
+        10
+      ],
+      "state_set": "reader_pedestal",
+      "state": "locked"
+    },
+    {
+      "id": "exit_sign",
+      "entry": "exit_sign_dim",
+      "cell": [
+        18,
+        11
+      ],
+      "offset": [
+        10,
+        11
+      ],
+      "state_set": "exit_sign",
+      "state": "dim"
+    },
+    {
+      "id": "carpet_cue_a",
+      "entry": "carpet_cue_a",
+      "cell": [
+        8,
+        5
+      ],
+      "offset": [
+        12,
+        12
+      ]
+    },
+    {
+      "id": "carpet_cue_b",
+      "entry": "carpet_cue_b",
+      "cell": [
+        12,
+        5
+      ],
+      "offset": [
+        4,
+        12
+      ]
+    },
+    {
+      "id": "carpet_cue_c",
+      "entry": "carpet_cue_c",
+      "cell": [
+        2,
+        3
+      ],
+      "offset": [
+        8,
+        12
+      ]
+    },
+    {
+      "id": "courier_chute",
+      "entry": "courier_chute_idle",
+      "cell": [
+        31,
+        14
+      ],
+      "state_set": "courier_chute",
+      "state": "idle"
     }
   ],
   "art_gap_entries": {
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "11",
-          "11",
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Night Shift elevator door on the east wall plane (Orientation elevator, Night Shift palette, same closed/half/open frames)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "11",
-          "11",
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Night Shift elevator door on the east wall plane (Orientation elevator, Night Shift palette, same closed/half/open frames)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "00",
-          "00",
-          "00"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Night Shift elevator door on the east wall plane (Orientation elevator, Night Shift palette, same closed/half/open frames)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel beside the elevator; the Executive stop is dark until the Night seal",
-      "states": [
-        "base"
-      ]
-    },
-    "elevator_call_panel_executive_lit": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Same panel with the Executive stop lit (revealed by level 19)",
-      "states": [
-        "executive_lit"
-      ]
-    },
     "wall_w_plain": {
       "footprint": {
         "cells": [
@@ -3149,6 +3170,94 @@
       "purpose": "Small closed book lying on the ledger desk (document close-up uses the shared frame)",
       "states": [
         "closed"
+      ]
+    },
+    "elevator_closed": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "North-wall arrival elevator module, doors shut (Night Shift recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
+      "states": [
+        "closed"
+      ]
+    },
+    "elevator_half": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors half open (arrival and departure).",
+      "states": [
+        "half"
+      ]
+    },
+    "elevator_open": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "101",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
+      "states": [
+        "open"
+      ]
+    },
+    "elevator_call_panel": {
+      "footprint": {
+        "cells": [
+          1,
+          2
+        ],
+        "collision": [
+          "0",
+          "0"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Wall call panel one cell east of the elevator (Night Shift recolour); the Executive stop is dark until the Night seal. Placed with offset [4, 9].",
+      "states": [
+        "base"
+      ]
+    },
+    "elevator_call_panel_executive_lit": {
+      "footprint": {
+        "cells": [
+          1,
+          2
+        ],
+        "collision": [
+          "0",
+          "0"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Same panel with the Executive stop lit (revealed by level 19).",
+      "states": [
+        "executive_lit"
       ]
     }
   },
@@ -3204,10 +3313,10 @@
     "0100010101110011111111111111000011",
     "0000000000000000000000000011100011",
     "0000000000000000000000000111000011",
-    "0111111110000000001100001111000011",
-    "0101010100000011001111111111000111",
-    "0111111110000000001110000100000011",
-    "0101010100000000001000011100000011",
+    "0111111110000000001100001111110011",
+    "0101010100000011001111111111110011",
+    "0111111110000000001110000100000111",
+    "0101010100000000001000011100000111",
     "1111111110000000001000000101110011",
     "0000000001000000001000000000000011",
     "0000000001001111001011100000000011",
@@ -3252,14 +3361,6 @@
         [
           17,
           5
-        ],
-        [
-          16,
-          6
-        ],
-        [
-          17,
-          6
         ]
       ],
       "opens_after": "nightshift-18",
@@ -3400,6 +3501,72 @@
     }
   ],
   "interactions": [
+    {
+      "id": "elevator",
+      "kind": "elevator",
+      "cells": [
+        [
+          26,
+          12
+        ],
+        [
+          27,
+          12
+        ],
+        [
+          28,
+          12
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            26,
+            13
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            27,
+            13
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            28,
+            13
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator",
+      "label": "Elevator (returns to every unlocked district)"
+    },
+    {
+      "id": "elevator_panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          29,
+          12
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            29,
+            13
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator_panel",
+      "label": "Elevator map"
+    },
     {
       "id": "int-elevator",
       "kind": "elevator",
@@ -3620,11 +3787,11 @@
       "kind": "sign",
       "cells": [
         [
-          26,
+          24,
           12
         ],
         [
-          27,
+          25,
           12
         ]
       ],
@@ -3632,14 +3799,7 @@
       "approach": [
         {
           "cell": [
-            26,
-            13
-          ],
-          "facing": "n"
-        },
-        {
-          "cell": [
-            27,
+            24,
             13
           ],
           "facing": "n"
@@ -4055,14 +4215,6 @@
         [
           17,
           5
-        ],
-        [
-          16,
-          6
-        ],
-        [
-          17,
-          6
         ]
       ],
       "marker": "route",
@@ -4402,7 +4554,33 @@
       "npc": "mira",
       "dialogue_id": "mira-lights-out-offer",
       "level": "nightshift-18",
-      "label": "Mira at the corridor mouth (Lights-Out Delivery)"
+      "label": "Mira at the corridor mouth, beside the courier chute (Lights-Out Delivery)"
+    },
+    {
+      "id": "chair-shadow-glitch",
+      "kind": "glitch",
+      "cells": [
+        [
+          10,
+          12
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            11,
+            12
+          ],
+          "facing": "w"
+        }
+      ],
+      "scene_id": "n18-glitch-chair",
+      "level": "nightshift-18",
+      "requires": [
+        "level:nightshift-17"
+      ],
+      "label": "Chair with a wrong shadow (optional repair)"
     }
   ],
   "npcs": [
@@ -4600,8 +4778,8 @@
       {
         "level": "nightshift-17",
         "from": [
-          31,
-          16
+          27,
+          13
         ],
         "to": [
           22,
@@ -4609,8 +4787,28 @@
         ],
         "cells": [
           [
-            31,
-            16
+            27,
+            13
+          ],
+          [
+            28,
+            13
+          ],
+          [
+            29,
+            13
+          ],
+          [
+            30,
+            13
+          ],
+          [
+            30,
+            14
+          ],
+          [
+            30,
+            15
           ],
           [
             30,
@@ -4829,36 +5027,36 @@
             5
           ],
           [
-            29,
+            30,
+            5
+          ],
+          [
+            30,
             6
           ],
           [
-            29,
+            30,
             7
           ],
           [
-            29,
+            30,
             8
           ],
           [
-            29,
+            30,
             9
           ],
           [
-            29,
+            30,
             10
           ],
           [
-            29,
+            30,
             11
           ],
           [
-            29,
+            30,
             12
-          ],
-          [
-            29,
-            13
           ],
           [
             30,
@@ -5045,10 +5243,10 @@
     {
       "id": "spawn-elevator",
       "cell": [
-        31,
-        16
+        27,
+        13
       ],
-      "facing": "w",
+      "facing": "s",
       "when": "arriving by the Night Shift elevator stop"
     },
     {
