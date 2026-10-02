@@ -10,7 +10,7 @@ Sources: `docs/game-design.md` ("Asset and level handoff", gesture inventory, hi
 python design/levels/validate_levels.py design/levels/orientation   # one district
 python design/levels/validate_levels.py --all                       # every district that exists
 python design/levels/validate_levels.py --all -v --strict           # list warnings; fail on them
-python design/levels/validate_levels.py --selftest                  # mutation tests for the 0.2 rules (26 cases)
+python design/levels/validate_levels.py --selftest                  # mutation tests for the 0.2 rules (26 cases) and the layout checks (31 cases)
 python design/levels/validate_levels.py --drop-solved-gaps orientation   # after a kit branch lands: drop art_gap flags the atlas now covers
 ```
 
@@ -46,6 +46,8 @@ Per district `<id>/` with id one of `orientation | records | systems | nightshif
 ## gesture-inventory.json
 
 One row per `docs/game-design.md` inventory entry B01 to B15, N01 to N21, S01 to S26, V01 to V06: `id, layer, input, output, notes, source_line` (line in `game-design.md`), `introduced_in` (level number from the "Cover ..." line of `levels.md`), `reviewed_in`, `external_only`, `player_confirmed`, `confidence`. The validator reports inventory rows no level links to; rows owned by a district that has not landed yet are warnings, rows owned by a validated district are errors.
+
+**Link to the layout manifest (inventory version 0.2).** A top-level `manifest` field names `design/layout/layout-manifest.json`, which links every inventory id to the keys and layers that produce it, with the observed-output rule, the verification method (`observed`, `player_confirmed`, `external_only`, from `confidence`) and the lesson ids (`introduced_in` and `reviewed_in`). `validate_levels.py --all` runs `design/layout/check_layout.py`, which fails when the two files disagree (ids, lessons, verification, `source_line` pointing at the right row of `docs/game-design.md`), when a link's expectation is false against the parsed `kanata.kbd`, when `design/ui-key-bindings.md` or a hint line in `levels.md` or the level data names a gesture the config does not produce, and when the UI kit's Layout help tabs drift from the manifest (known differences are listed in `design/layout/kit-known-mismatches.json`). `--selftest` also runs the 31 layout cases that break a binding on purpose. See `design/layout/README.md`.
 
 ## district.json
 

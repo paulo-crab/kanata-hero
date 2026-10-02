@@ -5,9 +5,12 @@ Usage (from anywhere; paths resolve from this file's location):
     python design/levels/validate_levels.py design/levels/orientation
     python design/levels/validate_levels.py orientation records
     python design/levels/validate_levels.py --all
-    python design/levels/validate_levels.py --selftest     (mutation tests for the newer rules)
+    python design/levels/validate_levels.py --selftest     (mutation tests for the newer rules and the layout checks)
     python design/levels/validate_levels.py --drop-solved-gaps orientation   (after the kit branch merges)
     add -v to list every warning, --strict to treat warnings as errors.
+
+--all also runs design/layout/check_layout.py: the layout manifest against gesture-inventory.json,
+design/ui-key-bindings.md, the UI kit's Layout help tabs and the hint lines (see design/layout/README.md).
 
 Exit code is non-zero when any error is found. Warnings cover art_gap props,
 inventory rows owned by districts that have not landed yet, and documented
@@ -1618,7 +1621,37 @@ def selftest():
         failures += 0 if ok else 1
         print(f"{'PASS' if ok else 'FAIL'}  {label}" + ("" if ok else f"\n        problems: {probs}"))
     print(f"selftest: {len(cases) + 3 - failures}/{len(cases) + 3} cases behaved as expected")
-    return 1 if failures else 0
+    layout = load_layout_checks()
+    layout_rc = layout.selftest() if layout else 1      # deliberately broken bindings must fail the layout checks
+    return 1 if (failures or layout_rc) else 0
+
+
+def load_layout_checks():
+    """design/layout/check_layout.py (the layout manifest consistency checks), or None when it cannot be imported."""
+    layout_dir = str(ROOT / "design" / "layout")
+    if layout_dir not in sys.path:
+        sys.path.insert(0, layout_dir)
+    try:
+        import check_layout
+    except Exception as e:  # pragma: no cover
+        print(f"ERROR: design/layout/check_layout.py could not be loaded: {e}")
+        return None
+    return check_layout
+
+
+def layout_checks(rep):
+    """The layout manifest against gesture-inventory.json, design/ui-key-bindings.md, the UI kit tabs and the hint lines."""
+    layout = load_layout_checks()
+    if layout is None:
+        rep.err("design/layout", "check_layout.py could not be loaded")
+        return
+    res = layout.run()
+    for line in res.errors:
+        rep.err("layout", line)
+    for line in res.warnings:
+        rep.warn("layout", line)
+    for line in res.infos:
+        rep.info(f"layout: {line}")
 
 
 # --------------------------------------------------------------------------- main
@@ -1668,6 +1701,8 @@ def main(argv=None):
         DistrictCheck(ref, HERE / name, rep).run()
         seen.append(name)
     inventory_linkage(ref, rep, seen, landed)
+    if args.all:
+        layout_checks(rep)
     return finish(rep, args, seen)
 
 
