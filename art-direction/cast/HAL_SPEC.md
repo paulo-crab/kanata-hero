@@ -44,7 +44,7 @@ Rebuild: `cd art-direction/cast && python3 build_cast.py hal && python3 build_ha
     - E and W gloves: a dark `g` cuff line where the glove meets the sleeve, a lit `j` knuckle on the upper left, a lit `j` thumb that sticks out past the glove with a notch below it, and the glove grips the rear end of the roll. Only ink-ramp hexes.
     - N body rows 12-13 were one pixel too wide and are fixed.
 11. **Walk.** The shared timing and legs: 4 × 133 ms, contacts on frames 0 and 2, a 1 px bob that drops the top leg row (`eng.lower`), no arm swing (the arm is under the roll). The stride stays off columns 0 and 15.
-12. **Scope.** Idle ×4 and walk ×4 only. Crouched repair, seated, puzzled, the false-panel pull, the stool, the portraits and the EXTRA sets come later.
+12. **Scope.** The first round was idle ×4 and walk ×4. The EXTRA sets followed (interact, puzzled, anxious), then the working poses and the stool prop (see "Working poses and the stool" at the end).
 
 ## Acceptance criteria
 
@@ -72,4 +72,38 @@ Decisions:
 2. **Reactions from hal.md.** Puzzled is hal.md's "head tilt / scratch": the head tilts 1 px, then the free glove comes up open, then the body settles 1 px. The scratch itself is dropped, because a glove beside the head would break the rule that rows 0–9 hold only hair, skin and outline keys. Anxious is the "Anxious" portrait state: the head sinks onto the shoulders (1 px, then 2 px) and the body settles. The second reaction is anxious, because relief and focus have no pose in hal.md.
 3. **No head-row exceptions and no new hexes.** Gloves and tools stay on row 10 or below, and every key is already in `PAL`. `H` is never used in an extra frame.
 4. **Asymmetric sets.** `interact` and `react_puzzled` move an arm off the anchor, so they use the checker's relaxed mass tolerance (`EXTRA_ASYMMETRIC`).
-5. **Crouched repair and seated-on-stool** (the other hal.md poses) wait for the stool prop, which is a separate sprite.
+5. **Crouched repair and seated-on-stool** (the other hal.md poses) came with the stool prop, which is a separate sprite: see "Working poses and the stool".
+
+## Working poses and the stool (poses branch)
+
+`hal_sprites.py` adds three EXTRA sets and the stool prop. Each pose is the base head moved down (head rows stay hair, skin and outline only, rows 0-9) over hand-placed rows; `check_gate1.py hal_sprites`: 94 frames (24 base + 70 extra), 0 failures, no new `EXTRA_ASYMMETRIC` entry (all inside the strict 20 % tolerance). The tool roll is painted by hand for these poses (it lies on the near thigh when Hal is low) and stays orange-only, `H` 1 px.
+
+| Set | Facings | Frames | Timing | Mode | Atlas rows |
+| --- | --- | --- | --- | --- | --- |
+| `crouch_repair` | S N E W | 4 | 220 ms | loop | 20-23 |
+| `seated_stool` | S E W | 2 | 600 ms | loop | 24-26 |
+| `false_panel_pull` | S N E W | 4 | 260 ms | once, hold last | 27-30 |
+
+Atlas names: `hal_crouch_repair_<f>`, `hal_seated_stool_<f>`, `hal_false_panel_pull_<f>`. The stool prop is in `hal-props-atlas.png/.json` (kit atlas format, validated by `kit/check_atlas.py` from `build_hal_room.py`).
+
+### Decisions
+
+6. **Crouched repair (default working pose at machines, levels 12-14).** A squat: the head sits at rows 8-16 (7-15 on E and W), two to three torso rows, short wide legs, boots on rows 22-23, roughly three quarters of the standing height. S: both gloves meet at the centre holding a steel tool (ink ramp) whose tip pokes down toward the panel; the roll lies on his right thigh (screen-right). E and W: the arm reaches forward at belt height with the tool (the interact arm), the roll lies across the near thigh. N: the back, with both gloves forward at shoulder height beside the body and the roll on the left. Loop of 4 × 220 ms: the tool extends and retracts (S, N: gloves up and down 1 px; E, W: the arm reaches 2 px further and back); S also leans the head 1 px on the third frame. N reads (the back view, tool hand pair, roll), so it is included.
+7. **Seated on a stool (replaces crouching after the refund sign is fixed, end of level 13).** Facings S, E and W (S is the minimum; E and W show the stool best). Head rows 3-11 (a 2 px lower head than standing, with a short stool), torso rows 12-15, hips on row 17, thighs forward, boots on rows 21-23, feet on row 23. **Feet-on-row-23 rule for seated:** the planted foot is on row 23, exactly as standing, so the same anchor (8, 24) and shadow work. The two idle frames are a 600 ms breath: head and shoulders (rows 3-13) settle 1 px, hips and legs stay. The pose is the relaxed counterpart of the crouch: upright, hands at rest, roll on the thigh.
+8. **The stool is a prop, not baked into Hal.** `stool_folding`: a folding stool, steel frame and dark canvas seat from the ink ramp (`o g h j`, so no new hex and no orange), 16 px wide (wider than Hal's hips, so the seat shows at his sides and the splayed legs show beside his boots). Sprite 16×10 px (the cell's rows 6-15), footprint 1×1 cell, `collision: ["1"]`, `layer: rear_prop`, `y_sort: true`, contact shadow baked on the last row (`[1, 9, 14, 1]`), kit convention for placement (`origin_px [0, -6]`, anchor `[8, 10]`: the footprint's bottom centre). The stool's own light edge is the ink ramp's lit step; it reads against the porcelain floor because its fabric is dark (a stone fabric vanished against the floor in the first pass).
+9. **Seat offset and y-sort anchor.** Place the stool cell and Hal so the stool's footprint anchor and Hal's anchor coincide: Hal's anchor (8, 24) = the stool cell's bottom centre (8, 16). In Hal's frame the stool cell's top-left is at (0, 8) (`stool_cell_in_frame_px`), so its 16×10 sprite starts at (0, 14) (`stool_sprite_in_frame_px`); the seat is under frame rows 14-17 and the hips rest on row 17. Draw order: the stool in `rear_prop`, then Hal in `actor`, so Hal always draws over it (layer order wins over y-sort); both entries carry the same y-sort anchor y, so nothing else sorts between them. The seated set's atlas entries carry `prop`, `prop_atlas`, `stool_cell_in_frame_px` and `stool_sprite_in_frame_px`. The renderer swaps `hal_crouch_repair_*` for `hal_seated_stool_*` when the refund sign is fixed and spawns the stool at Hal's cell.
+10. **False panel pull (one-shot, level 16).** 4 × 260 ms: reach (both gloves at shoulder height beside the head, an outline cap above them; E and W: the arm reaches forward at shoulder height), grip (gloves at chest height, the body settles 1 px), pull (gloves back at the belt, the head dips and the body settles) and rest (the standing idle frame, so the held last frame is a valid pose). N is the facing that matters: the routing machine's false panel is on its south face, so Hal stands south of it with his back to the camera. Swap the machine's panel part from `routing_panel_closed` to `routing_panel_open` (Systems kit) on frame 2, the pull. Gloves stay on row 10 or below, so the head-row rule holds without an exception.
+11. **Tool roll.** Stays tucked under his left arm in every pose (screen-right on S, screen-left on N; across the near thigh on E and W when he is low). Orange appears only on the roll.
+12. **Proof.** `hal-sheet.png` and `hal-extra.gif` include every new frame. `build_hal_room.py` adds `hal-poses-in-systems.png` (the real Systems reference room drawn from `kit/systems-atlas`, at ×4 on 1366×768: Hal crouching at the machine's west port and in the open floor facing S, E and W, seated on the stool S and E, and the four pull frames along the machine's face) and `hal-poses-x8.png` (every pose at ×8 for the silhouette read, the seated frames with the stool composed), and writes `hal-props-atlas.png/.json`.
+13. **Atlas contract.** `build_cast.py` reads the opt-in `EXTRA_META` (merged into a set's atlas entries) and `EXTRA_WALK`; other characters do not define them, so their outputs are unchanged.
+
+### Acceptance criteria (poses)
+
+Automated: `check_gate1.py hal_sprites` 94 frames, 0 failures; `kit/check_atlas.py hal-props-atlas.json` passes (run from `build_hal_room.py`); `build_all.py` passes with a clean second run.
+
+Coordinator review (checked by the poses team against `hal-poses-in-systems.png` and `hal-poses-x8.png`):
+- [x] The seated pose visibly sits on the stool (seat beside the hips, legs of the stool beside the boots) and the stool is a separate prop
+- [x] The crouch reads as repair at a panel (low squat, gloves and tool forward)
+- [x] The pull reads as pulling something down (hands from shoulder height to belt, body settling)
+- [x] Roll tucked under the left arm in every pose; no orange elsewhere
+- [ ] The S crouch is the least clear of the set at 1× (gloves and tool are a few pixels); E, W and N read better. Director to confirm or ask for a redraw

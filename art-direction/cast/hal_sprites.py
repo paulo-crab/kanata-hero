@@ -222,6 +222,228 @@ def _extra():
     return {"interact": interact, "react_puzzled": puzzled, "react_anxious": anxious}
 
 
+# --- Working poses: crouched repair, seated on the stool, pulling the false panel (and the stool prop) -------------
+# Built from the approved raw grids: the head rows are the base head, moved down; the rest is hand-placed rows.
+# The roll is painted by hand per pose (it lies on the near thigh when he is low, so finish() is not used there).
+# Row rule: rows 0-9 hold head keys only (hair, skin, outline), so gloves never go above row 10.
+BL = "." * 16
+
+
+def _paint(fr, art, r0, c0):
+    out = [list(r) for r in fr]
+    for j, line in enumerate(art):
+        for i, ch in enumerate(line):
+            if ch != ".":
+                out[r0 + j][c0 + i] = ch
+    return ["".join(r) for r in out]
+
+
+def _shift(fr, y0, y1, dx):
+    """Slide rows y0..y1 dx px sideways (a head lean)."""
+    out = list(fr)
+    for y in range(y0, y1 + 1):
+        n = ["."] * 16
+        for x, ch in enumerate(fr[y]):
+            if ch != "." and 0 <= x + dx < 16:
+                n[x + dx] = ch
+        out[y] = "".join(n)
+    return out
+
+
+def _mir(half):
+    return half + half[::-1]
+
+
+def _flip(rows):
+    return [r[::-1] for r in rows]
+
+
+# ---- crouch_repair: head at rows 8-16 (E/W: 7-15), 2-3 torso rows, the arm and tool to the panel, short legs ----
+CROUCH_ROLL_E = [".oooooo.", "oHGyFEh.", ".oooooo."]          # 3-row roll lying across the near thigh
+CROUCH_LEGS_E = [
+    "...opPPPPPPPPo..",
+    "...oPPPPPPPPPo..",
+    "...oTUUToTUUUTo.",
+    "...oSSSSoSSSSSo.",
+]
+CROUCH_LOW_N = [_mir(x) for x in (".oOPPxqq", "oOPPPoqq", "oSTTTSoo", "oSSSSSo.")]
+
+
+def crouch_s(tool, hdx=0):
+    low = [
+        ".oOPPxhhhhxPPOo.",
+        "oOPPPojjjjoPPPOo",
+        "oTUUUTojhoTUUUTo" if tool else "oTUUUTooooTUUUTo",
+        "oSSSSSooooSSSSSo" if tool else "oSSSSSo..oSSSSSo",
+    ]
+    fr = [BL] * 8 + S[1:10] + [S[10], S[11], S[12]] + low
+    fr = _shift(fr, 8, 16, hdx) if hdx else fr
+    return _paint(fr, ROLL_S, 17, 10)
+
+
+def crouch_e(reach):
+    st = stamps(E, *(E_REACH2 if reach else E_REACH1))
+    fr = [BL] * 7 + E[1:10] + [st[10], st[12], st[13], st[14]] + CROUCH_LEGS_E
+    return _paint(fr, CROUCH_ROLL_E, 19, 4)
+
+
+def crouch_w(reach):
+    st = stamps(W, *(W_REACH2 if reach else W_REACH1))
+    fr = [BL] * 7 + W[1:10] + [st[10], st[12], st[13], st[14]] + _flip(CROUCH_LEGS_E)
+    return _paint(fr, _flip(CROUCH_ROLL_E), 19, 4)
+
+
+def crouch_n(up):
+    fr = [BL] * 8 + N[1:10] + [N[10], N[11], N[12]] + CROUCH_LOW_N
+    y = 17 if up else 18
+    fr = _paint(fr, ["jjh", "hhg"], y, 1)
+    fr = _paint(fr, ["jhh", "hgg"], y, 12)
+    return _paint(fr, ROLL_N, 17, 1)
+
+
+# ---- seated_stool: head rows 3-11, hips on row 17, thighs forward, boots on rows 21-23. The stool prop (below) is
+# placed so its anchor (8, 16) lands on Hal's anchor (8, 24): its cell then starts at row 8 of this frame. ---------
+SEATED_LOW_S = [_mir(x) for x in ("....opqq", "....oOPP", "..ojjOPP", ".oOPPPo.", "..oOPPo.", "..oTUUTo", "..oSTTSo")] \
+    + [_mir("...oooo.")]
+SEATED_LOW_E = [
+    "...opPPPPPPPPo..",
+    "...oOPPPPPPPPOo.",
+    "........oOPPPo..",
+    "........oOPPPo..",
+    ".......oTUUUUTo.",
+    ".......oSTTTTSo.",
+    ".......oooooooo.",
+]
+
+
+def seated_s(glance=0):
+    fr = [BL] * 3 + S[1:10] + [S[10], S[11], S[12], S[13]] + SEATED_LOW_S
+    fr = _shift(fr, 3, 11, glance) if glance else fr
+    return _paint(fr, ROLL_S, 14, 10)
+
+
+def seated_e(glance=0):
+    fr = [BL] * 3 + E[1:10] + [E[10], E[11], E[12], E[13], E[14]] + SEATED_LOW_E
+    fr = _shift(fr, 3, 11, glance) if glance else fr
+    return _paint(fr, CROUCH_ROLL_E, 16, 5)
+
+
+def seated_w(glance=0):
+    fr = [BL] * 3 + W[1:10] + [W[10], W[11], W[12], W[13], W[14]] + _flip(SEATED_LOW_E)
+    fr = _shift(fr, 3, 11, glance) if glance else fr
+    return _paint(fr, _flip(CROUCH_ROLL_E), 16, 4)
+
+
+def breathe(fr):
+    """The rest breath of a seated figure: head and shoulders (rows 3-13) settle 1 px; hips and legs stay."""
+    out = list(fr)
+    for y in range(13, 2, -1):
+        out[y] = fr[y - 1]
+    out[2] = BL
+    return out
+
+
+# ---- the stool: one cell (16x16 px, footprint 1x1, collision 1), steel frame and dark canvas from the ink ramp ----
+# Rows 0-5 of the cell are empty; the seat top is rows 6-8, the front rail row 9, the legs rows 10-14, and the baked
+# contact shadow is row 15 (rect [1, 15, 14, 1]). Keys come from PAL (g h j o), so it adds no hex.
+STOOL = [BL] * 6 + [
+    "ojjjjjjjjjjjjjjo",
+    "ojhhhhhhhhhhhhjo",
+    "ohhhhhhhhhhhhhho",
+    "oggggggggggggggo",
+    ".ojh........hjo.",
+    ".ojh........hjo.",
+    "ojjh........hjjo",
+    "ojh..........hjo",
+    "ojjh........hjjo",
+    ".hggggggggggggh.",
+]
+STOOL_ENTRY = {
+    # kit convention: content sits at the rect's top-left, so the 16x10 art (cell rows 6-15) starts at the rect's top
+    # and the 1x1 footprint's top-left is 6 px above it (origin_px y = -6); the anchor is the footprint's bottom centre
+    "name": "stool_folding", "kind": "prop", "size_px": [16, 10],
+    "footprint": {"cells": [1, 1], "origin_px": [0, -6]}, "collision": ["1"],
+    "layer": "rear_prop", "y_sort": True, "anchor": [8, 10], "composite": {"mode": "over"},
+    "contact_shadow": [1, 9, 14, 1], "tags": ["seating", "hal"],
+}
+# Where the stool sits in a seated Hal frame: the stool cell's top-left, so anchors (8, 24) and (8, 16) coincide.
+STOOL_CELL_IN_FRAME = [0, 8]
+
+
+# ---- false_panel_pull (one-shot): reach, grip and pull the hatch down, then step back to rest ---------------------
+GLOVE_L, GLOVE_R = ["jjh", "hhg"], ["jhh", "hgg"]
+
+
+def _erase_belt_gloves_sn(fr):
+    for y in (14, 15):
+        r = list(fr[y])
+        r[1:4], r[4] = ["."] * 3, "o"
+        r[11], r[12:15] = "o", ["."] * 3
+        fr = fr[:y] + ["".join(r)] + fr[y + 1:]
+    return fr
+
+
+def _arms_sn(base, level):
+    """level 'up': gloves at shoulder height beside the head (rows 10-11); 'mid': rows 12-13; 'low': the base."""
+    if level == "low":
+        return base
+    fr = _erase_belt_gloves_sn(base)
+    y = 10 if level == "up" else 12
+    fr = _paint(fr, GLOVE_L, y, 1)
+    fr = _paint(fr, GLOVE_R, y, 12)
+    if level == "up":
+        fr = _paint(fr, ["ooo"], 9, 1)
+        fr = _paint(fr, ["ooo"], 9, 12)
+    return fr
+
+
+BELT_E = {"e": ["...osrrrrrqqo...", "...osrrrrrqqo...", "...osrrqqqqqo..."],
+          "w": ["...osrrrrrrqo...", "...osrrrrrrqo...", "...osrrrrrrqo..."]}
+
+
+def _arm_ew(f, level):
+    """E/W: the arm reaches forward at shoulder height ('up'), grips lower ('mid') or hangs at the belt ('low')."""
+    base = BASE[f]
+    if level == "low":
+        return base
+    fr = base[:13] + BELT_E[f] + base[16:]
+    reach = {"e": (E_REACH2, E_REACH1), "w": (W_REACH2, W_REACH1)}[f][0 if level == "up" else 1]
+    y_shift = -2 if level == "up" else -1       # the reach stamps sit on rows 13-15
+    return stamps(fr, *[(x, y + y_shift, art) for x, y, art in reach])
+
+
+def pull(f):
+    g = {"s": lambda lv: _arms_sn(S, lv), "n": lambda lv: _arms_sn(N, lv),
+         "e": lambda lv: _arm_ew("e", lv), "w": lambda lv: _arm_ew("w", lv)}[f]
+    return [fin(f, g("up")), fin(f, g("mid"), True), fin(f, dip(g("low")), True), fin(f, BASE[f])]
+
+
+def _extra_poses():
+    crouch = {
+        "s": [crouch_s(True), crouch_s(False), crouch_s(True, -1), crouch_s(False)],
+        "e": [crouch_e(True), crouch_e(False), crouch_e(True), crouch_e(False)],
+        "w": [crouch_w(True), crouch_w(False), crouch_w(True), crouch_w(False)],
+        "n": [crouch_n(True), crouch_n(False), crouch_n(True), crouch_n(False)],
+    }
+    seated = {f: [fr, breathe(fr)] for f, fr in (("s", seated_s()), ("e", seated_e()), ("w", seated_w()))}
+    return {"crouch_repair": crouch, "seated_stool": seated, "false_panel_pull": {f: pull(f) for f in "snew"}}
+
+
 EXTRA = _extra()
-EXTRA_MS = {"interact": 250, "react_puzzled": 300, "react_anxious": 300}
+EXTRA.update(_extra_poses())
+EXTRA_MS = {"interact": 250, "react_puzzled": 300, "react_anxious": 300,
+            "crouch_repair": 220, "seated_stool": 600, "false_panel_pull": 260}
+EXTRA_MODE = {"crouch_repair": "loop", "seated_stool": "loop", "false_panel_pull": "once"}
 EXTRA_ASYMMETRIC = {"interact", "react_puzzled"}
+EXTRA_META = {
+    "crouch_repair": {"note": "default working pose at machines; loop; the tool taps the panel in front of the facing"},
+    "seated_stool": {
+        "prop": "stool_folding", "prop_atlas": "hal-props-atlas.json",
+        "stool_cell_in_frame_px": STOOL_CELL_IN_FRAME, "stool_sprite_in_frame_px": [0, 14],
+        "note": "draw the stool (rear_prop) first, then this frame (actor) with the two anchors coinciding: the "
+                "stool cell's top-left sits at (0, 8) inside the 16x24 frame, so its 16x10 sprite starts at (0, 14). "
+                "Feet rest on row 23; the seat is under rows 14-17 (hips on row 17)",
+    },
+    "false_panel_pull": {"note": "one-shot, holds the last frame (standing rest); N is the facing for the machine's "
+                                 "south-facing panel; swap the panel prop closed to open on frame 2"},
+}
