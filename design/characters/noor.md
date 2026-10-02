@@ -8,7 +8,7 @@
 | --- | --- |
 | Role | Records archive clerk and keeper of the unaltered paper records. Gives Act II quests (07–11) and the **Misfiled Minute** side quest. |
 | Personality | Precise, with dry humor; quietly defiant. Leaves notes like "equivalent" omitting the actual destination (artifact: *Noor's annotation*). |
-| Pronouns | Not specified; use they/them until decided |
+| Pronouns | she/her (decided by the player 2026-10-02, matching `levels.md`) |
 | Signature prop | **Cherry-wood stamp** and **file tabs** |
 
 Sources: `levels.md` cast table, Records row, levels 07–11.
@@ -53,7 +53,7 @@ The documents set no clothing, skin, or hair colors for Noor. The Records palett
 
 ## Portrait (48×48)
 
-**Assumption:** expressions follow their voice:
+**Assumption:** expressions follow her voice:
 
 1. Dry neutral (default)
 2. Skeptical / defiant (reading Pace's "equivalent" copy)
@@ -79,4 +79,4 @@ The documents set no clothing, skin, or hair colors for Noor. The Records palett
 1. Skin and hair ramps.
 2. Garment type below the waist, and clothing colors.
 3. The Records district hex palette.
-4. Pronouns.
+4. ~~Pronouns.~~ Decided 2026-10-02: she/her.
