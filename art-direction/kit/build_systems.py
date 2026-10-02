@@ -346,6 +346,70 @@ def quest_proofs(atlas, meta):
     return ok_ and layout_ok
 
 
+# ------------------------------------------------------------------ Systems integration proof
+
+INTEG_BEFORE = {"elevator": "closed", "routing_node": "dark", "refund_ledger": "charge", "alarm_board": "blank", "formula_wall": "dim",
+                "folding_stool": "folded", "lamp": "on"}
+INTEG_AFTER = {"elevator": "open", "routing_node": "lit", "refund_ledger": "refund", "alarm_board": "labeled_6", "formula_wall": "clause_6",
+               "folding_stool": "open", "lamp": "pulse"}
+INTEG_REQUIRED = {"elevators": (16, 0, 224, 48), "seated worker and desk": (32, 60, 150, 110), "formula wall": (224, 8, 320, 30),
+                  "wall band": (176, 56, 320, 90), "stool": (150, 122, 170, 140), "artifact cabinets": (176, 130, 290, 170)}
+
+
+def systems_integration_layout():
+    extras = [{"anim": "formula_wall", **at(224, 8)}, {"anim": "folding_stool", **at(150, 124)}, {"entry": "folding_stool", **at(150, 150)}]
+    for x in range(176, 320, T):
+        extras.append({"entry": "wall_n_plain", **at(x, 56)})
+    extras += [{"anim": "alarm_board", **at(178, 58)}, {"anim": "refund_ledger", **at(232, 66)}]
+    for i in range(10):
+        extras.append({"anim": "routing_node", **at(266 - 3 + (i % 5) * 11, 60 - 3 + (i // 5) * 12)})
+    return br.integration_layout("systems", "systems-atlas.json", ["id_envelope", "alarm_strip", "scoring_proof", "original_routing_diagram"], extras,
+                                 panel={"entry": "elevator_call_panel"}, states=INTEG_BEFORE,
+                                 note="Systems integration proof room, built only from systems-atlas: the shared elevator set and call panel, a seated worker behind desk_a "
+                                      "with its occluder, artifacts on desk_b and on cabinets, the formula wall, a wall band with the alarm board, refund ledger and ten "
+                                      "routing-node lamps, and Hal's stool. People are added by the renderer.")
+
+
+def landmark_steps(atlas):
+    """systems-landmark-steps.png: the routing machine before, after_12, after_13, after_14 and after, x2."""
+    box = (16, 8, 176, 152)
+    Z = 2
+    names = ["before", "after_12", "after_13", "after_14", "after"]
+    imgs = [br.render(reference_layout(), atlas, dict(STATES_BEFORE, routing_machine=n, lamp="pulse" if n == "after" else "on"), engineer=None)[box[1]:box[3], box[0]:box[2]] for n in names]
+    pw, ph = (box[2] - box[0]) * Z, (box[3] - box[1]) * Z
+    sheet = Image.new("RGB", (len(names) * (pw + 12) + 12, ph + 50), build_kit.BG)
+    d = ImageDraw.Draw(sheet)
+    for i, (n, im) in enumerate(zip(names, imgs)):
+        x = 12 + i * (pw + 12)
+        sheet.paste(Image.fromarray(im).resize((pw, ph), Image.NEAREST), (x, 34))
+        d.text((x, 8), n, font=bst.font(18, bold=True), fill="#F4F2EC")
+    sheet.save(os.path.join(HERE, "systems-landmark-steps.png"))
+    return [int(np.any(imgs[i] != imgs[i + 1], axis=2).sum()) for i in range(len(imgs) - 1)]
+
+
+def integration_proofs(atlas, meta):
+    layout = systems_integration_layout()
+    layout_ok = br.write_integration_layout("systems", layout, meta)
+    before, after = br.integration_images("systems", layout, atlas, INTEG_BEFORE, INTEG_AFTER, br.render_integration)
+    print(f"systems integration: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    diffs = landmark_steps(atlas)
+    lm = atlas.landmarks["routing_machine"]["states"]
+    hal_atlas = json.load(open(os.path.join(HERE, "..", "cast", "hal-props-atlas.json")))
+    hal_e = [e for e in hal_atlas["entries"] if e["name"] == "stool_folding"][0]
+    mine = {e["name"]: e for e in meta["entries"]}
+    hal_img = np.array(Image.open(os.path.join(HERE, "..", "cast", "hal-props-atlas.png")).convert("RGBA"))
+    hx, hy, hw, hh = hal_e["rect"][0], hal_e["rect"][1], *hal_e["size_px"]
+    same_px = all(np.array_equal(atlas.sprite(n), hal_img[hy:hy + hh, hx:hx + hw]) for n in ("folding_stool", "folding_stool_open"))
+    geo = ("kind", "size_px", "footprint", "collision", "layer", "y_sort", "anchor", "composite", "contact_shadow")
+    same_geo = all(mine[n].get(k) == hal_e.get(k) for n in ("folding_stool", "folding_stool_open", "folding_stool_folded") for k in geo if not (n.endswith("folded") and k == "contact_shadow"))
+    extra = [("folding_stool and folding_stool_open are pixel for pixel Hal's stool_folding (cast/hal-props-atlas.png)", same_px, "16x10"),
+             ("the three stool entries share Hal's geometry (16x10, footprint origin [0,-6], anchor [8,10], collision, layer, y-sort)", same_geo, "hal-props-atlas.json stool_folding"),
+             ("the machine's intermediate states each add something over the one before (nodes+stubs, beacon, ports, then the full after)", all(d > 0 for d in diffs), f"changed px per step {diffs}"),
+             ("after_12, after_13 and after_14 use registered landmark parts only", all(set(lm[s]["parts"]) <= set(lm["before"]["parts"]) | set(lm["after"]["parts"]) for s in ("after_12", "after_13", "after_14")), "no new pixels")]
+    ok_ = br.integration_review("systems", layout, atlas, meta, sk.INTEGRATION_NAMES, INTEG_BEFORE, INTEG_AFTER, INTEG_REQUIRED, extra=extra)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -377,7 +441,8 @@ def main():
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
     qok = quest_proofs(atlas, meta)
-    sys.exit(0 if ok_ and qok else 1)
+    iok = integration_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok and iok else 1)
 
 
 if __name__ == "__main__":

@@ -28,6 +28,8 @@ import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
 import quest_props as qp  # noqa: E402
+sys.path.insert(0, os.path.join(HERE, "..", "cast"))
+import hal_sprites as hal  # noqa: E402  (read-only: the stool prop is imported from here)
 
 T = 16
 KIT = "systems"
@@ -865,6 +867,11 @@ def landmarks():
               "routing_beacon_before", "routing_ports_before", "routing_panel_closed"]
     after = ["routing_deck_plate", "routing_stubs_after", "routing_walkway_after", "routing_machine", "routing_core_after",
              "routing_nodes_after", "routing_beacon_after", "routing_ports_after", "routing_panel_open"]
+    # wave 2: the machine lights level by level from registered parts, no new pixels (NEEDS_ART: after_12, after_13, after_14)
+    after_12 = ["routing_deck_plate", "routing_stubs_after", "routing_machine", "routing_core_before", "routing_nodes_after",
+                "routing_beacon_before", "routing_ports_before", "routing_panel_closed"]
+    after_13 = [n if n != "routing_beacon_before" else "routing_beacon_after" for n in after_12]
+    after_14 = [n if n != "routing_ports_before" else "routing_ports_after" for n in after_13]
     assert set(common) <= set(before) & set(after)
     roles = {"routing_deck_plate": "floor pad", "routing_machine": "base machine"}
     for n in before + after:
@@ -874,12 +881,17 @@ def landmarks():
         "routing_machine": {
             "note": "Systems landmark: the large routing machine. Every part is a full-size sprite registered at one footprint origin, "
                     "so a state is a list of parts; place them all at the same cell. The body carries the collision (6x4 cells); the stubs and "
-                    "walkway are floor markings; the other parts are small quest-state overlays.",
+                    "walkway are floor markings; the other parts are small quest-state overlays. Wave 2 intermediate states (no new pixels, registered parts only): "
+                    "after_12 = nodes and stubs lit; after_13 = after_12 plus the beacon steady; after_14 = after_13 plus the ports lit; the dome core, walkway and open panel "
+                    "arrive with `after` at level 16.",
             "size_px": [BOX_W, BOX_H],
             "footprint_origin_px": list(FP),
             "default_state": "before",
             "states": {
                 "before": {"parts": before, "lamps": {"anim": "lamp", "state": "on", "offsets_px": LAMP_OFFSETS}},
+                "after_12": {"parts": after_12, "lamps": {"anim": "lamp", "state": "on", "offsets_px": LAMP_OFFSETS}},
+                "after_13": {"parts": after_13, "lamps": {"anim": "lamp", "state": "on", "offsets_px": LAMP_OFFSETS}},
+                "after_14": {"parts": after_14, "lamps": {"anim": "lamp", "state": "on", "offsets_px": LAMP_OFFSETS}},
                 "after": {"parts": after, "lamps": {"anim": "lamp", "state": "pulse", "offsets_px": LAMP_OFFSETS}},
             },
             "part_roles": roles,
@@ -1028,11 +1040,6 @@ def draw_calc_display(r, x0, y0, refund):
     r.outline(pg)
 
 
-def draw_folding_stool(r, x0, y0):
-    """Hal's folding stool (the shared drawing in quest_props.py, Systems ramps): a sand canvas seat on crossed steel legs with his orange tool roll."""
-    qp.folding_stool(r, x0, y0, PAL)
-
-
 ALARM_LIGHTS = [GLASS[2], MINT[2], ORANGE[2], WOOD[3], GLASS[3], MINT[3]]   # blue, green, orange, sand, pale blue, pale green
 PICTO = {
     0: ("XXXXX", "XXXXX", "XXXXX", "XXXXX"),   # solid block
@@ -1166,9 +1173,6 @@ def quest_pieces():
                           "the inset calculator display of level 13, 2 x 1: a steel desk top with a display sunk into it and an open ledger beside it. "
                           + ("charge: '+85' in orange, the ledger marked with an orange plus" if st == "charge" else "refund: '-85' in mint, the ledger marked with a mint minus"),
                           ["calculator", "display", "level 13", st], box=(sx, sy, sx + 36, sy + 18)))
-    out.append(_quest("folding_stool", lambda r: draw_folding_stool(r, sx, sy), (sx, sy), (1, 1), ["1"], "rear_prop", "prop",
-                      "Hal's folding stool, 1 x 1 (level 13: Hal sits instead of crouching): a sand canvas seat on crossed steel legs with his orange tool roll leaning on it",
-                      ["stool", "hal", "level 13"]))
     for st in ("merged", "separated", "muted"):
         out.append(_quest(f"alarm_strip_{st}", lambda r, st=st: draw_alarm_strip(r, sx, sy, st), (sx, sy), (4, 2), ["0000", "0000"], "rear_wall", "wall",
                           "the alarm hall strip of level 14, a 64 x 18 wall overlay: six lamps above six porcelain label plates. "
@@ -1221,14 +1225,220 @@ def quest_pieces():
                            "play": ["closed", "open"], "ms_per_frame": 200,
                            "note": "level 15: the bridge shutters open; place one per window"},
         "formula_wall": {"kind": "state_set", "default": "dark",
-                         "states": {"dark": {"entries": ["formula_wall_dark"]}, "half": {"entries": ["formula_wall_half"]}, "lit": {"entries": ["formula_wall_lit"]}},
+                         "states": {"dark": {"entries": ["formula_wall_dark"]}, "half": {"entries": ["formula_wall_half"]}, "lit": {"entries": ["formula_wall_lit"]},
+                                    "dim": {"entries": ["formula_wall_dim"]}, **{f"clause_{k}": {"entries": [f"formula_wall_clause_{k}"]} for k in range(1, 7)}},
                          "play": ["dark", "half", "lit"], "ms_per_frame": 250,
-                         "note": "level 15: as clauses become valid the connected parts of the formula illuminate (dark, half, lit)"},
+                         "note": "level 15: as clauses become valid the connected parts of the formula illuminate (dark, half, lit). Wave 2 adds the level data's names: dim "
+                                 "(same pixels as dark) and clause_1 to clause_6 (the first k boxes lit; clause_6 has the same pixels as lit), so one clause lights at a time"},
         "courier_chute": {"kind": "state_set", "default": "idle",
                           "states": {"idle": {"entries": ["courier_chute_idle"]}, "ready": {"entries": ["courier_chute_ready"]}},
                           "play": ["idle", "ready"], "ms_per_frame": 300,
                           "note": "Mira's chute: ready while she has a route to offer"},
     }
+    return out, anims
+
+
+# ------------------------------------------------------------------ 6. wave 2: district integration
+# The shared elevator set, desk occluders and artifacts (quest_props.integration_pieces), the Systems props the level data
+# names under exact names (design/levels/systems/NEEDS_ART.md): routing_node_*, refund_ledger_*, alarm_board_*, the formula
+# wall's clause states and folding_stool_folded / _open, and Hal's own stool as folding_stool.
+
+INTEGRATION_NAMES = set()
+
+
+def _imk(name, draw, box, fp, cells, coll, layer, kind, shadow=True, shadow_rect=None, y_sort=False, note="", tags=()):
+    p = ok.make(name, draw, fp, cells, coll, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=list(tags))
+    if shadow_rect:
+        p.shadow = shadow_rect
+    INTEGRATION_NAMES.add(name)
+    return p
+
+
+def draw_routing_node(r, x0, y0, lit):
+    """One routing-node lamp for the payroll wing wall, 10 x 10: an ink bezel round a glass lamp. dark: dull cobalt glass.
+    lit: mint with a pale head and a deeper lower edge."""
+    r.rect(x0 + 1, y0, x0 + 9, y0 + 10, INK[0])
+    r.rect(x0, y0 + 1, x0 + 10, y0 + 9, INK[0])
+    if lit:
+        r.rect(x0 + 1, y0 + 1, x0 + 9, y0 + 9, MINT[2])
+        r.rect(x0 + 1, y0 + 8, x0 + 9, y0 + 9, MINT[1])
+        r.rect(x0 + 8, y0 + 1, x0 + 9, y0 + 9, MINT[1])
+        r.rect(x0 + 2, y0 + 2, x0 + 5, y0 + 5, MINT[3])
+    else:
+        r.rect(x0 + 1, y0 + 1, x0 + 9, y0 + 9, GLASS[1])
+        r.rect(x0 + 1, y0 + 1, x0 + 9, y0 + 2, GLASS[2])
+        r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 9, GLASS[2])
+        r.rect(x0 + 1, y0 + 8, x0 + 9, y0 + 9, GLASS[0])
+
+
+def draw_refund_ledger(r, x0, y0, refund):
+    """The refund ledger of level 13, a 30 x 14 wall inset (2 cells wide): a calculator display sunk into a cobalt plate and an
+    open ledger beside it with three sign markers. charge: '+85' in orange and three orange markers staggered up and down.
+    refund: '-85' in mint and three mint markers calm on one line."""
+    sign_col = MINT[3] if refund else ORANGE[3]
+    mark = MINT[2] if refund else ORANGE[2]
+    r.rect(x0, y0, x0 + 30, y0 + 14, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 29, y0 + 13, GLASS[1])
+    r.rect(x0 + 1, y0 + 1, x0 + 29, y0 + 2, GLASS[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 13, GLASS[2])
+    r.rect(x0 + 1, y0 + 12, x0 + 29, y0 + 13, GLASS[0])
+    r.rect(x0 + 3, y0 + 3, x0 + 17, y0 + 11, INK[0])                      # the sunk display
+    r.rect(x0 + 4, y0 + 4, x0 + 16, y0 + 10, INK[1])
+    r.rect(x0 + 16, y0 + 4, x0 + 17, y0 + 11, WALL[3])                    # lit lower and right lip
+    r.rect(x0 + 3, y0 + 11, x0 + 17, y0 + 12, WALL[3])
+    qp.text(r, x0 + 5, y0 + 4, "-" if refund else "+", sign_col)
+    qp.text(r, x0 + 9, y0 + 4, "85", FLOOR[3])
+    pg = r.mask(x0 + 19, y0 + 3, x0 + 28, y0 + 12)                        # the open ledger
+    r.img[pg] = FLOOR[3]
+    r.rect(x0 + 23, y0 + 3, x0 + 24, y0 + 12, FLOOR[1])
+    for ly in (4, 6):
+        r.rect(x0 + 20, y0 + ly, x0 + 23, y0 + ly + 1, GLASS[1])
+    for k, yy in enumerate((4, 7, 10)):                                   # three sign markers, staggered when it is a charge
+        mx = 25 if refund else (24, 26, 24)[k]
+        r.rect(x0 + mx, y0 + yy, x0 + mx + 2, y0 + yy + 2, mark)
+    r.outline(pg)
+
+
+BLANK_LAMPS = [GLASS[1], GLASS[1], MINT[1], MINT[1], ORANGE[1], WOOD[2]]   # two pairs of identical dull lamps, then two singles
+
+
+def draw_alarm_board(r, x0, y0, n):
+    """The alarm hall board of level 14, 46 x 30 (3 x 2 cells): six cells, each a lamp above a porcelain label plate. Cell i in
+    reading order takes pictogram i (ring, triangle, square, diamond, cross, bar). n of them are restored: the first n cells show
+    their pictogram and their own hue (blue, green, orange, sand, pale blue, pale green). The rest are blank: an empty slot and a
+    dull lamp, and two pairs of dull lamps look identical."""
+    r.rect(x0, y0, x0 + 46, y0 + 30, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 45, y0 + 29, GLASS[1])
+    r.rect(x0 + 1, y0 + 1, x0 + 45, y0 + 2, GLASS[3])
+    r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 29, GLASS[2])
+    r.rect(x0 + 1, y0 + 28, x0 + 45, y0 + 29, GLASS[0])
+    for i in range(6):
+        cx, cy = x0 + 3 + (i % 3) * 14, y0 + 3 + (i // 3) * 13
+        done = i < n
+        col = ALARM_LIGHTS[i] if done else BLANK_LAMPS[i]
+        r.rect(cx, cy, cx + 12, cy + 5, INK[0])
+        r.rect(cx + 1, cy + 1, cx + 11, cy + 4, col)
+        if done:
+            r.rect(cx + 1, cy + 1, cx + 11, cy + 2, FLOOR[3])
+            r.img[cy + 1, cx + 1] = FLOOR[3]
+        r.rect(cx, cy + 5, cx + 12, cy + 12, FLOOR[3])
+        r.rect(cx, cy + 5, cx + 12, cy + 6, FLOOR[2])
+        r.rect(cx, cy + 11, cx + 12, cy + 12, FLOOR[1])
+        if done:
+            for yy, row in enumerate(PICTO[PICTO_ORDER[i]]):
+                for xx, ch in enumerate(row):
+                    if ch == "X":
+                        r.img[cy + 6 + yy, cx + 3 + xx] = INK[1]
+        else:
+            for xx in (3, 5, 7, 9):                                           # an empty slot: four faint dashes
+                r.img[cy + 8, cx + xx] = FLOOR[1]
+                r.img[cy + 9, cx + xx] = FLOOR[1] if xx in (3, 9) else FLOOR[2]
+
+
+def _hal_rgba(rows):
+    a = np.zeros((len(rows), 16, 4), np.uint8)
+    for y, row in enumerate(rows):
+        for x, ch in enumerate(row):
+            if ch != ".":
+                h = hal.PAL[ch]
+                a[y, x, :3] = [int(h[i:i + 2], 16) for i in (1, 3, 5)]
+                a[y, x, 3] = 255
+    return a
+
+
+STOOL_FOLDED = [
+    ".....oooooo.....",
+    ".....ojjhho.....",
+    ".....ojhhgo.....",
+    ".....ojhhgo.....",
+    ".....ojhhgo.....",
+    ".....ojhhgo.....",
+    ".....ojhhgo.....",
+    ".....ojhhgo.....",
+    ".....ooggoo.....",
+    ".....hggggggh...",
+]
+assert all(len(r) == 16 for r in STOOL_FOLDED) and len(STOOL_FOLDED) == 10
+
+
+def stool_pieces():
+    """Hal's stool as the Systems prop: `folding_stool` and `folding_stool_open` are pixel for pixel the Hal prop atlas's
+    `stool_folding` (imported from hal_sprites.py: same 16 x 10 sprite, footprint, collision, layer, y-sort, anchor [8, 10] and
+    contact shadow); `folding_stool_folded` is the stool packed up for the first half of level 13, same geometry."""
+    out = []
+    spr = _hal_rgba(hal.STOOL[6:])
+    e = hal.STOOL_ENTRY
+    sh = tuple(e["contact_shadow"])
+    fp = (0, e["footprint"]["origin_px"][1])      # the footprint's top-left relative to the sprite's top-left (origin_px y = -6)
+    for nm, rows, note in (
+            ("folding_stool", None, "Hal's folding stool, the same sprite as hal-props-atlas.json stool_folding (imported from hal_sprites.py), "
+                                    "seat open, for him to sit on at the end of level 13. 16 x 10 px, footprint 1 x 1 whose top-left is 6 px above the sprite, anchor [8, 10] "
+                                    "(the footprint's bottom centre). Hal's seat offset depends on this geometry: seated Hal's anchor (8, 24) lands on the anchor (8, 16) of the "
+                                    "stool's cell, so the sprite's top-left sits at (0, 14) in Hal's 16 x 24 frame (hal-atlas.json stool_sprite_in_frame_px). Do not change it here"),
+            ("folding_stool_open", None, "state `open` of the folding_stool set: identical to folding_stool (Hal's stool_folding), seat open"),
+            ("folding_stool_folded", STOOL_FOLDED, "state `folded` of the folding_stool set: the stool packed up, legs and seat in one narrow bundle, ink-ramp steel and canvas like "
+                                                    "Hal's. Same 16 x 10 box, footprint, collision, anchor [8, 10] and layer as the open stool, so the swap never shifts a pixel")):
+        s = spr if rows is None else _hal_rgba(rows)
+        shadow = sh if rows is None else (5, 9, 8, 1)
+        p = ok.Piece(nm, s, (0, 0), fp, (1, 1), list(e["collision"]), e["layer"], e["kind"], y_sort=e["y_sort"], composite=e["composite"],
+                     shadow=shadow, tags=["seating", "hal", "level 13"] + (["wave 2"] if nm != "folding_stool" else []), note=note)
+        INTEGRATION_NAMES.add(nm)
+        out.append(p)
+    QUEST_NAMES.add("folding_stool")   # the quest-prop room still has to place it
+    return out
+
+
+def _integration(desks):
+    out, anims = qp.integration_pieces(lambda *a, **k: _imk(*a, **k), PAL, "systems", desks, desk_pal=qp.artifact_pal(PAL))
+    x0, y0 = qp.IX0, qp.IY0
+    for st, lit in (("dark", False), ("lit", True)):
+        out.append(_imk(f"routing_node_{st}", lambda r, lit=lit: draw_routing_node(r, x0 + 3, y0 + 3, lit), (x0 + 3, y0 + 3, x0 + 13, y0 + 13), (x0, y0), (1, 1), ["0"], "rear_wall", "wall",
+                        shadow=False, y_sort=False,
+                        note="one of the ten routing-node lamps on the payroll wing wall (level 12), a 10 x 10 wall overlay centred in its cell, no collision. "
+                             + ("dark: dull cobalt glass in an ink bezel" if st == "dark" else "lit: mint with a pale head and a deeper lower edge")
+                             + ". Place ten, one per digit, and light each as its digit is entered", tags=["node", "lamp", "payroll", "level 12", st]))
+    for st in ("charge", "refund"):
+        out.append(_imk(f"refund_ledger_{st}", lambda r, st=st: draw_refund_ledger(r, x0, y0, st == "refund"), (x0, y0, x0 + 30, y0 + 14), (x0, y0), (2, 1), ["00"], "rear_wall", "wall",
+                        shadow=False, y_sort=False,
+                        note="the refund ledger of level 13, 2 x 1: a wall inset with a calculator display and an open ledger carrying three sign markers. "
+                             + ("charge: '+85' in orange, the markers orange and staggered" if st == "charge" else "refund: '-85' in mint, the markers mint and calm on one line")
+                             + ". Systems has no pure red or green: orange trim and mint circuit light carry the pair; the sign glyph carries the meaning. No collision (the wall already blocks)",
+                        tags=["ledger", "refund", "level 13", st]))
+    for k in range(7):
+        st = "blank" if k == 0 else f"labeled_{k}"
+        out.append(_imk(f"alarm_board_{st}", lambda r, k=k: draw_alarm_board(r, x0, y0, k), (x0, y0, x0 + 46, y0 + 30), (x0, y0), (3, 2), ["000", "000"], "rear_wall", "wall",
+                        shadow=False, y_sort=False,
+                        note="the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. "
+                             + ("blank: six empty pictogram slots and six dull lamps, two pairs of them identical" if k == 0
+                                else f"labeled_{k}: the first {k} cell{'s' if k > 1 else ''} restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank")
+                             + ". Colour is never the only cue: every restored cell also has a pictogram", tags=["alarm", "board", "level 14", st]))
+    fx, fy = x0, y0
+    for st, n in [("dim", 0)] + [(f"clause_{k}", k) for k in range(1, 7)]:
+        out.append(_imk(f"formula_wall_{st}", lambda r, n=n: draw_formula_wall(r, fx, fy, n), (fx, fy, fx + 96, fy + 22), (fx, fy), (6, 2), ["000000", "000000"], "rear_wall", "wall",
+                        shadow=False, y_sort=False,
+                        note="the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: "
+                             + ("dim: every box dark glass (the same pixels as formula_wall_dark)" if n == 0
+                                else f"clause_{n}: the first {n} clause box{'es' if n > 1 else ''} and the traces between them lit mint" + (" (all six: the same pixels as formula_wall_lit)" if n == 6 else ""))
+                             + ". Joins the formula_wall state set beside dark, half and lit", tags=["formula", "wall", "level 15", st]))
+    out += stool_pieces()
+    anims.update({
+        "routing_node": {"kind": "state_set", "default": "dark",
+                         "states": {"dark": {"entries": ["routing_node_dark"]}, "lit": {"entries": ["routing_node_lit"]}},
+                         "play": ["dark", "lit"], "ms_per_frame": 150,
+                         "note": "level 12: one lamp per correct digit; place ten and switch each on its own"},
+        "refund_ledger": {"kind": "state_set", "default": "charge",
+                          "states": {"charge": {"entries": ["refund_ledger_charge"]}, "refund": {"entries": ["refund_ledger_refund"]}},
+                          "play": ["charge", "refund"], "ms_per_frame": 200,
+                          "note": "level 13: the ledger turns the charge into a refund, orange to mint"},
+        "alarm_board": {"kind": "state_set", "default": "blank",
+                        "states": {"blank": {"entries": ["alarm_board_blank"]}, **{f"labeled_{k}": {"entries": [f"alarm_board_labeled_{k}"]} for k in range(1, 7)}},
+                        "play": ["blank"] + [f"labeled_{k}" for k in range(1, 7)], "ms_per_frame": 250,
+                        "note": "level 14: each correct label restores one pictogram and its hue; six labels, six states after blank"},
+        "folding_stool": {"kind": "state_set", "default": "folded",
+                          "states": {"folded": {"entries": ["folding_stool_folded"]}, "open": {"entries": ["folding_stool_open"]}},
+                          "play": ["folded", "open"], "ms_per_frame": 200,
+                          "note": "level 13: the stool stands folded, then Hal opens it to sit; same geometry in both states (Hal's seat offset depends on it)"},
+    })
     return out, anims
 
 
@@ -1244,6 +1454,9 @@ def build_pieces():
     pieces += landmark_pieces()
     qpieces, qanims = quest_pieces()
     pieces += qpieces
+    desks = {p.name: p for p in pieces if p.name in ("desk_a", "desk_b")}
+    ipieces, ianims = _integration(desks)
+    pieces += ipieces
     anims = {
         "service_door": {
             "kind": "state_set", "default": "closed",
@@ -1263,11 +1476,14 @@ def build_pieces():
     }
     anims.update(conduit_anims())
     anims.update(qanims)
+    anims.update(ianims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in INTEGRATION_NAMES:
+        return 9
     if n in QUEST_NAMES:
         return 8
     if n.startswith(("floor_", "route_")):
@@ -1292,7 +1508,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "FLOOR CONDUITS: three famil
             (4, "LAMP (post, off, glow states)"), (5, "REUSED ORIENTATION PROPS (recoloured)"),
             (6, "SHARED AND SYSTEMS PROPS: shelving, partition, terminal, locker, server racks, bridge deck and rail"),
             (7, "LANDMARK: THE ROUTING MACHINE (registered parts)"),
-            (8, "QUEST PROPS (levels 12 to 16, Mira's routes): payroll keypad, bridge span, refund sign, calculator display, stool, alarm strip, shutter, formula wall, courier chute, Mira decor")]
+            (8, "QUEST PROPS (levels 12 to 16, Mira's routes): payroll keypad, bridge span, refund sign, calculator display, alarm strip, shutter, formula wall, courier chute, Mira decor"),
+            (9, "DISTRICT INTEGRATION (wave 2): elevator set and call panel, desk-front occluders, routing-node lamps, refund ledger, alarm board, formula clauses, Hal's stool (folded and open), four optional artifacts")]
 
 
 def atlas_json(pieces, rects, anims, lms):

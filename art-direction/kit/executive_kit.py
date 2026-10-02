@@ -1159,6 +1159,31 @@ def quest_pieces():
     return out, anims
 
 
+# ------------------------------------------------------------------ 6. wave 2: district integration
+# The shared elevator set, call panel, desk occluders and the audit-copy artifact (quest_props.integration_pieces, drawn with the
+# Executive ramps) and the Names on the Wall reward (design/levels/executive/NEEDS_ART.md): desk_name_plaque.
+
+INTEGRATION_NAMES = set()
+
+
+def _imk(name, draw, box, fp, cells, coll, layer, kind, shadow=True, shadow_rect=None, y_sort=False, note="", tags=()):
+    p = ok.make(name, draw, fp, cells, coll, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=list(tags))
+    if shadow_rect:
+        p.shadow = shadow_rect
+    INTEGRATION_NAMES.add(name)
+    return p
+
+
+def _integration(desks):
+    out, anims = qp.integration_pieces(lambda *a, **k: _imk(*a, **k), PAL, "executive", desks, desk_pal=qp.artifact_pal(PAL))
+    x0, y0 = qp.IX0, qp.IY0
+    out.append(_imk("desk_name_plaque", lambda r: qp.reward_decor(r, "name_plaque", x0, y0, PAL), (x0, y0, x0 + 14, y0 + 9), (x0 - 1, y0 + 9 - 16), (1, 1), ["0"], "front_prop", "prop",
+                    shadow=False, y_sort=False,
+                    note="Names on the Wall reward: a small desk plaque (copper plate with three inked name lines on a walnut base), 14 x 9, 1 x 1, no collision. "
+                         "A desk decoration like mail_tray and desk_folder; never placed on the map", tags=["decor", "desk", "reward", "names"]))
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -1170,6 +1195,9 @@ def build_pieces():
     pieces += landmark_pieces()
     qpieces, qanims = quest_pieces()
     pieces += qpieces
+    desks = {p.name: p for p in pieces if p.name in ("desk_a", "desk_b")}
+    ipieces, ianims = _integration(desks)
+    pieces += ipieces
     anims = {
         "final_door": {
             "kind": "state_set", "default": "closed",
@@ -1207,11 +1235,14 @@ def build_pieces():
         },
     }
     anims.update(qanims)
+    anims.update(ianims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in INTEGRATION_NAMES:
+        return 9
     if n in QUEST_NAMES:
         return 8
     if n.startswith(("floor_", "route_")):
@@ -1236,7 +1267,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS (navy, high windows i
             (5, "SHARED KIT: bookcase, partition, reception console, credenza, window light"),
             (6, "EXECUTIVE-ONLY: boardroom table and chair, glass balustrade"),
             (7, "LANDMARK: THE ATRIUM TREE (registered parts)"),
-            (8, "QUEST PROPS (level 20): the three branch props (nameplate, floor line, tally board) and the arriving coworkers' places")]
+            (8, "QUEST PROPS (level 20): the three branch props (nameplate, floor line, tally board) and the arriving coworkers' places"),
+            (9, "DISTRICT INTEGRATION (wave 2): elevator set and call panel, desk-front occluders, the audit-copy artifact, the name plaque")]
 
 
 def atlas_json(pieces, rects, anims, lms):

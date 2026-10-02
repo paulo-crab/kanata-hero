@@ -863,6 +863,130 @@ def quest_pieces():
     return out, anims
 
 
+# ------------------------------------------------------------------ 5. wave 2: district integration
+# The shared elevator set, desk occluders and artifacts (quest_props.integration_pieces), plus the Records props the level
+# data names under exact names (design/levels/records/NEEDS_ART.md): cabinet_gate_*, cabinet_labels_*,
+# archive_ledger_mark_* and door_panel_address_idle.
+
+INTEGRATION_NAMES = set()
+
+
+def _imk(name, draw, box, fp, cells, coll, layer, kind, shadow=True, shadow_rect=None, y_sort=False, note="", tags=()):
+    p = ok.make(name, draw, fp, cells, coll, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=list(tags))
+    if shadow_rect:
+        p.shadow = shadow_rect
+    INTEGRATION_NAMES.add(name)
+    return p
+
+
+def draw_cabinet_gate(r, x0, y0, state):
+    """The margin-room gate of level 08: two one-cell file cabinets across a doorway. misaligned: pushed crooked, one low and
+    one high with a gap between them, so the doorway is shut. aligned: squared up side by side and pushed 14 px back against
+    the shelf line, so the doorway is open."""
+    if state == "misaligned":
+        sp.cabinet(r, x0, y0 + 2, 1, PAL)
+        sp.cabinet(r, x0 + 18, y0 - 1, 1, PAL)
+        r.rect(x0 + 16, y0 + 8, x0 + 18, y0 + 28, INK[0])               # the dark crack between them
+    else:
+        sp.cabinet(r, x0, y0 - 14, 1, PAL)
+        sp.cabinet(r, x0 + 16, y0 - 14, 1, PAL)
+
+
+LABEL_JITTER = [(0, 1), (3, 0), (5, 1), (1, 0), (4, 1), (2, 0)]   # (tab x shift, tab y shift) per drawer, row-major over 2 cells x 3 drawers
+
+
+def draw_cabinet_labels(r, x0, y0, state):
+    """The log cabinets of level 08, two cells wide: cherry drawers whose sea-blue folders show a linen label tab each.
+    offset: the tabs sit at uneven shifts and heights. aligned: every tab on one line at the same inset, with a coral mark."""
+    G, W, WD, A = PAL.glass, PAL.wall, PAL.wood, PAL.accent
+    sp.cabinet(r, x0, y0, 2, PAL)
+    fy = y0 + sp.CAB_H - 19
+    k = 0
+    for d in range(3):
+        dy = fy + 1 + d * 6
+        for c in range(2):
+            dx = x0 + c * 16
+            r.rect(dx + 3, dy + 2, dx + 13, dy + 5, WD[1])                 # clear the plate and pull, keep the lip and seam
+            r.rect(dx + 3, dy + 2, dx + 13, dy + 4, G[2])                  # the sea-blue folders standing in the drawer
+            r.rect(dx + 3, dy + 3, dx + 13, dy + 4, G[1])
+            jx, jy = LABEL_JITTER[k] if state == "offset" else (2, 0)
+            r.rect(dx + 3 + jx, dy + 2 + jy, dx + 7 + jx, dy + 4 + jy, W[3] if state == "aligned" else W[2])
+            r.rect(dx + 4 + jx, dy + 3 + jy, dx + 6 + jx, dy + 4 + jy, INK[1])
+            if state == "aligned":
+                r.img[dy + 2, dx + 3 + jx] = A[2]
+            r.rect(dx + 6, dy + 4, dx + 10, dy + 5, W[1])                 # the pull
+            k += 1
+
+
+def draw_door_panel(r, x0, y0):
+    """The address panel beside the repair door (level 07), a wall plate 15 x 27: two clear text windows (the address line with
+    its cursor, and the two sides of the cursor: Backspace chevron left, Forward Delete chevron right) over a slot and an
+    idle lamp. Idle: the lamp is dull."""
+    G, W, WD, A = PAL.glass, PAL.wall, PAL.wood, PAL.accent
+    r.rect(x0, y0, x0 + 15, y0 + 27, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 14, y0 + 26, WD[1])
+    r.rect(x0 + 1, y0 + 1, x0 + 14, y0 + 2, WD[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 26, WD[2])
+    r.rect(x0 + 13, y0 + 2, x0 + 14, y0 + 26, WD[0])
+    r.rect(x0 + 1, y0 + 25, x0 + 14, y0 + 26, WD[0])
+    _text_window(r, x0 + 2, y0 + 3, "a")
+    _text_window(r, x0 + 2, y0 + 13, "b")
+    r.rect(x0 + 3, y0 + 22, x0 + 12, y0 + 24, INK[1])                  # an input slot
+    r.rect(x0 + 3, y0 + 22, x0 + 12, y0 + 23, G[2])
+    r.rect(x0 + 5, y0 + 23, x0 + 10, y0 + 24, G[1])                    # the idle lamp's dull glass
+    r.img[y0 + 23, x0 + 5] = A[1]
+
+
+def _ledger_origin():
+    r0 = env.Room()
+    g = Geo(r0)
+    return g.cx - 14, g.cy - 24
+
+
+def _integration(desks):
+    out, anims = qp.integration_pieces(lambda *a, **k: _imk(*a, **k), PAL, "records", desks)
+    x0, y0 = qp.IX0, qp.IY0
+    gate_note = {"misaligned": "two one-cell file cabinets pushed crooked across the margin-room doorway: one low, one high, a dark crack between (blocks both cells)",
+                 "aligned": "the same cabinets squared up side by side and pushed 14 px back against the shelf line: the doorway cells are free"}
+    for st in ("misaligned", "aligned"):
+        out.append(_imk(f"cabinet_gate_{st}", lambda r, st=st: draw_cabinet_gate(r, x0, y0, st), (x0, y0 - 15, x0 + 36, y0 + 30), (x0, y0 + sp.CAB_H - 16), (2, 1),
+                        ["11"] if st == "misaligned" else ["00"], "rear_prop", "prop", y_sort=True,
+                        note=f"the level 08 gate, 2 x 1: {gate_note[st]}. Same sprite box in both states, so a swap never shifts a pixel", tags=["gate", "cabinet", "level 08", st]))
+    lab_note = {"offset": "cherry log cabinet, sea-blue folders with a linen label tab each at uneven shifts and heights",
+                "aligned": "the same cabinet with every label tab on one line at the same inset and a coral mark on each"}
+    for st in ("offset", "aligned"):
+        out.append(_imk(f"cabinet_labels_{st}", lambda r, st=st: draw_cabinet_labels(r, x0, y0, st), (x0, y0, x0 + 35, y0 + sp.CAB_H + 2), (x0, y0 + sp.CAB_H - 16), (2, 1), ["11"],
+                        "rear_prop", "prop", y_sort=True, note=f"the level 08 log cabinets, 2 x 1: {lab_note[st]}. Same box and footprint as cabinet_2x1", tags=["cabinet", "labels", "level 08", st]))
+    lx, ly = _ledger_origin()
+    for st, mode in (("rejected", "before"), ("accepted", "after")):
+        out.append(_imk(f"archive_ledger_mark_{st}", lambda r, mode=mode: draw_ledger(r, mode), (lx, ly, lx + 12, ly + 7), (lx, ly), (1, 1), ["0"], "rear_prop", "prop",
+                        shadow=False, y_sort=True,
+                        note="the circular desk's open ledger with Noor's stamp mark, 12 x 7 px, an opaque overlay that covers the landmark's own ledger: "
+                             + ("a coral cross, the mark rejected (levels 07 to 08; the same pixels as archive_ledger_before)" if st == "rejected"
+                                else "a coral tick and a round seal, the mark accepted (the same pixels as archive_ledger_after)")
+                             + ". Place at the landmark footprint origin + (26, 4), after the landmark's parts; it lets level 08 accept the mark before the folders and ring change at level 11",
+                        tags=["ledger", "mark", "level 08", st]))
+    out.append(_imk("door_panel_address_idle", lambda r: draw_door_panel(r, x0, y0), (x0, y0, x0 + 15, y0 + 27), (x0, y0 + 11), (1, 1), ["1"], "rear_prop", "prop", shadow=False, y_sort=True,
+                    note="the address panel beside the repair door (level 07), 1 x 1: a wall plate 15 x 27 with two clear text windows (the address line with its cursor; the two sides of "
+                         "the cursor, Backspace chevron left and Forward Delete chevron right), an input slot and a dull idle lamp. Blocks its cell; the player reads it from the cell in front",
+                    tags=["panel", "address", "door", "level 07", "idle"]))
+    anims.update({
+        "cabinet_gate": {"kind": "state_set", "default": "misaligned",
+                         "states": {"misaligned": {"entries": ["cabinet_gate_misaligned"], "blocked": True}, "aligned": {"entries": ["cabinet_gate_aligned"], "blocked": False}},
+                         "play": ["misaligned", "aligned"], "ms_per_frame": 200,
+                         "note": "level 08: the cabinets square up and open the margin-room doorway; misaligned blocks both cells, aligned frees them"},
+        "cabinet_labels": {"kind": "state_set", "default": "offset",
+                           "states": {"offset": {"entries": ["cabinet_labels_offset"]}, "aligned": {"entries": ["cabinet_labels_aligned"]}},
+                           "play": ["offset", "aligned"], "ms_per_frame": 150,
+                           "note": "level 08: the repaired label tabs line up (both states block)"},
+        "ledger_mark": {"kind": "state_set", "default": "rejected",
+                        "states": {"rejected": {"entries": ["archive_ledger_mark_rejected"]}, "accepted": {"entries": ["archive_ledger_mark_accepted"]}},
+                        "play": ["rejected", "accepted"], "ms_per_frame": 200,
+                        "note": "level 08: Noor's stamp mark goes from rejected to accepted. An opaque overlay on the landmark's ledger, at footprint origin + (26, 4)"},
+    })
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -874,6 +998,9 @@ def build_pieces():
     pieces += landmark_pieces()
     qpieces, qanims = quest_pieces()
     pieces += qpieces
+    desks = {p.name: p for p in pieces if p.name in ("desk_a", "desk_b")}
+    ipieces, ianims = _integration(desks)
+    pieces += ipieces
     anims = {
         "archive_door": {
             "kind": "state_set", "default": "closed",
@@ -900,11 +1027,14 @@ def build_pieces():
         },
     }
     anims.update(qanims)
+    anims.update(ianims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in INTEGRATION_NAMES:
+        return 8
     if n in QUEST_NAMES:
         return 7
     if n.startswith(("floor_", "route_")):
@@ -926,7 +1056,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS"), (2, "SLIDING GLASS
             (3, "LAMP (post, off, glow states)"), (4, "REUSED ORIENTATION PROPS (recoloured)"),
             (5, "NEW SHARED KIT: shelving, partition, terminal desk, cabinet, file wall, light"),
             (6, "LANDMARK: THE CIRCULAR ARCHIVE DESK (registered parts)"),
-            (7, "QUEST PROPS (levels 07 to 11, Mira's routes): repair door, shelf-end light, courier chute, folder rack, ledger table, rolling ladder, report table, Mira decor")]
+            (7, "QUEST PROPS (levels 07 to 11, Mira's routes): repair door, shelf-end light, courier chute, folder rack, ledger table, rolling ladder, report table, Mira decor"),
+            (8, "DISTRICT INTEGRATION (wave 2): elevator set and call panel, desk-front occluders, cabinet gate, log cabinet labels, ledger marks, address panel, four optional artifacts")]
 
 
 def atlas_json(pieces, rects, anims, lms):

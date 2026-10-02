@@ -1,0 +1,400 @@
+{
+ "kit": "executive",
+ "atlas": "executive-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Executive integration proof room, built only from executive-atlas: the shared elevator set (closed, half, open) and call panel in the copper-and-navy ramps, a seated worker behind desk_a with its occluder, the audit copy on desk_b and the name plaque on a side table. People are added by the renderer.",
+ "states": {
+  "elevator": "closed",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    2,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    6
+   ],
+   "offset": [
+    14,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    0,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    6,
+    5
+   ],
+   "offset": [
+    9,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    4
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    10,
+    7
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    4
+   ],
+   "offset": [
+    2,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    15,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_half",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_open",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_call_panel",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_a",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_a_front",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_b",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_b_front",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "artifact_public_audit_copy",
+   "cell": [
+    8,
+    4
+   ],
+   "offset": [
+    3,
+    15
+   ]
+  },
+  {
+   "entry": "side_table",
+   "cell": [
+    14,
+    6
+   ],
+   "offset": [
+    8,
+    4
+   ]
+  },
+  {
+   "entry": "desk_name_plaque",
+   "cell": [
+    14,
+    5
+   ],
+   "offset": [
+    9,
+    11
+   ]
+  }
+ ]
+}

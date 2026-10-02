@@ -126,3 +126,25 @@ Every row marked New is built and registered (checked by script against the four
 - **DOM UI** (the editor panel, seals, the exit instruction card, the audit release): not art in the atlases.
 - **Interpretations for the producer to confirm** (each recorded as a decision in the district spec): gold shelf-end lights are linen and peach because gold is a UI marker hex (R3); `refund_sign_red` is orange and `refund_sign_green` is mint because Systems has no pure red or green (S6); six alarm hues are three hues in two steps plus sand, with six pictograms (S10); `rolling_ladder` doubles as the elevator-like rolling shelf (R17); the Courier Loop and Signed and Sent rewards are patches only in levels.md, and the brief asked for desk decorations, so `mira_decor_courier_loop` and `mira_decor_signed_sent` are small tokens made for them (R28, S23); the coworkers' "places" are objects they stand at, not people (E6).
 - **Placement** of the new props in district maps is the level designers' task; the quest-prop rooms are proofs of readability and of collision and state behaviour, not level layouts.
+
+
+## Wave 2 refresh: district integration (branch `feat/art-district-integration`, 2026-10-02)
+
+Every "Other team" row above that pointed at the generic artifact builder or the elevator is now closed, and the level data's own art-gap names (`design/levels/<district>/NEEDS_ART.md`) are in the atlases. Proof renders: `<district>-integration-proof-{before,after}-{native,1366x768}.png` and `<district>-integration-room.json`; `systems-landmark-steps.png` for the machine.
+
+| Rows closed | Entries (exact names) |
+| --- | --- |
+| R11, R15, R22, R27 (Records artifacts) | `artifact_carbon_copy_a`, `artifact_margin_stamp`, `artifact_uncut_index`, `artifact_noor_annotation` |
+| S4, S13, S19, S22 (Systems artifacts) | `artifact_id_envelope`, `artifact_alarm_strip`, `artifact_scoring_proof`, `artifact_original_routing_diagram` |
+| Night Shift and Executive artifacts | `artifact_ada_shift_book`, `artifact_public_audit_copy` |
+| Elevator, all four districts | `elevator_closed`, `elevator_half`, `elevator_open` (set `elevator`), `elevator_call_panel`; Night Shift also `elevator_call_panel_executive_lit` (set `elevator_panel`) |
+| Desk occluders (Records, Systems, Executive) | `desk_a_front`, `desk_b_front` |
+| Records R10 (mark earlier than level 11), R7 variants | `archive_ledger_mark_rejected/_accepted`, `cabinet_gate_misaligned/_aligned`, `cabinet_labels_offset/_aligned`, `door_panel_address_idle` |
+| Systems S1 per-digit lamps, S6/S7 wall ledger, S10 board, S16 clauses, S9 stool | `routing_node_dark/_lit`, `refund_ledger_charge/_refund`, `alarm_board_blank/_labeled_1` to `_6`, `formula_wall_dim`, `formula_wall_clause_1` to `_6`, `folding_stool` (= Hal's `stool_folding`), `folding_stool_open`, `folding_stool_folded` |
+| Systems machine states | landmark `routing_machine` states `after_12`, `after_13`, `after_14` (registered parts, no new pixels) |
+| Night Shift NEEDS_ART | `wall_w_plain`, `desk_dawn_lamp` |
+| Executive NEEDS_ART | `desk_name_plaque` |
+
+Names the data uses that the kit provides under another name (art names win, the data adopts them): `mail_chute_idle/_active` = `courier_chute_idle/_ready`; `rolling_ladder_parked/_moved` = `rolling_ladder_closed/_open`; Systems `payroll_keypad_*`, `refund_sign_*`, `calc_display_*`, `alarm_strip_*` stay as drawn and the new wall pieces sit beside them.
+
+Still open: Hal's crouch, seated and panel-pull poses (cast team, `hal_seated_stool_*` exists in the cast atlas); Vale softening states 2 and 3; named-cast silhouettes (renderer). Map footprints that differ from the kit: elevator (3x3 north-wall module in every district), Systems `formula_wall` (6x2), `bridge_shutter` (2x2).
