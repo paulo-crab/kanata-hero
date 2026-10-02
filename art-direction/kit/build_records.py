@@ -31,6 +31,8 @@ import records_kit as rk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
+import mira_sprites as mira  # noqa: E402
+import check_atlas  # noqa: E402
 
 T = 16
 W_CELLS, H_CELLS = 20, 12
@@ -311,6 +313,174 @@ def route_image(layout, atlas, canvas):
     Image.alpha_composite(img, ov).convert("RGB").save(os.path.join(HERE, "records-reference-room-route.png"))
 
 
+# ------------------------------------------------------------------ quest props: second composition and proofs
+# QUEST_PROP_AUDIT.md rows R1 to R30. The reference room above is untouched; this room places every new quest entry
+# in its before and after state, built only from records-atlas entries. The helpers below are shared by the Systems,
+# Night Shift and Executive builds (build_systems.py imports this module as `br`).
+
+QUEST_BEFORE = {"repair_door": "closed", "shelf_end_light": "off", "courier_chute": "idle", "folder_rack": "drift",
+                "ledger_table": "before", "rolling_ladder": "closed", "report_table": "before", "lamp": "on"}
+QUEST_AFTER = {"repair_door": "open", "shelf_end_light": "on", "courier_chute": "ready", "folder_rack": "aligned",
+               "ledger_table": "after", "rolling_ladder": "open", "report_table": "after", "lamp": "pulse"}
+QUEST_PEOPLE = [(mira, mira.IDLE["s"][0], 226, 140), (eng, eng.IDLE["n"][0], 144, 124)]   # module, frame, anchor x, anchor y
+QUEST_REQUIRED = {"door": (128, 0, 160, 34), "ledger table": (196, 52, 260, 80), "report table": (192, 96, 226, 114),
+                  "courier chute": (236, 100, 268, 128), "rolling ladder": (32, 84, 96, 116), "corridor start": (128, 160, 160, 180),
+                  "folder rack": (72, 25, 104, 66), "shelf lights": (30, 24, 70, 50)}
+
+
+def quest_layout():
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(41)
+    n = 0
+    while n < 16:
+        x, y = rnd.randrange(4, 300), rnd.randrange(40, 180)
+        if 124 <= x < 164:
+            continue
+        entry("floor_chip", x, y)
+        n += 1
+    for c in range(W_CELLS):
+        if c not in (8, 9):                       # the repair door replaces two wall tiles
+            entry("wall_n_plain", c * T, 0)
+    for nm, x in (("wall_n_window_a", 40), ("wall_n_window_b", 96), ("wall_n_window_a", 200), ("wall_n_window_b", 240)):
+        entry(nm, x, 9)
+    for y in range(34, H_CELLS * T, T):
+        entry("wall_e_plain", 288, y)
+    anim("repair_door", 128, 0)
+    # the corridor to the door: inlay lines and arrows
+    for y in range(36, 192, T):
+        entry("route_inlay_v", 128, y)
+        entry("route_inlay_v", 159, y)
+    for y in (96, 150):
+        entry("route_arrow_n", 136, y)
+    # north wall furniture: shelving with end lights, a folder rack, cabinets carrying Mira's desk decorations
+    entry("shelf_2x1_a", 0, 32)
+    anim("shelf_end_light", 29, 18)
+    entry("shelf_1x1", 44, 32)
+    anim("shelf_end_light", 57, 18)
+    anim("folder_rack", 72, 36)
+    entry("cabinet_1x1", 108, 32)
+    entry("mira_decor_archive_folder", 109, 14)
+    entry("cabinet_2x1", 166, 32)
+    entry("mira_decor_courier_loop", 184, 15)
+    for x in (200, 240):
+        entry("light_shaft", x, 34)
+    anim("ledger_table", 196, 58)
+    anim("rolling_ladder", 32, 100)
+    anim("report_table", 192, 100)
+    anim("courier_chute", 236, 112)
+    for x, y in ((120, 118), (166, 92)):
+        anim("lamp", x, y)
+    for nm, x, y in (("pot_plant_a", 6, 146), ("pot_plant_b", 100, 140), ("pot_plant_c", 270, 60), ("pot_plant_d", 276, 148)):
+        entry(nm, x, y + 4)
+    return {
+        "kit": "records", "atlas": "records-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
+        "note": "Records quest-prop room, built only from records-atlas (QUEST_PROP_AUDIT.md R1-R30). Every new quest entry appears in it; "
+                "the state sets are switched between the before and after renders. The corridor (cols 8-9) leads north to the repair door. "
+                "People are added by the renderer.",
+        "states": dict(QUEST_BEFORE),
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": ok_floor_rows()},
+        "placements": pl,
+    }
+
+
+def render_people(canvas, people):
+    for mod, frame, ax, ay in sorted(people, key=lambda p: p[3]):
+        c = type("C", (), {})()
+        c.img = canvas
+        g.place_px(c, g.frame_rgba(frame, mod.PAL), ax, ay)
+
+
+def render_quest(layout, atlas, states, people=QUEST_PEOPLE):
+    lay = with_states(layout, **states)
+    canvas = np.zeros((H_CELLS * T, W_CELLS * T, 3), np.uint8)
+    kitlib.render_layout(lay, atlas, layers=BACK, base=canvas)
+    render_people(canvas, people)
+    kitlib.render_layout(lay, atlas, layers=FRONT, base=canvas)
+    return canvas
+
+
+def write_quest_layout(prefix, layout, meta):
+    """Write <prefix>-quest-props-room.json and run check_atlas.check_layout on it. Returns True when it is clean."""
+    path = os.path.join(HERE, f"{prefix}-quest-props-room.json")
+    with open(path, "w") as fh:
+        json.dump(layout, fh, indent=1)
+        fh.write("\n")
+    check_atlas.fails.clear()
+    check_atlas.check_layout(path, {layout["atlas"]: meta})
+    return not check_atlas.fails
+
+
+def quest_images(prefix, layout, atlas, before_states, after_states, render_fn, to_screen_fn=None):
+    """Write <prefix>-quest-props-{before,after}-{native,1366x768}.png. Returns (before, after) canvases."""
+    to_screen_fn = to_screen_fn or to_screen
+    before, after = render_fn(layout, atlas, before_states), render_fn(layout, atlas, after_states)
+    for tag, cv in (("before", before), ("after", after)):
+        Image.fromarray(cv).save(os.path.join(HERE, f"{prefix}-quest-props-{tag}-native.png"))
+        to_screen_fn(cv).save(os.path.join(HERE, f"{prefix}-quest-props-{tag}-1366x768.png"))
+    return before, after
+
+
+def layout_names(layout, atlas, state_dicts):
+    """Every entry a layout draws, across the given state dictionaries."""
+    used = set()
+    for st in state_dicts:
+        used |= {name for _, _, name, _, _ in kitlib.expand(with_states(layout, **st), atlas)}
+    # a placed state set also plays its transitional states (a door's half frame), so every one of its entries counts as drawn
+    for p in layout["placements"]:
+        if "anim" in p:
+            for s in atlas.animations[p["anim"]]["states"].values():
+                used |= set(s["entries"])
+    return used
+
+
+def quest_review(prefix, layout, atlas, quest_names, before, after, required, door=None, goal=None, start=(8, 10), blocked_fn=None, extra=()):
+    """Checks shared by the four districts. door = (state-set name, open state): the corridor start -> goal is a two-cell-wide
+    walkway when the door is open and none when it is closed. required = {label: (x0, y0, x1, y1)} view rectangles that
+    must stay clear of the keyboard inset. Returns True when every check passes."""
+    blocked_fn = blocked_fn or blocked_grid
+    results = []
+
+    def check(name, ok_, detail=""):
+        results.append(ok_)
+        print(("PASS " if ok_ else "FAIL ") + name + (f": {detail}" if detail else ""))
+    used = layout_names(layout, atlas, (before, after))
+    missing = sorted(set(quest_names) - used)
+    check(f"every new {prefix} quest entry appears in the quest-prop room (before or after)", not missing,
+          f"{len(quest_names)} entries" + (f"; missing {missing}" if missing else ""))
+    if door:
+        anim, open_state = door
+        grid = blocked_fn(layout, atlas, dict(before, **{anim: open_state}))
+        path = corridor_route(grid, start, goal)
+        check("the corridor to the quest door is two cells wide when the door is open (BFS on the collision grid)", path is not None,
+              f"{len(path)} steps, {start} -> {goal}" if path else "no path")
+        check("the closed quest door blocks the corridor", corridor_route(blocked_fn(layout, atlas, before), start, goal) is None)
+        if path:
+            cells = {(x + dx, y + dy) for x, y in path for dx in (0, 1) for dy in (0, 1)}
+            check("corridor cells are free of props", not any(grid[y, x] for x, y in cells), f"{len(cells)} cells")
+    ix0, iy0, ix1, iy1 = INSET_VIEW
+    bad = [n for n, (x0, y0, x1, y1) in required.items() if x0 < ix1 and x1 > ix0 and y0 < iy1 and y1 > iy0]
+    check("no required quest element sits under the keyboard inset (view x 5-125, y 126.5-175)", not bad, ", ".join(bad) or "all clear")
+    for name, ok_, detail in extra:
+        check(name, ok_, detail)
+    return all(results)
+
+
+def quest_proofs(atlas, meta):
+    layout = quest_layout()
+    layout_ok = write_quest_layout("records", layout, meta)
+    before, after = quest_images("records", layout, atlas, QUEST_BEFORE, QUEST_AFTER, render_quest)
+    print(f"records quest props: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    ok_ = quest_review("records", layout, atlas, rk.QUEST_NAMES, QUEST_BEFORE, QUEST_AFTER, QUEST_REQUIRED, door=("repair_door", "open"), goal=(8, 0))
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -341,7 +511,8 @@ def main():
     route_image(layout, atlas, before)
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
-    sys.exit(0 if ok_ else 1)
+    qok = quest_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok else 1)
 
 
 if __name__ == "__main__":
