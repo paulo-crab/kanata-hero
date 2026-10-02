@@ -42,7 +42,7 @@ export class Renderer {
     this._create = createCanvas;
     this.ctx = canvas.getContext('2d');
     this._buffer = createCanvas(VIEW_W, VIEW_H);
-    this.bctx = this._buffer.getContext('2d');
+    this.bctx = this._buffer.getContext('2d', { willReadFrequently: true });
     this.zoom = 1;
     this.reducedMotion = false;
     this.letterbox = { x: 0, y: 0, w: VIEW_W, h: VIEW_H };
@@ -79,7 +79,7 @@ export class Renderer {
     let data = null;
     try {
       const c = this._create(img.width, img.height);
-      const cx = c.getContext('2d');
+      const cx = c.getContext('2d', { willReadFrequently: true });
       cx.drawImage(img, 0, 0);
       data = cx.getImageData(0, 0, img.width, img.height);
     } catch {
