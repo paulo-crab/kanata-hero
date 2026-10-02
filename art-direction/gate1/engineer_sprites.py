@@ -8,7 +8,7 @@ Customization swaps ramps in PAL only; the key layout never changes.
 
 PAL = {
     ".": None,
-    "o": "#202337",  # outline ink (STYLE_BIBLE section 3)
+    "o": "#0E1020",  # outline ink (STYLE_BIBLE section 3)
     # hair: fill C B D, A only on contour swaps
     "A": "#2B1E26", "B": "#4A2E2E", "C": "#6E4434", "D": "#93603F",
     # skin: fill n m l, k only on contour / occlusion
@@ -17,7 +17,7 @@ PAL = {
     "p": "#1B4450", "q": "#25707A", "r": "#3A9C9C", "s": "#7CCFC2",
     # collar
     "w": "#C7B7A0", "x": "#E2D6C2", "y": "#F4F2EC",
-    # trousers: fill P O (#202337 shared with outline)
+    # trousers: fill P O (#0E1020 shared with outline)
     "O": "#2C3352", "P": "#3E4870", "Q": "#59658F",
     # shoes
     "S": "#523D4C", "T": "#85565A", "U": "#BA785F",

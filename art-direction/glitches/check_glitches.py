@@ -38,10 +38,10 @@ import glitch_sprites as G  # noqa: E402
 import glitch_variants as V  # noqa: E402
 
 ALLOWED = {
-    "#202337", "#343650", "#535971", "#777A8C",              # ink / outline ramp
+    "#0E1020", "#1C2038", "#3A4160", "#6A7392",              # ink / outline ramp
     "#413755", "#67547C", "#9477AF", "#C3A6D6",              # violet, glitches only
     "#C7B7A0", "#E2D6C2", "#F4F2EC",                          # stone + paper ramp (folded form)
-    "#B65761", "#E67A70", "#F6B18E",                          # coral chair upholstery (the room's chairs)
+    "#C8485A", "#F26A5A", "#FFB38A",                          # coral chair upholstery (the room's chairs)
 }
 GLOW_LIMIT = {16: 12, 32: 20}     # glow px per frame by frame width
 HOT_LIMIT = 4                     # px of the brightest step "d"

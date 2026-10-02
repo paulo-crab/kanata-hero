@@ -18,6 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import kitlib  # noqa: E402
 import orientation_kit as ok  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
@@ -53,6 +54,7 @@ def recolour(sprite, maps, regions=()):
     base = {}
     for s, d in maps:
         base.update(_ramp_map(s, d))
+    base = rf.extend(base)
     ink = {h.upper() for h in dp.INK}
     for y in range(sprite.shape[0]):
         m = dict(base)
@@ -61,6 +63,7 @@ def recolour(sprite, maps, regions=()):
                 m = {}
                 for s, d in rm:
                     m.update(_ramp_map(s, d))
+                m = rf.extend(m)
         for x in range(sprite.shape[1]):
             if sprite[y, x, 3] == 0:
                 continue
@@ -136,6 +139,8 @@ def recoloured_pieces(atlas):
     for nm in ("pot_plant_a", "pot_plant_b", "pot_plant_c", "pot_plant_d"):
         pieces.append(from_orientation(atlas, nm, nm, [(GREEN_S, R["foliage"])],
                                        note="slate planter with a dusty-sage plant; four leaf layouts (a to d)"))
+    for nm, note in (("bench", "slatted bench"), ("bench_v", "vertical-plank bench, 10 x 28 px")):
+        pieces.append(from_orientation(atlas, nm, nm, [(WOOD_S, R["wood"])], note=note + " (rich-finish decor)", tags=["seating"]))
     return pieces
 
 

@@ -28,6 +28,7 @@ sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
 import build_records as br  # noqa: E402  (to_screen, corridor_route, luminance: generic helpers, not edited)
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import executive_kit as xk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_scale_test as bst  # noqa: E402
@@ -137,6 +138,10 @@ def reference_layout():
     # planters
     for nm, x, y in (("pot_plant_a", 96, 146), ("pot_plant_b", 298, 150 - 4 + 22)):
         entry(nm, x, y + 4)
+    # rich-finish decor: a bench and planters on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_b", 0, 52), ("pot_plant_c", 130, 166), ("pot_plant_d", 108, 128)):
+        entry(nm, x, y + 4)
+    entry("bench_v", 3, 118)
     return {
         "kit": "executive", "atlas": "executive-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Executive reference room, built only from executive-atlas. Floor is a cell grid; every other element is a placement at "
@@ -244,6 +249,7 @@ def review(layout, atlas):
           tuple(kitlib.hex2rgb(dp.DISTRICTS["executive"]["wall"][0])) in cm and tuple(kitlib.hex2rgb(dp.DISTRICTS["executive"]["wall"][0])) in pm)
     # palette discipline
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in dp.DISTRICTS["executive"][role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['executive'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is an Executive ramp step; no violet", used <= allowed and not (used & violet),
@@ -482,6 +488,7 @@ def main():
     nchg = landmark_states(layout, atlas)
     before = render(layout, atlas, STATES_BEFORE)
     after = render(layout, atlas, STATES_AFTER)
+    before, after = rf.light_layout(before, layout, atlas, "executive"), rf.light_layout(after, layout, atlas, "executive")  # rich finish light, display only
     Image.fromarray(before).save(os.path.join(HERE, "executive-reference-room-native.png"))
     Image.fromarray(after).save(os.path.join(HERE, "executive-reference-room-after-native.png"))
     br.to_screen(before).save(os.path.join(HERE, "executive-reference-room-1366x768.png"))

@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** world art now uses vivid v2 ramps for Orientation's ink, wood, glass, green, brass and coral, and the ink ramp is shared by every district. The district ramps below are unchanged; their foliage gains a fifth tone. See `../rich-finish/RICH_FINISH_SPEC.md` and the section "Rich finish" at the end of this file.
+
 **Sources:** `docs/game-design.md` district table, `levels.md` district rows and quest art notes, `design/characters/{noor,hal,ada,vale}.md`, STYLE_BIBLE §3 and §7. Pixels follow the same rules as the approved assets: hard steps, shadow to light, the darkest step on contours and joints only.
 
 ## Deliverables
@@ -115,3 +117,14 @@ Coordinator review (to be ticked by the director after looking at `palettes-shee
 - [x] People read against every floor, including Night Shift with the rim
 - [x] The seven heads are distinct at 1x and the range of skin tones is inclusive
 - [x] No ramp is mistaken for a marker colour
+
+## Rich finish (2026-10-02)
+
+Source of truth: [`../rich-finish/RICH_FINISH_SPEC.md`](../rich-finish/RICH_FINISH_SPEC.md). What it changes here:
+
+- **Orientation** world art takes the v2 ramps for ink, wood, glass, green, brass and coral (exact hexes in that file). Stone is unchanged. The v2 steps are all at least CIE76 dE 10 from the four marker hexes (checked 2026-10-02).
+- **Ink is shared by every district**, so every district takes the deeper v2 ink ramp (`#0E1020` `#1C2038` `#3A4160` `#6A7392`). Violet stays verbatim.
+- **District foliage** keeps its four-step ramp from the table above and gains a fifth tone for the leaf fans: a sunlit tip one notch lighter than step 3, and a darker edge tone below step 0. Add both to `district_palettes.py` and re-run `check_palettes.py` (marker distance, teal saturation) before use.
+- **Night Shift edge light** is unchanged in intent: the moonlight rim is `#8E96B8`, and the warm head-and-shoulders rim stays limited to rows 0-12 inside lamp pools.
+- **Implemented (tasks 1.2, 1.3):** `district_palettes.py` now holds the v2 ink (shared), the v2 Orientation glass, wood, foliage, accent and coral ramps, `FOLIAGE_TONES`, `FOLIAGE_EXTRA` (a `tip` and an `edge` per district, e.g. Records `#D5E0C7`/`#1A2A26`) and `RICH_EXTRAS` (planter, mulch, rocks, moss, petals, flower accents). `check_palettes.py` holds Orientation to the same checks as the other districts and adds check (h): every extra and every tip/edge is at least dE 10 from each marker, tips are lighter than step 3 and edges darker than step 0 (both at least dE 8 away), and Orientation's foliage plus tip equals the five rich-finish tones. `palettes-sheet.png` shows them.
+

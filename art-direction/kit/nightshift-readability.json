@@ -6,7 +6,7 @@
    "s": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.57,
      "edge_px": 34,
      "cover": 1.0,
      "head_min": 2.49,
@@ -15,36 +15,36 @@
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 34,
+     "rim_px": 7,
      "rim_min": 2.49,
      "ink_px": 27,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.5,
-     "shade_mean": 2.11
+     "shade_mean": 2.55
     },
     "pool": {
-     "edge_min": 2.68,
-     "edge_mean": 3.37,
+     "edge_min": 2.86,
+     "edge_mean": 4.81,
      "edge_px": 34,
      "cover": 0.97,
-     "head_min": 2.68,
+     "head_min": 2.86,
      "head_px": 22,
      "body_min": 2.86,
      "gap_px": 1,
      "gap_min": 2.86,
      "worse_px": 0,
-     "rim_px": 16,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 11,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 1.31,
-     "shade_mean": 4.07
+     "shade_mean": 4.95
     }
    },
    "n": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.58,
      "edge_px": 35,
      "cover": 1.0,
      "head_min": 2.49,
@@ -53,36 +53,36 @@
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 35,
+     "rim_px": 6,
      "rim_min": 2.49,
      "ink_px": 29,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.5,
-     "shade_mean": 2.11
+     "shade_mean": 2.55
     },
     "pool": {
-     "edge_min": 2.68,
-     "edge_mean": 3.31,
+     "edge_min": 2.86,
+     "edge_mean": 4.84,
      "edge_px": 35,
      "cover": 0.97,
-     "head_min": 2.68,
+     "head_min": 2.86,
      "head_px": 23,
      "body_min": 2.86,
      "gap_px": 1,
      "gap_min": 2.86,
      "worse_px": 0,
-     "rim_px": 18,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 11,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 1.31,
-     "shade_mean": 4.07
+     "shade_mean": 4.95
     }
    },
    "e": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.58,
      "edge_px": 37,
      "cover": 1.0,
      "head_min": 2.49,
@@ -91,36 +91,36 @@
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 37,
+     "rim_px": 7,
      "rim_min": 2.49,
      "ink_px": 30,
-     "ink_min": 2.49,
-     "shade_min": 2.13,
-     "shade_mean": 2.13
+     "ink_min": 2.6,
+     "shade_min": 2.6,
+     "shade_mean": 2.6
     },
     "pool": {
      "edge_min": 1.64,
-     "edge_mean": 3.33,
+     "edge_mean": 4.76,
      "edge_px": 37,
      "cover": 0.95,
-     "head_min": 2.68,
+     "head_min": 2.86,
      "head_px": 22,
      "body_min": 1.64,
      "gap_px": 2,
      "gap_min": 1.64,
      "worse_px": 0,
-     "rim_px": 17,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 13,
-     "ink_min": 4.19,
-     "shade_min": 4.19,
-     "shade_mean": 4.19
+     "ink_min": 5.1,
+     "shade_min": 5.1,
+     "shade_mean": 5.1
     }
    },
    "w": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.57,
      "edge_px": 33,
      "cover": 1.0,
      "head_min": 2.49,
@@ -129,306 +129,306 @@
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 33,
+     "rim_px": 8,
      "rim_min": 2.49,
      "ink_px": 25,
-     "ink_min": 2.49,
-     "shade_min": 2.13,
-     "shade_mean": 2.13
+     "ink_min": 2.6,
+     "shade_min": 2.6,
+     "shade_mean": 2.6
     },
     "pool": {
      "edge_min": 1.64,
-     "edge_mean": 3.32,
+     "edge_mean": 4.7,
      "edge_px": 33,
      "cover": 0.94,
-     "head_min": 2.68,
+     "head_min": 2.86,
      "head_px": 21,
      "body_min": 1.64,
      "gap_px": 2,
      "gap_min": 1.64,
      "worse_px": 0,
-     "rim_px": 15,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 10,
-     "ink_min": 4.19,
-     "shade_min": 4.19,
-     "shade_mean": 4.19
+     "ink_min": 5.1,
+     "shade_min": 5.1,
+     "shade_mean": 5.1
     }
    }
   },
   "Ada": {
    "s": {
     "floor": {
-     "edge_min": 2.49,
-     "edge_mean": 2.69,
+     "edge_min": 2.5,
+     "edge_mean": 2.78,
      "edge_px": 39,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.5,
      "head_px": 25,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 35,
-     "rim_min": 2.49,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 35,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.34,
-     "shade_mean": 2.52
+     "shade_mean": 2.85
     },
     "pool": {
      "edge_min": 2.68,
-     "edge_mean": 3.22,
+     "edge_mean": 4.85,
      "edge_px": 39,
      "cover": 1.0,
      "head_min": 2.68,
      "head_px": 25,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 23,
+     "rim_px": 2,
      "rim_min": 2.68,
      "ink_px": 14,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.64,
-     "shade_mean": 3.82
+     "shade_mean": 4.46
     }
    },
    "n": {
     "floor": {
-     "edge_min": 2.49,
-     "edge_mean": 2.99,
+     "edge_min": 2.5,
+     "edge_mean": 3.07,
      "edge_px": 38,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.5,
      "head_px": 24,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 30,
-     "rim_min": 2.49,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 30,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.34,
-     "shade_mean": 2.04
+     "shade_mean": 2.46
     },
     "pool": {
      "edge_min": 2.68,
-     "edge_mean": 3.23,
+     "edge_mean": 4.59,
      "edge_px": 38,
      "cover": 1.0,
      "head_min": 2.68,
      "head_px": 24,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 18,
+     "rim_px": 2,
      "rim_min": 2.68,
      "ink_px": 14,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.64,
-     "shade_mean": 4.02
+     "shade_mean": 4.83
     }
    },
    "e": {
     "floor": {
-     "edge_min": 2.49,
-     "edge_mean": 2.56,
+     "edge_min": 2.6,
+     "edge_mean": 2.67,
      "edge_px": 38,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.6,
      "head_px": 23,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 37,
-     "rim_min": 2.49,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 37,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.34,
-     "shade_mean": 2.65
+     "shade_mean": 2.94
     },
     "pool": {
      "edge_min": 2.68,
-     "edge_mean": 3.27,
+     "edge_mean": 5.04,
      "edge_px": 38,
      "cover": 1.0,
      "head_min": 2.68,
      "head_px": 23,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 22,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 15,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.64,
-     "shade_mean": 3.62
+     "shade_mean": 4.19
     }
    },
    "w": {
     "floor": {
-     "edge_min": 2.49,
-     "edge_mean": 2.94,
+     "edge_min": 2.6,
+     "edge_mean": 3.03,
      "edge_px": 37,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.6,
      "head_px": 23,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 31,
-     "rim_min": 2.49,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 31,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.34,
-     "shade_mean": 2.0
+     "shade_mean": 2.4
     },
     "pool": {
      "edge_min": 2.68,
-     "edge_mean": 3.25,
+     "edge_mean": 4.71,
      "edge_px": 37,
      "cover": 1.0,
      "head_min": 2.68,
      "head_px": 23,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 17,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 14,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.64,
-     "shade_mean": 3.94
+     "shade_mean": 4.71
     }
    }
   },
   "Mira": {
    "s": {
     "floor": {
-     "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_min": 2.6,
+     "edge_mean": 2.6,
      "edge_px": 35,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.6,
      "head_px": 23,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 35,
-     "rim_min": 2.49,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 35,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.35,
-     "shade_mean": 2.1
+     "shade_mean": 2.55
     },
     "pool": {
-     "edge_min": 2.68,
-     "edge_mean": 3.2,
+     "edge_min": 5.1,
+     "edge_mean": 5.1,
      "edge_px": 35,
      "cover": 1.0,
-     "head_min": 2.68,
+     "head_min": 5.1,
      "head_px": 23,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 23,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 12,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.66,
-     "shade_mean": 4.13
+     "shade_mean": 5.01
     }
    },
    "n": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.59,
      "edge_px": 37,
      "cover": 1.0,
      "head_min": 2.49,
      "head_px": 25,
-     "body_min": 2.49,
+     "body_min": 2.6,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 37,
+     "rim_px": 2,
      "rim_min": 2.49,
      "ink_px": 35,
-     "ink_min": 2.49,
+     "ink_min": 2.6,
      "shade_min": 1.35,
-     "shade_mean": 2.1
+     "shade_mean": 2.54
     },
     "pool": {
-     "edge_min": 2.68,
-     "edge_mean": 3.2,
+     "edge_min": 2.84,
+     "edge_mean": 5.01,
      "edge_px": 37,
      "cover": 1.0,
-     "head_min": 2.68,
+     "head_min": 2.84,
      "head_px": 25,
-     "body_min": 4.19,
+     "body_min": 5.1,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 23,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 12,
-     "ink_min": 4.19,
+     "ink_min": 5.1,
      "shade_min": 2.66,
-     "shade_mean": 4.12
+     "shade_mean": 5.0
     }
    },
    "e": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.59,
      "edge_px": 39,
      "cover": 1.0,
-     "head_min": 2.49,
+     "head_min": 2.6,
      "head_px": 24,
      "body_min": 2.49,
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 39,
+     "rim_px": 1,
      "rim_min": 2.49,
      "ink_px": 38,
-     "ink_min": 2.49,
-     "shade_min": 2.13,
-     "shade_mean": 2.13
+     "ink_min": 2.6,
+     "shade_min": 2.6,
+     "shade_mean": 2.6
     },
     "pool": {
-     "edge_min": 1.87,
-     "edge_mean": 3.2,
+     "edge_min": 2.7,
+     "edge_mean": 5.04,
      "edge_px": 39,
      "cover": 0.97,
-     "head_min": 2.68,
+     "head_min": 5.1,
      "head_px": 24,
-     "body_min": 1.87,
+     "body_min": 2.7,
      "gap_px": 1,
-     "gap_min": 1.87,
+     "gap_min": 2.7,
      "worse_px": 0,
-     "rim_px": 24,
-     "rim_min": 2.68,
+     "rim_px": 0,
+     "rim_min": 99.0,
      "ink_px": 14,
-     "ink_min": 4.19,
-     "shade_min": 4.19,
-     "shade_mean": 4.19
+     "ink_min": 5.1,
+     "shade_min": 5.1,
+     "shade_mean": 5.1
     }
    },
    "w": {
     "floor": {
      "edge_min": 2.49,
-     "edge_mean": 2.49,
+     "edge_mean": 2.59,
      "edge_px": 35,
      "cover": 1.0,
      "head_min": 2.49,
@@ -437,30 +437,30 @@
      "gap_px": 0,
      "gap_min": 99.0,
      "worse_px": 0,
-     "rim_px": 35,
+     "rim_px": 2,
      "rim_min": 2.49,
      "ink_px": 33,
-     "ink_min": 2.49,
-     "shade_min": 2.13,
-     "shade_mean": 2.13
+     "ink_min": 2.6,
+     "shade_min": 2.6,
+     "shade_mean": 2.6
     },
     "pool": {
-     "edge_min": 1.87,
-     "edge_mean": 3.13,
+     "edge_min": 2.68,
+     "edge_mean": 4.97,
      "edge_px": 35,
      "cover": 0.97,
      "head_min": 2.68,
      "head_px": 23,
-     "body_min": 1.87,
+     "body_min": 2.7,
      "gap_px": 1,
-     "gap_min": 1.87,
+     "gap_min": 2.7,
      "worse_px": 0,
-     "rim_px": 23,
+     "rim_px": 1,
      "rim_min": 2.68,
      "ink_px": 11,
-     "ink_min": 4.19,
-     "shade_min": 4.19,
-     "shade_mean": 4.19
+     "ink_min": 5.1,
+     "shade_min": 5.1,
+     "shade_mean": 5.1
     }
    }
   }
@@ -490,33 +490,33 @@
   "Engineer": {
    "floor_min": 2.49,
    "floor_px": 25,
-   "pool_head_min": 2.68,
+   "pool_head_min": 4.32,
    "pool_head_px": 10,
    "pool_ink_min": 99.0,
    "pool_ink_px": 0,
-   "rim_px": 34,
+   "rim_px": 6,
    "worse": 0,
    "edge_px": 35
   },
   "Ada": {
-   "floor_min": 2.49,
+   "floor_min": 2.6,
    "floor_px": 13,
    "pool_head_min": 2.68,
    "pool_head_px": 10,
-   "pool_ink_min": 4.19,
+   "pool_ink_min": 5.1,
    "pool_ink_px": 14,
-   "rim_px": 17,
+   "rim_px": 0,
    "worse": 0,
    "edge_px": 37
   },
   "Mira": {
-   "floor_min": 2.49,
+   "floor_min": 2.6,
    "floor_px": 4,
-   "pool_head_min": 2.68,
+   "pool_head_min": 5.1,
    "pool_head_px": 21,
-   "pool_ink_min": 4.19,
+   "pool_ink_min": 5.1,
    "pool_ink_px": 10,
-   "rim_px": 25,
+   "rim_px": 0,
    "worse": 0,
    "edge_px": 35
   }
@@ -543,8 +543,8 @@
     "px": 1,
     "vs_floor": 4.01
    },
-   "local_min": 1.09,
-   "local_mean": 1.65,
+   "local_min": 1.01,
+   "local_mean": 1.64,
    "strap_on_ul_contour": 0
   },
   "n": {
@@ -593,8 +593,8 @@
     "px": 1,
     "vs_floor": 4.01
    },
-   "local_min": 1.09,
-   "local_mean": 1.63,
+   "local_min": 1.01,
+   "local_mean": 1.61,
    "strap_on_ul_contour": 0
   },
   "w": {
@@ -618,8 +618,8 @@
     "px": 1,
     "vs_floor": 4.01
    },
-   "local_min": 1.09,
-   "local_mean": 1.77,
+   "local_min": 1.01,
+   "local_mean": 1.75,
    "strap_on_ul_contour": 0
   }
  },
@@ -686,8 +686,8 @@
   "desk_dead_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.0,
-    "px": 110
+    "mean": 4.96,
+    "px": 108
    }
   },
   "chair": {
@@ -706,14 +706,14 @@
    "floor": {
     "min": 4.92,
     "mean": 4.96,
-    "px": 58
+    "px": 54
    }
   },
   "desk_lit_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.02,
-    "px": 88
+    "mean": 5.1,
+    "px": 86
    },
    "pool": {
     "min": 2.5,
@@ -725,7 +725,7 @@
    "floor": {
     "min": 4.92,
     "mean": 4.97,
-    "px": 47
+    "px": 43
    },
    "pool": {
     "min": 2.5,
@@ -774,33 +774,57 @@
   "pot_plant_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.02,
-    "px": 23
+    "mean": 4.97,
+    "px": 31
+   },
+   "pool": {
+    "min": 2.5,
+    "mean": 3.2,
+    "px": 29
    }
   },
   "pot_plant_b": {
    "floor": {
     "min": 4.92,
-    "mean": 5.1,
-    "px": 50
+    "mean": 5.22,
+    "px": 42
    },
    "pool": {
     "min": 2.5,
-    "mean": 2.6,
-    "px": 24
+    "mean": 2.68,
+    "px": 20
    }
   },
   "pot_plant_c": {
    "floor": {
     "min": 4.92,
-    "mean": 5.06,
-    "px": 78
+    "mean": 5.02,
+    "px": 68
+   },
+   "pool": {
+    "min": 2.5,
+    "mean": 2.5,
+    "px": 17
    }
   },
   "pot_plant_d": {
    "floor": {
     "min": 4.92,
-    "mean": 5.04,
+    "mean": 5.03,
+    "px": 31
+   }
+  },
+  "bench": {
+   "floor": {
+    "min": 4.92,
+    "mean": 6.67,
+    "px": 41
+   }
+  },
+  "bench_v": {
+   "floor": {
+    "min": 4.92,
+    "mean": 4.98,
     "px": 37
    }
   }

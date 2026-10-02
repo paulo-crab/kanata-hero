@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02. Extended 2026-10-02 by the UI team (branch `feat/ui-layout-help-and-screens`): Layout help on all four tabs, setup and calibration, terminal and editor scenes, input feedback (P0), then the artifact frame, elevator map, seals and toast, Mira's results, and settings (P1). Key bindings decided 2026-10-02 (branch `feat/ui-key-bindings`, decision 10 and `design/ui-key-bindings.md`). Candidate until the producer merges it; the checks below pass.
 
+> **Rich finish (2026-10-02):** the UI tokens do not change. The world backgrounds in the reference page are re-rendered from the new rooms under OpenSpec change `adopt-rich-finish`; see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `openspec/changes/complete-art-production/specs/ui-presentation/spec.md`, `docs/game-design.md` ("Color, materials, and light", "Characters and UI", "Hint grammar", "Layout help", the gesture inventory A to D, "Difficulty, scoring, and awards", "Browser behavior and accessibility", "Implementation slices"), `levels.md` hint lines and the seal list, `art-direction/cast/MIRA_PATCHES_SPEC.md` (patch names and colours), `~/.config/kanata/kanata.kbd` (read only, for key names and the layers; it was cross-checked and nothing was copied from it). `art-direction/ui/README_v2.md` was ignored (rejected).
 
 ## Deliverables

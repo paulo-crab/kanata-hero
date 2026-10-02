@@ -21,7 +21,7 @@ _WOOD = DISTRICTS["nightshift"]["wood"]        # dim desk wood: used for Ada's b
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair, warm white (CAST_RAMPS): fill D C B, A only on contour
     "A": _HAIR[0], "B": _HAIR[1], "C": _HAIR[2], "D": _HAIR[3],
     # skin, deep warm brown (CAST_RAMPS): fill n m l, k only on contour / forehead shadow
@@ -33,7 +33,7 @@ PAL = {
     # boots (Night Shift wood ramp)
     "S": _WOOD[1], "T": _WOOD[2], "U": _WOOD[3],
     # lantern housing (ink ramp): dark frame, mid frame, lit lip
-    "u": "#343650", "v": "#535971", "w": "#777A8C",
+    "u": "#1C2038", "v": "#3A4160", "w": "#6A7392",
     # lantern light (Night Shift lamp ramp, steps 2 and 3): glow, core. Never the gold marker, never violet.
     "f": _LAMP[2], "g": _LAMP[3],
     # baked warm rim on the lantern-side contour of the head and shoulders (accent step 3; the cool renderer rim never touches it)

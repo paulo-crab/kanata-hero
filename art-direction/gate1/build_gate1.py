@@ -36,8 +36,8 @@ T = 16
 ZOOM = 4
 IDLE_MS = 500
 WALK_MS = 133
-SHADOW_OUTER = bst.hx("#535971")
-SHADOW_CORE = bst.hx("#343650")
+SHADOW_OUTER = bst.hx("#3A4160")
+SHADOW_CORE = bst.hx("#1C2038")
 
 
 def frame_rgba(frame, pal=None):

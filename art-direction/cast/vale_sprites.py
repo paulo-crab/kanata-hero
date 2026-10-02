@@ -20,7 +20,7 @@ _X = dp.DISTRICTS["executive"]
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair, dark graphite (CAST_RAMPS): fill D C B, A only on contour
     **dict(zip("ABCD", _R["hair"])),
     # skin, pale ivory (CAST_RAMPS): fill n m l, k only on contour / forehead shadow

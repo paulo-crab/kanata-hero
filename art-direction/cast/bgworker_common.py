@@ -52,9 +52,9 @@ PALETTES = {
 
 BASE = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # shoes, ink ramp (same for every palette)
-    "S": "#343650", "T": "#535971", "U": "#777A8C",
+    "S": "#1C2038", "T": "#3A4160", "U": "#6A7392",
     # phone: dark bezel, glass face with one lit step (blue glass ramp, never the terminal teal)
     "g": "#203A50", "h": "#366479", "j": "#5AA3AE",
     # mug (individual idle): warm stone ramp
@@ -75,14 +75,14 @@ PAL = make_pal("slate")
 
 # Silhouette: one dark ink fill plus the outer contour. Used for distant and through-glass figures.
 # The interior contour steps (eyes, hair edge, arm gaps) fill in, so only the outline and shape remain.
-SILHOUETTE_FILL = "#343650"
+SILHOUETTE_FILL = "#1C2038"
 SILHOUETTE_PAL = {k: (None if v is None else SILHOUETTE_FILL) for k, v in BASE.items()}
-SILHOUETTE_PAL["o"] = "#202337"
+SILHOUETTE_PAL["o"] = "#0E1020"
 for _slot in SLOTS.values():
     for _k in _slot:
         SILHOUETTE_PAL[_k] = SILHOUETTE_FILL
 # Lit-edge version: the upper-left contour steps up one ink step where light allows.
-SILHOUETTE_LIT_PAL = dict(SILHOUETTE_PAL, L="#535971")
+SILHOUETTE_LIT_PAL = dict(SILHOUETTE_PAL, L="#3A4160")
 
 
 def silhouette(frame):

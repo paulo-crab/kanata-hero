@@ -2,6 +2,8 @@
 
 **Status:** Approved by the player 2026-10-02.
 
+> **Rich finish (2026-10-02):** portraits keep their ramps. Their outline colour (`#202337`) is to be reviewed against the new `#0E1020` for consistency in OpenSpec change `adopt-rich-finish`; see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** player decision 2026-10-02 (direction C, "Chibi icon"; "each person should have their own emotion/reactions"), `design/characters/*.md`, `levels.md`, `docs/game-design.md`, the approved sprite modules, STYLE_BIBLE §3-5 and §7, [PORTRAIT_RULES.md](PORTRAIT_RULES.md), [PORTRAIT_PERSONAS.md](PORTRAIT_PERSONAS.md). The exploration that led to the choice is in `explore/` (kept as a record). The previous realistic portraits are replaced.
 
 ## Deliverables

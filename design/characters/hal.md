@@ -8,7 +8,7 @@
 | --- | --- |
 | Role | Systems technician. Built parts of Pace's routing display and notices its wrong assumptions. Gives Act III quests (12–16) and the **Quiet Alarm** side quest. |
 | Personality | Practical and hands-on; anxious when the system misbehaves, focused once a fix is in sight. |
-| Pronouns | Not specified; use they/them until decided |
+| Pronouns | she/her (decided by the player 2026-10-02, matching `levels.md`) |
 | Signature props | **Folding stool**, **orange tool roll** |
 
 Sources: `levels.md` cast table, Systems row, levels 12–16.
@@ -84,4 +84,4 @@ Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny
 
 1. Skin, hair, and glove ramps.
 2. The Systems hex palette, including a real safety orange.
-3. Pronouns.
+3. ~~Pronouns.~~ Decided 2026-10-02: she/her.

@@ -1281,17 +1281,64 @@
    "note": "slatted walnut bench"
   },
   {
-   "name": "side_table",
+   "name": "bench_v",
    "kind": "prop",
    "rect": [
     144,
+    80,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank walnut bench, 10 x 28 px (rich-finish decor)"
+  },
+  {
+   "name": "side_table",
+   "kind": "prop",
+   "rect": [
+    160,
     80,
     16,
     16
    ],
    "size_px": [
     12,
-    11
+    12
    ],
    "footprint": {
     "cells": [
@@ -1300,7 +1347,7 @@
     ],
     "origin_px": [
      0,
-     1
+     2
     ]
    },
    "collision": [
@@ -1310,7 +1357,7 @@
    "y_sort": true,
    "anchor": [
     8,
-    17
+    18
    ],
    "composite": {
     "mode": "over"
@@ -1321,7 +1368,7 @@
    ],
    "contact_shadow": [
     2,
-    10,
+    11,
     10,
     1
    ],
@@ -1331,13 +1378,60 @@
    "name": "pot_plant_a",
    "kind": "prop",
    "rect": [
-    160,
+    176,
     80,
     32,
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    208,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -1375,16 +1469,16 @@
    "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
   },
   {
-   "name": "pot_plant_b",
+   "name": "pot_plant_c",
    "kind": "prop",
    "rect": [
-    192,
+    240,
     80,
     32,
     32
    ],
    "size_px": [
-    20,
+    19,
     21
    ],
    "footprint": {
@@ -1393,7 +1487,7 @@
      1
     ],
     "origin_px": [
-     4,
+     3,
      11
     ]
    },
@@ -1403,7 +1497,7 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    12,
+    11,
     27
    ],
    "composite": {
@@ -1414,7 +1508,7 @@
     "planter"
    ],
    "contact_shadow": [
-    5,
+    4,
     19,
     13,
     2
@@ -1422,16 +1516,16 @@
    "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
   },
   {
-   "name": "pot_plant_c",
+   "name": "pot_plant_d",
    "kind": "prop",
    "rect": [
-    224,
+    272,
     80,
     32,
     32
    ],
    "size_px": [
-    20,
+    17,
     22
    ],
    "footprint": {
@@ -1440,7 +1534,7 @@
      1
     ],
     "origin_px": [
-     4,
+     2,
      12
     ]
    },
@@ -1450,7 +1544,7 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    12,
+    10,
     28
    ],
    "composite": {
@@ -1461,55 +1555,8 @@
     "planter"
    ],
    "contact_shadow": [
-    5,
+    3,
     20,
-    13,
-    2
-   ],
-   "note": "slate planter with a living-green plant; four leaf layouts (a to d)"
-  },
-  {
-   "name": "pot_plant_d",
-   "kind": "prop",
-   "rect": [
-    256,
-    80,
-    32,
-    32
-   ],
-   "size_px": [
-    21,
-    21
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     5,
-     11
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    13,
-    27
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    6,
-    19,
     13,
     2
    ],
@@ -1519,7 +1566,7 @@
    "name": "shelf_1x1",
    "kind": "prop",
    "rect": [
-    288,
+    304,
     80,
     32,
     32
@@ -1566,7 +1613,7 @@
    "name": "shelf_2x1_a",
    "kind": "prop",
    "rect": [
-    320,
+    336,
     80,
     48,
     32
@@ -1613,7 +1660,7 @@
    "name": "shelf_2x1_b",
    "kind": "prop",
    "rect": [
-    368,
+    384,
     80,
     48,
     32
@@ -1660,7 +1707,7 @@
    "name": "partition_1x1",
    "kind": "prop",
    "rect": [
-    416,
+    432,
     80,
     32,
     32
@@ -1707,7 +1754,7 @@
    "name": "partition_2x1",
    "kind": "prop",
    "rect": [
-    448,
+    464,
     80,
     48,
     32
@@ -1754,7 +1801,7 @@
    "name": "terminal_desk",
    "kind": "prop",
    "rect": [
-    496,
+    512,
     80,
     48,
     32
@@ -1802,7 +1849,7 @@
    "name": "cabinet_1x1",
    "kind": "prop",
    "rect": [
-    544,
+    560,
     80,
     32,
     32
@@ -1849,7 +1896,7 @@
    "name": "cabinet_2x1",
    "kind": "prop",
    "rect": [
-    576,
+    592,
     80,
     48,
     32

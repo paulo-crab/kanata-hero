@@ -8,7 +8,7 @@
 | --- | --- |
 | Role | Orientation reception lead. Gives the Act I quests (01–06) and the **Plant Tags** side quest. |
 | Personality | Precise. Believes clear instructions help people; begins to question the repeated onboarding scripts. |
-| Pronouns | Not specified; use they/them until decided |
+| Pronouns | he/him (decided by the player 2026-10-02, matching `levels.md`) |
 | Signature prop | **Rectangular tablet** |
 
 Sources: `levels.md` cast table, levels 01–06, side quests; `docs/game-design.md` "Camera, scale, and sprite rules".
@@ -35,7 +35,7 @@ Sources: `levels.md` cast table, levels 01–06, side quests; `docs/game-design.
 
 - Cardigan spans nearly the full 16 px width at the shoulders. The legs are slightly narrower, so the shape tapers.
 - The tablet is held flat at the chest and drawn as a 5×4 px rectangle with a dark bezel, a bright screen and a thumb on the edge (Director decision 2026-10-02, after the player found the 4×3 version unreadable). It's the read-at-a-glance prop. It shows at screen-right facing S, as an ink back at screen-left facing N, and at the leading edge facing E or W.
-- Upright, orderly posture. Their precision shows in a level stance, not in detail.
+- Upright, orderly posture. His precision shows in a level stance, not in detail.
 - Tablet held on one fixed side means **E and W are drawn separately**.
 
 ## Animation
@@ -73,9 +73,9 @@ Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny
 ## Assumptions
 
 1. Colors and hair shape follow the scale-test placeholder.
-2. The portrait set (now the approved chibi set) was derived from their story arc; story cues now live in the `levels.md` Portrait cue map.
+2. The portrait set (now the approved chibi set) was derived from his story arc; story cues now live in the `levels.md` Portrait cue map.
 
 ## Open questions
 
 1. ~~**Tablet screen color.**~~ **Decided 2026-10-02:** blue glass. It never uses `#19AFA2`, the glint is limited to 1 px, and there is no halo. The Level 03 flash alternates glass steps only.
-2. Pronouns.
+2. ~~Pronouns.~~ Decided 2026-10-02: he/him.

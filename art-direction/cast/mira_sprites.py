@@ -11,7 +11,7 @@ import engineer_sprites as eng  # noqa: E402  (shared walk legs)
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair: fill D C B, A only on contour
     "A": "#1E1A26", "B": "#332833", "C": "#4D3A44", "D": "#6B5058",
     # skin: fill n m l, k only on contour / forehead shadow
@@ -25,7 +25,7 @@ PAL = {
     # trousers (navy)
     "O": "#2C3352", "P": "#3E4870",
     # shoes (ink ramp)
-    "S": "#343650", "T": "#535971", "U": "#777A8C",
+    "S": "#1C2038", "T": "#3A4160", "U": "#6A7392",
     # paper (the letter she hands over; tasks 8.1-8.2): lit, mid, shade. Appended; no approved pixel uses them.
     "r": "#F4F2EC", "s": "#E2D6C2", "q": "#C7B7A0",
 }

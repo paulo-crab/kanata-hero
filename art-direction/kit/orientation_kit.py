@@ -21,6 +21,7 @@ for sub in ("gate1", "scale-test", "cast", "palettes"):
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import kitlib  # noqa: E402
 import shared_pieces as shp  # noqa: E402
 
@@ -390,6 +391,9 @@ def extract_props(pieces, placements):
                        tags=["seating"]))
     pieces.append(make("bench", lambda r: env.bench(r, 228, 112), (228, 112), (2, 1), ["11"], "rear_prop", "prop",
                        y_sort=True, note="slatted wood bench", tags=["seating"]))
+    pieces.append(make("bench_v", lambda r: env.bench_v(r, 84, 94), (84, 94), (1, 2), ["1", "1"], "rear_prop", "prop",
+                       y_sort=True, note="vertical-plank garden bench, 10 x 28 px: one stands each side of the garden between the ring path and the rim "
+                       "(a rich-finish detail, Mock 2.1). Blocks its two cells", tags=["seating", "garden", "rich finish"]))
     pieces.append(make("mail_counter", lambda r: env.mail_counter(r, 246, 150), (246, 150), (3, 1), ["111"],
                        "front_prop", "prop", y_sort=True,
                        note="mailroom counter with parcels and a coral courier strap; drawn after actors so "
@@ -400,50 +404,26 @@ def extract_props(pieces, placements):
     for nm, x, y, _ in DESKS:
         placements.append((nm, x, y))
         placements.append(("chair", x + 11, y + 18))
-    placements.extend([("bench", 228, 112), ("mail_counter", 246, 150)])
+    placements.extend([("bench", 228, 112), ("bench_v", 84, 94), ("bench_v", 178, 94), ("mail_counter", 246, 150)])
 
 
 def extract_garden(pieces, placements):
     """Stage-by-stage capture of env.garden(): each hook closes one named stage."""
     snaps_by_bg = []
-    saved = (env.leaves, env.shade_mask, env.lamp)
-    orig_leaves, orig_shade, _ = saved
+    saved_lamp = env.lamp
     for bg in kitlib.SENTINELS:
         snaps = [("start", np.full((H, W, 3), bg, np.uint8))]
         r = new_room()
         r.img[:] = bg
-
-        def snap(name):
-            snaps.append((name, r.img.copy()))
-
-        def leaves(rr, cx, cy, rad, seed, *a, **k):
-            if seed == 40:
-                snap("base")
-            res = orig_leaves(rr, cx, cy, rad, seed, *a, **k)
-            if seed == 47:
-                snap("foliage")
-            if seed == 70:
-                pass
-            if seed == 75:
-                snap("canopy")
-            return res
-
-        def shade(img, m, ramp, *a, **k):
-            if ramp is WOOD:
-                snap("rocks")
-            res = orig_shade(img, m, ramp, *a, **k)
-            if ramp is WOOD:
-                snap("trunk")
-            return res
-        env.leaves, env.shade_mask, env.lamp = leaves, shade, (lambda *a, **k: None)
+        env.lamp = lambda *a, **k: None
         try:
-            env.garden(r)
+            env.garden(r, stage=lambda name: snaps.append((name, r.img.copy())))
         finally:
-            env.leaves, env.shade_mask, env.lamp = saved
-        snap("accents")
+            env.lamp = saved_lamp
+        snaps.append(("accents", r.img.copy()))
         snaps_by_bg.append(snaps)
     names = [n for n, _ in snaps_by_bg[0]]
-    assert names == ["start", "base", "foliage", "rocks", "trunk", "canopy", "accents"], names
+    assert names == ["start", "base", "foliage", "rocks", "canopy", "trunk", "accents"], names
     stage = {}
     for k in range(1, len(names)):
         mk = np.zeros((H, W), bool)
@@ -474,9 +454,9 @@ def extract_garden(pieces, placements):
         pieces.append(p)
         return p
 
-    # Accents split by colour: canopy shadow is INK[1]; flowers use coral and brass.
+    # Accents split by colour: canopy shadow is the dark foliage edge green; flowers and grass tufts are the rest.
     am, ac = stage["accents"]
-    shadow_m = am & np.all(ac == INK[1], axis=2)
+    shadow_m = am & np.all(ac == rf.FOLIAGE_EDGE, axis=2)
     bloom_m = am & ~shadow_m
     base = part("garden_base", [stage["base"]], "rim, jointed side face, cast shadow, planted bed, stream with pool "
                 "and lily pads", ["base", "water"], collision=True)
@@ -484,11 +464,11 @@ def extract_garden(pieces, placements):
     sb = kitlib.bbox(sh_p)
     base.shadow = (sb[0] - x0, sb[1] - y0, sb[2] - sb[0], sb[3] - sb[1])
     part("garden_foliage", [stage["foliage"]], "eight shrub clusters around the bed edge", ["foliage"])
-    part("garden_rocks", [stage["rocks"]], "two rocks by the water", ["rocks"])
-    part("garden_centrepiece", [stage["trunk"], stage["canopy"]],
-         "the tree: trunk with root flare and a layered canopy that overhangs the rim", ["centrepiece", "tree"])
+    part("garden_rocks", [stage["rocks"]], "two grey rocks with a moss cap and a crack", ["rocks"])
+    part("garden_centrepiece", [stage["canopy"], stage["trunk"]],
+         "the tree: a layered canopy of leaf fans that overhangs the rim, with the trunk, root flare, bark and two limbs drawn over its lower edge", ["centrepiece", "tree"])
     part("garden_canopy_shadow", [(shadow_m, ac)], "one cool step of shadow on the bed below the crown", ["shadow"])
-    part("garden_blooms", [(bloom_m, ac)], "five coral flower clusters with a brass centre pixel", ["blooms"])
+    part("garden_blooms", [(bloom_m, ac)], "grass tufts and five white flowers with orange centres (every second one has two yellow dots)", ["blooms"])
     placements.append(("landmark:garden", GARDEN_FP[0], GARDEN_FP[1]))
 
 
@@ -761,9 +741,9 @@ def garden_after_pieces():
 
 
 # After state: the same parts, but `garden_base_open` (identical pixels, collision with column 1 walkable) replaces
-# `garden_base`, and `garden_north_rim_open` is drawn last so the opening cuts through the crown.
-GARDEN_PARTS_AFTER = (["garden_base_open"] + GARDEN_PARTS_BEFORE[1:]
-                      + ["garden_after_path", "garden_after_blooms", "garden_north_rim_open"])
+# `garden_base`, and `garden_north_rim_open` is drawn right after the base so the crown overhangs the opening (the tree stays whole).
+GARDEN_PARTS_AFTER = (["garden_base_open", "garden_north_rim_open"] + GARDEN_PARTS_BEFORE[1:]
+                      + ["garden_after_path", "garden_after_blooms"])
 # Lamp footprint origins relative to the garden footprint origin (96, 78): lamp (cx, cy) -> (cx - 7 - 96, cy - 7 - 78)
 GARDEN_LAMP_OFFSETS = [[cx - 7 - GARDEN_FP[0], cy - 7 - GARDEN_FP[1]] for cx, cy in GARDEN_LAMPS]
 
@@ -822,17 +802,16 @@ def wall_w_piece():
 
 def draw_north_opening(r):
     """The garden's north rim opens above the cut-through column (x 112-128, the same column as the south opening). The
-    crown is parted over that column: the rim ends reappear as two stubs with contour on the cut faces, a stepped sill closes
+    crown is parted over the path strip only: the rim ends reappear as two stubs with contour on the cut faces, a stepped sill closes
     the gap, and the inlaid path strip runs from the ring, through the shade under the crown, to the first south flagstone.
     Drawn last in the after state, over the crown."""
-    # shaded corridor under the crown: dark verge, leaf-lit edge pixels at the cut
+    # shaded corridor under the crown: a narrow dark verge either side of the strip. The crown itself stays (the
+    # rich-finish canopy is dense, so a wide flat cut read as half the tree vanishing); only the strip crosses it.
     for y in range(78, 102):
         j = (y // 3) % 2
-        r.rect(112 + j, y, 118, y + 1, GREEN[1])
-        r.rect(126, y, 129 - j, y + 1, GREEN[1])
-        r.rect(111 + j, y, 112 + j, y + 1, GREEN[3] if y % 4 == 0 else GREEN[2])
-        r.rect(129 - j, y, 130 - j, y + 1, GREEN[3] if y % 4 == 2 else GREEN[2])
-    r.rect(112, 101, 128, 102, GREEN[0])                # corridor meets the bed floor: leaf shade at the lower end
+        r.rect(116 + j, y, 118, y + 1, GREEN[0])
+        r.rect(126, y, 128 - j, y + 1, GREEN[0])
+    r.rect(116, 101, 128, 102, GREEN[0])                # corridor meets the bed floor: leaf shade at the lower end
     # inlaid path strip, same recipe as the south opening's strip: lit under the sky, shaded under the crown
     for y0, y1, body, lit, dark in ((64, 84, STONE[2], STONE[3], STONE[1]), (84, 101, STONE[1], STONE[2], STONE[0]),
                                     (101, 107, STONE[2], STONE[3], STONE[1])):

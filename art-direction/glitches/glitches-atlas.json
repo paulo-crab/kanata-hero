@@ -757,9 +757,9 @@
       "note": "Filing Drift: addresses and labels drift, and so does a folded form. Level 07's door has no glitch (its challenge is the door itself). Plum arrives with the long report's route choice.",
       "palette_steps": "steps",
       "chair_recolour": {
-        "#B65761": "#31566A",
-        "#E67A70": "#527F94",
-        "#F6B18E": "#8DB6C2"
+        "#C8485A": "#31566A",
+        "#F26A5A": "#527F94",
+        "#FFB38A": "#8DB6C2"
       }
     },
     "systems": {
@@ -826,9 +826,9 @@
       "note": "The peak: the routing machine duplicates work, so all three archetypes and the most per room. Dusk (code) waits for the Formula Room (15); the stutter starts at the Alarm Glyphs (14).",
       "palette_steps": "steps",
       "chair_recolour": {
-        "#B65761": "#2347B0",
-        "#E67A70": "#2F63D9",
-        "#F6B18E": "#8CB0F2"
+        "#C8485A": "#2347B0",
+        "#F26A5A": "#2F63D9",
+        "#FFB38A": "#8CB0F2"
       }
     },
     "nightshift": {
@@ -898,9 +898,9 @@
       "note": "The deepest uncanny at the lowest volume: fewer per room, slow, in the edges of lamp pools, drawn in the dark_steps ramp. The break room and vestibule (17) are glitch-free: a safe place to learn the exit.",
       "palette_steps": "dark_steps",
       "chair_recolour": {
-        "#B65761": "#283063",
-        "#E67A70": "#38437F",
-        "#F6B18E": "#5062A0"
+        "#C8485A": "#283063",
+        "#F26A5A": "#38437F",
+        "#FFB38A": "#5062A0"
       }
     },
     "executive": {
@@ -963,24 +963,24 @@
       "note": "Relief: one still glitch per incident branch, each in the palette of its duel (token, route, code), and each stays behind as an ordinary prop that the restored atrium keeps.",
       "palette_steps": "steps",
       "chair_recolour": {
-        "#B65761": "#2B4079",
-        "#E67A70": "#3F5A9E",
-        "#F6B18E": "#6B84BE"
+        "#C8485A": "#2B4079",
+        "#F26A5A": "#3F5A9E",
+        "#FFB38A": "#6B84BE"
       }
     }
   },
   "palette": {
-    "o": "#202337",
-    "i": "#343650",
-    "j": "#535971",
-    "k": "#777A8C",
+    "o": "#0E1020",
+    "i": "#1C2038",
+    "j": "#3A4160",
+    "k": "#6A7392",
     "a": "#413755",
     "b": "#67547C",
     "c": "#9477AF",
     "d": "#C3A6D6",
-    "D": "#B65761",
-    "E": "#E67A70",
-    "F": "#F6B18E",
+    "D": "#C8485A",
+    "E": "#F26A5A",
+    "F": "#FFB38A",
     "p": "#C7B7A0",
     "q": "#E2D6C2",
     "r": "#F4F2EC"

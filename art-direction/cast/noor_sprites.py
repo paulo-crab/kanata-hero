@@ -19,7 +19,7 @@ _REC = DISTRICTS["records"]
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair (blue-black, from CAST_RAMPS): fill B C D, A only on contour and the fringe underside
     **dict(zip("ABCD", _HAIR)),
     # skin (light olive, from CAST_RAMPS): fill n m l, k only on contour / occlusion

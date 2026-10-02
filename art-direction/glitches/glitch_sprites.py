@@ -25,11 +25,11 @@ Colour rules (STYLE_BIBLE section 3 and 7):
 PAL = {
     ".": None,
     # ink outline ramp: "o" is the default outline, "i" and "j" fill, "k" metal highlight
-    "o": "#202337", "i": "#343650", "j": "#535971", "k": "#777A8C",
+    "o": "#0E1020", "i": "#1C2038", "j": "#3A4160", "k": "#6A7392",
     # violet anomaly ramp: "a" contour only, "b" fill, "c" glow, "d" hot core
     "a": "#413755", "b": "#67547C", "c": "#9477AF", "d": "#C3A6D6",
     # chair, the coral upholstery ramp the room's task chairs use
-    "D": "#B65761", "E": "#E67A70", "F": "#F6B18E",
+    "D": "#C8485A", "E": "#F26A5A", "F": "#FFB38A",
     # paper, from the stone and paper ramps
     "p": "#C7B7A0", "q": "#E2D6C2", "r": "#F4F2EC",
 }

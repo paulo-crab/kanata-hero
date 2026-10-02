@@ -27,6 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import records_kit as rk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_scale_test as bst  # noqa: E402
@@ -119,6 +120,11 @@ def reference_layout():
                      ("pot_plant_d", 146, 132), ("pot_plant_c", 48, 36), ("pot_plant_b", 128, 36),
                       ("pot_plant_a", 96, 150), ("pot_plant_d", 18, 146)):
         entry(nm, x, y + 4)
+    # rich-finish decor: more planters and benches on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_b", 80, 36), ("pot_plant_c", 0, 52), ("pot_plant_d", 130, 166)):
+        entry(nm, x, y + 4)
+    entry("bench", 26, 160)
+    entry("bench_v", 3, 118)
     return {
         "kit": "records", "atlas": "records-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Records reference room, built only from records-atlas. Floor is a cell grid; every other element is a placement at "
@@ -250,6 +256,7 @@ def review(layout, atlas):
     # palette discipline: every opaque atlas pixel is a Records ramp step (ink and violet shared); no violet at all
     import district_palettes as dp
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in dp.DISTRICTS["records"][role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['records'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is a Records ramp step; no violet", used <= allowed and not (used & violet),
@@ -684,6 +691,7 @@ def main():
     nchg = landmark_states(layout, atlas)
     before = render(layout, atlas, STATES_BEFORE)
     after = render(layout, atlas, STATES_AFTER)
+    before, after = rf.light_layout(before, layout, atlas, "records"), rf.light_layout(after, layout, atlas, "records")  # rich finish light, display only
     Image.fromarray(before).save(os.path.join(HERE, "records-reference-room-native.png"))
     Image.fromarray(after).save(os.path.join(HERE, "records-reference-room-after-native.png"))
     to_screen(before).save(os.path.join(HERE, "records-reference-room-1366x768.png"))

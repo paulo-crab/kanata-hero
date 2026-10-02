@@ -11,16 +11,16 @@ pixels only.
 
 Palette: ink, warm stone, blue glass and brass from STYLE_BIBLE section 3.
 Never the violet ramp, never a UI marker hex (#19AFA2 #EC776D #9876D5 #E6B750).
-Brass appears as small trim only; its lightest step (#F5D580) is reserved for
+Brass appears as small trim only; its lightest step (#FFF0A0) is reserved for
 glints and is not used at all at present.
 """
 import numpy as np
 
 PAL = {
-    "o": "#202337", "k": "#343650", "t": "#535971", "a": "#777A8C",   # ink
+    "o": "#0E1020", "k": "#1C2038", "t": "#3A4160", "a": "#6A7392",   # ink
     "D": "#665D65", "d": "#968A85", "s": "#C7B7A0", "S": "#F0DEC0",   # warm stone
-    "F": "#203A50", "f": "#366479", "g": "#5AA3AE", "h": "#A0DDD4",   # blue glass
-    "p": "#705056", "b": "#AC7655", "B": "#E1AC62", "y": "#F5D580",   # brass
+    "F": "#0F3550", "f": "#1D7396", "g": "#3CBAD6", "h": "#A8F0EE",   # blue glass
+    "p": "#7A4A2A", "b": "#C98A3A", "B": "#FFC83D", "y": "#FFF0A0",   # brass
 }
 MARKERS = {"#19AFA2", "#EC776D", "#9876D5", "#E6B750"}
 VIOLET = {"#413755", "#67547C", "#9477AF", "#C3A6D6"}
@@ -219,7 +219,7 @@ def inlay(a, mask, x0, y0):
         for x in range(w):
             if mask[y, x]:
                 edge = not (x + 1 < w and mask[y, x + 1]) or not (y + 1 < h and mask[y + 1, x])
-                put(a, x0 + x, y0 + y, "F" if edge else "f")
+                put(a, x0 + x, y0 + y, "o" if edge else "F")
 
 
 def chevron_mask(direction):

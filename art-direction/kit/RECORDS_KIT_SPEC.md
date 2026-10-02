@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** this kit was drawn before the rich finish and is queued for re-render (OpenSpec change `adopt-rich-finish`). New and redrawn pieces follow `../rich-finish/RICH_FINISH_SPEC.md`: vivid world palette, deeper ink (`#0E1020` outline), leaf-fan foliage, light passes. Footprints, collision and layers in this spec do not change.
+
 **Sources:** `openspec/changes/complete-art-production/` (environment-kit spec, design decisions 3 and 4), STYLE_BIBLE §3, §6 and §7, PALETTES_SPEC.md (Records ramps), `levels.md` Records rows and levels 07 to 11, `docs/game-design.md` (district table, "Records reference layout", "Asset and level handoff"), ORIENTATION_KIT_SPEC.md (the atlas format). **Director decision** marks choices made under the delegated authority; here they are the designer's proposals for the director to record.
 
 This is the "walkable Records composition built from the shared kit" that validates the pipeline before Systems, Night Shift and Executive. Same atlas format and tooling as Orientation; the Orientation build is untouched (all nine zero-diff comparisons and every Orientation output hash are identical).

@@ -95,7 +95,7 @@ for name, a in pieces.items():
         fails.append(f"{name}: non-contour pixels on the edge {bad[:3]}")
     # Floor glyphs stay legible on their slab.
     if spec["layer"] == "floor_marking":
-        c = contrast(pa.PAL["f"], pa.PAL["s"])
+        c = contrast(pa.PAL["F"], pa.PAL["s"])
         if c < 3:
             fails.append(f"{name}: glyph contrast {c:.1f}:1 on the slab (min 3:1)")
 

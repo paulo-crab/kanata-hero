@@ -2098,7 +2098,54 @@
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a circuit-lit mint plant (device ramp, not living foliage); two leaf layouts. Use sparingly"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    352,
+    48,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -2129,53 +2176,6 @@
    ],
    "contact_shadow": [
     4,
-    19,
-    13,
-    2
-   ],
-   "note": "slate planter with a circuit-lit mint plant (device ramp, not living foliage); two leaf layouts. Use sparingly"
-  },
-  {
-   "name": "pot_plant_b",
-   "kind": "prop",
-   "rect": [
-    352,
-    48,
-    32,
-    32
-   ],
-   "size_px": [
-    20,
-    21
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     11
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    27
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
     19,
     13,
     2
@@ -2791,10 +2791,103 @@
    "note": "glass balustrade for a bridge or walkway edge, one cell: orange top rail, post at each end, cobalt pane, steel kerb. Blocks its cell"
   },
   {
+   "name": "bench",
+   "kind": "prop",
+   "rect": [
+    272,
+    128,
+    48,
+    16
+   ],
+   "size_px": [
+    34,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    10,
+    33,
+    2
+   ],
+   "note": "slatted bench (rich-finish decor)"
+  },
+  {
+   "name": "bench_v",
+   "kind": "prop",
+   "rect": [
+    320,
+    128,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank bench, 10 x 28 px (rich-finish decor)"
+  },
+  {
    "name": "routing_deck_plate",
    "kind": "landmark_part",
    "rect": [
-    272,
+    336,
     128,
     160,
     144
@@ -2840,8 +2933,8 @@
    "name": "routing_stubs_before",
    "kind": "landmark_part",
    "rect": [
-    432,
-    128,
+    0,
+    272,
     160,
     144
    ],
@@ -2887,7 +2980,7 @@
    "name": "routing_stubs_after",
    "kind": "landmark_part",
    "rect": [
-    0,
+    160,
     272,
     160,
     144
@@ -2934,7 +3027,7 @@
    "name": "routing_walkway_after",
    "kind": "landmark_part",
    "rect": [
-    160,
+    320,
     272,
     160,
     144
@@ -2981,7 +3074,7 @@
    "name": "routing_machine",
    "kind": "landmark_part",
    "rect": [
-    320,
+    480,
     272,
     160,
     144
@@ -3033,8 +3126,8 @@
    "name": "routing_core_before",
    "kind": "landmark_part",
    "rect": [
-    480,
-    272,
+    0,
+    416,
     160,
     144
    ],
@@ -3080,7 +3173,7 @@
    "name": "routing_core_after",
    "kind": "landmark_part",
    "rect": [
-    0,
+    160,
     416,
     160,
     144
@@ -3127,7 +3220,7 @@
    "name": "routing_nodes_before",
    "kind": "landmark_part",
    "rect": [
-    160,
+    320,
     416,
     160,
     144
@@ -3174,7 +3267,7 @@
    "name": "routing_nodes_after",
    "kind": "landmark_part",
    "rect": [
-    320,
+    480,
     416,
     160,
     144
@@ -3221,8 +3314,8 @@
    "name": "routing_beacon_before",
    "kind": "landmark_part",
    "rect": [
-    480,
-    416,
+    0,
+    560,
     160,
     144
    ],
@@ -3268,7 +3361,7 @@
    "name": "routing_beacon_after",
    "kind": "landmark_part",
    "rect": [
-    0,
+    160,
     560,
     160,
     144
@@ -3315,7 +3408,7 @@
    "name": "routing_ports_before",
    "kind": "landmark_part",
    "rect": [
-    160,
+    320,
     560,
     160,
     144
@@ -3362,7 +3455,7 @@
    "name": "routing_ports_after",
    "kind": "landmark_part",
    "rect": [
-    320,
+    480,
     560,
     160,
     144
@@ -3409,8 +3502,8 @@
    "name": "routing_panel_closed",
    "kind": "landmark_part",
    "rect": [
-    480,
-    560,
+    0,
+    704,
     160,
     144
    ],
@@ -3456,7 +3549,7 @@
    "name": "routing_panel_open",
    "kind": "landmark_part",
    "rect": [
-    0,
+    160,
     704,
     160,
     144
@@ -3503,7 +3596,7 @@
    "name": "payroll_keypad_off",
    "kind": "prop",
    "rect": [
-    160,
+    320,
     704,
     48,
     32
@@ -3552,7 +3645,7 @@
    "name": "payroll_keypad_half",
    "kind": "prop",
    "rect": [
-    208,
+    368,
     704,
     48,
     32
@@ -3601,7 +3694,7 @@
    "name": "payroll_keypad_lit",
    "kind": "prop",
    "rect": [
-    256,
+    416,
     704,
     48,
     32
@@ -3650,7 +3743,7 @@
    "name": "bridge_span_retracted",
    "kind": "tile",
    "rect": [
-    304,
+    464,
     704,
     64,
     32
@@ -3694,7 +3787,7 @@
    "name": "bridge_span_extended",
    "kind": "tile",
    "rect": [
-    368,
+    528,
     704,
     64,
     32
@@ -3738,7 +3831,7 @@
    "name": "refund_sign_red",
    "kind": "wall",
    "rect": [
-    432,
+    592,
     704,
     32,
     16
@@ -3781,8 +3874,8 @@
    "name": "refund_sign_green",
    "kind": "wall",
    "rect": [
-    464,
-    704,
+    0,
+    848,
     32,
     16
    ],
@@ -3824,8 +3917,8 @@
    "name": "calc_display_charge",
    "kind": "prop",
    "rect": [
-    496,
-    704,
+    32,
+    848,
     48,
     32
    ],
@@ -3873,8 +3966,8 @@
    "name": "calc_display_refund",
    "kind": "prop",
    "rect": [
-    544,
-    704,
+    80,
+    848,
     48,
     32
    ],
@@ -3922,7 +4015,7 @@
    "name": "alarm_strip_merged",
    "kind": "wall",
    "rect": [
-    0,
+    128,
     848,
     64,
     32
@@ -3966,7 +4059,7 @@
    "name": "alarm_strip_separated",
    "kind": "wall",
    "rect": [
-    64,
+    192,
     848,
     64,
     32
@@ -4010,7 +4103,7 @@
    "name": "alarm_strip_muted",
    "kind": "wall",
    "rect": [
-    128,
+    256,
     848,
     64,
     32
@@ -4054,7 +4147,7 @@
    "name": "bridge_shutter_closed",
    "kind": "wall",
    "rect": [
-    192,
+    320,
     848,
     32,
     32
@@ -4098,7 +4191,7 @@
    "name": "bridge_shutter_open",
    "kind": "wall",
    "rect": [
-    224,
+    352,
     848,
     32,
     32
@@ -4142,7 +4235,7 @@
    "name": "formula_wall_dark",
    "kind": "wall",
    "rect": [
-    256,
+    384,
     848,
     96,
     32
@@ -4186,7 +4279,7 @@
    "name": "formula_wall_half",
    "kind": "wall",
    "rect": [
-    352,
+    480,
     848,
     96,
     32
@@ -4230,8 +4323,8 @@
    "name": "formula_wall_lit",
    "kind": "wall",
    "rect": [
-    448,
-    848,
+    0,
+    880,
     96,
     32
    ],
@@ -4274,8 +4367,8 @@
    "name": "courier_chute_idle",
    "kind": "prop",
    "rect": [
-    544,
-    848,
+    96,
+    880,
     48,
     32
    ],
@@ -4323,8 +4416,8 @@
    "name": "courier_chute_ready",
    "kind": "prop",
    "rect": [
-    592,
-    848,
+    144,
+    880,
     48,
     32
    ],
@@ -4372,7 +4465,7 @@
    "name": "mira_decor_signed_sent",
    "kind": "prop",
    "rect": [
-    0,
+    192,
     880,
     16,
     16
@@ -4414,7 +4507,7 @@
    "name": "mira_decor_relay",
    "kind": "prop",
    "rect": [
-    16,
+    208,
     880,
     16,
     16
@@ -4456,7 +4549,7 @@
    "name": "elevator_closed",
    "kind": "door",
    "rect": [
-    32,
+    224,
     880,
     48,
     48
@@ -4508,7 +4601,7 @@
    "name": "elevator_half",
    "kind": "door",
    "rect": [
-    80,
+    272,
     880,
     48,
     48
@@ -4560,7 +4653,7 @@
    "name": "elevator_open",
    "kind": "door",
    "rect": [
-    128,
+    320,
     880,
     48,
     48
@@ -4612,7 +4705,7 @@
    "name": "elevator_call_panel",
    "kind": "wall",
    "rect": [
-    176,
+    368,
     880,
     16,
     32
@@ -4656,7 +4749,7 @@
    "name": "desk_a_front",
    "kind": "prop",
    "rect": [
-    192,
+    384,
     880,
     48,
     16
@@ -4699,7 +4792,7 @@
    "name": "desk_b_front",
    "kind": "prop",
    "rect": [
-    240,
+    432,
     880,
     48,
     16
@@ -4742,7 +4835,7 @@
    "name": "artifact_id_envelope",
    "kind": "prop",
    "rect": [
-    288,
+    480,
     880,
     16,
     16
@@ -4791,7 +4884,7 @@
    "name": "artifact_alarm_strip",
    "kind": "prop",
    "rect": [
-    304,
+    496,
     880,
     16,
     16
@@ -4840,7 +4933,7 @@
    "name": "artifact_scoring_proof",
    "kind": "prop",
    "rect": [
-    320,
+    512,
     880,
     16,
     16
@@ -4889,7 +4982,7 @@
    "name": "artifact_original_routing_diagram",
    "kind": "prop",
    "rect": [
-    336,
+    528,
     880,
     16,
     16
@@ -4938,7 +5031,7 @@
    "name": "routing_node_dark",
    "kind": "wall",
    "rect": [
-    352,
+    544,
     880,
     16,
     16
@@ -4982,7 +5075,7 @@
    "name": "routing_node_lit",
    "kind": "wall",
    "rect": [
-    368,
+    560,
     880,
     16,
     16
@@ -5026,7 +5119,7 @@
    "name": "refund_ledger_charge",
    "kind": "wall",
    "rect": [
-    384,
+    576,
     880,
     32,
     16
@@ -5069,7 +5162,7 @@
    "name": "refund_ledger_refund",
    "kind": "wall",
    "rect": [
-    416,
+    608,
     880,
     32,
     16
@@ -5112,8 +5205,8 @@
    "name": "alarm_board_blank",
    "kind": "wall",
    "rect": [
-    448,
-    880,
+    0,
+    928,
     48,
     32
    ],
@@ -5156,8 +5249,8 @@
    "name": "alarm_board_labeled_1",
    "kind": "wall",
    "rect": [
-    496,
-    880,
+    48,
+    928,
     48,
     32
    ],
@@ -5200,8 +5293,8 @@
    "name": "alarm_board_labeled_2",
    "kind": "wall",
    "rect": [
-    544,
-    880,
+    96,
+    928,
     48,
     32
    ],
@@ -5244,8 +5337,8 @@
    "name": "alarm_board_labeled_3",
    "kind": "wall",
    "rect": [
-    592,
-    880,
+    144,
+    928,
     48,
     32
    ],
@@ -5288,7 +5381,7 @@
    "name": "alarm_board_labeled_4",
    "kind": "wall",
    "rect": [
-    0,
+    192,
     928,
     48,
     32
@@ -5332,7 +5425,7 @@
    "name": "alarm_board_labeled_5",
    "kind": "wall",
    "rect": [
-    48,
+    240,
     928,
     48,
     32
@@ -5376,7 +5469,7 @@
    "name": "alarm_board_labeled_6",
    "kind": "wall",
    "rect": [
-    96,
+    288,
     928,
     48,
     32
@@ -5420,7 +5513,7 @@
    "name": "formula_wall_dim",
    "kind": "wall",
    "rect": [
-    144,
+    336,
     928,
     96,
     32
@@ -5464,7 +5557,7 @@
    "name": "formula_wall_clause_1",
    "kind": "wall",
    "rect": [
-    240,
+    432,
     928,
     96,
     32
@@ -5508,7 +5601,7 @@
    "name": "formula_wall_clause_2",
    "kind": "wall",
    "rect": [
-    336,
+    528,
     928,
     96,
     32
@@ -5552,8 +5645,8 @@
    "name": "formula_wall_clause_3",
    "kind": "wall",
    "rect": [
-    432,
-    928,
+    0,
+    960,
     96,
     32
    ],
@@ -5596,8 +5689,8 @@
    "name": "formula_wall_clause_4",
    "kind": "wall",
    "rect": [
-    528,
-    928,
+    96,
+    960,
     96,
     32
    ],
@@ -5640,7 +5733,7 @@
    "name": "formula_wall_clause_5",
    "kind": "wall",
    "rect": [
-    0,
+    192,
     960,
     96,
     32
@@ -5684,7 +5777,7 @@
    "name": "formula_wall_clause_6",
    "kind": "wall",
    "rect": [
-    96,
+    288,
     960,
     96,
     32
@@ -5728,7 +5821,7 @@
    "name": "folding_stool",
    "kind": "prop",
    "rect": [
-    192,
+    384,
     960,
     16,
     16
@@ -5776,7 +5869,7 @@
    "name": "folding_stool_open",
    "kind": "prop",
    "rect": [
-    208,
+    400,
     960,
     16,
     16
@@ -5825,7 +5918,7 @@
    "name": "folding_stool_folded",
    "kind": "prop",
    "rect": [
-    224,
+    416,
     960,
     16,
     16

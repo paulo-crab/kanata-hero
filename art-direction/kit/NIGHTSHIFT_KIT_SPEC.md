@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** this kit was drawn before the rich finish and is queued for re-render (OpenSpec change `adopt-rich-finish`). New and redrawn pieces follow `../rich-finish/RICH_FINISH_SPEC.md`: vivid world palette, deeper ink (`#0E1020` outline), leaf-fan foliage, light passes. Footprints, collision and layers in this spec do not change.
+
 **Sources:** `openspec/changes/complete-art-production/` (environment-kit spec), STYLE_BIBLE §3, §6 and §7, PALETTES_SPEC.md (Night Shift ramps and the edge-light rule), ADA_SPEC.md (rim ruling, draw order), `levels.md` Night Shift rows and levels 17 to 19, `docs/game-design.md` ("Night Shift reference layout"), RECORDS_KIT_SPEC.md (the method). **Director decision** marks choices that need recording; here they are the designer's proposals.
 
 Same atlas format, tooling and method as Records. `kitlib.py`, `shared_pieces.py`, `build_kit.py`, `check_atlas.py`, `records_kit.py` and `orientation_kit.py` are untouched.

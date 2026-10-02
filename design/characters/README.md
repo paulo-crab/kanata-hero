@@ -69,6 +69,8 @@ These apply to every human character. Individual sheets list only what differs.
 
 ### Orientation production palette (STYLE_BIBLE §3)
 
+> **Rich finish (2026-10-02):** the outline is now `#0E1020` and the ink shoe ramp and renderer shadow use the deeper ink ramp. Clothing, skin and hair ramps below stay as approved. See `art-direction/rich-finish/RICH_FINISH_SPEC.md`.
+
 | Group | Shadow → light | Reserved meaning |
 | --- | --- | --- |
 | Ink / outline | `#202337` `#343650` `#535971` `#777A8C` | Contour, cool shadow |

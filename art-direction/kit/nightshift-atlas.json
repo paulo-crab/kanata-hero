@@ -1599,7 +1599,54 @@
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a night-green plant; four leaf layouts (a to d); silver edge on the upper-left of pot and leaves"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    576,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -1637,16 +1684,16 @@
    "note": "slate planter with a night-green plant; four leaf layouts (a to d); silver edge on the upper-left of pot and leaves"
   },
   {
-   "name": "pot_plant_b",
+   "name": "pot_plant_c",
    "kind": "prop",
    "rect": [
-    576,
+    608,
     80,
     32,
     32
    ],
    "size_px": [
-    20,
+    19,
     21
    ],
    "footprint": {
@@ -1655,7 +1702,7 @@
      1
     ],
     "origin_px": [
-     4,
+     3,
      11
     ]
    },
@@ -1665,7 +1712,7 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    12,
+    11,
     27
    ],
    "composite": {
@@ -1676,55 +1723,8 @@
     "planter"
    ],
    "contact_shadow": [
-    5,
+    4,
     19,
-    13,
-    2
-   ],
-   "note": "slate planter with a night-green plant; four leaf layouts (a to d); silver edge on the upper-left of pot and leaves"
-  },
-  {
-   "name": "pot_plant_c",
-   "kind": "prop",
-   "rect": [
-    608,
-    80,
-    32,
-    32
-   ],
-   "size_px": [
-    20,
-    22
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     12
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    28
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
-    20,
     13,
     2
    ],
@@ -1740,8 +1740,8 @@
     32
    ],
    "size_px": [
-    21,
-    21
+    17,
+    22
    ],
    "footprint": {
     "cells": [
@@ -1749,8 +1749,8 @@
      1
     ],
     "origin_px": [
-     5,
-     11
+     2,
+     12
     ]
    },
    "collision": [
@@ -1759,8 +1759,8 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    13,
-    27
+    10,
+    28
    ],
    "composite": {
     "mode": "over"
@@ -1770,8 +1770,8 @@
     "planter"
    ],
    "contact_shadow": [
-    6,
-    19,
+    3,
+    20,
     13,
     2
    ],
@@ -1834,7 +1834,7 @@
    ],
    "size_px": [
     12,
-    11
+    12
    ],
    "footprint": {
     "cells": [
@@ -1843,7 +1843,7 @@
     ],
     "origin_px": [
      0,
-     1
+     2
     ]
    },
    "collision": [
@@ -1853,7 +1853,7 @@
    "y_sort": true,
    "anchor": [
     8,
-    17
+    18
    ],
    "composite": {
     "mode": "over"
@@ -1864,7 +1864,7 @@
    ],
    "contact_shadow": [
     2,
-    10,
+    11,
     10,
     1
    ],
@@ -2383,10 +2383,105 @@
    "note": "security vestibule gate, the leaf folded edge-on against the left post, readers switched to silver: cols 1-2 are a two-cell walkway. Contact shadows are baked per piece"
   },
   {
+   "name": "bench",
+   "kind": "prop",
+   "rect": [
+    592,
+    128,
+    48,
+    16
+   ],
+   "size_px": [
+    34,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    10,
+    33,
+    2
+   ],
+   "note": "slatted bench (rich-finish decor), dim terracotta wood"
+  },
+  {
+   "name": "bench_v",
+   "kind": "prop",
+   "rect": [
+    0,
+    160,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "garden",
+    "rich finish"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank bench, 10 x 28 px (rich-finish decor), dim terracotta wood"
+  },
+  {
    "name": "window_wall_base",
    "kind": "landmark_part",
    "rect": [
-    0,
+    16,
     160,
     192,
     64
@@ -2435,7 +2530,7 @@
    "name": "window_panes_before",
    "kind": "landmark_part",
    "rect": [
-    192,
+    208,
     160,
     192,
     64
@@ -2479,7 +2574,7 @@
    "name": "window_panes_after",
    "kind": "landmark_part",
    "rect": [
-    384,
+    400,
     160,
     192,
     64

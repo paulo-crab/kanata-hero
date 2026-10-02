@@ -4,7 +4,7 @@ Run: python3 check_explore.py     Exit code 1 on any failure.
 Per grid: 48x48; every key is a key of that character's world-sprite PAL (the one extra pale
 highlight key per character is itself a PAL key, recorded in explore_common.CHARS[..]["extra"]
 and checked here to carry the sprite's hex); no UI marker hex; no violet; row 0 and the side
-columns clear; a closed outline (every opaque pixel that touches transparency is #202337, except
+columns clear; a closed outline (every opaque pixel that touches transparency is #0E1020, except
 on the crop row); the hair and clothing keys of the sprite appear; skin steps stay within the
 direction's budget (the blush key is counted apart); expressions differ and share their shoulders.
 """

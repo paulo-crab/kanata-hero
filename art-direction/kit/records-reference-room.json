@@ -1030,6 +1030,61 @@
     2,
     6
    ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    5,
+    2
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    0,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_d",
+   "cell": [
+    8,
+    10
+   ],
+   "offset": [
+    2,
+    10
+   ]
+  },
+  {
+   "entry": "bench",
+   "cell": [
+    1,
+    10
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "bench_v",
+   "cell": [
+    0,
+    7
+   ],
+   "offset": [
+    3,
+    6
+   ]
   }
  ]
 }

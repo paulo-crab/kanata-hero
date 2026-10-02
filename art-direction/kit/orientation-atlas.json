@@ -851,7 +851,54 @@
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    512,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -882,53 +929,6 @@
    ],
    "contact_shadow": [
     4,
-    19,
-    13,
-    2
-   ],
-   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
-  },
-  {
-   "name": "pot_plant_b",
-   "kind": "prop",
-   "rect": [
-    512,
-    0,
-    32,
-    32
-   ],
-   "size_px": [
-    20,
-    21
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     11
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    27
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
     19,
     13,
     2
@@ -945,8 +945,8 @@
     32
    ],
    "size_px": [
-    20,
-    22
+    19,
+    21
    ],
    "footprint": {
     "cells": [
@@ -954,8 +954,8 @@
      1
     ],
     "origin_px": [
-     4,
-     12
+     3,
+     11
     ]
    },
    "collision": [
@@ -964,8 +964,8 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    12,
-    28
+    11,
+    27
    ],
    "composite": {
     "mode": "over"
@@ -975,8 +975,8 @@
     "planter"
    ],
    "contact_shadow": [
-    5,
-    20,
+    4,
+    19,
     13,
     2
    ],
@@ -992,8 +992,8 @@
     32
    ],
    "size_px": [
-    21,
-    21
+    17,
+    22
    ],
    "footprint": {
     "cells": [
@@ -1001,8 +1001,8 @@
      1
     ],
     "origin_px": [
-     5,
-     11
+     2,
+     12
     ]
    },
    "collision": [
@@ -1011,8 +1011,8 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    13,
-    27
+    10,
+    28
    ],
    "composite": {
     "mode": "over"
@@ -1022,8 +1022,8 @@
     "planter"
    ],
    "contact_shadow": [
-    6,
-    19,
+    3,
+    20,
     13,
     2
    ],
@@ -1035,53 +1035,6 @@
    "rect": [
     608,
     0,
-    32,
-    32
-   ],
-   "size_px": [
-    22,
-    22
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     12
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    28
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
-    20,
-    13,
-    2
-   ],
-   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
-  },
-  {
-   "name": "pot_plant_f",
-   "kind": "prop",
-   "rect": [
-    0,
-    80,
     32,
     32
    ],
@@ -1124,6 +1077,53 @@
    "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
   },
   {
+   "name": "pot_plant_f",
+   "kind": "prop",
+   "rect": [
+    0,
+    80,
+    32,
+    32
+   ],
+   "size_px": [
+    19,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     3,
+     13
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    11,
+    29
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    4,
+    21,
+    13,
+    2
+   ],
+   "note": "slate planter with a leafy plant; the 12 variants differ only in leaf layout"
+  },
+  {
    "name": "pot_plant_g",
    "kind": "prop",
    "rect": [
@@ -1133,7 +1133,7 @@
     32
    ],
    "size_px": [
-    20,
+    18,
     22
    ],
    "footprint": {
@@ -1180,8 +1180,8 @@
     32
    ],
    "size_px": [
-    23,
-    22
+    20,
+    21
    ],
    "footprint": {
     "cells": [
@@ -1189,8 +1189,8 @@
      1
     ],
     "origin_px": [
-     5,
-     12
+     4,
+     11
     ]
    },
    "collision": [
@@ -1199,8 +1199,8 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    13,
-    28
+    12,
+    27
    ],
    "composite": {
     "mode": "over"
@@ -1210,8 +1210,8 @@
     "planter"
    ],
    "contact_shadow": [
-    6,
-    20,
+    5,
+    19,
     13,
     2
    ],
@@ -1227,7 +1227,7 @@
     32
    ],
    "size_px": [
-    21,
+    19,
     23
    ],
    "footprint": {
@@ -1274,7 +1274,7 @@
     32
    ],
    "size_px": [
-    20,
+    19,
     22
    ],
    "footprint": {
@@ -1321,8 +1321,8 @@
     32
    ],
    "size_px": [
-    20,
-    21
+    18,
+    23
    ],
    "footprint": {
     "cells": [
@@ -1331,7 +1331,7 @@
     ],
     "origin_px": [
      3,
-     11
+     13
     ]
    },
    "collision": [
@@ -1341,7 +1341,7 @@
    "y_sort": true,
    "anchor": [
     11,
-    27
+    29
    ],
    "composite": {
     "mode": "over"
@@ -1352,7 +1352,7 @@
    ],
    "contact_shadow": [
     4,
-    19,
+    21,
     13,
     2
    ],
@@ -1368,7 +1368,7 @@
     32
    ],
    "size_px": [
-    21,
+    18,
     22
    ],
    "footprint": {
@@ -1377,7 +1377,7 @@
      1
     ],
     "origin_px": [
-     5,
+     3,
      12
     ]
    },
@@ -1387,7 +1387,7 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    13,
+    11,
     28
    ],
    "composite": {
@@ -1398,7 +1398,7 @@
     "planter"
    ],
    "contact_shadow": [
-    6,
+    4,
     20,
     13,
     2
@@ -1462,7 +1462,7 @@
    ],
    "size_px": [
     12,
-    11
+    12
    ],
    "footprint": {
     "cells": [
@@ -1471,7 +1471,7 @@
     ],
     "origin_px": [
      0,
-     1
+     2
     ]
    },
    "collision": [
@@ -1481,7 +1481,7 @@
    "y_sort": true,
    "anchor": [
     8,
-    17
+    18
    ],
    "composite": {
     "mode": "over"
@@ -1492,7 +1492,7 @@
    ],
    "contact_shadow": [
     2,
-    10,
+    11,
     10,
     1
    ],
@@ -1729,10 +1729,59 @@
    "note": "slatted wood bench"
   },
   {
-   "name": "mail_counter",
+   "name": "bench_v",
    "kind": "prop",
    "rect": [
     496,
+    80,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "garden",
+    "rich finish"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank garden bench, 10 x 28 px: one stands each side of the garden between the ring path and the rim (a rich-finish detail, Mock 2.1). Blocks its two cells"
+  },
+  {
+   "name": "mail_counter",
+   "kind": "prop",
+   "rect": [
+    512,
     80,
     64,
     32
@@ -1960,7 +2009,7 @@
     "landmark",
     "rocks"
    ],
-   "note": "two rocks by the water"
+   "note": "two grey rocks with a moss cap and a crack"
   },
   {
    "name": "garden_centrepiece",
@@ -2006,7 +2055,7 @@
     "centrepiece",
     "tree"
    ],
-   "note": "the tree: trunk with root flare and a layered canopy that overhangs the rim"
+   "note": "the tree: a layered canopy of leaf fans that overhangs the rim, with the trunk, root flare, bark and two limbs drawn over its lower edge"
   },
   {
    "name": "garden_canopy_shadow",
@@ -2096,7 +2145,7 @@
     "landmark",
     "blooms"
    ],
-   "note": "five coral flower clusters with a brass centre pixel"
+   "note": "grass tufts and five white flowers with orange centres (every second one has two yellow dots)"
   },
   {
    "name": "garden_after_path",
@@ -5231,14 +5280,14 @@
      "parts": [
       "garden_ring",
       "garden_base_open",
+      "garden_north_rim_open",
       "garden_foliage",
       "garden_rocks",
       "garden_centrepiece",
       "garden_canopy_shadow",
       "garden_blooms",
       "garden_after_path",
-      "garden_after_blooms",
-      "garden_north_rim_open"
+      "garden_after_blooms"
      ],
      "lamps": {
       "anim": "lamp",

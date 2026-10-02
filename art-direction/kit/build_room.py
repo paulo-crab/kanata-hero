@@ -2,7 +2,7 @@
 
 Run: python3 build_room.py   (Pillow + numpy)
 Reads  orientation-atlas.json/.png and orientation-review-room.json (this folder).
-Writes orientation-review-room-native.png (320x192, no actors) and
+Writes orientation-review-room-native.png (320x192, no actors, with the rich-finish light stage) and
        orientation-review-room-1366x768.png (the Gate 1 still, drawn from the atlas).
 Exit code 1 unless every comparison below has zero differing pixels:
   1. rebuilt room vs the approved room (env.draw + env.mail_counter), door closed / half / open
@@ -21,6 +21,8 @@ sys.path.insert(0, HERE)
 for sub in ("gate1", "scale-test", "cast"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
+import build_scale_test as bst  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
 import environment as env  # noqa: E402
@@ -52,8 +54,8 @@ class AtlasEnvironment:
     """Context manager: swap environment.draw / mail_counter for the atlas renderer so the
     unmodified build_gate1.scene() draws the room from atlas data."""
 
-    def __init__(self, layout, atlas):
-        self.layout, self.atlas = layout, atlas
+    def __init__(self, layout, atlas, lit=False):
+        self.layout, self.atlas, self.lit = layout, atlas, lit
 
     def __enter__(self):
         self.saved = (env.draw, env.mail_counter)
@@ -65,6 +67,8 @@ class AtlasEnvironment:
         def mail_counter(room, x, y):
             assert (x, y) == (246, 150)
             rebuild(self.layout, self.atlas, 0.0, layers={"front_prop"}, base=room.img)
+            if self.lit:
+                rf.light_orientation(room.img, bst)  # the rich-finish light stage, before the markers
 
         env.draw, env.mail_counter = draw, mail_counter
         return self
@@ -88,6 +92,8 @@ def verify(layout, atlas, verbose=True):
     results = {}
     for d in DOOR_STATE:
         results[f"room, door {DOOR_STATE[d]}"] = count(rebuild(layout, atlas, d), approved_room(d))
+    results["lit room, door closed"] = count(rf.light_orientation(rebuild(layout, atlas, 0.0), bst),
+                                            rf.light_orientation(approved_room(0.0), bst))
     originals = {d: g.scene(*STILL, door_open=d) for d in DOOR_STATE}
     screens = {d: g.to_screen(originals[d])[1] for d in DOOR_STATE}
     with AtlasEnvironment(layout, atlas):
@@ -107,9 +113,9 @@ def build(write=True):
     atlas, layout = load()
     results = verify(layout, atlas)
     if write:
-        room = rebuild(layout, atlas, 0.0)
+        room = rf.light_orientation(rebuild(layout, atlas, 0.0), bst)
         Image.fromarray(room).save(os.path.join(HERE, "orientation-review-room-native.png"))
-        with AtlasEnvironment(layout, atlas):
+        with AtlasEnvironment(layout, atlas, lit=True):
             screen = g.to_screen(g.scene(*STILL))[1]
         screen.save(os.path.join(HERE, "orientation-review-room-1366x768.png"))
     return results

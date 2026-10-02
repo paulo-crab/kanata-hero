@@ -170,8 +170,8 @@ class Canvas:
 def place(canvas, sprite, ax, ay, shadow=True):
     h, w = sprite.shape[:2]
     if shadow:
-        canvas[ay - 1, ax - 6:ax + 6] = bst.hx("#535971")
-        canvas[ay - 1, ax - 4:ax + 4] = bst.hx("#343650")
+        canvas[ay - 1, ax - 6:ax + 6] = bst.hx("#3A4160")
+        canvas[ay - 1, ax - 4:ax + 4] = bst.hx("#1C2038")
     x0, y0 = ax - w // 2, ay - h
     a = sprite[:, :, 3] > 0
     reg = canvas[y0:y0 + h, x0:x0 + w]
@@ -771,6 +771,9 @@ def allowed_palette():
     for role in ("ink", "floor", "glass", "wood", "foliage", "accent"):
         hexes |= {h.upper() for h in D[role]}
     hexes |= {h.upper() for h in dp.ORIENTATION_EXTRA["coral"]}
+    hexes |= {h.upper() for h in dp.FOLIAGE_EXTRA["orientation"].values()}  # rich finish: leaf edge and tip
+    for steps in dp.RICH_EXTRAS.values():  # planter, mulch, rocks, moss, petals, flower accents
+        hexes |= {h.upper() for h in steps}
     return hexes
 
 

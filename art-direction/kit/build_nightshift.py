@@ -30,6 +30,7 @@ sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
 import build_records as br  # noqa: E402
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import nightshift_kit as nk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_palettes as bp  # noqa: E402
@@ -170,6 +171,11 @@ def reference_layout():
     for nm, x, y in (("pot_plant_a", 0, 106), ("pot_plant_b", 146, 40), ("pot_plant_c", 198, 44),
                      ("pot_plant_d", 18, 146), ("pot_plant_c", 136, 98), ("pot_plant_b", 288 - 30, 170)):
         entry(nm, x, y + 4)
+    # rich-finish decor: benches and planters on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_c", 0, 52), ("pot_plant_a", 130, 166)):
+        entry(nm, x, y + 4)
+    entry("bench", 26, 160)
+    entry("bench_v", 3, 120)
     return {
         "kit": "nightshift", "atlas": "nightshift-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Night Shift reference room, built only from nightshift-atlas. Floor is a cell grid; every other element is a placement at "
@@ -456,6 +462,7 @@ def review(layout, atlas, pieces):
     check("route B is brighter than the silent old route A", route_l > old_l * 1.15, f"{route_l:.0f} vs {old_l:.0f} luma")
     # --- palette
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in NIGHT[role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['nightshift'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is a Night Shift ramp step; no violet", used <= allowed and not (used & violet),
@@ -919,6 +926,7 @@ def main():
     nchg = landmark_states(layout, atlas)
     before = render(layout, atlas, STATES_BEFORE)
     after = render(layout, atlas, STATES_AFTER)
+    before, after = rf.light_layout(before, layout, atlas, "nightshift"), rf.light_layout(after, layout, atlas, "nightshift")  # rich finish light, display only
     Image.fromarray(before).save(os.path.join(HERE, "nightshift-reference-room-native.png"))
     Image.fromarray(after).save(os.path.join(HERE, "nightshift-reference-room-after-native.png"))
     to_screen(before).save(os.path.join(HERE, "nightshift-reference-room-1366x768.png"))

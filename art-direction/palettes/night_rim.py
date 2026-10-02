@@ -10,7 +10,7 @@ is limited to the head and shoulders (sprite rows 0 to WARM_RIM_ROWS - 1).
 
   1. Moonlight (the open floor, and the body rows everywhere). Recolour the pixel to the cool rim
      `dp.NIGHT_RIM` (#8E96B8, glass step 2) only if
-       (a) it is #202337, or its own contrast against that background is below 3:1, AND
+       (a) it is #0E1020, or its own contrast against that background is below 3:1, AND
        (b) the rim contrasts with that background MORE than the pixel's current colour does.
      On the slate floor (#4C5865: rim 2.49:1 vs ink 2.13:1) the cool rim appears; on a warm lamp pool the
      moonlight loses to the ink outline (rim 1.27:1 vs ink 4.19:1) so the ink stays.

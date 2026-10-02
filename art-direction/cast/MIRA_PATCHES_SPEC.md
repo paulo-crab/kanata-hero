@@ -2,6 +2,8 @@
 
 **Status:** World sprite patches approved by the director 2026-10-02. Portrait icons re-placed for the chibi portraits 2026-10-02 (Candidate, pending director review).
 
+> **Rich finish (2026-10-02):** the outline colour is now `#0E1020` and the ink shoe ramp and renderer shadow move to the deeper ink ramp (`#1C2038` `#3A4160` `#6A7392`). Clothing, skin and hair ramps in this spec stay as approved. The sprites are queued for that recolour (OpenSpec change `adopt-rich-finish`); see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `design/characters/mira.md` ("Patch states"), `levels.md` ("Mira's repeatable speed routes"), the approved [MIRA_SPEC.md](MIRA_SPEC.md) and `mira_sprites.py`, and the portrait rules in [../portraits/PORTRAIT_RULES.md](../portraits/PORTRAIT_RULES.md). **Director decision** marks choices made for the director to record.
 
 ## Deliverables

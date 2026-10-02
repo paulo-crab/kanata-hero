@@ -17,7 +17,7 @@ _RAMP = dp.CAST_RAMPS["hal"]
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair, sandy blond (CAST_RAMPS): fill D C B, A only on contour / fringe tips
     **dict(zip("ABCD", _RAMP["hair"])),
     # skin, golden brown (CAST_RAMPS): fill n m l, k only on contour / forehead shadow
@@ -31,7 +31,7 @@ PAL = {
     # boots, heavy brown leather
     "S": "#3A2A28", "T": "#664636", "U": "#8E6244",
     # thick gloves, the ink ramp: shade g, fill h, lit j
-    "g": "#343650", "h": "#535971", "j": "#777A8C",
+    "g": "#1C2038", "h": "#3A4160", "j": "#6A7392",
     # tool roll, Systems safety orange (accent ramp): shade E, fill F, lit G, glint H
     "E": "#7A2F1B", "F": "#C2521A", "G": "#F2842B", "H": "#FFB36B",
 }

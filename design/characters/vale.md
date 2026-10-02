@@ -8,7 +8,7 @@
 | --- | --- |
 | Role | Executive liaison who signed summaries without seeing raw tickets. Waits beneath the atrium tree in level 20; gives the **Names on the Wall** side quest. |
 | Personality | Wants a defensible audit once shown the evidence. Starts rigid, softens across the three final repairs. Releases the raw audit to every floor in the epilogue. |
-| Pronouns | Not specified; use they/them until decided |
+| Pronouns | she/her (decided by the player 2026-10-02, matching `levels.md`) |
 | Signature item | **Copper badge** |
 
 Sources: `levels.md` cast table, Executive row, level 20.
@@ -91,4 +91,4 @@ Cues follow the **number of repairs completed, not which branch**, because the p
 1. Skin and hair ramps.
 2. The Executive hex palette, including a true copper.
 3. ~~Whether every facing needs all four softening states, or only S plus the epilogue.~~ Decided: every facing (VALE_SPEC decision 20).
-4. Pronouns.
+4. ~~Pronouns.~~ Decided 2026-10-02: she/her.

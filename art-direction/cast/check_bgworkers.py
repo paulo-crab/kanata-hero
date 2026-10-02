@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "kit"))
 CHECK = os.path.join(HERE, "..", "gate1", "check_gate1.py")
 MARKERS = {"#19AFA2", "#EC776D", "#9876D5", "#E6B750"}
 VIOLET = {"#413755", "#67547C", "#9477AF", "#C3A6D6"}
-INK = {"#202337", "#343650", "#535971"}
+INK = {"#0E1020", "#1C2038", "#3A4160"}
 FLOOR = "#E6D3B3"
 SAT_CAP = 30          # worker top / trouser / under steps, HSL %
 MIN_TOP_FLOOR = 2.0   # worker top fill vs floor, WCAG-style ratio, so figures stay findable

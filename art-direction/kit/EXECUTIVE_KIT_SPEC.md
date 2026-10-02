@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** this kit was drawn before the rich finish and is queued for re-render (OpenSpec change `adopt-rich-finish`). New and redrawn pieces follow `../rich-finish/RICH_FINISH_SPEC.md`: vivid world palette, deeper ink (`#0E1020` outline), leaf-fan foliage, light passes. Footprints, collision and layers in this spec do not change.
+
 **Sources:** `openspec/changes/complete-art-production/` (environment-kit spec, design decisions 3 and 4), STYLE_BIBLE §3, §6 and §7, PALETTES_SPEC.md (Executive ramps, decisions 5 and 7), `levels.md` Executive Floor and level 20, `docs/game-design.md` (district table, "Executive reference layout"), VALE_SPEC.md, RECORDS_KIT_SPEC.md (the method). **Director decision** marks choices the designer proposes for the director to record.
 
 Same atlas format, tools and method as Records. Orientation, Records and the shared tooling are untouched: `kitlib.py`, `shared_pieces.py`, `build_kit.py`, `check_atlas.py`, `records_kit.py` and `orientation_kit.py` have no edits (`build_kit.py` still ends `ZERO DIFF`, `check_atlas.py` ends `ATLAS CHECK PASSED`).
