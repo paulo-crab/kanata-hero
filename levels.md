@@ -77,7 +77,7 @@ The **Hint lines** under each level are sample prompts in the spec's [hint gramm
 #### 02. Badge Printer
 
 - **Place and story:** North of the garden, a personalized badge printer keeps producing generic employee names. Ivo asks the player to restore the engineer's badge and three coworkers' labels.
-- **Play:** Type short names, ordinary digits, punctuation, and home-row sequences. Guided prompts distinguish plain mapped taps such as `b`, `w`, `0`, `4`, `u`, `t`, `m`, `x`, `n`, `v`, `r`, and comma from later held-layer gestures; a shuffled label is the recall check. Include literal A/S/D/F and J/K/L/; taps and same-hand rolls. Cover B01–B02. The printer checks resulting text, not physical key origin.
+- **Play:** Type short names, ordinary digits, punctuation, and home-row sequences. Guided prompts distinguish plain mapped taps such as `b`, `w`, `0`, `4`, `u`, `t`, `m`, `x`, `n`, `v`, `r`, and comma from later held-layer gestures; a shuffled label is the recall check. Include literal A/S/D/F and J/K/L/; taps and same-hand rolls. Cover B01–B02. The printer checks resulting text, not physical key origin. Names and labels are typed in lowercase through level 03, because Shift is first taught in level 04 (the hint's "Bea" is spoken; the typed label is `bea`).
 - **Hint lines:**
   - Printer card: "To print the `b` in Bea's name, you need to press **B**." Hint: **tap B**. It only jumps by word while nav is held.
   - Printer card: "To print badge number 40, you need to press **4, then 0**." Hint: **tap 4**, **tap 0**. Plain taps stay digits on base.
@@ -169,7 +169,7 @@ The **Hint lines** under each level are sample prompts in the spec's [hint gramm
 #### 11. Marked for Review — Records review
 
 - **Place and story:** Noor wants the original routing sentence selected exactly before she sends a correction to the next floor. Pace insists the copy is equivalent.
-- **Play:** Select with Shift plus supported Caps navigation, using home-row F/J or a physical Shift in base; the Shift hold must engage before Caps is pressed, because F is a literal `f` and J is Down while Caps is held. Demonstrate that Caps+4 consumes Shift and goes to plain line end. Test Caps+A/S/F as literal letters while Caps is held; an accurate selection and replacement in a new report is the review. Revisit word, line, page, document, editing, Return, Escape, and the four arrows in distinct steps. Cover N19–N21 and review N01–N18, B03–B04. Do not assume Right Command grants Caps-only extended gestures.
+- **Play:** Select with Shift plus supported Caps navigation, using home-row F/J or a physical Shift in base; the Shift hold must engage before Caps is pressed, because F is a literal `f` and J is Down while Caps is held. Demonstrate that Caps+4 consumes Shift and goes to plain line end. Test Caps+A/S/F as literal letters while Caps is held; an accurate selection and replacement in a new report is the review. Revisit word, line, page, document, editing, Return, Escape, and the four arrows in distinct steps. Cover N19–N20, revisit N21 (introduced in level 06), and review N01–N18, B03–B04. Do not assume Right Command grants Caps-only extended gestures.
 - **Hint lines:**
   - Noor: "To select the next word of the routing sentence, you need to press **Shift + Option + Right**." Hint: **tap-hold J** (Shift) first, then **tap-hold Caps** + **W**. While nav is held, J is Down and F is a literal `f`.
   - Noor: "To jump to the line end without selecting, you need to press **Command + Right**." Hint: **tap-hold Caps** + **4** drops Shift, so it moves without extending the selection.
@@ -326,3 +326,10 @@ Main quest stars measure completion, clean completion, and a clean changed-conte
 Deliver a layered tile map, collision and interaction footprints, camera bounds, entrance and elevator links, main and Mira route annotations, before/after review frames, NPC starting positions and reaction poses, terminal scene IDs, lighting states, and a gesture coverage sheet with **guided / variation / recall** columns. Also deliver the shared editable sprite source, PNG atlas, district palette and light variants, anchors, frame timing, and prop/lighting masks. Make one full-resolution Orientation gameplay composition and one walkable Records room from the shared kit before bulk production. Review each district at 1366×768 and 1920×1080 with a keyboard inset open, then with larger text, high contrast, and reduced motion.
 
 No room may require a blind route, a speed threshold for story access, or an OS shortcut the browser cannot reliably observe. Keep the practice toggle-out instruction visible in Night Shift, keep all story interactions untimed, and give every route a clear way home.
+
+### Level data status
+
+The checklist above is delivered as validated JSON per district under [`design/levels/`](design/levels/), following the contract in [`SCHEMA.md`](design/levels/SCHEMA.md) and checked by `design/levels/validate_levels.py`. The global gesture inventory is `gesture-inventory.json` and the district, link, seal and Mira index is `world.json`.
+
+- **Orientation: delivered** (levels 01–06, Morning Mail, the Plant Tags side quest) in [`design/levels/orientation/`](design/levels/orientation/): district, map and collision, six level files, the Mira route, coverage, level sheet and the list of art still needed. The vertical-slice file list is [`design/levels/SLICE.md`](design/levels/SLICE.md).
+- Records, Systems, Night Shift and Executive deliver the same files in their own folders; this file stays the story and quest brief for them.
