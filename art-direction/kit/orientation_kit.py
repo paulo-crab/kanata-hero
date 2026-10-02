@@ -596,6 +596,10 @@ def build_pieces():
     quest, quest_anims = oq.build({p.name: p for p in pieces})
     pieces.extend(quest)
     anims.update(quest_anims)
+    # orientation completion (west wall, garden through-route, seating nook): appended after the quest props too
+    done, done_anims = completion_pieces({p.name: p for p in pieces})
+    pieces.extend(done)
+    anims.update(done_anims)
     mail = [p for p in placements if p[0] == "mail_counter"]
     placements = [p for p in placements if p[0] != "mail_counter"] + mail
     return pieces, placements, anims
@@ -643,6 +647,7 @@ QUEST_GROUPS = [  # (rank, name prefixes or exact names), checked before the old
     (10, ("review_table", "keyboard_", "mail_board", "mail_medals_", "mail_tray", "desk_folder")),
     (11, ("route_stripe_lit", "lamp_warm")),
     (12, ("artifact_",)),
+    (13, ("wall_w_plain", "garden_base_open", "garden_north_rim_open", "seating_nook_")),
 ]
 
 
@@ -755,7 +760,10 @@ def garden_after_pieces():
     return out
 
 
-GARDEN_PARTS_AFTER = GARDEN_PARTS_BEFORE + ["garden_after_path", "garden_after_blooms"]
+# After state: the same parts, but `garden_base_open` (identical pixels, collision with column 1 walkable) replaces
+# `garden_base`, and `garden_north_rim_open` is drawn last so the opening cuts through the crown.
+GARDEN_PARTS_AFTER = (["garden_base_open"] + GARDEN_PARTS_BEFORE[1:]
+                      + ["garden_after_path", "garden_after_blooms", "garden_north_rim_open"])
 # Lamp footprint origins relative to the garden footprint origin (96, 78): lamp (cx, cy) -> (cx - 7 - 96, cy - 7 - 78)
 GARDEN_LAMP_OFFSETS = [[cx - 7 - GARDEN_FP[0], cy - 7 - GARDEN_FP[1]] for cx, cy in GARDEN_LAMPS]
 
@@ -778,9 +786,138 @@ def garden_landmark():
                            "garden_rocks": "foliage masses", "garden_centrepiece": "centrepiece",
                            "garden_canopy_shadow": "centrepiece", "garden_blooms": "foliage masses",
                            "garden_after_path": "quest state", "garden_after_blooms": "quest state",
+                           "garden_base_open": "base bed", "garden_north_rim_open": "quest state",
                            "lamp": "light accents"},
             "changes_after": ["a built opening in the south rim (end caps, stepped threshold, inlay strip) with three flagstones: the reopened cut-through",
+                              "the north rim opens too (garden_north_rim_open: a gap cut through the crown, a stepped sill and the inlaid strip), so the path runs through the bed",
+                              "collision: garden_base_open replaces garden_base, and cell column 1 of the 5x4 footprint (rows 0 to 3) becomes walkable",
                               "a new cluster of four coral blooms with brass centres and three brass glints",
                               "all three garden lamps switch from the steady glow to the wider pulse glow"],
         }
     }
+
+
+# ------------------------------------------------------------------ orientation completion (wave 2)
+# West wall piece, the garden's through-route (north rim opening and an open-collision base) and the seating nook.
+# Everything is appended after the quest props, so every earlier entry keeps its pixels, metadata and atlas rect.
+
+def wall_w_piece():
+    """West wall side plane, 28 px thick plus a 2 px cast shadow on the floor (30 x 16 px, footprint 2x1, tiles vertically).
+
+    Light is upper-left, so this is not a flipped wall_e_plain: the east wall's inner face looks west into the light and
+    carries the lit trim on its inner edge; the west wall's inner face looks east into shade, so the lit trim moves to the
+    outer (left) edge and the inner edge is dark, then the wall casts its shadow east onto the floor like the north wall."""
+    w = 30
+    sp = np.zeros((T, w, 4), np.uint8)
+    sp[:, :, 3] = 255
+    cols = {0: INK[2], 1: GLASS[2], 2: INK[1], 25: INK[1], 26: INK[0], 27: INK[0], 28: INK[2], 29: INK[3]}
+    for c in range(w):
+        sp[:, c, :3] = cols.get(c, INK[0])
+    return Piece("wall_w_plain", sp, (0, 0), (0, 0), (2, 1), ["11"], "rear_wall", "wall", shadow=(28, 0, 2, T),
+                 note="west wall segment, side plane: dark mass, lit trim on the outer edge (light is upper-left, so the inner face "
+                      "is in shade), then a 2 px cast shadow on the floor; tiles vertically, 28 px thick plus the shadow, "
+                      "content starts at the cell edge (x = 0)",
+                 tags=["wall", "west", "side plane"])
+
+
+def draw_north_opening(r):
+    """The garden's north rim opens above the cut-through column (x 112-128, the same column as the south opening). The
+    crown is parted over that column: the rim ends reappear as two stubs with contour on the cut faces, a stepped sill closes
+    the gap, and the inlaid path strip runs from the ring, through the shade under the crown, to the first south flagstone.
+    Drawn last in the after state, over the crown."""
+    # shaded corridor under the crown: dark verge, leaf-lit edge pixels at the cut
+    for y in range(78, 102):
+        j = (y // 3) % 2
+        r.rect(112 + j, y, 118, y + 1, GREEN[1])
+        r.rect(126, y, 129 - j, y + 1, GREEN[1])
+        r.rect(111 + j, y, 112 + j, y + 1, GREEN[3] if y % 4 == 0 else GREEN[2])
+        r.rect(129 - j, y, 130 - j, y + 1, GREEN[3] if y % 4 == 2 else GREEN[2])
+    r.rect(112, 101, 128, 102, GREEN[0])                # corridor meets the bed floor: leaf shade at the lower end
+    # inlaid path strip, same recipe as the south opening's strip: lit under the sky, shaded under the crown
+    for y0, y1, body, lit, dark in ((64, 84, STONE[2], STONE[3], STONE[1]), (84, 101, STONE[1], STONE[2], STONE[0]),
+                                    (101, 107, STONE[2], STONE[3], STONE[1])):
+        r.rect(118, y0, 126, y1, body)
+        r.rect(118, y0, 119, y1, lit)                   # lit left edge
+        r.rect(125, y0, 126, y1, dark)                  # shaded right edge
+    for y in (89, 95):                                  # flagstone joints
+        r.rect(119, y, 125, y + 1, STONE[0])
+    # rim ends: the hidden north rim reappears either side of the gap (contour, lit top plane, inner contour)
+    r.rect(106, 78, 112, 79, INK[0])
+    r.rect(106, 79, 111, 80, STONE[3])
+    r.rect(106, 80, 111, 83, STONE[2])
+    r.rect(106, 83, 112, 84, INK[0])
+    r.rect(111, 78, 112, 84, INK[0])                    # west cut face
+    r.rect(129, 78, 135, 79, INK[0])
+    r.rect(130, 79, 135, 82, STONE[2])
+    r.rect(130, 82, 135, 83, STONE[1])
+    r.rect(129, 83, 135, 84, INK[0])
+    r.rect(129, 78, 130, 84, INK[0])                    # east cut face
+    r.rect(130, 79, 131, 83, STONE[0])                  # shaded side plane beside the face
+    # sill across the gap: lit floor, nosing and shaded riser (two-tone joint, as in the south threshold)
+    r.rect(112, 78, 129, 83, STONE[3])
+    r.rect(112, 82, 129, 83, STONE[2])
+    r.rect(112, 83, 129, 84, STONE[1])
+    r.rect(118, 78, 126, 84, STONE[2])
+    r.rect(118, 78, 119, 84, STONE[3])
+    r.rect(125, 78, 126, 84, STONE[1])
+
+
+def completion_pieces(by_name):
+    """wall_w_plain, garden_base_open, garden_north_rim_open, the seating nook and its glow; plus the nook's state set."""
+    out = [wall_w_piece()]
+    # garden: same pixels as garden_base, collision opens column 1 (the cut-through) on all four rows
+    base = by_name["garden_base"]
+    out.append(Piece("garden_base_open", base.sprite.copy(), base.tl, base.fp_room, (5, 4), ["10111"] * 4, "rear_prop",
+                     "landmark_part", shadow=base.shadow,
+                     note="after state's base bed: pixel-identical to garden_base, but cell column 1 of the footprint walks, so the "
+                          "cut-through is a real route; garden_base keeps the full block for the before state",
+                     tags=["garden", "landmark", "after", "collision"]))
+    x0, y0, x1, y1 = GARDEN_BOX
+    rgba, painted = kitlib.capture(draw_north_opening, new_room)
+    outside = painted.copy()
+    outside[y0:y1, x0:x1] = False
+    assert not outside.any(), "north opening leaves the landmark box"
+    out.append(Piece("garden_north_rim_open", rgba[y0:y1, x0:x1].copy(), (x0, y0), GARDEN_FP, (5, 4), ["00000"] * 4,
+                     "rear_prop", "landmark_part",
+                     note="after: the north rim opens above the cut-through column: inlaid strip from the ring, a gap cut through the "
+                          "crown, flagstone joints, a stepped sill and end caps. Landmark part, drawn last over the crown; a 1x1 "
+                          "floor marking could not paint over the canopy.",
+                     tags=["garden", "landmark", "after", "path"]))
+    # seating nook: planter, side table, lamp and sofa from the existing pieces on one 3x2 footprint
+    canvas = np.zeros((96, 112, 4), np.uint8)
+    FX, FY = 24, 40                                     # footprint origin on the canvas
+
+    def put(piece, cx, cy, dx=0, dy=0):
+        ox, oy = piece.fp_room[0] - piece.tl[0], piece.fp_room[1] - piece.tl[1]
+        x, y = FX + cx * T + dx - ox, FY + cy * T + dy - oy
+        sp = piece.sprite
+        h, w = sp.shape[:2]
+        a = sp[:, :, 3] > 0
+        reg = canvas[y:y + h, x:x + w]
+        reg[a] = sp[a]
+    put(by_name["pot_plant_g"], 0, 0)                   # row 0: planter, side table, lamp
+    put(by_name["side_table"], 1, 0, 2, 0)
+    put(by_name["lamp"], 2, 0)
+    put(by_name["sofa"], 0, 1)                          # row 1: the sofa, two cells
+    ys, xs = np.nonzero(canvas[:, :, 3])
+    b = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)
+    out.append(Piece("seating_nook_after", kitlib.crop_rgba(canvas, b), (b[0], b[1]), (FX, FY), (3, 2), ["111", "110"],
+                     "rear_prop", "prop", y_sort=True,
+                     note="the hidden seating nook the cut-through reveals: terracotta sofa, side table, planter and a floor lamp on a "
+                          "3x2 footprint, assembled from the existing sofa, side_table, pot_plant_g and lamp sprites. Collision 111/110; "
+                          "the lamp's glow pool is seating_nook_glow. State set seating_nook: hidden (nothing) then shown.",
+                     tags=["seating", "nook", "after", "composition"]))
+    # one extra lamp pool: the lamp's halo (radius 5.2, where_color on lit floor), registered at the nook's footprint origin.
+    # The lamp stands in nook cell (2, 0) and the glow shares the lamp's footprint, so it is offset by two cells.
+    g = by_name["lamp_glow_on"]
+    gx, gy = FX + 2 * T - (g.fp_room[0] - g.tl[0]), FY - (g.fp_room[1] - g.tl[1])
+    out.append(Piece("seating_nook_glow", g.sprite.copy(), (gx, gy), (FX, FY), (3, 2), ["000", "000"], "light", "light",
+                     composite=dict(g.composite),
+                     note="the nook lamp's glow pool: the same single brass step as lamp_glow_on, on lit floor only",
+                     tags=["seating", "nook", "glow", "lamp"]))
+    anims = {"seating_nook": {
+        "kind": "state_set", "default": "hidden",
+        "states": {"hidden": {"entries": []}, "shown": {"entries": ["seating_nook_after", "seating_nook_glow"]}},
+        "note": "hidden draws nothing and blocks nothing; shown adds the composition and one lamp pool (revealed with the "
+                "garden cut-through, level 06)"}}
+    return out, anims

@@ -38,10 +38,10 @@ GATE1 = os.path.join(HERE, "..", "gate1")
 
 STATES_BEFORE = {"elevator": "open", "turnstile": "closed", "clock_twin": "unsynced", "conference_door": "closed",
                  "pinboard": "empty", "mail_medals": "0", "lamp": "off", "lamp_warm": "off", "corridor_stripe": "unlit",
-                 "garden": "before", "records_door": "closed"}
+                 "garden": "before", "records_door": "closed", "seating_nook": "hidden"}
 STATES_AFTER = {"elevator": "closed", "turnstile": "open", "clock_twin": "synced", "conference_door": "open",
                 "pinboard": "after", "mail_medals": "3", "lamp": "on", "lamp_warm": "on", "corridor_stripe": "lit",
-                "garden": "after", "records_door": "closed"}
+                "garden": "after", "records_door": "closed", "seating_nook": "shown"}
 
 
 # ------------------------------------------------------------------ layout
@@ -100,6 +100,8 @@ def layout():
         E(f"stamp_{k}", 332 + 2 + 8 * i, 104 + 1)
     E("chair", 343, 122)
     A("lamp_warm", 320, 106)
+    # the hidden seating nook (revealed with the cut-through; level 06): east of the garden ring
+    A("seating_nook", 288, 146)
     # review table (level 06) with the two keyboards and two chairs
     E("review_table", 184, 196)
     E("keyboard_macbook", 187, 197)
@@ -465,6 +467,299 @@ def shared_proof():
     sheet.save(os.path.join(HERE, "orientation-shared-builders-proof.png"))
 
 
+# ------------------------------------------------------------------ completion proof: north-wall elevator, west wall, garden route, nook
+
+COMPLETION_NEW = ("wall_w_plain", "garden_base_open", "garden_north_rim_open", "seating_nook_")
+CCW, CCH = 14, 8       # completion room: 224 x 128 px, the north-west corner of the building
+LIFT_X = 32            # the west wall is 2 cells thick, so the west-end elevator module starts at cell 2
+
+
+def floor_rows_for(cw, ch):
+    rows = []
+    for cy in range(ch):
+        row = ""
+        for cx in range(cw):
+            hj = cy % 2 == 0
+            vj = (cx % 2 == 0) if (cy // 2) % 2 == 0 else (cx % 2 == 1)
+            row += "J" if hj and vj else "H" if hj else "V" if vj else "P"
+        rows.append(row)
+    return rows
+
+
+def completion_layout():
+    """The north-west corner as the real Orientation room has it: the elevator module in the north wall at the west end (cells 2-4,
+    beside the 2-cell west wall), its call panel, glass bays, the west wall running south, and the lit LIFT mat in the Orientation palette."""
+    pl = []
+
+    def E(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+    for c in range(CCW):
+        if c not in (2, 3, 4):
+            E("wall_n_plain", c * T, 0)
+    pl.append({"anim": "elevator", **at(LIFT_X, 0)})
+    E("elevator_call_panel", LIFT_X + 52, 9)
+    for nm, x in (("wall_n_window_a", 116), ("wall_n_window_b", 148), ("wall_n_window_a", 184)):
+        E(nm, x, 9)
+    for cy in range(2, CCH):
+        E("wall_w_plain", 0, cy * T)
+    E("pot_plant_c", 196, 78)
+    E("pot_plant_a", 84, 100)
+    return {
+        "kit": "orientation", "atlas": "orientation-atlas.json", "tile": T, "size_cells": [CCW, CCH],
+        "note": "Completion proof: the Orientation arrival corner. Elevator module (3x3) in the north wall at the west end, starting at "
+                "cell 2 because wall_w_plain is 2 cells thick; call panel on the wall face to its right; lit LIFT mat on the floor row below.",
+        "states": {"elevator": "open"},
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": floor_rows_for(CCW, CCH)},
+        "placements": pl,
+    }
+
+
+def render_completion(lay, atlas, actors):
+    back = kitlib.render_layout(lay, atlas, layers=BACK)
+    for p, x, y in actors:
+        place(back, person(os.path.join(HERE, "..", p)), x, y)
+    kitlib.render_layout(lay, atlas, layers=FRONT, base=back)
+    return back
+
+
+def distances(grid, start):
+    """BFS step counts over the walkable cells of a collision grid; unreachable cells are absent."""
+    ch, cw = grid.shape
+    dist = {start: 0}
+    q = deque([start])
+    while q:
+        x, y = q.popleft()
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < cw and 0 <= ny < ch and (nx, ny) not in dist and not grid[ny, nx]:
+                dist[(nx, ny)] = dist[(x, y)] + 1
+                q.append((nx, ny))
+    return dist
+
+
+def path_cells(grid, start, goal):
+    """One shortest path (list of cells) between two walkable cells, or None."""
+    ch, cw = grid.shape
+    prev = {start: None}
+    q = deque([start])
+    while q:
+        c = q.popleft()
+        if c == goal:
+            out = []
+            while c is not None:
+                out.append(c)
+                c = prev[c]
+            return out[::-1]
+        x, y = c
+        for dx, dy in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < cw and 0 <= ny < ch and (nx, ny) not in prev and not grid[ny, nx]:
+                prev[(nx, ny)] = c
+                q.append((nx, ny))
+    return None
+
+
+GARDEN_CELL = (10, 6)            # proof-room cell of the garden footprint origin (the placement is at (168, 102))
+GARDEN_EXITS = ((11, 5), (11, 10))  # north and south ends of the cut-through column (landmark cell column 1)
+
+
+def garden_collision(lay_before, lay_after, atlas):
+    gb = kitlib.collision_grid(lay_before, atlas)
+    ga = kitlib.collision_grid(lay_after, atlas)
+    return gb, ga
+
+
+def map_route_report(atlas):
+    """Informational: the current Orientation level data (design/levels/orientation/map.json, read-only), its collision rebuilt from
+    this atlas with the garden in the after state, and the shortest walks with and without the cut-through. Never fails the build
+    (the level designers own that file); names missing from the atlas are skipped."""
+    path = os.path.join(HERE, "..", "..", "design", "levels", "orientation", "map.json")
+    try:
+        with open(path) as fh:
+            m = json.load(fh)
+        cw, ch = m["size_cells"]
+        out = []
+        grids = {}
+        for state in ("before", "after"):
+            pl = []
+            for p in m["placements"]:
+                if p.get("id") == "turnstile":
+                    continue                      # open after level 01: these walks are the return trips of a finished Orientation
+                d = {"cell": p["cell"]}
+                if p.get("offset"):
+                    d["offset"] = p["offset"]
+                if "landmark" in p:
+                    if p["landmark"] not in atlas.landmarks:
+                        continue
+                    d.update(landmark=p["landmark"], state=state if p["landmark"] == "garden" else p.get("state"))
+                elif p.get("state_set") and p["state_set"] in atlas.animations:
+                    d.update(anim=p["state_set"], state=p.get("state"))
+                elif p["entry"] in atlas.entries and not p.get("state_set"):
+                    d["entry"] = p["entry"]
+                else:
+                    continue
+                pl.append(d)
+            rows = [("P" * cw) for _ in range(ch)]
+            lay = {"size_cells": [cw, ch], "states": {}, "floor": {"legend": {"P": "floor_p"}, "rows": rows}, "placements": pl}
+            g = kitlib.collision_grid(lay, atlas)
+            for x0, y0, rw, rh in m.get("implicit_walls", []):
+                g[y0:y0 + rh, x0:x0 + rw] = True
+            grids[state] = g
+        pairs = [("printer approach (13,3) to Ivo's post (12,13)", (13, 3), (12, 13)),
+                 ("north desk stop (9,4) to the south desk stop (10,14)", (9, 4), (10, 14)),
+                 ("Ivo's north spot (11,4) to Mira at the right desk (18,9)", (11, 4), (18, 9)),
+                 ("north desk stop (9,4) to Mira in the mailroom (20,14), turnstile open", (9, 4), (20, 14)),
+                 ("printer approach (13,3) to Mira in the mailroom (20,14), turnstile open", (13, 3), (20, 14))]
+        col = [(12, y) for y in range(7, 11)]
+        out.append("  map.json garden column x12, y7-10 blocked before / after: "
+                   + ", ".join(f"{int(grids['before'][y, x])}/{int(grids['after'][y, x])}" for x, y in col))
+        for label, a, b in pairs:
+            nb = path_cells(grids["before"], a, b)
+            na = path_cells(grids["after"], a, b)
+            uses = bool(na) and any(c in col for c in na)
+            out.append(f"  map.json walk {label}: {len(nb) - 1 if nb else 'none'} steps before, "
+                       f"{len(na) - 1 if na else 'none'} after{' (through the cut-through)' if uses else ''}")
+        return out
+    except (OSError, KeyError, ValueError, IndexError) as e:  # level data is not ours: report, never fail
+        return [f"  map.json route report skipped ({type(e).__name__}: {e})"]
+
+
+def completion_proof(atlas, lay_before, lay_after):
+    """Writes orientation-completion-reference-room.json and orientation-completion-proof.png. Returns (errors, report lines)."""
+    errs, lines = [], []
+    lay = completion_layout()
+    with open(os.path.join(HERE, "orientation-completion-reference-room.json"), "w") as fh:
+        json.dump(lay, fh, indent=1)
+        fh.write("\n")
+    import build_room
+    open_l = build_room.with_states(lay, elevator="open")
+    shut_l = build_room.with_states(lay, elevator="closed")
+    arrive = [("gate1/engineer-atlas.png", 56, 46)]       # stepping off the mat, doors open
+    away = [("gate1/engineer-atlas.png", 56, 78)]         # walking into reception, doors closed
+    im_open = render_completion(open_l, atlas, arrive)
+    im_shut = render_completion(shut_l, atlas, away)
+    # collision proof for the corner: the west wall blocks two cells, the mat row walks, the open centre cell walks in
+    g = kitlib.collision_grid(open_l, atlas)
+    for y in range(2, CCH):
+        for x in (0, 1):
+            if not g[y, x]:
+                errs.append(f"completion: west wall cell ({x},{y}) is not blocked")
+    for x in (2, 3, 4):
+        if g[2, x]:
+            errs.append(f"completion: lift mat cell ({x},2) is blocked")
+    if g[1, 3]:
+        errs.append("completion: the open elevator's centre cell (3,1) does not walk in")
+    if not g[1, 2] or not g[1, 4]:
+        errs.append("completion: elevator jambs should block")
+    gs = kitlib.collision_grid(shut_l, atlas)
+    if not gs[1, 3]:
+        errs.append("completion: the closed elevator's centre cell (3,1) should block")
+    reach = distances(g, (3, 2))
+    for cell in ((3, 1), (7, 4), (12, 6)):
+        if cell not in reach:
+            errs.append(f"completion: {cell} unreachable from the lift mat")
+    # the mat reads against the floor: its body and edge differ from the lit floor, and the lettering is the darkest brass step
+    bare = render_completion(open_l, atlas, [])
+    floor_px = np.array(kitlib.hex2rgb(dp.DISTRICTS["orientation"]["floor"][3]), np.uint8)
+    body, edge = bare[38, 38], bare[36, 56]
+    if np.array_equal(edge, floor_px) or np.array_equal(body, floor_px):
+        errs.append("completion: the LIFT mat blends into the floor")
+    lines.append(f"  lift mat in the Orientation palette: body {kitlib.hexs(body)}, edge {kitlib.hexs(edge)} on floor {kitlib.hexs(floor_px)}")
+    # garden: the cut-through column, in the proof room's collision grid
+    gb, ga = garden_collision(lay_before, lay_after, atlas)
+    gx, gy = GARDEN_CELL
+    col = [(gx + 1, gy + k) for k in range(4)]
+    for c in col:
+        if not gb[c[1], c[0]]:
+            errs.append(f"garden before: cut-through cell {c} should block")
+        if ga[c[1], c[0]]:
+            errs.append(f"garden after: cut-through cell {c} should walk")
+    fp = [(gx + i, gy + k) for i in range(5) for k in range(4) if (gx + i, gy + k) not in col]
+    for c in fp:
+        if not ga[c[1], c[0]]:
+            errs.append(f"garden after: bed cell {c} should still block")
+    n_cell, s_cell = GARDEN_EXITS
+    pb, pa = path_cells(gb, n_cell, s_cell), path_cells(ga, n_cell, s_cell)
+    if not pb or not pa:
+        errs.append("garden: no walk between the north and south ends of the column")
+    else:
+        if any(c in col for c in pb):
+            errs.append("garden before: the walk uses the cut-through")
+        if pa != [(n_cell[0], n_cell[1] + k) for k in range(6)]:
+            errs.append(f"garden after: the shortest walk does not run straight through the column: {pa}")
+        if len(pa) >= len(pb):
+            errs.append("garden after: the cut-through is not shorter than the way round")
+        lines.append(f"  garden through-route (proof room): {len(pb) - 1} steps round the ring before, {len(pa) - 1} steps through the column after")
+    # nook: blocked cells in the shown state only
+    nb = kitlib.collision_grid(lay_before, atlas)
+    na = kitlib.collision_grid(lay_after, atlas)
+    nc = [(18 + i, 9 + k) for i, k in ((0, 0), (1, 0), (2, 0), (0, 1), (1, 1))]
+    for c in nc:
+        if na[c[1], c[0]] == nb[c[1], c[0]]:
+            errs.append(f"nook: cell {c} does not change collision between hidden and shown")
+    if na[10, 20] and not nb[10, 20]:
+        errs.append("nook: cell (20,10) should stay walkable")
+    # proof sheet
+    Z, pad = 4, 16
+    f_h, f_s = bst.font(20, bold=True), bst.font(14)
+    panels = []
+
+    def up(img, z):
+        return Image.fromarray(img).resize((img.shape[1] * z, img.shape[0] * z), Image.NEAREST)
+    after_room = render(lay_after, atlas)
+    before_room = render(lay_before, atlas)
+    gbox = (136, 56, 280, 184)      # garden ring and its surroundings in the proof room
+
+    def tint(img, grid, cells, path=None):
+        out = img.copy().astype(np.int32)
+        for cy in range(grid.shape[0]):
+            for cx in range(grid.shape[1]):
+                if grid[cy, cx]:
+                    out[cy * T:(cy + 1) * T, cx * T:(cx + 1) * T] = (out[cy * T:(cy + 1) * T, cx * T:(cx + 1) * T] * 0.55
+                                                                      + np.array([230, 90, 80]) * 0.45)
+        out = out.astype(np.uint8)
+        im = Image.fromarray(out)
+        d = ImageDraw.Draw(im)
+        if path:
+            pts = [(c[0] * T + 8, c[1] * T + 8) for c in path]
+            d.line(pts, fill="#A0DDD4", width=3)
+            for c in (path[0], path[-1]):
+                d.ellipse([c[0] * T + 5, c[1] * T + 5, c[0] * T + 11, c[1] * T + 11], fill="#A0DDD4")
+        return np.array(im)
+    ga_t, gb_t = tint(after_room, ga, None, pa), tint(before_room, gb, None, pb)
+    cropg = lambda im: im[gbox[1]:gbox[3], gbox[0]:gbox[2]]  # noqa: E731
+    panels.append(("Arrival corner: elevator open, avatar on the LIFT mat (x4)", up(im_open, Z)))
+    panels.append(("Doors closed, avatar leaving the mat (x4)", up(im_shut, Z)))
+    panels.append(("NW corner detail (x8): wall_w_plain beside wall_n_plain, elevator module and mat", up(im_open[0:64, 0:112], 8)))
+    panels.append((f"Garden BEFORE, collision (red = blocked): shortest north-south walk {len(pb) - 1 if pb else '-'} steps, round the ring (x4)", up(cropg(gb_t), Z)))
+    panels.append((f"Garden AFTER: column x11 walks, the walk runs straight through, {len(pa) - 1 if pa else '-'} steps (x4)", up(cropg(ga_t), Z)))
+    nbox = (272, 120, 352, 184)
+    panels.append(("Seating nook hidden (x6)", up(before_room[nbox[1]:nbox[3], nbox[0]:nbox[2]], 6)))
+    panels.append(("Seating nook shown: sofa, side table, planter, lamp and one glow pool (x6)", up(after_room[nbox[1]:nbox[3], nbox[0]:nbox[2]], 6)))
+    W = 1500
+    x = y = pad
+    rowh = 0
+    place_list = []
+    y = 64
+    for lab, im in panels:
+        if x + im.width > W and x > pad:
+            x, y = pad, y + rowh + 44
+            rowh = 0
+        place_list.append((x, y, lab, im))
+        x += im.width + pad
+        rowh = max(rowh, im.height)
+    sheet = Image.new("RGB", (W, y + rowh + 40), BG)
+    d = ImageDraw.Draw(sheet)
+    d.text((pad, 16), "Orientation completion proof: north-wall elevator with the arrival mat, the west wall, the garden through-route "
+           "and the seating nook.", font=f_h, fill="#F4F2EC")
+    for px, py, lab, im in place_list:
+        sheet.paste(im, (px, py))
+        d.text((px, py + im.height + 4), lab, font=f_s, fill="#C5CED0")
+    sheet.save(os.path.join(HERE, "orientation-completion-proof.png"))
+    Image.fromarray(im_open).save(os.path.join(HERE, "orientation-completion-room-native.png"))
+    return errs, lines
+
+
 # ------------------------------------------------------------------ verification
 
 QUEST_NAMES = None
@@ -577,7 +872,7 @@ def new_names(atlas):
         if n.startswith(("elevator_", "turnstile_", "clock_twin_", "conference_glass_door_", "projected_form_wall", "stamp_",
                          "pinboard_", "desk_left_cherry", "desk_right_mirror", "desk_a_front", "desk_b_front", "review_table",
                          "keyboard_", "mail_board", "mail_medals_", "mail_tray", "desk_folder", "route_stripe_lit", "lamp_warm",
-                         "artifact_")):
+                         "artifact_") + COMPLETION_NEW):
             names.append(n)
     return set(names)
 
@@ -599,6 +894,8 @@ def build():
     cov_rows, _ = seated_fit(atlas)
     shared_proof()
     errs, ncol = verify(atlas, lay_before, lay_after, report, cov_rows)
+    cerrs, clines = completion_proof(atlas, lay_before, lay_after)
+    errs += cerrs
     print(f"quest props: {len(new_names(atlas))} new entries, {ncol} distinct colours, all inside the Orientation palette"
           if not any("palette" in e for e in errs) else "palette FAILED")
     for anim, d in report.items():
@@ -608,6 +905,9 @@ def build():
     print("seat coverage (16 x 24 frame, # = hidden by desk_a_front):")
     for y, row in enumerate(cov_rows):
         print(f"  row {y:2d} {row}")
+    print("completion proof:")
+    for ln in clines + map_route_report(atlas):
+        print(ln)
     for e in errs:
         print("FAIL", e)
     return errs

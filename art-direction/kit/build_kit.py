@@ -35,7 +35,8 @@ SECTIONS = [(0, "FLOOR AND ROUTE"), (1, "WALLS"), (2, "SLIDING GLASS DOOR (close
             (9, "QUEST PROPS: STAMPS, PINBOARD (state set pinboard), DESK VARIANTS AND DESK-FRONT OCCLUDERS"),
             (10, "QUEST PROPS: REVIEW TABLE, KEYBOARDS, MAILROOM BOARD (state set mail_medals), TRAY, FOLDER"),
             (11, "QUEST LIGHT: CORRIDOR STRIPE (state set corridor_stripe) AND THE WARM LAMP (state set lamp_warm)"),
-            (12, "ORIENTATION ARTIFACTS (16 x 16, inspectable)")]
+            (12, "ORIENTATION ARTIFACTS (16 x 16, inspectable)"),
+            (13, "COMPLETION: WEST WALL, GARDEN THROUGH-ROUTE (after state parts) AND THE SEATING NOOK (state set seating_nook)")]
 
 
 def build_atlas():
