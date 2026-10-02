@@ -1,6 +1,6 @@
 """Mira's six delivery patches as overlay data on the approved world sprite and portrait.
 
-Status: Approved by the director 2026-10-02. Spec: MIRA_PATCHES_SPEC.md.
+Status: world patches approved by the director 2026-10-02; PORTRAIT_PATCHES re-placed for the chibi portraits (pending director review). Spec: MIRA_PATCHES_SPEC.md.
 Does not edit mira_sprites.py: every state is built by painting the patches onto the
 approved frames. State k (0..6) shows patches 1..k, added in route order (mira.md "Patch
 states"). Coordinates are for a frame at rest (idle frame 0, dy = 0); the 1 px settle
@@ -75,40 +75,43 @@ PATCHES = [
 ]
 
 
-# Portrait icons: the same six colour identities drawn as 4-6 px icons on the front-facing jacket
-# (green panel on the left, ochre on the right, the strap running down to the right). Each entry
-# is (top row, left column, rows); "." leaves the jacket showing. Rows 36-47 are the shoulders.
+# Portrait icons (chibi direction C): the same six colour identities drawn as 4-6 px icons on the
+# tiny shoulders. The jacket is the green panel on the left of the portrait (the strap runs down
+# from the upper left to the middle of the bottom edge) and the ochre panel on the right. Patches 1-2
+# sit on the green panel either side of the strap, patches 3-6 in two rows on the ochre panel, each
+# kept clear of the zip, the strap and the dark right edge. Each entry is (top row, left column,
+# rows); "." leaves the jacket showing. Rows 38-47 are the shoulders.
 PORTRAIT_PATCHES = [
-    {"id": "first_delivery", "icon": "envelope: peach body, coral flap", "stamps": [(39, 4, [
+    {"id": "first_delivery", "icon": "envelope: peach body, coral flap", "stamps": [(44, 9, [
         "diiiid",
         "idiidi",
         "iiddii",
         "iiiiii"])]},
-    {"id": "clear_address", "icon": "map pin: lime ring, green hole", "stamps": [(44, 5, [
+    {"id": "clear_address", "icon": "map pin: lime ring, green hole", "stamps": [(40, 18, [
         ".jjj.",
         "jjFjj",
         ".jjj.",
         "..j.."])]},
-    {"id": "archive_loop", "icon": "loop: brass ring with a glint", "stamps": [(44, 16, [
+    {"id": "archive_loop", "icon": "loop: brass ring with a glint", "stamps": [(40, 25, [
         ".aaa.",
         "a...a",
         "a...a",
         ".aab."])]},
-    {"id": "signed_and_sent", "icon": "check mark in navy ink", "stamps": [(37, 32, [
+    {"id": "signed_and_sent", "icon": "check mark in navy ink", "stamps": [(40, 31, [
         ".....O",
         "O...O.",
         ".O.O..",
         "..O..."])]},
-    {"id": "signal_keeper", "icon": "three rising pale-gold bars", "stamps": [(41, 39, [
+    {"id": "signal_keeper", "icon": "three rising pale-gold bars", "stamps": [(44, 26, [
         "....g",
         "..g.g",
         "g.g.g",
         "g.g.g"])]},
-    {"id": "night_courier", "icon": "navy crescent with a brass star", "stamps": [(44, 33, [
-        ".OO..",
-        "O..b.",
-        "O....",
-        ".OO.."])]},
+    {"id": "night_courier", "icon": "navy crescent with a brass star", "stamps": [(44, 32, [
+        "..OO.",
+        ".b..O",
+        "....O",
+        "..OO."])]},
 ]
 
 

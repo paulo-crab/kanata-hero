@@ -1,6 +1,6 @@
 # Mira's six delivery patches: world sprite and portrait
 
-**Status:** Approved by the director 2026-10-02.
+**Status:** World sprite patches approved by the director 2026-10-02. Portrait icons re-placed for the chibi portraits 2026-10-02 (Candidate, pending director review).
 
 **Sources:** `design/characters/mira.md` ("Patch states"), `levels.md` ("Mira's repeatable speed routes"), the approved [MIRA_SPEC.md](MIRA_SPEC.md) and `mira_sprites.py`, and the portrait rules in [../portraits/PORTRAIT_RULES.md](../portraits/PORTRAIT_RULES.md). **Director decision** marks choices made for the director to record.
 
@@ -46,7 +46,7 @@ World sites at rest (idle frame 0 coordinates):
 | 5 Signal Keeper | (11,13) g, (12,13) g | (3,13) g, (4,13) g | (10,13) g, (11,13) g | (8,14) g, (9,14) g |
 | 6 Night Courier | (9,12) b, (10,12) O | (5,12) b, (6,12) O | (8,12) b, (9,12) O | (9,16) b, (10,16) O |
 
-Portrait icon positions (top row, left column): 1 at (39,4), 2 at (44,5), 3 at (44,16), 4 at (37,32), 5 at (41,39), 6 at (44,33). Patches 1 to 3 sit on the green panel (her sleeve and flank); 4 to 6 sit on the ochre panel.
+Portrait icon positions on the chibi shoulders (top row, left column): 1 at (44,9), 2 at (40,18), 3 at (40,25), 4 at (40,31), 5 at (44,26), 6 at (44,32). Patches 1 and 2 sit on the green panel either side of the strap; patches 3 to 6 sit in two rows on the ochre panel, clear of the zip (column 24) and of the dark right edge (column 39).
 
 ## Director decisions
 
@@ -59,6 +59,7 @@ Portrait icon positions (top row, left column): 1 at (39,4), 2 at (44,5), 3 at (
 7. **Portrait icons.** Each patch is a 4–6 px icon with a frame or outline, a lit face and a detail where it fits (envelope flap, pin hole, loop glint, check, bars, star), in the world patch's colours. The portrait shows them clearly, as mira.md asks.
 8. **No change to bag, strap or head.** Patches never touch rows 0–9, the strap, the bag or the outline.
 9. **Scope.** Patches on the bag flap are not drawn: the flap swings and a patch there would change shape on the passing frames. The Night Shift strap exception (mira.md open question 2) stays open.
+10. **Portrait icons re-placed (chibi).** The chibi portrait has tiny shoulders (rows 38-47, cols 8-39), so the six icons were re-placed there. Only the portrait positions changed: the colours, the icon shapes and the world-sprite patches (`PATCHES`) are untouched. The ochre panel's dark right edge is one column wide and its light zip one column, so icons stay on mid ochre. The checker confirms each icon pixel lies on a jacket key, no icons touch, and each adds at least 5 px.
 
 ## Acceptance criteria
 

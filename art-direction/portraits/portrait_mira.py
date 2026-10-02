@@ -1,84 +1,109 @@
-"""Mira portraits, 48x48 logical px, three expressions, plus the six patch states.
+"""Mira portrait, chibi direction C, plus the six patch states. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Approved by the director 2026-10-02. Spec: PORTRAITS_SPEC.md, rules: PORTRAIT_RULES.md.
-Every key is a key of mira_sprites.PAL (hair ABCD, skin klmn, ochre panel wxyz, green panel
-EFGH, coral strap and bag cdef). No extra steps. Patch overlays come from
-../cast/mira_patches.py (PORTRAIT_PATCHES) and are applied by `with_patches`.
-Ruler:  0123456789012345 0123456789012345 0123456789012345  (the axis falls between 23|24)
+Status: Candidate, pending director review. A round head with a slightly pointed chin, big bright
+oval eyes with a second sparkle, a bun on her left (screen right) that is separated from the dome by an
+ink notch, a cocked right brow and a lopsided smirk. Signature: mira_grin (wink and a tongue-out grin).
+Every key is a key of mira_sprites.PAL (hair ABCD, skin klmn, ochre panel wxyz, green panel EFGH,
+coral strap cdef). The blush uses the skin ramp, not the strap coral (decision in PORTRAITS_SPEC).
+Patch icons come from ../cast/mira_patches.py (PORTRAIT_PATCHES) and are applied by `with_patches`.
 """
 import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(HERE, "..", "cast"))
-sys.path.insert(0, os.path.join(HERE, "..", "gate1"))
+import chibi  # noqa: E402
 import mira_sprites as spr  # noqa: E402
-import portrait_template as T  # noqa: E402
+from chibi import head_spans, rle_hair  # noqa: E402
 
+SPRITE = spr
 PAL = dict(spr.PAL)
 SLOTS = spr.SLOTS
-EXTRA = {}          # portrait-only keys {key: {"hex", "ramp", "why"}}; none
+EXTRA = {"r": {"hex": spr.PAL["r"], "use": "eye glints and teeth (the paper's lightest step)"}}
+SKIN = {"1": "n", "2": "m", "4": "D", "5": "r", "6": "w"}   # fill, shade, blush (the plum hair step, not the coral), glint, mouth inside
 BROW = "B"
-HAIR_SKIN_SEPARATED = False
-HAIR_TOUCH_SKIN = "mn"       # her hair and skin share luminance: only the lighter skin steps touch hair; A is the hair's shadow line
-TILT = {"neutral": [(0, 10, 1)], "concerned": [(0, 10, -1)], "pleased": []}   # she leans into motion (neutral and concerned lean opposite ways)
-STAMPS = {}
-SPRITE = spr
+SIGNATURES = ("mira_grin",)
+PROP_KEYS = "de"                                  # keys that identify the costume and prop at a glance
+TAGLINE = "Big sparkly eyes, a cocked right brow, a lopsided smirk; the bun sits apart from the dome. Winks."
 
-BASE = T.parse([
-    "................ ................ ................",
-    "................ ................ AAAA............",
-    "................ ..............AA CCCBAA..........",
-    "................ .AAAAAAAAAA..ACC DDCCCBA.........",
-    "...............A ADDDDDDBCCCooCCD DDCCCCBo........",
-    "..............AD DDDDBCCCBCCooCDD CCBCCCBo........",
-    ".............ADD DDDDCBCCCBCCoBDC CBCBCCBo........",
-    "............ADDD DBCCCCBCCCCCooCC CCCBBBo.........",
-    "............ADDD DCBCCCCBCCBCCCCC CBBooo..........",
-    "............ADDC CCCCCCCCBCCBCCCC CCBo............",
-    "............ADCC CCCCCCCCCCCCBCCC CCBo............",
-    "............ACCC CCCCCCCCCCCCCBCC CCBo............",
-    "............ACCC CAACCCCCCCCCCCCA CCBo............",
-    "............ACCC AnnAACCCAACCCCAm ACBo............",
-    "............ACCA nnnnnACAnmAACAmm mABo............",
-    "............oCAn nnnnnnAnnmmmAmmm mmBo............",
-    "............oBnn nnnnnnnnnmmmmmmm mmo.............",
-    ".............onn nnnnnnnmmmmmmmmm mmo.............",
-    "...........kkonn nnnnnnnmmmmmmmmm mmooo...........",
-    "..........knmonn nnnnnnmmmmmmmmmm mmommo..........",
-    "..........knmonn nnnnnnmmmmmmmmmm llommo..........",
-    "..........knlonn nnnnnmmmmmmmmmmm llommo..........",
-    "..........kmlonn nnnnnmmmmmmmmmmm llolmo..........",
-    "..........kmmonn nnnnmmmmmmmmmmmm llollo..........",
-    "..........kmmknn nnnnmmmmmmmmmmml llomlo..........",
-    "...........oo.on nnnmmmmmmmmmmmll lo.oo...........",
-    "..............on nnnmmmmmmmmmmmll lo..............",
-    "...............k nnmmmmmmmmmmmlll o...............",
-    "...............k nnmmmmmmmmmmmmll o...............",
-    "................ kmmmmmmmmmmmmllo ................",
-    "................ .kmmmlllllllllo. ................",
-    "................ ..ollllllllllo.. ................",
-    "................ ...ollllllllo... ................",
-    "................ ...ollllllllo... ................",
-    "................ oooommmmmmlloooo ................",
-    "............oooo GGGGGFFFyyyyyyyy oooo............",
-    ".........EEEGeed GGGGGFFFyyyyyyyx xxxxooo.........",
-    "......EEEGGGGGGe edFGGFFFxxyyxxxx xxxxxxwooo......",
-    "....EEGGGGGGFFFF eedFFFFExxxxxxxx xxxxxxxxxwoo....",
-    "...EGGFFFFFFFFFF FFeedFFExxxxxxxx xxxxxxxxxxxwo...",
-    "..EGGFFFFFFFFFFF FFFeedFExxxxxxxx xxxxxxxxxxxxwo..",
-    ".EGGFFFFFFFFFFFF FFFFFeedxxxxxxxx xxxxxxxxxxxxxwo.",
-    ".EGGFFFFFFFFFFFF FFFFFFFeedxxxxxx xxxxxxxxxxxxxwo.",
-    ".oGGFFFFFFFFFFFF FFFFFFFEeedxxxxx xxxxxxxxxxxxxwo.",
-    ".oGGFFFFFFFFFFFF FFFFFFFExxeedxxx xxxxxxxxxxxxxwo.",
-    ".oGGFFFFFFFFFFFF FFFFFFFExxxeedxx xxxxxxxxxxxxxwo.",
-    ".oGGFFFFFFFFFFFF FFFFFFFExxxxxeed xxxxxxxxxxxxxwo.",
-    ".oGGFFFFFFFFFFFF FFFFFFFExxxxxxxe edxxxxxxxxxxxwo.",
+HEAD = head_spans(3, [9, 13, 15, 16] + [18] * 21 + [18, 17, 16, 14, 12, 10, 8, 6, 5])    # a slightly pointed chin
+BODY = {38: (17, 30), 39: (13, 34), 40: (10, 37)}
+BODY.update({r: (8, 39) for r in range(41, 48)})
+
+
+def cloth(r, c, a, b, spans):
+    t = min(spans)
+    if c <= 23:                                     # her right: garden green
+        k = "F"
+        if c <= a + 2:
+            k = "G"
+        if c == 23:
+            k = "E"
+    else:                                           # her left: ochre
+        k = "x"
+        if c == b:                                  # the dark step only on the contour
+            k = "w"
+        if c == 24:
+            k = "y"
+    s = c - 11 - (r - t)                            # coral strap, from her right shoulder across the chest
+    if r > t and s in (0, 1):
+        k = "e" if s == 0 else "d"
+    return k
+
+
+PROPS = []
+
+# The dome and fringe, with the bun on her left (screen right). The bun is a ball with its own ink
+# arc (the notch) where it overlaps the dome. Window columns 4..43.
+HAIR = rle_hair(4, 40, 2, [
+    ".30 D1 C2 B1 .6",                          # r2   top of the bun
+    ".11 D3 C12 o3 D2 C3 B1 .5",                # r3   dome, then the V notch, then the bun
+    ".7 D5 C14 o2 D2 C4 B2 .4",                 # r4
+    ".5 D6 C15 o1 D2 C6 B2 .3",                 # r5
+    ".4 D7 C15 o1 D2 C6 B2 .3",                 # r6
+    ".2 D8 C16 o1 D2 C6 B3 .2",                 # r7
+    ".2 D8 C17 o1 D1 C5 B4 .2",                 # r8
+    ".2 D6 C20 o1 D1 C4 B1 o1 B2 .2",           # r9   the bun's lower arc
+    ".2 C25 B2 o6 B3 .2",                       # r10
+    ".2 C32 B4 .2",                             # r11
+    ".2 C32 B4 .2",                             # r12
+    ".2 C32 B4 .2",                             # r13
+    ".2 C14 .1 C17 B4 .2",                      # r14  the parting
+    ".2 C13 .3 C6 .4 C6 B4 .2",                 # r15
+    ".2 C4 .6 C5 .1 C6 .6 C5 B3 .2",            # r16
+    ".2 C3 .29 C2 B2 .2",                       # r17
+    ".2 B2 .32 B2 .2",                          # r18
 ])
 
-EXPRESSIONS = {e: T.compose(BASE, e, SLOTS["skin"], BROW, STAMPS.get(e, ()), TILT.get(e),
-                            SLOTS["hair"] if HAIR_SKIN_SEPARATED else None) for e in T.KIT}
+_EYE = [".oo.", "o5oo", "oooo", "oo5o", ".oo."]    # a tall oval with a second sparkle
+_BLUSH = [(27, 9, ["4444", "4444"]), (27, 35, ["4444", "4444"])]
+
+FACE = {
+    "neutral": _BLUSH + [
+        (22, 14, _EYE), (22, 30, _EYE),
+        (19, 14, ["===="]), (17, 30, [".==."]), (18, 30, ["=..="]),      # the right brow cocked: ready to go
+        (30, 20, ["ooo"]), (29, 23, ["ooo"]), (28, 26, ["oo"]),           # a lopsided smirk, rising to her left
+    ],
+    "concerned": _BLUSH + [
+        (23, 13, [".oo.", "o5oo", "oooo", ".oo."]), (23, 29, [".oo.", "o5oo", "oooo", ".oo."]),   # eyes down and aside
+        (21, 14, ["="]), (20, 15, ["="]), (19, 16, ["=="]), (18, 18, ["="]),      # brows steeply up: earnest
+        (18, 30, ["="]), (19, 31, ["="]), (20, 32, ["=="]), (22, 34, ["="]),
+        (29, 19, ["oooo"]), (30, 18, ["o"]),                              # a small pressed mouth, off centre
+    ],
+    "pleased": _BLUSH + [
+        (23, 14, [".oo.", "o..o"]), (23, 30, [".oo.", "o..o"]),             # closed eyes: proud
+        (17, 14, ["===="]), (17, 30, ["===="]),                           # both brows lifted
+        (28, 19, ["oooooooooo"]), (29, 19, ["o55555555o"]), (30, 20, [".oooooooo."]),   # a toothy smile
+    ],
+    "mira_grin": _BLUSH + [
+        (22, 14, _EYE),                                                    # a wink: the left eye stays open,
+        (24, 30, [".oo.", "o..o"]),                                       # the right eye is a closed arc
+        (19, 14, ["===="]), (16, 30, [".==."]), (17, 30, ["=..="]),       # cocked brow, higher still
+        (28, 18, ["oooooooooo"]), (29, 18, ["o66666666o"]), (30, 19, ["o66dddd6o"]), (31, 20, [".oooooo."]),   # grin, tongue out
+    ],
+}
+
+EXPRESSIONS = chibi.build(sys.modules[__name__])
 
 import mira_patches as patches  # noqa: E402  (../cast, already on sys.path)
 

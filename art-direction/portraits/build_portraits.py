@@ -1,22 +1,25 @@
-"""Build the portrait outputs: template sheet, character sheet, atlas.
+"""Build the portrait outputs: template sheet, character sheet, comparison, dialogue mock, atlas.
 
 Run: python3 build_portraits.py   (needs Pillow + numpy)
 Writes into this folder:
-  portrait-template.png   construction guides, mannequin and the expression kit at x4
-  portraits-sheet.png     each expression at x4 next to the world sprite at x4, with ramp swatches
-  portraits-atlas.png/json  native 48x48 cells: rows are characters, columns are expressions
+  portrait-template.png     construction guides on the standard chibi head, the seven head silhouettes, the notes
+  portraits-sheet.png       one row per character: world sprite (S idle) at x4, then each expression at x4
+  portraits-compare.png     one row per expression type, all seven characters (the personality check)
+  portraits-dialogue.png    each character in a mock dialogue panel with one line from levels.md
+  portraits-atlas.png/json  native 48x48 cells: rows are characters, columns neutral, concerned, pleased, signature
 """
 import json
 import os
 import sys
 
-import numpy as np
 from PIL import Image, ImageDraw
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 for sub in ("portraits", "gate1", "cast", "scale-test"):
     sys.path.insert(0, os.path.join(HERE, "..", sub))
 import build_scale_test as bst  # noqa: E402
+import chibi  # noqa: E402
+from chibi import grid_img, on, sprite_img, up  # noqa: E402,F401  (grid_img is also used by build_mira_patches)
 import portrait_ada  # noqa: E402
 import portrait_engineer  # noqa: E402
 import portrait_hal  # noqa: E402
@@ -24,95 +27,46 @@ import portrait_ivo  # noqa: E402
 import portrait_mira  # noqa: E402
 import portrait_noor  # noqa: E402
 import portrait_vale  # noqa: E402
-import portrait_template as T  # noqa: E402
 
-CHARACTERS = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira),
-              ("vale", portrait_vale), ("hal", portrait_hal), ("ada", portrait_ada), ("noor", portrait_noor)]
-EXPRESSIONS = list(T.KIT)
+# Atlas row order: the first rows never move (engineer, ivo, mira, mira_patch1..6), then the later characters.
+CAST = [("engineer", portrait_engineer), ("ivo", portrait_ivo), ("mira", portrait_mira), ("noor", portrait_noor),
+        ("hal", portrait_hal), ("ada", portrait_ada), ("vale", portrait_vale)]
+ATLAS_ORDER = ["engineer", "ivo", "mira", "vale", "hal", "ada", "noor"]
+STANDARD = list(chibi.STANDARD)
 ZOOM = 4          # the world's zoom on 1366x768; portraits are shown at the same factor
 BG = "#151C2B"
-PLATE = "#343650"  # stand-in dialogue plate; the real plate comes from the UI tokens (task 10.1)
-PAPER = "#F0DEC0"
+PLATE = "#343650"  # stand-in dialogue plate; the real plate comes from the UI tokens
+PANEL = "#1B2033"
+BRASS, TEXT, DIM = "#E1AC62", "#F4F2EC", "#C7B7A0"
+BY_NAME = dict(CAST)
 
 
-def grid_img(grid, pal):
-    """A 48x48 key grid as an RGBA image (generic sibling of build_gate1.frame_rgba, which is 16x24)."""
-    h, w = len(grid), len(grid[0])
-    arr = np.zeros((h, w, 4), np.uint8)
-    for y, row in enumerate(grid):
-        for x, ch in enumerate(row):
-            c = pal[ch]
-            if c:
-                arr[y, x, :3] = bst.hx(c)
-                arr[y, x, 3] = 255
-    return Image.fromarray(arr, "RGBA")
+def sig_of(mod):
+    return mod.SIGNATURES[0] if mod.SIGNATURES else None
 
 
-def sprite_img(mod, facing="s"):
-    import build_gate1 as g
-    return Image.fromarray(g.frame_rgba(mod.SPRITE.IDLE[facing][0], mod.PAL), "RGBA")
+def sig_suffix(name, sig):
+    return sig[len(name) + 1:]
 
 
-def up(im, z):
-    return im.resize((im.width * z, im.height * z), Image.NEAREST)
+# ---- mannequin: a neutral stand-in drawn only from the ink and stone ramps -------------------
+MAN_PAL = {".": None, "o": "#202337", "1": "#C7B7A0", "2": "#968A85", "r": "#777A8C", "q": "#535971"}
 
 
-def on(im, color, z):
-    bg = Image.new("RGBA", im.size, color)
-    bg.alpha_composite(im)
-    return up(bg, z)
-
-
-# ---- mannequin: a neutral stand-in drawn only from the ink and stone ramps ------------------
-MAN_PAL = {".": None, "o": "#202337", "A": "#343650", "B": "#535971", "C": "#777A8C", "D": "#968A85",
-           "k": "#665D65", "l": "#968A85", "m": "#C7B7A0", "n": "#F0DEC0",
-           "p": "#343650", "q": "#535971", "r": "#777A8C", "s": "#968A85"}
-
-
-def mannequin():
-    g = [["."] * 48 for _ in range(48)]
-    def span(r, a, b, k):
-        for c in range(a, b + 1):
-            g[r][c] = k
-    for r, (a, b) in T.FACE.items():
-        span(r, a, b, "m" if r > 17 else "m")
-    for r, (a, b) in T.NECK.items():
-        span(r, a, b, "l")
-    for r, (a, b) in T.TORSO.items():
-        span(r, a, b, "r" if r < 40 else "q")
-    for r in range(19, 25):
-        span(r, 11, 12, "m")
-        span(r, 35, 36, "m")
-    dome = {3: (19, 28), 4: (17, 30), 5: (15, 32), 6: (14, 33), 7: (13, 34), 8: (13, 34), 9: (13, 34),
-            10: (13, 34), 11: (13, 34), 12: (14, 33), 13: (14, 33), 14: (14, 15), 15: (14, 15), 16: (14, 14)}
-    for r, (a, b) in dome.items():
-        span(r, a, b, "C")
-        if r in (14, 15, 16):
-            span(r, 32, 33, "C")
-    # light: lit left cheek, shadowed right side
-    for r in range(14, 32):
-        a, b = T.FACE[r] if r >= 12 else (14, 33)
-        for c in range(a, b + 1):
-            if g[r][c] == "m" and c <= 21 - (r - 17) // 2:
-                g[r][c] = "n"
-            elif g[r][c] == "m" and c >= b - 1:
-                g[r][c] = "l"
-    out = [row[:] for row in g]
-    for y in range(48):
-        for x in range(48):
-            if g[y][x] != ".":
-                continue
-            for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                yy, xx = y + dy, x + dx
-                if 0 <= yy < 48 and 0 <= xx < 48 and g[yy][xx] != ".":
-                    out[y][x] = "o"
-                    break
-    return ["".join(r) for r in out]
+def silhouette(mod, plain=True):
+    """The head and shoulders of a character module as a flat two-tone grid (no hair, no face)."""
+    g = chibi.blank()
+    body = chibi.paint_spans(g, mod.BODY, lambda r, c, a, b: "r")
+    chibi.ring(g, body, over_all=False)
+    head = chibi.paint_spans(g, mod.HEAD, chibi.skin_token)
+    chibi.ring(g, head, over_all=True)
+    return ["".join(r) for r in g]
 
 
 def guides(draw, ox, oy, z, label=True, font=None):
     """Draw the construction guides over a portrait drawn at (ox, oy) with zoom z."""
-    G = T.GUIDE
+    F = chibi.FRAME
+
     def hline(r, color, name, side="r", span=(0, 48)):
         y = oy + r * z
         draw.line([(ox + span[0] * z, y), (ox + span[1] * z, y)], fill=color, width=1)
@@ -121,149 +75,243 @@ def guides(draw, ox, oy, z, label=True, font=None):
                 draw.text((ox + 48 * z + 8, y - 8), name, font=font, fill=color)
             else:
                 draw.text((ox - 8, y - 8), name, font=font, fill=color, anchor="ra")
+
     def vline(c, color, span=(0, 48)):
         x = ox + c * z
         draw.line([(x, oy + span[0] * z), (x, oy + span[1] * z)], fill=color, width=1)
+
     for c in range(16, 48, 16):                       # world tile grid
         vline(c, "#535971")
         draw.line([(ox, oy + c * z), (ox + 48 * z, oy + c * z)], fill="#535971", width=1)
-    hline(G["hair_top_row"], "#5AA3AE", f"hair top  r{G['hair_top_row']}")
-    hline(G["hairline_row"], "#5AA3AE", f"hairline  r{G['hairline_row']}", "l")
-    hline(G["brow_row"], "#B2CE78", f"brows  r{G['brow_row']}")
-    hline(G["eye_rows"][0], "#E67A70", f"eye line  r{G['eye_rows'][0]}-{G['eye_rows'][1]}", "l")
-    hline(G["nose_row"], "#B2CE78", f"nose  r{G['nose_row']}")
-    hline(G["mouth_row"], "#E67A70", f"mouth  r{G['mouth_row']}", "l")
-    hline(G["chin_row"], "#5AA3AE", f"chin  r{G['chin_row']}")
-    hline(G["shoulder_row"], "#E1AC62", f"shoulder line  r{G['shoulder_row']}", "l")
-    hline(G["crop_row"] + 1, "#E1AC62", f"crop  r{G['crop_row']} (no outline below)")
+    hline(F["hair_top_outline_row"], "#5AA3AE", f"hair top outline  r{F['hair_top_outline_row']}")
+    hline(F["head_rows"][0], "#5AA3AE", f"head top  r{F['head_rows'][0]}", "l")
+    hline(F["brow_row"], "#B2CE78", f"brows  r{F['brow_row']}")
+    hline(F["eye_rows"][0], "#E67A70", f"eye block  r{F['eye_rows'][0]}-{F['eye_rows'][1]}", "l")
+    hline(F["blush_rows"][0], "#B2CE78", f"blush  r{F['blush_rows'][0]}-{F['blush_rows'][1]}")
+    hline(F["mouth_rows"][0], "#E67A70", f"mouth  r{F['mouth_rows'][0]}-{F['mouth_rows'][1]}", "l")
+    hline(F["head_rows"][1] + 1, "#5AA3AE", f"chin  r{F['head_rows'][1]}")
+    hline(F["shoulders_from_row"], "#E1AC62", f"shoulders  r{F['shoulders_from_row']}", "l")
+    hline(F["crop_row"] + 1, "#E1AC62", f"crop  r{F['crop_row']} (the body runs on)")
     vline(24, "#F5D580")                               # centre axis between columns 23 and 24
-    for c in (G["face_cols"][0] - 1, G["face_cols"][1] + 2):
-        vline(c, "#B2CE78", span=(12, 33))
-    for a, b in G["ear_cols"]:
-        vline(a, "#96AAB6", span=(19, 25))
-        vline(b + 1, "#96AAB6", span=(19, 25))
-    vline(G["shoulder_cols"][0], "#E1AC62", span=(35, 48))
-    vline(G["shoulder_cols"][1] + 1, "#E1AC62", span=(35, 48))
     if label and font:
         draw.text((ox + 24 * z + 4, oy + 1), "axis (23|24)", font=font, fill="#F5D580")
 
 
 def build_template():
-    f_t, f_s, f_n = bst.font(20, bold=True), bst.font(13), bst.font(12)
+    f_t, f_s, f_n, f_h = bst.font(20, bold=True), bst.font(13), bst.font(12), bst.font(15, bold=True)
     z = ZOOM
     pw = 48 * z
     margin = 150
-    W = margin + pw + margin + 40 + pw + 40 + 3 * (pw + 20) + 40
-    H = 48 * z + 330
+    W = 1500
+    sil_z = 2
+    H = 70 + pw + 60 + 5 * 22 + 40 + (48 * sil_z + 70)
     sheet = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(sheet)
-    d.text((24, 14), "Portrait template · 48×48 logical px, head and shoulders · x4 (the world's zoom) · "
-                     "light from the upper left · transparent background", font=f_t, fill="#F4F2EC")
-    man = mannequin()
+    d.text((24, 14), "Portrait template · chibi direction C · 48x48 logical px · x4 (the world's zoom)", font=f_t, fill=TEXT)
+    man = silhouette(portrait_engineer)
     mim = grid_img(man, MAN_PAL)
     oy = 70
-    # A: guides on the mannequin
     ox = margin
     sheet.paste(on(mim, PLATE, z).convert("RGB"), (ox, oy))
     guides(d, ox, oy, z, True, f_s)
-    d.text((ox, oy + pw + 10), "A  construction guides", font=bst.font(15, bold=True), fill="#E1AC62")
-    # B: guides alone on a blank grid with the head box
-    bx = ox + pw + margin + 40
-    blank = Image.new("RGB", (pw, pw), PLATE)
-    sheet.paste(blank, (bx, oy))
+    d.text((ox, oy + pw + 10), "A  construction guides on the standard head", font=f_h, fill=BRASS)
+    bx = ox + pw + margin + 20
+    sheet.paste(Image.new("RGB", (pw, pw), PLATE), (bx, oy))
     guides(d, bx, oy, z, False)
-    G = T.GUIDE
-    d.rectangle([bx + 12 * z, oy + 1 * z, bx + 37 * z, oy + 33 * z], outline="#F4F2EC")
-    d.text((bx + 13 * z, oy + 2 * z), "hair + head box\ncols 12-36, rows 1-32", font=f_n, fill="#F4F2EC")
-    d.text((bx + 14 * z, oy + 36 * z), "shoulders\ncols 2-45", font=f_n, fill="#F4F2EC")
-    d.text((bx, oy + pw + 10), "B  the same guides, blank", font=bst.font(15, bold=True), fill="#E1AC62")
-    # C: kit on the mannequin
-    cx = bx + pw + 40
-    for i, e in enumerate(EXPRESSIONS):
-        grid = T.compose(man, e, "klmn", "B")
-        sheet.paste(on(grid_img(grid, MAN_PAL), PLATE, z).convert("RGB"), (cx + i * (pw + 20), oy))
-        d.text((cx + i * (pw + 20), oy + pw + 10), f"C  {e}", font=bst.font(15, bold=True), fill="#E1AC62")
+    F = chibi.FRAME
+    d.rectangle([bx + 6 * z, oy + 3 * z, bx + 41 * z, oy + 37 * z], outline=TEXT)
+    d.text((bx + 8 * z, oy + 5 * z), "head box (standard)\ncols 6-41, rows 3-36", font=f_n, fill=TEXT)
+    d.text((bx + 10 * z, oy + 40 * z), "tiny shoulders\ncols 8-39, rows 38-47", font=f_n, fill=TEXT)
+    d.text((bx, oy + pw + 10), "B  the same guides, blank", font=f_h, fill=BRASS)
     # notes
     ny = oy + pw + 50
     notes = [
-        "Frame: head rows 1-32 (hair top to chin), eye line rows 19-20 (a little over half way down the head), shoulders reach the full width by row 40-41, last row 47 is a crop with no outline.",
-        "Light: upper left. Lit-edge swaps run along the upper-left contours (hair A, skin k, jacket p); the right and lower contours stay #202337. Darkest steps sit on contours only.",
-        "Expression: brows, eyelids, mouth and a 1-px head tilt (rows 0-14 shift). Eyes are drawn with outline ink and skin; the sprite's 2-pixel face grows, it never changes identity.",
-        "Palette: only the character's own world-sprite ramps. At most one extra step per ramp, recorded in the module's EXTRA dict. Background transparent: the dialogue panel provides the plate.",
-        "Placement: shown at the world's zoom (x4 on 1366x768 = 192x192 screen px, x6 on 1920x1080 = 288x288), whole numbers only.",
+        "Head: an oversized round head, rows 3-36 and up to 40 px wide (Hal, broader and shorter; Noor, narrower and longer, chin on row 38). The shoulders are tiny and sit in the bottom ten rows.",
+        "Shading: flat. One skin fill and one crescent of shade down the lower right, a one-pixel shade under the fringe. Outline #202337, closed. Light from the upper left.",
+        "Eyes: dots with a glint (the glint key is the sprite palette's lightest step, recorded in EXTRA). Mouths are big and readable. Cheeks are round with blush (Vale: none at rest).",
+        "Expression: neutral, concerned and pleased for everyone, plus each character's own signature. Eye shape, brow habit, mouth habit, blush and a tic differ per persona (PORTRAIT_PERSONAS.md).",
+        "Placement: shown at the world's zoom (x4 on 1366x768 = 192x192 screen px, x6 on 1920x1080), whole numbers only. The panel supplies the plate: the portrait is transparent.",
     ]
     for i, n in enumerate(notes):
-        d.text((24, ny + i * 22), n, font=f_s, fill="#C7B7A0")
-    # native 1x thumbnail
-    d.text((24, ny + 5 * 22 + 12), "Native 1×:", font=f_s, fill="#C7B7A0")
-    sheet.paste(on(mim, PLATE, 1).convert("RGB"), (110, ny + 5 * 22 + 6))
+        d.text((24, ny + i * 22), n, font=f_s, fill=DIM)
+    # the seven head silhouettes, one above the other's identity: width and height in pixels
+    sy = ny + 5 * 22 + 24
+    d.text((24, sy), "C  the seven heads and shoulders (x2): head width and height change with the persona", font=f_h, fill=BRASS)
+    sx = 24
+    for name, mod in CAST:
+        sim = grid_img(silhouette(mod), MAN_PAL)
+        sheet.paste(on(sim, PLATE, sil_z).convert("RGB"), (sx, sy + 26))
+        rows = sorted(mod.HEAD)
+        wid = max(b - a + 1 for a, b in mod.HEAD.values())
+        d.text((sx, sy + 26 + 48 * sil_z + 4), f"{name}: {wid}x{rows[-1] - rows[0] + 1}", font=f_n, fill=DIM)
+        sx += 48 * sil_z + 20
     sheet.save(os.path.join(HERE, "portrait-template.png"))
 
 
 def ramp_swatches(mod, d, x, y, used):
-    """Swatches for every key the portrait uses, grouped by the world sprite's ramps."""
     f = bst.font(11)
     keys = [k for k in sorted(used) if k != "."]
     for i, k in enumerate(keys):
         d.rectangle([x + i * 26, y, x + i * 26 + 22, y + 14], fill=mod.PAL[k], outline="#535971")
-        d.text((x + i * 26 + 11, y + 17), k, font=f, fill="#C7B7A0", anchor="ma")
+        d.text((x + i * 26 + 11, y + 17), k, font=f, fill=DIM, anchor="ma")
 
 
 def build_sheet():
     f_t, f_h = bst.font(20, bold=True), bst.font(16, bold=True)
     z = ZOOM
     pw = 48 * z
-    sw, sh = 16 * z, 24 * z
+    sh = 24 * z
     cell = pw + 24
-    W = max(24 + 140 + 130 + 3 * cell, 1000)
-    H = 70 + len(CHARACTERS) * (pw + 110)
+    left = 24 + 100
+    W = left + 80 + 4 * cell + 20
+    row_h = pw + 112
+    H = 70 + len(CAST) * row_h
     sheet = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(sheet)
-    d.text((24, 16), "Portraits beside the world sprite · x4 · every portrait key is a key of the sprite's PAL",
-           font=f_t, fill="#F4F2EC")
-    y = 60
-    for name, mod in CHARACTERS:
-        d.text((24, y + 6), name.capitalize(), font=f_h, fill="#E1AC62")
-        sx = 24 + 140
-        spim = sprite_img(mod)
-        sheet.paste(on(spim, PLATE, z).convert("RGB"), (sx, y + pw - sh))
-        d.text((sx, y + pw + 6), "world sprite (S idle)", font=bst.font(12), fill="#C7B7A0")
+    d.text((24, 16), "Portraits beside the world sprite · x4 · chibi direction C · every portrait key is a key of the sprite's PAL",
+           font=f_t, fill=TEXT)
+    y = 56
+    for name, mod in CAST:
+        d.text((24, y + 6), name.capitalize(), font=f_h, fill=BRASS)
+        sheet.paste(on(sprite_img(mod.SPRITE, mod.PAL), PLATE, z).convert("RGB"), (left, y + pw - sh))
+        d.text((left, y + pw + 6), "S idle", font=bst.font(11), fill=DIM)
         used = set()
-        for i, e in enumerate(EXPRESSIONS):
+        names = STANDARD + ([sig_of(mod)] if sig_of(mod) else [])
+        for i, e in enumerate(names):
             grid = mod.EXPRESSIONS[e]
             used |= {ch for r in grid for ch in r}
-            px = sx + 130 + i * cell
+            px = left + 80 + i * cell
             sheet.paste(on(grid_img(grid, mod.PAL), PLATE, z).convert("RGB"), (px, y))
-            d.text((px, y + pw + 6), e, font=bst.font(14, bold=True), fill="#F4F2EC")
-        ramp_swatches(mod, d, sx, y + pw + 34, used)
-        d.text((sx, y + pw + 72), "keys used (same hex as the sprite)", font=bst.font(11), fill="#777A8C")
-        y += pw + 110
+            d.text((px, y + pw + 6), e, font=bst.font(14, bold=True), fill=TEXT if i < 3 else BRASS)
+        d.text((left + 80, y + pw + 28), mod.TAGLINE, font=bst.font(12), fill=DIM)
+        ramp_swatches(mod, d, left + 80, y + pw + 52, used)
+        d.text((left + 80, y + pw + 90), "keys used (same hex as the sprite)", font=bst.font(11), fill="#777A8C")
+        y += row_h
     sheet.save(os.path.join(HERE, "portraits-sheet.png"))
 
 
+def build_compare():
+    """One row per expression type, all seven characters: the check that no two faces look alike."""
+    f_t, f_h, f_s = bst.font(20, bold=True), bst.font(16, bold=True), bst.font(12)
+    z = ZOOM
+    pw = 48 * z
+    gap = 10
+    left = 124
+    rows = [("neutral", "neutral"), ("concerned", "concerned"), ("pleased", "pleased"), ("signature", None)]
+    W = left + 7 * (pw + gap) + 20
+    H = 62 + len(rows) * (pw + 44)
+    sheet = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(sheet)
+    d.text((24, 16), "Seven personalities, one row per expression · x4", font=f_t, fill=TEXT)
+    y = 56
+    for label, e in rows:
+        d.text((24, y + pw // 2 - 8), label, font=f_h, fill=BRASS)
+        for i, (name, mod) in enumerate(CAST):
+            key = e if e else sig_of(mod)
+            x = left + i * (pw + gap)
+            if key is None:
+                d.rectangle([x, y, x + pw - 1, y + pw - 1], outline="#343650")
+                d.text((x + 8, y + pw // 2 - 6), "none specified", font=f_s, fill="#777A8C")
+            else:
+                sheet.paste(on(grid_img(mod.EXPRESSIONS[key], mod.PAL), PLATE, z).convert("RGB"), (x, y))
+            d.text((x + 2, y + pw + 4), f"{name}" + (f" · {key}" if e is None and key else ""), font=f_s, fill=DIM)
+        y += pw + 44
+    sheet.save(os.path.join(HERE, "portraits-compare.png"))
+
+
+# One line per character, from levels.md (the key line, then the hint line), with a different expression each.
+LINES = [
+    ("engineer", "concerned", "Engineer (journal)", "Unissued badge: its old department name differs from the current sign.", ""),
+    ("ivo", "neutral", "Ivo", "To walk to the west desk, you need to press Left Arrow.", "Hint: Left Arrow is tap-hold Caps (nav) + H."),
+    ("mira", "mira_grin", "Mira", "To type \"jk\" in the label, you need to press J, then K.", "Hint: tap J, tap K. A same-hand roll stays text."),
+    ("noor", "noor_unimpressed", "Noor", "To step back over the drifted word, you need to press Option + Left.", "Hint: Option + Left is tap-hold Caps + B."),
+    ("hal", "hal_puzzled", "Hal", "To enter digit 7 of the ID, you need to press 7.", "Hint: 7 is tap-hold Space (numbers-symbols) + J."),
+    ("ada", "pleased", "Ada", "To walk north along the lit route, you need to press Up Arrow.", "Hint: Physical arrows and Right Command are XX on practice. Use tap-hold Caps + K."),
+    ("vale", "vale_softened", "Vale", "Restore the department's original name.", ""),
+]
+
+
+def wrap(d, text, font, width):
+    words, line, out = text.split(), "", []
+    for w in words:
+        if d.textlength((line + " " + w).strip(), font=font) > width:
+            out.append(line.strip())
+            line = ""
+        line += " " + w
+    out.append(line.strip())
+    return out
+
+
+def build_dialogue():
+    f_t, f_h, f_b, f_s = bst.font(20, bold=True), bst.font(17, bold=True), bst.font(15), bst.font(12)
+    z = ZOOM
+    pw = 48 * z
+    pad = 14
+    panel_w, panel_h = pw + 2 * pad + 400, pw + 2 * pad
+    left, gap = 24, 22
+    cols = 2
+    rows = (len(LINES) + cols - 1) // cols
+    W = left * 2 + cols * panel_w + (cols - 1) * gap
+    H = 70 + rows * (panel_h + gap)
+    sheet = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(sheet)
+    d.text((left, 16), "Portraits in a dialogue panel · x4 · one line from levels.md each, a different expression each", font=f_t, fill=TEXT)
+    for i, (who, expr, label, text, hint) in enumerate(LINES):
+        mod = BY_NAME[who]
+        px = left + (i % cols) * (panel_w + gap)
+        y = 56 + (i // cols) * (panel_h + gap)
+        d.rectangle([px, y, px + panel_w - 1, y + panel_h - 1], fill=PANEL, outline="#535971", width=2)
+        d.rectangle([px + pad - 2, y + pad - 2, px + pad + pw + 1, y + pad + pw + 1], fill=PLATE, outline="#535971")
+        sheet.paste(on(grid_img(mod.EXPRESSIONS[expr], mod.PAL), PLATE, z).convert("RGB"), (px + pad, y + pad))
+        tx = px + pad + pw + 20
+        d.text((tx, y + 22), label, font=f_h, fill=BRASS)
+        ly = y + 56
+        for line in wrap(d, text, f_b, panel_w - (tx - px) - 18):
+            d.text((tx, ly), line, font=f_b, fill=TEXT)
+            ly += 22
+        if hint:
+            ly += 6
+            for line in wrap(d, hint, f_b, panel_w - (tx - px) - 18):
+                d.text((tx, ly), line, font=f_b, fill=DIM)
+                ly += 22
+        d.text((tx, y + panel_h - 30), f"[{expr}]", font=f_s, fill="#777A8C")
+    sheet.save(os.path.join(HERE, "portraits-dialogue.png"))
+
+
 def build_atlas():
-    rows = [("engineer", portrait_engineer, 0), ("ivo", portrait_ivo, 0), ("mira", portrait_mira, 0)]
-    rows += [(f"mira_patch{k}", portrait_mira, k) for k in range(1, 7)]
-    rows += [("vale", portrait_vale, 0), ("hal", portrait_hal, 0), ("ada", portrait_ada, 0), ("noor", portrait_noor, 0)]
-    atlas = Image.new("RGBA", (48 * len(EXPRESSIONS), 48 * len(rows)), (0, 0, 0, 0))
+    rows = []
+    for name in ATLAS_ORDER:
+        mod = BY_NAME[name]
+        rows.append((name, mod, 0))
+        if name == "mira":
+            rows += [(f"mira_patch{k}", mod, k) for k in range(1, 7)]
+    columns = STANDARD + ["signature"]
+    atlas = Image.new("RGBA", (48 * len(columns), 48 * len(rows)), (0, 0, 0, 0))
     entries = {}
     for r, (name, mod, k) in enumerate(rows):
-        for c, e in enumerate(EXPRESSIONS):
-            grid = mod.EXPRESSIONS[e]
-            pal = mod.PAL
+        base = "mira" if k else name
+        names = STANDARD + [sig_of(mod)]
+        for c, e in enumerate(names):
+            if e is None:
+                continue
+            grid, pal = mod.EXPRESSIONS[e], mod.PAL
             if k:
-                grid = mod.with_patches(grid, k)
-                pal = mod.PATCH_PAL
+                grid, pal = mod.with_patches(grid, k), mod.PATCH_PAL
             atlas.paste(grid_img(grid, pal), (c * 48, r * 48))
-            entries[f"{name}_{e}"] = {"x": c * 48, "y": r * 48, "w": 48, "h": 48}
+            key = f"{name}_{e}" if c < 3 else f"{name}_{sig_suffix(base, e)}"
+            entries[key] = {"x": c * 48, "y": r * 48, "w": 48, "h": 48}
     atlas.save(os.path.join(HERE, "portraits-atlas.png"))
     meta = {
         "frame": {"w": 48, "h": 48},
-        "columns": EXPRESSIONS,
+        "style": "chibi icon: oversized round head, tiny shoulders, flat shading, dot eyes; per-character head, hair and expressions",
+        "columns": columns,
+        "signature_column": 3,
+        "signatures": {name: sig_of(BY_NAME[name]) for name, _ in CAST if sig_of(BY_NAME[name])},
         "rows": [name for name, _, _ in rows],
         "zoom": "same integer factor as the world (x4 at 1366x768, x6 at 1920x1080); never fractional",
         "origin": "top-left of the 48x48 cell sits on the dialogue panel's portrait slot; background is transparent",
         "mira_patch_rows": "mira_patchK is Mira wearing patches 1..K (the row 'mira' is K = 0)",
+        "signature_keys": "a signature entry is <row>_<name>, for example ivo_laugh or mira_patch3_grin; characters without one leave the cell empty",
         "portraits": entries,
     }
     with open(os.path.join(HERE, "portraits-atlas.json"), "w") as fh:
@@ -273,5 +321,7 @@ def build_atlas():
 if __name__ == "__main__":
     build_template()
     build_sheet()
+    build_compare()
+    build_dialogue()
     build_atlas()
-    print("built portrait-template.png, portraits-sheet.png, portraits-atlas.png/json")
+    print("built portrait-template.png, portraits-sheet.png, portraits-compare.png, portraits-dialogue.png, portraits-atlas.png/json")

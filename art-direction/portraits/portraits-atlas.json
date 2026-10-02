@@ -3,11 +3,21 @@
     "w": 48,
     "h": 48
   },
+  "style": "chibi icon: oversized round head, tiny shoulders, flat shading, dot eyes; per-character head, hair and expressions",
   "columns": [
     "neutral",
     "concerned",
-    "pleased"
+    "pleased",
+    "signature"
   ],
+  "signature_column": 3,
+  "signatures": {
+    "ivo": "ivo_laugh",
+    "mira": "mira_grin",
+    "noor": "noor_unimpressed",
+    "hal": "hal_puzzled",
+    "vale": "vale_softened"
+  },
   "rows": [
     "engineer",
     "ivo",
@@ -26,6 +36,7 @@
   "zoom": "same integer factor as the world (x4 at 1366x768, x6 at 1920x1080); never fractional",
   "origin": "top-left of the 48x48 cell sits on the dialogue panel's portrait slot; background is transparent",
   "mira_patch_rows": "mira_patchK is Mira wearing patches 1..K (the row 'mira' is K = 0)",
+  "signature_keys": "a signature entry is <row>_<name>, for example ivo_laugh or mira_patch3_grin; characters without one leave the cell empty",
   "portraits": {
     "engineer_neutral": {
       "x": 0,
@@ -63,6 +74,12 @@
       "w": 48,
       "h": 48
     },
+    "ivo_laugh": {
+      "x": 144,
+      "y": 48,
+      "w": 48,
+      "h": 48
+    },
     "mira_neutral": {
       "x": 0,
       "y": 96,
@@ -77,6 +94,12 @@
     },
     "mira_pleased": {
       "x": 96,
+      "y": 96,
+      "w": 48,
+      "h": 48
+    },
+    "mira_grin": {
+      "x": 144,
       "y": 96,
       "w": 48,
       "h": 48
@@ -99,6 +122,12 @@
       "w": 48,
       "h": 48
     },
+    "mira_patch1_grin": {
+      "x": 144,
+      "y": 144,
+      "w": 48,
+      "h": 48
+    },
     "mira_patch2_neutral": {
       "x": 0,
       "y": 192,
@@ -113,6 +142,12 @@
     },
     "mira_patch2_pleased": {
       "x": 96,
+      "y": 192,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch2_grin": {
+      "x": 144,
       "y": 192,
       "w": 48,
       "h": 48
@@ -135,6 +170,12 @@
       "w": 48,
       "h": 48
     },
+    "mira_patch3_grin": {
+      "x": 144,
+      "y": 240,
+      "w": 48,
+      "h": 48
+    },
     "mira_patch4_neutral": {
       "x": 0,
       "y": 288,
@@ -149,6 +190,12 @@
     },
     "mira_patch4_pleased": {
       "x": 96,
+      "y": 288,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch4_grin": {
+      "x": 144,
       "y": 288,
       "w": 48,
       "h": 48
@@ -171,6 +218,12 @@
       "w": 48,
       "h": 48
     },
+    "mira_patch5_grin": {
+      "x": 144,
+      "y": 336,
+      "w": 48,
+      "h": 48
+    },
     "mira_patch6_neutral": {
       "x": 0,
       "y": 384,
@@ -185,6 +238,12 @@
     },
     "mira_patch6_pleased": {
       "x": 96,
+      "y": 384,
+      "w": 48,
+      "h": 48
+    },
+    "mira_patch6_grin": {
+      "x": 144,
       "y": 384,
       "w": 48,
       "h": 48
@@ -207,6 +266,12 @@
       "w": 48,
       "h": 48
     },
+    "vale_softened": {
+      "x": 144,
+      "y": 432,
+      "w": 48,
+      "h": 48
+    },
     "hal_neutral": {
       "x": 0,
       "y": 480,
@@ -221,6 +286,12 @@
     },
     "hal_pleased": {
       "x": 96,
+      "y": 480,
+      "w": 48,
+      "h": 48
+    },
+    "hal_puzzled": {
+      "x": 144,
       "y": 480,
       "w": 48,
       "h": 48
@@ -257,6 +328,12 @@
     },
     "noor_pleased": {
       "x": 96,
+      "y": 576,
+      "w": 48,
+      "h": 48
+    },
+    "noor_unimpressed": {
+      "x": 144,
       "y": 576,
       "w": 48,
       "h": 48

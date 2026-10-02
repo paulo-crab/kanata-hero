@@ -80,7 +80,7 @@ Entries with `rect`, `footprint_cells`, `origin_px`, `anchor`, `layer`, `collisi
 
 ### 3.8 Portraits (`portraits/portraits-atlas.*`)
 
-48×48 cells; `portraits` maps `<name>_<expression>` (neutral, concerned, pleased) to its rect, and `rows` gives the row order (Mira's patched states 1–6 follow her base row). Show them at the world's integer zoom, never fractionally.
+48×48 cells in the chibi style (oversized round head, tiny shoulders). Columns: `neutral`, `concerned`, `pleased`, `signature` (`signature_column` is 3). `portraits` maps `<name>_<expression>` to its rect; a signature entry is `<row>_<name>`: `ivo_laugh`, `mira_grin`, `noor_unimpressed`, `hal_puzzled`, `vale_softened` (`signatures` lists them; Engineer and Ada have none and their cell is empty). `rows` gives the row order (Mira's patched states `mira_patch1`..`mira_patch6` follow her base row and carry the grin too). Each character has their own face habits (`portraits/PORTRAIT_PERSONAS.md`). Show them at the world's integer zoom, never fractionally. `portraits/portraits-dialogue.png` shows the intended use in a dialogue panel.
 
 ## 4. UI
 
@@ -100,7 +100,7 @@ The UI is crisp DOM/CSS over the canvas, not pixel art. Take every colour, spaci
 | Background workers | `cast/bgworker_common.py`, `cast/bgworker_a_sprites.py`, `cast/bgworker_b_sprites.py` | `cast/bgworker_a-atlas.json`, `cast/bgworker_b-atlas.json`, `cast/bgworker_*-atlas*.png` | `cast/BACKGROUND_WORKERS_SPEC.md` |
 | Glitches | `glitches/glitch_sprites.py` | `glitches/glitches-atlas.png`, `glitches/glitches-atlas.json` | `glitches/GLITCHES_SPEC.md` |
 | Pace signage | `pace/pace_art.py` | `pace/pace-atlas.png`, `pace/pace-atlas.json` | `pace/PACE_SPEC.md` |
-| Portraits (all seven) | `portraits/portrait_*.py` | `portraits/portraits-atlas.png`, `portraits/portraits-atlas.json` | `portraits/PORTRAITS_SPEC.md`, `portraits/PORTRAIT_RULES.md` |
+| Portraits (all seven, chibi) | `portraits/chibi.py`, `portraits/portrait_*.py` | `portraits/portraits-atlas.png`, `portraits/portraits-atlas.json`, `portraits/portraits-dialogue.png` | `portraits/PORTRAITS_SPEC.md`, `portraits/PORTRAIT_RULES.md`, `portraits/PORTRAIT_PERSONAS.md` |
 | Orientation kit and garden | `kit/kitlib.py`, `kit/orientation_kit.py` | `kit/orientation-atlas.png`, `kit/orientation-atlas.json`, `kit/orientation-review-room.json` | `kit/ORIENTATION_KIT_SPEC.md` |
 | Records kit and archive desk | `kit/shared_pieces.py`, `kit/records_kit.py` | `kit/records-atlas.png`, `kit/records-atlas.json`, `kit/records-reference-room.json` | `kit/RECORDS_KIT_SPEC.md` |
 | Systems kit and routing machine | `kit/systems_kit.py` | `kit/systems-atlas.png`, `kit/systems-atlas.json`, `kit/systems-reference-room.json` | `kit/SYSTEMS_KIT_SPEC.md` |
