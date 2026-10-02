@@ -1,0 +1,310 @@
+{
+ "district": "systems",
+ "note": "Systems owns S01 to S26. Held-Space outputs are credited from observed characters only (the browser cannot see the held Space), so each digit, the minus and each shifted symbol has its own guided scene, a shuffled variation scene, and a recall scene that hides the keyboard overlay and uses a new order. Level 16 recalls S01 to S24 again in new prompts (see its gestures list) and the two Mira routes recall them in changing pools. S25 (Tab part) and S26 use only observable text; the external Homerow effect of tap-hold Tab is player-confirmed and never scored.",
+ "levels": {
+  "systems-12": {
+   "owned": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10"
+   ],
+   "gestures": {
+    "S01": {
+     "guided": "systems-12-guided-d1",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S02": {
+     "guided": "systems-12-guided-d2",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S03": {
+     "guided": "systems-12-guided-d3",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S04": {
+     "guided": "systems-12-guided-d4",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S05": {
+     "guided": "systems-12-guided-d5",
+     "variation": "systems-12-variation-b",
+     "recall": "systems-12-recall-batch"
+    },
+    "S06": {
+     "guided": "systems-12-guided-d6",
+     "variation": "systems-12-variation-b",
+     "recall": "systems-12-recall-batch"
+    },
+    "S07": {
+     "guided": "systems-12-guided-d7",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S08": {
+     "guided": "systems-12-guided-d8",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S09": {
+     "guided": "systems-12-guided-d9",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    },
+    "S10": {
+     "guided": "systems-12-guided-d0",
+     "variation": "systems-12-variation-a",
+     "recall": "systems-12-recall-batch"
+    }
+   }
+  },
+  "systems-13": {
+   "owned": [
+    "S11",
+    "S24"
+   ],
+   "gestures": {
+    "S11": {
+     "guided": "systems-13-guided-minus",
+     "variation": "systems-13-variation-invoice",
+     "recall": "systems-13-recall-invoice"
+    },
+    "S24": {
+     "guided": "systems-13-guided-literal-nm",
+     "variation": "systems-13-variation-invoice",
+     "recall": "systems-13-recall-invoice"
+    }
+   }
+  },
+  "systems-14": {
+   "owned": [
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S16",
+    "S17"
+   ],
+   "gestures": {
+    "S12": {
+     "guided": "systems-14-guided-excl",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    },
+    "S13": {
+     "guided": "systems-14-guided-at",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    },
+    "S14": {
+     "guided": "systems-14-guided-hash",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    },
+    "S15": {
+     "guided": "systems-14-guided-dollar",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    },
+    "S16": {
+     "guided": "systems-14-guided-percent",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    },
+    "S17": {
+     "guided": "systems-14-guided-caret",
+     "variation": "systems-14-variation-shuffled",
+     "recall": "systems-14-recall-mixed-alert"
+    }
+   }
+  },
+  "systems-15": {
+   "owned": [
+    "S18",
+    "S19",
+    "S20",
+    "S21",
+    "S22",
+    "S23"
+   ],
+   "gestures": {
+    "S18": {
+     "guided": "systems-15-guided-amp",
+     "variation": "systems-15-variation-underscores",
+     "recall": "systems-15-recall-expression"
+    },
+    "S19": {
+     "guided": "systems-15-guided-star",
+     "variation": "systems-15-variation-nesting",
+     "recall": "systems-15-recall-expression"
+    },
+    "S20": {
+     "guided": "systems-15-guided-open",
+     "variation": "systems-15-variation-nesting",
+     "recall": "systems-15-recall-expression"
+    },
+    "S21": {
+     "guided": "systems-15-guided-close",
+     "variation": "systems-15-variation-nesting",
+     "recall": "systems-15-recall-expression"
+    },
+    "S22": {
+     "guided": "systems-15-guided-under",
+     "variation": "systems-15-variation-underscores",
+     "recall": "systems-15-recall-expression"
+    },
+    "S23": {
+     "guided": "systems-15-guided-plus",
+     "variation": "systems-15-variation-nesting",
+     "recall": "systems-15-recall-expression"
+    }
+   }
+  },
+  "systems-16": {
+   "owned": [
+    "S25",
+    "S26"
+   ],
+   "gestures": {
+    "S25": {
+     "guided": "systems-16-layer-caps",
+     "variation": "systems-16-tab-lane",
+     "recall": "systems-16-final-recall"
+    },
+    "S26": {
+     "guided": "systems-16-mod-space-shift",
+     "variation": "systems-16-mod-space-mirror",
+     "recall": "systems-16-final-recall"
+    }
+   }
+  }
+ },
+ "mira": {
+  "payroll-run": {
+   "S02": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S03": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S04": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S05": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S07": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S10": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S11": {
+    "recall": "mira-13-cp1-payroll-tray"
+   },
+   "S01": {
+    "recall": "mira-13-cp2-ledger-desk"
+   },
+   "S09": {
+    "recall": "mira-13-cp2-ledger-desk"
+   },
+   "S06": {
+    "recall": "mira-13-cp3-formula-dropbox"
+   },
+   "S08": {
+    "recall": "mira-13-cp3-formula-dropbox"
+   }
+  },
+  "glyph-dispatch": {
+   "S01": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S02": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S03": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S04": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S05": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S06": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S07": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S08": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S09": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S10": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S11": {
+    "recall": "mira-16-cp1-payroll-batch"
+   },
+   "S12": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S13": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S14": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S15": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S16": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S17": {
+    "recall": "mira-16-cp2-alarm-card"
+   },
+   "S18": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "S19": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "S20": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "S21": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "S22": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "S23": {
+    "recall": "mira-16-cp3-formula-wall"
+   },
+   "N04": {
+    "recall": "mira-16-cp4-relay-typo"
+   },
+   "N05": {
+    "recall": "mira-16-cp4-relay-typo"
+   },
+   "N13": {
+    "recall": "mira-16-cp4-relay-typo"
+   }
+  }
+ },
+ "uncovered": []
+}
