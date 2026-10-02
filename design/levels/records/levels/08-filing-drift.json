@@ -1,0 +1,467 @@
+{
+  "id": "records-08",
+  "number": 8,
+  "title": "Filing Drift",
+  "district": "records",
+  "kind": "main",
+  "requires": [
+    "records-07"
+  ],
+  "story": "File addresses are drifting between the lines of an incident log, and Noor believes the latest automatic re-indexing caused it. The player walks the log word by word with Caps plus B and W, repairs an address, then finds an unmarked one in another cabinet. The repaired folders align and the margin-room doorway opens.",
+  "steps": [
+    {
+      "id": "r08-s0",
+      "objective": "Talk to Mira by the mail chute about the Courier Loop.",
+      "interaction": "mira",
+      "completes_when": "interact:mira",
+      "optional": true
+    },
+    {
+      "id": "r08-s1",
+      "objective": "Walk to Noor beside the circular desk and hear about the drift.",
+      "interaction": "noor",
+      "completes_when": "interact:noor",
+      "target_cell": [
+        21,
+        12
+      ]
+    },
+    {
+      "id": "r08-s2",
+      "objective": "Walk to the log terminal in the log room.",
+      "interaction": "log_terminal",
+      "completes_when": "interact:log_terminal",
+      "target_cell": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "r08-s3",
+      "objective": "Step back over the drifted word.",
+      "interaction": "log_terminal",
+      "completes_when": "scene_success:records-08-s1-step-back"
+    },
+    {
+      "id": "r08-s4",
+      "objective": "Step forward to the next address.",
+      "interaction": "log_terminal",
+      "completes_when": "scene_success:records-08-s2-step-forward"
+    },
+    {
+      "id": "r08-s5",
+      "objective": "Repair a longer log line.",
+      "interaction": "log_terminal",
+      "completes_when": "scene_success:records-08-s3-log-mixed"
+    },
+    {
+      "id": "r08-s6",
+      "objective": "Find the unmarked address in the second cabinet.",
+      "interaction": "log_cabinet_recall",
+      "completes_when": "scene_success:records-08-s4-recall-cabinet"
+    },
+    {
+      "id": "r08-s7",
+      "objective": "Watch the folders align and the margin-room doorway open.",
+      "interaction": null,
+      "completes_when": "trigger:t08-aligned"
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N05",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-08-s1-step-back"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-08-s2-step-forward"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-08-s3-log-mixed"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-08-s3-log-mixed"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-08-s4-recall-cabinet"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-08-s4-recall-cabinet"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-08-s3-log-mixed",
+      "note": "Plain b and w typed after Caps release."
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "records-08-s1-step-back",
+      "kind": "log",
+      "task_summary": "Step back over a drifted word with Option plus Left, Caps plus B, and repair the address.",
+      "success_criteria": [
+        "The line ends as 'addr=stacks.east/bay-12;idx=7;ref=old'",
+        "Option + Left is observed at least twice and no character is deleted by the move"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The log line's bay number drifted from 12 to 21. The cursor starts at the end. Step back by words to the drifted bay number and correct it.",
+        "lines": [
+          {
+            "text": "addr=stacks.east/bay-21;idx=7;ref=old",
+            "cursor": "end",
+            "target": "addr=stacks.east/bay-12;idx=7;ref=old",
+            "highlight": "drifted word 21"
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "Backspace",
+          "typed digits after Caps is released"
+        ],
+        "rejects": [
+          "Left Arrow used to cross the whole line one character at a time is allowed but the journal records it as arrows"
+        ],
+        "feedback": {
+          "stuck": "Left Arrow moved one character. Option + Left jumps a whole word.",
+          "digit": "A digit was typed while Caps was held. Release Caps first."
+        },
+        "layout": "Keyboard diagram highlights Caps and B."
+      }
+    },
+    {
+      "id": "records-08-s2-step-forward",
+      "kind": "log",
+      "task_summary": "Reach the next address with Option plus Right, Caps plus W, and repair it.",
+      "success_criteria": [
+        "The line ends as 'addr=archive.west/bay-54;idx=3;ref=old'",
+        "Option + Right is observed at least twice"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The cursor starts at the beginning. Jump forward by words to the bay number, which drifted from 54 to 45, and correct it.",
+        "lines": [
+          {
+            "text": "addr=archive.west/bay-45;idx=3;ref=old",
+            "cursor": "start",
+            "target": "addr=archive.west/bay-54;idx=3;ref=old",
+            "highlight": "drifted word 45"
+          }
+        ],
+        "accepts": [
+          "Option + Right",
+          "Backspace",
+          "typed digits after Caps is released"
+        ],
+        "rejects": [
+          "a digit typed while Caps is held"
+        ],
+        "feedback": {
+          "digit": "A digit was typed while Caps was held. Release Caps first."
+        },
+        "layout": "Keyboard diagram highlights Caps and W."
+      }
+    },
+    {
+      "id": "records-08-s3-log-mixed",
+      "kind": "log",
+      "task_summary": "Repair a longer log line with punctuation using both word jumps, then type plain b and w after Caps is released.",
+      "success_criteria": [
+        "The line ends as 'addr=stacks.north/aisle-w9;idx=14;ref=bw'",
+        "Both Option + Left and Option + Right are observed",
+        "The letters b and w were typed as text after Caps was released"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A longer line with a different word length: fix the aisle letter and replace the ref tag.",
+        "lines": [
+          {
+            "text": "addr=stacks.north/aisle-b9;idx=14;ref=old",
+            "cursor": "end",
+            "target": "addr=stacks.north/aisle-w9;idx=14;ref=bw"
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "Option + Right",
+          "Backspace",
+          "b",
+          "w"
+        ],
+        "rejects": [
+          "b or w typed while Caps is held (they become word jumps)"
+        ],
+        "feedback": {
+          "jump": "B or W was pressed while Caps was held and moved the cursor. Release Caps to type the letter."
+        },
+        "layout": "No per-key diagram; Layout help stays available."
+      }
+    },
+    {
+      "id": "records-08-s4-recall-cabinet",
+      "kind": "log",
+      "task_summary": "Find and repair an unmarked address in another cabinet with the same word jumps.",
+      "success_criteria": [
+        "The line ends as 'addr=index.annex/shelf-71;idx=9;ref=old-copy'",
+        "No highlight or move-by-move prompt is shown"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The second cabinet's log has one wrong address and no marker. Repair it.",
+        "lines": [
+          {
+            "text": "addr=index.annex/shelf-17;idx=9;ref=old-copy",
+            "cursor": "end",
+            "target": "addr=index.annex/shelf-71;idx=9;ref=old-copy",
+            "highlight": null
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "Option + Right",
+          "Backspace",
+          "typed digits after Caps is released"
+        ],
+        "rejects": [
+          "a digit typed while Caps is held"
+        ],
+        "feedback": {
+          "digit": "A digit was typed while Caps was held. Release Caps first."
+        },
+        "layout": "No keyboard diagram, no highlight."
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "r08-noor-intro",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "The addresses in this log drifted overnight. Walk it word by word and put each one back where it belongs.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:noor & state:records-07",
+      "cue": "08 instructions: neutral"
+    },
+    {
+      "id": "r08-noor-blames",
+      "speaker": "noor",
+      "portrait": "concerned",
+      "text": "The re-indexing did this. Every line it touched slid by a word. I did not touch them.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "step_start:r08-s2",
+      "cue": "08: concerned when she blames the re-indexing"
+    },
+    {
+      "id": "r08-hint-back",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To step back over the drifted word, you need to press Option + Left. Hint: Option + Left is tap-hold Caps + B.",
+      "hint": {
+        "action": "To step back over the drifted word, you need to press Option + Left.",
+        "key": "Option + Left",
+        "gesture": "Option + Left is tap-hold Caps + B."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r08-s3",
+      "cue": "08 instructions: neutral"
+    },
+    {
+      "id": "r08-hint-forward",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To reach the next address, you need to press Option + Right. Hint: Option + Right is tap-hold Caps + W.",
+      "hint": {
+        "action": "To reach the next address, you need to press Option + Right.",
+        "key": "Option + Right",
+        "gesture": "Option + Right is tap-hold Caps + W."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r08-s4",
+      "cue": "08 instructions: neutral"
+    },
+    {
+      "id": "r08-noor-accepted",
+      "speaker": "noor",
+      "portrait": "pleased",
+      "text": "Accepted. Stamp's down on the first page, and the labels line up again.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t08-aligned",
+      "cue": "08: pleased when her stamp changes to accepted"
+    },
+    {
+      "id": "r08-engineer-carbon",
+      "speaker": "engineer",
+      "portrait": "concerned",
+      "text": "Carbon copy A: the first routing record. Two steps, desk to cabinet. Pace's current copy takes six.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:artifact_carbon_copy_a",
+      "cue": "Engineer: concerned when inspecting a tampering artifact (Carbon copy A)"
+    },
+    {
+      "id": "r08-engineer-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: the log drifted one word at a time. Option+Left and Option+Right put every address back.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t08-aligned",
+      "cue": "Engineer: journal entries are neutral"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t08-aligned",
+      "when": "scene_success:records-08-s4-recall-cabinet",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "log_cabinet",
+          "state": "aligned"
+        },
+        {
+          "op": "set_state",
+          "target": "log_cabinet_2",
+          "state": "aligned"
+        },
+        {
+          "op": "set_state",
+          "target": "log_cabinet_3",
+          "state": "aligned"
+        },
+        {
+          "op": "set_state",
+          "target": "archive_ledger_mark",
+          "state": "accepted"
+        },
+        {
+          "op": "set_state",
+          "target": "margin_gate",
+          "state": "aligned"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate_margin"
+        },
+        {
+          "op": "npc_state",
+          "npc": "noor",
+          "state": "records-08"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "r08-noor-accepted"
+        },
+        {
+          "op": "journal",
+          "text": "Drifted log repaired with Caps+B and Caps+W; Noor's stamp mark is accepted."
+        },
+        {
+          "op": "complete_level",
+          "level": "records-08"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "Log cabinets show folders with offset label tabs, the circular desk's ledger carries a rejection cross, and two cabinets sit crooked across the margin-room doorway.",
+    "after": "Every label tab is aligned, the ledger mark is a tick and seal, the doorway is clear and Noor has moved to the margin room.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "log_cabinet",
+        "from": "offset",
+        "to": "aligned"
+      },
+      {
+        "kind": "placement_state",
+        "target": "archive_ledger_mark",
+        "from": "rejected",
+        "to": "accepted"
+      },
+      {
+        "kind": "gate",
+        "target": "gate_margin",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "noor",
+        "from": "records-07",
+        "to": "records-08",
+        "note": "Stamp-down in the margin room."
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "records_branch:margin_room"
+    ]
+  },
+  "optional_artifact": {
+    "id": "carbon-copy-a",
+    "name": "Carbon copy A",
+    "interaction": "artifact_carbon_copy_a",
+    "placement": "artifact_carbon_copy_a",
+    "caption": [
+      "Carbon copy A: the first original route record for the Records desk.",
+      "Its route runs desk to cabinet in two steps.",
+      "Pace's current copy sends the same slip through six."
+    ],
+    "engineer_portrait": "concerned"
+  },
+  "glitch": {
+    "archetype": "form",
+    "cell": [
+      10,
+      13
+    ],
+    "interaction": "log_glitch",
+    "note": "A harmless folded-form glitch loose in the log room; repair per GLITCHES_SPEC, no scored scene."
+  },
+  "pace_copy": [
+    {
+      "text": "Re-index complete: every address verified.",
+      "state": "default",
+      "placement": "pace_directory_annex"
+    }
+  ],
+  "review_notes": "Checked at 1366x768 (x4) with the keyboard inset open (stage x 16-588, y 412-704; logical x 4-147, y 103-176). The level's main terminal `log_terminal` is approached from cell [12, 13]: the avatar's feet sit at screen 160,148 and the target is clear of the keyboard inset. The scene panels are DOM overlays above the world and the keyboard diagram sits in the inset, so the world need only keep the avatar and target clear."
+}

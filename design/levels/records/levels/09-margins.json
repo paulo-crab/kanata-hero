@@ -1,0 +1,466 @@
+{
+  "id": "records-09",
+  "number": 9,
+  "title": "The Margins",
+  "district": "records",
+  "kind": "main",
+  "requires": [
+    "records-08"
+  ],
+  "story": "A ledger has signatures at both ends of each line, but Pace's revised copy moved the sign-off to the middle. The player reaches each margin with Caps plus 0 and 4, adds and removes tokens, then solves a fresh line without arrows. Both ends of the ledger light and the rolling ladder moves to reveal the upper gallery.",
+  "steps": [
+    {
+      "id": "r09-s1",
+      "objective": "Walk to the ledger terminal in the margin room.",
+      "interaction": "ledger_terminal",
+      "completes_when": "interact:ledger_terminal",
+      "target_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "id": "r09-s2",
+      "objective": "Reach the opening signature.",
+      "interaction": "ledger_terminal",
+      "completes_when": "scene_success:records-09-s1-line-start"
+    },
+    {
+      "id": "r09-s3",
+      "objective": "Reach the closing signature.",
+      "interaction": "ledger_terminal",
+      "completes_when": "scene_success:records-09-s2-line-end"
+    },
+    {
+      "id": "r09-s4",
+      "objective": "Reach the line end the Shift and 4 way.",
+      "interaction": "ledger_terminal",
+      "completes_when": "scene_success:records-09-s3-dollar"
+    },
+    {
+      "id": "r09-s5",
+      "objective": "Insert and remove tokens at both margins.",
+      "interaction": "ledger_terminal",
+      "completes_when": "scene_success:records-09-s4-margin-tokens"
+    },
+    {
+      "id": "r09-s6",
+      "objective": "Solve a fresh line without arrows.",
+      "interaction": "ledger_terminal",
+      "completes_when": "scene_success:records-09-s5-fresh-line"
+    },
+    {
+      "id": "r09-s7",
+      "objective": "Watch both ends light and the ladder roll aside.",
+      "interaction": null,
+      "completes_when": "trigger:t09-complete"
+    },
+    {
+      "id": "r09-s8",
+      "objective": "Inspect the margin stamp on the ledger corner.",
+      "interaction": "artifact_margin_stamp",
+      "completes_when": "interact:artifact_margin_stamp",
+      "optional": true
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N07",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-09-s1-line-start"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-09-s2-line-end"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-09-s3-dollar",
+      "note": "Shift+4 / $ demonstration"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-09-s4-margin-tokens"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-09-s4-margin-tokens"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-09-s5-fresh-line"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-09-s5-fresh-line"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-09-s4-margin-tokens",
+      "note": "Plain 0 and 4 typed after Caps release."
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "records-09-s1-line-start",
+      "kind": "editor",
+      "task_summary": "Reach the opening signature with Command plus Left, Caps plus 0, and add the missing signature.",
+      "success_criteria": [
+        "The line starts '[Okafor] ' and Command + Left was observed",
+        "Nothing else changed"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A ledger line is missing its opening signature. The cursor starts at the end. Jump to the start of the line and add the signature.",
+        "lines": [
+          {
+            "text": "route 4A to annex stacks",
+            "cursor": "end",
+            "target": "[Okafor] route 4A to annex stacks"
+          }
+        ],
+        "accepts": [
+          "Command + Left",
+          "typed text after Caps is released"
+        ],
+        "rejects": [
+          "Left Arrow held down for the whole line is allowed but recorded as arrows"
+        ],
+        "feedback": {
+          "zero": "A 0 was typed while Caps was held and became a jump. Release Caps to type a digit."
+        },
+        "layout": "Keyboard diagram highlights Caps and 0."
+      }
+    },
+    {
+      "id": "records-09-s2-line-end",
+      "kind": "editor",
+      "task_summary": "Reach the closing signature with Command plus Right, Caps plus 4, and add the missing signature.",
+      "success_criteria": [
+        "The line ends ' [Lind]' and Command + Right was observed"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The cursor starts at the beginning. Jump to the end of the line and add the closing signature.",
+        "lines": [
+          {
+            "text": "[Okafor] route 4A to annex stacks",
+            "cursor": "start",
+            "target": "[Okafor] route 4A to annex stacks [Lind]"
+          }
+        ],
+        "accepts": [
+          "Command + Right",
+          "typed text after Caps is released"
+        ],
+        "rejects": [],
+        "feedback": {
+          "four": "A 4 was typed while Caps was held and became a jump. Release Caps to type a digit."
+        },
+        "layout": "Keyboard diagram highlights Caps and 4."
+      }
+    },
+    {
+      "id": "records-09-s3-dollar",
+      "kind": "editor",
+      "task_summary": "See that Shift plus 4 as the layout maps it also lands at the line end, with no dollar sign typed.",
+      "success_criteria": [
+        "The cursor reaches the line end and Command + Right is observed",
+        "No $ character appears"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A short demonstration: place the cursor mid-line, then reach the line end with the Shift + 4 gesture as mapped.",
+        "lines": [
+          {
+            "text": "[Okafor] route 4A to annex stacks [Lind]",
+            "cursor": 9,
+            "target": "[Okafor] route 4A to annex stacks [Lind]"
+          }
+        ],
+        "steps": [
+          {
+            "do": "Reach the line end with the mapped Shift + 4 gesture",
+            "accepts": [
+              "Command + Right"
+            ],
+            "rejects": [
+              "$"
+            ]
+          }
+        ],
+        "accepts": [
+          "Command + Right"
+        ],
+        "rejects": [
+          "$ typed into the line"
+        ],
+        "feedback": {
+          "dollar": "A $ was typed. Hold Caps first, then press 4 with Shift as mapped."
+        },
+        "layout": "Keyboard diagram highlights the Shift hold and 4 under Caps."
+      },
+      "note": "levels.md 09: demonstrate Shift+4 / $ reaching the end as mapped; inventory N08 note. Guided demonstration, not an extra gesture."
+    },
+    {
+      "id": "records-09-s4-margin-tokens",
+      "kind": "editor",
+      "task_summary": "Insert and remove short tokens at both margins of two fresh lines, then type plain 0 and 4 after Caps is released.",
+      "success_criteria": [
+        "Line one ends as 'route 7C to log room' and line two as '[40] route 9B to gallery [04]'",
+        "The digits 0 and 4 appear as typed digits"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Two fresh lines: strip the stale tokens from the first, wrap the second with numbered tokens.",
+        "lines": [
+          {
+            "text": "[copy] route 7C to log room [draft]",
+            "cursor": "end",
+            "target": "route 7C to log room"
+          },
+          {
+            "text": "route 9B to gallery",
+            "cursor": "end",
+            "target": "[40] route 9B to gallery [04]"
+          }
+        ],
+        "accepts": [
+          "Command + Left",
+          "Command + Right",
+          "Backspace",
+          "Forward Delete",
+          "typed digits after Caps is released"
+        ],
+        "rejects": [
+          "a digit typed while Caps is held"
+        ],
+        "feedback": {
+          "digit": "A digit was typed while Caps was held and became a jump. Release Caps first."
+        },
+        "layout": "Keyboard diagram shown for the first line only."
+      }
+    },
+    {
+      "id": "records-09-s5-fresh-line",
+      "kind": "editor",
+      "task_summary": "Solve a fresh line at both margins with no arrows on the overlay.",
+      "success_criteria": [
+        "The line ends as '[Okafor] route 8D to north bay [Lind]'",
+        "No overlay arrows or cursor markers were shown"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A line with both signatures missing. No overlay arrows. Add both.",
+        "lines": [
+          {
+            "text": "route 8D to north bay",
+            "cursor": "middle",
+            "target": "[Okafor] route 8D to north bay [Lind]"
+          }
+        ],
+        "accepts": [
+          "Command + Left",
+          "Command + Right",
+          "typed text after Caps is released"
+        ],
+        "rejects": [
+          "a key typed while Caps is held"
+        ],
+        "feedback": {
+          "held": "A key was pressed while Caps was held and became a command. Release Caps to type text."
+        },
+        "layout": "No keyboard diagram, no arrows."
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "r09-hint-start",
+      "speaker": "ledger",
+      "portrait": null,
+      "text": "To reach the opening signature, you need to press Command + Left. Hint: Command + Left is tap-hold Caps + 0.",
+      "hint": {
+        "action": "To reach the opening signature, you need to press Command + Left.",
+        "key": "Command + Left",
+        "gesture": "Command + Left is tap-hold Caps + 0."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r09-s2"
+    },
+    {
+      "id": "r09-hint-end",
+      "speaker": "ledger",
+      "portrait": null,
+      "text": "To reach the closing signature, you need to press Command + Right. Hint: Command + Right is tap-hold Caps + 4.",
+      "hint": {
+        "action": "To reach the closing signature, you need to press Command + Right.",
+        "key": "Command + Right",
+        "gesture": "Command + Right is tap-hold Caps + 4."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r09-s3"
+    },
+    {
+      "id": "r09-noor-unimpressed",
+      "speaker": "noor",
+      "portrait": "unimpressed",
+      "text": "Pace says the sign-off is 'centered for readability'. The sign-off belongs at the end of the line, not the middle.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "step_start:r09-s2",
+      "cue": "09: noor_unimpressed at Pace's moved sign-off"
+    },
+    {
+      "id": "r09-engineer-stamp",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "A margin stamp with its archived date showing: it predates the moved sign-off.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:artifact_margin_stamp",
+      "cue": "Engineer: neutral (Margin stamp is not on the concerned list)"
+    },
+    {
+      "id": "r09-engineer-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: Command+Left and Command+Right put both signatures back at the ends of the line.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t09-complete",
+      "cue": "Engineer: journal entries are neutral"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t09-complete",
+      "when": "scene_success:records-09-s5-fresh-line",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "ledger_lamp_w",
+          "state": "on"
+        },
+        {
+          "op": "set_state",
+          "target": "ledger_lamp_e",
+          "state": "on"
+        },
+        {
+          "op": "set_state",
+          "target": "ladder_gate",
+          "state": "moved"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate_ladder"
+        },
+        {
+          "op": "light_state",
+          "light_state": "margin_lamps_lit"
+        },
+        {
+          "op": "npc_state",
+          "npc": "noor",
+          "state": "records-09"
+        },
+        {
+          "op": "journal",
+          "text": "Both ends of the ledger lit; the ladder rolled aside from the gallery doorway."
+        },
+        {
+          "op": "complete_level",
+          "level": "records-09"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The ledger table is dim, its two end lamps are dark and the rolling ladder is parked across the gallery doorway.",
+    "after": "A beam of daylight crosses the table, both end lamps are lit, the ladder has rolled aside and Noor has moved up to the gallery.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "ledger_lamp_w",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "placement_state",
+        "target": "ladder_gate",
+        "from": "parked",
+        "to": "moved"
+      },
+      {
+        "kind": "light_state",
+        "target": "margin_lamps_lit",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "gate",
+        "target": "gate_ladder",
+        "from": "closed",
+        "to": "open"
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "records_branch:gallery"
+    ]
+  },
+  "optional_artifact": {
+    "id": "margin-stamp",
+    "name": "Margin stamp",
+    "interaction": "artifact_margin_stamp",
+    "placement": "artifact_margin_stamp",
+    "caption": [
+      "A margin stamp pressed at the ledger's edge, its archived date still legible.",
+      "The date is earlier than Pace's revised copy, with the sign-off still at the end of the line."
+    ],
+    "engineer_portrait": "neutral"
+  },
+  "pace_copy": [
+    {
+      "text": "Sign-off centered for readability.",
+      "state": "repeat",
+      "placement": "pace_sign_annex"
+    }
+  ],
+  "review_notes": "Checked at 1366x768 (x4) with the keyboard inset open (stage x 16-588, y 412-704; logical x 4-147, y 103-176). The level's main terminal `ledger_terminal` is approached from cell [10, 3]: the avatar's feet sit at screen 160,64 and the target is clear of the keyboard inset. The scene panels are DOM overlays above the world and the keyboard diagram sits in the inset, so the world need only keep the avatar and target clear."
+}

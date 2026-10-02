@@ -1,0 +1,1074 @@
+{
+  "id": "records-11",
+  "number": 11,
+  "title": "Marked for Review",
+  "district": "records",
+  "kind": "review",
+  "requires": [
+    "records-10"
+  ],
+  "story": "Noor wants the original routing sentence selected exactly before she sends a correction to the next floor, while Pace insists the copy is equivalent. The player selects with Shift before Caps, tests the Caps exceptions, and reviews every earlier Records gesture in distinct steps. The seal opens the sliding file wall to Mira's chute.",
+  "steps": [
+    {
+      "id": "r11-s1",
+      "objective": "Walk through the review chamber door to the review terminal.",
+      "interaction": "review_terminal",
+      "completes_when": "interact:review_terminal",
+      "target_cell": [
+        31,
+        3
+      ]
+    },
+    {
+      "id": "r11-s2",
+      "objective": "Select the next word, holding Shift before Caps.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s1-shift-first"
+    },
+    {
+      "id": "r11-s3",
+      "objective": "Jump to the line end without selecting.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s2-caps4-drops-shift"
+    },
+    {
+      "id": "r11-s4",
+      "objective": "Type A, S and F as plain letters while Caps is held.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s3-literal-asf"
+    },
+    {
+      "id": "r11-s5",
+      "objective": "Type a short note that mixes literal letters and a word jump.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s4-literal-in-note"
+    },
+    {
+      "id": "r11-s6",
+      "objective": "Walk the four directions with Right Command.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s5-rcmd-arrows"
+    },
+    {
+      "id": "r11-s7",
+      "objective": "Use Right Command arrows inside an edit.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s6-rcmd-edit"
+    },
+    {
+      "id": "r11-s8",
+      "objective": "Review the four arrows.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s7-review-arrows"
+    },
+    {
+      "id": "r11-s9",
+      "objective": "Review word movement.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s8-review-word"
+    },
+    {
+      "id": "r11-s10",
+      "objective": "Review line start and end.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s9-review-line"
+    },
+    {
+      "id": "r11-s11",
+      "objective": "Review page and document jumps.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s10-review-page-doc"
+    },
+    {
+      "id": "r11-s12",
+      "objective": "Review the three deletion routes.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s11-review-editing"
+    },
+    {
+      "id": "r11-s13",
+      "objective": "Review Return and Escape.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s12-review-return-escape"
+    },
+    {
+      "id": "r11-s14",
+      "objective": "Select the original routing sentence exactly and replace Pace's copy.",
+      "interaction": "review_terminal",
+      "completes_when": "scene_success:records-11-s13-select-and-replace"
+    },
+    {
+      "id": "r11-s15",
+      "objective": "Watch the shelves slide apart and the folder labels regain their colour.",
+      "interaction": null,
+      "completes_when": "trigger:t11-seal"
+    },
+    {
+      "id": "r11-s16",
+      "objective": "Inspect Noor's annotation on the chamber floor stand.",
+      "interaction": "artifact_noor_annotation",
+      "completes_when": "interact:artifact_noor_annotation",
+      "optional": true
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N19",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-11-s1-shift-first"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-11-s2-caps4-drops-shift"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s13-select-and-replace"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-11-s3-literal-asf"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-11-s4-literal-in-note"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s13-select-and-replace"
+    },
+    {
+      "id": "N21",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-11-s5-rcmd-arrows"
+    },
+    {
+      "id": "N21",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-11-s6-rcmd-edit"
+    },
+    {
+      "id": "N21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s7-review-arrows"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s2-caps4-drops-shift",
+      "note": "Caps+4 consumes Shift (revisit)"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s7-review-arrows"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s7-review-arrows"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s7-review-arrows"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s7-review-arrows"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s8-review-word"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s8-review-word"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s9-review-line"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s9-review-line"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s10-review-page-doc"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s10-review-page-doc"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s10-review-page-doc"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s10-review-page-doc"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s11-review-editing"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s11-review-editing"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s11-review-editing"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s11-review-editing"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s12-review-return-escape"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s12-review-return-escape"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s13-select-and-replace",
+      "note": "Home-row Shift on F"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-11-s13-select-and-replace",
+      "note": "Home-row Shift on J"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "records-11-s1-shift-first",
+      "kind": "editor",
+      "task_summary": "Select the next word of the routing sentence by holding home-row Shift first and then Caps plus W.",
+      "success_criteria": [
+        "Shift + Option + Right is observed and the word 'routing' is highlighted",
+        "The Shift hold was already down before Caps was pressed"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The routing sentence is 'send the routing sentence to the next floor'. The cursor sits before 'routing'. Select that word.",
+        "document": {
+          "text": "send the routing sentence to the next floor",
+          "cursor": 9,
+          "target_selection": "routing"
+        },
+        "targets": [
+          {
+            "selection": "routing"
+          }
+        ],
+        "accepts": [
+          "Shift + Option + Right"
+        ],
+        "rejects": [
+          "a literal f typed because Caps was held before Shift"
+        ],
+        "feedback": {
+          "f_typed": "An f was typed: Caps was already down when F was pressed, so F stayed a letter. Hold the Shift key first, then Caps.",
+          "j_down": "Down was observed: J was pressed after Caps, so it moved the cursor. Hold J first."
+        },
+        "layout": "Keyboard diagram shows the Shift hold on F or J, then Caps and W."
+      }
+    },
+    {
+      "id": "records-11-s2-caps4-drops-shift",
+      "kind": "editor",
+      "task_summary": "See that Caps plus 4 with Shift held goes to the plain line end and does not extend the selection.",
+      "success_criteria": [
+        "Command + Right is observed and the selection is empty at the line end",
+        "The earlier selection is gone"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "With a word selected, press the end-of-line gesture and watch what happens to the selection.",
+        "document": {
+          "text": "send the routing sentence to the next floor",
+          "cursor": 9,
+          "selection": "routing",
+          "target_cursor": "end",
+          "target_selection": ""
+        },
+        "targets": [
+          {
+            "selection": ""
+          },
+          {
+            "cursor": "end"
+          }
+        ],
+        "accepts": [
+          "Command + Right"
+        ],
+        "rejects": [
+          "a selection that extends to the line end"
+        ],
+        "feedback": {
+          "extended": "The selection did extend: Shift was still active. Caps + 4 drops Shift and moves without selecting."
+        },
+        "layout": "Keyboard diagram highlights Caps and 4 with the dropped Shift marked."
+      }
+    },
+    {
+      "id": "records-11-s3-literal-asf",
+      "kind": "editor",
+      "task_summary": "Type A, S and F as literal letters while Caps is held.",
+      "success_criteria": [
+        "The letters a, s and f appear in the margin note while Caps is held",
+        "No navigation or selection is triggered"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Hold Caps and press A, S and F in turn in the margin note; each one is a plain letter.",
+        "document": {
+          "field": "margin note",
+          "initial": "",
+          "target": "asf"
+        },
+        "targets": [
+          {
+            "field": "margin note",
+            "text": "asf"
+          }
+        ],
+        "accepts": [
+          "a",
+          "s",
+          "f"
+        ],
+        "rejects": [
+          "Shift + any arrow",
+          "Command or Control shortcuts"
+        ],
+        "feedback": {
+          "nav": "A navigation output was observed. A, S and F stay letters while Caps is held."
+        },
+        "layout": "Keyboard diagram shows Caps held with A, S and F marked literal."
+      }
+    },
+    {
+      "id": "records-11-s4-literal-in-note",
+      "kind": "editor",
+      "task_summary": "Type a short margin note that mixes literal A, S and F under Caps with a word jump.",
+      "success_criteria": [
+        "The margin note reads 'safe' and a word jump was used once",
+        "A, S and F were literals under Caps"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The note reads 'e'. Hold Caps and type s, a and f in front of it so it reads 'safe', using one word jump to place the cursor.",
+        "document": {
+          "field": "margin note",
+          "initial": "e",
+          "cursor": "end",
+          "target": "safe"
+        },
+        "targets": [
+          {
+            "field": "margin note",
+            "text": "safe"
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "a",
+          "s",
+          "f"
+        ],
+        "rejects": [
+          "Shift + any arrow"
+        ],
+        "feedback": {
+          "nav": "A navigation output was observed. A, S and F stay letters while Caps is held."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s5-rcmd-arrows",
+      "kind": "editor",
+      "task_summary": "Walk the cursor with Right Command plus H, J, K and L and see that other Caps-only gestures are not granted.",
+      "success_criteria": [
+        "Left, Down, Up and Right Arrow are each observed through Right Command",
+        "Right Command plus W keeps its normal meaning"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Move the cursor around a four-line note with Right Command plus H, J, K and L. Then press Right Command plus W and read what the editor reports.",
+        "document": {
+          "text": "line one\nline two\nline three\nline four",
+          "cursor": "start"
+        },
+        "steps": [
+          {
+            "do": "Right Command + H, J, K, L",
+            "accepts": [
+              "Left Arrow",
+              "Down Arrow",
+              "Up Arrow",
+              "Right Arrow"
+            ]
+          },
+          {
+            "do": "Right Command + W",
+            "accepts": [
+              "Command + W"
+            ],
+            "effect": "the editor reports its normal meaning and no word jump"
+          }
+        ],
+        "targets": [
+          {
+            "cursor": "end"
+          }
+        ],
+        "accepts": [
+          "Left Arrow",
+          "Down Arrow",
+          "Up Arrow",
+          "Right Arrow"
+        ],
+        "rejects": [
+          "a word jump from Right Command + W"
+        ],
+        "feedback": {
+          "word_jump": "Right Command + W does not become a word jump; only Caps does that."
+        },
+        "layout": "MacBook keyboard diagram shows Right Command and H, J, K, L."
+      },
+      "note": "Physical Right Command cannot be told from Caps by output; the journal marks the route as player-confirmed (N21)."
+    },
+    {
+      "id": "records-11-s6-rcmd-edit",
+      "kind": "editor",
+      "task_summary": "Use Right Command arrows inside a short editing task, mixing them with Caps navigation.",
+      "success_criteria": [
+        "The note ends as 'move the word back'",
+        "Arrow outputs were observed"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "A short note needs one word moved. Walk the cursor with Right Command or Caps arrows as you like and finish the edit.",
+        "document": {
+          "text": "move back the word",
+          "cursor": "end",
+          "target": "move the word back"
+        },
+        "targets": [
+          {
+            "text": "move the word back"
+          }
+        ],
+        "accepts": [
+          "Left Arrow",
+          "Right Arrow",
+          "Backspace",
+          "typed text after release"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The text does not match yet; the editor shows what it observed."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s7-review-arrows",
+      "kind": "walk",
+      "task_summary": "Walk the four directions along a short unmarked route of the review chamber, with no hint.",
+      "success_criteria": [
+        "The four arrows were each observed during the route",
+        "No keyboard diagram or marker path was shown"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Cross the chamber floor panel to the lit tile using any arrow route."
+      }
+    },
+    {
+      "id": "records-11-s8-review-word",
+      "kind": "editor",
+      "task_summary": "Review word movement in the routing sentence with no hint.",
+      "success_criteria": [
+        "The cursor reaches the marked word using Option + Left and Option + Right"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Put the cursor on the word 'floor' in the routing sentence.",
+        "document": {
+          "text": "send the routing sentence to the next floor",
+          "cursor": "start",
+          "target_cursor": "before floor"
+        },
+        "targets": [
+          {
+            "cursor": "before floor"
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "Option + Right"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The cursor is not on 'floor' yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s9-review-line",
+      "kind": "editor",
+      "task_summary": "Review line start and line end in a three-line note with no hint.",
+      "success_criteria": [
+        "The first line starts with '>' and the last line ends with '<'"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Mark the first line's start with > and the last line's end with <.",
+        "document": {
+          "text": "one\ntwo\nthree",
+          "cursor": "start",
+          "target": ">one\ntwo\nthree<"
+        },
+        "targets": [
+          {
+            "text": ">one\ntwo\nthree<"
+          }
+        ],
+        "accepts": [
+          "Command + Left",
+          "Command + Right",
+          "typed text after release"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The note does not match yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s10-review-page-doc",
+      "kind": "editor",
+      "task_summary": "Review page and document jumps in a long unmarked report with no hint.",
+      "success_criteria": [
+        "The marked citation on page 4 and the closing line are cited"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Cite the sentence on page 4 and the closing line of the report.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": false
+        },
+        "items": [
+          {
+            "fact": "page 4 sentence",
+            "page": 4,
+            "citation": "select and confirm"
+          },
+          {
+            "fact": "closing line",
+            "page": 6,
+            "citation": "select and confirm"
+          }
+        ],
+        "accepts": [
+          "Page Up",
+          "Page Down",
+          "Command + Up",
+          "Command + Down"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "Both citations are needed."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s11-review-editing",
+      "kind": "editor",
+      "task_summary": "Review Backspace and both forward-delete routes on a fresh line with no hint.",
+      "success_criteria": [
+        "The line ends as 'file the folder today'"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Repair the line using any deletion route.",
+        "document": {
+          "text": "filee the folderr todayy",
+          "cursor": "end",
+          "target": "file the folder today"
+        },
+        "targets": [
+          {
+            "text": "file the folder today"
+          }
+        ],
+        "accepts": [
+          "Backspace",
+          "Forward Delete",
+          "Control + D",
+          "Left Arrow"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The line does not match yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s12-review-return-escape",
+      "kind": "form",
+      "task_summary": "Review Return and Escape: cancel a stray prompt, then submit a clean entry, with no hint.",
+      "success_criteria": [
+        "Escape closes the prompt and Return submits the entry 'annex row 3'"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A prompt opens over a clean entry. Cancel it and submit the entry.",
+        "initial": {
+          "address": "annex row 3",
+          "modal": "send to wrong wing?"
+        },
+        "target": "annex row 3",
+        "steps": [
+          {
+            "do": "Cancel the prompt",
+            "accepts": [
+              "Escape"
+            ]
+          },
+          {
+            "do": "Submit the entry",
+            "accepts": [
+              "Return"
+            ]
+          }
+        ],
+        "accepts": [
+          "Escape",
+          "Return"
+        ],
+        "rejects": [
+          "Return while the prompt is open"
+        ],
+        "feedback": {
+          "early": "Return was observed while the prompt was open and would send the wrong wing."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-11-s13-select-and-replace",
+      "kind": "editor",
+      "task_summary": "Select the original routing sentence exactly and replace Pace's copy in a new report, then add a margin note with a literal a.",
+      "success_criteria": [
+        "The selection equals 'route 4A, desk to cabinet, two steps' and the replacement text is exact",
+        "A selection was extended with Shift held before Caps; Caps plus 4 was used once to move to a line end without extending it",
+        "The margin note contains the letter a typed while Caps was held"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Pace's copy reads 'route 4A via six checkpoints, equivalent'. Select its routing sentence exactly with Shift and Caps navigation, replace it with the original sentence from Noor's report, and add the margin note 'a'.",
+        "document": {
+          "text": "Summary: route 4A via six checkpoints, equivalent.\nOriginal: route 4A, desk to cabinet, two steps.",
+          "cursor": "start",
+          "target": "Summary: route 4A, desk to cabinet, two steps.\nOriginal: route 4A, desk to cabinet, two steps."
+        },
+        "targets": [
+          {
+            "text": "Summary: route 4A, desk to cabinet, two steps.\nOriginal: route 4A, desk to cabinet, two steps."
+          },
+          {
+            "field": "margin note",
+            "text": "a"
+          }
+        ],
+        "steps": [
+          {
+            "do": "Select 'via six checkpoints, equivalent' with Shift held first and Caps plus a word or line jump",
+            "accepts": [
+              "Shift + Option + Right",
+              "Shift + Command + Right"
+            ]
+          },
+          {
+            "do": "Type the replacement after releasing Caps",
+            "accepts": [
+              "typed text after release"
+            ]
+          },
+          {
+            "do": "Use the line-end jump once; the selection must not extend",
+            "accepts": [
+              "Command + Right"
+            ]
+          },
+          {
+            "do": "Type the letter a in the margin note while Caps is held",
+            "accepts": [
+              "a"
+            ]
+          }
+        ],
+        "accepts": [
+          "Shift + Option + Right",
+          "Shift + Option + Left",
+          "Shift + Command + Right",
+          "Command + Right",
+          "Option + Left",
+          "Option + Right",
+          "a"
+        ],
+        "rejects": [
+          "an f typed because Caps was down before Shift"
+        ],
+        "feedback": {
+          "f_typed": "An f was typed: Caps was held before the Shift key, so F stayed a letter.",
+          "extended": "The selection extended when it should not have: Caps + 4 drops Shift."
+        },
+        "layout": "No keyboard diagram; Layout help available."
+      },
+      "note": "The review. B03 and B04 (home-row Shift) are revisited here through F or J."
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "r11-hint-select",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To select the next word of the routing sentence, you need to press Shift + Option + Right. Hint: tap-hold J (Shift) first, then tap-hold Caps + W. While nav is held, J is Down and F is a literal `f`.",
+      "hint": {
+        "action": "To select the next word of the routing sentence, you need to press Shift + Option + Right.",
+        "key": "Shift + Option + Right",
+        "gesture": "tap-hold J (Shift) first, then tap-hold Caps + W. While nav is held, J is Down and F is a literal `f`."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r11-s2",
+      "cue": "11: Noor instruction (neutral)"
+    },
+    {
+      "id": "r11-hint-line-end",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To jump to the line end without selecting, you need to press Command + Right. Hint: tap-hold Caps + 4 drops Shift, so it moves without extending the selection.",
+      "hint": {
+        "action": "To jump to the line end without selecting, you need to press Command + Right.",
+        "key": "Command + Right",
+        "gesture": "tap-hold Caps + 4 drops Shift, so it moves without extending the selection."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r11-s3",
+      "cue": "11: Noor instruction (neutral)"
+    },
+    {
+      "id": "r11-hint-literal",
+      "speaker": "margin_note",
+      "portrait": null,
+      "text": "To type an `a` while nav is held, you need to press A. Hint: A stays literal on nav, as do S and F.",
+      "hint": {
+        "action": "To type an `a` while nav is held, you need to press A.",
+        "key": "A",
+        "gesture": "A stays literal on nav, as do S and F."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r11-s4"
+    },
+    {
+      "id": "r11-noor-concerned",
+      "speaker": "noor",
+      "portrait": "concerned",
+      "text": "I'm sending the correction to the next floor. Pace will call it noise, so the sentence has to be exact.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:review_terminal",
+      "cue": "11: concerned when she sends the correction against Pace"
+    },
+    {
+      "id": "r11-noor-unimpressed",
+      "speaker": "noor",
+      "portrait": "unimpressed",
+      "text": "Pace says the copy is 'equivalent'. It left out the destination. That is not the same sentence.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "step_start:r11-s2",
+      "cue": "11: noor_unimpressed at Pace's 'equivalent'"
+    },
+    {
+      "id": "r11-noor-pleased",
+      "speaker": "noor",
+      "portrait": "pleased",
+      "text": "That is the sentence, exactly. The seal is yours. Go and tell Mira the loop is open.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t11-seal",
+      "cue": "11: pleased at the seal"
+    },
+    {
+      "id": "r11-engineer-seal",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Journal: Records seal earned. The shelves slid apart and the folder labels are coral and sea blue again.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t11-seal",
+      "cue": "Engineer: pleased at each seal"
+    },
+    {
+      "id": "r11-engineer-annotation",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Noor's annotation on the correction copy: 'equivalent' left out the actual destination.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:artifact_noor_annotation",
+      "cue": "Engineer: neutral (Noor's annotation is not on the concerned list)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t11-seal",
+      "when": "scene_success:records-11-s13-select-and-replace",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "archive_desk",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
+          "target": "file_wall",
+          "state": "open"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate_file_wall"
+        },
+        {
+          "op": "set_state",
+          "target": "mail_chute",
+          "state": "active"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ring_pool_lit"
+        },
+        {
+          "op": "npc_state",
+          "npc": "noor",
+          "state": "records-11"
+        },
+        {
+          "op": "npc_state",
+          "npc": "mira",
+          "state": "records-11"
+        },
+        {
+          "op": "grant",
+          "kind": "seal",
+          "id": "records"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "r11-noor-pleased"
+        },
+        {
+          "op": "journal",
+          "text": "Records seal earned: selection, plain-key return and the Caps exceptions all checked in a changed report."
+        },
+        {
+          "op": "set_flag",
+          "flag": "records-wall-open"
+        },
+        {
+          "op": "complete_level",
+          "level": "records-11"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The circular desk's folders are dull linen, the ring pool is dark and the sliding file wall closes the south of the review chamber.",
+    "after": "The desk folders are coral, sea blue and linen again, the ring pool is lit, the file wall has slid open to a corridor to Mira's chute and the chute light is steady.",
+    "visible_changes": [
+      {
+        "kind": "landmark_state",
+        "target": "archive_desk",
+        "from": "before",
+        "to": "after"
+      },
+      {
+        "kind": "placement_state",
+        "target": "file_wall",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "gate",
+        "target": "gate_file_wall",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "light_state",
+        "target": "ring_pool_lit",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "noor",
+        "from": "records-10",
+        "to": "records-11",
+        "note": "Fully upright, back at the hub."
+      }
+    ]
+  },
+  "rewards": {
+    "seal": "records",
+    "unlocks": [
+      "elevator_stop:systems",
+      "mira_route:lost-folios",
+      "backtrack:file_wall_loop"
+    ]
+  },
+  "optional_artifact": {
+    "id": "noors-annotation",
+    "name": "Noor's annotation",
+    "interaction": "artifact_noor_annotation",
+    "placement": "artifact_noor_annotation",
+    "caption": [
+      "A dry note in Noor's hand on the correction copy.",
+      "'Equivalent' omitted the actual destination."
+    ],
+    "engineer_portrait": "neutral"
+  },
+  "pace_copy": [
+    {
+      "text": "The corrected copy is equivalent.",
+      "state": "repeat",
+      "placement": "pace_sign_chamber"
+    }
+  ],
+  "review_notes": "Checked at 1366x768 (x4) with the keyboard inset open (stage x 16-588, y 412-704; logical x 4-147, y 103-176). The level's main terminal `review_terminal` is approached from cell [31, 3]: the avatar's feet sit at screen 248,64 and the target is clear of the keyboard inset. The scene panels are DOM overlays above the world and the keyboard diagram sits in the inset, so the world need only keep the avatar and target clear."
+}
