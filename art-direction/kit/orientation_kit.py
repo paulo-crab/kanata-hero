@@ -802,17 +802,16 @@ def wall_w_piece():
 
 def draw_north_opening(r):
     """The garden's north rim opens above the cut-through column (x 112-128, the same column as the south opening). The
-    crown is parted over that column: the rim ends reappear as two stubs with contour on the cut faces, a stepped sill closes
+    crown is parted over the path strip only: the rim ends reappear as two stubs with contour on the cut faces, a stepped sill closes
     the gap, and the inlaid path strip runs from the ring, through the shade under the crown, to the first south flagstone.
     Drawn last in the after state, over the crown."""
-    # shaded corridor under the crown: dark verge, leaf-lit edge pixels at the cut
+    # shaded corridor under the crown: a narrow dark verge either side of the strip. The crown itself stays (the
+    # rich-finish canopy is dense, so a wide flat cut read as half the tree vanishing); only the strip crosses it.
     for y in range(78, 102):
         j = (y // 3) % 2
-        r.rect(112 + j, y, 118, y + 1, GREEN[1])
-        r.rect(126, y, 129 - j, y + 1, GREEN[1])
-        r.rect(111 + j, y, 112 + j, y + 1, GREEN[3] if y % 4 == 0 else GREEN[2])
-        r.rect(129 - j, y, 130 - j, y + 1, GREEN[3] if y % 4 == 2 else GREEN[2])
-    r.rect(112, 101, 128, 102, GREEN[0])                # corridor meets the bed floor: leaf shade at the lower end
+        r.rect(116 + j, y, 118, y + 1, GREEN[0])
+        r.rect(126, y, 128 - j, y + 1, GREEN[0])
+    r.rect(116, 101, 128, 102, GREEN[0])                # corridor meets the bed floor: leaf shade at the lower end
     # inlaid path strip, same recipe as the south opening's strip: lit under the sky, shaded under the crown
     for y0, y1, body, lit, dark in ((64, 84, STONE[2], STONE[3], STONE[1]), (84, 101, STONE[1], STONE[2], STONE[0]),
                                     (101, 107, STONE[2], STONE[3], STONE[1])):
