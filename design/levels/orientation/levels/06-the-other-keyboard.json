@@ -1,0 +1,683 @@
+{
+ "id": "orientation-06",
+ "number": 6,
+ "title": "The Other Keyboard",
+ "district": "orientation",
+ "kind": "review",
+ "requires": [
+  "orientation-05"
+ ],
+ "story": "Ivo brings a spare keyboard to the garden desk. The badge roster has one row of native editing actions and one row of alternate navigation, and Pace calls this a consistency review. The engineer compares physical Right Command navigation with Caps navigation, uses the native keys, and finishes with a changed-context roster.",
+ "steps": [
+  {
+   "id": "o06.s.talk",
+   "objective": "Join Ivo at the garden review table.",
+   "interaction": "review_table",
+   "completes_when": "dialogue_done:o06.d.ask",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.rcmd",
+   "objective": "Move the roster cursor with Right Command + H, J, K, L.",
+   "interaction": "review_table",
+   "completes_when": "scene_success:o06-rcmd-guided",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.native",
+   "objective": "Use the native editing and movement keys.",
+   "interaction": "review_table",
+   "completes_when": "scene_success:o06-native-guided",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.setup",
+   "objective": "Choose the keyboard diagram; map the Microsoft keys if you use one.",
+   "interaction": "review_table",
+   "completes_when": "scene_success:o06-setup-microsoft",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.compare",
+   "objective": "Compare the two navigation routes.",
+   "interaction": "review_table",
+   "completes_when": "scene_success:o06-compare & scene_success:o06-native-variation",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.roster",
+   "objective": "Finish the changed-context roster without hints.",
+   "interaction": "review_table",
+   "completes_when": "scene_success:o06-roster",
+   "target_cell": [
+    15,
+    14
+   ]
+  },
+  {
+   "id": "o06.s.receipt",
+   "objective": "Optional: inspect the first route receipt.",
+   "interaction": "artifact_first_route_receipt",
+   "completes_when": "interact:artifact_first_route_receipt",
+   "target_cell": [
+    17,
+    14
+   ],
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B11",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o06-rcmd-guided"
+  },
+  {
+   "id": "B11",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o06-compare"
+  },
+  {
+   "id": "B11",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o06-roster"
+  },
+  {
+   "id": "N21",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o06-rcmd-guided"
+  },
+  {
+   "id": "N21",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o06-compare"
+  },
+  {
+   "id": "N21",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o06-roster"
+  },
+  {
+   "id": "B12",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o06-native-guided"
+  },
+  {
+   "id": "B12",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o06-native-variation"
+  },
+  {
+   "id": "B12",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o06-roster"
+  },
+  {
+   "id": "B15",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o06-setup-microsoft"
+  },
+  {
+   "id": "B15",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o06-compare"
+  },
+  {
+   "id": "B15",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o06-roster"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o06-rcmd-guided",
+   "kind": "editor",
+   "task_summary": "Move a roster cursor up, down, left and right with physical Right Command + H, J, K, L on the base layer, then compare with Caps navigation.",
+   "success_criteria": [
+    "Left, Down, Up and Right Arrow are each observed from Right Command + H, J, K, L",
+    "The cursor reaches the roster row"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Badge roster (safe local editor): move the cursor with the Right Command route.",
+    "grid": {
+     "rows": 3,
+     "cols": 4,
+     "start": [
+      0,
+      2
+     ],
+     "target": [
+      3,
+      0
+     ]
+    },
+    "steps": [
+     {
+      "id": "rcmd-keys",
+      "expect": "hold the physical Right Command key and tap H, J, K, L (observed as arrows)",
+      "accepts": [
+       "ArrowLeft",
+       "ArrowDown",
+       "ArrowUp",
+       "ArrowRight"
+      ],
+      "rejects": [
+       "Caps-held arrows count too, but this step asks for the Right Command route"
+      ],
+      "feedback": {
+       "other": "Observed output is an arrow either way; the keyboard inset marks this step as the Right Command route and the journal records that it was player-chosen."
+      }
+     }
+    ],
+    "note": "The browser cannot tell Right Command navigation from Caps navigation when both emit arrows; evidence is output-observed."
+   }
+  },
+  {
+   "id": "o06-native-guided",
+   "kind": "editor",
+   "task_summary": "On the base layer the physical editing and movement keys work as printed: Backspace, Delete, Return, Escape, the arrows, Home, End, Page Up, Page Down and the modifiers.",
+   "success_criteria": [
+    "Each listed native key is observed once in the roster editor",
+    "Escape closes the roster's edit box"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Roster editor: press each native key as its label lights up.",
+    "steps": [
+     {
+      "id": "native-keys",
+      "expect": "press Backspace, Delete, Return, Escape, an arrow, Home, End, Page Up, Page Down in the order the roster lights them",
+      "accepts": [
+       "Backspace",
+       "Delete",
+       "Enter",
+       "Escape",
+       "ArrowUp",
+       "Home",
+       "End",
+       "PageUp",
+       "PageDown"
+      ],
+      "feedback": {
+       "other": "Keys the browser or macOS keeps for itself (Command + Q and similar) are explained on the diagram and never required."
+      }
+     }
+    ],
+    "modifiers_check": "Shift, Control, Option and Command shown as keycaps; press any to see them light"
+   }
+  },
+  {
+   "id": "o06-setup-microsoft",
+   "kind": "form",
+   "task_summary": "Choose the MacBook or the Microsoft keyboard diagram and, for the Microsoft keyboard, map the three device keys: Alt to Command, Windows to Option, Right Alt to Right Command.",
+   "success_criteria": [
+    "A keyboard diagram is selected",
+    "For the Microsoft keyboard the three key mappings are matched on the diagram",
+    "The player confirms the device check (confirm or skip); the answer never blocks the seal"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "player-confirmed",
+   "task": {
+    "prompt": "Setup card: which keyboard are you using? (MacBook is the default.)",
+    "options": [
+     "MacBook (default)",
+     "Microsoft keyboard"
+    ],
+    "microsoft_mapping": [
+     {
+      "device_key": "Alt",
+      "acts_as": "Command"
+     },
+     {
+      "device_key": "Windows",
+      "acts_as": "Option"
+     },
+     {
+      "device_key": "Right Alt",
+      "acts_as": "Right Command (navigation too)"
+     }
+    ],
+    "steps": [
+     {
+      "id": "match-keys",
+      "expect": "drag or select each device key onto the Mac key it acts as",
+      "accepts": [
+       "Alt:Command",
+       "Windows:Option",
+       "Right Alt:Right Command"
+      ],
+      "feedback": {
+       "other": "Not matched yet. Skip is always available."
+      }
+     },
+     {
+      "id": "confirm",
+      "expect": "player confirms: my keyboard works like this / skip",
+      "accepts": [
+       "confirm",
+       "skip"
+      ],
+      "feedback": {
+       "other": "Either answer continues."
+      },
+      "confidence": "player-confirmed",
+      "blocks_progress": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "o06-compare",
+   "kind": "editor",
+   "task_summary": "Compare the two routes: walk the roster cursor with Caps navigation and with Right Command navigation, then show that another Right Command shortcut keeps its normal meaning.",
+   "success_criteria": [
+    "Both routes produce the same four arrows",
+    "Right Command + A selects all text in the local roster editor (its usual meaning), not a navigation move"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Roster compare panel: left column Caps route, right column Right Command route.",
+    "steps": [
+     {
+      "id": "both-routes",
+      "expect": "move the cursor once with each route",
+      "accepts": [
+       "ArrowLeft",
+       "ArrowRight",
+       "ArrowUp",
+       "ArrowDown"
+      ]
+     },
+     {
+      "id": "usual-meaning",
+      "expect": "press Right Command + A: all text in the roster editor is selected",
+      "accepts": [
+       "Meta+A"
+      ],
+      "rejects": [
+       "an arrow key event"
+      ],
+      "feedback": {
+       "ArrowLeft": "Only H, J, K and L become arrows with Right Command. A is just a shortcut key."
+      }
+     }
+    ],
+    "note": "Other Caps-only mappings (for example Caps + M or Caps + 0) are not granted by Right Command; the panel shows them greyed out."
+   }
+  },
+  {
+   "id": "o06-native-variation",
+   "kind": "editor",
+   "task_summary": "Use the native editing keys in a changed context: fix a roster line with Backspace, Home, End and Return, then press Escape to leave.",
+   "success_criteria": [
+    "The edited roster line equals its target",
+    "Escape closes the editor"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Roster line 3 of 3: fix the name.",
+    "initial": "sol  ",
+    "target": "sol",
+    "steps": [
+     {
+      "id": "edit",
+      "expect": "End, Backspace twice (trailing spaces), Home, Return to confirm",
+      "accepts": [
+       "End",
+       "Backspace",
+       "Home",
+       "Enter"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the roster; the roster names the target. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     },
+     {
+      "id": "leave",
+      "expect": "Escape closes the editor",
+      "accepts": [
+       "Escape"
+      ]
+     }
+    ],
+    "accepts": "text equals target",
+    "feedback": {
+     "other": "The observed output is shown above the roster; the roster names the target. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "o06-roster",
+   "kind": "editor",
+   "task_summary": "Changed-context roster: walk up to the roster, erase the stale row, type a new row, and capitalize a name, using the base and movement skills from levels 01 to 05 and no hints.",
+   "success_criteria": [
+    "The stale row is gone and the new row reads Sol 07 exactly",
+    "The Shift capital is a real Shift hold; the cursor moved with arrows from either route",
+    "On the Microsoft setup the Command check is confirmed or skipped"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Roster (no diagram): remove the stale row, type the new one.",
+    "initial": [
+     "kit 03",
+     "stale row",
+     "bea 05"
+    ],
+    "target": [
+     "kit 03",
+     "Sol 07",
+     "bea 05"
+    ],
+    "steps": [
+     {
+      "id": "walk-up",
+      "expect": "cursor moves to the stale row with arrows (Right Command or Caps route)",
+      "accepts": [
+       "ArrowUp"
+      ]
+     },
+     {
+      "id": "erase",
+      "expect": "erase the stale row with native Backspace",
+      "accepts": [
+       "Backspace"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the roster; the roster names the target. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     },
+     {
+      "id": "type",
+      "expect": "type Sol 07: hold J (Shift), tap S, release, then ol 07",
+      "accepts": [
+       "S",
+       "o",
+       "l",
+       " ",
+       "0",
+       "7"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the roster; the roster names the target. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "microsoft_branch": "if the Microsoft setup was chosen: a Command check card, player-confirmed",
+    "accepts": "roster lines equal target",
+    "feedback": {
+     "other": "The observed output is shown above the roster; the roster names the target. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o06.d.ask",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "I brought a spare keyboard to the garden desk. The roster has one row of native editing and one row of alternate navigation. Pace calls this a consistency review.",
+   "hint": null,
+   "when": "step_start:o06.s.talk",
+   "cue": "Ivo 06: neutral"
+  },
+  {
+   "id": "o06.d.pace-review",
+   "speaker": "ivo",
+   "portrait": "concerned",
+   "text": "A consistency review. It rarely asks whether a route is consistent with what people need.",
+   "hint": null,
+   "when": "dialogue_done:o06.d.ask",
+   "cue": "Ivo 06: when Pace calls the review a 'consistency review'"
+  },
+  {
+   "id": "o06.d.up",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk up to the roster, you need to press Up Arrow.",
+   "hint": {
+    "action": "To walk up to the roster, you need to press Up Arrow.",
+    "key": "Up Arrow",
+    "gesture": "Up Arrow is also physical Right Command + K on base, the same as tap-hold Caps + K."
+   },
+   "when": "step_start:o06.s.rcmd",
+   "cue": "hint lines are neutral"
+  },
+  {
+   "id": "o06.d.backspace",
+   "speaker": "roster",
+   "portrait": null,
+   "text": "To erase the stale row, you need to press Backspace.",
+   "hint": {
+    "action": "To erase the stale row, you need to press Backspace.",
+    "key": "Backspace",
+    "gesture": "On base, the physical Backspace key still works. You'll learn tap-hold Caps + M in Records."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o06.s.native"
+  },
+  {
+   "id": "o06.d.microsoft",
+   "speaker": "setup_card",
+   "portrait": null,
+   "text": "To press Command on the Microsoft keyboard, you need to press Command.",
+   "hint": {
+    "action": "To press Command on the Microsoft keyboard, you need to press Command.",
+    "key": "Command",
+    "gesture": "Command is physical Alt on that device; Windows is Option."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o06.s.setup"
+  },
+  {
+   "id": "o06.d.seal",
+   "speaker": "engineer",
+   "portrait": "pleased",
+   "text": "Orientation seal earned. The east door and the garden route are open.",
+   "hint": null,
+   "when": "scene_success:o06-roster",
+   "cue": "Engineer: each seal (06): pleased"
+  },
+  {
+   "id": "o06.d.laugh",
+   "speaker": "ivo",
+   "portrait": "laugh",
+   "text": "I have never seen the roster do that. Please, go through the east door. Take the garden shortcut when you come back.",
+   "hint": null,
+   "when": "trigger:o06.t.seal",
+   "cue": "Ivo: ivo_laugh after the 06 seal"
+  },
+  {
+   "id": "o06.d.receipt",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "Pace counted a detour as a successful movement.",
+   "hint": null,
+   "when": "interact:artifact_first_route_receipt",
+   "cue": "Engineer: inspecting a tampering artifact (First route receipt)"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o06.t.seal",
+   "when": "scene_success:o06-roster",
+   "then": [
+    {
+     "op": "grant",
+     "kind": "seal",
+     "id": "orientation"
+    },
+    {
+     "op": "set_state",
+     "target": "records_door",
+     "state": "open"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "g.records-door"
+    },
+    {
+     "op": "light_state",
+     "light_state": "ls.garden-wake"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "g.garden-cutthrough"
+    },
+    {
+     "op": "npc_state",
+     "npc": "worker_a",
+     "state": "relaxed"
+    },
+    {
+     "op": "npc_state",
+     "npc": "worker_b",
+     "state": "relaxed"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "laugh"
+    },
+    {
+     "op": "set_flag",
+     "flag": "records-door-open"
+    },
+    {
+     "op": "set_flag",
+     "flag": "garden-cutthrough-open"
+    },
+    {
+     "op": "set_flag",
+     "flag": "workers-unsynced"
+    },
+    {
+     "op": "journal",
+     "text": "Orientation seal earned. Records and the garden cut-through are open."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-06"
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The east Records door is closed with its seal sign, the garden is closed on every side, the two workers pace in step.",
+  "after": "The Records door is open, a flagstone cut-through opens the garden's south rim and a north rim, the garden lamps pulse and coral blooms appear, the workers idle independently, Ivo laughs.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "records_door",
+    "from": "closed",
+    "to": "open",
+    "note": "east Records door"
+   },
+   {
+    "kind": "landmark_state",
+    "target": "garden",
+    "from": "before",
+    "to": "after",
+    "note": "cut-through, blooms, pulsing lamps"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "worker_a",
+    "from": "start",
+    "to": "relaxed",
+    "note": "synchronized loops break into idle poses"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "ivo",
+    "from": "steady",
+    "to": "laugh",
+    "note": "scripted voice becomes a laugh"
+   },
+   {
+    "kind": "gate",
+    "target": "g.garden-cutthrough",
+    "from": "closed",
+    "to": "open",
+    "note": "garden cut-through"
+   }
+  ]
+ },
+ "rewards": {
+  "seal": "orientation",
+  "unlocks": [
+   "g.records-door",
+   "g.garden-cutthrough"
+  ]
+ },
+ "optional_artifact": {
+  "id": "first-route-receipt",
+  "name": "First route receipt",
+  "interaction": "artifact_first_route_receipt",
+  "placement": "artifact_first_route_receipt",
+  "caption": [
+   "A receipt from the first day of the new routing system.",
+   "Pace counted a detour around the garden as a successful movement.",
+   "The shorter path was never recorded."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Consistency review in progress. Thank you for your consistency.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  }
+ ],
+ "review_notes": "At 1366x768 the review table (15..17,15) and its approach (15,14) lie in the south. The camera clamps at the map's south edge, so the avatar stands at screen (160,132) and the table spans screen x 152-200, just right of the keyboard inset (x 4-147). The roster panel opens over the world so the task stays readable with the inset open."
+}

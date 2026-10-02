@@ -1,0 +1,569 @@
+{
+ "id": "orientation-04",
+ "number": 4,
+ "title": "Left Desk",
+ "district": "orientation",
+ "kind": "main",
+ "requires": [
+  "orientation-03"
+ ],
+ "story": "An empty workstation has four approval stamps assigned to one hand. Ivo explains that holding a familiar letter briefly can become a modifier. The engineer learns each left-hand hold on its own, then types the same letters as text.",
+ "steps": [
+  {
+   "id": "o04.s.talk",
+   "objective": "Listen to Ivo at the left desk.",
+   "interaction": "left_desk",
+   "completes_when": "dialogue_done:o04.d.ask",
+   "target_cell": [
+    7,
+    10
+   ]
+  },
+  {
+   "id": "o04.s.stamps",
+   "objective": "Use the four left-hand stamps one at a time.",
+   "interaction": "left_desk",
+   "completes_when": "scene_success:o04-stamp-shift & scene_success:o04-stamp-command & scene_success:o04-stamp-option & scene_success:o04-stamp-control",
+   "target_cell": [
+    7,
+    10
+   ]
+  },
+  {
+   "id": "o04.s.variation",
+   "objective": "Type the approval note: letters as text, one capital.",
+   "interaction": "left_desk",
+   "completes_when": "scene_success:o04-variation",
+   "target_cell": [
+    7,
+    10
+   ]
+  },
+  {
+   "id": "o04.s.recall",
+   "objective": "Complete the mixed approval sheet without a diagram.",
+   "interaction": "left_desk",
+   "completes_when": "scene_success:o04-recall",
+   "target_cell": [
+    7,
+    10
+   ]
+  },
+  {
+   "id": "o04.s.artifact",
+   "objective": "Optional: inspect the training card.",
+   "interaction": "artifact_training_card",
+   "completes_when": "interact:artifact_training_card",
+   "target_cell": [
+    6,
+    9
+   ],
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-shift"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-shift"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-command"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-command"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-option"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-option"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-control"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o04-stamp-control"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o04-variation"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o04-variation"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o04-recall"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o04-recall"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o04-stamp-shift",
+   "kind": "editor",
+   "task_summary": "Hold F (Shift), tap K on the other hand, and finish the name: capitalize the K in Kai.",
+   "success_criteria": [
+    "Shift + K is observed (Shift held from F, then K on the other hand)",
+    "The local sheet shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval sheet: stamp with Shift + K. Safe local editor; no OS shortcut is required.",
+    "initial": "kai",
+    "target": "Kai",
+    "accepts": "text K typed as a capital",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold F until Shift engages (about 200 ms), then tap K",
+      "accepts": [
+       "Shift + K"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text (a same-hand or too-early press)"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "the first letter becomes K",
+    "hold_timing": "about 200 ms; release order does not matter for the score",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o04-stamp-command",
+   "kind": "editor",
+   "task_summary": "Hold D (Command), tap I: italicize the approval note in the local sheet.",
+   "success_criteria": [
+    "Command + I is observed (Command held from D, then I on the other hand)",
+    "The local sheet shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval sheet: stamp with Command + I. Safe local editor; no OS shortcut is required.",
+    "initial": "approval note",
+    "target": "approval note (italic)",
+    "accepts": "Meta+I event inside the sheet",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold D until Command engages (about 200 ms), then tap I",
+      "accepts": [
+       "Command + I"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text (a same-hand or too-early press)"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "the note turns italic",
+    "hold_timing": "about 200 ms; release order does not matter for the score",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o04-stamp-option",
+   "kind": "editor",
+   "task_summary": "Hold S (Option), tap K: mark the sheet with the local Option + K stamp.",
+   "success_criteria": [
+    "Option + K is observed (Option held from S, then K on the other hand)",
+    "The local sheet shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval sheet: stamp with Option + K. Safe local editor; no OS shortcut is required.",
+    "initial": "sheet",
+    "target": "sheet marked",
+    "accepts": "Alt+K event inside the sheet",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold S until Option engages (about 200 ms), then tap K",
+      "accepts": [
+       "Option + K"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text (a same-hand or too-early press)"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "a mark appears in the sheet's corner",
+    "hold_timing": "about 200 ms; release order does not matter for the score",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o04-stamp-control",
+   "kind": "editor",
+   "task_summary": "Hold A (Control), tap L: lock the sheet with the local Control + L stamp.",
+   "success_criteria": [
+    "Control + L is observed (Control held from A, then L on the other hand)",
+    "The local sheet shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval sheet: stamp with Control + L. Safe local editor; no OS shortcut is required.",
+    "initial": "sheet",
+    "target": "sheet locked",
+    "accepts": "Ctrl+L event inside the sheet",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold A until Control engages (about 200 ms), then tap L",
+      "accepts": [
+       "Control + L"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text (a same-hand or too-early press)"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "a lock icon appears on the sheet",
+    "hold_timing": "about 200 ms; release order does not matter for the score",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o04-variation",
+   "kind": "editor",
+   "task_summary": "Type a short approval note where the same letters appear as text: same-hand rolls stay letters, and one capital needs a real Shift hold.",
+   "success_criteria": [
+    "The note reads Kai desk fad sad exactly",
+    "d, f, s and a typed as plain letters in rolls did not become modifiers or shortcuts"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval note, line 1 of 1.",
+    "initial": "",
+    "target": "Kai desk fad sad",
+    "accepts": "text equals target",
+    "steps": [
+     {
+      "id": "capital",
+      "expect": "hold F (Shift), tap K, release, then type ai",
+      "accepts": [
+       "K"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     },
+     {
+      "id": "plain-d",
+      "expect": "type desk with a plain tap on d (no hold, no modifier)",
+      "accepts": [
+       "d"
+      ],
+      "rejects": [
+       "Command event"
+      ],
+      "feedback": {
+       "other": "A held D becomes Command. Tap D and release quickly."
+      }
+     },
+     {
+      "id": "rolls",
+      "expect": "type fad sad as rolls of plain letters",
+      "accepts": [
+       "f",
+       "a",
+       "d",
+       "s"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "o04-recall",
+   "kind": "editor",
+   "task_summary": "Complete an approval sheet that mixes all four stamps in one pass, with no diagram: capitalize, italicize, mark and lock.",
+   "success_criteria": [
+    "Shift, Command, Option and Control stamps each appear once in the observed events",
+    "The sheet's four lines match their targets"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Approval sheet (no diagram): four lines, one stamp each.",
+    "lines": [
+     {
+      "id": "l1",
+      "text": "capitalize Kai",
+      "stamp": "Shift + K"
+     },
+     {
+      "id": "l2",
+      "text": "italicize the note",
+      "stamp": "Command + I"
+     },
+     {
+      "id": "l3",
+      "text": "mark the sheet",
+      "stamp": "Option + K"
+     },
+     {
+      "id": "l4",
+      "text": "lock the sheet",
+      "stamp": "Control + L"
+     }
+    ],
+    "accepts": "each stamp event observed once per line, in any order the sheet asks",
+    "feedback": {
+     "other": "The observed output is shown above the sheet; the stamp needs the hold on the first key, then the opposite-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o04.d.ask",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "This workstation has four approval stamps and one hand to work them. Holding a familiar letter briefly turns it into a modifier.",
+   "hint": null,
+   "when": "step_start:o04.s.talk",
+   "cue": "Ivo 04: neutral"
+  },
+  {
+   "id": "o04.d.command",
+   "speaker": "stamp_card",
+   "portrait": null,
+   "text": "To italicize the approval note, you need to press Command + I.",
+   "hint": {
+    "action": "To italicize the approval note, you need to press Command + I.",
+    "key": "Command + I",
+    "gesture": "Command is tap-hold D, then I on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o04.s.stamps"
+  },
+  {
+   "id": "o04.d.shift",
+   "speaker": "stamp_card",
+   "portrait": null,
+   "text": "To capitalize the K in Kai, you need to press Shift + K.",
+   "hint": {
+    "action": "To capitalize the K in Kai, you need to press Shift + K.",
+    "key": "Shift + K",
+    "gesture": "Shift is tap-hold F."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o04.s.stamps"
+  },
+  {
+   "id": "o04.d.d",
+   "speaker": "stamp_card",
+   "portrait": null,
+   "text": "To type the `d` in \"desk\", you need to press D.",
+   "hint": {
+    "action": "To type the `d` in \"desk\", you need to press D.",
+    "key": "D",
+    "gesture": "tap D. No hold, no modifier."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o04.s.variation"
+  },
+  {
+   "id": "o04.d.option",
+   "speaker": "stamp_card",
+   "portrait": null,
+   "text": "To mark the sheet, you need to press Option + K.",
+   "hint": {
+    "action": "To mark the sheet, you need to press Option + K.",
+    "key": "Option + K",
+    "gesture": "Option is tap-hold S, then K on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o04.s.stamps"
+  },
+  {
+   "id": "o04.d.control",
+   "speaker": "stamp_card",
+   "portrait": null,
+   "text": "To lock the sheet, you need to press Control + L.",
+   "hint": {
+    "action": "To lock the sheet, you need to press Control + L.",
+    "key": "Control + L",
+    "gesture": "Control is tap-hold A, then L on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o04.s.stamps"
+  },
+  {
+   "id": "o04.d.success",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Four stamps, four sheets, and the lamp is on. The pinboard will want them.",
+   "hint": null,
+   "when": "scene_success:o04-recall",
+   "cue": "Ivo 04: neutral"
+  },
+  {
+   "id": "o04.d.training-card",
+   "speaker": "ivo",
+   "portrait": "concerned",
+   "text": "That training card describes a shorter workflow than the script I was given.",
+   "hint": null,
+   "when": "interact:artifact_training_card",
+   "cue": "Ivo 04: when the player shows the optional Training card"
+  },
+  {
+   "id": "o04.d.badge-note",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "The first printing lists fewer steps than Pace's current script.",
+   "hint": null,
+   "when": "interact:artifact_training_card",
+   "cue": "Engineer: inspecting a tampering artifact (Training card, first printing)"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o04.t.left-lit",
+   "when": "scene_success:o04-recall",
+   "then": [
+    {
+     "op": "light_state",
+     "light_state": "ls.desk-left-lit"
+    },
+    {
+     "op": "set_flag",
+     "flag": "left-desk-lit"
+    },
+    {
+     "op": "journal",
+     "text": "Orientation 04 complete: the left desk is lit."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-04"
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The cherry desk is dark and the corridor stripe beside it is off.",
+  "after": "The desk lamp and the corridor stripe light together; the approved sheets are done.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "lamp_desk_left",
+    "from": "off",
+    "to": "on",
+    "note": "desk lamp"
+   },
+   {
+    "kind": "placement_state",
+    "target": "lamp_corridor_w",
+    "from": "off",
+    "to": "on",
+    "note": "corridor stripe"
+   },
+   {
+    "kind": "light_state",
+    "target": "ls.desk-left-lit",
+    "from": "off",
+    "to": "on"
+   }
+  ]
+ },
+ "rewards": {
+  "unlocks": []
+ },
+ "optional_artifact": {
+  "id": "training-card",
+  "name": "Training card, first printing",
+  "interaction": "artifact_training_card",
+  "placement": "artifact_training_card",
+  "caption": [
+   "The first printing of the Orientation training card.",
+   "Its workflow is shorter than the script Pace gives Ivo today.",
+   "Someone added steps and called them improvements."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Approved route: left desk, then left desk.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  }
+ ],
+ "review_notes": "At 1366x768 the left desk stop (7,10) is west of centre; the camera clamps at the west edge so the avatar stands at screen (120,100): inside the keyboard inset's x range but above its top edge (y 103), and the desk row sits above it (screen y 84-100). The sheet is readable with the inset open."
+}
