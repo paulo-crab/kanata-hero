@@ -1,0 +1,260 @@
+{
+ "id": "orientation",
+ "name": "Orientation",
+ "size_cells": [
+  28,
+  18
+ ],
+ "kit": "art-direction/kit/orientation-atlas.json",
+ "palette": "orientation",
+ "camera_bounds": {
+  "x": 0,
+  "y": 0,
+  "w": 28,
+  "h": 18
+ },
+ "hub_cell": [
+  13,
+  12
+ ],
+ "entrances": [
+  {
+   "id": "elevator-arrival",
+   "cell": [
+    2,
+    12
+   ],
+   "facing": "e",
+   "from": {
+    "district": "orientation",
+    "link": "link.elevator.orientation"
+   },
+   "note": "the elevator opens (closed, half, open) and the avatar steps out"
+  },
+  {
+   "id": "records-door-return",
+   "cell": [
+    25,
+    6
+   ],
+   "facing": "w",
+   "from": {
+    "district": "records",
+    "link": "link.orientation-records"
+   },
+   "note": "arrival from the Records entrance door"
+  }
+ ],
+ "exits": [
+  {
+   "id": "records-door",
+   "cell": [
+    26,
+    6
+   ],
+   "to": {
+    "district": "records",
+    "link": "link.orientation-records"
+   },
+   "gate": "g.records-door",
+   "requires": "seal:orientation",
+   "locked_sign": "RECORDS: Orientation seal required. The garden route back to the elevator stays lit.",
+   "note": "the sliding glass door at x26-27, y5-7; walkable once level 06 is complete"
+  }
+ ],
+ "elevator": {
+  "cell": [
+   1,
+   12
+  ],
+  "facing": "e",
+  "placement": "elevator",
+  "link": "link.elevator.orientation",
+  "arrival_cell": [
+   2,
+   12
+  ],
+  "note": "west wall, southwest of the garden (rows 11-13); the call panel at (1,10) opens the elevator map, which only lists unlocked stops"
+ },
+ "light_states": [
+  {
+   "id": "ls.printer-steady",
+   "description": "The north task light stops pulsing and holds steady.",
+   "applies_when": "o02.t.printer-steady",
+   "changes": [
+    {
+     "placement": "lamp_printer",
+     "state": "on"
+    }
+   ]
+  },
+  {
+   "id": "ls.desk-left-lit",
+   "description": "The left desk lamp and the adjacent corridor stripe light together.",
+   "applies_when": "o04.t.left-lit",
+   "changes": [
+    {
+     "placement": "lamp_desk_left",
+     "state": "on"
+    },
+    {
+     "placement": "lamp_corridor_w",
+     "state": "on"
+    }
+   ]
+  },
+  {
+   "id": "ls.desk-right-lit",
+   "description": "The right desk gets a warmer lamp and its corridor stripe.",
+   "applies_when": "o05.t.right-lit",
+   "changes": [
+    {
+     "placement": "lamp_desk_right",
+     "state": "on"
+    },
+    {
+     "placement": "lamp_corridor_e",
+     "state": "on"
+    }
+   ]
+  },
+  {
+   "id": "ls.garden-wake",
+   "description": "Garden lamps wake to the wider pulse glow, coral blooms appear and the cut-through opens (north rim too).",
+   "applies_when": "o06.t.seal",
+   "changes": [
+    {
+     "placement": "garden",
+     "state": "after"
+    },
+    {
+     "placement": "garden_north_rim",
+     "state": "open"
+    }
+   ]
+  }
+ ],
+ "ambient": "Air handling, shoes on stone, garden water, distant conversations. Printer and garden lamps wake; synchronized worker loops break into individual idle poses.",
+ "side_quests": [
+  {
+   "id": "plant-tags",
+   "title": "Plant Tags",
+   "giver": "ivo",
+   "available_after": "orientation-02",
+   "interactions": [
+    "planter_tag_1",
+    "planter_tag_2",
+    "planter_tag_3",
+    "planter_tag_4",
+    "planter_tag_5"
+   ],
+   "terminal_scenes": [
+    {
+     "id": "pt-labels",
+     "kind": "label",
+     "task_summary": "Type five plant labels on five duplicated planters, with ordinary home-row rolls; each label must be exact.",
+     "success_criteria": [
+      "Each of the five labels equals its target",
+      "Rolls such as sa, ka, dahl and fl stay literal letters"
+     ],
+     "retry": "instant",
+     "position_cue": false,
+     "confidence": "output-observed",
+     "task": {
+      "prompt": "Plant tag: type the label for this planter.",
+      "items": [
+       {
+        "id": "p1",
+        "planter": "planter_tag_1",
+        "target": "fern"
+       },
+       {
+        "id": "p2",
+        "planter": "planter_tag_2",
+        "target": "sage"
+       },
+       {
+        "id": "p3",
+        "planter": "planter_tag_3",
+        "target": "kale"
+       },
+       {
+        "id": "p4",
+        "planter": "planter_tag_4",
+        "target": "dahlia"
+       },
+       {
+        "id": "p5",
+        "planter": "planter_tag_5",
+        "target": "flax"
+       }
+      ],
+      "accepts": "text equals target",
+      "feedback": {
+       "other": "The observed text is shown above the tag. Try the letters again; nothing is lost."
+      },
+      "repeatable": true
+     }
+    }
+   ],
+   "gestures": [
+    {
+     "id": "B01",
+     "phases": [
+      "recall"
+     ],
+     "scene_id": "pt-labels"
+    },
+    {
+     "id": "B02",
+     "phases": [
+      "recall"
+     ],
+     "scene_id": "pt-labels"
+    }
+   ],
+   "dialogue": [
+    {
+     "id": "pt.d.ask",
+     "speaker": "ivo",
+     "portrait": "neutral",
+     "text": "Five planters were duplicated overnight and nobody knows which is which. Could you tag each one?",
+     "hint": null,
+     "when": "interact:ivo",
+     "cue": "Ivo: Plant Tags before the Orientation review: neutral"
+    },
+    {
+     "id": "pt.d.done",
+     "speaker": "ivo",
+     "portrait": "neutral",
+     "text": "All five tagged. I can finally tell the ferns from the flax.",
+     "hint": null,
+     "when": "scene_success:pt-labels",
+     "cue": "Ivo: Plant Tags before the review: neutral"
+    }
+   ],
+   "reward": {
+    "desk_decoration": "planter label for the player's desk",
+    "dialogue": "Ivo laughs at Plant Tags revisits after the Orientation seal",
+    "revisit": "after level 06 the cut-through shortens the walk back to Ivo"
+   }
+  }
+ ],
+ "pace_signs": [
+  {
+   "placement": "pace_wall_sign",
+   "state": "default",
+   "text": "Please follow the approved route."
+  },
+  {
+   "placement": "pace_directory",
+   "state": "default",
+   "text": "Approved route: follow the arrows."
+  }
+ ],
+ "notes": [
+  "Hub: the garden loop (bands x8-9, x17-18, y4-5, y12-13) is the one-camera hub. Exits visible from it: the printer (north), the east corridor to the Records door, the mailroom (southeast), the elevator (southwest).",
+  "Hub, short branch, task room, changed return route: printer branch (level 02) returns past a steady task light; the clock room (03) opens its glass door; the left (04) and right (05) desk branches light their corridor stripes; the review table (06) opens the east door and the garden cut-through.",
+  "Not placed: the previously hidden seating nook the levels.md revisit payoff mentions (kit has sofa and side_table; place it after the cut-through opens, see LEVEL_SHEET.md)."
+ ]
+}
