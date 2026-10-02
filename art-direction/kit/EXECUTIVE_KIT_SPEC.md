@@ -173,3 +173,17 @@ Each is one cell, blocks its cell, and sits where an arriving coworker stands: t
 5. **Places are props, not people.** The "arriving coworkers' places" are the objects the coworkers stand at; the silhouettes and sprites already exist in the cast atlases. The proof room draws the five sprites only in the after state.
 6. **Lettering is pseudo-text.** The restored nameplate is irregular runs of pale glyph blocks, not readable letters, so the art never names a department the level data has not chosen.
 7. **Names on the Wall reuses the nameplate.** The side quest's credit list is a row of `branch_name_before` and `branch_name_after` plates; no extra entry.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `executive-integration-room.json` and `executive-integration-proof-{before,after}-{native,1366x768}.png` (three elevators in the copper-and-navy ramps with the call panel, a seated worker behind `desk_a` with its occluder, the audit copy on `desk_b`, the name plaque on a side table).
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed/_half/_open` (set `elevator`), `elevator_call_panel` | 3x3 and 1x2 | rear_wall | Orientation geometry; copper casing, navy wall mass. Stays distinct from `final_door_*` (sky-glass leaves, sunrise sign, daylit terrace) |
+| `desk_a_front`, `desk_b_front` | 2x1, `00` | front_prop | Cut from the district desk (paper = the limestone floor ramp), asserted pixel-equal |
+| `artifact_public_audit_copy` | 1x1, `0` | front_prop | `artifact_prop` with limestone paper |
+| `desk_name_plaque` | 1x1, `0` | front_prop | Reward desk decoration (Names on the Wall), 14x9, copper plate with three name lines on a walnut base; never placed on the map |
+
+Not covered here: Vale softening states 2 and 3 and the silhouettes of the named cast (cast team and renderer, unchanged). The level data declares a 2x3 east-wall elevator; the kit module is the 3x3 north-wall slice, so the map must adopt it.

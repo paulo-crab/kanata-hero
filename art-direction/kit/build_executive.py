@@ -436,6 +436,30 @@ def quest_proofs(atlas, meta):
     return ok_ and layout_ok
 
 
+# ------------------------------------------------------------------ Executive integration proof
+
+INTEG_BEFORE = {"elevator": "closed", "lamp": "on"}
+INTEG_AFTER = {"elevator": "open", "lamp": "pulse"}
+INTEG_REQUIRED = {"elevators": (16, 0, 224, 48), "seated worker and desk": (32, 60, 150, 110), "plaque table": (224, 92, 262, 124)}
+
+
+def executive_integration_layout():
+    extras = [{"entry": "side_table", **at(232, 100)}, {"entry": "desk_name_plaque", **at(233, 91)}]
+    return br.integration_layout("executive", "executive-atlas.json", ["public_audit_copy"], extras, panel={"entry": "elevator_call_panel"}, states=INTEG_BEFORE,
+                                 note="Executive integration proof room, built only from executive-atlas: the shared elevator set (closed, half, open) and call panel in the "
+                                      "copper-and-navy ramps, a seated worker behind desk_a with its occluder, the audit copy on desk_b and the name plaque on a side table. "
+                                      "People are added by the renderer.")
+
+
+def integration_proofs(atlas, meta):
+    layout = executive_integration_layout()
+    layout_ok = br.write_integration_layout("executive", layout, meta)
+    before, after = br.integration_images("executive", layout, atlas, INTEG_BEFORE, INTEG_AFTER, br.render_integration)
+    print(f"executive integration: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    ok_ = br.integration_review("executive", layout, atlas, meta, xk.INTEGRATION_NAMES, INTEG_BEFORE, INTEG_AFTER, INTEG_REQUIRED)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -468,7 +492,8 @@ def main():
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
     qok = quest_proofs(atlas, meta)
-    sys.exit(0 if ok_ and qok else 1)
+    iok = integration_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok and iok else 1)
 
 
 if __name__ == "__main__":

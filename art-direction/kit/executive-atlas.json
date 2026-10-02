@@ -3408,6 +3408,384 @@
     2
    ],
    "note": "Mira's place: a round navy cushion with her courier satchel and its copper strap (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    592,
+    912,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front. Orientation's module in the executive ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    0,
+    1072,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Orientation's module in the executive ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    48,
+    1072,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Orientation's module in the executive ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    96,
+    1072,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "wave 2"
+   ],
+   "note": "wall call panel for the elevator, executive ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "desk_a_front",
+   "kind": "prop",
+   "rect": [
+    112,
+    1072,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_a: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "desk_b_front",
+   "kind": "prop",
+   "rect": [
+    160,
+    1072,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_b: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "artifact_public_audit_copy",
+   "kind": "prop",
+   "rect": [
+    208,
+    1072,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "public_audit_copy",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    15,
+    10,
+    1
+   ],
+   "note": "Public audit copy (Executive level 20): a bound audit copy with a seal over a second sheet. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "desk_name_plaque",
+   "kind": "prop",
+   "rect": [
+    224,
+    1072,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     -7
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    7,
+    9
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "decor",
+    "desk",
+    "reward",
+    "names"
+   ],
+   "note": "Names on the Wall reward: a small desk plaque (copper plate with three inked name lines on a walnut base), 14 x 9, 1 x 1, no collision. A desk decoration like mail_tray and desk_folder; never placed on the map"
   }
  ],
  "animations": {
@@ -3602,6 +3980,37 @@
    ],
    "ms_per_frame": 250,
    "note": "level 20, The Count: the total is corrected. Pair with landmark state repaired_count and the window_a, window_b and window_light sets going to daylight"
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"
   }
  },
  "landmarks": {
