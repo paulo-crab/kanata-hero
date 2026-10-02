@@ -1,6 +1,6 @@
 # Hal — systems technician
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `hal_puzzled`) approved by the player 2026-10-02. The pixel spec [HAL_SPEC.md](../../art-direction/cast/HAL_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `hal_puzzled`) approved by the player 2026-10-02. Crouched repair, seated on the stool, the false-panel pull and the stool prop delivered by the poses branch (`hal_crouch_repair_*`, `hal_seated_stool_*`, `hal_false_panel_pull_*`, `hal-props-atlas`). The pixel spec [HAL_SPEC.md](../../art-direction/cast/HAL_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -41,7 +41,7 @@ Keep the orange on the tool roll, so it doesn't read as gold "opened path".
 - Broad, short torso block with a vest edge visible at the shoulders. Legs at the low end of the 6–7 px range.
 - Gloves as 2×2 px clusters, one value darker than the vest.
 - Tool roll: a 3×1–2 px orange cluster at the belt or under one arm.
-- Stool: separate prop sprite (one cell), so Hal can sit on it.
+- Stool: separate prop sprite (one cell), so Hal can sit on it. **Delivered** as `hal-props-atlas` (`stool_folding`, 16×10 sprite in a 1×1 cell, collision, y-sort anchor, baked contact shadow); see HAL_SPEC decisions 8-9 for the seat offset.
 
 ## Animation
 
@@ -49,10 +49,10 @@ Keep the orange on the tool roll, so it doesn't read as gold "opened path".
 | --- | --- | --- |
 | Idle ×4 | Restrained | Standard |
 | Walk ×4 | 4–6 frames | Standard |
-| **Crouched repair** | Default working pose at machines | Cast table |
-| **Seated on stool** | Replaces crouching after the refund sign is fixed | Level 13 |
+| **Crouched repair** | Default working pose at machines | Cast table. **Delivered:** `hal_crouch_repair_<s,n,e,w>`, 4-frame loop at 220 ms |
+| **Seated on stool** | Replaces crouching after the refund sign is fixed | Level 13. **Delivered:** `hal_seated_stool_<s,e,w>`, 2-frame breath at 600 ms, feet on row 23, paired with the stool prop |
 | **Puzzled** reaction | Head tilt / scratch | Cast table |
-| Pull down false panel | One-shot, reveals the Night Shift elevator stop | Level 16 |
+| Pull down false panel | One-shot, reveals the Night Shift elevator stop | Level 16. **Delivered:** `hal_false_panel_pull_<s,n,e,w>`, 4 frames at 260 ms, holds the standing rest frame; N is the facing for the machine's south-facing panel |
 
 ## Portrait (48×48, chibi)
 
@@ -78,7 +78,7 @@ Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny
 ## Assumptions
 
 1. Vest and undershirt colors follow Systems' listed materials.
-2. The stool is a separate prop, not part of the walk sprite.
+2. The stool is a separate prop, not part of the walk sprite. (Confirmed: `stool_folding` in `hal-props-atlas`; the seated frames never contain it.)
 
 ## Open questions
 

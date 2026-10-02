@@ -112,5 +112,107 @@ def build():
     print("wrote", out)
 
 
+STATE_LABELS = ["0 repairs: rigid", "1 repair: shoulders drop", "2 repairs: arms relax, weight on one leg",
+                "3 repairs: loosened, open stance"]
+
+
+def state_frame(k, facing, kind="idle", i=0):
+    """Frame i of idle/walk for softening state k (state 0 is the approved base set)."""
+    if k == 0:
+        return (vale.IDLE if kind == "idle" else vale.WALK)[facing][i]
+    return vale.EXTRA[f"s{k}_{kind}"][facing][i]
+
+
+def mask(fr):
+    return {(x, y) for y, r in enumerate(fr) for x, c in enumerate(r) if c != "."}
+
+
+def build_states():
+    """Softening states 0-3 side by side: an Executive room at x4 (idle and walk, S and E), a x8 sheet of every
+    facing, and a silhouette-difference row (each state's outline against state 0)."""
+    r = env.Room()
+    env.floor(r)
+    env.north_wall(r)
+    for i, (x, y) in enumerate([(14, 30), (98, 30), (178, 30), (258, 30), (302, 30)]):
+        env.pot_plant(r, x, y, 100 + i)
+    unmapped, img = bp.palette_swap(r.img, DISTRICT)
+    print(f"executive states room: {unmapped} pixels without a palette mapping")
+    cols = [50, 110, 170, 230]
+    rows = [(62, "s", "idle", 0), (98, "s", "walk", 0), (134, "e", "idle", 0), (170, "e", "walk", 0)]
+    for y, f, kind, i in rows:
+        for k, x in enumerate(cols):
+            actor(img, vale, state_frame(k, f, kind, i), x, y)
+    actor(img, eng, eng.IDLE["s"][0], 288, 62)
+    native = Image.fromarray(img[:180, :320])
+    vw, vh = 320 * ZOOM, 180 * ZOOM
+    screen = Image.new("RGB", (1366, 768), bp.BG)
+    vx, vy = (1366 - vw) // 2, (768 - vh) // 2
+    screen.paste(native.resize((vw, vh), Image.NEAREST), (vx, vy))
+    d = ImageDraw.Draw(screen)
+    d.text((vx, 4), "Vale softening states 0-3 in the Executive palette, x4 · rows: idle S, walk S (contact), idle E, "
+           "walk E (contact) · Engineer for scale", font=bst.font(13), fill=bp.INK_TXT)
+    for k, x in enumerate(cols):
+        lx, ly = vx + (x - 28) * ZOOM, vy + 4 * ZOOM
+        d.rectangle((lx - 4, ly - 4, lx + 208, ly + 38), fill=bp.BG)
+        d.text((lx, ly), f"state {k} · {STATE_LABELS[k].split(': ')[0]}", font=bst.font(15, bold=True), fill=bp.INK_TXT)
+        d.text((lx, ly + 20), STATE_LABELS[k].split(": ")[1], font=bst.font(11), fill=bp.DIM_TXT)
+    # 1x native strip (bottom margin): idle frame 0 of every state, S then E then N then W.
+    strip = Image.new("RGBA", (16 * 16, 24), (0, 0, 0, 0))
+    n = 0
+    for f in "senw":
+        for k in range(4):
+            strip.alpha_composite(Image.fromarray(g.frame_rgba(state_frame(k, f), vale.PAL), "RGBA"), (n * 16, 0))
+            n += 1
+    bg = Image.new("RGBA", strip.size, rgb(PAL["floor"][3]) + (255,))
+    bg.alpha_composite(strip)
+    screen.paste(bg.convert("RGB"), (vx + vw - bg.width, vy + vh))
+    d.text((vx + vw - bg.width - 330, vy + vh + 6), "1x native: S, E, N, W x states 0-3 on the floor fill",
+           font=bst.font(13), fill=bp.DIM_TXT)
+    out = os.path.join(HERE, "vale-states-in-executive.png")
+    screen.save(out)
+    print("wrote", out)
+
+    # x8 sheet: colour at x8 for every facing, then the silhouette difference against state 0 at x4.
+    Z8, gap = 8, 24
+    W, H = 1366, 24 + 2 * (24 * Z8 + 58) + 4 * 0 + 24 * 4 + 90
+    sheet = Image.new("RGB", (W, H), bp.BG)
+    d = ImageDraw.Draw(sheet)
+    d.text((24, 6), "Vale softening states 0-3 at x8 (silhouette read) · idle frame 0 · the row below marks each state's "
+           "outline against state 0: coral = added, blue = removed", font=bst.font(13), fill=bp.INK_TXT)
+    floor = rgb(PAL["floor"][3]) + (255,)
+    y = 30
+    for pair in ("se", "nw"):
+        for fi, f in enumerate(pair):
+            x0 = 24 + fi * 680
+            for k in range(4):
+                sp = Image.fromarray(g.frame_rgba(state_frame(k, f), vale.PAL), "RGBA")
+                cell = Image.new("RGBA", sp.size, floor)
+                cell.alpha_composite(sp)
+                sheet.paste(cell.resize((16 * Z8, 24 * Z8), Image.NEAREST).convert("RGB"), (x0 + k * (16 * Z8 + gap), y))
+                d.text((x0 + k * (16 * Z8 + gap), y + 24 * Z8 + 4), f"{f.upper()} state {k}", font=bst.font(12), fill=bp.DIM_TXT)
+        y += 24 * Z8 + 34
+    Z4 = 4
+    for fi, f in enumerate("senw"):
+        x0 = 24 + fi * 336
+        base = mask(state_frame(0, f))
+        for k in range(1, 4):
+            m = mask(state_frame(k, f))
+            cell = Image.new("RGB", (16 * Z4, 24 * Z4), tuple(floor[:3]))
+            px = cell.load()
+            for (x, yy) in m | base:
+                col = (140, 150, 170) if (x, yy) in m and (x, yy) in base else \
+                    ((236, 119, 109) if (x, yy) in m else (90, 140, 220))
+                for dx in range(Z4):
+                    for dy in range(Z4):
+                        px[x * Z4 + dx, yy * Z4 + dy] = col
+            sheet.paste(cell, (x0 + (k - 1) * (16 * Z4 + 12), y))
+            d.text((x0 + (k - 1) * (16 * Z4 + 12), y + 24 * Z4 + 2),
+                   f"{f.upper()} s{k}: {len(m ^ base)} px", font=bst.font(11), fill=bp.DIM_TXT)
+    out = os.path.join(HERE, "vale-states-x8.png")
+    sheet.crop((0, 0, W, y + 24 * Z4 + 24)).save(out)
+    print("wrote", out)
+
+
 if __name__ == "__main__":
     build()
+    build_states()
