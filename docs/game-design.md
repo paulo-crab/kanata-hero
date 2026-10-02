@@ -258,7 +258,7 @@ The five connected districts are **Orientation**, **Records**, **Systems**, **Ni
 | 8 | Records — Filing Drift | Caps B/W and literal B/W after release | Word navigation in a code excerpt (N05–N06). |
 | 9 | Records — The Margins | Caps 0/4 and `$` | Reach both line endpoints and edit (N07–N08). |
 | 10 | Records — The Long Report | Caps U/D/T/G | Page and document jumps (N09–N12). |
-| 11 | Records — Marked for Review | Shift selections, Caps exceptions | Select text, test Caps+4 behavior, and type A/S/F under Caps (N19–N21); earn the Records seal. |
+| 11 | Records — Marked for Review | Shift selections, Caps exceptions | Select text, test Caps+4 behavior, and type A/S/F under Caps (N19–N20; revisit N21, introduced in level 06); earn the Records seal. |
 | 12 | Systems — Payroll IDs | Space+A–; | Learn all ten digits, then enter shuffled IDs (S01–S10). |
 | 13 | Systems — Negative Balance | Space+apostrophe, N/M exceptions | Enter `-` and distinguish N/M from editing (S11, S24). |
 | 14 | Systems — Alarm Glyphs | Space+Q/W/E/R/T/Y | Learn and shuffle `! @ # $ % ^` (S12–S17). |

@@ -123,11 +123,18 @@ Requirements: Python 3 with Pillow and numpy (`python3 -m venv .venv && .venv/bi
 
 PNG, GIF and JSON art files are generated outputs: change the source module, rebuild, and commit both. Never hand-edit an output.
 
-## 7. Known gaps (deliberate, not missing art)
+## 7. Known gaps
 
-- Vale's softening states 2 and 3 are specified in `design/characters/vale.md` but not drawn.
-- Glitch repaired frames are a rule (snap, then become the prop), not drawn frames.
-- Seated background workers need the desk occluders and are not drawn.
-- Layout help draws only the `nav` tab; the other tabs are specified in `ui-kit/COMPONENTS.md`.
-- Which glitch palette and behaviour variants appear in which district is still open (`design/characters/glitches.md`).
-- Full district level maps belong to the level designer; each kit ships one reference room.
+Status after the producer's gap review of 2026-10-02 (register: `docs/GAP_REGISTER.md`). This section describes the repo once the wave-1 review branches are merged; nothing here is a deliberate scoping choice, each item is unfinished work.
+
+Closed by the wave-1 branches (listed in the register with their branch names): Layout help on all four tabs and the screens the game spec requires (setup and calibration, terminal and editor scene, input feedback, artifact frame, elevator map, seals, toast, Mira's results, settings); Orientation quest props and the shared elevator, desk-front occluder and artifact builders; quest props for the four other districts; Vale softening states 1 to 3; Hal crouched repair, seated on stool, false-panel pull and the stool prop; glitch repaired frames, ordinary props and the variant and district table; level data for all five districts (schema, validator, gesture inventory, maps, collision, levels 01 to 20, Mira routes, coverage).
+
+Still open:
+
+- Seated background workers are not drawn. The desk-front occluders (`desk_a_front`, `desk_b_front`) exist and the seat convention is in `kit/ORIENTATION_KIT_SPEC.md`.
+- The elevator, desk-front occluders and generic artifact builder exist in the Orientation kit and as shared builders; the four other district kits still need them registered (the level data lists them as `art_gap` props).
+- The ten optional artifacts of Records, Systems, Night Shift and Executive have no map props yet (builder only).
+- Art gaps named by the level designers are listed per district in `design/levels/<district>/NEEDS_ART.md`; several now exist under other names and need reconciling (for example `mail_chute_*` and `courier_chute_*`, the two stool sprites).
+- UI: high-contrast and larger-text variants are described, not rendered; the Microsoft keyboard variant of Layout help is drawn for the base tab only and the practice tab for the MacBook only.
+- Vale state 1 is a 1 px shoulder drop and is subtle at 1x; Hal's south-facing crouch is the weakest frame.
+- Level data still to align with the art: Orientation `art_gap` entries that now exist in the kit, the elevator placement (kit draws a north-wall module), the garden cut-through (kit opens only the south rim), glitch placements against the district table, and the Hal and Vale animation names.

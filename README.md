@@ -14,6 +14,7 @@ When documents disagree, the owner below wins. Fix the other document instead of
 | Visual style for new art: camera, palette, pixel rules, scale prototype | [`art-direction/STYLE_BIBLE.md`](art-direction/STYLE_BIBLE.md) | Primary visual authority: [`references/08-approved-overhead-direction.png`](art-direction/references/08-approved-overhead-direction.png). Summary board: [`STYLE_BOARD.html`](art-direction/STYLE_BOARD.html). |
 | Current art workflow and gates | [`art-direction/ART_BRIEF.md`](art-direction/ART_BRIEF.md) | Read after the bible. |
 | Art handoff for developers: asset index, atlas/JSON formats, anchors, layers, rebuild | [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md) | Single entry point for implementation. Rebuild and check everything with `art-direction/build_all.py`. |
+| Known gaps, owners, branches and status (producer's register) | [`docs/GAP_REGISTER.md`](docs/GAP_REGISTER.md) | Closes as the review branches merge; lists wave 2 and the open human decisions. |
 | What each reference image teaches | [`art-direction/REFERENCE_NOTES.md`](art-direction/REFERENCE_NOTES.md) | Its scale numbers and review gate are superseded by the bible. |
 
 ### Historical records (do not use as direction)
@@ -26,6 +27,8 @@ When documents disagree, the owner below wins. Fix the other document instead of
 - Scripts in `characters/`, `environment/`, `ui/`, and `director-sketches/` are rejected generators. Don't run or reuse them.
 
 ## Decisions
+
+**Gap review (2026-10-02):** the producer verified the art deck's gaps against the repo, found more (level data for every district, UI screens, quest props, elevator, Hal poses), and ran nine team branches in parallel; see [`docs/GAP_REGISTER.md`](docs/GAP_REGISTER.md). Nothing is merged without human review.
 
 **Art production complete (2026-10-02):** developers start at [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md); [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) holds the approvals and pipeline. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
 
