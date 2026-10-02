@@ -1,0 +1,634 @@
+{
+  "id": "lights-out-delivery",
+  "name": "Lights-Out Delivery",
+  "district": "nightshift",
+  "available_after": "nightshift-18",
+  "skills_required": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S16",
+    "S17",
+    "S18",
+    "S19",
+    "S20",
+    "S21",
+    "S22",
+    "S23",
+    "S24",
+    "S25",
+    "S26",
+    "V03",
+    "V04"
+  ],
+  "start_cell": [
+    29,
+    14
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "cell": [
+        29,
+        17
+      ],
+      "task": "Break room: copy the incident header (Shift capital, plain text).",
+      "scene_id": "n18m-cp1-break-counter",
+      "correction": "immediate, no penalty"
+    },
+    {
+      "id": "cp2",
+      "cell": [
+        21,
+        13
+      ],
+      "task": "Vestibule keypad: enter 17#4 with held-Space digits and a symbol.",
+      "scene_id": "n18m-cp2-glass-keypad",
+      "correction": "immediate, no penalty"
+    },
+    {
+      "id": "cp3",
+      "cell": [
+        14,
+        9
+      ],
+      "task": "Lit route: fix one token with Caps jumps and held-Space digits.",
+      "scene_id": "n18m-cp3-ticket-edit",
+      "correction": "immediate, no penalty"
+    },
+    {
+      "id": "cp4",
+      "cell": [
+        12,
+        3
+      ],
+      "task": "Window gallery: type the handover line with ^ and %.",
+      "scene_id": "n18m-cp4-window-recall",
+      "correction": "immediate, no penalty"
+    },
+    {
+      "id": "cp5",
+      "cell": [
+        21,
+        5
+      ],
+      "task": "Ledger desk: correct the total (minus) and italic the sign-off (Command from tap-hold D).",
+      "scene_id": "n18m-cp5-ledger-desk",
+      "correction": "immediate, no penalty"
+    },
+    {
+      "id": "cp6",
+      "cell": [
+        28,
+        5
+      ],
+      "task": "Service corridor: send the return line with + and digits, then reach Mira.",
+      "scene_id": "n18m-cp6-corridor-return",
+      "correction": "immediate, no penalty"
+    }
+  ],
+  "destinations": [
+    "Ledger desk (north end)",
+    "Break room (start and finish, beside Mira)",
+    "Service corridor (return leg)"
+  ],
+  "medal_rule": "clean baseline then personal target, never gates story",
+  "reward_patch": "night_courier",
+  "desk_decoration": "none for this route; the reward is the Night Courier patch and Mira's optional final story scene in the Executive Floor epilogue",
+  "map_design_note": "Loop: break room, vestibule keypad, lit route B, window gallery recall desk, ledger, service door, corridor south, break room. The return leg uses the corridor, so it never crosses the silent stations. Every checkpoint is on a cell with a free 2x2 block. The first run records a baseline with no clock shown; the medal only counts clean runs.",
+  "baseline_note": "The first clean run records the route duration as the baseline and earns the Night Courier patch; it has no countdown. Later runs show an optional personal target.",
+  "terminal_scenes": [
+    {
+      "id": "n18m-cp1-break-counter",
+      "kind": "form",
+      "task_summary": "Checkpoint 1, break room: copy the incident header with a Shift capital and plain text.",
+      "success_criteria": [
+        "Header equals \"Incident 17: lamp 3 off, kettle on\"."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Copy the header exactly.",
+        "target": "Incident 17: lamp 3 off, kettle on",
+        "items": [
+          {
+            "id": "h1",
+            "target": "Incident 17: lamp 3 off, kettle on"
+          }
+        ],
+        "accepts": [
+          "exact text"
+        ],
+        "rejects": [
+          "physical keys silenced on practice"
+        ],
+        "feedback": {
+          "diff": "Immediate correction at the checkpoint: the mismatch is highlighted and you retry with no penalty."
+        }
+      }
+    },
+    {
+      "id": "n18m-cp2-glass-keypad",
+      "kind": "keypad",
+      "task_summary": "Checkpoint 2, vestibule: enter the incident number on the keypad with held-Space digits.",
+      "success_criteria": [
+        "The keypad shows 17 and the tag #4."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Enter 17#4 on the glass keypad.",
+        "target": "17#4",
+        "items": [
+          {
+            "id": "k1",
+            "target": "17#4"
+          }
+        ],
+        "accepts": [
+          "exact text"
+        ],
+        "rejects": [
+          "physical digits"
+        ],
+        "feedback": {
+          "diff": "Immediate correction, no penalty."
+        }
+      }
+    },
+    {
+      "id": "n18m-cp3-ticket-edit",
+      "kind": "editor",
+      "task_summary": "Checkpoint 3, lit route: fix one word with Caps word jumps and a delete.",
+      "success_criteria": [
+        "The line equals \"route B-48 (b)\"."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "The ticket says \"route A-90 (b)\".",
+        "initial": "route A-90 (b)",
+        "target": "route B-48 (b)",
+        "steps": [
+          {
+            "id": "jump",
+            "needs": "Caps + B / Caps + W to the token, Caps + M to delete"
+          },
+          {
+            "id": "type",
+            "needs": "B, 4 and 8 with held-Space for the digits"
+          }
+        ],
+        "accepts": [
+          "exact text"
+        ],
+        "rejects": [
+          "physical digits"
+        ],
+        "feedback": {
+          "diff": "Immediate correction, no penalty."
+        }
+      }
+    },
+    {
+      "id": "n18m-cp4-window-recall",
+      "kind": "form",
+      "task_summary": "Checkpoint 4, window gallery: type the handover with symbols and a percentage.",
+      "success_criteria": [
+        "The line equals \"ledger closed 2^5, 38%\"."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Copy the handover line.",
+        "target": "ledger closed 2^5, 38%",
+        "items": [
+          {
+            "id": "w1",
+            "target": "ledger closed 2^5, 38%"
+          }
+        ],
+        "accepts": [
+          "exact text"
+        ],
+        "rejects": [
+          "physical digits"
+        ],
+        "feedback": {
+          "diff": "Immediate correction, no penalty."
+        }
+      }
+    },
+    {
+      "id": "n18m-cp5-ledger-desk",
+      "kind": "editor",
+      "task_summary": "Checkpoint 5, ledger: correct the total and add the sign-off with a Command shortcut.",
+      "success_criteria": [
+        "The text equals \"total -128 (net)\" and the sign-off is italic."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Fix the total and mark the sign-off italic.",
+        "initial": "total 128 (net)",
+        "target": "total -128 (net)",
+        "steps": [
+          {
+            "id": "minus",
+            "needs": "Caps + 0 or Caps + B to the digit, then held-Space + ' for the minus"
+          },
+          {
+            "id": "italic",
+            "needs": "Command + I from tap-hold D, then I on the other hand"
+          }
+        ],
+        "accepts": [
+          "exact text",
+          "italic on"
+        ],
+        "rejects": [
+          "physical minus-only shortcut when the layer is asked for"
+        ],
+        "feedback": {
+          "diff": "Immediate correction, no penalty."
+        }
+      }
+    },
+    {
+      "id": "n18m-cp6-corridor-return",
+      "kind": "form",
+      "task_summary": "Checkpoint 6, service corridor: send the return line and arrive at Mira.",
+      "success_criteria": [
+        "The line equals \"return: corridor 5+6\"."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Copy the return line, then walk to Mira.",
+        "target": "return: corridor 5+6",
+        "items": [
+          {
+            "id": "r1",
+            "target": "return: corridor 5+6"
+          }
+        ],
+        "accepts": [
+          "exact text"
+        ],
+        "rejects": [
+          "physical digits"
+        ],
+        "feedback": {
+          "diff": "Immediate correction, no penalty."
+        }
+      }
+    }
+  ],
+  "gestures": [
+    {
+      "id": "B01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp2-glass-keypad"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp2-glass-keypad"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp2-glass-keypad"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp2-glass-keypad"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp4-window-recall"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp6-corridor-return"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp6-corridor-return"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp6-corridor-return"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp1-break-counter"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "V05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp5-ledger-desk"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18m-cp3-ticket-edit"
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "mira-lights-out-offer",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "I have a route for you: the break room to the ledger and back through the corridor. The first run is just to learn it, with no clock at all.",
+      "hint": null,
+      "when": "interact:int-mira",
+      "cue": "Mira: offering any route (neutral)"
+    },
+    {
+      "id": "mira-keep-open",
+      "speaker": "mira",
+      "portrait": "concerned",
+      "text": "Keep the safe route open for the next shift, will you? People are going to need the corridor lit long after we are gone.",
+      "hint": null,
+      "when": "dialogue_done:mira-lights-out-offer",
+      "cue": "Mira: Lights-Out Delivery, asking the player to keep the safe route open (concerned)"
+    },
+    {
+      "id": "mira-patch-six",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "That is the Night Courier patch, and a clean first run to go with it.",
+      "hint": null,
+      "when": "scene_success:n18m-cp6-corridor-return",
+      "cue": "Mira: each patch, earned on a first clean baseline (pleased)"
+    }
+  ]
+}
