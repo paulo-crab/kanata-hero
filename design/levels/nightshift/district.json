@@ -321,7 +321,7 @@
       "reward": {
         "desk_decoration": "desk_dawn_lamp",
         "dialogue": "ada-dawn-thanks",
-        "world": "the dawn desk station wakes (dead to lit) with its pool of light"
+        "world": "the dawn desk station is lit by the level 19 break-room lighting (station_dawn dead to lit)"
       }
     }
   ],
