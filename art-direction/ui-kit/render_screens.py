@@ -5,6 +5,7 @@ Not part of build_all.py (it needs a browser). Run after build_reference.py when
 
     python3 render_screens.py              # all screens
     python3 render_screens.py layout-nav   # one screen (the #s-<id> target)
+    python3 render_screens.py reference    # the main stage and its #grey check
 
 Each screen section has two targets: #s-<id> (colour) and #s-<id>-grey (forced greyscale, the
 colour-blind check). Colour renders go to screens/<id>-1366x768.png; the screens in GREY are also
@@ -23,7 +24,7 @@ CANDIDATES = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 ]
 # Screens whose meaning is carried by shape and text rather than colour: also rendered in greyscale.
-GREY = {"layout-practice", "setup-calibration", "input-feedback", "glitch-duel", "elevator-map", "seal-award"}
+GREY = {"layout-practice", "setup-calibration", "input-feedback", "glitch-duel", "elevator-map", "seal-award", "seal-icons"}
 
 
 def browser():
@@ -43,10 +44,16 @@ def shoot(exe, frag, path):
 def main():
     html = open(os.path.join(HERE, "reference.html"), encoding="utf-8").read()
     ids = re.findall(r'<span class="a" id="s-([\w-]+)">', html)
-    want = sys.argv[1:] or ids
+    want = sys.argv[1:] or ids + ["reference"]
     os.makedirs(OUT, exist_ok=True)
     exe = browser()
     for sid in want:
+        if sid == "reference":
+            # The main stage (inset, dialogue, HUD, prompt, markers) and its #grey colour-blind check.
+            shoot(exe, "", os.path.join(HERE, "reference-1366x768.png"))
+            shoot(exe, "grey", os.path.join(HERE, "reference-greyscale-1366x768.png"))
+            print("rendered reference (colour and greyscale)")
+            continue
         if sid not in ids:
             sys.exit("unknown screen " + sid)
         shoot(exe, f"s-{sid}", os.path.join(OUT, f"{sid}-1366x768.png"))

@@ -287,7 +287,7 @@ def shot(sid, title, lede, inner, scrim="scrim", note=None, world=True):
   <span class="a" id="s-{sid}"></span><span class="a g" id="s-{sid}-grey"></span>
   <div class="sheet-head"><h2>{title}</h2><p class="lede">{lede}</p></div>
   <div class="viewport"><div class="stage">
-    {img}<div class="scrim {scrim if scrim != 'scrim' else ''}"></div>
+    {img}{'' if scrim == 'none' else '<div class="scrim ' + (scrim if scrim != 'scrim' else '') + '"></div>'}
     {inner}
   </div></div>
   {nt}

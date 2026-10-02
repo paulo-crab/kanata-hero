@@ -122,6 +122,19 @@ PAIRS = [
     ("border-strong", "panel-raised", LARGE, "teal frame on a card"),
     ("text-muted", "key-silent-face", NORMAL, "legend text beside a silent key"),
     ("text", "key-silent-face", NORMAL, "XX legend on a silent key (Layout help)"),
+    # ---- Seals, patches, switches, artifact paper -----------------------------------------------------
+    ("ink", "patch-peach", LARGE, "envelope glyph on patch 1 First Delivery"),
+    ("ink", "patch-lime", LARGE, "map pin glyph on patch 2 Clear Address"),
+    ("ink", "patch-brass", LARGE, "loop glyph on patch 3 Archive Loop"),
+    ("paper", "patch-navy", LARGE, "check glyph on patch 4 Signed and Sent"),
+    ("ink", "patch-pale", LARGE, "bar glyph on patch 5 Signal Keeper"),
+    ("patch-glint", "patch-navy", LARGE, "crescent and star glyph on patch 6 Night Courier"),
+    ("paper", "panel-raised", LARGE, "stitched paper edge of every patch against its card"),
+    ("paper", "panel-sunken", LARGE, "patch edge against the locked-patch well"),
+    ("ink", "gold", LARGE, "seal glyph and outline on the gold octagon"),
+    ("ink", "teal", LARGE, "switch knob on its On track"),
+    ("teal", "panel-sunken", LARGE, "On track against the recessed switch well"),
+    ("text-muted", "panel-sunken", LARGE, "Off knob ring against the switch track"),
 ]
 
 # Synthetic backgrounds: a gold tint over the code well (the target line).
