@@ -1099,27 +1099,22 @@
         {
           "op": "npc_state",
           "npc": "worker_c1",
-          "state": "nightshift-19"
+          "state": "walking"
         },
         {
           "op": "npc_state",
           "npc": "worker_c2",
-          "state": "nightshift-19"
+          "state": "walking"
         },
         {
           "op": "npc_state",
           "npc": "worker_ledger",
-          "state": "nightshift-19"
-        },
-        {
-          "op": "move_npc",
-          "npc": "ada",
-          "state": "nightshift-19"
+          "state": "walking"
         },
         {
           "op": "npc_state",
           "npc": "ada",
-          "state": "nightshift-19"
+          "state": "lit"
         },
         {
           "op": "start_dialogue",
@@ -1165,13 +1160,13 @@
       {
         "kind": "npc_pose",
         "target": "worker_c1",
-        "to": "nightshift-19"
+        "to": "walking"
       },
       {
         "kind": "npc_pose",
         "target": "ada",
-        "from": "nightshift-18",
-        "to": "nightshift-19"
+        "from": "stair",
+        "to": "lit"
       },
       {
         "kind": "light_state",

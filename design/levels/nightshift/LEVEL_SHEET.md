@@ -68,7 +68,7 @@ Every main-route cell has a free 2x2 block (validator-checked with the vestibule
 
 ## Trigger and condition grammar used
 
-Conditions follow `SCHEMA.md` (`scene_success`, `dialogue_done`, `interact`, `step_start`, `reach_cell`, `player_confirm`, `trigger`). Triggers use the schema ops (`set_state`, `npc_state`, `move_npc`, `unlock_gate`, `light_state`, `start_dialogue`, `set_flag`, `complete_level`, `grant`, `journal`). `set_flag` carries `value` (true/false) for `practice-confirmed`. `move_npc` state `stair` is an in-level position (cells_by_state), not a level id.
+Conditions follow `SCHEMA.md` (`scene_success`, `dialogue_done`, `interact`, `step_start`, `reach_cell`, `player_confirm`, `trigger`). Triggers use the schema ops (`set_state`, `npc_state`, `unlock_gate`, `light_state`, `start_dialogue`, `set_flag`, `complete_level`, `grant`, `journal`). `set_flag` carries `value` (true/false) for `practice-confirmed`. NPC state keys are NPC-local (`ada`: start, landing, stair, lit); `npc_state` switches pose and cell together, and a state named `start` on a late-arriving worker means not yet present (not drawn).
 
 ## Keyboard-inset conflicts
 

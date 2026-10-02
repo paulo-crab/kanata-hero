@@ -3043,7 +3043,7 @@
       "npc": "ivo",
       "dialogue_id": "ivo-arrives",
       "level": "executive-20",
-      "visible_when": "after arrival (see npcs cells_by_state gather)",
+      "visible_when": "npc_state:ivo=gather",
       "label": "Ivo by the final door"
     },
     {
@@ -3068,7 +3068,7 @@
       "npc": "noor",
       "dialogue_id": "noor-arrives",
       "level": "executive-20",
-      "visible_when": "after arrival (see npcs cells_by_state gather)",
+      "visible_when": "npc_state:noor=gather",
       "label": "Noor by the final door"
     },
     {
@@ -3093,7 +3093,7 @@
       "npc": "hal",
       "dialogue_id": "hal-arrives",
       "level": "executive-20",
-      "visible_when": "after arrival (see npcs cells_by_state gather)",
+      "visible_when": "npc_state:hal=gather",
       "label": "Hal by the final door"
     },
     {
@@ -3118,7 +3118,7 @@
       "npc": "ada",
       "dialogue_id": "ada-arrives",
       "level": "executive-20",
-      "visible_when": "after arrival (see npcs cells_by_state gather)",
+      "visible_when": "npc_state:ada=gather",
       "label": "Ada by the final door"
     },
     {
@@ -3190,10 +3190,10 @@
       "facing": "s",
       "poses_by_state": {
         "start": "vale_idle_s",
-        "executive-repairs-1": "vale_react_reconsidering_s",
-        "executive-repairs-2": "vale_react_reconsidering_s",
-        "executive-repairs-3": "vale_react_reconsidering_s",
-        "executive-20": "vale_interact_s"
+        "repairs-1": "vale_react_reconsidering_s",
+        "repairs-2": "vale_react_reconsidering_s",
+        "repairs-3": "vale_react_reconsidering_s",
+        "epilogue": "vale_interact_s"
       },
       "note": "Softening by NUMBER of repairs (0 to 3), matched to the portrait cues. State 0 is the drawn rigid idle; state 1 holds the last frame of vale_react_reconsidering (shoulders drop 1 px). States 2 and 3 (arms relax, weight on one leg; open asymmetric stance) are not drawn yet, so the same pose stands in until the art lands (see NEEDS_ART.md). The epilogue pose is vale_interact_s (releasing the audit)."
     },
@@ -3206,9 +3206,15 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "start": "ivo_laugh_s"
+        "start": "ivo_laugh_s",
+        "arrive": "ivo_laugh_s",
+        "gather": "ivo_laugh_s"
       },
       "cells_by_state": {
+        "start": [
+          25,
+          15
+        ],
         "arrive": [
           25,
           15
@@ -3218,7 +3224,7 @@
           12
         ]
       },
-      "note": "Arrives first (with Noor) after the first repair: silhouette at its arrive cell, sprite once it moves to its gather cell. Laughs on arrival (ivo_laugh)."
+      "note": "States in order: start (not yet arrived, not drawn), arrive (silhouette at the arrive cell), gather (the sprite at the gather cell). Arrives first (with Noor) after the first repair: silhouette at its arrive cell, sprite once it moves to its gather cell. Laughs on arrival (ivo_laugh)."
     },
     {
       "id": "noor",
@@ -3229,9 +3235,15 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "start": "noor_posture_upright_s"
+        "start": "noor_posture_upright_s",
+        "arrive": "noor_posture_upright_s",
+        "gather": "noor_posture_upright_s"
       },
       "cells_by_state": {
+        "start": [
+          23,
+          16
+        ],
         "arrive": [
           23,
           16
@@ -3241,7 +3253,7 @@
           12
         ]
       },
-      "note": "Arrives with Ivo after the first repair; posture upright."
+      "note": "States in order: start (not yet arrived, not drawn), arrive (silhouette at the arrive cell), gather (the sprite at the gather cell). Arrives with Ivo after the first repair; posture upright."
     },
     {
       "id": "hal",
@@ -3252,9 +3264,15 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "start": "hal_idle_s"
+        "start": "hal_idle_s",
+        "arrive": "hal_idle_s",
+        "gather": "hal_idle_s"
       },
       "cells_by_state": {
+        "start": [
+          21,
+          15
+        ],
         "arrive": [
           21,
           15
@@ -3264,7 +3282,7 @@
           12
         ]
       },
-      "note": "Arrives with Ada after the second repair; sits less, stands at ease."
+      "note": "States in order: start (not yet arrived, not drawn), arrive (silhouette at the arrive cell), gather (the sprite at the gather cell). Arrives with Ada after the second repair; sits less, stands at ease."
     },
     {
       "id": "ada",
@@ -3275,9 +3293,15 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "start": "ada_idle_s"
+        "start": "ada_idle_s",
+        "arrive": "ada_idle_s",
+        "gather": "ada_idle_s"
       },
       "cells_by_state": {
+        "start": [
+          25,
+          17
+        ],
         "arrive": [
           25,
           17
@@ -3287,7 +3311,7 @@
           9
         ]
       },
-      "note": "Arrives with Hal after the second repair; lantern rim baked into the sprite."
+      "note": "States in order: start (not yet arrived, not drawn), arrive (silhouette at the arrive cell), gather (the sprite at the gather cell). Arrives with Hal after the second repair; lantern rim baked into the sprite."
     },
     {
       "id": "mira",
@@ -3298,9 +3322,15 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "start": "mira_react_pleased_s"
+        "start": "mira_react_pleased_s",
+        "arrive": "mira_react_pleased_s",
+        "gather": "mira_react_pleased_s"
       },
       "cells_by_state": {
+        "start": [
+          23,
+          18
+        ],
         "arrive": [
           23,
           18
@@ -3310,7 +3340,7 @@
           9
         ]
       },
-      "note": "Arrives last, after the third repair, as the final door opens; wears all patches earned so far."
+      "note": "States in order: start (not yet arrived, not drawn), arrive (silhouette at the arrive cell), gather (the sprite at the gather cell). Arrives last, after the third repair, as the final door opens; wears all patches earned so far."
     }
   ],
   "routes": {

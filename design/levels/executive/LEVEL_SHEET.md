@@ -55,9 +55,9 @@ Every branch has a clear way back to the ring (a two-cell-wide short branch). Th
 | 1 | `vale_react_reconsidering_s`, last frame held (shoulders drop 1 px) | concerned (evidence) | each repaired branch's evidence beats Pace's summary |
 | 2 | stand-in: same pose (arms relax, weight on one leg is undrawn) | pleased | after the second repair |
 | 3 | stand-in: same pose (open asymmetric stance is undrawn) | softened | after the third repair, the audit release, Names on the Wall |
-| epilogue (`executive-20`) | `vale_interact_s` (releasing the audit) | softened | the epilogue audit release |
+| epilogue (`epilogue`) | `vale_interact_s` (releasing the audit) | softened | the epilogue audit release |
 
-How the rules read the count with AND-only conditions: one trigger per branch (`tr-20-<branch>-repaired`), then `tr-20-count1-*` (any one), `tr-20-count2-*` (each pair) and `tr-20-count3` (all three), listed lowest first. NPC ops never move an NPC to an earlier state and a dialogue plays at most once per save, so a later trigger that is also true is harmless.
+How the rules read the count with AND-only conditions: one trigger per branch (`tr-20-<branch>-repaired`), then `tr-20-count1-*` (any one), `tr-20-count2-*` (each pair) and `tr-20-count3` (all three), listed lowest first. `npc_state` ops never move an NPC to an earlier state (states are ordered as listed in `poses_by_state`) and a dialogue plays at most once per save, so a later trigger that is also true is harmless.
 
 ## Coworker arrivals (defined order)
 

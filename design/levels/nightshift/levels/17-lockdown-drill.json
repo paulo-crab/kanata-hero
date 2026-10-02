@@ -596,14 +596,9 @@
           "light_state": "ls-17-glass-open"
         },
         {
-          "op": "move_npc",
-          "npc": "ada",
-          "state": "nightshift-17"
-        },
-        {
           "op": "npc_state",
           "npc": "ada",
-          "state": "nightshift-17"
+          "state": "landing"
         },
         {
           "op": "start_dialogue",
@@ -636,7 +631,7 @@
         "kind": "npc_pose",
         "target": "ada",
         "from": "start",
-        "to": "nightshift-17"
+        "to": "landing"
       },
       {
         "kind": "gate",

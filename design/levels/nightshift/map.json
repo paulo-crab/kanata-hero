@@ -3478,7 +3478,7 @@
       "npc": "ada",
       "dialogue_id": "ada-greeting",
       "level": "nightshift-17",
-      "visible_when": "state:start",
+      "visible_when": "npc_state:ada=start",
       "label": "Ada by the kettle (greeting, practice-exit explanation)"
     },
     {
@@ -3517,8 +3517,7 @@
       "npc": "ada",
       "scene_id": "n17-t5-recovery-scenarios",
       "level": "nightshift-17",
-      "visible_when": "state:start",
-      "requires": [],
+      "visible_when": "npc_state:ada=start",
       "label": "Ada: recovery scenarios (operations-card follow-up)"
     },
     {
@@ -3766,7 +3765,7 @@
       "requires": [
         "level:nightshift-17"
       ],
-      "visible_when": "state:nightshift-17",
+      "visible_when": "npc_state:ada=landing",
       "label": "Ada at the start of the lit route (practice check-in)"
     },
     {
@@ -4034,7 +4033,7 @@
       "npc": "ada",
       "dialogue_id": "ada-stair-open",
       "level": "nightshift-18",
-      "visible_when": "after trigger tr-18-recall-done",
+      "visible_when": "npc_state:ada=stair",
       "label": "Ada at the north stair door"
     },
     {
@@ -4457,19 +4456,19 @@
           13
         ]
       ],
-      "patrol_clock": "walk-alongside: after the glass opens Ada walks this path once to the nook, passes through the open glass and waits at the landing (cells_by_state nightshift-17); not a loop",
+      "patrol_clock": "walk-alongside: after the glass opens Ada walks this path once to the nook, passes through the open glass and waits at the landing (state landing); not a loop",
       "poses_by_state": {
         "start": "ada_idle_e",
-        "nightshift-17": "ada_idle_n",
-        "nightshift-18": "ada_react_nod_e",
-        "nightshift-19": "ada_react_nod_s"
+        "landing": "ada_idle_n",
+        "stair": "ada_react_nod_e",
+        "lit": "ada_react_nod_s"
       },
       "cells_by_state": {
         "start": [
           28,
           16
         ],
-        "nightshift-17": [
+        "landing": [
           23,
           10
         ],
@@ -4477,12 +4476,12 @@
           15,
           6
         ],
-        "nightshift-19": [
+        "lit": [
           28,
           16
         ]
       },
-      "note": "Positions: break room (start), lit-route landing after 17, north stair door during the end of 18 (move_npc \"stair\"), back at the kettle after 19. Lantern rim is baked into the sprite."
+      "note": "States: start (break room kettle), landing (lit-route start after 17), stair (north stair door at the end of 18), lit (back at the kettle after 19). npc_state switches pose and cell together. Lantern rim is baked into the sprite."
     },
     {
       "id": "mira",
@@ -4494,9 +4493,9 @@
       "facing": "w",
       "poses_by_state": {
         "start": "mira_idle_w",
-        "nightshift-18": "mira_react_confiding_w"
+        "confiding": "mira_react_confiding_w"
       },
-      "note": "Coral strap visible in the dark. Wears patches 1..K for the routes cleared so far (mira-patches atlas state K). Offers Lights-Out Delivery after 18; before that she says to finish the lit route first."
+      "note": "Coral strap visible in the dark. Wears patches 1..K for the routes cleared so far (mira-patches atlas state K). Offers Lights-Out Delivery after 18 (state confiding); before that she says to finish the lit route first."
     },
     {
       "id": "worker_ledger",
@@ -4507,10 +4506,11 @@
       ],
       "facing": "s",
       "poses_by_state": {
-        "nightshift-18": "bgworker_a_idle_s",
-        "nightshift-19": "bgworker_a_walk_s"
+        "start": "bgworker_a_idle_s",
+        "silhouette": "bgworker_a_idle_s",
+        "walking": "bgworker_a_walk_s"
       },
-      "note": "Absent before 18. After the tickets are repaired a coworker silhouette appears inside the ledger room, seen through the glass partitions (silhouette atlas, bgworker_a-atlas-silhouette-lit); after 19 the sprite walks independently."
+      "note": "State start = not yet present (not drawn). After the tickets are repaired a coworker silhouette appears inside the ledger room, seen through the glass partitions (silhouette atlas, bgworker_a-atlas-silhouette-lit); after 19 the sprite walks independently."
     },
     {
       "id": "worker_c1",
@@ -4548,9 +4548,10 @@
       ],
       "patrol_clock": "independent (random 0-999 ms offset, per bgworker_a sync rules after relax)",
       "poses_by_state": {
-        "nightshift-19": "bgworker_a_walk_s"
+        "start": "bgworker_a_idle_s",
+        "walking": "bgworker_a_walk_s"
       },
-      "note": "Absent before 19. Warm service corridor gains moving coworkers."
+      "note": "State start = not yet present (not drawn). Warm service corridor gains moving coworkers at level 19 (state walking)."
     },
     {
       "id": "worker_c2",
@@ -4588,9 +4589,10 @@
       ],
       "patrol_clock": "independent",
       "poses_by_state": {
-        "nightshift-19": "bgworker_b_walk_n"
+        "start": "bgworker_b_idle_n",
+        "walking": "bgworker_b_walk_n"
       },
-      "note": "Absent before 19; walks the corridor in the opposite phase to worker_c1."
+      "note": "State start = not yet present (not drawn); walks the corridor in the opposite phase to worker_c1 after 19."
     }
   ],
   "routes": {

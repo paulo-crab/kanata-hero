@@ -1152,14 +1152,14 @@
           "light_state": "ls-18-stair-open"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ada",
           "state": "stair"
         },
         {
           "op": "npc_state",
           "npc": "worker_ledger",
-          "state": "nightshift-18"
+          "state": "silhouette"
         }
       ]
     },
@@ -1169,13 +1169,8 @@
       "then": [
         {
           "op": "npc_state",
-          "npc": "ada",
-          "state": "nightshift-18"
-        },
-        {
-          "op": "npc_state",
           "npc": "mira",
-          "state": "nightshift-18"
+          "state": "confiding"
         },
         {
           "op": "complete_level",
@@ -1221,13 +1216,13 @@
       {
         "kind": "npc_pose",
         "target": "worker_ledger",
-        "to": "nightshift-18"
+        "to": "silhouette"
       },
       {
         "kind": "npc_pose",
         "target": "ada",
-        "from": "nightshift-17",
-        "to": "nightshift-18"
+        "from": "landing",
+        "to": "stair"
       }
     ]
   },

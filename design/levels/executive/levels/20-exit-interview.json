@@ -1711,15 +1711,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-1"
+          "state": "repairs-1"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "arrive"
         }
@@ -1732,15 +1732,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-1"
+          "state": "repairs-1"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "arrive"
         }
@@ -1753,15 +1753,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-1"
+          "state": "repairs-1"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "arrive"
         }
@@ -1774,15 +1774,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-2"
+          "state": "repairs-2"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "hal",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ada",
           "state": "arrive"
         },
@@ -1799,15 +1799,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-2"
+          "state": "repairs-2"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "hal",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ada",
           "state": "arrive"
         },
@@ -1824,15 +1824,15 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-2"
+          "state": "repairs-2"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "hal",
           "state": "arrive"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ada",
           "state": "arrive"
         },
@@ -1849,10 +1849,10 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-repairs-3"
+          "state": "repairs-3"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "mira",
           "state": "arrive"
         },
@@ -1910,12 +1910,12 @@
       "when": "dialogue_done:vale-evidence-name",
       "then": [
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "gather"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "gather"
         }
@@ -1926,12 +1926,12 @@
       "when": "dialogue_done:vale-evidence-route",
       "then": [
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "gather"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "gather"
         }
@@ -1942,12 +1942,12 @@
       "when": "dialogue_done:vale-evidence-count",
       "then": [
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ivo",
           "state": "gather"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "noor",
           "state": "gather"
         }
@@ -1958,12 +1958,12 @@
       "when": "dialogue_done:vale-pleased-2",
       "then": [
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "hal",
           "state": "gather"
         },
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "ada",
           "state": "gather"
         }
@@ -1974,7 +1974,7 @@
       "when": "dialogue_done:vale-softened-3",
       "then": [
         {
-          "op": "move_npc",
+          "op": "npc_state",
           "npc": "mira",
           "state": "gather"
         }
@@ -1992,7 +1992,7 @@
         {
           "op": "npc_state",
           "npc": "vale",
-          "state": "executive-20"
+          "state": "epilogue"
         },
         {
           "op": "light_state",
@@ -2069,7 +2069,7 @@
         "kind": "npc_pose",
         "target": "vale",
         "from": "start",
-        "to": "executive-repairs-3"
+        "to": "repairs-3"
       },
       {
         "kind": "npc_pose",
