@@ -176,3 +176,23 @@ def variant(base, rows, alt=None):
     f0 = [rows.get(y, r) for y, r in enumerate(base)]
     f1 = f0 if alt is None else [{**rows, **alt}.get(y, r) for y, r in enumerate(base)]
     return [f0, lower(f1)]
+
+
+# ------------------------------------------------------------------ seated at a desk
+# Seat convention (kit/ORIENTATION_KIT_SPEC.md): the worker faces the camera from behind the desk, the
+# frame anchor (feet_bc) sits at desk origin + (16, 4), and the desk-front occluder hides rows 15-19 at
+# columns 1-14 and rows 20-23 entirely. Everything the player must read (head, shoulders, hands, props)
+# lives in rows 0-14; the lower body is the standing one, drawn but hidden. Columns 0 and 15 stay empty
+# below row 14 because the occluder leaves them visible.
+SEAT_VISIBLE_ROWS = 15          # rows 0-14 are never covered
+SEAT_PROP_KEYS = "ghjefi"       # phone and mug keys: must sit above the occluder
+SEATED_SETS = ["idle", "typing", "phone", "coffee"]
+
+
+def seated(base, rows, alt=None, settle=True):
+    """Seated pose from a standing S frame. rows = {row: text} for the arm/torso rows (frame 0).
+    Frame 1 is frame 0 with alt rows swapped in (typing hands, phone scroll) and, when settle, the
+    head and torso lowered 1 px like every other idle."""
+    f0 = [rows.get(y, r) for y, r in enumerate(base)]
+    f1 = f0 if alt is None else [{**rows, **alt}.get(y, r) for y, r in enumerate(base)]
+    return [f0, lower(f1) if settle else f1]
