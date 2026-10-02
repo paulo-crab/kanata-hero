@@ -1,0 +1,303 @@
+{
+  "id": "courier-loop",
+  "name": "Courier Loop",
+  "district": "records",
+  "available_after": "records-07",
+  "skills_required": [
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N13",
+    "N14",
+    "N17"
+  ],
+  "start_cell": [
+    32,
+    12
+  ],
+  "checkpoints": [
+    {
+      "id": "cl-cp1-east-desk",
+      "cell": [
+        25,
+        14
+      ],
+      "task": "Correct the east desk slip and submit it.",
+      "scene_id": "records-courier-s1-east-desk",
+      "correction": "immediate, no penalty",
+      "interaction": "desk_hub_east"
+    },
+    {
+      "id": "cl-cp2-west-desk",
+      "cell": [
+        15,
+        14
+      ],
+      "task": "Correct the west desk slip with the arrows and Forward Delete.",
+      "scene_id": "records-courier-s2-west-desk",
+      "correction": "immediate, no penalty",
+      "interaction": "desk_hub_west"
+    },
+    {
+      "id": "cl-cp3-annex-desk",
+      "cell": [
+        1,
+        3
+      ],
+      "task": "Correct the annex desk slip past the repair door.",
+      "scene_id": "records-courier-s3-annex-desk",
+      "correction": "immediate, no penalty",
+      "interaction": "annex_desk"
+    },
+    {
+      "id": "cl-cp4-chute",
+      "cell": [
+        33,
+        12
+      ],
+      "task": "Deliver the corrected slips at the mail chute.",
+      "scene_id": "records-courier-s5-deliver",
+      "correction": "immediate, no penalty",
+      "interaction": "mail_chute"
+    }
+  ],
+  "destinations": [
+    "East hub desk",
+    "West hub desk",
+    "Annex desk beyond the repair door",
+    "Mail chute (delivery)",
+    "Review chamber desk: added to the slip set once level 10 opens the chamber; after level 11 the opened file wall gives a legitimate shorter way from the chamber back to the chute"
+  ],
+  "medal_rule": "clean baseline then personal target, never gates story",
+  "reward_patch": "clear_address",
+  "desk_decoration": "None beyond the Clear Address patch.",
+  "map_design_note": "A longer loop past the repair door and the chute: pocket, east desk, around the circular desk to the west desk, west through the repair door to the annex desk, and back. The pocket's chute and the closed file wall are visible from the first run, so the later opening reads as a shortcut the player remembers.",
+  "terminal_scenes": [
+    {
+      "id": "records-courier-s1-east-desk",
+      "kind": "form",
+      "task_summary": "Correct a delivery slip at the east desk with Backspace and Return.",
+      "success_criteria": [
+        "The slip reads 'annex row 3, bay 12' and is submitted with Return"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Slip: 'annex roww 3, bay 12'. Fix the doubled letter and submit it.",
+        "initial": {
+          "address": "annex roww 3, bay 12"
+        },
+        "target": "annex row 3, bay 12",
+        "accepts": [
+          "Backspace",
+          "Left Arrow",
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The slip does not match yet; the panel shows what it saw."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-courier-s2-west-desk",
+      "kind": "form",
+      "task_summary": "Correct a slip at the west desk with the Caps arrows and Forward Delete, then submit.",
+      "success_criteria": [
+        "The slip reads 'hall b row 7' and is submitted"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Slip: 'hall bb row 7'. Move the cursor with the arrows, delete the extra letter and submit.",
+        "initial": {
+          "address": "hall bb row 7"
+        },
+        "target": "hall b row 7",
+        "accepts": [
+          "Left Arrow",
+          "Right Arrow",
+          "Down Arrow",
+          "Up Arrow",
+          "Forward Delete",
+          "Control + D",
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The slip does not match yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-courier-s3-annex-desk",
+      "kind": "form",
+      "task_summary": "Correct a slip at the annex desk past the repair door and submit.",
+      "success_criteria": [
+        "The slip reads 'elevator lobby 2' and is submitted"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Slip: 'elevatorr lobby 22'. Fix both extra letters and submit.",
+        "initial": {
+          "address": "elevatorr lobby 22"
+        },
+        "target": "elevator lobby 2",
+        "accepts": [
+          "Backspace",
+          "Forward Delete",
+          "Left Arrow",
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The slip does not match yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-courier-s4-chamber-desk",
+      "kind": "form",
+      "task_summary": "Correct a late slip at the review chamber desk once the chamber is open.",
+      "success_criteria": [
+        "The slip reads 'review chamber 1' and is submitted"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Slip: 'review chamberr 11'. Fix it and submit.",
+        "initial": {
+          "address": "review chamberr 11"
+        },
+        "target": "review chamber 1",
+        "accepts": [
+          "Backspace",
+          "Forward Delete",
+          "Left Arrow",
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The slip does not match yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-courier-s5-deliver",
+      "kind": "form",
+      "task_summary": "Deliver the corrected slips at the mail chute.",
+      "success_criteria": [
+        "Return is observed on the chute's delivery form"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The chute's form shows the number of corrected slips. Submit it.",
+        "initial": {
+          "address": "4 corrected slips"
+        },
+        "target": "4 corrected slips",
+        "accepts": [
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "Return submits the delivery."
+        },
+        "layout": "No keyboard diagram."
+      }
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s2-west-desk"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s2-west-desk"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s2-west-desk"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s2-west-desk"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s1-east-desk"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s3-annex-desk"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s2-west-desk"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-courier-s5-deliver"
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "rc-mira-offer",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "The same mail is going out twice. Walk the loop with me first. No clock, I promise.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:mira & state:records-07",
+      "cue": "Mira: offering any route"
+    },
+    {
+      "id": "rc-mira-patch",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "Clear Address. That patch is yours.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "scene_success:records-courier-s5-deliver",
+      "cue": "Mira: pleased on a route's first clean baseline"
+    }
+  ],
+  "baseline_note": "The first clean run only records a duration; no target is shown until a baseline exists."
+}

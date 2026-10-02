@@ -1,0 +1,196 @@
+{
+  "district": "records",
+  "note": "Ownership follows the inventory introduced_in column. Scene order is level number then position in the level, with Mira scenes just after their level and side-quest scenes after that. Review scenes in level 11 give later changed-context recall for the level 07 gestures, whose in-level scenes are guided and variation only.",
+  "levels": {
+    "records-07": {
+      "owned": [
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18"
+      ],
+      "gestures": {
+        "N13": {
+          "guided": "records-07-s2-backspace-m",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s11-review-editing"
+        },
+        "N14": {
+          "guided": "records-07-s3-backspace-space",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s11-review-editing"
+        },
+        "N15": {
+          "guided": "records-07-s4-forward-comma",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s11-review-editing"
+        },
+        "N16": {
+          "guided": "records-07-s5-forward-x",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s11-review-editing"
+        },
+        "N17": {
+          "guided": "records-07-s1-return",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s12-review-return-escape"
+        },
+        "N18": {
+          "guided": "records-07-s6-escape",
+          "variation": "records-07-s7-address-mixed",
+          "recall": "records-11-s12-review-return-escape"
+        }
+      }
+    },
+    "records-08": {
+      "owned": [
+        "N05",
+        "N06"
+      ],
+      "gestures": {
+        "N05": {
+          "guided": "records-08-s1-step-back",
+          "variation": "records-08-s3-log-mixed",
+          "recall": "records-08-s4-recall-cabinet"
+        },
+        "N06": {
+          "guided": "records-08-s2-step-forward",
+          "variation": "records-08-s3-log-mixed",
+          "recall": "records-08-s4-recall-cabinet"
+        }
+      }
+    },
+    "records-09": {
+      "owned": [
+        "N07",
+        "N08"
+      ],
+      "gestures": {
+        "N07": {
+          "guided": "records-09-s1-line-start",
+          "variation": "records-09-s4-margin-tokens",
+          "recall": "records-09-s5-fresh-line"
+        },
+        "N08": {
+          "guided": "records-09-s2-line-end",
+          "variation": "records-09-s4-margin-tokens",
+          "recall": "records-09-s5-fresh-line"
+        }
+      }
+    },
+    "records-10": {
+      "owned": [
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ],
+      "gestures": {
+        "N09": {
+          "guided": "records-10-s2-page-up",
+          "variation": "records-10-s5-changed-report",
+          "recall": "records-10-s6-recall-citation"
+        },
+        "N10": {
+          "guided": "records-10-s1-page-down",
+          "variation": "records-10-s5-changed-report",
+          "recall": "records-10-s6-recall-citation"
+        },
+        "N11": {
+          "guided": "records-10-s3-doc-start",
+          "variation": "records-10-s5-changed-report",
+          "recall": "records-10-s6-recall-citation"
+        },
+        "N12": {
+          "guided": "records-10-s4-doc-end",
+          "variation": "records-10-s5-changed-report",
+          "recall": "records-10-s6-recall-citation"
+        }
+      }
+    },
+    "records-11": {
+      "owned": [
+        "N19",
+        "N20"
+      ],
+      "gestures": {
+        "N19": {
+          "guided": "records-11-s1-shift-first",
+          "variation": "records-11-s2-caps4-drops-shift",
+          "recall": "records-11-s13-select-and-replace"
+        },
+        "N20": {
+          "guided": "records-11-s3-literal-asf",
+          "variation": "records-11-s4-literal-in-note",
+          "recall": "records-11-s13-select-and-replace"
+        },
+        "N21": {
+          "guided": "records-11-s5-rcmd-arrows",
+          "variation": "records-11-s6-rcmd-edit",
+          "recall": "records-11-s7-review-arrows",
+          "note": "Introduced in Orientation 06 per levels.md; Records 11 revisits it with all three phases so coverage holds whichever level the inventory assigns it to."
+        }
+      }
+    }
+  },
+  "mira": {
+    "courier-loop": {
+      "N13": {
+        "recall": "records-courier-s1-east-desk"
+      },
+      "N14": {
+        "recall": "records-courier-s3-annex-desk"
+      },
+      "N15": {
+        "recall": "records-courier-s2-west-desk"
+      },
+      "N17": {
+        "recall": "records-courier-s5-deliver"
+      },
+      "N01": {
+        "recall": "records-courier-s2-west-desk"
+      },
+      "N02": {
+        "recall": "records-courier-s2-west-desk"
+      },
+      "N03": {
+        "recall": "records-courier-s2-west-desk"
+      },
+      "N04": {
+        "recall": "records-courier-s2-west-desk"
+      }
+    },
+    "lost-folios": {
+      "N05": {
+        "recall": "records-folios-s3-divider-cabinet"
+      },
+      "N06": {
+        "recall": "records-folios-s3-divider-cabinet"
+      },
+      "N07": {
+        "recall": "records-folios-s2-ledger-desk"
+      },
+      "N08": {
+        "recall": "records-folios-s2-ledger-desk"
+      },
+      "N09": {
+        "recall": "records-folios-s3-divider-cabinet"
+      },
+      "N10": {
+        "recall": "records-folios-s3-divider-cabinet"
+      },
+      "N11": {
+        "recall": "records-folios-s1-gallery-shelf"
+      },
+      "N12": {
+        "recall": "records-folios-s1-gallery-shelf"
+      },
+      "N17": {
+        "recall": "records-folios-s4-deliver"
+      }
+    }
+  },
+  "uncovered": []
+}

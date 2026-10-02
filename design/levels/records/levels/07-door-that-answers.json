@@ -1,0 +1,648 @@
+{
+  "id": "records-07",
+  "number": 7,
+  "title": "The Door That Answers",
+  "district": "records",
+  "kind": "main",
+  "requires": [
+    "orientation-06"
+  ],
+  "story": "Records' entrance door asks for an address, but it erases characters on the wrong side of the cursor. Noor is waiting at the circular desk beyond it. Short untimed door panels teach Return, both Backspace routes, both forward-delete routes and Escape, then a new address mixes them all.",
+  "steps": [
+    {
+      "id": "r07-s1",
+      "objective": "Walk to the address panel beside the repair door.",
+      "interaction": "door_panel",
+      "completes_when": "interact:door_panel",
+      "target_cell": [
+        5,
+        7
+      ]
+    },
+    {
+      "id": "r07-s2",
+      "objective": "Submit the sample address with Return.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s1-return"
+    },
+    {
+      "id": "r07-s3",
+      "objective": "Erase a doubled letter with the first Backspace route.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s2-backspace-m"
+    },
+    {
+      "id": "r07-s4",
+      "objective": "Erase another doubled letter with the second Backspace route.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s3-backspace-space"
+    },
+    {
+      "id": "r07-s5",
+      "objective": "Delete forward over a doubled letter.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s4-forward-comma"
+    },
+    {
+      "id": "r07-s6",
+      "objective": "Delete forward the Emacs way.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s5-forward-x"
+    },
+    {
+      "id": "r07-s7",
+      "objective": "Cancel a wrong entry two ways.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s6-escape"
+    },
+    {
+      "id": "r07-s8",
+      "objective": "Enter the new address, mixing every route.",
+      "interaction": "door_panel",
+      "completes_when": "scene_success:records-07-s7-address-mixed"
+    },
+    {
+      "id": "r07-s9",
+      "objective": "Watch the repair door retract and Noor step out.",
+      "interaction": null,
+      "completes_when": "trigger:t07-door-open"
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N17",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s1-return"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s2-backspace-m"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s3-backspace-space"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s4-forward-comma"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s5-forward-x"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s6-escape"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-07-s7-address-mixed",
+      "note": "Plain m, x, n and comma typed after Caps release (the introduction of mapped-key taps is Orientation 02)."
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-07-s1-return",
+      "note": "n typed after Caps release."
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "records-07-s1-return",
+      "kind": "form",
+      "task_summary": "Submit the sample address with Return, then type a plain n in the note window to see that the letter stays text once Caps is released.",
+      "success_criteria": [
+        "Return is observed while the address window has focus and the echo window shows the address",
+        "After Caps is released, a typed n appears in the note window as the letter n"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The panel's address window reads 'stacks east 12'. Submit it, then type n in the note window.",
+        "initial": {
+          "address": "stacks east 12",
+          "note": ""
+        },
+        "targets": [
+          {
+            "window": "echo",
+            "text": "stacks east 12"
+          },
+          {
+            "window": "note",
+            "text": "n"
+          }
+        ],
+        "accepts": [
+          "Return with the address window focused",
+          "n typed after Caps is released"
+        ],
+        "rejects": [
+          "Return with the note window focused (nothing is submitted)"
+        ],
+        "feedback": {
+          "return_in_note": "Return observed in the note window; nothing was submitted. Move to the address window first.",
+          "return_again": "Return observed again. Release Caps to type the letter n."
+        },
+        "layout": "Two text windows with a drawn cursor and a marked deletion side; the keyboard diagram shows Caps and N."
+      }
+    },
+    {
+      "id": "records-07-s2-backspace-m",
+      "kind": "form",
+      "task_summary": "Erase a doubled letter with the first Backspace route, Caps plus M.",
+      "success_criteria": [
+        "Backspace is observed once and the address reads 'stacks east 12'",
+        "No other character is removed"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "The address window reads 'stacks eastt 12' with the cursor right after the doubled t. The deletion side is marked on the left of the cursor.",
+        "initial": {
+          "address": "stacks eastt 12",
+          "cursor": 12
+        },
+        "target": "stacks east 12",
+        "accepts": [
+          "Backspace"
+        ],
+        "rejects": [
+          "Forward Delete (removes the wrong side)",
+          "any typed character"
+        ],
+        "feedback": {
+          "forward_delete": "Forward Delete observed: it removed the character in front of the cursor. Backspace removes the one behind it.",
+          "extra": "Backspace observed more than once; one doubled t was the only extra character."
+        },
+        "layout": "Keyboard diagram highlights Caps and M."
+      },
+      "note": "Both Backspace routes emit the same output; the diagram asks for the M route and the journal marks route choice as player-confirmed."
+    },
+    {
+      "id": "records-07-s3-backspace-space",
+      "kind": "form",
+      "task_summary": "Erase a doubled letter with the second Backspace route, Caps plus Space.",
+      "success_criteria": [
+        "Backspace is observed once and the address reads 'archive aisle 44'",
+        "A Space typed after Caps is released still inserts a space"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "The address window reads 'archive aislee 44' with the cursor after the doubled e. Erase it, then type a space and 4 to show Space stays text.",
+        "initial": {
+          "address": "archive aislee 44",
+          "cursor": 14
+        },
+        "target": "archive aisle 44",
+        "accepts": [
+          "Backspace"
+        ],
+        "rejects": [
+          "Forward Delete",
+          "a space inserted while Caps is still held"
+        ],
+        "feedback": {
+          "extra_space": "A space was inserted. Hold Caps and press Space for Backspace; release Caps to type a space."
+        },
+        "layout": "Keyboard diagram highlights Caps and Space."
+      },
+      "note": "Same output as the M route; route choice is player-confirmed."
+    },
+    {
+      "id": "records-07-s4-forward-comma",
+      "kind": "form",
+      "task_summary": "Delete forward over a doubled letter with Forward Delete, Caps plus the comma key.",
+      "success_criteria": [
+        "Forward Delete is observed once and the address reads 'hall b row 3'",
+        "A comma typed after Caps is released inserts a comma"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The address window reads 'hall bb row 3' with the cursor between the two b letters. The deletion side is marked on the right of the cursor.",
+        "initial": {
+          "address": "hall bb row 3",
+          "cursor": 6
+        },
+        "target": "hall b row 3",
+        "accepts": [
+          "Forward Delete"
+        ],
+        "rejects": [
+          "Backspace (removes the wrong side)"
+        ],
+        "feedback": {
+          "backspace": "Backspace observed: it removed the character behind the cursor. Forward Delete removes the one in front."
+        },
+        "layout": "Keyboard diagram highlights Caps and comma."
+      }
+    },
+    {
+      "id": "records-07-s5-forward-x",
+      "kind": "form",
+      "task_summary": "Delete forward with the other route, Caps plus X, and see that it emits Control plus D.",
+      "success_criteria": [
+        "Control + D is observed and the editor treats it as Forward Delete",
+        "The feedback panel names Control + D as the observed output, not Forward Delete"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The address window reads 'annex xrow 3' with the cursor right before the stray x.",
+        "initial": {
+          "address": "annex xrow 3",
+          "cursor": 6
+        },
+        "target": "annex row 3",
+        "accepts": [
+          "Control + D"
+        ],
+        "rejects": [
+          "Backspace"
+        ],
+        "feedback": {
+          "backspace": "Backspace observed. Caps plus X sends Control + D, which deletes forward in this panel."
+        },
+        "layout": "Keyboard diagram highlights Caps and X; a note says the output differs from the comma route."
+      }
+    },
+    {
+      "id": "records-07-s6-escape",
+      "kind": "form",
+      "task_summary": "Cancel two wrong entries, once with Caps plus the left bracket and once with a plain tap of Caps.",
+      "success_criteria": [
+        "Escape is observed twice and both entry windows close",
+        "The address stays 'annex row 3'"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Two destination prompts open in turn with the wrong text 'wrong wing 9'. Cancel the first while holding Caps; cancel the second with a tap of Caps.",
+        "initial": {
+          "address": "annex row 3",
+          "modal": "wrong wing 9"
+        },
+        "steps": [
+          {
+            "do": "Hold Caps and press [",
+            "accepts": [
+              "Escape"
+            ],
+            "effect": "first prompt closes"
+          },
+          {
+            "do": "Tap Caps once",
+            "accepts": [
+              "Escape"
+            ],
+            "effect": "second prompt closes"
+          }
+        ],
+        "target": "annex row 3",
+        "accepts": [
+          "Escape"
+        ],
+        "rejects": [
+          "Return (would submit the wrong wing)"
+        ],
+        "feedback": {
+          "return": "Return observed in the prompt: that would submit the wrong wing. Cancel with Escape instead."
+        },
+        "layout": "Keyboard diagram highlights Caps and the left bracket, then Caps alone."
+      },
+      "note": "Both routes emit Escape; which route was used is player-confirmed."
+    },
+    {
+      "id": "records-07-s7-address-mixed",
+      "kind": "form",
+      "task_summary": "Enter a new address by mixing every route, with plain m, x, n and comma typed after Caps is released, then submit.",
+      "success_criteria": [
+        "The address window ends as 'Annex Row 3, Mezz 9' and the note window reads 'mx,n'",
+        "Return is observed after the text matches; Escape closes the stray prompt",
+        "Letters m, x, n and the comma were typed as text after Caps was released"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A new address arrives with errors. Repair it with any of the routes, type the tag in the note window, cancel the stray prompt and submit.",
+        "initial": {
+          "address": "Annexx Roww 3 Zzz 99",
+          "note": ""
+        },
+        "target": "Annex Row 3, Mezz 9",
+        "targets": [
+          {
+            "window": "address",
+            "text": "Annex Row 3, Mezz 9"
+          },
+          {
+            "window": "note",
+            "text": "mx,n"
+          }
+        ],
+        "steps": [
+          {
+            "do": "Delete the doubled x and w (arrows move the cursor; Forward Delete or Control + D remove forward)",
+            "accepts": [
+              "Forward Delete",
+              "Control + D",
+              "Left Arrow"
+            ]
+          },
+          {
+            "do": "Erase 'Zzz 99' (Backspace)",
+            "accepts": [
+              "Backspace"
+            ]
+          },
+          {
+            "do": "Type ', Mezz 9' after releasing Caps",
+            "accepts": [
+              "comma",
+              "m",
+              "e",
+              "z",
+              "space",
+              "9"
+            ]
+          },
+          {
+            "do": "Type mx,n in the note window",
+            "accepts": [
+              "m",
+              "x",
+              ",",
+              "n"
+            ]
+          },
+          {
+            "do": "Press Return; a stray 'add a note?' prompt opens",
+            "accepts": [
+              "Return"
+            ]
+          },
+          {
+            "do": "Cancel the prompt (Escape), then press Return again",
+            "accepts": [
+              "Escape",
+              "Return"
+            ]
+          }
+        ],
+        "rejects": [
+          "a letter typed while Caps is still held"
+        ],
+        "feedback": {
+          "early_return": "Return observed before the text matched; the panel shows what it saw and nothing is lost.",
+          "held_letter": "A key was pressed while Caps was held and became a command. Release Caps to type text."
+        },
+        "layout": "No per-key diagram; the Layout help stays available."
+      },
+      "note": "Variation scene: the same six routes on a new address, no move-by-move cue."
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "r07-panel-return",
+      "speaker": "door_panel",
+      "portrait": null,
+      "text": "To submit the address, you need to press Return. Hint: Return is tap-hold Caps + N.",
+      "hint": {
+        "action": "To submit the address, you need to press Return.",
+        "key": "Return",
+        "gesture": "Return is tap-hold Caps + N."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r07-s2"
+    },
+    {
+      "id": "r07-panel-backspace",
+      "speaker": "door_panel",
+      "portrait": null,
+      "text": "To erase the last character, you need to press Backspace. Hint: Backspace is tap-hold Caps + M, or tap-hold Caps + Space.",
+      "hint": {
+        "action": "To erase the last character, you need to press Backspace.",
+        "key": "Backspace",
+        "gesture": "Backspace is tap-hold Caps + M, or tap-hold Caps + Space."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r07-s3"
+    },
+    {
+      "id": "r07-panel-forward-delete",
+      "speaker": "door_panel",
+      "portrait": null,
+      "text": "To delete the character in front of the cursor, you need to press Forward Delete. Hint: Forward Delete is tap-hold Caps + ,.",
+      "hint": {
+        "action": "To delete the character in front of the cursor, you need to press Forward Delete.",
+        "key": "Forward Delete",
+        "gesture": "Forward Delete is tap-hold Caps + ,."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r07-s5"
+    },
+    {
+      "id": "r07-noor-control-d",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To delete forward the Emacs way, you need to press Control + D. Hint: Control + D is tap-hold Caps + X.",
+      "hint": {
+        "action": "To delete forward the Emacs way, you need to press Control + D.",
+        "key": "Control + D",
+        "gesture": "Control + D is tap-hold Caps + X."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r07-s6",
+      "cue": "07: neutral (Noor's voice through the door panel)"
+    },
+    {
+      "id": "r07-panel-escape",
+      "speaker": "door_panel",
+      "portrait": null,
+      "text": "To cancel the wrong entry, you need to press Escape. Hint: Escape is tap-hold Caps + [, or tap Caps.",
+      "hint": {
+        "action": "To cancel the wrong entry, you need to press Escape.",
+        "key": "Escape",
+        "gesture": "Escape is tap-hold Caps + [, or tap Caps."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r07-s7"
+    },
+    {
+      "id": "r07-noor-opens",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "The door answers now. Come in and mind the cart by the desk.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t07-door-open",
+      "cue": "07: neutral"
+    },
+    {
+      "id": "r07-engineer-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: the repair door erased the wrong side of the cursor until the Caps routes fixed it. Noor waited behind the desk through all of it without a word.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t07-door-open",
+      "cue": "Engineer: task notes and journal entries are neutral"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t07-door-open",
+      "when": "scene_success:records-07-s7-address-mixed",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "repair_door",
+          "state": "open"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate_repair_door"
+        },
+        {
+          "op": "light_state",
+          "light_state": "shelf_ends_awake"
+        },
+        {
+          "op": "npc_state",
+          "npc": "noor",
+          "state": "records-07"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "r07-noor-opens"
+        },
+        {
+          "op": "journal",
+          "text": "Repair door repaired: Caps+N, Caps+M, Caps+Space, Caps+comma, Caps+X and Caps+[ all learned."
+        },
+        {
+          "op": "complete_level",
+          "level": "records-07"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The repair door is shut with a raw address in the panel's windows, the shelf-end lamps are dark, and Noor stands stooped behind the circular desk.",
+    "after": "The door has retracted, Noor stands outside the ring, the shelf-end lamps are lit and Mira waits beside the blinking chute.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "repair_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "gate",
+        "target": "gate_repair_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "noor",
+        "from": "start",
+        "to": "records-07",
+        "note": "Steps out from behind the desk to (21,13)."
+      },
+      {
+        "kind": "light_state",
+        "target": "shelf_ends_awake",
+        "from": "off",
+        "to": "on"
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "mira_route:courier-loop",
+      "records_branch:log_room"
+    ]
+  },
+  "pace_copy": [
+    {
+      "text": "Address accepted along the approved route.",
+      "state": "default",
+      "placement": "pace_sign_annex"
+    }
+  ],
+  "review_notes": "Checked at 1366x768 (x4) with the keyboard inset open (stage x 16-588, y 412-704; logical x 4-147, y 103-176). The level's main terminal `door_panel` is approached from cell [5, 7]: the avatar's feet sit at screen 88,100 and the target is clear of the keyboard inset. The scene panels are DOM overlays above the world and the keyboard diagram sits in the inset, so the world need only keep the avatar and target clear."
+}
