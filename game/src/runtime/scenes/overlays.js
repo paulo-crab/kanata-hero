@@ -126,6 +126,15 @@ export class JournalScene extends BaseScene {
     return true;
   }
 
+  /** Mouse selection: select the row; the Also rows are actions and open at once. */
+  choose(id) {
+    const flat = this._flat();
+    const at = flat.findIndex((r) => r.id === id);
+    if (at < 0) return;
+    this.sel = at;
+    this.activate(flat[at]);
+  }
+
   activate(row) {
     if (!row || row.group !== 'also') return;
     const m = this.ctx.machine;
@@ -219,6 +228,12 @@ export class SettingsScene extends BaseScene {
     this.sel = 0;
     this.confirmReset = false;
     this.keys = { typing: false, enter: 'confirm', esc: 'back', arrows: 'choose', journal: false, hint: false };
+  }
+
+  /** First press of Reset progress, by mouse or key: opens the confirm card. Nothing is erased yet. */
+  askReset() {
+    this.confirmReset = true;
+    this.sel = ROWS.indexOf('reset');
   }
 
   set(key, value) {

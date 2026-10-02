@@ -17,6 +17,17 @@ const STEP_COPY = {
 
 const STATUS_LABEL = { not_started: 'Not started', observed: 'Observed output', skipped: 'Skipped' };
 
+/** Per calibration step: the manifest gesture it exercises, the held key, the tapped key and the layer drawn. */
+const STEP_DIAGRAM = {
+  'caps-h': { gesture: 'N01', held: 'Caps', target: 'h', layer: 'nav', timing: 'caps-hold' },
+  'caps-n': { gesture: 'N17', held: 'Caps', target: 'n', layer: 'nav', timing: 'caps-hold' },
+  'space-a': { gesture: 'S01', held: 'Space', target: 'a', layer: 'numbers-symbols', timing: 'space-hold' },
+  'space-q': { gesture: 'S12', held: 'Space', target: 'q', layer: 'numbers-symbols', timing: 'space-hold' },
+  'shift-hold': { gesture: 'B03', held: 'f', target: '/', layer: 'base', timing: 'home-row-hold' },
+};
+
+const cleanLabel = (id) => (id.length === 1 ? id.toUpperCase() : id.replace(/-[LR]$/, ''));
+
 export class SetupScene extends BaseScene {
   constructor() {
     super('setup', 'setup');
@@ -90,6 +101,45 @@ export class CalibrationScene extends BaseScene {
     this.cal = new ctx.input.Calibration(kb);
   }
 
+  /** Mouse selection: a step picked out of order leaves the steps before it skipped (a step left alone is Skipped). */
+  choose(id) {
+    const { CALIBRATION_STEPS } = this.ctx.input;
+    const at = CALIBRATION_STEPS.findIndex((s) => s.id === id);
+    if (at < 0) return;
+    for (const s of CALIBRATION_STEPS.slice(0, at)) this.cal.skip(s.id);
+  }
+
+  _diagram(stepId) {
+    const { manifest, input } = this.ctx;
+    if (!manifest || !manifest.keyboard) return null;
+    const variant = this.cal.result().keyboard;
+    const spec = STEP_DIAGRAM[stepId] || STEP_DIAGRAM['caps-h'];
+    const timing = ((manifest.json && manifest.json.timings) || []).find((t) => t.id === spec.timing) || {};
+    const heldId = spec.held;
+    const rows = manifest.keyboard(variant).rows.map((row) => row.filter((k) => k.id !== 'Down'));
+    const state = (id) => (id === heldId ? 'layer' : id === spec.target ? 'target' : 'plain');
+    const characters = (id) => {
+      if (id === heldId) return cleanLabel(id);
+      try { return manifest.keyAt(spec.layer, id, variant).legend || cleanLabel(id); } catch { return cleanLabel(id); }
+    };
+    const build = (mode) => rows.map((row) => row.map((k) => ({
+      label: mode === 'positions' ? cleanLabel(k.id) : characters(k.id), state: state(k.id), width_u: k.width_u,
+    })));
+    const holdMs = timing.hold_ms ? ` about ${timing.hold_ms} ms` : '';
+    return {
+      positions: {
+        rows: build('positions'),
+        caption: `Physical positions: hold ${cleanLabel(heldId)}${holdMs}, then tap ${cleanLabel(spec.target)}.`,
+      },
+      characters: {
+        rows: build('characters'),
+        caption: spec.layer === 'base' ? 'Resulting characters: the base layer.' : `Resulting characters on the ${spec.layer} layer.`,
+      },
+      stepId,
+      stepCount: input.CALIBRATION_STEPS.length,
+    };
+  }
+
   _done() {
     this.ctx.progress.update((d) => {
       d.setup.done = true;
@@ -127,7 +177,10 @@ export class CalibrationScene extends BaseScene {
     const cur = this.cal.current;
     const toggle = manifest && manifest.sequences
       ? (manifest.sequences().find((s) => s.id === 'violento-toggle') || {}).label : null;
+    const inventory = (manifest && manifest.gesture) ? (id) => { try { return manifest.gesture(id); } catch { return null; } } : () => null;
     return {
+      keyboard: res.keyboard,
+      diagram: this._diagram(cur || 'caps-h'),
       steps: input.CALIBRATION_STEPS.map((s) => {
         const [action, key] = STEP_COPY[s.id] || [`To observe ${s.expected}, press it.`, s.expected];
         const status = res.steps[s.id] || 'not_started';
@@ -135,6 +188,9 @@ export class CalibrationScene extends BaseScene {
           id: s.id, gesture: s.gesture, expected: s.expected,
           hintLine: `${action} Hint: ${key} is ${s.gesture}.`,
           status, statusLabel: STATUS_LABEL[status], current: cur === s.id,
+          // The game cannot see a gesture the manifest rates player_confirmed; every calibration gesture is observable.
+          confirmable: status === 'not_started' && cur === s.id
+            && ((inventory((STEP_DIAGRAM[s.id] || {}).gesture) || {}).verification === 'player_confirmed'),
         };
       }),
       diagramView: 'positions',

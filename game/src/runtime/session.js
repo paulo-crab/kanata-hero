@@ -7,6 +7,7 @@ import { EvidenceLog, computeStars, phaseInfo } from './evidence.js';
 import { SceneMachine } from './machine.js';
 import { createSceneFactories } from './scenes/index.js';
 import { keycap, KEY_GESTURE } from './common.js';
+import { insetViewModel } from './inset.js';
 
 const WORLD_TOPS = ['hub', 'walk', 'form', 'label', 'editor'];
 const HUD_HIDDEN = ['setup', 'calibration', 'arrival', 'error'];
@@ -395,12 +396,16 @@ export class Session {
       case 'selectVariant': if (top && top.kind === 'layout-help') top.select({ variant: c.id }); break;
       case 'selectKey': if (top && top.kind === 'layout-help') top.select({ selectedKey: c.id }); break;
       case 'openLayer': if (this.machine.canPush(c.id)) this.machine.push(c.id); break;
-      case 'chooseRow': if (top && top.kind === 'journal') top.activate({ group: 'also', id: c.id }); break;
+      case 'chooseRow': if (top && top.choose) top.choose(c.id); break;
       case 'setSetting': this.progress.update((d) => { d.settings[c.key] = c.value; }); break;
-      case 'resetProgress': if (c.confirmed) this.resetProgress(); break;
+      case 'resetProgress':
+        if (c.confirmed) this.resetProgress();
+        else if (top && top.kind === 'settings') top.askReset();
+        break;
       case 'rideHub': if (top && top.kind === 'journal') top.activate({ group: 'also', id: 'ride-hub' }); break;
       default: break;
     }
+    this.machine.publish();
     this.pump();
   }
 
@@ -418,6 +423,7 @@ export class Session {
     this._emitVm('vm:hud', this._hud());
     this._emitVm('vm:markers', this._markers());
     this._emitVm('vm:prompt', this._prompt());
+    this._emitVm('vm:inset', this._inset());
     this._emitVm('vm:settings-flags', this._displayFlags());
   }
 
@@ -465,13 +471,21 @@ export class Session {
     }
     for (const sc of this.level.terminal_scenes) {
       const legs = sc.task && sc.task.legs;
-      if (sc.kind === 'walk' && legs && legs[0].marker && !active.has(sc.id) && this.rules.holds(`scene_success:${sc.id}`)) {
+      if (sc.kind === 'walk' && legs && legs[0].marker && !active.has(sc.id) && this.rules.holds(`level_complete:${this.level.id}`)) {
         for (const l of legs) {
           out.floor.push({ id: `${sc.id}:${l.id}`, cell: l.marker, at: at(l.marker), shape: 'route', state: 'gold' });
         }
       }
     }
     return out;
+  }
+
+  _inset() {
+    const top = this.machine.top;
+    if (!top || HUD_HIDDEN.includes(top.kind)) return null;
+    return insetViewModel({
+      level: this.level, data: this.data, manifestJson: this.data.layoutManifest, layers: this.machine.layers,
+    });
   }
 
   _prompt() {
