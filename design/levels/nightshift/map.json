@@ -3502,7 +3502,7 @@
   ],
   "interactions": [
     {
-      "id": "elevator",
+      "id": "int-elevator",
       "kind": "elevator",
       "cells": [
         [
@@ -3546,7 +3546,7 @@
       "label": "Elevator (returns to every unlocked district)"
     },
     {
-      "id": "elevator_panel",
+      "id": "int-elevator-panel",
       "kind": "elevator",
       "cells": [
         [
@@ -3566,48 +3566,6 @@
       ],
       "placement": "elevator_panel",
       "label": "Elevator map"
-    },
-    {
-      "id": "int-elevator",
-      "kind": "elevator",
-      "cells": [
-        [
-          32,
-          15
-        ],
-        [
-          33,
-          15
-        ],
-        [
-          32,
-          16
-        ],
-        [
-          33,
-          16
-        ],
-        [
-          32,
-          17
-        ],
-        [
-          33,
-          17
-        ]
-      ],
-      "marker": "none",
-      "approach": [
-        {
-          "cell": [
-            31,
-            16
-          ],
-          "facing": "e"
-        }
-      ],
-      "placement": "elevator",
-      "label": "Elevator (back to unlocked districts)"
     },
     {
       "id": "int-ada-break",

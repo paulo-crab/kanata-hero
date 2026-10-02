@@ -129,30 +129,6 @@
       ]
     },
     {
-      "id": "wall_n_12",
-      "entry": "wall_n_plain",
-      "cell": [
-        12,
-        0
-      ]
-    },
-    {
-      "id": "wall_n_13",
-      "entry": "wall_n_plain",
-      "cell": [
-        13,
-        0
-      ]
-    },
-    {
-      "id": "wall_n_14",
-      "entry": "wall_n_plain",
-      "cell": [
-        14,
-        0
-      ]
-    },
-    {
       "id": "wall_n_15",
       "entry": "wall_n_plain",
       "cell": [
@@ -301,34 +277,6 @@
       "state": "overcast"
     },
     {
-      "id": "win_a_1",
-      "entry": "wall_n_window_a_dim",
-      "cell": [
-        4,
-        0
-      ],
-      "offset": [
-        4,
-        9
-      ],
-      "state_set": "window_a",
-      "state": "overcast"
-    },
-    {
-      "id": "win_b_1",
-      "entry": "wall_n_window_b_dim",
-      "cell": [
-        6,
-        0
-      ],
-      "offset": [
-        4,
-        9
-      ],
-      "state_set": "window_b",
-      "state": "overcast"
-    },
-    {
       "id": "win_a_2",
       "entry": "wall_n_window_a_dim",
       "cell": [
@@ -439,18 +387,6 @@
       ],
       "state_set": "window_b",
       "state": "overcast"
-    },
-    {
-      "id": "alcove",
-      "entry": "wall_n_alcove",
-      "cell": [
-        12,
-        0
-      ],
-      "offset": [
-        12,
-        6
-      ]
     },
     {
       "id": "trim_00",
@@ -589,42 +525,6 @@
       "entry": "wall_n_trim",
       "cell": [
         11,
-        1
-      ],
-      "offset": [
-        0,
-        6
-      ]
-    },
-    {
-      "id": "trim_12",
-      "entry": "wall_n_trim",
-      "cell": [
-        12,
-        1
-      ],
-      "offset": [
-        0,
-        6
-      ]
-    },
-    {
-      "id": "trim_13",
-      "entry": "wall_n_trim",
-      "cell": [
-        13,
-        1
-      ],
-      "offset": [
-        0,
-        6
-      ]
-    },
-    {
-      "id": "trim_14",
-      "entry": "wall_n_trim",
-      "cell": [
-        14,
         1
       ],
       "offset": [
@@ -868,7 +768,7 @@
       "id": "console_names",
       "entry": "terminal_desk",
       "cell": [
-        13,
+        16,
         2
       ],
       "offset": [
@@ -880,7 +780,7 @@
       "id": "shelf_n_e",
       "entry": "shelf_2x1_b",
       "cell": [
-        17,
+        18,
         2
       ],
       "offset": [
@@ -892,7 +792,7 @@
       "id": "cabinet_n_e",
       "entry": "cabinet_1x1",
       "cell": [
-        19,
+        20,
         2
       ],
       "offset": [
@@ -1057,30 +957,6 @@
       ],
       "state_set": "final_door",
       "state": "closed"
-    },
-    {
-      "id": "elevator",
-      "entry": "elevator_closed",
-      "cell": [
-        28,
-        15
-      ],
-      "offset": [
-        0,
-        8
-      ],
-      "state_set": "elevator",
-      "state": "closed",
-      "art_gap": true
-    },
-    {
-      "id": "elevator_panel",
-      "entry": "elevator_call_panel",
-      "cell": [
-        28,
-        14
-      ],
-      "art_gap": true
     },
     {
       "id": "lamp_fd_a",
@@ -2304,85 +2180,148 @@
         14,
         14
       ]
+    },
+    {
+      "id": "elevator",
+      "entry": "elevator_closed",
+      "cell": [
+        12,
+        0
+      ],
+      "state_set": "elevator",
+      "state": "closed",
+      "art_gap": true,
+      "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
+    },
+    {
+      "id": "elevator_call_panel",
+      "entry": "elevator_call_panel",
+      "cell": [
+        15,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "wall_e_15",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        15
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_16",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        16
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_17",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        17
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "branch_name",
+      "entry": "branch_name_before",
+      "cell": [
+        4,
+        0
+      ],
+      "offset": [
+        4,
+        8
+      ],
+      "state_set": "branch_name",
+      "state": "before"
+    },
+    {
+      "id": "branch_route",
+      "entry": "branch_route_before",
+      "cell": [
+        22,
+        4
+      ],
+      "offset": [
+        0,
+        4
+      ],
+      "state_set": "branch_route",
+      "state": "before"
+    },
+    {
+      "id": "branch_count",
+      "entry": "branch_count_before",
+      "cell": [
+        14,
+        18
+      ],
+      "state_set": "branch_count",
+      "state": "before"
+    },
+    {
+      "id": "place_hal",
+      "entry": "place_hal",
+      "cell": [
+        19,
+        12
+      ]
+    },
+    {
+      "id": "place_noor",
+      "entry": "place_noor",
+      "cell": [
+        21,
+        12
+      ]
+    },
+    {
+      "id": "place_ivo",
+      "entry": "place_ivo",
+      "cell": [
+        23,
+        12
+      ]
+    },
+    {
+      "id": "place_ada",
+      "entry": "place_ada",
+      "cell": [
+        22,
+        10
+      ]
+    },
+    {
+      "id": "place_mira",
+      "entry": "place_mira",
+      "cell": [
+        24,
+        10
+      ]
     }
   ],
   "art_gap_entries": {
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "11",
-          "11",
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Executive elevator door on the east wall plane (Orientation elevator in the Executive palette: copper frame, navy wall mass)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "11",
-          "11",
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Executive elevator door on the east wall plane (Orientation elevator in the Executive palette: copper frame, navy wall mass)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          2,
-          3
-        ],
-        "collision": [
-          "00",
-          "00",
-          "00"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Executive elevator door on the east wall plane (Orientation elevator in the Executive palette: copper frame, navy wall mass)",
-      "states": [
-        "closed",
-        "half",
-        "open"
-      ]
-    },
-    "elevator_call_panel": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Wall call panel beside the elevator (all stops lit once the Night seal is held)",
-      "states": [
-        "base"
-      ]
-    },
     "artifact_public_audit_copy": {
       "footprint": {
         "cells": [
@@ -2397,6 +2336,77 @@
       "purpose": "A bound audit copy lying on a side table (the document close-up uses the shared frame)",
       "states": [
         "closed"
+      ]
+    },
+    "elevator_closed": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "North-wall arrival elevator module, doors shut (Executive recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
+      "states": [
+        "closed"
+      ]
+    },
+    "elevator_half": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors half open (arrival and departure).",
+      "states": [
+        "half"
+      ]
+    },
+    "elevator_open": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "101",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
+      "states": [
+        "open"
+      ]
+    },
+    "elevator_call_panel": {
+      "footprint": {
+        "cells": [
+          1,
+          2
+        ],
+        "collision": [
+          "0",
+          "0"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Wall call panel one cell beside the elevator (Executive recolour); overlay on a plain wall column, placed with offset [4, 9].",
+      "states": [
+        "idle"
       ]
     }
   },
@@ -2474,7 +2484,7 @@
   "collision": [
     "111111111111111111111111111111",
     "111111111111111111111111111111",
-    "011100111111011001110111001111",
+    "011100111111000011111111001111",
     "010011011000000000000100110011",
     "011100001000000000000100001111",
     "010000001000000000011100000011",
@@ -2482,15 +2492,15 @@
     "000100100100000000100001001011",
     "000100100001111111000101001111",
     "000000100001011101000000000011",
-    "000000000001011101000000000011",
+    "000000000001011101000010100011",
     "000110000101000001101000000011",
-    "000000000001100011000000000111",
+    "000000000001100011010101000111",
     "100000000100000000000000000011",
     "000000000000000000000000000011",
     "001100000000100100000000000011",
     "000000000011100111101000000011",
     "011010000111000000010000000011",
-    "000000000100000001110110000011",
+    "000000000100001101110110000011",
     "000000100100011000010000000111"
   ],
   "zones": [
@@ -2609,42 +2619,66 @@
       "kind": "elevator",
       "cells": [
         [
-          28,
-          15
+          12,
+          1
         ],
         [
-          29,
-          15
+          13,
+          1
         ],
         [
-          28,
-          16
-        ],
-        [
-          29,
-          16
-        ],
-        [
-          28,
-          17
-        ],
-        [
-          29,
-          17
+          14,
+          1
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            27,
-            16
+            12,
+            2
           ],
-          "facing": "e"
+          "facing": "n"
+        },
+        {
+          "cell": [
+            13,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            14,
+            2
+          ],
+          "facing": "n"
         }
       ],
       "placement": "elevator",
-      "label": "Elevator (back to unlocked districts)"
+      "label": "Elevator (returns to every unlocked district)"
+    },
+    {
+      "id": "int-elevator-panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          15,
+          1
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            15,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator_call_panel",
+      "label": "Elevator map"
     },
     {
       "id": "int-vale",
@@ -2916,11 +2950,11 @@
       "kind": "terminal",
       "cells": [
         [
-          13,
+          16,
           2
         ],
         [
-          14,
+          17,
           2
         ]
       ],
@@ -2928,14 +2962,14 @@
       "approach": [
         {
           "cell": [
-            13,
+            16,
             3
           ],
           "facing": "n"
         },
         {
           "cell": [
-            14,
+            17,
             3
           ],
           "facing": "n"
@@ -3177,6 +3211,84 @@
         "mira:lights-out-delivery"
       ],
       "label": "Mira's optional final story scene (after the epilogue and every courier route; never changes the ending)"
+    },
+    {
+      "id": "glitch-name",
+      "kind": "glitch",
+      "cells": [
+        [
+          7,
+          5
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            6,
+            5
+          ],
+          "facing": "e"
+        }
+      ],
+      "scene_id": "n20-glitch-name",
+      "level": "executive-20",
+      "requires": [
+        "level:nightshift-19"
+      ],
+      "label": "Folded form with a renamed tag (The Name, optional repair)"
+    },
+    {
+      "id": "glitch-route",
+      "kind": "glitch",
+      "cells": [
+        [
+          23,
+          5
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            24,
+            5
+          ],
+          "facing": "w"
+        }
+      ],
+      "scene_id": "n20-glitch-route",
+      "level": "executive-20",
+      "requires": [
+        "level:nightshift-19"
+      ],
+      "label": "Chair with a detour shadow (The Route, optional repair)"
+    },
+    {
+      "id": "glitch-count",
+      "kind": "glitch",
+      "cells": [
+        [
+          12,
+          18
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            12,
+            17
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "n20-glitch-count",
+      "level": "executive-20",
+      "requires": [
+        "level:nightshift-19"
+      ],
+      "label": "Stapler with a wrong total (The Count, optional repair)"
     }
   ],
   "npcs": [
@@ -3190,12 +3302,12 @@
       "facing": "s",
       "poses_by_state": {
         "start": "vale_idle_s",
-        "repairs-1": "vale_react_reconsidering_s",
-        "repairs-2": "vale_react_reconsidering_s",
-        "repairs-3": "vale_react_reconsidering_s",
-        "epilogue": "vale_interact_s"
+        "repairs-1": "vale_s1_idle_s",
+        "repairs-2": "vale_s2_idle_s",
+        "repairs-3": "vale_s3_idle_s",
+        "epilogue": "vale_s3_interact_s"
       },
-      "note": "Softening by NUMBER of repairs (0 to 3), matched to the portrait cues. State 0 is the drawn rigid idle; state 1 holds the last frame of vale_react_reconsidering (shoulders drop 1 px). States 2 and 3 (arms relax, weight on one leg; open asymmetric stance) are not drawn yet, so the same pose stands in until the art lands (see NEEDS_ART.md). The epilogue pose is vale_interact_s (releasing the audit)."
+      "note": "Softening by NUMBER of repairs (0 to 3), matched to the portrait cues, with the drawn state sets: start `vale_idle_s` (state 0, rigid), repairs-1 `vale_s1_idle_s` (shoulders drop 1 px), repairs-2 `vale_s2_idle_s` (arms relax, weight on one leg), repairs-3 `vale_s3_idle_s` (open asymmetric stance), epilogue `vale_s3_interact_s` (the audit hand-over and release). `vale_react_reconsidering_s` can play once when state 1 begins. Walks use `vale_s<k>_walk_<facing>` for the same k."
     },
     {
       "id": "ivo",
@@ -3348,8 +3460,8 @@
       {
         "level": "executive-20",
         "from": [
-          27,
-          16
+          13,
+          3
         ],
         "to": [
           14,
@@ -3357,63 +3469,91 @@
         ],
         "cells": [
           [
-            27,
-            16
+            13,
+            3
           ],
           [
-            26,
-            16
+            12,
+            3
           ],
           [
-            25,
-            16
+            11,
+            3
           ],
           [
-            24,
-            16
+            10,
+            3
           ],
           [
-            23,
-            16
+            10,
+            4
           ],
           [
-            22,
-            16
+            10,
+            5
           ],
           [
-            21,
-            16
+            10,
+            6
           ],
           [
-            21,
-            15
+            10,
+            7
           ],
           [
-            20,
-            15
+            10,
+            8
           ],
           [
-            19,
-            15
+            10,
+            9
           ],
           [
-            18,
-            15
+            10,
+            10
           ],
           [
-            17,
-            15
+            9,
+            10
           ],
           [
-            16,
-            15
+            8,
+            10
           ],
           [
-            16,
+            8,
+            11
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            13
+          ],
+          [
+            8,
             14
           ],
           [
-            15,
+            9,
+            14
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            11,
+            14
+          ],
+          [
+            12,
+            14
+          ],
+          [
+            13,
             14
           ],
           [
@@ -3526,8 +3666,8 @@
           12
         ],
         "to": [
-          27,
-          16
+          13,
+          3
         ],
         "cells": [
           [
@@ -3535,72 +3675,100 @@
             12
           ],
           [
-            15,
-            12
-          ],
-          [
-            15,
+            14,
             13
           ],
           [
-            16,
-            13
-          ],
-          [
-            17,
-            13
-          ],
-          [
-            18,
-            13
-          ],
-          [
-            19,
-            13
-          ],
-          [
-            20,
-            13
-          ],
-          [
-            21,
-            13
-          ],
-          [
-            22,
-            13
-          ],
-          [
-            23,
-            13
-          ],
-          [
-            24,
-            13
-          ],
-          [
-            25,
-            13
-          ],
-          [
-            26,
-            13
-          ],
-          [
-            27,
-            13
-          ],
-          [
-            27,
+            14,
             14
           ],
           [
-            27,
-            15
+            13,
+            14
           ],
           [
-            27,
-            16
+            12,
+            14
+          ],
+          [
+            11,
+            14
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            9,
+            14
+          ],
+          [
+            8,
+            14
+          ],
+          [
+            8,
+            13
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            3
           ]
         ],
         "label": "Back to the elevator; always open"
@@ -3612,10 +3780,10 @@
     {
       "id": "spawn-elevator",
       "cell": [
-        27,
-        16
+        13,
+        3
       ],
-      "facing": "w",
+      "facing": "s",
       "when": "arriving by the Executive elevator stop"
     },
     {
