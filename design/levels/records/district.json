@@ -1,0 +1,268 @@
+{
+  "id": "records",
+  "name": "Records",
+  "size_cells": [
+    36,
+    16
+  ],
+  "kit": "art-direction/kit/records-atlas.json",
+  "palette": "records",
+  "camera_bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 16
+  },
+  "hub_cell": [
+    21,
+    14
+  ],
+  "entrances": [
+    {
+      "id": "from_orientation",
+      "cell": [
+        0,
+        8
+      ],
+      "facing": "e",
+      "from": {
+        "district": "orientation",
+        "link": "link.orientation-records"
+      },
+      "note": "Arrival through Orientation's east door; the whole west edge of the annex (x 0, rows 6-10) is the open edge, as the kit's Records room treats its entrance."
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_orientation",
+      "cell": [
+        0,
+        9
+      ],
+      "to": {
+        "district": "orientation",
+        "link": "link.orientation-records"
+      },
+      "note": "Walk off the west edge to return to Orientation. The way back is open from the first minute; only the repair door beyond it is locked."
+    }
+  ],
+  "elevator": {
+    "cell": [
+      2,
+      2
+    ],
+    "facing": "s",
+    "placement": "elevator",
+    "link": "link.elevator.records",
+    "arrival_cell": [
+      2,
+      3
+    ],
+    "note": "Records stop of the shared elevator, in the annex before the repair door, so the elevator always returns to unlocked districts. The Systems stop appears after level 11."
+  },
+  "light_states": [
+    {
+      "id": "shelf_ends_awake",
+      "description": "Shelf-end lamps and the chute lamp wake as the repair door opens (levels.md 07: shelf-end lights change).",
+      "applies_when": "t07-door-open",
+      "changes": [
+        {
+          "placement": "lamp_foyer_nw",
+          "state": "on"
+        },
+        {
+          "placement": "lamp_north_ne",
+          "state": "on"
+        },
+        {
+          "placement": "lamp_foyer_sw",
+          "state": "on"
+        },
+        {
+          "placement": "lamp_south_e",
+          "state": "on"
+        },
+        {
+          "placement": "pocket_lamp",
+          "state": "on"
+        }
+      ]
+    },
+    {
+      "id": "margin_lamps_lit",
+      "description": "Both ends of the ledger light (levels.md 09: correct margins light both ends).",
+      "applies_when": "t09-complete",
+      "changes": [
+        {
+          "placement": "ledger_lamp_w",
+          "state": "on"
+        },
+        {
+          "placement": "ledger_lamp_e",
+          "state": "on"
+        }
+      ]
+    },
+    {
+      "id": "upper_desk_lit",
+      "description": "Light reaches the upper desk (levels.md 10).",
+      "applies_when": "t10-complete",
+      "changes": [
+        {
+          "placement": "upper_lamp",
+          "state": "on"
+        }
+      ]
+    },
+    {
+      "id": "ring_pool_lit",
+      "description": "The luminous ceiling ring lights its floor pool and the four ring lamps pulse (levels.md 11).",
+      "applies_when": "t11-seal",
+      "changes": [
+        {
+          "placement": "archive_desk",
+          "state": "after",
+          "note": "Landmark after state: folders regain colour, ring glow, ledger stamped, lamps pulse."
+        }
+      ]
+    }
+  ],
+  "ambient": "Paper handling, drawer runners, subdued room tone. Labels regain distinct colors and the hidden corridor becomes walkable (levels.md World and art rules).",
+  "side_quests": [
+    {
+      "id": "misfiled_minute",
+      "title": "Misfiled Minute",
+      "giver": "noor",
+      "available_after": "records-11",
+      "interactions": [
+        "upper_desk"
+      ],
+      "terminal_scenes": [
+        {
+          "id": "records-side-misfiled-minute-s1",
+          "kind": "editor",
+          "task_summary": "Repair a misfiled minute by selecting the wrong clause exactly and typing the original, with no clock.",
+          "success_criteria": [
+            "The minute reads 'The route to the annex was approved on Monday by request.'",
+            "The selection covered only the wrong clause"
+          ],
+          "retry": "instant",
+          "position_cue": false,
+          "confidence": "output-observed",
+          "task": {
+            "prompt": "Noor's minute book has one misfiled sentence. Select the wrong clause with Shift and Caps navigation and type the original clause.",
+            "document": {
+              "text": "The route to the annex was changed on Monday without request.",
+              "cursor": "start",
+              "target": "The route to the annex was approved on Monday by request."
+            },
+            "targets": [
+              {
+                "text": "The route to the annex was approved on Monday by request."
+              }
+            ],
+            "accepts": [
+              "Shift + Option + Right",
+              "Option + Right",
+              "Option + Left",
+              "typed text after release"
+            ],
+            "rejects": [
+              "a letter typed while Caps is held"
+            ],
+            "feedback": {
+              "held": "A letter was pressed while Caps was held and became a command. Release Caps to type text."
+            },
+            "layout": "No keyboard diagram; no clock; retry any time."
+          }
+        }
+      ],
+      "gestures": [
+        {
+          "id": "N19",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "records-side-misfiled-minute-s1"
+        },
+        {
+          "id": "N05",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "records-side-misfiled-minute-s1"
+        },
+        {
+          "id": "N06",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "records-side-misfiled-minute-s1"
+        }
+      ],
+      "dialogue": [
+        {
+          "id": "rside-noor-ask",
+          "speaker": "noor",
+          "portrait": "neutral",
+          "text": "One sentence in the minute book is misfiled. Repair it exactly, in your own time.",
+          "hint": null,
+          "speaker_kind": "character",
+          "when": "interact:upper_desk & state:records-11",
+          "cue": "Misfiled Minute: neutral"
+        },
+        {
+          "id": "rside-noor-thanks",
+          "speaker": "noor",
+          "portrait": "neutral",
+          "text": "That is the minute as it was written. Take the bookmark.",
+          "hint": null,
+          "speaker_kind": "character",
+          "when": "scene_success:records-side-misfiled-minute-s1",
+          "cue": "Misfiled Minute: neutral"
+        }
+      ],
+      "reward": {
+        "desk_decoration": "archive tab bookmark",
+        "dialogue": "rside-noor-thanks",
+        "note": "Accuracy only; no clock, no seal, no required skill."
+      }
+    }
+  ],
+  "pace_signs": [
+    {
+      "placement": "pace_sign_annex",
+      "state": "default",
+      "text": "Address accepted along the approved route.",
+      "after_level": "records-07"
+    },
+    {
+      "placement": "pace_directory_annex",
+      "state": "default",
+      "text": "Re-index complete: every address verified.",
+      "after_level": "records-08"
+    },
+    {
+      "placement": "pace_sign_annex",
+      "state": "repeat",
+      "text": "Sign-off centered for readability.",
+      "after_level": "records-09"
+    },
+    {
+      "placement": "pace_sign_gallery",
+      "state": "repeat",
+      "text": "Summary: the first and last sections were not reviewed.",
+      "after_level": "records-10"
+    },
+    {
+      "placement": "pace_sign_chamber",
+      "state": "repeat",
+      "text": "The corrected copy is equivalent.",
+      "after_level": "records-11"
+    }
+  ],
+  "notes": [
+    "Size: 36 x 16 cells (two screens joined: the 20-cell camera view scrolls across the archive).",
+    "Layout: annex (entrance, elevator, repair-door panel) west; the repair door opens onto a foyer and the ring around the circular desk; the log room (08) is the south-west branch, the margin room (09) the north-west branch behind crooked cabinets, the gallery (10) above the hub behind a parked ladder, the review chamber (11) at the far east end, and Mira's chute pocket on the south-east, joined to the chamber by the sliding file wall."
+  ]
+}
