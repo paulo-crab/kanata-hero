@@ -1,1083 +1,1089 @@
 {
- "id": "systems-16",
- "number": 16,
- "title": "Crossed Wires",
- "district": "systems",
- "kind": "review",
- "requires": [
-  "systems-15"
- ],
- "story": "The relay room receives all three branches, and Hal can repair the machine only if the signal is rebuilt without a lookalike replacing any output. Three circuits ask for a number sequence, an expression and a corrected typo, with the Caps, Tab and modifier-first Space exceptions along the way, then a final mixed recall checks every mapped output. The machine lights in sequence and Hal pulls down a false panel to reveal the Night Shift elevator stop.",
- "steps": [
-  {
-   "id": "s16-go",
-   "objective": "Walk north through the hub gallery to the relay room door.",
-   "interaction": "relay-door",
-   "completes_when": "reach_cell:28,5",
-   "target_cell": [28, 5]
-  },
-  {
-   "id": "s16-talk",
-   "objective": "Talk to Hal about the relay review.",
-   "interaction": "hal-relay",
-   "completes_when": "dialogue_done:s16-hal-intro"
-  },
-  {
-   "id": "s16-a",
-   "objective": "Relay card desk A: type the number sequence (cobalt circuit), moving the cursor under the held layer.",
-   "interaction": "relay-circuit-a",
-   "completes_when": "scene_success:systems-16-layer-caps & scene_success:systems-16-circuit-a-number"
-  },
-  {
-   "id": "s16-b",
-   "objective": "Relay card desk B: type the expression (orange circuit) after the Shift-first Space cards.",
-   "interaction": "relay-circuit-b",
-   "completes_when": "scene_success:systems-16-mod-space-shift & scene_success:systems-16-mod-space-mirror & scene_success:systems-16-circuit-b-expression"
-  },
-  {
-   "id": "s16-c",
-   "objective": "Relay card desk C: correct the typo (mint circuit) after the Tab focus lane.",
-   "interaction": "relay-circuit-c",
-   "completes_when": "scene_success:systems-16-tab-lane & scene_success:systems-16-circuit-c-typo"
-  },
-  {
-   "id": "s16-final",
-   "objective": "Run the final mixed recall on the relay console.",
-   "interaction": "relay-final",
-   "completes_when": "scene_success:systems-16-final-recall"
-  },
-  {
-   "id": "s16-panel",
-   "objective": "Walk back to the machine and look at the false panel Hal pulled down.",
-   "interaction": "machine-panel",
-   "completes_when": "interact:machine-panel & level_complete:systems-16",
-   "target_cell": [16, 14]
-  }
- ],
- "gestures": [
-  {
-   "id": "S25",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-16-layer-caps"
-  },
-  {
-   "id": "S25",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-16-tab-lane"
-  },
-  {
-   "id": "S25",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S26",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-16-mod-space-shift"
-  },
-  {
-   "id": "S26",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-16-mod-space-mirror"
-  },
-  {
-   "id": "S26",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "B08",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-mod-space-shift",
-   "note": "Revisit: modifier-first Space, observable text only"
-  },
-  {
-   "id": "N01",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-layer-caps",
-   "note": "Revisit: Caps + H while Space is held"
-  },
-  {
-   "id": "N05",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-c-typo",
-   "note": "Revisit: Caps + B moves back a word"
-  },
-  {
-   "id": "N04",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-c-typo",
-   "note": "Revisit: Caps + L moves Right"
-  },
-  {
-   "id": "S01",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S02",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S03",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S04",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S05",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S06",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S07",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S08",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S09",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S10",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  },
-  {
-   "id": "S11",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S18",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S19",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S20",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S21",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S22",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S23",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-b-expression"
-  },
-  {
-   "id": "S01",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S02",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S03",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S04",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S05",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S06",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S07",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S08",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S09",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S10",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S12",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S13",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S14",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S15",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S16",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S17",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S18",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S19",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S20",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S21",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S22",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S23",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S24",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-final-recall"
-  },
-  {
-   "id": "S11",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-16-circuit-a-number"
-  }
- ],
- "terminal_scenes": [
-  {
-   "id": "systems-16-layer-caps",
-   "kind": "editor",
-   "task_summary": "Relay card A: with Space still held, hold Caps and press H twice: Caps keeps navigation on the numbers-symbols layer.",
-   "success_criteria": [
-    "Text equals 48702",
-    "Cursor moved Left twice between the 2 and the end (caret movement observed)",
-    "S25 evidence is output-observed for Caps; the held Space is inferred from the digits"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Hold Space and type 4802. Keep Space held, hold Caps and press H twice, then still holding Space type 7.",
-    "initial": "",
-    "target": "48702",
-    "steps": [
-     "Hold Space, type 4, 8, 0, 2",
-     "Keep Space held; hold Caps and press H twice: the caret moves Left twice",
-     "Keep Space held; type 7 between the 8 and the 0 position"
-    ],
-    "accepts": "text equals 48702 and two Left movements were observed before the 7",
-    "rejects": [
-     "Caps released and Space re-pressed (still passes as output, flagged as retry hint)"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; expected 48702. The caret must move Left twice before the 7."
-    },
-    "layout": "overlay shows Space and Caps keys held together, caret movement drawn separately"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-16-tab-lane",
-   "kind": "form",
-   "task_summary": "Relay card C, focus lane: with Space held, tap Tab to move to the next field. Bare tap-hold Tab (the Homerow action) is explained and player-confirmed, never required.",
-   "success_criteria": [
-    "Field 1 equals 3 and field 2 equals 9",
-    "Focus moved from field 1 to field 2 with a tapped Tab while Space was held",
-    "A confirm card records, without testing it, that tap-hold Tab keeps its Homerow action"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "mixed",
-   "task": {
-    "prompt": "In field 1 hold Space and type 3; still holding Space tap Tab; in field 2 type 9.",
-    "initial": "",
-    "targets": [
-     "3",
-     "9"
-    ],
-    "accepts": "focus lane moves to field 2 on Tab; fields equal 3 and 9",
-    "rejects": [
-     "a tab character typed into a field",
-     "focus lost outside the practice region"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; field {n} needs {target}.",
-     "no_focus_move": "Tab did not move focus. Tap Tab; the layer does not change it."
-    },
-    "layout": "clearly announced practice region with a visible keyboard exit (Escape = tap Caps); the external Homerow card is a separate player-confirmed note"
-   },
-   "note": "Tap Tab is observable in the focus lane. The external Homerow effect of tap-hold Tab is player-confirmed (B09) and never scored."
-  },
-  {
-   "id": "systems-16-mod-space-shift",
-   "kind": "editor",
-   "task_summary": "Relay card B: hold Shift first, then tap Space: Space stays an ordinary space and the next key is the letter, not a digit.",
-   "success_criteria": [
-    "Text equals K A",
-    "The Space produced a space and the A produced a capital A, not a 1"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Hold Shift (tap-hold F), tap K, tap Space, tap A, then release.",
-    "initial": "",
-    "target": "K A",
-    "steps": [
-     "Hold Shift with F (left hand) before anything else",
-     "Tap K (right hand) for K",
-     "Tap Space: an ordinary space",
-     "Tap A: a capital A"
-    ],
-    "accepts": "text equals K A",
-    "rejects": [
-     "a 1 where A belongs (the layer engaged)",
-     "no space between K and A"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; with Shift held first, Space stays a space and A stays a letter.",
-     "digit_typed": "Observed a digit: Shift was not held before Space."
-    },
-    "layout": "overlay shows Shift held first, then Space, then A"
-   },
-   "note": "Modified-Space shortcuts that the OS reserves are never required (S26 uses only observable text)."
-  },
-  {
-   "id": "systems-16-mod-space-mirror",
-   "kind": "editor",
-   "task_summary": "Relay card B, mirrored: the same exception with the right-hand Shift (J) and left-hand letters.",
-   "success_criteria": [
-    "Text equals S D"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Hold Shift with J, tap S, tap Space, tap D, then release.",
-    "initial": "",
-    "target": "S D",
-    "accepts": "text equals S D",
-    "rejects": [
-     "a 2 or 3 where S or D belongs"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; Shift held first keeps Space ordinary."
-    },
-    "layout": "overlay on request"
-   },
-   "note": "Mirror of the left-hand scene; output observed."
-  },
-  {
-   "id": "systems-16-circuit-a-number",
-   "kind": "keypad",
-   "task_summary": "Cobalt circuit (payroll): a number sequence with minus signs, entered without the overlay.",
-   "success_criteria": [
-    "Keypad reads 5821-0364-97",
-    "Cobalt circuit segments in the relay light on success"
-   ],
-   "retry": "instant",
-   "position_cue": false,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "The cobalt circuit expects the payroll sequence. Enter it exactly.",
-    "initial": "",
-    "targets": [
-     "5821-0364-97"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a digit swapped",
-     "a dash that is not a minus"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the sequence differs at that place."
-    },
-    "layout": "no keyboard overlay"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-16-circuit-b-expression",
-   "kind": "editor",
-   "task_summary": "Orange circuit (formula): an expression with nested clauses and underscore names.",
-   "success_criteria": [
-    "Expression equals ((km_a+km_b)*3)&flag"
-   ],
-   "retry": "instant",
-   "position_cue": false,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "The orange circuit expects this expression. Enter it exactly.",
-    "initial": "",
-    "targets": [
-     "((km_a+km_b)*3)&flag"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "unbalanced brackets",
-     "a lookalike symbol"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the expression differs."
-    },
-    "layout": "no keyboard overlay"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-16-circuit-c-typo",
-   "kind": "editor",
-   "task_summary": "Mint circuit (alarm): correct one typo in an alert line with Caps navigation, keeping the symbols untouched.",
-   "success_criteria": [
-    "Text equals page @hal #7 $fee",
-    "Only the typo changed; no symbol was replaced by a lookalike"
-   ],
-   "retry": "instant",
-   "position_cue": false,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "The line reads 'page @hl #7 $fee'. Move to the typo with Caps navigation and insert the missing a.",
-    "initial": "page @hl #7 $fee",
-    "target": "page @hal #7 $fee",
-    "steps": [
-     "Caps + B moves back by word until the caret reaches @hl",
-     "Caps + L moves Right to sit after h",
-     "Tap A: the missing letter a (a plain letter, not a digit)"
-    ],
-    "accepts": "text equals page @hal #7 $fee",
-    "rejects": [
-     "the # or $ replaced by a lookalike",
-     "an extra space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; only the missing a belongs in the line."
-    },
-    "layout": "no overlay"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-16-final-recall",
-   "kind": "form",
-   "task_summary": "Final mixed recall: six prompts that together check all 23 held-Space outputs, the literal n and m, modifier-first Space and a Caps move while Space is held. No hints; the journal ticks each output when its prompt succeeds.",
-   "success_criteria": [
-    "Items r1 to r6 equal their targets",
-    "Every one of the 23 mapped outputs appears in at least one succeeded item (r1 digits and minus, r2 & * ( ) _ +, r3 ! @ # $ % ^)",
-    "A per-output checklist is visible in the journal, not a long arbitrary string"
-   ],
-   "retry": "instant",
-   "position_cue": false,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Six short prompts from the relay batch. Enter each exactly; the journal checklist ticks each output as it lands.",
-    "initial": "",
-    "items": [
-     {
-      "id": "r1",
-      "target": "9604-1738-52",
-      "covers": [
-       "S01",
-       "S02",
-       "S03",
-       "S04",
-       "S05",
-       "S06",
-       "S07",
-       "S08",
-       "S09",
-       "S10",
-       "S11"
-      ],
-      "note": "all ten digits and the minus, in an order not used before"
-     },
-     {
-      "id": "r2",
-      "target": "(a_1*b_2)&(c+d)",
-      "covers": [
-       "S18",
-       "S19",
-       "S20",
-       "S21",
-       "S22",
-       "S23"
-      ]
-     },
-     {
-      "id": "r3",
-      "target": "page @hal! #7 $fee 15% ^max",
-      "covers": [
-       "S12",
-       "S13",
-       "S14",
-       "S15",
-       "S16",
-       "S17"
-      ]
-     },
-     {
-      "id": "r4",
-      "target": "4n7m2",
-      "covers": [
-       "S24"
-      ],
-      "note": "n and m stay letters while Space is held"
-     },
-     {
-      "id": "r5",
-      "target": "K N",
-      "covers": [
-       "S26"
-      ],
-      "note": "hold Shift (F) first, tap K, tap Space, tap N"
-     },
-     {
-      "id": "r6",
-      "target": "3751",
-      "covers": [
-       "S25"
-      ],
-      "note": "hold Space: type 3, 7, 1, hold Caps + H once, type 5"
-     }
-    ],
-    "accepts": "each item equals its target; items are independent and can be retried singly",
-    "rejects": [
-     "a lookalike output in place of a mapped output"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; item {id} differs. Retry the item."
-    },
-    "layout": "journal checklist beside the editor lists S01 to S24; no keyboard overlay"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  }
- ],
- "dialogue": [
-  {
-   "id": "s16-hal-intro",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "The relay room receives all three branches. I can repair the machine only if the signal comes back without a lookalike standing in for any output.",
-   "hint": null,
-   "when": "interact:hal-relay",
-   "cue": "Hal neutral: default"
-  },
-  {
-   "id": "s16-journal",
-   "speaker": "engineer",
-   "portrait": "neutral",
-   "text": "Journal: relay review. Three circuits (numbers, an expression, a typo), then a final mixed recall. The checklist ticks every output.",
-   "hint": null,
-   "cue": "Engineer neutral: journal"
-  },
-  {
-   "id": "s16-hint-caps",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "To move left without releasing numbers-symbols, you need to press Left Arrow.",
-   "hint": {
-    "action": "To move left without releasing numbers-symbols, you need to press Left Arrow.",
-    "key": "Left Arrow",
-    "gesture": "tap-hold Caps + H still works while numbers-symbols is held."
-   },
-   "when": "step_start:s16-a",
-   "cue": "Hal neutral: every hint line"
-  },
-  {
-   "id": "s16-hint-shift-space",
-   "speaker": "relay_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To type a space while Shift is already held, you need to press Shift + Space.",
-   "hint": {
-    "action": "To type a space while Shift is already held, you need to press Shift + Space.",
-    "key": "Shift + Space",
-    "gesture": "tap-hold F (Shift) first, then Space. A held modifier keeps Space ordinary."
-   },
-   "when": "step_start:s16-b"
-  },
-  {
-   "id": "s16-hint-tab",
-   "speaker": "relay_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To move to the next field while numbers-symbols is held, you need to press Tab.",
-   "hint": {
-    "action": "To move to the next field while numbers-symbols is held, you need to press Tab.",
-    "key": "Tab",
-    "gesture": "tap Tab still moves focus while numbers-symbols is held; tap-hold Tab keeps its Homerow action."
-   },
-   "when": "step_start:s16-c"
-  },
-  {
-   "id": "s16-hal-a",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "Cobalt is live. That was the numbers, with the cursor moving under a held layer.",
-   "hint": null,
-   "when": "scene_success:systems-16-circuit-a-number",
-   "cue": "Hal neutral: default"
-  },
-  {
-   "id": "s16-hal-b",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "Orange is live. The expression held together.",
-   "hint": null,
-   "when": "scene_success:systems-16-circuit-b-expression",
-   "cue": "Hal neutral: default"
-  },
-  {
-   "id": "s16-hal-c",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "Mint is live. One typo fixed, every symbol still itself. One review left on the console.",
-   "hint": null,
-   "when": "scene_success:systems-16-circuit-c-typo",
-   "cue": "Hal neutral: default"
-  },
-  {
-   "id": "s16-hal-seal",
-   "speaker": "hal",
-   "portrait": "pleased",
-   "text": "Every output went in as itself. Watch the machine: the circuits light in order. I will show you what was hiding behind the panel.",
-   "hint": null,
-   "when": "scene_success:systems-16-final-recall",
-   "cue": "Hal pleased: the 16 seal"
-  },
-  {
-   "id": "s16-engineer-seal",
-   "speaker": "engineer",
-   "portrait": "pleased",
-   "text": "Systems seal earned: all 23 held-Space outputs, introduced and recalled.",
-   "hint": null,
-   "when": "scene_success:systems-16-final-recall",
-   "cue": "Engineer pleased: each seal (16)"
-  },
-  {
-   "id": "s16-diagram",
-   "speaker": "engineer",
-   "portrait": "concerned",
-   "text": "Original routing diagram: signed by several employees, not by Pace. The circuit order here matches the machine's real wiring.",
-   "hint": null,
-   "when": "interact:routing-diagram",
-   "cue": "Engineer concerned: inspecting a tampering artifact (Original routing diagram)"
-  },
-  {
-   "id": "s16-mira-offer",
-   "speaker": "mira",
-   "portrait": "neutral",
-   "text": "Glyph Dispatch: carry expressions across every circuit and repair one typo at the relay. The first clean run is a baseline, nothing more.",
-   "hint": null,
-   "when": "interact:mira-relay",
-   "cue": "Mira neutral: offering a route"
-  }
- ],
- "triggers": [
-  {
-   "id": "t16-go",
-   "when": "step_done:s16-go",
-   "then": [
-    {
-     "op": "npc_state",
-     "npc": "hal",
-     "state": "relay_idle"
-    }
-   ]
-  },
-  {
-   "id": "t16-a",
-   "when": "scene_success:systems-16-circuit-a-number",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "conduit_relay_cobalt_1",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_cobalt_2",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_cobalt_3",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t16-b",
-   "when": "scene_success:systems-16-circuit-b-expression",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "conduit_relay_orange_1",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_orange_2",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_orange_3",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t16-c",
-   "when": "scene_success:systems-16-circuit-c-typo",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "conduit_relay_mint_1",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_mint_2",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_relay_mint_3",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t16-complete",
-   "when": "scene_success:systems-16-final-recall",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "routing_machine",
-     "state": "after"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_hub_1",
-     "state": "pulse"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_hub_2",
-     "state": "pulse"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_hub_3",
-     "state": "pulse"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_hub_4",
-     "state": "pulse"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_relay",
-     "state": "on"
-    },
-    {
-     "op": "grant",
-     "kind": "seal",
-     "id": "systems"
-    },
-    {
-     "op": "npc_state",
-     "npc": "mira",
-     "state": "relay_pleased"
-    },
-    {
-     "op": "npc_state",
-     "npc": "hal",
-     "state": "panel_pull"
-    },
-    {
-     "op": "light_state",
-     "light_state": "all-circuits"
-    },
-    {
-     "op": "start_dialogue",
-     "dialogue": "s16-hal-seal"
-    },
-    {
-     "op": "start_dialogue",
-     "dialogue": "s16-engineer-seal"
-    },
-    {
-     "op": "complete_level",
-     "level": "systems-16"
-    },
-    {
-     "op": "journal",
-     "text": "Systems seal earned. The machine's false panel hides the Night Shift elevator stop."
-    }
-   ]
-  },
-  {
-   "id": "t16-panel",
-   "when": "interact:machine-panel & level_complete:systems-16",
-   "then": [
-    {
-     "op": "npc_state",
-     "npc": "hal",
-     "state": "panel_done"
-    },
-    {
-     "op": "journal",
-     "text": "Night Shift elevator stop revealed behind the false panel."
-    }
-   ]
-  }
- ],
- "state_changes": {
-  "before": "The routing machine is in its before state with its panel closed, the three relay conduit families are dark, the relay lamp is off and Mira waits at the chute.",
-  "after": "The routing machine is in its after state: nodes, core, beacon and ports lit, a service walkway open and the false panel hanging open on the Night Shift stop. The relay conduits are lit, hub lamps pulse and Mira has moved to the relay room.",
-  "visible_changes": [
-   {
-    "kind": "landmark_state",
-    "target": "routing_machine",
-    "from": "before",
-    "to": "after",
-    "note": "nodes, core, beacon, ports, stubs lit; service walkway opens; false panel drops open on the Night Shift stop"
-   },
-   {
-    "kind": "placement_state",
-    "target": "conduit_relay_cobalt_1",
-    "from": "off",
-    "to": "lit",
-    "note": "three conduit families light in sequence in the relay room"
-   },
-   {
-    "kind": "placement_state",
-    "target": "lamp_hub_1",
-    "from": "on",
-    "to": "pulse",
-    "note": "hub lamps widen their glow"
-   },
-   {
-    "kind": "placement_state",
-    "target": "lamp_relay",
-    "from": "off",
-    "to": "on"
-   },
-   {
-    "kind": "npc_pose",
-    "target": "hal",
-    "from": "relay_idle",
-    "to": "panel_pull",
-    "note": "Hal pulls the false panel down (proxy hal_interact_n until drawn)"
-   },
-   {
-    "kind": "npc_pose",
-    "target": "mira",
-    "from": "offering",
-    "to": "relay_pleased",
-    "note": "Mira moves from the chute to the relay room and is pleased"
-   }
-  ]
- },
- "rewards": {
-  "seal": "systems",
-  "unlocks": [
-   "nightshift"
-  ]
- },
- "optional_artifact": {
-  "id": "original-routing-diagram",
-  "name": "Original routing diagram",
-  "interaction": "routing-diagram",
-  "placement": "artifact_original_routing_diagram",
-  "caption": [
-   "The routing diagram as first drawn.",
-   "It is signed by several employees, not by Pace.",
-   "The shorter workflow it shows matches what the machine does."
+  "id": "systems-16",
+  "number": 16,
+  "title": "Crossed Wires",
+  "district": "systems",
+  "kind": "review",
+  "requires": [
+    "systems-15"
   ],
-  "engineer_portrait": "concerned"
- },
- "pace_copy": [
-  {
-   "text": "Relay: all circuits nominal.",
-   "state": "default"
-  }
- ],
- "review_notes": "1366x768 (x4) with the keyboard inset open: the relay room is right of the inset and top-clamped; the circuit desks (approach 28..35,4, target north), the final console (34,7), Hal (32,8) and Mira (29,8) keep avatar and target clear. The machine panel is approached from the south at (16..17,14) where the camera scrolls (x >= 10), clear of the inset. No unavoidable conflicts."
+  "story": "The relay room receives all three branches, and Hal can repair the machine only if the signal is rebuilt without a lookalike replacing any output. Three circuits ask for a number sequence, an expression and a corrected typo, with the Caps, Tab and modifier-first Space exceptions along the way, then a final mixed recall checks every mapped output. The machine lights in sequence and Hal pulls down a false panel to reveal the Night Shift elevator stop.",
+  "steps": [
+    {
+      "id": "s16-go",
+      "objective": "Walk north through the hub gallery to the relay room door.",
+      "interaction": "relay-door",
+      "completes_when": "reach_cell:28,5",
+      "target_cell": [
+        28,
+        5
+      ]
+    },
+    {
+      "id": "s16-talk",
+      "objective": "Talk to Hal about the relay review.",
+      "interaction": "hal-relay",
+      "completes_when": "dialogue_done:s16-hal-intro"
+    },
+    {
+      "id": "s16-a",
+      "objective": "Relay card desk A: type the number sequence (cobalt circuit), moving the cursor under the held layer.",
+      "interaction": "relay-circuit-a",
+      "completes_when": "scene_success:systems-16-layer-caps & scene_success:systems-16-circuit-a-number"
+    },
+    {
+      "id": "s16-b",
+      "objective": "Relay card desk B: type the expression (orange circuit) after the Shift-first Space cards.",
+      "interaction": "relay-circuit-b",
+      "completes_when": "scene_success:systems-16-mod-space-shift & scene_success:systems-16-mod-space-mirror & scene_success:systems-16-circuit-b-expression"
+    },
+    {
+      "id": "s16-c",
+      "objective": "Relay card desk C: correct the typo (mint circuit) after the Tab focus lane.",
+      "interaction": "relay-circuit-c",
+      "completes_when": "scene_success:systems-16-tab-lane & scene_success:systems-16-circuit-c-typo"
+    },
+    {
+      "id": "s16-final",
+      "objective": "Run the final mixed recall on the relay console.",
+      "interaction": "relay-final",
+      "completes_when": "scene_success:systems-16-final-recall"
+    },
+    {
+      "id": "s16-panel",
+      "objective": "Walk back to the machine and look at the false panel Hal pulled down.",
+      "interaction": "machine-panel",
+      "completes_when": "interact:machine-panel & level_complete:systems-16",
+      "target_cell": [
+        16,
+        14
+      ]
+    }
+  ],
+  "gestures": [
+    {
+      "id": "S25",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-16-layer-caps"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-16-tab-lane"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-16-mod-space-shift"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-16-mod-space-mirror"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "B08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-mod-space-shift",
+      "note": "Revisit: modifier-first Space, observable text only"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-layer-caps",
+      "note": "Revisit: Caps + H while Space is held"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-c-typo",
+      "note": "Revisit: Caps + B moves back a word"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-c-typo",
+      "note": "Revisit: Caps + L moves Right"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-b-expression"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-final-recall"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-16-circuit-a-number"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "systems-16-layer-caps",
+      "kind": "editor",
+      "task_summary": "Relay card A: with Space still held, hold Caps and press H twice: Caps keeps navigation on the numbers-symbols layer.",
+      "success_criteria": [
+        "Text equals 48702",
+        "Cursor moved Left twice between the 2 and the end (caret movement observed)",
+        "S25 evidence is output-observed for Caps; the held Space is inferred from the digits"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Hold Space and type 4802. Keep Space held, hold Caps and press H twice, then still holding Space type 7.",
+        "initial": "",
+        "target": "48702",
+        "steps": [
+          "Hold Space, type 4, 8, 0, 2",
+          "Keep Space held; hold Caps and press H twice: the caret moves Left twice",
+          "Keep Space held; type 7 between the 8 and the 0 position"
+        ],
+        "accepts": "text equals 48702 and two Left movements were observed before the 7",
+        "rejects": [
+          "Caps released and Space re-pressed (still passes as output, flagged as retry hint)"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; expected 48702. The caret must move Left twice before the 7."
+        },
+        "layout": "overlay shows Space and Caps keys held together, caret movement drawn separately"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-16-tab-lane",
+      "kind": "form",
+      "task_summary": "Relay card C, focus lane: with Space held, tap Tab to move to the next field. Bare tap-hold Tab (the Homerow action) is explained and player-confirmed, never required.",
+      "success_criteria": [
+        "Field 1 equals 3 and field 2 equals 9",
+        "Focus moved from field 1 to field 2 with a tapped Tab while Space was held",
+        "A confirm card records, without testing it, that tap-hold Tab keeps its Homerow action"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "In field 1 hold Space and type 3; still holding Space tap Tab; in field 2 type 9.",
+        "initial": "",
+        "targets": [
+          "3",
+          "9"
+        ],
+        "accepts": "focus lane moves to field 2 on Tab; fields equal 3 and 9",
+        "rejects": [
+          "a tab character typed into a field",
+          "focus lost outside the practice region"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; field {n} needs {target}.",
+          "no_focus_move": "Tab did not move focus. Tap Tab; the layer does not change it."
+        },
+        "layout": "clearly announced practice region with a visible keyboard exit (Escape = tap Caps); the external Homerow card is a separate player-confirmed note"
+      },
+      "note": "Tap Tab is observable in the focus lane. The external Homerow effect of tap-hold Tab is player-confirmed (B09) and never scored."
+    },
+    {
+      "id": "systems-16-mod-space-shift",
+      "kind": "editor",
+      "task_summary": "Relay card B: hold Shift first, then tap Space: Space stays an ordinary space and the next key is the letter, not a digit.",
+      "success_criteria": [
+        "Text equals K A",
+        "The Space produced a space and the A produced a capital A, not a 1"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Hold Shift (tap-hold F), tap K, tap Space, tap A, then release.",
+        "initial": "",
+        "target": "K A",
+        "steps": [
+          "Hold Shift with F (left hand) before anything else",
+          "Tap K (right hand) for K",
+          "Tap Space: an ordinary space",
+          "Tap A: a capital A"
+        ],
+        "accepts": "text equals K A",
+        "rejects": [
+          "a 1 where A belongs (the layer engaged)",
+          "no space between K and A"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; with Shift held first, Space stays a space and A stays a letter.",
+          "digit_typed": "Observed a digit: Shift was not held before Space."
+        },
+        "layout": "overlay shows Shift held first, then Space, then A"
+      },
+      "note": "Modified-Space shortcuts that the OS reserves are never required (S26 uses only observable text)."
+    },
+    {
+      "id": "systems-16-mod-space-mirror",
+      "kind": "editor",
+      "task_summary": "Relay card B, mirrored: the same exception with the right-hand Shift (J) and left-hand letters.",
+      "success_criteria": [
+        "Text equals S D"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Hold Shift with J, tap S, tap Space, tap D, then release.",
+        "initial": "",
+        "target": "S D",
+        "accepts": "text equals S D",
+        "rejects": [
+          "a 2 or 3 where S or D belongs"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; Shift held first keeps Space ordinary."
+        },
+        "layout": "overlay on request"
+      },
+      "note": "Mirror of the left-hand scene; output observed."
+    },
+    {
+      "id": "systems-16-circuit-a-number",
+      "kind": "keypad",
+      "task_summary": "Cobalt circuit (payroll): a number sequence with minus signs, entered without the overlay.",
+      "success_criteria": [
+        "Keypad reads 5821-0364-97",
+        "Cobalt circuit segments in the relay light on success"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The cobalt circuit expects the payroll sequence. Enter it exactly.",
+        "initial": "",
+        "targets": [
+          "5821-0364-97"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a digit swapped",
+          "a dash that is not a minus"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the sequence differs at that place."
+        },
+        "layout": "no keyboard overlay"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-16-circuit-b-expression",
+      "kind": "editor",
+      "task_summary": "Orange circuit (formula): an expression with nested clauses and underscore names.",
+      "success_criteria": [
+        "Expression equals ((km_a+km_b)*3)&flag"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The orange circuit expects this expression. Enter it exactly.",
+        "initial": "",
+        "targets": [
+          "((km_a+km_b)*3)&flag"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "unbalanced brackets",
+          "a lookalike symbol"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the expression differs."
+        },
+        "layout": "no keyboard overlay"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-16-circuit-c-typo",
+      "kind": "editor",
+      "task_summary": "Mint circuit (alarm): correct one typo in an alert line with Caps navigation, keeping the symbols untouched.",
+      "success_criteria": [
+        "Text equals page @hal #7 $fee",
+        "Only the typo changed; no symbol was replaced by a lookalike"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The line reads 'page @hl #7 $fee'. Move to the typo with Caps navigation and insert the missing a.",
+        "initial": "page @hl #7 $fee",
+        "target": "page @hal #7 $fee",
+        "steps": [
+          "Caps + B moves back by word until the caret reaches @hl",
+          "Caps + L moves Right to sit after h",
+          "Tap A: the missing letter a (a plain letter, not a digit)"
+        ],
+        "accepts": "text equals page @hal #7 $fee",
+        "rejects": [
+          "the # or $ replaced by a lookalike",
+          "an extra space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; only the missing a belongs in the line."
+        },
+        "layout": "no overlay"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-16-final-recall",
+      "kind": "form",
+      "task_summary": "Final mixed recall: six prompts that together check all 23 held-Space outputs, the literal n and m, modifier-first Space and a Caps move while Space is held. No hints; the journal ticks each output when its prompt succeeds.",
+      "success_criteria": [
+        "Items r1 to r6 equal their targets",
+        "Every one of the 23 mapped outputs appears in at least one succeeded item (r1 digits and minus, r2 & * ( ) _ +, r3 ! @ # $ % ^)",
+        "A per-output checklist is visible in the journal, not a long arbitrary string"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Six short prompts from the relay batch. Enter each exactly; the journal checklist ticks each output as it lands.",
+        "initial": "",
+        "items": [
+          {
+            "id": "r1",
+            "target": "9604-1738-52",
+            "covers": [
+              "S01",
+              "S02",
+              "S03",
+              "S04",
+              "S05",
+              "S06",
+              "S07",
+              "S08",
+              "S09",
+              "S10",
+              "S11"
+            ],
+            "note": "all ten digits and the minus, in an order not used before"
+          },
+          {
+            "id": "r2",
+            "target": "(a_1*b_2)&(c+d)",
+            "covers": [
+              "S18",
+              "S19",
+              "S20",
+              "S21",
+              "S22",
+              "S23"
+            ]
+          },
+          {
+            "id": "r3",
+            "target": "page @hal! #7 $fee 15% ^max",
+            "covers": [
+              "S12",
+              "S13",
+              "S14",
+              "S15",
+              "S16",
+              "S17"
+            ]
+          },
+          {
+            "id": "r4",
+            "target": "4n7m2",
+            "covers": [
+              "S24"
+            ],
+            "note": "n and m stay letters while Space is held"
+          },
+          {
+            "id": "r5",
+            "target": "K N",
+            "covers": [
+              "S26"
+            ],
+            "note": "hold Shift (F) first, tap K, tap Space, tap N"
+          },
+          {
+            "id": "r6",
+            "target": "3751",
+            "covers": [
+              "S25"
+            ],
+            "note": "hold Space: type 3, 7, 1, hold Caps + H once, type 5"
+          }
+        ],
+        "accepts": "each item equals its target; items are independent and can be retried singly",
+        "rejects": [
+          "a lookalike output in place of a mapped output"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; item {id} differs. Retry the item."
+        },
+        "layout": "journal checklist beside the editor lists S01 to S24; no keyboard overlay"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "s16-hal-intro",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "The relay room receives all three branches. I can repair the machine only if the signal comes back without a lookalike standing in for any output.",
+      "hint": null,
+      "when": "interact:hal-relay",
+      "cue": "Hal neutral: default"
+    },
+    {
+      "id": "s16-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: relay review. Three circuits (numbers, an expression, a typo), then a final mixed recall. The checklist ticks every output.",
+      "hint": null,
+      "cue": "Engineer neutral: journal"
+    },
+    {
+      "id": "s16-hint-caps",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "To move left without releasing numbers-symbols, you need to press Left Arrow.",
+      "hint": {
+        "action": "To move left without releasing numbers-symbols, you need to press Left Arrow.",
+        "key": "Left Arrow",
+        "gesture": "tap-hold Caps + H still works while numbers-symbols is held."
+      },
+      "when": "step_start:s16-a",
+      "cue": "Hal neutral: every hint line"
+    },
+    {
+      "id": "s16-hint-shift-space",
+      "speaker": "relay_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To type a space while Shift is already held, you need to press Shift + Space.",
+      "hint": {
+        "action": "To type a space while Shift is already held, you need to press Shift + Space.",
+        "key": "Shift + Space",
+        "gesture": "tap-hold F (Shift) first, then Space. A held modifier keeps Space ordinary."
+      },
+      "when": "step_start:s16-b"
+    },
+    {
+      "id": "s16-hint-tab",
+      "speaker": "relay_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To move to the next field while numbers-symbols is held, you need to press Tab.",
+      "hint": {
+        "action": "To move to the next field while numbers-symbols is held, you need to press Tab.",
+        "key": "Tab",
+        "gesture": "tap Tab still moves focus while numbers-symbols is held; tap-hold Tab keeps its Homerow action."
+      },
+      "when": "step_start:s16-c"
+    },
+    {
+      "id": "s16-hal-a",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "Cobalt is live. That was the numbers, with the cursor moving under a held layer.",
+      "hint": null,
+      "when": "scene_success:systems-16-circuit-a-number",
+      "cue": "Hal neutral: default"
+    },
+    {
+      "id": "s16-hal-b",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "Orange is live. The expression held together.",
+      "hint": null,
+      "when": "scene_success:systems-16-circuit-b-expression",
+      "cue": "Hal neutral: default"
+    },
+    {
+      "id": "s16-hal-c",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "Mint is live. One typo fixed, every symbol still itself. One review left on the console.",
+      "hint": null,
+      "when": "scene_success:systems-16-circuit-c-typo",
+      "cue": "Hal neutral: default"
+    },
+    {
+      "id": "s16-hal-seal",
+      "speaker": "hal",
+      "portrait": "pleased",
+      "text": "Every output went in as itself. Watch the machine: the circuits light in order. I will show you what was hiding behind the panel.",
+      "hint": null,
+      "when": "scene_success:systems-16-final-recall",
+      "cue": "Hal pleased: the 16 seal"
+    },
+    {
+      "id": "s16-engineer-seal",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Systems seal earned: all 23 held-Space outputs, introduced and recalled.",
+      "hint": null,
+      "when": "scene_success:systems-16-final-recall",
+      "cue": "Engineer pleased: each seal (16)"
+    },
+    {
+      "id": "s16-diagram",
+      "speaker": "engineer",
+      "portrait": "concerned",
+      "text": "Original routing diagram: signed by several employees, not by Pace. The circuit order here matches the machine's real wiring.",
+      "hint": null,
+      "when": "interact:routing-diagram",
+      "cue": "Engineer concerned: inspecting a tampering artifact (Original routing diagram)"
+    },
+    {
+      "id": "s16-mira-offer",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "Glyph Dispatch: carry expressions across every circuit and repair one typo at the relay. The first clean run is a baseline, nothing more.",
+      "hint": null,
+      "when": "interact:mira-relay",
+      "cue": "Mira neutral: offering a route"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t16-go",
+      "when": "step_done:s16-go",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "hal",
+          "state": "relay_idle"
+        }
+      ]
+    },
+    {
+      "id": "t16-a",
+      "when": "scene_success:systems-16-circuit-a-number",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_relay_cobalt_1",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_cobalt_2",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_cobalt_3",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t16-b",
+      "when": "scene_success:systems-16-circuit-b-expression",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_relay_orange_1",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_orange_2",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_orange_3",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t16-c",
+      "when": "scene_success:systems-16-circuit-c-typo",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_relay_mint_1",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_mint_2",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_relay_mint_3",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t16-complete",
+      "when": "scene_success:systems-16-final-recall",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "routing_machine",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_hub_1",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_hub_2",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_hub_3",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_hub_4",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_relay",
+          "state": "on"
+        },
+        {
+          "op": "grant",
+          "kind": "seal",
+          "id": "systems"
+        },
+        {
+          "op": "npc_state",
+          "npc": "mira",
+          "state": "relay_pleased"
+        },
+        {
+          "op": "npc_state",
+          "npc": "hal",
+          "state": "panel_pull"
+        },
+        {
+          "op": "light_state",
+          "light_state": "all-circuits"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "s16-hal-seal"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "s16-engineer-seal"
+        },
+        {
+          "op": "complete_level",
+          "level": "systems-16"
+        },
+        {
+          "op": "journal",
+          "text": "Systems seal earned. The machine's false panel hides the Night Shift elevator stop."
+        }
+      ]
+    },
+    {
+      "id": "t16-panel",
+      "when": "interact:machine-panel & level_complete:systems-16",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "hal",
+          "state": "panel_done"
+        },
+        {
+          "op": "journal",
+          "text": "Night Shift elevator stop revealed behind the false panel."
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The routing machine is in its before state with its panel closed, the three relay conduit families are dark, the relay lamp is off and Mira waits at the chute.",
+    "after": "The routing machine is in its after state: nodes, core, beacon and ports lit, a service walkway open and the false panel hanging open on the Night Shift stop. The relay conduits are lit, hub lamps pulse and Mira has moved to the relay room.",
+    "visible_changes": [
+      {
+        "kind": "landmark_state",
+        "target": "routing_machine",
+        "from": "before",
+        "to": "after",
+        "note": "nodes, core, beacon, ports, stubs lit; service walkway opens; false panel drops open on the Night Shift stop"
+      },
+      {
+        "kind": "placement_state",
+        "target": "conduit_relay_cobalt_1",
+        "from": "off",
+        "to": "lit",
+        "note": "three conduit families light in sequence in the relay room"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_hub_1",
+        "from": "on",
+        "to": "pulse",
+        "note": "hub lamps widen their glow"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_relay",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "hal",
+        "from": "relay_idle",
+        "to": "panel_pull",
+        "note": "Hal pulls the false panel down (`hal_false_panel_pull_n`, one-shot, holds the last frame); on frame 2 the machine's `routing_panel_closed` part swaps for `routing_panel_open`"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "mira",
+        "from": "offering",
+        "to": "relay_pleased",
+        "note": "Mira moves from the chute to the relay room and is pleased"
+      }
+    ]
+  },
+  "rewards": {
+    "seal": "systems",
+    "unlocks": [
+      "nightshift"
+    ]
+  },
+  "optional_artifact": {
+    "id": "original-routing-diagram",
+    "name": "Original routing diagram",
+    "interaction": "routing-diagram",
+    "placement": "artifact_original_routing_diagram",
+    "caption": [
+      "The routing diagram as first drawn.",
+      "It is signed by several employees, not by Pace.",
+      "The shorter workflow it shows matches what the machine does."
+    ],
+    "engineer_portrait": "concerned"
+  },
+  "pace_copy": [
+    {
+      "text": "Relay: all circuits nominal.",
+      "state": "default"
+    }
+  ],
+  "review_notes": "1366x768 (x4) with the keyboard inset open: the relay room is right of the inset and top-clamped; the circuit desks (approach 28..35,4, target north), the final console (34,7), Hal (32,8) and Mira (29,8) keep avatar and target clear. The machine panel is approached from the south at (16..17,14) where the camera scrolls (x >= 10), clear of the inset. No unavoidable conflicts."
 }

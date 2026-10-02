@@ -29,30 +29,6 @@
   },
   "placements": [
     {
-      "id": "wall_n",
-      "entry": "wall_n_plain",
-      "cell": [
-        0,
-        0
-      ]
-    },
-    {
-      "id": "wall_n_2",
-      "entry": "wall_n_plain",
-      "cell": [
-        1,
-        0
-      ]
-    },
-    {
-      "id": "wall_n_3",
-      "entry": "wall_n_plain",
-      "cell": [
-        2,
-        0
-      ]
-    },
-    {
       "id": "wall_n_4",
       "entry": "wall_n_plain",
       "cell": [
@@ -906,16 +882,12 @@
     },
     {
       "id": "repair_door",
-      "entry": "archive_door_closed",
+      "entry": "repair_door_closed",
       "cell": [
         6,
         7
       ],
-      "offset": [
-        0,
-        8
-      ],
-      "state_set": "archive_door",
+      "state_set": "repair_door",
       "state": "closed"
     },
     {
@@ -1037,7 +1009,10 @@
       ],
       "state_set": "cabinet_gate",
       "state": "misaligned",
-      "art_gap": true
+      "offset": [
+        0,
+        8
+      ]
     },
     {
       "id": "divider_margin_3",
@@ -1096,33 +1071,6 @@
       ]
     },
     {
-      "id": "divider_gallery_4",
-      "entry": "shelf_1x1",
-      "cell": [
-        21,
-        6
-      ]
-    },
-    {
-      "id": "ladder_gate",
-      "entry": "rolling_ladder_parked",
-      "cell": [
-        22,
-        6
-      ],
-      "state_set": "rolling_ladder",
-      "state": "parked",
-      "art_gap": true
-    },
-    {
-      "id": "divider_gallery_5",
-      "entry": "shelf_2x1_a",
-      "cell": [
-        24,
-        6
-      ]
-    },
-    {
       "id": "divider_gallery_6",
       "entry": "shelf_2x1_b",
       "cell": [
@@ -1148,29 +1096,6 @@
         9
       ],
       "state": "before"
-    },
-    {
-      "id": "archive_ledger_mark",
-      "entry": "archive_ledger_mark_rejected",
-      "cell": [
-        21,
-        10
-      ],
-      "state_set": "ledger_mark",
-      "state": "rejected",
-      "art_gap": true,
-      "note": "Overlay on the circular desk's ledger; see NEEDS_ART."
-    },
-    {
-      "id": "elevator",
-      "entry": "elevator_closed",
-      "cell": [
-        2,
-        2
-      ],
-      "state_set": "elevator",
-      "state": "closed",
-      "art_gap": true
     },
     {
       "id": "pace_directory_annex",
@@ -1210,8 +1135,7 @@
       "cell": [
         5,
         6
-      ],
-      "art_gap": true
+      ]
     },
     {
       "id": "annex_desk",
@@ -1256,62 +1180,6 @@
         2,
         8
       ]
-    },
-    {
-      "id": "lamp_foyer_nw",
-      "entry": "lamp_off",
-      "cell": [
-        14,
-        7
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
-    },
-    {
-      "id": "lamp_north_ne",
-      "entry": "lamp_off",
-      "cell": [
-        27,
-        7
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
-    },
-    {
-      "id": "lamp_foyer_sw",
-      "entry": "lamp_off",
-      "cell": [
-        8,
-        10
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
-    },
-    {
-      "id": "lamp_south_e",
-      "entry": "lamp_off",
-      "cell": [
-        27,
-        14
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
     },
     {
       "id": "desk_hub_west",
@@ -1393,8 +1261,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_cabinet_2",
@@ -1404,8 +1271,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_cabinet_3",
@@ -1415,8 +1281,7 @@
         15
       ],
       "state_set": "cabinet_labels",
-      "state": "offset",
-      "art_gap": true
+      "state": "offset"
     },
     {
       "id": "log_terminal",
@@ -1431,15 +1296,6 @@
       ]
     },
     {
-      "id": "artifact_carbon_copy_a",
-      "entry": "artifact_carbon_copy_a",
-      "cell": [
-        13,
-        12
-      ],
-      "art_gap": true
-    },
-    {
       "id": "log_plant",
       "entry": "pot_plant_c",
       "cell": [
@@ -1452,56 +1308,12 @@
       ]
     },
     {
-      "id": "ledger_table",
-      "entry": "desk_b",
-      "cell": [
-        8,
-        2
-      ]
-    },
-    {
-      "id": "ledger_terminal",
-      "entry": "terminal_desk",
-      "cell": [
-        10,
-        2
-      ]
-    },
-    {
       "id": "ledger_table_2",
       "entry": "desk_b",
       "cell": [
         12,
         2
       ]
-    },
-    {
-      "id": "ledger_lamp_w",
-      "entry": "lamp_off",
-      "cell": [
-        8,
-        3
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
-    },
-    {
-      "id": "ledger_lamp_e",
-      "entry": "lamp_off",
-      "cell": [
-        13,
-        3
-      ],
-      "offset": [
-        5,
-        7
-      ],
-      "state_set": "lamp",
-      "state": "off"
     },
     {
       "id": "light_shaft_margin",
@@ -1516,15 +1328,6 @@
       ]
     },
     {
-      "id": "artifact_margin_stamp",
-      "entry": "artifact_margin_stamp",
-      "cell": [
-        8,
-        5
-      ],
-      "art_gap": true
-    },
-    {
       "id": "gallery_shelf",
       "entry": "shelf_2x1_a",
       "cell": [
@@ -1537,14 +1340,6 @@
       "entry": "shelf_2x1_b",
       "cell": [
         17,
-        2
-      ]
-    },
-    {
-      "id": "report_terminal",
-      "entry": "terminal_desk",
-      "cell": [
-        19,
         2
       ]
     },
@@ -1593,15 +1388,6 @@
         16,
         5
       ]
-    },
-    {
-      "id": "artifact_uncut_index",
-      "entry": "artifact_uncut_index",
-      "cell": [
-        15,
-        4
-      ],
-      "art_gap": true
     },
     {
       "id": "light_shaft_gallery",
@@ -1668,15 +1454,6 @@
       ]
     },
     {
-      "id": "artifact_noor_annotation",
-      "entry": "artifact_noor_annotation",
-      "cell": [
-        30,
-        9
-      ],
-      "art_gap": true
-    },
-    {
       "id": "chamber_plant",
       "entry": "pot_plant_a",
       "cell": [
@@ -1699,17 +1476,6 @@
         4,
         2
       ]
-    },
-    {
-      "id": "mail_chute",
-      "entry": "mail_chute_idle",
-      "cell": [
-        33,
-        13
-      ],
-      "state_set": "mail_chute",
-      "state": "idle",
-      "art_gap": true
     },
     {
       "id": "pocket_plant",
@@ -2020,418 +1786,238 @@
         8,
         8
       ]
+    },
+    {
+      "id": "elevator",
+      "entry": "elevator_closed",
+      "cell": [
+        0,
+        0
+      ],
+      "state_set": "elevator",
+      "state": "closed",
+      "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
+    },
+    {
+      "id": "elevator_call_panel",
+      "entry": "elevator_call_panel",
+      "cell": [
+        3,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "wall_e_annex_door_sill",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        9
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "ladder_gate",
+      "entry": "rolling_ladder_closed",
+      "cell": [
+        21,
+        6
+      ],
+      "state_set": "rolling_ladder",
+      "state": "closed"
+    },
+    {
+      "id": "divider_gallery_5",
+      "entry": "shelf_1x1",
+      "cell": [
+        25,
+        6
+      ]
+    },
+    {
+      "id": "ledger_table",
+      "entry": "ledger_table_before",
+      "cell": [
+        8,
+        2
+      ],
+      "state_set": "ledger_table",
+      "state": "before"
+    },
+    {
+      "id": "report_table",
+      "entry": "report_table_before",
+      "cell": [
+        19,
+        2
+      ],
+      "state_set": "report_table",
+      "state": "before"
+    },
+    {
+      "id": "log_folders",
+      "entry": "folder_rack_drift",
+      "cell": [
+        8,
+        13
+      ],
+      "state_set": "folder_rack",
+      "state": "drift"
+    },
+    {
+      "id": "shelf_light_gallery_e",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        27,
+        5
+      ],
+      "offset": [
+        13,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_log_w",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        9,
+        10
+      ],
+      "offset": [
+        13,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_foyer_n",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        14,
+        10
+      ],
+      "offset": [
+        9,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_margin_e",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        13,
+        5
+      ],
+      "offset": [
+        9,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "courier_chute",
+      "entry": "courier_chute_idle",
+      "cell": [
+        32,
+        13
+      ],
+      "state_set": "courier_chute",
+      "state": "idle"
+    },
+    {
+      "id": "artifact_carbon_copy_a",
+      "entry": "artifact_carbon_copy_a",
+      "cell": [
+        13,
+        14
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_margin_stamp",
+      "entry": "artifact_margin_stamp",
+      "cell": [
+        13,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_uncut_index",
+      "entry": "artifact_uncut_index",
+      "cell": [
+        15,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_noor_annotation",
+      "entry": "artifact_noor_annotation",
+      "cell": [
+        32,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "archive_ledger_mark",
+      "entry": "archive_ledger_mark_rejected",
+      "cell": [
+        20,
+        9
+      ],
+      "offset": [
+        10,
+        4
+      ],
+      "state_set": "ledger_mark",
+      "state": "rejected",
+      "note": "overlay at the archive_desk landmark origin (19,9) plus (26,4) px, as the kit proof room places it"
     }
   ],
-  "art_gap_entries": {
-    "elevator_closed": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Records stop of the shared elevator, doors shut (Records recolour of the Orientation elevator set).",
-      "states": [
-        "closed"
-      ]
-    },
-    "elevator_half": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Elevator doors half open (arrival and departure).",
-      "states": [
-        "half"
-      ]
-    },
-    "elevator_open": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_wall",
-      "purpose": "Elevator doors open; the avatar steps out to the arrival cell.",
-      "states": [
-        "open"
-      ]
-    },
-    "door_panel_address_idle": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Wall panel beside the repair door with two text windows and a visible cursor and deletion side; the level 07 interaction.",
-      "states": [
-        "idle"
-      ]
-    },
-    "cabinet_gate_misaligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Two file cabinets pushed crooked across the margin-room doorway (level 08 gate, closed).",
-      "states": [
-        "misaligned"
-      ]
-    },
-    "cabinet_gate_aligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "00"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same cabinets squared up against the shelf line; the doorway is open (level 08 gate, open).",
-      "states": [
-        "aligned"
-      ]
-    },
-    "rolling_ladder_parked": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Library ladder parked across the gallery doorway (level 09 gate, closed).",
-      "states": [
-        "parked"
-      ]
-    },
-    "rolling_ladder_moved": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "00"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The ladder rolled along its rail to the side, revealing the gallery doorway (level 09 gate, open).",
-      "states": [
-        "moved"
-      ]
-    },
-    "cabinet_labels_offset": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Cherry log cabinet, sea-blue folders with label tabs visibly offset (level 08, before).",
-      "states": [
-        "offset"
-      ]
-    },
-    "cabinet_labels_aligned": {
-      "footprint": {
-        "cells": [
-          2,
-          1
-        ],
-        "collision": [
-          "11"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same cabinet with every label tab aligned on one line (level 08, after).",
-      "states": [
-        "aligned"
-      ]
-    },
-    "mail_chute_idle": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Wall-mounted mail chute with a blinking intake light, Mira's landmark in Records.",
-      "states": [
-        "idle"
-      ]
-    },
-    "mail_chute_active": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The chute with its light steady and a slip in the slot (after level 11 the loop is open).",
-      "states": [
-        "active"
-      ]
-    },
-    "archive_ledger_mark_rejected": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Small overlay on the circular desk's ledger: Noor's stamp mark as a rejection cross (levels 07 to 08). Can be cropped from archive_ledger_before.",
-      "states": [
-        "rejected"
-      ]
-    },
-    "archive_ledger_mark_accepted": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "0"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "The same overlay with a tick and a stamped seal (after level 08). Can be cropped from archive_ledger_after.",
-      "states": [
-        "accepted"
-      ]
-    },
-    "artifact_carbon_copy_a": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Carbon copy A, the first original route record (level 08).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_margin_stamp": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Margin stamp on a ledger corner (level 09).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_uncut_index": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Uncut index on a lectern (level 10).",
-      "states": [
-        "on_stand"
-      ]
-    },
-    "artifact_noor_annotation": {
-      "footprint": {
-        "cells": [
-          1,
-          1
-        ],
-        "collision": [
-          "1"
-        ]
-      },
-      "layer": "rear_prop",
-      "purpose": "Optional artifact stand: Noor's annotation on the correction copy (level 11).",
-      "states": [
-        "on_stand"
-      ]
-    }
-  },
-  "art_gap_state_sets": {
-    "elevator": {
-      "default": "closed",
-      "states": {
-        "closed": {
-          "entries": [
-            "elevator_closed"
-          ],
-          "blocked": true
-        },
-        "half": {
-          "entries": [
-            "elevator_half"
-          ],
-          "blocked": true
-        },
-        "open": {
-          "entries": [
-            "elevator_open"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "cabinet_gate": {
-      "default": "misaligned",
-      "states": {
-        "misaligned": {
-          "entries": [
-            "cabinet_gate_misaligned"
-          ],
-          "blocked": true
-        },
-        "aligned": {
-          "entries": [
-            "cabinet_gate_aligned"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "rolling_ladder": {
-      "default": "parked",
-      "states": {
-        "parked": {
-          "entries": [
-            "rolling_ladder_parked"
-          ],
-          "blocked": true
-        },
-        "moved": {
-          "entries": [
-            "rolling_ladder_moved"
-          ],
-          "blocked": false
-        }
-      }
-    },
-    "cabinet_labels": {
-      "default": "offset",
-      "states": {
-        "offset": {
-          "entries": [
-            "cabinet_labels_offset"
-          ]
-        },
-        "aligned": {
-          "entries": [
-            "cabinet_labels_aligned"
-          ]
-        }
-      }
-    },
-    "mail_chute": {
-      "default": "idle",
-      "states": {
-        "idle": {
-          "entries": [
-            "mail_chute_idle"
-          ]
-        },
-        "active": {
-          "entries": [
-            "mail_chute_active"
-          ]
-        }
-      }
-    },
-    "ledger_mark": {
-      "default": "rejected",
-      "states": {
-        "rejected": {
-          "entries": [
-            "archive_ledger_mark_rejected"
-          ]
-        },
-        "accepted": {
-          "entries": [
-            "archive_ledger_mark_accepted"
-          ]
-        }
-      }
-    }
-  },
+  "art_gap_entries": {},
+  "art_gap_state_sets": {},
   "collision": [
     "111111111111111111111111111111111111",
     "111111111111111111111111111111111111",
-    "001111111111111111111111111111011011",
-    "000001111000011000000000000011000011",
-    "110000110000001100000000000011000011",
-    "100000111000001011000000000011110011",
+    "000011111111111111111111111111011011",
+    "000001110000001000000000000011000011",
+    "110000110000001000000000000011000011",
+    "100000110000001011000000000011110011",
     "000001111111111111111111111111010011",
-    "000000110000001100000000000111000011",
+    "000000110000000100000000000011000011",
     "000000110000000000000000000011000011",
-    "000000110000000001011111100011100111",
-    "000001111000000000011111000011111111",
+    "000000110000000001011111100011000111",
+    "000001110000000000011111000011111111",
     "111111111110011000011011000111000011",
-    "111111111000011001011011100000100011",
-    "111111110000001000000000000000000111",
-    "111111110000111000000000000100000011",
+    "111111111000001001011011100000100011",
+    "111111111100001000000000000000001111",
+    "111111110000111000000000000000000011",
     "111111111111111111000000111011100011"
   ],
   "gates": [
@@ -2454,14 +2040,6 @@
         [
           7,
           8
-        ],
-        [
-          6,
-          9
-        ],
-        [
-          7,
-          9
         ]
       ],
       "opens_after": "records-07",
@@ -2568,7 +2146,7 @@
         6,
         9
       ],
-      "note": "Arrival annex: entrance, elevator, repair door panel"
+      "note": "Arrival annex: entrance, north-wall elevator, repair door panel"
     },
     {
       "id": "hub",
@@ -2698,33 +2276,66 @@
       "kind": "elevator",
       "cells": [
         [
-          2,
-          2
+          0,
+          1
         ],
         [
-          3,
-          2
+          1,
+          1
+        ],
+        [
+          2,
+          1
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            2,
-            3
+            0,
+            2
           ],
           "facing": "n"
         },
         {
           "cell": [
-            3,
-            3
+            1,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            2,
+            2
           ],
           "facing": "n"
         }
       ],
       "placement": "elevator",
       "label": "Elevator (returns to every unlocked district)"
+    },
+    {
+      "id": "elevator_panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          3,
+          1
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            3,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator_call_panel",
+      "label": "Elevator map"
     },
     {
       "id": "annex_directory",
@@ -2831,14 +2442,6 @@
         [
           7,
           8
-        ],
-        [
-          6,
-          9
-        ],
-        [
-          7,
-          9
         ]
       ],
       "marker": "none",
@@ -2885,7 +2488,7 @@
       "kind": "mira",
       "cells": [
         [
-          32,
+          31,
           13
         ]
       ],
@@ -2893,7 +2496,7 @@
       "approach": [
         {
           "cell": [
-            31,
+            30,
             13
           ],
           "facing": "e"
@@ -2908,9 +2511,13 @@
       "label": "Mira at the mail chute"
     },
     {
-      "id": "mail_chute",
+      "id": "courier_chute",
       "kind": "sign",
       "cells": [
+        [
+          32,
+          13
+        ],
         [
           33,
           13
@@ -2920,14 +2527,21 @@
       "approach": [
         {
           "cell": [
+            32,
+            12
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
             33,
             12
           ],
           "facing": "s"
         }
       ],
-      "placement": "mail_chute",
-      "label": "Mail chute"
+      "placement": "courier_chute",
+      "label": "Courier chute"
     },
     {
       "id": "desk_hub_west",
@@ -3083,24 +2697,17 @@
       "cells": [
         [
           13,
-          12
+          14
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            12,
-            12
-          ],
-          "facing": "e"
-        },
-        {
-          "cell": [
             13,
             13
           ],
-          "facing": "n"
+          "facing": "s"
         }
       ],
       "placement": "artifact_carbon_copy_a",
@@ -3197,6 +2804,14 @@
       "kind": "terminal",
       "cells": [
         [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ],
+        [
           10,
           2
         ],
@@ -3227,7 +2842,8 @@
       "requires": [
         "level:records-08"
       ],
-      "label": "Ledger terminal"
+      "label": "Ledger terminal",
+      "placement": "ledger_table"
     },
     {
       "id": "folio_ledger_desk",
@@ -3264,25 +2880,18 @@
       "kind": "artifact",
       "cells": [
         [
-          8,
-          5
+          13,
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            9,
-            5
+            13,
+            3
           ],
-          "facing": "w"
-        },
-        {
-          "cell": [
-            8,
-            4
-          ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_margin_stamp",
@@ -3362,7 +2971,8 @@
       "requires": [
         "level:records-09"
       ],
-      "label": "Long report terminal"
+      "label": "Long report terminal",
+      "placement": "report_table"
     },
     {
       "id": "upper_desk",
@@ -3407,24 +3017,17 @@
       "cells": [
         [
           15,
-          4
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            16,
-            4
-          ],
-          "facing": "w"
-        },
-        {
-          "cell": [
             15,
             3
           ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_uncut_index",
@@ -3594,25 +3197,18 @@
       "kind": "artifact",
       "cells": [
         [
-          30,
-          9
+          32,
+          2
         ]
       ],
       "marker": "none",
       "approach": [
         {
           "cell": [
-            31,
-            9
+            32,
+            3
           ],
-          "facing": "w"
-        },
-        {
-          "cell": [
-            30,
-            8
-          ],
-          "facing": "s"
+          "facing": "n"
         }
       ],
       "placement": "artifact_noor_annotation",
@@ -3703,7 +3299,7 @@
       "id": "mira",
       "character": "mira",
       "start_cell": [
-        32,
+        31,
         13
       ],
       "facing": "e",
@@ -4304,7 +3900,7 @@
           14
         ],
         "to": [
-          2,
+          1,
           3
         ],
         "cells": [
@@ -4381,32 +3977,32 @@
             9
           ],
           [
+            9,
+            8
+          ],
+          [
             8,
-            9
+            8
           ],
           [
             7,
-            9
+            8
           ],
           [
             6,
-            9
+            8
           ],
           [
             5,
-            9
+            8
           ],
           [
             4,
-            9
+            8
           ],
           [
             3,
-            9
-          ],
-          [
-            2,
-            9
+            8
           ],
           [
             2,
@@ -4431,9 +4027,13 @@
           [
             2,
             3
+          ],
+          [
+            1,
+            3
           ]
         ],
-        "label": "Hub to the elevator arrival cell through the repair door."
+        "label": "Hub to the elevator arrival cell through the open repair door (row 8), then north along the annex."
       }
     ],
     "mira": {
@@ -4488,7 +4088,7 @@
     {
       "id": "from_elevator",
       "cell": [
-        2,
+        1,
         3
       ],
       "facing": "s",

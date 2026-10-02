@@ -131,7 +131,7 @@
   ],
   "medal_rule": "clean baseline then personal target, never gates story",
   "reward_patch": "night_courier",
-  "desk_decoration": "none for this route; the reward is the Night Courier patch and Mira's optional final story scene in the Executive Floor epilogue",
+  "desk_decoration": "`mira_decor_night_courier` beside the Night Courier patch; Mira's optional final story scene in the Executive Floor follows.",
   "map_design_note": "Loop: break room, vestibule keypad, lit route B, window gallery recall desk, ledger, service door, corridor south, break room. The return leg uses the corridor, so it never crosses the silent stations. Every checkpoint is on a cell with a free 2x2 block. The first run records a baseline with no clock shown; the medal only counts clean runs.",
   "baseline_note": "The first clean run records the route duration as the baseline and earns the Night Courier patch; it has no countdown. Later runs show an optional personal target.",
   "terminal_scenes": [

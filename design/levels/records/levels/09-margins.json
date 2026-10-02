@@ -372,18 +372,13 @@
       "then": [
         {
           "op": "set_state",
-          "target": "ledger_lamp_w",
-          "state": "on"
-        },
-        {
-          "op": "set_state",
-          "target": "ledger_lamp_e",
-          "state": "on"
+          "target": "ledger_table",
+          "state": "after"
         },
         {
           "op": "set_state",
           "target": "ladder_gate",
-          "state": "moved"
+          "state": "open"
         },
         {
           "op": "unlock_gate",
@@ -410,20 +405,20 @@
     }
   ],
   "state_changes": {
-    "before": "The ledger table is dim, its two end lamps are dark and the rolling ladder is parked across the gallery doorway.",
+    "before": "The ledger table is dim, its two end lamps are dark and the rolling ladder stands closed across the gallery doorway.",
     "after": "A beam of daylight crosses the table, both end lamps are lit, the ladder has rolled aside and Noor has moved up to the gallery.",
     "visible_changes": [
       {
         "kind": "placement_state",
-        "target": "ledger_lamp_w",
-        "from": "off",
-        "to": "on"
+        "target": "ledger_table",
+        "from": "before",
+        "to": "after"
       },
       {
         "kind": "placement_state",
         "target": "ladder_gate",
-        "from": "parked",
-        "to": "moved"
+        "from": "closed",
+        "to": "open"
       },
       {
         "kind": "light_state",

@@ -21,23 +21,23 @@
     {
       "id": "enter-elevator",
       "cell": [
-        27,
-        16
+        13,
+        3
       ],
-      "facing": "w",
+      "facing": "s",
       "from": {
         "district": "executive",
         "link": "link.elevator.executive"
       },
-      "note": "Arrival from the Executive elevator stop (east wall, south-east). The stop opens with the Night seal."
+      "note": "Arrival from the Executive elevator stop (north wall, centre). The stop opens with the Night seal."
     }
   ],
   "exits": [
     {
       "id": "exit-elevator",
       "cell": [
-        27,
-        16
+        13,
+        3
       ],
       "to": {
         "district": "executive",
@@ -48,44 +48,52 @@
   ],
   "elevator": {
     "cell": [
-      28,
-      15
+      12,
+      0
     ],
-    "facing": "w",
+    "facing": "s",
     "placement": "elevator",
     "link": "link.elevator.executive",
     "arrival_cell": [
-      27,
-      16
+      13,
+      3
     ],
-    "note": "Door faces west into the atrium; the call panel is at (28,14)."
+    "note": "North-wall 3x3 module at the centre of the north wall (x 12-14, lit mat on row 2) with its call panel at (15,0); the arrival looks down the atrium onto the tree."
   },
   "light_states": [
     {
       "id": "ls-20-name-repaired",
-      "description": "The Name repaired: the five identical blank nameplates on the planter become distinct plates with their own marks.",
+      "description": "The Name repaired: the five identical blank nameplates on the planter become distinct plates with their own marks. The wall plate in the Name room shows the original name.",
       "applies_when": "tr-20-name-repaired",
       "changes": [
         {
           "placement": "atrium_nameplates",
+          "state": "after"
+        },
+        {
+          "placement": "branch_name",
           "state": "after"
         }
       ]
     },
     {
       "id": "ls-20-route-repaired",
-      "description": "The Route repaired: the copper floor lines straighten into three clean paths with chevrons to the final door.",
+      "description": "The Route repaired: the copper floor lines straighten into three clean paths with chevrons to the final door. The detour loop in the Route room becomes one line with chevrons.",
       "applies_when": "tr-20-route-repaired",
       "changes": [
         {
           "placement": "atrium_inlay",
+          "state": "after"
+        },
+        {
+          "placement": "branch_route",
           "state": "after"
         }
       ]
     },
     {
       "id": "ls-20-count-repaired",
-      "description": "The Count repaired: window views resolve into real daylight, a warm pool of light reaches the planter and the four corner cubes become soft shrubs.",
+      "description": "The Count repaired: window views resolve into real daylight, a warm pool of light reaches the planter and the four corner cubes become soft shrubs. The tally board in the Count room shows the corrected total.",
       "applies_when": "tr-20-count-repaired",
       "changes": [
         {
@@ -99,14 +107,6 @@
         },
         {
           "placement": "win_b_0",
-          "state": "daylight"
-        },
-        {
-          "placement": "win_a_1",
-          "state": "daylight"
-        },
-        {
-          "placement": "win_b_1",
           "state": "daylight"
         },
         {
@@ -150,6 +150,10 @@
           "placement": "shaft_e",
           "state": "daylight",
           "note": "warm shaft"
+        },
+        {
+          "placement": "branch_count",
+          "state": "after"
         }
       ]
     },
@@ -411,9 +415,9 @@
     }
   ],
   "notes": [
-    "Layout: elevator (south-east) -> south ring (y 13-14) -> three steps into the well where Vale stands. The final door is on the east wall (rows 9-11) and is visible from the elevator arrival in the same camera view.",
+    "Layout: elevator (north wall, centre) -> south ring (y 13-14) -> three steps into the well where Vale stands. The final door is on the east wall (rows 9-11) and is first seen on the walk around the ring.",
     "Branches (any order): The Name (north-west room, branch x 4-5), The Route (north-east room, branch x 24-25), The Count (south room, branch x 13-14). Each is hub -> short branch -> task room -> back to the ring.",
-    "Vale softening is by number of repairs: states repairs-1/2/3 (poses stand in for the undrawn states 2 and 3). Rules: an npc op never moves an NPC to an earlier state; a dialogue plays at most once per save; when several dialogues match an interaction, the one with the most trigger atoms wins.",
+    "Vale softening is by number of repairs: states repairs-1/2/3 (drawn sets vale_s1_*, vale_s2_*, vale_s3_*). Rules: an npc op never moves an NPC to an earlier state; a dialogue plays at most once per save; when several dialogues match an interaction, the one with the most trigger atoms wins.",
     "Arrival order of the coworkers: Ivo and Noor after the first repair, Hal and Ada after the second, Mira after the third as the final door opens. At its arrive cell an NPC is drawn as a silhouette; at its gather cell, as the sprite.",
     "Mira has no route here. Her optional final story scene is the interaction int-mira-final with dialogue mira-final-1/2, available once the epilogue is reached and all six courier routes are cleared (see requires on the interaction).",
     "The atrium landmark is split into registered parts at one cell so each repair swaps one part (nameplates, floor lines, pots plus daylight pool); the kit landmark atrium_tree lists the same parts as its before and after states."

@@ -10,26 +10,26 @@ Initial state, every gate closed. `#` blocked, `.` walkable. Letters mark intera
     0         1         2         3     
     012345678901234567890123456789012345
  0  ####################################
- 1  ####################################
- 2  ..EEss####TTRR#####TT###TT####.TT.##
- 3  .....####....##.............DD....##
- 4  RR....##......#a............DD....##
- 5  #.....##a.....#.RR..........DDRR..##
+ 1  EEEE################################
+ 2  ....ss##TTTTRa#a###TT###TT####.Ta.##
+ 3  .....###......#.............DD....##
+ 4  RR....##......#.............DD....##
+ 5  #.....##......#.RR..........DDRR..##
  6  .....P#####DD#########DD######.#..##
- 7  ......DD......##...........###....##
+ 7  ......DD.......#............##....##
  8  ......DD....................##....##
- 9  ......DD.........#.######...##a..###
-10  .....####..........#####....###DD###
+ 9  ......##.........#.######...##...###
+10  .....###...........#####....###DD###
 11  ##########R..##....##N##...###....##
-12  #########....a#..#.##.###.....#...##
-13  ########..g...#.................Ms##
-14  ########....TT#............#......##
+12  #########.....#..#.##.###.....#...##
+13  ##########g...#................Mss##
+14  ########....Ta#...................##
 15  ##########TT###RR#......#RR.###...##
 ```
 
 Regions: annex x 0-5, y 2-10; margin room x 8-13, y 2-5; foyer and hub x 8-27, y 7-15 (circular desk x 19-23, y 9-12); log room x 8-13, y 12-15; gallery x 15-27, y 2-5; review chamber x 30-33, y 2-9; Mira's chute pocket x 30-33, y 11-15.
 
-- **Annex** (x 0-5, y 2-10): the entrance on the open west edge (rows 8-9), the elevator on the north wall, a Pace directory, a courier desk, and the repair door's address panel at (5,6). The repair door is the east wall of the annex at (6-7, 7-9), on the entrance route, so nobody reaches the archive without passing it.
+- **Annex** (x 0-5, y 2-10): the entrance on the open west edge (rows 8-9), the elevator module on the north wall (x 0-2, lit mat on row 2) with its call panel at (3,0), a Pace directory, a courier desk, and the repair door's address panel at (5,6). The repair door (kit `repair_door_*`, 2 x 2) is the east wall of the annex at (6-7, 7-8) with a wall sill at (6-7, 9), on the entrance route, so nobody reaches the archive without passing it.
 - **Hub** (x 8-27, y 7-15): the foyer then the ring around the circular desk (landmark `archive_desk` at (19,9), clerk space (21,11)). The desk's four ring lamps and the gaps between prop rows keep every ring passage two cells wide.
 - **Branches** follow hub, short branch, task room, changed return route: the log room (08) is a three-cell-deep branch south of the foyer through a two-cell gap at (11-12,11); the margin room (09) opens north of the foyer once the cabinets square up at (11-12,6); the gallery (10) opens above the hub where the ladder rolls aside at (22-23,6); the review chamber (11) is the far-east room behind the door at (28-29,3-5).
 - **Loop.** The sliding file wall at (29-34,10) closes the south of the review chamber; Mira's chute pocket (x 30-33, y 11-15) is on the other side and is also open to the hub through (28-29, 12-14). The wall is visible from the pocket from the first visit and from the chamber when the player arrives, so players remember it. After level 11 it opens a two-cell corridor at (31-32,10).
@@ -57,19 +57,19 @@ Every route cell has a free 2 x 2 block; the validator replays this. Gate cells 
 | --- | --- | --- | --- | --- |
 | `return_to_entrance` | (31,3) | (0,8) | - | 36 |
 | `file_wall_loop` | (31,3) | (32,12) | records-11 | 10 |
-| `hub_to_elevator` | (21,14) | (2,3) | - | 30 |
+| `hub_to_elevator` | (21,14) | (1,3) | - | 32 |
 
-The elevator at (2,2) is reachable from the hub through the open repair door; the way home to Orientation is the open west edge from the first minute. A locked gate always shows its blocker in place (door, parked ladder, crooked cabinets, file wall) and a visible route back.
+The elevator (arrival cell (1,3), mat row 2) is reachable from the hub through the open repair door along row 8; the way home to Orientation is the open west edge from the first minute. A locked gate always shows its blocker in place (door, closed ladder, crooked cabinets, file wall) and a visible route back.
 
 ## Before and after (levels.md 07 to 11)
 
 | After level | Visible changes |
 | --- | --- |
-| 07 | Repair door `repair_door` closed to open; Noor steps out to (21,13); shelf-end and chute lamps wake; Mira appears beside the chute. |
-| 08 | Log cabinets `log_cabinet` offset to aligned labels; ledger mark `archive_ledger_mark` rejected to accepted; margin-room cabinets `margin_gate` misaligned to aligned; Noor stamps in the margin room. |
-| 09 | Ledger lamps off to on; ladder `ladder_gate` parked to moved; Noor moves to the gallery. |
-| 10 | Review chamber door closed to open; upper lamp on; Noor waits in the chamber. |
-| 11 | `archive_desk` landmark before to after (coral, sea-blue and linen folders, ring pool, four pulsing ring lamps, stamped ledger); `file_wall` closed to open; chute active; Noor fully upright at the hub; Systems elevator stop opens. |
+| 07 | Repair door `repair_door` closed to open; Noor steps out to (21,13); four shelf-end lights and the chute-pocket lamp wake; Mira appears beside the courier chute. |
+| 08 | Log cabinets `log_cabinet` offset to aligned labels; ledger mark `archive_ledger_mark` rejected to accepted; margin-room cabinets `margin_gate` misaligned to aligned; log-room folders `log_folders` drift to aligned; Noor stamps in the margin room. |
+| 09 | Ledger table `ledger_table` before to after (sign-offs at both margins, both end lamps lit); ladder `ladder_gate` closed to open; Noor moves to the gallery. |
+| 10 | Review chamber door closed to open; upper lamp on; `report_table` before to after (the original report beside the summary); Noor waits in the chamber. |
+| 11 | `archive_desk` landmark before to after (coral, sea-blue and linen folders, ring pool, four pulsing ring lamps, stamped ledger); `file_wall` closed to open; `courier_chute` idle to ready; Noor fully upright at the hub; Systems elevator stop opens. |
 
 Noor's posture ladder uses the three-frame `posture_upright` set once per cabinet step: stooped (frame 0) at the start and through 07, one step less stooped after 09, base idle after 11.
 
@@ -77,31 +77,31 @@ Noor's posture ladder uses the three-frame `posture_upright` set once per cabine
 
 | Id | When | Changes |
 | --- | --- | --- |
-| `shelf_ends_awake` | 07 | five lamps off to on |
-| `margin_lamps_lit` | 09 | two ledger lamps off to on, plus the window beam already falling on the table |
+| `shelf_ends_awake` | 07 | four `shelf_end_light` placements and the pocket lamp, off to on |
+| `margin_lamps_lit` | 09 | `ledger_table` before to after (both end lamps lit), plus the window beam already falling on the table |
 | `upper_desk_lit` | 10 | upper desk lamp off to on |
 | `ring_pool_lit` | 11 | landmark `archive_desk` after: ring glow on the floor, four ring lamps pulse |
 
-Gold is a UI marker colour and never appears in art, so shelf-end and ring lights use the lamp and the linen glow steps (kit decisions 2 and 10).
+Gold is a UI marker colour and never appears in art, so shelf-end lights are linen and peach and the ring lights use the lamp glow steps (kit decisions 2 and 10).
 
 ## Keyboard-inset conflicts
 
 The keyboard inset covers logical x 4-147, y 103-176 at x4 in the bottom-left. The camera follows the avatar (feet at screen 160,100) and clamps at the map edge, so only the bottom-left corner of the map can put the avatar or target in the inset.
 
 - The entrance `from_orientation` (0,8) and the annex route are above row 11, so the camera is not clamped to the bottom-left there; no required interaction is placed in the bottom-left 9 x 5 cells of the map. Log-room cells at x 8-9 and y 12-15 are dead space: the terminals, the cabinet recall and the artifact are at x 10 or more.
-- Interactions whose first approach cell or target falls inside the inset (documented, not required for the main route unless noted):
-  - `repair_door`: approach (5,8), target overlaps the inset; avatar feet at screen 88,100. The door is passive (it opens when the level completes and the player never needs to read it), the lowest row of the door sprite sits behind the inset when the avatar stands at the approach cell, and the address panel `door_panel` at (5,6), where the level is actually played, is clear.
+- Interactions whose first approach cell or target falls inside the inset: none after the wave 2 re-layout. The repair door is now a 2 x 2 piece at rows 7-8 and its approach cell (5,8) keeps the target above the inset; the address panel `door_panel` at (5,6) is where the level is played. The elevator module sits in the top-left of the map, whose camera clamp is at the top, so the arrival cell (1,3) is clear.
 
 Each task scene is a DOM overlay and the diagram sits in the inset, so the world only has to keep the avatar and the target clear; the annex and foyer routes do.
 
 ## Decisions
 
 1. **Size and shape.** 36 x 16 (576 cells), a little over two 20 x 12 screens, so the camera needs one horizontal scroll and the gallery sits directly above the hub as levels.md asks.
-2. **One door per progress step.** The kit has two gate pieces (`archive_door`, `file_wall`). The repair door (07) and the review chamber door (10) reuse `archive_door`, the file wall closes the loop (11), and the cabinet gate (08) and ladder (09) are art gaps with open and closed states.
+2. **One door per progress step.** The kit has four gate pieces: `repair_door` (07), `archive_door` (the review chamber, 10), `rolling_ladder` (09) and `file_wall` (11). Only the cabinet gate (08) is still an art gap with open and closed states.
 3. **Collision is the initial state.** Gates start blocked and are listed with the level that opens them; the validator opens them for later levels.
 4. **Noor follows the work.** She stays at the hub for 07 and 08, stamps in the margin room, waits in the gallery for 10 and in the chamber for 11, and returns upright to the hub, so her unimpressed line is delivered where Pace's claim is. Her single hub conversation interaction exists for the start position only.
 5. **Landmark.** The ring desk is placed once with the kit's two states, before and after. Level 08's accepted mark is a small overlay gap that crops from the kit's ledger parts, so the landmark after state still means level 11 only.
 6. **Hint lines** are copied from levels.md in the three-part hint grammar; every hint line uses the neutral portrait. The portrait key for Noor's signature is `unimpressed` (key `noor_unimpressed`).
 7. **Control + D.** Caps+X sends Control + D, which the panel's editor treats as forward delete; the feedback line names Control + D as the observed output.
 8. **N21 coverage.** levels.md lists N21 under both 06 and 11; Records 11 carries all three phases for it so coverage holds either way.
-
+9. **Wave 2 reconciliation.** Kit names adopted: `repair_door_*`, `shelf_end_light_*`, `courier_chute_idle/_ready` (replaces `mail_chute_*`), `folder_rack_*`, `ledger_table_*`, `report_table_*`, `rolling_ladder_closed/_open` (replaces `parked/moved`). The annex elevator is a north-wall 3 x 3 module with a call panel; the repair door is the kit's 2 x 2 piece, so its sill row (6-7, 9) is wall and the backtrack to the elevator runs along row 8. The ledger table's own end lamps replace the two lamp placements; the optional artifacts are the kit's overlay props placed on furniture (Carbon copy A on the log terminal desk at (13,14), Margin stamp on the second margin-room desk at (13,2), Uncut index on a gallery shelf at (15,2), Noor's annotation on the review terminal at (32,2)); the ledger mark overlay sits at the landmark origin plus (26,4) px, cell (20,9) offset [10,4];  the ladder is a four-cell piece that replaces a shelf on each side of the two-cell opening. Mira stands at (31,13) beside the two-cell chute at (32-33,13).
+10. **Glitch.** One folded-form glitch in the log room at level 08 (`form`, palette `standard`, behaviour `drift`, the Records first glitch; level 07 holds none). The level schema has no `behaviour` key, so the behaviour is written in the glitch `note`; see the producer handoff.

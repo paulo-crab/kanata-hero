@@ -48,38 +48,38 @@
   ],
   "elevator": {
     "cell": [
-      2,
-      2
+      0,
+      0
     ],
     "facing": "s",
     "placement": "elevator",
     "link": "link.elevator.records",
     "arrival_cell": [
-      2,
+      1,
       3
     ],
-    "note": "Records stop of the shared elevator, in the annex before the repair door, so the elevator always returns to unlocked districts. The Systems stop appears after level 11."
+    "note": "Records stop of the shared elevator, a north-wall module in the annex (x 0-2) with its call panel at (3,0), before the repair door, so the elevator always returns to unlocked districts. The Systems stop appears after level 11."
   },
   "light_states": [
     {
       "id": "shelf_ends_awake",
-      "description": "Shelf-end lamps and the chute lamp wake as the repair door opens (levels.md 07: shelf-end lights change).",
+      "description": "Four shelf-end lights and the chute-pocket lamp wake as the repair door opens (levels.md 07: shelf-end lights change).",
       "applies_when": "t07-door-open",
       "changes": [
         {
-          "placement": "lamp_foyer_nw",
+          "placement": "shelf_light_gallery_e",
           "state": "on"
         },
         {
-          "placement": "lamp_north_ne",
+          "placement": "shelf_light_log_w",
           "state": "on"
         },
         {
-          "placement": "lamp_foyer_sw",
+          "placement": "shelf_light_foyer_n",
           "state": "on"
         },
         {
-          "placement": "lamp_south_e",
+          "placement": "shelf_light_margin_e",
           "state": "on"
         },
         {
@@ -90,16 +90,12 @@
     },
     {
       "id": "margin_lamps_lit",
-      "description": "Both ends of the ledger light (levels.md 09: correct margins light both ends).",
+      "description": "Both ends of the ledger table light (levels.md 09: correct margins light both ends); the ledger table's after state carries both end lamps.",
       "applies_when": "t09-complete",
       "changes": [
         {
-          "placement": "ledger_lamp_w",
-          "state": "on"
-        },
-        {
-          "placement": "ledger_lamp_e",
-          "state": "on"
+          "placement": "ledger_table",
+          "state": "after"
         }
       ]
     },

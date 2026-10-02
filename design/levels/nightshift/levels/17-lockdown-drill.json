@@ -583,6 +583,21 @@
           "state": "open"
         },
         {
+          "op": "set_state",
+          "target": "reader_vestibule",
+          "state": "open"
+        },
+        {
+          "op": "set_state",
+          "target": "exit_sign",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "break_counter",
+          "state": "warm"
+        },
+        {
           "op": "unlock_gate",
           "gate": "gate-vestibule"
         },
@@ -637,6 +652,27 @@
         "kind": "gate",
         "target": "gate-vestibule",
         "to": "open"
+      },
+      {
+        "kind": "placement_state",
+        "target": "reader_vestibule",
+        "from": "locked",
+        "to": "open",
+        "note": "the card reader beside the security glass turns from locked to open"
+      },
+      {
+        "kind": "placement_state",
+        "target": "exit_sign",
+        "from": "dim",
+        "to": "lit",
+        "note": "the exit sign over the vestibule lights: the back exit stays clear"
+      },
+      {
+        "kind": "placement_state",
+        "target": "break_counter",
+        "from": "dim",
+        "to": "warm",
+        "note": "kit break_room set: the counter's lamp wakes and its warm pool settles on the counter top"
       }
     ]
   },

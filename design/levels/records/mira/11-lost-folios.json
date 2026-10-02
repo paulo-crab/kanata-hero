@@ -61,7 +61,7 @@
       "task": "Deliver the three folders at the mail chute.",
       "scene_id": "records-folios-s4-deliver",
       "correction": "immediate, no penalty",
-      "interaction": "mail_chute"
+      "interaction": "courier_chute"
     }
   ],
   "destinations": [
@@ -72,7 +72,7 @@
   ],
   "medal_rule": "clean baseline then personal target, never gates story",
   "reward_patch": "archive_loop",
-  "desk_decoration": "A desk folder.",
+  "desk_decoration": "`mira_decor_archive_folder`: a coral desk folder with a lit tab and a sheet showing.",
   "map_design_note": "The full archive loop: pocket, up through the opened file wall into the review chamber, east door, gallery, down through the ladder gap, into the margin room, back to the foyer, and home to the chute. Every leg is a route the player has walked once; the file wall is the new piece that closes the circle.",
   "terminal_scenes": [
     {
