@@ -1,6 +1,6 @@
 """Ivo portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. Softer, older head (a wide, rounded jaw), silver hair in
+Status: Approved by the player 2026-10-02. Softer, older head (a wide, rounded jaw), silver hair in
 clusters with side tufts, the broadest shoulders in the cast, the tablet corner at the lower right.
 Persona: precise and polite, scripted, then questioning. Small oval eyes, perfectly level fine brows,
 a narrow tidy smile with a laugh line either side. Signature: ivo_laugh (the unscripted laugh).

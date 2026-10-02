@@ -1,6 +1,6 @@
 # Mira — courier
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [MIRA_SPEC.md](../../art-direction/cast/MIRA_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `mira_grin`) approved by the player 2026-10-02. The pixel spec [MIRA_SPEC.md](../../art-direction/cast/MIRA_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -66,15 +66,18 @@ At 16×24 each patch is a **1–2 px cluster** on the jacket or bag flap, so pat
 | Interact | Handing over or sorting mail |
 | Reaction ×2 | Reusable. **Assumption:** (a) playful/pleased on a clean run, (b) confiding/serious for the scene where she admits keeping route copies |
 
-## Portrait (48×48)
+## Portrait (48×48, chibi)
 
-**Assumption:** expressions follow her story beats, since none are named:
+Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny shoulders, flat shading, dot eyes. Pixel choices: [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md); atlas keys: `art-direction/portraits/portraits-atlas.json`. **When each face appears** is owned by the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map); this table mirrors it, and `levels.md` wins if they differ. A line uses neutral unless a cue says otherwise, including every hint line.
 
-1. Playful grin (default)
-2. Confiding / earnest (the erased-routes admission)
-3. Proud (after a clean baseline; shows current patches)
+| Atlas key | Reads as | Story cue |
+| --- | --- | --- |
+| `mira_neutral` | Ready to go | Offering any route or a repeat run |
+| `mira_concerned` | Earnest (glances away) | Lost Folios, sharing the copy she kept (the erased-routes admission); Lights-Out Delivery, asking the player to keep the safe route open |
+| `mira_pleased` | Proud | Each patch, earned on a route's first clean baseline; her final story scene |
+| `mira_grin` | Wink and tongue-out grin (signature) | 05 "one useful hand" joke; Morning Mail introduction |
 
-Coral strap visible at the portrait's shoulder.
+Patched variants `mira_patchK_<expression>` (K = 1–6) replace the base row once patch K is earned.
 
 ## Placement and states
 
@@ -92,7 +95,7 @@ She must be visible from each district's main route. Her conversation marker use
 
 1. ~~Panel sides, strap direction, and hair puff follow the scale-test placeholder.~~ **Decided 2026-10-02:** the green panel is on her right, following the text above rather than the retired placeholder. The strap runs from her right shoulder to her left hip. The puff is fixed to her own left.
 2. ~~Shoes in coral are a placeholder choice.~~ **Decided 2026-10-02:** the shoes use the ink ramp, so coral appears only on the bag and strap. This does not restrict future patch colours.
-3. The reaction and portrait sets above are derived from story beats.
+3. The reaction and portrait sets above are derived from story beats; portrait story cues now live in the `levels.md` Portrait cue map.
 
 ## Open questions
 

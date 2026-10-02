@@ -1,6 +1,6 @@
 # Hal — systems technician
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [HAL_SPEC.md](../../art-direction/cast/HAL_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `hal_puzzled`) approved by the player 2026-10-02. The pixel spec [HAL_SPEC.md](../../art-direction/cast/HAL_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -54,11 +54,16 @@ Keep the orange on the tool roll, so it doesn't read as gold "opened path".
 | **Puzzled** reaction | Head tilt / scratch | Cast table |
 | Pull down false panel | One-shot, reveals the Night Shift elevator stop | Level 16 |
 
-## Portrait (48×48)
+## Portrait (48×48, chibi)
 
-1. **Anxious** (before the Alarm Glyphs fix) — named in level 14
-2. **Focused** (after) — named in level 14
-3. Puzzled. **Assumption:** matches the named reaction pose.
+Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny shoulders, flat shading, dot eyes. Pixel choices: [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md); atlas keys: `art-direction/portraits/portraits-atlas.json`. **When each face appears** is owned by the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map); this table mirrors it, and `levels.md` wins if they differ. A line uses neutral unless a cue says otherwise, including every hint line.
+
+| Atlas key | Reads as | Story cue |
+| --- | --- | --- |
+| `hal_neutral` | Focused, practical | Default; Quiet Alarm; the end of 13 (sits instead of crouching) |
+| `hal_concerned` | Anxious (wide eyes, sweat bead) | 13 before the nightly run; the start of 14 |
+| `hal_pleased` | Settled focus (eyes open) | The 14 fix; the 16 seal |
+| `hal_puzzled` | Puzzled (signature) | 12 relocated keypad; 15 formula reveals the detour score on a display Hal built |
 
 ## Placement and states
 
@@ -66,7 +71,7 @@ Keep the orange on the tool roll, so it doesn't read as gold "opened path".
 | --- | --- |
 | Level 12 | At the routing machine; asks for IDs as printed |
 | Level 13 | Crouch → sit on stool |
-| Level 14 | Portrait anxious → focused |
+| Level 14 | Portrait anxious → focused (`hal_concerned` → `hal_pleased`) |
 | Level 16 | Pulls down a false panel; Systems seal |
 | Level 20 | Arrives at the atrium (silhouette first, then sprite) |
 

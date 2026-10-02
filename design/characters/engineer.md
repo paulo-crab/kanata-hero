@@ -1,6 +1,6 @@
 # Engineer — player avatar
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the player; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [GATE1_ENGINEER_SPEC.md](../../art-direction/gate1/GATE1_ENGINEER_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the player; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased) approved by the player 2026-10-02. The pixel spec [GATE1_ENGINEER_SPEC.md](../../art-direction/gate1/GATE1_ENGINEER_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -62,15 +62,17 @@ The approved overhead concept (08) shows small, readable people with dark hair c
 
 Camera keeps the avatar slightly below centre and clear of the keyboard inset, which covers about the bottom third of the left side.
 
-## Portrait (48×48)
+## Portrait (48×48, chibi)
 
-Expression variants. **Assumption:** the docs ask for "a few" but name none for the Engineer, so this set follows from the two named reactions:
+Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny shoulders, flat shading, dot eyes. Pixel choices: [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md); atlas keys: `art-direction/portraits/portraits-atlas.json`. **When each face appears** is owned by the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map); this table mirrors it, and `levels.md` wins if they differ. A line uses neutral unless a cue says otherwise, including every hint line.
 
-1. Neutral / observant (default)
-2. Concerned
-3. Satisfied
+| Atlas key | Reads as | Story cue |
+| --- | --- | --- |
+| `engineer_neutral` | Observant (baseline; left brow a pixel high) | Task notes and journal entries |
+| `engineer_concerned` | Concerned | Inspecting a tampering artifact: Unissued badge, Training card (first printing), First route receipt, Carbon copy A, Uncut index, ID envelope, Alarm strip, Scoring proof |
+| `engineer_pleased` | Satisfied | Each seal (06, 11, 16, 19, 20); the Ada's shift book and Public audit copy artifacts |
 
-The portrait must use the same customization ramps as the world sprite.
+No signature expression (none specified). The portrait uses the customization slot ramps, so it recolors with the sprite.
 
 ## Gate 1 checklist
 

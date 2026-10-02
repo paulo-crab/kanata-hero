@@ -1,6 +1,6 @@
 # Vale — executive liaison
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the director; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `vale_softened`) approved by the player 2026-10-02. The pixel spec [VALE_SPEC.md](../../art-direction/cast/VALE_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -60,13 +60,18 @@ Four pose states, one per repaired branch (*The Name*, *The Route*, *The Count*,
 | Interact | Receiving or releasing the audit |
 | Reaction ×2 | **Assumption:** (a) composed; (b) unsettled on seeing raw evidence |
 
-## Portrait (48×48)
+## Portrait (48×48, chibi)
 
-**Assumption:** expressions follow their arc:
+Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny shoulders, flat shading, dot eyes. Pixel choices: [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md); atlas keys: `art-direction/portraits/portraits-atlas.json`. **When each face appears** is owned by the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map); this table mirrors it, and `levels.md` wins if they differ. A line uses neutral unless a cue says otherwise, including every hint line.
 
-1. Composed / rigid (default)
-2. Unsettled (evidence shown)
-3. Resolved (releases the audit)
+| Atlas key | Reads as | Story cue |
+| --- | --- | --- |
+| `vale_neutral` | Composed, rigid (no blush) | The 20 opening and every branch line before the first repair (state 0) |
+| `vale_concerned` | Unsettled | Each time a repaired branch's evidence beats Pace's incomplete summary |
+| `vale_pleased` | Restrained almost-smile | After the second repair (state 2) |
+| `vale_softened` | First real softening (signature) | After the third repair (state 3); the epilogue audit release; Names on the Wall |
+
+Cues follow the **number of repairs completed, not which branch**, because the player picks the order. They match the sprite's softening states.
 
 ## Placement and states
 

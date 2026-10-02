@@ -1,6 +1,6 @@
 """Vale portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. A squarer, stiffer head (flat top, flat chin), the only
+Status: Approved by the player 2026-10-02. A squarer, stiffer head (flat top, flat chin), the only
 flat, square shoulders in the cast, graphite hair with a cowlick and a skin-coloured side part, the
 green tie and the copper badge. Persona: rigid, wants a defensible audit once shown the evidence, and
 softens. Small squared eyes, straight brows, a dead-straight mouth and no blush at rest; pleased is

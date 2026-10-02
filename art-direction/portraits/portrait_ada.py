@@ -1,6 +1,6 @@
 """Ada portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. A soft round head under a warm-white cloud of hair (three
+Status: Approved by the player 2026-10-02. A soft round head under a warm-white cloud of hair (three
 scalloped crown bumps with ink notches), the moss coat with a skin V neck, and the lantern at the
 lower right. Persona: direct, kind, calm. Heavy shaded upper lids over a steady gaze, low even brows,
 a straight serene mouth that only smiles when she is pleased. No signature expression beyond the three

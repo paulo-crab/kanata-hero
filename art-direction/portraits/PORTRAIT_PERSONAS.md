@@ -1,6 +1,6 @@
 # Portrait personas (chibi direction C)
 
-**Status:** Candidate, pending director review. Player decision 2026-10-02: the first portraits were "too serious, too real", so the cast moves to the **Chibi icon** direction, and "each person should have their own emotion/reactions, so they have personality". This sheet records, per character, the physical cues, the emotional profile taken from the docs, and the concrete pixel choices that make their neutral, concerned and pleased looks differ. The code is `chibi.py` plus `portrait_<name>.py`; the rules are in [PORTRAIT_RULES.md](PORTRAIT_RULES.md).
+**Status:** Approved by the player 2026-10-02. Player decision 2026-10-02: the first portraits were "too serious, too real", so the cast moves to the **Chibi icon** direction, and "each person should have their own emotion/reactions, so they have personality". This sheet records, per character, the physical cues, the emotional profile taken from the docs, and the concrete pixel choices that make their neutral, concerned and pleased looks differ. The code is `chibi.py` plus `portrait_<name>.py`; the rules are in [PORTRAIT_RULES.md](PORTRAIT_RULES.md).
 
 **Sources:** `design/characters/{engineer,ivo,mira,noor,hal,ada,vale}.md`, `design/characters/README.md`, `levels.md` (cast table and the levels each character appears in), `docs/game-design.md` ("Characters and UI"). Where a doc says nothing the sheet says "not specified" and picks a mild, kind default. Nobody is mean or hostile.
 
@@ -35,7 +35,7 @@ Head 34-36 px wide and 32-36 px tall; tiny shoulders in rows 38-47; flat shading
 
 **(a) Physical.** The softest, oldest head: a wide, rounded jaw (rows 30-36 stay wide). Silver hair in three clusters with ink notches on top, side tufts that bulge past the head, a toothed fringe with a centre forelock. The widest shoulders in the cast (cols 5-42), terracotta cardigan with the ochre strip, the tablet at the lower right.
 
-**(b) Emotional profile.** "Precise. Believes clear instructions help people; begins to question the repeated onboarding scripts" (ivo.md). His lines are exact ("To walk to the west desk, you need to press **Left Arrow**"). Greeting wave "becomes an unscripted laugh after the review" (levels.md).
+**(b) Emotional profile.** "Precise. Believes clear instructions help people; begins to question the repeated onboarding scripts" (ivo.md). Their lines are exact ("To walk to the west desk, you need to press **Left Arrow**"). Greeting wave "becomes an unscripted laugh after the review" (levels.md).
 
 **(c) Looks.**
 - Neutral (polite, scripted): small oval eyes on rows 23-25; fine brows exactly level and mirrored on row 20; a narrow tidy smile (`o` at (21,29) and (26,29), cols 22-25 on row 30) with a one-pixel laugh line either side at (19,29) and (28,29). Everything symmetric: it is the script.
@@ -74,7 +74,7 @@ Head 34-36 px wide and 32-36 px tall; tiny shoulders in rows 38-47; flat shading
 
 **(a) Physical.** Compact: the broadest, lowest head (40 px wide, rows 5-36). Sandy mop with three outline-capped crown spikes, a fringe that dips to uneven points, side locks that stop above the ears. Cobalt vest with stone sleeves at both edges, a stone shirt V, a chest pocket on the left. The orange tool roll with two steel tips at the lower right.
 
-**(b) Emotional profile.** "Practical and hands-on; anxious when the system misbehaves, focused once a fix is in sight" (hal.md); portraits "Anxious (before the Alarm Glyphs fix)", "Focused (after)", puzzled. His tells are the brows and the eyes.
+**(b) Emotional profile.** "Practical and hands-on; anxious when the system misbehaves, focused once a fix is in sight" (hal.md); portraits "Anxious (before the Alarm Glyphs fix)", "Focused (after)", puzzled. Their tells are the brows and the eyes.
 
 **(c) Looks.**
 - Neutral (focused, practical): round 4x4 eyes; brows slant in toward the nose (2 px steps on rows 19-20); a short pursed line on row 29 (cols 21-26); blush 4x2.
@@ -104,7 +104,7 @@ Head 34-36 px wide and 32-36 px tall; tiny shoulders in rows 38-47; flat shading
 
 **(c) Looks.**
 - Neutral (composed, rigid): small squared 4x3 eyes; straight 5 px brows on row 20; a dead-level 8 px mouth on row 30; **no blush**.
-- Concerned (unsettled): the eyes widen to round 4x4; the brows pinch up in four steps; the line gives way into a small frown (ends at (21,32) and (26,32)). Still no blush: he is not embarrassed, he is shaken.
+- Concerned (unsettled): the eyes widen to round 4x4; the brows pinch up in four steps; the line gives way into a small frown (ends at (21,32) and (26,32)). Still no blush: Vale is not embarrassed but shaken.
 - Pleased (restrained): the same squared eyes, the brows lift one pixel, the corners of the mouth rise by one pixel, a faint 2x1 blush appears. An almost-smile.
 
 **(d) Signature: `vale_softened`.** The first real softening: the lids ease (`oooo` over `o5oo` over `.oo.`), the brows relax into arches, a real closed-lip smile (ends two rows up, cols 20-27), a full 3x2 blush. Source: "softens across the three final repairs" and "Vale releases the raw audit" (levels.md level 20).
@@ -112,3 +112,7 @@ Head 34-36 px wide and 32-36 px tall; tiny shoulders in rows 38-47; flat shading
 ## How the set reads at x4
 
 `portraits-compare.png` puts one expression type per row. At x4 no two characters share a concerned or a pleased face: the concerned set differs by brow shape (inner-up, single arch, steep, drop-and-lift, pinch, level), eye size and mouth (ring, dash, pressed, one-corner-down, wobble, firm line, frown). The checker also requires every pair to differ by at least 14 feature pixels (ink, brow, glint) in each standard expression.
+
+## Where each expression is used
+
+When each portrait appears in the story is a level-design decision, recorded in the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map) (the single source) and mirrored per character in the Portrait section of `design/characters/<name>.md`. Arcs only move forward: Ivo's laugh appears only after the Orientation seal, Hal's anxious → focused change happens in level 14, and Vale's faces follow the number of repairs completed (the sprite's softening states), so `vale_softened` never appears before the third repair.

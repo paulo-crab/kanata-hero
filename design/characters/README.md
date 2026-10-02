@@ -31,7 +31,7 @@ The placeholder skin and hair ramps in [`scale-test/build_scale_test.py`](../../
 | [glitches.md](glitches.md) | Glitches | Misregistered office objects (encounters) | After gate |
 | [background-workers.md](background-workers.md) | Office workers | Ambient staff and silhouettes | After gate |
 
-**Production gate (STYLE_BIBLE §8, ART_BRIEF):** only the Engineer's four idle facings and one walk cycle are produced now. They are shown at 16×24 in the `scale-test/` Orientation scene at ×4 on a 1366×768 screen, with a door, terminal, NPC, two-cell route, and keyboard inset. The player reviews that gate. Do not start any other sheet's sprites, portraits, or atlases until it passes.
+**Production gate (STYLE_BIBLE §8, ART_BRIEF):** passed 2026-10-02. The player approved the Engineer's four idle facings and walk cycle, and the rest of the cast followed (see [PRODUCTION_STATUS.md](../../art-direction/PRODUCTION_STATUS.md)).
 
 ## Shared rules for every person sprite
 
@@ -44,7 +44,7 @@ These apply to every human character. Individual sheets list only what differs.
 | Camera | High three-quarter overhead, orthographic; north at screen top; no perspective convergence |
 | World frame | **16×24 logical px** (1 × 1.5 cells), one-cell (16×16) ground footprint |
 | Anchor | Feet at **bottom-centre**; contact shadow tied to it |
-| Portrait | **48×48 logical px**, head and shoulders, same palette, shown at the world's scale factor |
+| Portrait | **48×48 logical px**, chibi direction C (oversized head, tiny shoulders, flat shading), same sprite palette, shown at the world's scale factor. Three standard expressions (neutral, concerned, pleased) plus an optional signature; see [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md). When each one appears is set in `levels.md`. |
 | View / display | 320×180 logical; whole-number nearest-neighbour only (×4 on 1366×768, ×6 on 1920×1080) |
 | Grid | One pixel grid for everything; never mix pixel sizes or scale sprites fractionally |
 

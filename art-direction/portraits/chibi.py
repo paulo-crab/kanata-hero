@@ -1,6 +1,6 @@
 """Shared style module for the "Chibi icon" portraits (48x48, one module per character on top).
 
-Status: Candidate, pending director review. Rules: PORTRAIT_RULES.md. Personas: PORTRAIT_PERSONAS.md.
+Status: Approved by the player 2026-10-02. Rules: PORTRAIT_RULES.md. Personas: PORTRAIT_PERSONAS.md.
 Replaces portrait_template.py. Generalises explore/explore_common.py and explore/style_c.py.
 
 Direction C (player choice 2026-10-02): an oversized round head fills most of the 48x48, the shoulders

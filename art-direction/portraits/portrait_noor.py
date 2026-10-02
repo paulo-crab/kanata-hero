@@ -1,6 +1,6 @@
 """Noor portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. A longer, narrower head (chin on row 38) and the narrowest
+Status: Approved by the player 2026-10-02. A longer, narrower head (chin on row 38) and the narrowest
 shoulders in the cast; blue-black crop with two crown tufts of different size and a notch between
 them; the coral folder held against the left (screen-left) shoulder. Persona: precise, dry, quietly
 defiant. Half-lidded eyes with a flat upper lid, brows that never match, a flat mouth with one corner.

@@ -1,6 +1,6 @@
 """Hal portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. A compact, rounder, broader head (shorter, wider than the
+Status: Approved by the player 2026-10-02. A compact, rounder, broader head (shorter, wider than the
 standard), a sandy mop with three outline-capped crown spikes, a stone-sleeved cobalt vest and the
 orange tool roll at the lower right. Persona: practical, anxious when the system misbehaves, focused
 once a fix is in sight. Brows that slant in (focus), big wide eyes when anxious, a sweat bead,

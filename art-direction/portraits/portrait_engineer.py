@@ -1,6 +1,6 @@
 """Engineer portrait, chibi direction C. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. The Engineer is the baseline of the cast: the standard
+Status: Approved by the player 2026-10-02. The Engineer is the baseline of the cast: the standard
 round head, the standard round dot eyes and the standard mouths. Every other character deviates from
 this set. Personal tic: the left brow rides one pixel higher than the right (observant).
 Every key is a key of engineer_sprites.PAL (hair ABCD, skin klmn, jacket pqrs, collar wxy, badge bcd).

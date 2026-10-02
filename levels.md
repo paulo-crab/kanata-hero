@@ -41,6 +41,22 @@ Every new-skill site follows **hub → short branch → task room → changed re
 | Vale | Executive liaison who signed summaries without seeing raw tickets. Wants a defensible audit once shown the evidence. | Navy suit, copper badge, rigid pose that softens across three final repairs. |
 | Pace | The campus performance system; a presence in signage and small UI copy. Its language becomes more repetitive as errors accumulate. | Rounded wayfinding icon and orderly horizontal bars; no face, jump scare, or hostile full-screen animation. |
 
+### Portrait cue map
+
+This is the single source for which dialogue portrait each recurring character shows, and when. The portraits are the approved chibi set in [`art-direction/portraits/PORTRAITS_SPEC.md`](art-direction/portraits/PORTRAITS_SPEC.md): every character has **neutral**, **concerned**, and **pleased**, and five have a **signature**. What each face means is in [`PORTRAIT_PERSONAS.md`](art-direction/portraits/PORTRAIT_PERSONAS.md). A line uses **neutral** unless a cue below says otherwise; that includes every hint line, so instructions read calmly. Pace has no portrait.
+
+| Character | Neutral | Concerned | Pleased | Signature |
+| --- | --- | --- | --- | --- |
+| Engineer (journal and artifact lines) | Task notes and journal entries. | Inspecting a tampering artifact: Unissued badge, Training card (first printing), First route receipt, Carbon copy A, Uncut index, ID envelope, Alarm strip, Scoring proof. | Each seal (06, 11, 16, 19, 20); the Ada's shift book and Public audit copy artifacts. | None. |
+| Ivo | 01–03 instructions; 01's scripted wave becoming a nod; Plant Tags before the Orientation review. | 04 when the player shows Ivo the optional Training card (shorter than Ivo's script); 06 when Pace calls the review a "consistency review". | 03 when the clock hands synchronize; 05 when the pinboard turns asymmetrical and human. | `ivo_laugh`: after the 06 seal, then on every later greeting, Plant Tags revisits, and Ivo's 20 arrival. |
+| Mira | Offering any route or a repeat run. | Lost Folios, when she shares the copy she kept (the erased-routes admission); Lights-Out Delivery, when she asks the player to keep the safe route open. | Each patch, earned on a route's first clean baseline; her final story scene. | `mira_grin`: the 05 "one useful hand" joke and the Morning Mail introduction. |
+| Noor | 07; the 08 instructions; Misfiled Minute. | 08 when she blames the re-indexing; 11 when she sends the correction against Pace. | 08 when her stamp changes to accepted; the 11 seal. | `noor_unimpressed`: at Pace's claims in 09 (the moved sign-off), 10 (the summary that says nobody reviewed it), and 11 ("equivalent"). |
+| Hal | Default elsewhere; Quiet Alarm; the end of 13, when Hal sits instead of crouching. | 13 before the nightly run; the start of 14 (anxious). | The 14 fix (settled focus); the 16 seal. | `hal_puzzled`: 12 (the relocated keypad) and 15 (the formula reveals the detour score on a display Hal built). |
+| Ada | The 17 greeting; 18 ("a locked tool need not mean a locked route"). | 17's practice-exit and emergency-exit explanation; Desk for Dawn. | 17 once the player confirms understanding and Ada walks alongside; 19 when the break room lights. | None. |
+| Vale | The 20 opening, and every branch line before the first repair. | Each time a repaired branch's evidence beats Pace's incomplete summary. | After the second repair. | `vale_softened`: after the third repair, the epilogue audit release, and Names on the Wall. |
+
+Vale's cues follow the **number of repairs completed, not which branch**, because the player chooses the branch order. They match the world sprite's softening states (0 before any repair, then 1–3).
+
 ## Main levels
 
 Level numbers are production IDs, not a menu shown to the player. The player encounters each as a place and a coworker's problem. A **seal** is a required department review reward; an **artifact** is an optional lore collectible with no mechanical advantage.
@@ -188,7 +204,7 @@ The **Hint lines** under each level are sample prompts in the spec's [hint gramm
   - Alarm card: "To tag the alert number, you need to press **# (Shift + 3)**." Hint: # is **tap-hold Space** + **E**.
   - Alarm card: "To mark the alert urgent, you need to press **! (Shift + 1)**." Hint: ! is **tap-hold Space** + **Q**.
   - Hal: "To prefix the cost variable, you need to press **$ (Shift + 4)**." Hint: $ is **tap-hold Space** + **R**.
-- **Art and state:** West alarm hall, six distinct alert lights and pictograms above porcelain panels. Correct labels separate the alarms into six hues and open a maintenance door; Hal's portrait changes from anxious to focused. Optional artifact: **Alarm strip**, whose old alert names contain an extra department.
+- **Art and state:** West alarm hall, six distinct alert lights and pictograms above porcelain panels. Correct labels separate the alarms into six hues and open a maintenance door; Hal's portrait changes from concerned (anxious) to pleased (settled focus). Optional artifact: **Alarm strip**, whose old alert names contain an extra department.
 
 #### 15. Formula Room
 

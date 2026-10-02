@@ -1,6 +1,6 @@
 # Ivo — reception lead
 
-**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the player; interact, two reactions and the 48×48 portrait (neutral, concerned, pleased) approved by the director. The pixel spec [IVO_SPEC.md](../../art-direction/cast/IVO_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
+**Status:** art complete, 2026-10-02. Idle ×4 and walk ×4 approved by the player; interact, two reactions and the 48×48 chibi portraits (neutral, concerned, pleased, signature `ivo_laugh`) approved by the player 2026-10-02. The pixel spec [IVO_SPEC.md](../../art-direction/cast/IVO_SPEC.md) and [PORTRAITS_SPEC.md](../../art-direction/portraits/PORTRAITS_SPEC.md) are canonical where they differ from this brief. Shared rules: [README](README.md).
 
 ## Identity
 
@@ -50,13 +50,16 @@ Sources: `levels.md` cast table, levels 01–06, side quests; `docs/game-design.
 | **Unscripted laugh** | The wave becomes a laugh after the Orientation review | Cast table |
 | Tablet flashing | Screen flashes until The Clock is solved, then stops | Level 03 |
 
-## Portrait (48×48)
+## Portrait (48×48, chibi)
 
-**Assumption:** expressions follow their arc, since none are named:
+Chibi direction C, approved by the player 2026-10-02: oversized round head, tiny shoulders, flat shading, dot eyes. Pixel choices: [PORTRAIT_PERSONAS.md](../../art-direction/portraits/PORTRAIT_PERSONAS.md); atlas keys: `art-direction/portraits/portraits-atlas.json`. **When each face appears** is owned by the [Portrait cue map in `levels.md`](../../levels.md#portrait-cue-map); this table mirrors it, and `levels.md` wins if they differ. A line uses neutral unless a cue says otherwise, including every hint line.
 
-1. Polite, scripted smile (default)
-2. Questioning (doubting the onboarding script)
-3. Laughing (post-review)
+| Atlas key | Reads as | Story cue |
+| --- | --- | --- |
+| `ivo_neutral` | Polite, scripted (symmetric) | 01–03 instructions; 01's scripted wave becoming a nod; Plant Tags before the Orientation review |
+| `ivo_concerned` | Questioning (one brow arches) | 04 only when the player shows the optional Training card; 06 when Pace calls the review a "consistency review" |
+| `ivo_pleased` | Warm smile before the laugh | 03 when the clock hands synchronize; 05 when the pinboard turns asymmetrical and human |
+| `ivo_laugh` | The unscripted laugh (signature) | After the 06 seal, then every later greeting, Plant Tags revisits, and the 20 arrival |
 
 ## Placement and states
 
@@ -70,7 +73,7 @@ Sources: `levels.md` cast table, levels 01–06, side quests; `docs/game-design.
 ## Assumptions
 
 1. Colors and hair shape follow the scale-test placeholder.
-2. The portrait set is derived from their story arc.
+2. The portrait set (now the approved chibi set) was derived from their story arc; story cues now live in the `levels.md` Portrait cue map.
 
 ## Open questions
 

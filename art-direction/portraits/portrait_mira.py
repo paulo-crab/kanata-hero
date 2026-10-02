@@ -1,6 +1,6 @@
 """Mira portrait, chibi direction C, plus the six patch states. Spec: PORTRAITS_SPEC.md, persona: PORTRAIT_PERSONAS.md.
 
-Status: Candidate, pending director review. A round head with a slightly pointed chin, big bright
+Status: Approved by the player 2026-10-02. A round head with a slightly pointed chin, big bright
 oval eyes with a second sparkle, a bun on her left (screen right) that is separated from the dome by an
 ink notch, a cocked right brow and a lopsided smirk. Signature: mira_grin (wink and a tongue-out grin).
 Every key is a key of mira_sprites.PAL (hair ABCD, skin klmn, ochre panel wxyz, green panel EFGH,
