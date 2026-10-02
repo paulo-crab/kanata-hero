@@ -171,6 +171,11 @@ def reference_layout():
     for nm, x, y in (("pot_plant_a", 0, 106), ("pot_plant_b", 146, 40), ("pot_plant_c", 198, 44),
                      ("pot_plant_d", 18, 146), ("pot_plant_c", 136, 98), ("pot_plant_b", 288 - 30, 170)):
         entry(nm, x, y + 4)
+    # rich-finish decor: benches and planters on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_c", 0, 52), ("pot_plant_a", 130, 166)):
+        entry(nm, x, y + 4)
+    entry("bench", 26, 160)
+    entry("bench_v", 3, 120)
     return {
         "kit": "nightshift", "atlas": "nightshift-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Night Shift reference room, built only from nightshift-atlas. Floor is a cell grid; every other element is a placement at "

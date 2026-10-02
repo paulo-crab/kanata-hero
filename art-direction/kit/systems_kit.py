@@ -159,6 +159,8 @@ def recoloured_pieces(atlas):
     for nm in ("pot_plant_a", "pot_plant_b"):
         pieces.append(from_orientation(atlas, nm, nm, [(GREEN_S, S["foliage"])],
                                        note="slate planter with a circuit-lit mint plant (device ramp, not living foliage); two leaf layouts. Use sparingly"))
+    for nm, note in (("bench", "slatted bench"), ("bench_v", "vertical-plank bench, 10 x 28 px")):
+        pieces.append(from_orientation(atlas, nm, nm, [(WOOD_S, S["wood"])], note=note + " (rich-finish decor)", tags=["seating"]))
     return pieces
 
 

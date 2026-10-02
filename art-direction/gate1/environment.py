@@ -331,6 +331,17 @@ def bench(r, x0, y0):
         r.rect(x0 + i * 8, y0 + 1, x0 + i * 8 + 1, y0 + 6, WOOD[1])
 
 
+def bench_v(r, x0, y0, w=10, h=28):
+    """Vertical-plank park bench for the garden sides (reference 08 has one each side): three wood tones, a lit left edge."""
+    r.cast(x0, x0 + w, y0 + h)
+    body = r.mask(x0, y0, x0 + w, y0 + h)
+    r.img[body] = WOOD[2]
+    for px in range(x0 + 2, x0 + w - 1, 3):
+        r.rect(px, y0 + 1, px + 1, y0 + h - 1, WOOD[1])
+    r.rect(x0 + 1, y0, x0 + 2, y0 + h, WOOD[3])
+    r.outline(body)
+
+
 def printer(r):
     """Badge printer terminal in the alcove: housing first, then the teal screen."""
     block(r, 138, 33, 198, 50, 6, STONE, STONE)
@@ -446,3 +457,5 @@ def draw(r, door_open=0.0):
     desk(r, 246, 46, 8)
     bench(r, 228, 112)
     garden(r)
+    bench_v(r, 84, 94)
+    bench_v(r, 178, 94)

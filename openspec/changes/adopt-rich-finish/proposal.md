@@ -11,7 +11,7 @@ The board reviewed the approved art against reference 08 and asked for a richer 
 - Rooms get light passes: slab tone drift, cast shadows, a canopy shadow, lamp glow and window light, all in flat steps.
 - Two single-pixel uses become allowed: floor wear specks and sunlit leaf tips.
 - All existing kits, rooms, sprites, shadows and handoff tables are re-rendered or recoloured. Footprints, collision, anchors, layers and timing do not change.
-- Not adopted: more set pieces, material detail (wood grain, brick joints, monitor text), a finer pixel grid. Undecided and out of scope: a wider default camera.
+- Not adopted: set pieces or lounges, material detail (wood grain, brick joints, monitor text), a finer pixel grid. Undecided and out of scope: a wider default camera.
 
 ## Capabilities
 

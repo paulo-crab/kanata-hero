@@ -120,6 +120,11 @@ def reference_layout():
                      ("pot_plant_d", 146, 132), ("pot_plant_c", 48, 36), ("pot_plant_b", 128, 36),
                       ("pot_plant_a", 96, 150), ("pot_plant_d", 18, 146)):
         entry(nm, x, y + 4)
+    # rich-finish decor: more planters and benches on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_b", 80, 36), ("pot_plant_c", 0, 52), ("pot_plant_d", 130, 166)):
+        entry(nm, x, y + 4)
+    entry("bench", 26, 160)
+    entry("bench_v", 3, 118)
     return {
         "kit": "records", "atlas": "records-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Records reference room, built only from records-atlas. Floor is a cell grid; every other element is a placement at "

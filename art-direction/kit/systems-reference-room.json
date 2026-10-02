@@ -1133,6 +1133,50 @@
     4,
     10
    ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    0,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    8,
+    10
+   ],
+   "offset": [
+    2,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    14,
+    3
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "bench",
+   "cell": [
+    1,
+    10
+   ],
+   "offset": [
+    10,
+    0
+   ]
   }
  ]
 }

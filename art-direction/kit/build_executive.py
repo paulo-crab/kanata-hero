@@ -138,6 +138,10 @@ def reference_layout():
     # planters
     for nm, x, y in (("pot_plant_a", 96, 146), ("pot_plant_b", 298, 150 - 4 + 22)):
         entry(nm, x, y + 4)
+    # rich-finish decor: a bench and planters on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_b", 0, 52), ("pot_plant_c", 130, 166), ("pot_plant_d", 108, 128)):
+        entry(nm, x, y + 4)
+    entry("bench_v", 3, 118)
     return {
         "kit": "executive", "atlas": "executive-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Executive reference room, built only from executive-atlas. Floor is a cell grid; every other element is a placement at "

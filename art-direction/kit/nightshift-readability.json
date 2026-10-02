@@ -774,8 +774,13 @@
   "pot_plant_a": {
    "floor": {
     "min": 4.92,
-    "mean": 4.98,
-    "px": 26
+    "mean": 4.97,
+    "px": 31
+   },
+   "pool": {
+    "min": 2.5,
+    "mean": 3.2,
+    "px": 29
    }
   },
   "pot_plant_b": {
@@ -794,7 +799,12 @@
    "floor": {
     "min": 4.92,
     "mean": 5.02,
-    "px": 64
+    "px": 68
+   },
+   "pool": {
+    "min": 2.5,
+    "mean": 2.5,
+    "px": 17
    }
   },
   "pot_plant_d": {
@@ -802,6 +812,20 @@
     "min": 4.92,
     "mean": 5.03,
     "px": 31
+   }
+  },
+  "bench": {
+   "floor": {
+    "min": 4.92,
+    "mean": 6.67,
+    "px": 41
+   }
+  },
+  "bench_v": {
+   "floor": {
+    "min": 4.92,
+    "mean": 4.98,
+    "px": 37
    }
   }
  }

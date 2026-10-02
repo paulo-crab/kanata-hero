@@ -52,9 +52,9 @@ Re-rendering an asset for the rich finish SHALL NOT change its frame size, ancho
 - **WHEN** a kit atlas JSON is compared before and after its re-render
 - **THEN** every footprint, collision string, layer, anchor and animation timing is identical, and only entry rectangles that moved because of repacking differ
 
-### Requirement: No added objects
-The rich finish SHALL NOT add set pieces, extra planters or new furniture to any room layout, and SHALL NOT add material detail such as wood grain, brick joints, wall seams, monitor text or slab bevels.
+### Requirement: Modest dressing only
+The rich finish MAY dress review rooms with planters and benches on free cells, clear of route corridors and without changing level data or gameplay footprints, to reach the dressing level of Mock 2.1. It SHALL NOT add set pieces, lounges or other furniture, and SHALL NOT add material detail such as wood grain, brick joints, wall seams, monitor text or slab bevels.
 
 #### Scenario: Layout comparison
 - **WHEN** a re-rendered room's placements are compared with the approved layout
-- **THEN** the placement lists are identical
+- **THEN** the only additions are planters and benches, and collision of every route cell and every level-data footprint is unchanged

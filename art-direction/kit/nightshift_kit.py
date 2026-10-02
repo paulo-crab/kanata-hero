@@ -235,6 +235,8 @@ def recoloured_pieces(atlas):
                                          note="break-room lounge sofa seen from above, dim terracotta wood"))
     pieces.append(night_from_orientation(atlas, "side_table", "side_table", [(GREEN_S, FOLI)], denoise=True,
                                          note="round slate side table with a small plant"))
+    for nm, note in (("bench", "slatted bench"), ("bench_v", "vertical-plank bench, 10 x 28 px")):
+        pieces.append(night_from_orientation(atlas, nm, nm, [(WOOD_S, WOOD)], note=note + " (rich-finish decor), dim terracotta wood"))
     return pieces
 
 

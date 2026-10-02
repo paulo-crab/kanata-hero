@@ -391,6 +391,9 @@ def extract_props(pieces, placements):
                        tags=["seating"]))
     pieces.append(make("bench", lambda r: env.bench(r, 228, 112), (228, 112), (2, 1), ["11"], "rear_prop", "prop",
                        y_sort=True, note="slatted wood bench", tags=["seating"]))
+    pieces.append(make("bench_v", lambda r: env.bench_v(r, 84, 94), (84, 94), (1, 2), ["1", "1"], "rear_prop", "prop",
+                       y_sort=True, note="vertical-plank garden bench, 10 x 28 px: one stands each side of the garden between the ring path and the rim "
+                       "(a rich-finish detail, Mock 2.1). Blocks its two cells", tags=["seating", "garden", "rich finish"]))
     pieces.append(make("mail_counter", lambda r: env.mail_counter(r, 246, 150), (246, 150), (3, 1), ["111"],
                        "front_prop", "prop", y_sort=True,
                        note="mailroom counter with parcels and a coral courier strap; drawn after actors so "
@@ -401,7 +404,7 @@ def extract_props(pieces, placements):
     for nm, x, y, _ in DESKS:
         placements.append((nm, x, y))
         placements.append(("chair", x + 11, y + 18))
-    placements.extend([("bench", 228, 112), ("mail_counter", 246, 150)])
+    placements.extend([("bench", 228, 112), ("bench_v", 84, 94), ("bench_v", 178, 94), ("mail_counter", 246, 150)])
 
 
 def extract_garden(pieces, placements):

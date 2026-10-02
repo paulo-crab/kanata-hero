@@ -12,7 +12,7 @@
 | --- | --- |
 | Pixel grid | **16 px stays.** 16×16 tiles, 16×24 people, 48×48 portraits, 320×180 view. The finer 32 px grid (Mock 2.4) is rejected. |
 | Direction | **Mock 2.1**: vivid palette, deeper darks, leaf-fan foliage and a detailed garden, plus the light and atmosphere of Mock 1. |
-| More objects | **No.** Mock 3 (lounge, parcels, extra planters) is not adopted. Room layouts stay as they are. |
+| More objects | **Modestly (player feedback after the first re-render).** Mock 3's density is not adopted, but every room reaches Mock 2.1's level of dressing: planters along walls and edges, benches (including the vertical garden benches), all on free cells and clear of routes. Set pieces and lounges stay out. Level data and gameplay footprints do not change; dressing is review-room decor. |
 | Material detail | **Not adopted** (Mock 2.2: wood grain, brick joints, monitor text, lamp housings, wall seams, slab bevels). It may return later as a separate decision. |
 | Wider camera | **Undecided.** It stays the optional whole-number zoom setting described in `docs/game-design.md` (427×240 at ×3 on 1366×768, 480×270 at ×4 on 1920×1080). |
 
@@ -96,7 +96,7 @@ These amend `STYLE_BIBLE.md` (the bible now points here).
 
 ## Not part of the finish
 
-- More set pieces, extra planters or lounges (Mock 3). Layouts stay as drawn.
+- Set pieces, lounges and parcels (Mock 3). Dressing is limited to planters and benches on free cells.
 - Material detail: wood grain, brick joints on the rim, wall panel seams, slab bevels, monitor text, keyboards, lamp housings (Mock 2.2).
 - A finer pixel grid (Mock 2.4), and any change of the default camera.
 - Stepped edge falloff (the vignette in Mock 1). It was not in Mock 2.1.

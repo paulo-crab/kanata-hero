@@ -12,7 +12,7 @@ See proposal.md for motivation and `art-direction/rich-finish/RICH_FINISH_SPEC.m
 - Keep the build deterministic and the checkers green.
 
 **Non-Goals:**
-- No new objects, no material detail, no finer grid, no camera change.
+- No set pieces or lounges (planters and benches only, on free cells), no material detail, no finer grid, no camera change.
 - No change to clothing, skin or hair ramps, or to the UI tokens.
 
 ## Decisions

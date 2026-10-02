@@ -204,6 +204,8 @@ def recoloured_pieces(atlas):
                                    note="dark navy lounge sofa seen from above: the seating Vale has to read against (suit lit-edge step)", tags=["seating", "navy"]))
     pieces.append(from_orientation(atlas, "bench", "bench", [(WOOD_S, E["wood"])],
                                    note="slatted walnut bench", tags=["seating"]))
+    pieces.append(from_orientation(atlas, "bench_v", "bench_v", [(WOOD_S, E["wood"])],
+                                   note="vertical-plank walnut bench, 10 x 28 px (rich-finish decor)", tags=["seating"]))
     pieces.append(from_orientation(atlas, "side_table", "side_table", [(GREEN_S, E["foliage"])],
                                    note="round slate side table with a small plant", tags=["table", "plant"]))
     for nm in ("pot_plant_a", "pot_plant_b", "pot_plant_c", "pot_plant_d"):

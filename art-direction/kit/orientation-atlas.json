@@ -1729,10 +1729,59 @@
    "note": "slatted wood bench"
   },
   {
-   "name": "mail_counter",
+   "name": "bench_v",
    "kind": "prop",
    "rect": [
     496,
+    80,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "garden",
+    "rich finish"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank garden bench, 10 x 28 px: one stands each side of the garden between the ring path and the rim (a rich-finish detail, Mock 2.1). Blocks its two cells"
+  },
+  {
+   "name": "mail_counter",
+   "kind": "prop",
+   "rect": [
+    512,
     80,
     64,
     32

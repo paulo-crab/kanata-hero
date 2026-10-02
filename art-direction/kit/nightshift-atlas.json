@@ -2383,10 +2383,105 @@
    "note": "security vestibule gate, the leaf folded edge-on against the left post, readers switched to silver: cols 1-2 are a two-cell walkway. Contact shadows are baked per piece"
   },
   {
+   "name": "bench",
+   "kind": "prop",
+   "rect": [
+    592,
+    128,
+    48,
+    16
+   ],
+   "size_px": [
+    34,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating"
+   ],
+   "contact_shadow": [
+    1,
+    10,
+    33,
+    2
+   ],
+   "note": "slatted bench (rich-finish decor), dim terracotta wood"
+  },
+  {
+   "name": "bench_v",
+   "kind": "prop",
+   "rect": [
+    0,
+    160,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1",
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "garden",
+    "rich finish"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    11,
+    2
+   ],
+   "note": "vertical-plank bench, 10 x 28 px (rich-finish decor), dim terracotta wood"
+  },
+  {
    "name": "window_wall_base",
    "kind": "landmark_part",
    "rect": [
-    0,
+    16,
     160,
     192,
     64
@@ -2435,7 +2530,7 @@
    "name": "window_panes_before",
    "kind": "landmark_part",
    "rect": [
-    192,
+    208,
     160,
     192,
     64
@@ -2479,7 +2574,7 @@
    "name": "window_panes_after",
    "kind": "landmark_part",
    "rect": [
-    384,
+    400,
     160,
     192,
     64

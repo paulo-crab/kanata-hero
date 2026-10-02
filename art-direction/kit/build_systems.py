@@ -119,6 +119,10 @@ def reference_layout():
     # planters
     for nm, x, y in (("pot_plant_a", 130, 140), ("pot_plant_b", 256, 52), ("pot_plant_a", 4, 150)):
         entry(nm, x, y + 4)
+    # rich-finish decor: benches and a few planters on free cells, clear of the route corridors (kit review room only)
+    for nm, x, y in (("pot_plant_b", 0, 52), ("pot_plant_a", 130, 166), ("pot_plant_b", 232, 52)):
+        entry(nm, x, y + 4)
+    entry("bench", 26, 160)
     return {
         "kit": "systems", "atlas": "systems-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
         "note": "Systems reference room, built only from systems-atlas. Floor is a cell grid; every other element is a placement at "
