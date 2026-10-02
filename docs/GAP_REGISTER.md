@@ -6,21 +6,21 @@ Result of the producer's review of the art-direction deck against the repo. Ever
 
 | # | Gap | Owner | Blocks first slice | Branch | Status |
 | --- | --- | --- | --- | --- | --- |
-| G1 | Layout help drew only the `nav` tab | Art director, UI | Yes | `feat/ui-layout-help-and-screens` | Closed in review |
-| G2 | No specs for setup/calibration, terminal/editor scene, input feedback, artifact frame, elevator map, seals/toast, Mira results, settings | Art director, UI | Yes (setup, editor scene, feedback) | same | Closed in review |
-| G3 | Orientation quest props missing (elevator, turnstile, clock, stamps, pinboard, review table, mailroom) | Art director, Orientation kit | Yes | `feat/art-orientation-quest-props` | Closed in review |
-| G4 | Shared elevator, desk-front occluders, artifact builder | Art director, Orientation kit | No | same | Builders closed; integration into the four other kits open |
-| G5 | Quest props for Records, Systems, Night Shift, Executive | Art director, district kits | No | `feat/art-district-quest-props` | Closed in review (optional artifacts open) |
-| G6 | No level data for any district | Level designers (4 sessions) | Yes (Orientation, schema, inventory) | `feat/levels-orientation-foundation`, `feat/levels-records`, `feat/levels-systems`, `feat/levels-nightshift-executive` | Closed in review; alignment with art open |
-| G7 | Vale softening states 1-3 | Character designers | No | `feat/cast-vale-hal-poses` | Closed in review |
-| G8 | Hal crouch, seated, panel pull, stool prop | Character designers | No | same | Closed in review |
-| G9 | Glitch repaired frames, ordinary props, variant and district table | Character designers | Adjacent | `feat/cast-glitch-repair-variants` | Closed in review |
-| G10 | Seated background workers | Character designers | No | none yet | Open (needs desk occluders merged) |
+| G1 | Layout help drew only the `nav` tab | Art director, UI | Yes | `feat/ui-layout-help-and-screens` | Closed (merged) |
+| G2 | No specs for setup/calibration, terminal/editor scene, input feedback, artifact frame, elevator map, seals/toast, Mira results, settings | Art director, UI | Yes (setup, editor scene, feedback) | same | Closed (merged) |
+| G3 | Orientation quest props missing (elevator, turnstile, clock, stamps, pinboard, review table, mailroom) | Art director, Orientation kit | Yes | `feat/art-orientation-quest-props` | Closed (merged) |
+| G4 | Shared elevator, desk-front occluders, artifact builder | Art director, Orientation kit | No | same | Closed (merged) |
+| G5 | Quest props for Records, Systems, Night Shift, Executive | Art director, district kits | No | `feat/art-district-quest-props` | Closed (merged) (optional artifacts open) |
+| G6 | No level data for any district | Level designers (4 sessions) | Yes (Orientation, schema, inventory) | `feat/levels-orientation-foundation`, `feat/levels-records`, `feat/levels-systems`, `feat/levels-nightshift-executive` | Closed (merged, reconciled with the art in wave 2) |
+| G7 | Vale softening states 1-3 | Character designers | No | `feat/cast-vale-hal-poses` | Closed (merged) |
+| G8 | Hal crouch, seated, panel pull, stool prop | Character designers | No | same | Closed (merged) |
+| G9 | Glitch repaired frames, ordinary props, variant and district table | Character designers | Adjacent | `feat/cast-glitch-repair-variants` | Closed (merged) |
+| G10 | Seated background workers | Character designers | No | none yet | Closed (merged, south-facing only) |
 | G11 | Deck and handoff called unfinished art "deliberate" | Producer | No | `docs/producer-gap-register` | Closed (section 7 rewritten, deck slide updated) |
 
 Merge order: the base `feat/art-production` first, then the eight team branches in any order (their files are disjoint; the level branches share only the validator on `feat/levels-orientation-foundation`), then `docs/producer-gap-register` last (its handoff text describes the merged state).
 
-## Wave 2 (open, needs the wave-1 branches merged first)
+## Wave 2 (done, merged 2026-10-02; kept for the record)
 
 1. Orientation integration: replace `art_gap` entries that now exist in the kit with real atlas names; move the elevator onto a lift core (the kit draws north-wall modules, the data puts it on the west wall); add `garden_north_rim_open` and `wall_w_plain` to the kit; place the hidden seating nook.
 2. Kit integration: register the elevator, desk-front occluders and artifact props in the Records, Systems, Night Shift and Executive kits; draw the ten remaining optional artifacts; add the Records props the level data still names (`cabinet_gate_*`, `cabinet_labels_*`, `archive_ledger_mark_*`, address door panel); add the Systems machine states after levels 12, 13 and 14 and the Orientation `garden` after-state through route.

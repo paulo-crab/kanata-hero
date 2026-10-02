@@ -125,24 +125,18 @@ Requirements: Python 3 with Pillow and numpy (`python3 -m venv .venv && .venv/bi
 .venv/bin/python art-direction/build_all.py
 ```
 
-`build_all.py` runs every check and build in dependency order (palettes, sprites, cast, glitches, Pace, portraits, the five kits, the atlas schema check, the UI contrast check and reference page, and `check_handoff.py`, which confirms every file listed here exists). It exits non-zero if anything fails. The builds are deterministic: a full run on a clean checkout leaves `git status` unchanged.
+`build_all.py` runs every check and build in dependency order (palettes, sprites, cast, glitches, Pace, portraits, the five kits, the atlas schema check, the UI contrast check and reference page, and `design/levels/validate_levels.py --all`, which checks the level data against the atlases, and `check_handoff.py`, which confirms every file listed here exists). It exits non-zero if anything fails. The builds are deterministic: a full run on a clean checkout leaves `git status` unchanged.
 
 PNG, GIF and JSON art files are generated outputs: change the source module, rebuild, and commit both. Never hand-edit an output.
 
 ## 7. Known gaps
 
-- The whole asset set predates the rich finish and needs the re-render listed in OpenSpec change `adopt-rich-finish`.
+- The whole asset set predates the rich finish and needs the re-render listed in OpenSpec change `adopt-rich-finish`. The recolour to the v2 ramps and ink is done in code; leaf-fan foliage, the garden parts and the light passes follow.
 
-Status after the producer's gap review of 2026-10-02 (register: `docs/GAP_REGISTER.md`). Wave 1 is merged (pull requests 2 to 12); wave 2, the integration pass, is in progress. Nothing here is a deliberate scoping choice, each item is unfinished work.
+Status after wave 2 of the producer's gap review (2026-10-02; register: `docs/GAP_REGISTER.md`). Every gap of the art deck is closed: Layout help on all four tabs and the screens the game spec requires, quest props and landmark states for all five districts, the shared elevator, desk-front occluders and optional artifacts, Vale softening states and Hal's poses, glitch repair frames and the variant table, seated background workers, and level data for every district. What remains is polish and the next art direction.
 
-Closed by the wave-1 branches (listed in the register with their branch names): Layout help on all four tabs and the screens the game spec requires (setup and calibration, terminal and editor scene, input feedback, artifact frame, elevator map, seals, toast, Mira's results, settings); Orientation quest props and the shared elevator, desk-front occluder and artifact builders; quest props for the four other districts; Vale softening states 1 to 3; Hal crouched repair, seated on stool, false-panel pull and the stool prop; glitch repaired frames, ordinary props and the variant and district table; level data for all five districts (schema, validator, gesture inventory, maps, collision, levels 01 to 20, Mira routes, coverage).
-
-Still open:
-
-- Seated background workers are not drawn. The desk-front occluders (`desk_a_front`, `desk_b_front`) exist and the seat convention is in `kit/ORIENTATION_KIT_SPEC.md`.
-- The elevator, desk-front occluders and generic artifact builder exist in the Orientation kit and as shared builders; the four other district kits still need them registered (the level data lists them as `art_gap` props).
-- The ten optional artifacts of Records, Systems, Night Shift and Executive have no map props yet (builder only).
-- Art gaps named by the level designers are listed per district in `design/levels/<district>/NEEDS_ART.md`; several now exist under other names and need reconciling (for example `mail_chute_*` and `courier_chute_*`, the two stool sprites).
-- UI: high-contrast and larger-text variants are described, not rendered; the Microsoft keyboard variant of Layout help is drawn for the base tab only and the practice tab for the MacBook only.
-- Vale state 1 is a 1 px shoulder drop and is subtle at 1x; Hal's south-facing crouch is the weakest frame.
-- Level data still to align with the art: Orientation `art_gap` entries that now exist in the kit, the elevator placement (kit draws a north-wall module), the garden cut-through (kit opens only the south rim), glitch placements against the district table, and the Hal and Vale animation names.
+- The rich finish (Mock 2.1; the art director's rich-finish spec, on the branch feat/art-rich-finish until it is reviewed) is the approved next look: every kit, sprite, glitch, Pace and portrait asset is to be re-rendered with its geometry, footprints, collision, layers and anchors unchanged, so the level data keeps validating. Until that lands the specs carry a "re-render needed" banner.
+- UI: high-contrast and larger-text variants are described but not rendered; the Microsoft keyboard variant of Layout help is drawn for the base tab only and the practice tab for the MacBook only.
+- Seated workers face south only (the kit has no camera-side chair and occluder); typing and phone detail is small at 1x because the occluder hides row 15 and below.
+- Vale state 1 is a 1 px shoulder drop and subtle at 1x; Hal's south-facing crouch is the weakest frame.
+- Level data: Systems bridges run north-south but `bridge_span` is drawn east-west; Quiet Alarm cannot set `alarm_strip_muted` because side quests have no trigger list; the schema's `glitch` object has one slot per level and no `behaviour` key (behaviour is in the note); the layout manifest for Layout help is not created.
