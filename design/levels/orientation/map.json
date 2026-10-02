@@ -280,8 +280,7 @@
    "cell": [
     0,
     2
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_03",
@@ -301,8 +300,7 @@
    "cell": [
     0,
     3
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_04",
@@ -322,8 +320,7 @@
    "cell": [
     0,
     4
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_w_05",
@@ -331,8 +328,7 @@
    "cell": [
     0,
     5
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_w_06",
@@ -340,8 +336,7 @@
    "cell": [
     0,
     6
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_w_07",
@@ -349,8 +344,7 @@
    "cell": [
     0,
     7
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_08",
@@ -370,8 +364,7 @@
    "cell": [
     0,
     8
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_09",
@@ -391,8 +384,7 @@
    "cell": [
     0,
     9
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_10",
@@ -412,8 +404,7 @@
    "cell": [
     0,
     10
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_11",
@@ -433,8 +424,7 @@
    "cell": [
     0,
     11
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_12",
@@ -454,8 +444,7 @@
    "cell": [
     0,
     12
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_13",
@@ -475,8 +464,7 @@
    "cell": [
     0,
     13
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_14",
@@ -496,8 +484,7 @@
    "cell": [
     0,
     14
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_15",
@@ -517,8 +504,7 @@
    "cell": [
     0,
     15
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "wall_e_16",
@@ -538,8 +524,7 @@
    "cell": [
     0,
     16
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "records_door",
@@ -628,7 +613,6 @@
    ],
    "state_set": "seating_nook",
    "state": "hidden",
-   "art_gap": true,
    "note": "the previously hidden seating nook (levels.md revisit payoff), 3x2 east of the garden beside the Records corridor; hidden until level 06, then shown"
   },
   {
@@ -1315,71 +1299,6 @@
    ]
   }
  ],
- "art_gap_entries": {
-  "wall_w_plain": {
-   "footprint": {
-    "cells": [
-     2,
-     1
-    ],
-    "collision": [
-     "11"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "West wall side plane (rows 2-16, x0-1), mirror of wall_e_plain. Built on feat/art-orientation-completion (30x16 px, two cells thick); not in this branch's base atlas yet."
-  },
-  "seating_nook_after": {
-   "footprint": {
-    "cells": [
-     3,
-     2
-    ],
-    "collision": [
-     "111",
-     "110"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "The previously hidden seating nook of the levels.md revisit payoff. Built on feat/art-orientation-completion (y-sorted); not in this branch's base atlas yet.",
-   "states": [
-    "shown"
-   ]
-  },
-  "seating_nook_glow": {
-   "footprint": {
-    "cells": [
-     3,
-     2
-    ],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "light",
-   "purpose": "Lamp pool of the seating nook, drawn with seating_nook_after in the shown state. Built on feat/art-orientation-completion; not in this branch's base atlas yet.",
-   "states": [
-    "shown"
-   ]
-  }
- },
- "art_gap_state_sets": {
-  "seating_nook": {
-   "default": "hidden",
-   "states": {
-    "hidden": {
-     "entries": []
-    },
-    "shown": {
-     "entries": [
-      "seating_nook_after",
-      "seating_nook_glow"
-     ]
-    }
-   }
-  }
- },
  "implicit_walls": [
   [
    0,
