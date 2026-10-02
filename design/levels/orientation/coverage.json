@@ -1,0 +1,165 @@
+{
+ "district": "orientation",
+ "note": "Generated from the levels' gestures lists and checked by validate_levels.py. B03/B04/B05 hold one row per modifier family; each of the four holds has its own guided stamp scene. Recall scenes declare position_cue false.",
+ "levels": {
+  "orientation-01": {
+   "owned": [
+    "B06",
+    "N01",
+    "N02",
+    "N03",
+    "N04"
+   ],
+   "gestures": {
+    "B06": {
+     "guided": "o01-popup",
+     "variation": "o01-desk-label",
+     "recall": "o01-unprompted"
+    },
+    "N01": {
+     "guided": "o01-loop",
+     "variation": "o01-four-stops",
+     "recall": "o01-unprompted"
+    },
+    "N02": {
+     "guided": "o01-loop",
+     "variation": "o01-four-stops",
+     "recall": "o01-unprompted"
+    },
+    "N03": {
+     "guided": "o01-loop",
+     "variation": "o01-four-stops",
+     "recall": "o01-unprompted"
+    },
+    "N04": {
+     "guided": "o01-loop",
+     "variation": "o01-four-stops",
+     "recall": "o01-unprompted"
+    }
+   }
+  },
+  "orientation-02": {
+   "owned": [
+    "B01",
+    "B02"
+   ],
+   "gestures": {
+    "B01": {
+     "guided": "o02-guided-mapped",
+     "variation": "o02-variation",
+     "recall": "o02-recall"
+    },
+    "B02": {
+     "guided": "o02-guided-home",
+     "variation": "o02-variation",
+     "recall": "o02-recall"
+    }
+   }
+  },
+  "orientation-03": {
+   "owned": [
+    "B07",
+    "B08",
+    "B09",
+    "B10"
+   ],
+   "gestures": {
+    "B07": {
+     "guided": "o03-guided-space",
+     "variation": "o03-variation",
+     "recall": "o03-recall"
+    },
+    "B08": {
+     "guided": "o03-guided-modfirst",
+     "variation": "o03-variation",
+     "recall": "o03-recall"
+    },
+    "B09": {
+     "guided": "o03-guided-tab",
+     "variation": "o03-variation",
+     "recall": "o03-recall"
+    },
+    "B10": {
+     "guided": "o03-guided-modfirst",
+     "variation": "o03-variation",
+     "recall": "o03-recall"
+    }
+   }
+  },
+  "orientation-04": {
+   "owned": [
+    "B03",
+    "B05"
+   ],
+   "gestures": {
+    "B03": {
+     "guided": "o04-stamp-shift",
+     "variation": "o04-variation",
+     "recall": "o04-recall",
+     "note": "guided evidence in each of: o04-stamp-shift, o04-stamp-command, o04-stamp-option, o04-stamp-control"
+    },
+    "B05": {
+     "guided": "o04-stamp-shift",
+     "variation": "o04-variation",
+     "recall": "o04-recall",
+     "note": "guided evidence in each of: o04-stamp-shift, o04-stamp-command, o04-stamp-option, o04-stamp-control"
+    }
+   }
+  },
+  "orientation-05": {
+   "owned": [
+    "B04"
+   ],
+   "gestures": {
+    "B04": {
+     "guided": "o05-stamp-shift",
+     "variation": "o05-variation",
+     "recall": "o05-recall",
+     "note": "guided evidence in each of: o05-stamp-shift, o05-stamp-command, o05-stamp-option, o05-stamp-control"
+    }
+   }
+  },
+  "orientation-06": {
+   "owned": [
+    "B11",
+    "B12",
+    "B15",
+    "N21"
+   ],
+   "gestures": {
+    "B11": {
+     "guided": "o06-rcmd-guided",
+     "variation": "o06-compare",
+     "recall": "o06-roster"
+    },
+    "B12": {
+     "guided": "o06-native-guided",
+     "variation": "o06-native-variation",
+     "recall": "o06-roster"
+    },
+    "B15": {
+     "guided": "o06-setup-microsoft",
+     "variation": "o06-compare",
+     "recall": "o06-roster"
+    },
+    "N21": {
+     "guided": "o06-rcmd-guided",
+     "variation": "o06-compare",
+     "recall": "o06-roster"
+    }
+   }
+  }
+ },
+ "mira": {
+  "morning-mail": {
+   "B01": {
+    "recall": "mm-north",
+    "note": "slips use mapped plain taps"
+   },
+   "B02": {
+    "recall": "mm-east"
+   }
+  }
+ },
+ "uncovered": []
+}

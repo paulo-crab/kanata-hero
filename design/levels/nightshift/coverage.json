@@ -1,0 +1,185 @@
+{
+  "district": "nightshift",
+  "levels": {
+    "nightshift-17": {
+      "owned": [
+        "B13",
+        "B14",
+        "V01",
+        "V02",
+        "V06"
+      ],
+      "gestures": {
+        "B13": {
+          "guided": "n17-t4-operations-cards",
+          "variation": "n17-t5-recovery-scenarios",
+          "recall": "n19-t0-ledger-checkin"
+        },
+        "B14": {
+          "guided": "n17-t1-enter-practice",
+          "variation": "n17-t3-leave-practice",
+          "recall": "n18-t0-practice-checkin"
+        },
+        "V01": {
+          "guided": "n17-t1-enter-practice",
+          "variation": "n17-t3-leave-practice",
+          "recall": "n18-t0-practice-checkin"
+        },
+        "V02": {
+          "guided": "n17-t2-self-check",
+          "variation": "n17-t6-vestibule-glass",
+          "recall": "n19-t0-ledger-checkin"
+        },
+        "V06": {
+          "guided": "n17-t4-operations-cards",
+          "variation": "n17-t5-recovery-scenarios",
+          "recall": "n19-t0-ledger-checkin"
+        }
+      }
+    },
+    "nightshift-18": {
+      "owned": [
+        "V03",
+        "V04"
+      ],
+      "gestures": {
+        "V03": {
+          "guided": "n18-t1-left-hold-repairs",
+          "variation": "n18-t2-right-hold-repairs",
+          "recall": "n18-t6-recall-desk"
+        },
+        "V04": {
+          "guided": "n18-t3-lit-route-walk",
+          "variation": "n18-t4-navigate-ticket",
+          "recall": "n18-t6-recall-desk"
+        }
+      }
+    },
+    "nightshift-19": {
+      "owned": [
+        "V05"
+      ],
+      "gestures": {
+        "V05": {
+          "guided": "n19-t1-ledger-guided-rerun",
+          "variation": "n19-t2-mixed-records",
+          "recall": "n19-t3-shuffled-ledger-recall"
+        }
+      }
+    }
+  },
+  "mira": {
+    "lights-out-delivery": {
+      "B01": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "B02": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "B03": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "B04": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "B05": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "N05": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "N06": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "N13": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "N07": {
+        "recall": "n18m-cp5-ledger-desk",
+        "note": "route checkpoint; no position cue"
+      },
+      "S01": {
+        "recall": "n18m-cp2-glass-keypad",
+        "note": "route checkpoint; no position cue"
+      },
+      "S04": {
+        "recall": "n18m-cp2-glass-keypad",
+        "note": "route checkpoint; no position cue"
+      },
+      "S07": {
+        "recall": "n18m-cp2-glass-keypad",
+        "note": "route checkpoint; no position cue"
+      },
+      "S14": {
+        "recall": "n18m-cp2-glass-keypad",
+        "note": "route checkpoint; no position cue"
+      },
+      "S08": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "S11": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "S20": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "S21": {
+        "recall": "n18m-cp3-ticket-edit",
+        "note": "route checkpoint; no position cue"
+      },
+      "S02": {
+        "recall": "n18m-cp4-window-recall",
+        "note": "route checkpoint; no position cue"
+      },
+      "S03": {
+        "recall": "n18m-cp4-window-recall",
+        "note": "route checkpoint; no position cue"
+      },
+      "S05": {
+        "recall": "n18m-cp4-window-recall",
+        "note": "route checkpoint; no position cue"
+      },
+      "S16": {
+        "recall": "n18m-cp4-window-recall",
+        "note": "route checkpoint; no position cue"
+      },
+      "S17": {
+        "recall": "n18m-cp4-window-recall",
+        "note": "route checkpoint; no position cue"
+      },
+      "S06": {
+        "recall": "n18m-cp6-corridor-return",
+        "note": "route checkpoint; no position cue"
+      },
+      "S23": {
+        "recall": "n18m-cp6-corridor-return",
+        "note": "route checkpoint; no position cue"
+      },
+      "V03": {
+        "recall": "n18m-cp1-break-counter",
+        "note": "route checkpoint; no position cue"
+      },
+      "V04": {
+        "recall": "n18m-cp5-ledger-desk",
+        "note": "route checkpoint; no position cue"
+      },
+      "V05": {
+        "recall": "n18m-cp5-ledger-desk",
+        "note": "route checkpoint; no position cue"
+      }
+    }
+  },
+  "uncovered": [],
+  "note": "Owned gestures are the inventory rows introduced in each level. Each phase names a scene claimed for that phase in the level files; variation comes after guided and recall after variation, and every recall scene declares position_cue false. B13 and V06 are external-only (operations cards): they have all three phases for completeness, but the card scenes are never scored performances. The mixed-layer review gestures (B01-B05, N01-N20, S01-S26) are claimed in the level files (levels 18 and 19) and in the Mira route; the Executive review covers them again."
+}

@@ -1,0 +1,651 @@
+{
+ "id": "orientation-02",
+ "number": 2,
+ "title": "Badge Printer",
+ "district": "orientation",
+ "kind": "main",
+ "requires": [
+  "orientation-01"
+ ],
+ "story": "North of the garden, a badge printer keeps producing generic employee names. Ivo asks the engineer to restore their own badge and three coworkers' labels, typing plain keys exactly as printed. Mira, waiting near the Records door, says she will be in the mailroom once the printer is honest.",
+ "steps": [
+  {
+   "id": "o02.s.talk",
+   "objective": "Ask Ivo about the badge printer.",
+   "interaction": "ivo",
+   "completes_when": "dialogue_done:o02.d.ask",
+   "target_cell": [
+    12,
+    13
+   ]
+  },
+  {
+   "id": "o02.s.guided",
+   "objective": "Print the badge and the labels, one key at a time.",
+   "interaction": "printer_terminal",
+   "completes_when": "scene_success:o02-guided-mapped & scene_success:o02-guided-home",
+   "target_cell": [
+    13,
+    3
+   ]
+  },
+  {
+   "id": "o02.s.variation",
+   "objective": "Print the mixed home-row labels.",
+   "interaction": "printer_terminal",
+   "completes_when": "scene_success:o02-variation",
+   "target_cell": [
+    13,
+    3
+   ]
+  },
+  {
+   "id": "o02.s.recall",
+   "objective": "Print the shuffled label without highlights.",
+   "interaction": "printer_terminal",
+   "completes_when": "scene_success:o02-recall",
+   "target_cell": [
+    13,
+    3
+   ]
+  },
+  {
+   "id": "o02.s.mira",
+   "objective": "Optional: hear Mira's offer in the mailroom.",
+   "interaction": "mira",
+   "completes_when": "dialogue_done:mm.d.intro",
+   "target_cell": [
+    20,
+    14
+   ],
+   "optional": true
+  },
+  {
+   "id": "o02.s.badge",
+   "objective": "Optional: inspect the unissued badge.",
+   "interaction": "artifact_unissued_badge",
+   "completes_when": "interact:artifact_unissued_badge",
+   "target_cell": [
+    11,
+    4
+   ],
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B01",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o02-guided-mapped"
+  },
+  {
+   "id": "B01",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o02-variation"
+  },
+  {
+   "id": "B01",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o02-recall"
+  },
+  {
+   "id": "B02",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o02-guided-home"
+  },
+  {
+   "id": "B02",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o02-variation"
+  },
+  {
+   "id": "B02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o02-recall"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o02-guided-mapped",
+   "kind": "label",
+   "task_summary": "Print the engineer's badge and three coworkers' labels, then a badge number and a two-name card, one plain mapped key at a time (b w 0 4 u t m x n v r and comma).",
+   "success_criteria": [
+    "Each card's text equals its target exactly (lowercase)",
+    "All twelve mapped plain keys b, w, 0, 4, u, t, m, x, n, v, r and comma were typed as plain taps"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Badge printer: type each card's text. Preview shows the badge as it prints.",
+    "items": [
+     {
+      "id": "c1",
+      "card": "engineer badge name",
+      "prompt": "Print the engineer badge name",
+      "target": "kit",
+      "focus_keys": [
+       "t"
+      ]
+     },
+     {
+      "id": "c2",
+      "card": "Bea's label",
+      "prompt": "Print the Bea's label",
+      "target": "bea",
+      "focus_keys": [
+       "b"
+      ]
+     },
+     {
+      "id": "c3",
+      "card": "Wren's label",
+      "prompt": "Print the Wren's label",
+      "target": "wren",
+      "focus_keys": [
+       "w",
+       "r",
+       "n"
+      ]
+     },
+     {
+      "id": "c4",
+      "card": "Umi's label",
+      "prompt": "Print the Umi's label",
+      "target": "umi",
+      "focus_keys": [
+       "u",
+       "m"
+      ]
+     },
+     {
+      "id": "c5",
+      "card": "Tove's label",
+      "prompt": "Print the Tove's label",
+      "target": "tove",
+      "focus_keys": [
+       "t",
+       "v"
+      ]
+     },
+     {
+      "id": "c6",
+      "card": "Xan's label",
+      "prompt": "Print the Xan's label",
+      "target": "xan",
+      "focus_keys": [
+       "x",
+       "n"
+      ]
+     },
+     {
+      "id": "c7",
+      "card": "badge number",
+      "prompt": "Print the badge number",
+      "target": "40",
+      "focus_keys": [
+       "4",
+       "0"
+      ]
+     },
+     {
+      "id": "c8",
+      "card": "Rao and Bea, one card",
+      "prompt": "Print the Rao and Bea, one card",
+      "target": "rao, bea",
+      "focus_keys": [
+       "comma"
+      ]
+     }
+    ],
+    "accepts": "resulting text equals target; the printer checks text, not physical key origin",
+    "rejects": [
+     "nav output left in the field (word jump, page, delete, Return)",
+     "uppercase letters (Shift is introduced at the Left Desk)"
+    ],
+    "feedback": {
+     "other": "The card shows the target below the field; the observed text is shown above it. Fix the next character and continue. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    },
+    "labels_are_lowercase": "until Shift is taught in level 04, every label and name is lowercase"
+   }
+  },
+  {
+   "id": "o02-guided-home",
+   "kind": "label",
+   "task_summary": "Type the home-row keys as plain letters: asdf, jkl; and two names that use them.",
+   "success_criteria": [
+    "asdf, jkl;, sadie and falk are each typed exactly",
+    "No modifier output (Control, Option, Command, Shift) appears"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Home-row cards: plain taps only.",
+    "items": [
+     {
+      "id": "h1",
+      "prompt": "Print the left home row",
+      "target": "asdf",
+      "focus_keys": [
+       "a",
+       "s",
+       "d",
+       "f"
+      ]
+     },
+     {
+      "id": "h2",
+      "prompt": "Print the right home row",
+      "target": "jkl;",
+      "focus_keys": [
+       "j",
+       "k",
+       "l",
+       ";"
+      ]
+     },
+     {
+      "id": "h3",
+      "prompt": "Print Sadie's label",
+      "target": "sadie",
+      "focus_keys": [
+       "s",
+       "a",
+       "d"
+      ]
+     },
+     {
+      "id": "h4",
+      "prompt": "Print Falk's label",
+      "target": "falk",
+      "focus_keys": [
+       "f",
+       "a",
+       "l",
+       "k"
+      ]
+     }
+    ],
+    "accepts": "resulting text equals target",
+    "rejects": [
+     "a held key that turns into a modifier (a quick tap-and-release is expected)"
+    ],
+    "feedback": {
+     "other": "A held home-row key becomes a modifier. Tap each letter and release. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "o02-variation",
+   "kind": "label",
+   "task_summary": "Print three mixed labels that roll across home-row keys on one hand and mix in digits and a comma; rolls must stay letters.",
+   "success_criteria": [
+    "Each label equals its target",
+    "Same-hand rolls such as sd, jk and kl stay literal letters"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mixed labels: roll the letters, do not hold them.",
+    "items": [
+     {
+      "id": "v1",
+      "prompt": "Print the shift-board label",
+      "target": "lads; flask"
+     },
+     {
+      "id": "v2",
+      "prompt": "Print the rolling label",
+      "target": "jk; asdf; kl"
+     },
+     {
+      "id": "v3",
+      "prompt": "Print the combined label",
+      "target": "dash; flask 40, kit"
+     }
+    ],
+    "accepts": "resulting text equals target",
+    "feedback": {
+     "other": "The card shows the target below the field; the observed text is shown above it. Fix the next character and continue. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "o02-recall",
+   "kind": "label",
+   "task_summary": "Print one shuffled label with every mapped plain key and the home row, with no highlighted keys.",
+   "success_criteria": [
+    "The label equals the target",
+    "The printer light steadies"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Shuffled label (no diagram highlights).",
+    "items": [
+     {
+      "id": "r1",
+      "prompt": "Print the shuffled label",
+      "target": "wren bo, umi tex vn 04 flask dad; jk"
+     }
+    ],
+    "accepts": "resulting text equals target",
+    "feedback": {
+     "other": "The card shows the target below the field; the observed text is shown above it. Fix the next character and continue. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o02.d.ask",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "The badge printer keeps printing generic names. Please restore my badge and three coworkers' labels.",
+   "hint": null,
+   "when": "step_start:o02.s.talk",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o02.d.hint-b",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `b` in Bea's name, you need to press B.",
+   "hint": {
+    "action": "To print the `b` in Bea's name, you need to press B.",
+    "key": "B",
+    "gesture": "tap B. It only jumps by word while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-w",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `w` in Wren's name, you need to press W.",
+   "hint": {
+    "action": "To print the `w` in Wren's name, you need to press W.",
+    "key": "W",
+    "gesture": "tap W. It only jumps by word while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-r",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `r` in Wren's name, you need to press R.",
+   "hint": {
+    "action": "To print the `r` in Wren's name, you need to press R.",
+    "key": "R",
+    "gesture": "tap R. A plain R types r; reload is Control + Shift + R."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-n",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `n` in Wren's name, you need to press N.",
+   "hint": {
+    "action": "To print the `n` in Wren's name, you need to press N.",
+    "key": "N",
+    "gesture": "tap N. It only submits (Return) while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-u",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `u` in Umi's name, you need to press U.",
+   "hint": {
+    "action": "To print the `u` in Umi's name, you need to press U.",
+    "key": "U",
+    "gesture": "tap U. It only pages up while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-m",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `m` in Umi's name, you need to press M.",
+   "hint": {
+    "action": "To print the `m` in Umi's name, you need to press M.",
+    "key": "M",
+    "gesture": "tap M. It only deletes backward while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-t",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `t` in Kit's name, you need to press T.",
+   "hint": {
+    "action": "To print the `t` in Kit's name, you need to press T.",
+    "key": "T",
+    "gesture": "tap T. It only jumps to the document start while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-x",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `x` in Xan's name, you need to press X.",
+   "hint": {
+    "action": "To print the `x` in Xan's name, you need to press X.",
+    "key": "X",
+    "gesture": "tap X. It only deletes forward (Control + D) while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-v",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print the `v` in Tove's name, you need to press V.",
+   "hint": {
+    "action": "To print the `v` in Tove's name, you need to press V.",
+    "key": "V",
+    "gesture": "tap V. V alone still types v; the practice toggle needs the physical modifiers."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-40",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To print badge number 40, you need to press 4, then 0.",
+   "hint": {
+    "action": "To print badge number 40, you need to press 4, then 0.",
+    "key": "4, then 0",
+    "gesture": "tap 4, tap 0. Plain taps stay digits on base."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-comma",
+   "speaker": "printer_card",
+   "portrait": null,
+   "text": "To separate the two names, you need to press comma.",
+   "hint": {
+    "action": "To separate the two names, you need to press comma.",
+    "key": "comma",
+    "gesture": "tap comma. It only deletes forward while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o02.s.guided",
+   "modal": false
+  },
+  {
+   "id": "o02.d.hint-request",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To print the `b` in Bea's name, you need to press B.",
+   "hint": {
+    "action": "To print the `b` in Bea's name, you need to press B.",
+    "key": "B",
+    "gesture": "tap B. It only jumps by word while nav is held."
+   },
+   "when": "request:o02.d.hint-b",
+   "cue": "hint lines are neutral",
+   "on_request": true,
+   "modal": false
+  },
+  {
+   "id": "o02.d.success",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Every card says what it should. The task light has steadied. Mira is in the mailroom if you want a loop to learn.",
+   "hint": null,
+   "when": "scene_success:o02-recall",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o02.d.mira-early",
+   "speaker": "mira",
+   "portrait": "neutral",
+   "text": "Once the printer is honest, find me in the mailroom. I will teach you the loop.",
+   "hint": null,
+   "when": "interact:mira_early",
+   "cue": "Mira: offering any route",
+   "modal": true
+  },
+  {
+   "id": "o02.d.badge-note",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "The old badge names a department that does not match today's sign.",
+   "hint": null,
+   "when": "interact:artifact_unissued_badge",
+   "cue": "Engineer: inspecting a tampering artifact (Unissued badge)",
+   "modal": true
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o02.t.printer-steady",
+   "when": "scene_success:o02-recall",
+   "then": [
+    {
+     "op": "light_state",
+     "light_state": "ls.printer-steady"
+    },
+    {
+     "op": "set_flag",
+     "flag": "printer-steady"
+    },
+    {
+     "op": "npc_state",
+     "npc": "mira",
+     "state": "mailroom"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "tablet"
+    },
+    {
+     "op": "journal",
+     "text": "Morning Mail is available in the mailroom."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-02"
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The north task light pulses unsteadily, the printer spits generic names, Mira waits by the Records door, Ivo's tablet is calm.",
+  "after": "The task light is steady, cards print in varied colors, Mira has moved into the southeast mailroom, Ivo's tablet starts flashing for the broken scheduling form.",
+  "visible_changes": [
+   {
+    "kind": "light_state",
+    "target": "ls.printer-steady",
+    "from": "pulse",
+    "to": "on",
+    "note": "north task light"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "mira",
+    "from": "start",
+    "to": "mailroom",
+    "note": "Mira moves to the mailroom"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "ivo",
+    "from": "post_nod",
+    "to": "tablet",
+    "note": "tablet flash"
+   }
+  ]
+ },
+ "rewards": {
+  "unlocks": [
+   "mira:morning-mail"
+  ]
+ },
+ "optional_artifact": {
+  "id": "unissued-badge",
+  "name": "Unissued badge",
+  "interaction": "artifact_unissued_badge",
+  "placement": "artifact_unissued_badge",
+  "caption": [
+   "An old employee badge that was never handed out.",
+   "Its department name differs from the one on the current sign.",
+   "Someone changed the name after it was printed."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Badge accuracy: every card printed on time.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  }
+ ],
+ "review_notes": "At 1366x768 the printer and its approach cells (13,3) and (14,3) sit near the top of the screen and well right of the keyboard inset. The reception talk at (12,13) is below the camera's centre with the avatar at screen (160,100), so it stays right of x 147. No inset conflict in this level (LEVEL_SHEET.md)."
+}

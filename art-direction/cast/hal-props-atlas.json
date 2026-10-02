@@ -1,0 +1,67 @@
+{
+  "schema": "kanata-hero/kit/atlas.schema.json",
+  "kit": "hal_props",
+  "image": "hal-props-atlas.png",
+  "tile": 16,
+  "layers": [
+    "floor",
+    "rear_wall",
+    "floor_marking",
+    "rear_prop",
+    "shadow",
+    "actor",
+    "front_prop",
+    "light"
+  ],
+  "status": "Candidate (poses branch)",
+  "source": "cast/hal_sprites.py STOOL",
+  "entries": [
+    {
+      "name": "stool_folding",
+      "kind": "prop",
+      "size_px": [
+        16,
+        10
+      ],
+      "footprint": {
+        "cells": [
+          1,
+          1
+        ],
+        "origin_px": [
+          0,
+          -6
+        ]
+      },
+      "collision": [
+        "1"
+      ],
+      "layer": "rear_prop",
+      "y_sort": true,
+      "anchor": [
+        8,
+        10
+      ],
+      "composite": {
+        "mode": "over"
+      },
+      "contact_shadow": [
+        1,
+        9,
+        14,
+        1
+      ],
+      "tags": [
+        "seating",
+        "hal"
+      ],
+      "rect": [
+        0,
+        0,
+        16,
+        16
+      ],
+      "note": "folding stool, steel frame and dark canvas from the ink ramp; placed under a seated Hal (hal-atlas.json: hal_seated_stool_*, stool_cell_in_frame_px [0, 8]) so the stool anchor (8, 16) lands on Hal's anchor (8, 24): the sprite's top-left is then (0, 14) in Hal's 16x24 frame. Draw it in rear_prop, then Hal in actor: Hal always draws over it"
+    }
+  ]
+}

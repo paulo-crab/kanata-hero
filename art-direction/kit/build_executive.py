@@ -34,6 +34,11 @@ import build_scale_test as bst  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import vale_sprites as vale  # noqa: E402
+import ivo_sprites as ivo  # noqa: E402
+import noor_sprites as noor  # noqa: E402
+import hal_sprites as hal  # noqa: E402
+import ada_sprites as ada  # noqa: E402
+import mira_sprites as mira  # noqa: E402
 
 T = 16
 W_CELLS, H_CELLS = 20, 12
@@ -324,6 +329,137 @@ def vale_wall_image(layout, atlas):
     to.save(os.path.join(HERE, "executive-vale-wall-check.png"))
 
 
+# ------------------------------------------------------------------ quest props: second composition and proofs
+# QUEST_PROP_AUDIT.md rows E1 to E11. The reference room above is untouched. The quest room shows the atrium with its three branch
+# props, the final door and the five arriving coworkers' places; the three incident branches are independent, so besides the before
+# and after renders there is a partial one (The Name and The Count repaired, The Route not). The helpers come from build_records (br).
+
+DAYLIGHT = {"window_a": "daylight", "window_b": "daylight", "window_light": "daylight"}
+QUEST_BEFORE = {"final_door": "closed", "lamp": "on", "atrium_tree": "before", "window_a": "overcast", "window_b": "overcast", "window_light": "overcast",
+                "branch_name": "before", "branch_route": "before", "branch_count": "before"}
+QUEST_PARTIAL = dict(QUEST_BEFORE, atrium_tree="repaired_name_count", branch_name="after", branch_count="after", **DAYLIGHT)
+QUEST_AFTER = dict({"final_door": "open", "lamp": "pulse", "atrium_tree": "after", "branch_name": "after", "branch_route": "after", "branch_count": "after"}, **DAYLIGHT)
+PLACES = (("ivo", ivo, 150), ("noor", noor, 178), ("hal", hal, 206), ("ada", ada, 234), ("mira", mira, 262))   # name, cast module, place x
+PLACE_Y = 52          # the places' footprint y (cell row 3); the coworkers stand just south of them
+QUEST_REQUIRED = {"atrium well (footprint, steps)": (32, 48, 144, 126), "planter and tree": (64, 14, 112, 102), "Vale": (111, 79, 127, 103),
+                  "final door": (288, 36, 320, 104), "nameplate": (104, 8, 144, 20), "places": (150, 46, 278, 68), "route line": (160, 100, 224, 132),
+                  "tally board": (236, 113, 270, 153)}
+
+
+def quest_actors(arrived):
+    actors = [VALE, ENGINEER]
+    if arrived:
+        actors += [(m.IDLE["s"][0], x + 8, PLACE_Y + 42, m.PAL) for _, m, x in PLACES]
+    return actors
+
+
+def quest_layout():
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(47)
+    n = 0
+    while n < 16:
+        x, y = rnd.randrange(4, 300), rnd.randrange(40, 180)
+        if 156 <= x < 296 and 60 <= y < 100 or 156 <= x < 196 and y >= 96 or 28 <= x < 148 and 40 <= y < 132:
+            continue
+        entry("floor_chip", x, y)
+        n += 1
+    for c in range(W_CELLS):
+        entry("wall_n_plain", c * T, 0)
+    for c in range(W_CELLS):
+        entry("wall_n_trim", c * T, 22)
+    for nm, x in (("window_a", 4), ("window_b", 36)):
+        anim(nm, x, 9)
+    anim("branch_name", 104, 8)
+    entry("wall_e_plain", 288, 34)
+    for y in range(96, H_CELLS * T, T):
+        entry("wall_e_plain", 288, y)
+    anim("final_door", 288, 58)
+    for x, y in ((277, 45), (277, 115)):
+        anim("lamp", x, y)
+    anim("window_light", 4, 34)
+    pl.append({"landmark": "atrium_tree", **at(*WELL_FP)})
+    for who, _, x in PLACES:
+        entry(f"place_{who}", x, PLACE_Y)
+    anim("branch_route", 160, 100)
+    anim("branch_count", 236, 124)
+    for nm, x, y in (("pot_plant_a", 96, 146), ("pot_plant_c", 268, 150)):
+        entry(nm, x, y + 4)
+    return {
+        "kit": "executive", "atlas": "executive-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
+        "note": "Executive quest-prop room, built only from executive-atlas (QUEST_PROP_AUDIT.md E1-E11). The atrium landmark at cell (2, 3) takes its state "
+                "from the three branches (before, repaired_name_count, after); the nameplate on the north wall, the floor line and the tally board are the "
+                "three branch props; the five places stand along the north side of the corridor. Vale, the Engineer and (after) the arrived coworkers are added by the renderer.",
+        "states": dict(QUEST_BEFORE),
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": floor_rows()},
+        "placements": pl,
+    }
+
+
+def render_quest(layout, atlas, states):
+    return render(layout, atlas, states, actors=quest_actors(states.get("atrium_tree") == "after"))
+
+
+def quest_proofs(atlas, meta):
+    layout = quest_layout()
+    layout_ok = br.write_quest_layout("executive", layout, meta)
+    before, after = br.quest_images("executive", layout, atlas, QUEST_BEFORE, QUEST_AFTER, render_quest)
+    partial = render_quest(layout, atlas, QUEST_PARTIAL)
+    Image.fromarray(partial).save(os.path.join(HERE, "executive-quest-props-partial-native.png"))
+    br.to_screen(partial).save(os.path.join(HERE, "executive-quest-props-partial-1366x768.png"))
+    print(f"executive quest props: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px, "
+          f"before/partial in {int(np.any(before != partial, axis=2).sum())} px")
+    lm = atlas.landmarks["atrium_tree"]
+    sts = lm["states"]
+    expect = {"repaired_name": {"atrium_nameplates_before", "atrium_nameplates_after"},
+              "repaired_route": {"atrium_inlay_before", "atrium_inlay_after", "atrium_pots_before", "atrium_pots_after"},
+              "repaired_count": {"atrium_daylight_after"}}
+    diff = {k: set(sts[k]["parts"]) ^ set(sts["before"]["parts"]) for k in expect}
+    combos = {"repaired_name_route": ("repaired_name", "repaired_route"), "repaired_name_count": ("repaired_name", "repaired_count"),
+              "repaired_route_count": ("repaired_route", "repaired_count")}
+    combo_ok = all(set(sts[c]["parts"]) ^ set(sts["before"]["parts"]) == diff[a] | diff[b] for c, (a, b) in combos.items())
+    all_ok = set(sts["after"]["parts"]) ^ set(sts["before"]["parts"]) == diff["repaired_name"] | diff["repaired_route"] | diff["repaired_count"]
+    cells = {tuple(p["cell"]) for p in layout["placements"] if p.get("entry", "").startswith("place_")}
+    grid = blocked_grid(layout, atlas, QUEST_BEFORE)
+    extra = [("the landmark has a state for every combination of the three branches (before, 3 single, 3 pairs, after)", len(sts) == 8 and all(s in sts for s in expect) and all(c in sts for c in combos), f"{len(sts)} states"),
+             ("each branch changes only its own atrium feature: Name the nameplates, Route the copper lines and the pots, Count the daylight pool", all(diff[k] == expect[k] for k in expect), ""),
+             ("every pair and the after state are exactly the union of their branches' changes", combo_ok and all_ok, ""),
+             ("the five places block their own cells and leave the corridor rows free", all(grid[y, x] for x, y in cells) and not any(grid[y, x] for x in range(10, 18) for y in (4, 5)), f"{len(cells)} cells")]
+    ok_ = br.quest_review("executive", layout, atlas, xk.QUEST_NAMES, QUEST_BEFORE, QUEST_AFTER, QUEST_REQUIRED, door=("final_door", "open"), goal=(17, 4), start=(10, 10),
+                          blocked_fn=blocked_grid, extra=extra)
+    return ok_ and layout_ok
+
+
+# ------------------------------------------------------------------ Executive integration proof
+
+INTEG_BEFORE = {"elevator": "closed", "lamp": "on"}
+INTEG_AFTER = {"elevator": "open", "lamp": "pulse"}
+INTEG_REQUIRED = {"elevators": (16, 0, 224, 48), "seated worker and desk": (32, 60, 150, 110), "plaque table": (224, 92, 262, 124)}
+
+
+def executive_integration_layout():
+    extras = [{"entry": "side_table", **at(232, 100)}, {"entry": "desk_name_plaque", **at(233, 91)}]
+    return br.integration_layout("executive", "executive-atlas.json", ["public_audit_copy"], extras, panel={"entry": "elevator_call_panel"}, states=INTEG_BEFORE,
+                                 note="Executive integration proof room, built only from executive-atlas: the shared elevator set (closed, half, open) and call panel in the "
+                                      "copper-and-navy ramps, a seated worker behind desk_a with its occluder, the audit copy on desk_b and the name plaque on a side table. "
+                                      "People are added by the renderer.")
+
+
+def integration_proofs(atlas, meta):
+    layout = executive_integration_layout()
+    layout_ok = br.write_integration_layout("executive", layout, meta)
+    before, after = br.integration_images("executive", layout, atlas, INTEG_BEFORE, INTEG_AFTER, br.render_integration)
+    print(f"executive integration: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    ok_ = br.integration_review("executive", layout, atlas, meta, xk.INTEGRATION_NAMES, INTEG_BEFORE, INTEG_AFTER, INTEG_REQUIRED)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -355,7 +491,9 @@ def main():
     vale_wall_image(layout, atlas)
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
-    sys.exit(0 if ok_ else 1)
+    qok = quest_proofs(atlas, meta)
+    iok = integration_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok and iok else 1)
 
 
 if __name__ == "__main__":

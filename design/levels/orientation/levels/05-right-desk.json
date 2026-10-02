@@ -1,0 +1,580 @@
+{
+ "id": "orientation-05",
+ "number": 5,
+ "title": "Right Desk",
+ "district": "orientation",
+ "kind": "main",
+ "requires": [
+  "orientation-04"
+ ],
+ "story": "Across the garden, the mirror workstation's labels are reversed, and Mira jokes that the building seems convinced everyone has only one useful hand. The engineer mirrors the left desk's four holds on the right hand, then mixes both sides without a diagram.",
+ "steps": [
+  {
+   "id": "o05.s.talk",
+   "objective": "Join Ivo and Mira at the right desk.",
+   "interaction": "right_desk",
+   "completes_when": "dialogue_done:o05.d.ask",
+   "target_cell": [
+    19,
+    10
+   ]
+  },
+  {
+   "id": "o05.s.stamps",
+   "objective": "Use the four right-hand stamps one at a time.",
+   "interaction": "right_desk",
+   "completes_when": "scene_success:o05-stamp-shift & scene_success:o05-stamp-command & scene_success:o05-stamp-option & scene_success:o05-stamp-control",
+   "target_cell": [
+    19,
+    10
+   ]
+  },
+  {
+   "id": "o05.s.variation",
+   "objective": "Edit the label: an opposite-hand stamp and a same-hand roll.",
+   "interaction": "right_desk",
+   "completes_when": "scene_success:o05-variation",
+   "target_cell": [
+    19,
+    10
+   ]
+  },
+  {
+   "id": "o05.s.recall",
+   "objective": "Complete the mixed approval form without a diagram.",
+   "interaction": "right_desk",
+   "completes_when": "scene_success:o05-recall",
+   "target_cell": [
+    19,
+    10
+   ]
+  },
+  {
+   "id": "o05.s.artifact",
+   "objective": "Optional: inspect the mirror card.",
+   "interaction": "artifact_mirror_card",
+   "completes_when": "interact:artifact_mirror_card",
+   "target_cell": [
+    21,
+    9
+   ],
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o05-stamp-shift"
+  },
+  {
+   "id": "B04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o05-stamp-command"
+  },
+  {
+   "id": "B04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o05-stamp-option"
+  },
+  {
+   "id": "B04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o05-stamp-control"
+  },
+  {
+   "id": "B04",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o05-variation"
+  },
+  {
+   "id": "B04",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o05-recall"
+  },
+  {
+   "id": "B05",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o05-recall"
+  },
+  {
+   "id": "B03",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o05-recall"
+  },
+  {
+   "id": "B02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o05-recall"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o05-stamp-shift",
+   "kind": "editor",
+   "task_summary": "Hold J (Shift), tap S on the left hand, and finish the name: capitalize the S in Sol.",
+   "success_criteria": [
+    "Shift + S is observed (Shift held from J, then S on the other hand)",
+    "The local label shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mirror workstation label: stamp with Shift + S. Safe local editor; labels are reversed until stamped.",
+    "initial": "sol",
+    "target": "Sol",
+    "accepts": "text S typed as a capital",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold J until Shift engages (about 200 ms), then tap S",
+      "accepts": [
+       "Shift + S"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "the first letter becomes S",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o05-stamp-command",
+   "kind": "editor",
+   "task_summary": "Hold K (Command), tap Z: undo the reversed stamp.",
+   "success_criteria": [
+    "Command + Z is observed (Command held from K, then Z on the other hand)",
+    "The local label shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mirror workstation label: stamp with Command + Z. Safe local editor; labels are reversed until stamped.",
+    "initial": "lbael (reversed)",
+    "target": "label (undone)",
+    "accepts": "Meta+Z event inside the label editor",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold K until Command engages (about 200 ms), then tap Z",
+      "accepts": [
+       "Command + Z"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "the reversed stamp is undone",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o05-stamp-option",
+   "kind": "editor",
+   "task_summary": "Hold L (Option), tap A: mark the label with the local Option + A stamp.",
+   "success_criteria": [
+    "Option + A is observed (Option held from L, then A on the other hand)",
+    "The local label shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mirror workstation label: stamp with Option + A. Safe local editor; labels are reversed until stamped.",
+    "initial": "label",
+    "target": "label marked",
+    "accepts": "Alt+A event inside the label editor",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold L until Option engages (about 200 ms), then tap A",
+      "accepts": [
+       "Option + A"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "a mark appears in the label's corner",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o05-stamp-control",
+   "kind": "editor",
+   "task_summary": "Hold ; (Control), tap A: lock the label with the local Control + A stamp.",
+   "success_criteria": [
+    "Control + A is observed (Control held from ;, then A on the other hand)",
+    "The local label shows the stamp's effect"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mirror workstation label: stamp with Control + A. Safe local editor; labels are reversed until stamped.",
+    "initial": "label",
+    "target": "label locked",
+    "accepts": "Ctrl+A event inside the label editor",
+    "steps": [
+     {
+      "id": "hold-then-press",
+      "expect": "hold ; until Control engages (about 200 ms), then tap A",
+      "accepts": [
+       "Control + A"
+      ],
+      "rejects": [
+       "the plain letters of both keys typed as text"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ],
+    "effect": "a lock icon appears on the label",
+    "activation_order": "one hold at a time in this level"
+   }
+  },
+  {
+   "id": "o05-variation",
+   "kind": "editor",
+   "task_summary": "Edit one label with an opposite-hand stamp and type a same-hand roll that must stay text.",
+   "success_criteria": [
+    "The label reads Sol jk exactly",
+    "The roll j then k typed as two plain letters and did not become Shift or Command"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mirror label, line 1 of 1.",
+    "initial": "",
+    "target": "Sol jk",
+    "accepts": "text equals target",
+    "steps": [
+     {
+      "id": "capital",
+      "expect": "hold J (Shift), tap S, release, then type ol",
+      "accepts": [
+       "S"
+      ],
+      "feedback": {
+       "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     },
+     {
+      "id": "roll",
+      "expect": "type jk as a quick roll of two plain letters",
+      "accepts": [
+       "j",
+       "k"
+      ],
+      "rejects": [
+       "Shift or Command event"
+      ],
+      "feedback": {
+       "other": "A held J or K becomes a modifier. Roll the two taps and release. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "o05-recall",
+   "kind": "form",
+   "task_summary": "Complete a mixed approval form that needs a left-hand hold with a right-hand key and a right-hand hold with a left-hand key, with no diagram; plain letters stay text.",
+   "success_criteria": [
+    "Each of the four right-hand holds is used once and each of the left-hand holds from level 04 is used at least once",
+    "The form lines match their targets"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Mixed approval form (no diagram).",
+    "lines": [
+     {
+      "id": "l1",
+      "text": "capitalize Sol",
+      "stamp": "Shift + S (right hand holds)"
+     },
+     {
+      "id": "l2",
+      "text": "undo the reversed stamp",
+      "stamp": "Command + Z (right hand holds)"
+     },
+     {
+      "id": "l3",
+      "text": "capitalize Kai",
+      "stamp": "Shift + K (left hand holds)"
+     },
+     {
+      "id": "l4",
+      "text": "mark the label",
+      "stamp": "Option + A (right hand holds)"
+     },
+     {
+      "id": "l5",
+      "text": "lock the label",
+      "stamp": "Control + A (right hand holds)"
+     },
+     {
+      "id": "l6",
+      "text": "lock the sheet",
+      "stamp": "Control + L (left hand holds)"
+     }
+    ],
+    "accepts": "each stamp event observed; plain letters typed between stamps",
+    "feedback": {
+     "other": "The observed output is shown above the label; the stamp needs the hold on the right-hand key, then a left-hand key. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o05.d.ask",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "The mirror workstation has its labels reversed. Mirror the left desk with your right hand.",
+   "hint": null,
+   "when": "step_start:o05.s.talk",
+   "cue": "Ivo 04: neutral",
+   "modal": true
+  },
+  {
+   "id": "o05.d.mira-joke",
+   "speaker": "mira",
+   "portrait": "grin",
+   "text": "Funny. This building seems convinced everyone has only one useful hand.",
+   "hint": null,
+   "when": "interact:mira_right_desk",
+   "cue": "Mira: the 05 'one useful hand' joke (mira_grin)",
+   "modal": true
+  },
+  {
+   "id": "o05.d.command",
+   "speaker": "mirror_card",
+   "portrait": null,
+   "text": "To undo the reversed stamp, you need to press Command + Z.",
+   "hint": {
+    "action": "To undo the reversed stamp, you need to press Command + Z.",
+    "key": "Command + Z",
+    "gesture": "Command is tap-hold K, then Z on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o05.s.stamps",
+   "modal": false
+  },
+  {
+   "id": "o05.d.shift",
+   "speaker": "mirror_card",
+   "portrait": null,
+   "text": "To capitalize the S in Sol, you need to press Shift + S.",
+   "hint": {
+    "action": "To capitalize the S in Sol, you need to press Shift + S.",
+    "key": "Shift + S",
+    "gesture": "Shift is tap-hold J."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o05.s.stamps",
+   "modal": false
+  },
+  {
+   "id": "o05.d.jk",
+   "speaker": "mira",
+   "portrait": "neutral",
+   "text": "To type \"jk\" in the label, you need to press J, then K.",
+   "hint": {
+    "action": "To type \"jk\" in the label, you need to press J, then K.",
+    "key": "J, then K",
+    "gesture": "tap J, tap K. A same-hand roll stays text."
+   },
+   "when": "step_start:o05.s.variation",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o05.d.option",
+   "speaker": "mirror_card",
+   "portrait": null,
+   "text": "To mark the label, you need to press Option + A.",
+   "hint": {
+    "action": "To mark the label, you need to press Option + A.",
+    "key": "Option + A",
+    "gesture": "Option is tap-hold L, then A on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o05.s.stamps",
+   "modal": false
+  },
+  {
+   "id": "o05.d.control",
+   "speaker": "mirror_card",
+   "portrait": null,
+   "text": "To lock the label, you need to press Control + A.",
+   "hint": {
+    "action": "To lock the label, you need to press Control + A.",
+    "key": "Control + A",
+    "gesture": "Control is tap-hold ;, then A on the other hand."
+   },
+   "speaker_kind": "object",
+   "when": "step_start:o05.s.stamps",
+   "modal": false
+  },
+  {
+   "id": "o05.d.success",
+   "speaker": "ivo",
+   "portrait": "pleased",
+   "text": "The pinboard is lopsided and it looks like a person made it. The map on it points at the review desk.",
+   "hint": null,
+   "when": "scene_success:o05-recall",
+   "cue": "Ivo 05: when the pinboard turns asymmetrical and human: pleased",
+   "modal": true
+  },
+  {
+   "id": "o05.d.mirror-note",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "Someone annotated this card to prefer the right-hand route.",
+   "hint": null,
+   "when": "interact:artifact_mirror_card",
+   "cue": "Engineer: inspecting a tampering artifact (Mirror card)",
+   "modal": true
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o05.t.right-lit",
+   "when": "scene_success:o05-recall",
+   "then": [
+    {
+     "op": "light_state",
+     "light_state": "ls.desk-right-lit"
+    },
+    {
+     "op": "set_state",
+     "target": "pinboard",
+     "state": "after"
+    },
+    {
+     "op": "npc_state",
+     "npc": "mira",
+     "state": "mailroom"
+    },
+    {
+     "op": "set_flag",
+     "flag": "right-desk-asymmetric"
+    },
+    {
+     "op": "journal",
+     "text": "Orientation 05 complete: the pinboard points to the review desk."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-05"
+    }
+   ]
+  },
+  {
+   "id": "o05.t.mira-arrives",
+   "when": "step_start:o05.s.talk",
+   "then": [
+    {
+     "op": "npc_state",
+     "npc": "mira",
+     "state": "right_desk"
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The mirror desk is dark; the pinboard beside the elevator holds the symmetrical set of sheets from level 04; Mira waits in the mailroom.",
+  "after": "The right desk lamp is warm and its stripe is lit, the pinboard is lopsided and human with a map pointing at the review desk, Mira heads back to the mailroom.",
+  "visible_changes": [
+   {
+    "kind": "light_state",
+    "target": "ls.desk-right-lit",
+    "from": "off",
+    "to": "on",
+    "note": "warm right lamp and corridor stripe"
+   },
+   {
+    "kind": "placement_state",
+    "target": "lamp_desk_right",
+    "from": "off",
+    "to": "on",
+    "note": "lamp_warm state set"
+   },
+   {
+    "kind": "placement_state",
+    "target": "pinboard",
+    "from": "before",
+    "to": "after",
+    "note": "pinboard turns asymmetrical"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "mira",
+    "from": "right_desk",
+    "to": "mailroom",
+    "note": "Mira returns to the mailroom"
+   }
+  ]
+ },
+ "rewards": {
+  "unlocks": []
+ },
+ "optional_artifact": {
+  "id": "mirror-card",
+  "name": "Mirror card",
+  "interaction": "artifact_mirror_card",
+  "placement": "artifact_mirror_card",
+  "caption": [
+   "A stamp card annotated in a hurry.",
+   "Its author preferred the right-hand route and wrote down why.",
+   "The note was never added to the training script."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Approved route: left desk, then left desk.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  }
+ ],
+ "review_notes": "At 1366x768 the right desk stop (19,10) is east of centre and clears the keyboard inset (x 4-147). The camera clamps at the east edge so the avatar is at screen x about 224 and y about 100."
+}

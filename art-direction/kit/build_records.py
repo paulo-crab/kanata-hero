@@ -31,6 +31,8 @@ import records_kit as rk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
+import mira_sprites as mira  # noqa: E402
+import check_atlas  # noqa: E402
 
 T = 16
 W_CELLS, H_CELLS = 20, 12
@@ -311,6 +313,355 @@ def route_image(layout, atlas, canvas):
     Image.alpha_composite(img, ov).convert("RGB").save(os.path.join(HERE, "records-reference-room-route.png"))
 
 
+# ------------------------------------------------------------------ quest props: second composition and proofs
+# QUEST_PROP_AUDIT.md rows R1 to R30. The reference room above is untouched; this room places every new quest entry
+# in its before and after state, built only from records-atlas entries. The helpers below are shared by the Systems,
+# Night Shift and Executive builds (build_systems.py imports this module as `br`).
+
+QUEST_BEFORE = {"repair_door": "closed", "shelf_end_light": "off", "courier_chute": "idle", "folder_rack": "drift",
+                "ledger_table": "before", "rolling_ladder": "closed", "report_table": "before", "lamp": "on"}
+QUEST_AFTER = {"repair_door": "open", "shelf_end_light": "on", "courier_chute": "ready", "folder_rack": "aligned",
+               "ledger_table": "after", "rolling_ladder": "open", "report_table": "after", "lamp": "pulse"}
+QUEST_PEOPLE = [(mira, mira.IDLE["s"][0], 226, 140), (eng, eng.IDLE["n"][0], 144, 124)]   # module, frame, anchor x, anchor y
+QUEST_REQUIRED = {"door": (128, 0, 160, 34), "ledger table": (196, 52, 260, 80), "report table": (192, 96, 226, 114),
+                  "courier chute": (236, 100, 268, 128), "rolling ladder": (32, 84, 96, 116), "corridor start": (128, 160, 160, 180),
+                  "folder rack": (72, 25, 104, 66), "shelf lights": (30, 24, 70, 50)}
+
+
+def quest_layout():
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(41)
+    n = 0
+    while n < 16:
+        x, y = rnd.randrange(4, 300), rnd.randrange(40, 180)
+        if 124 <= x < 164:
+            continue
+        entry("floor_chip", x, y)
+        n += 1
+    for c in range(W_CELLS):
+        if c not in (8, 9):                       # the repair door replaces two wall tiles
+            entry("wall_n_plain", c * T, 0)
+    for nm, x in (("wall_n_window_a", 40), ("wall_n_window_b", 96), ("wall_n_window_a", 200), ("wall_n_window_b", 240)):
+        entry(nm, x, 9)
+    for y in range(34, H_CELLS * T, T):
+        entry("wall_e_plain", 288, y)
+    anim("repair_door", 128, 0)
+    # the corridor to the door: inlay lines and arrows
+    for y in range(36, 192, T):
+        entry("route_inlay_v", 128, y)
+        entry("route_inlay_v", 159, y)
+    for y in (96, 150):
+        entry("route_arrow_n", 136, y)
+    # north wall furniture: shelving with end lights, a folder rack, cabinets carrying Mira's desk decorations
+    entry("shelf_2x1_a", 0, 32)
+    anim("shelf_end_light", 29, 18)
+    entry("shelf_1x1", 44, 32)
+    anim("shelf_end_light", 57, 18)
+    anim("folder_rack", 72, 36)
+    entry("cabinet_1x1", 108, 32)
+    entry("mira_decor_archive_folder", 109, 14)
+    entry("cabinet_2x1", 166, 32)
+    entry("mira_decor_courier_loop", 184, 15)
+    for x in (200, 240):
+        entry("light_shaft", x, 34)
+    anim("ledger_table", 196, 58)
+    anim("rolling_ladder", 32, 100)
+    anim("report_table", 192, 100)
+    anim("courier_chute", 236, 112)
+    for x, y in ((120, 118), (166, 92)):
+        anim("lamp", x, y)
+    for nm, x, y in (("pot_plant_a", 6, 146), ("pot_plant_b", 100, 140), ("pot_plant_c", 270, 60), ("pot_plant_d", 276, 148)):
+        entry(nm, x, y + 4)
+    return {
+        "kit": "records", "atlas": "records-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
+        "note": "Records quest-prop room, built only from records-atlas (QUEST_PROP_AUDIT.md R1-R30). Every new quest entry appears in it; "
+                "the state sets are switched between the before and after renders. The corridor (cols 8-9) leads north to the repair door. "
+                "People are added by the renderer.",
+        "states": dict(QUEST_BEFORE),
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": ok_floor_rows()},
+        "placements": pl,
+    }
+
+
+def render_people(canvas, people):
+    for mod, frame, ax, ay in sorted(people, key=lambda p: p[3]):
+        c = type("C", (), {})()
+        c.img = canvas
+        g.place_px(c, g.frame_rgba(frame, mod.PAL), ax, ay)
+
+
+def render_quest(layout, atlas, states, people=QUEST_PEOPLE):
+    lay = with_states(layout, **states)
+    canvas = np.zeros((H_CELLS * T, W_CELLS * T, 3), np.uint8)
+    kitlib.render_layout(lay, atlas, layers=BACK, base=canvas)
+    render_people(canvas, people)
+    kitlib.render_layout(lay, atlas, layers=FRONT, base=canvas)
+    return canvas
+
+
+def write_quest_layout(prefix, layout, meta):
+    """Write <prefix>-quest-props-room.json and run check_atlas.check_layout on it. Returns True when it is clean."""
+    path = os.path.join(HERE, f"{prefix}-quest-props-room.json")
+    with open(path, "w") as fh:
+        json.dump(layout, fh, indent=1)
+        fh.write("\n")
+    check_atlas.fails.clear()
+    check_atlas.check_layout(path, {layout["atlas"]: meta})
+    return not check_atlas.fails
+
+
+def quest_images(prefix, layout, atlas, before_states, after_states, render_fn, to_screen_fn=None):
+    """Write <prefix>-quest-props-{before,after}-{native,1366x768}.png. Returns (before, after) canvases."""
+    to_screen_fn = to_screen_fn or to_screen
+    before, after = render_fn(layout, atlas, before_states), render_fn(layout, atlas, after_states)
+    for tag, cv in (("before", before), ("after", after)):
+        Image.fromarray(cv).save(os.path.join(HERE, f"{prefix}-quest-props-{tag}-native.png"))
+        to_screen_fn(cv).save(os.path.join(HERE, f"{prefix}-quest-props-{tag}-1366x768.png"))
+    return before, after
+
+
+def layout_names(layout, atlas, state_dicts):
+    """Every entry a layout draws, across the given state dictionaries."""
+    used = set()
+    for st in state_dicts:
+        used |= {name for _, _, name, _, _ in kitlib.expand(with_states(layout, **st), atlas)}
+    # a placed state set also plays its transitional states (a door's half frame), so every one of its entries counts as drawn
+    for p in layout["placements"]:
+        if "anim" in p:
+            for s in atlas.animations[p["anim"]]["states"].values():
+                used |= set(s["entries"])
+    return used
+
+
+def quest_review(prefix, layout, atlas, quest_names, before, after, required, door=None, goal=None, start=(8, 10), blocked_fn=None, extra=()):
+    """Checks shared by the four districts. door = (state-set name, open state): the corridor start -> goal is a two-cell-wide
+    walkway when the door is open and none when it is closed. required = {label: (x0, y0, x1, y1)} view rectangles that
+    must stay clear of the keyboard inset. Returns True when every check passes."""
+    blocked_fn = blocked_fn or blocked_grid
+    results = []
+
+    def check(name, ok_, detail=""):
+        results.append(ok_)
+        print(("PASS " if ok_ else "FAIL ") + name + (f": {detail}" if detail else ""))
+    used = layout_names(layout, atlas, (before, after))
+    missing = sorted(set(quest_names) - used)
+    check(f"every new {prefix} quest entry appears in the quest-prop room (before or after)", not missing,
+          f"{len(quest_names)} entries" + (f"; missing {missing}" if missing else ""))
+    if door:
+        anim, open_state = door
+        grid = blocked_fn(layout, atlas, dict(before, **{anim: open_state}))
+        path = corridor_route(grid, start, goal)
+        check("the corridor to the quest door is two cells wide when the door is open (BFS on the collision grid)", path is not None,
+              f"{len(path)} steps, {start} -> {goal}" if path else "no path")
+        check("the closed quest door blocks the corridor", corridor_route(blocked_fn(layout, atlas, before), start, goal) is None)
+        if path:
+            cells = {(x + dx, y + dy) for x, y in path for dx in (0, 1) for dy in (0, 1)}
+            check("corridor cells are free of props", not any(grid[y, x] for x, y in cells), f"{len(cells)} cells")
+    ix0, iy0, ix1, iy1 = INSET_VIEW
+    bad = [n for n, (x0, y0, x1, y1) in required.items() if x0 < ix1 and x1 > ix0 and y0 < iy1 and y1 > iy0]
+    check("no required quest element sits under the keyboard inset (view x 5-125, y 126.5-175)", not bad, ", ".join(bad) or "all clear")
+    for name, ok_, detail in extra:
+        check(name, ok_, detail)
+    return all(results)
+
+
+def quest_proofs(atlas, meta):
+    layout = quest_layout()
+    layout_ok = write_quest_layout("records", layout, meta)
+    before, after = quest_images("records", layout, atlas, QUEST_BEFORE, QUEST_AFTER, render_quest)
+    print(f"records quest props: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    ok_ = quest_review("records", layout, atlas, rk.QUEST_NAMES, QUEST_BEFORE, QUEST_AFTER, QUEST_REQUIRED, door=("repair_door", "open"), goal=(8, 0))
+    return ok_ and layout_ok
+
+
+# ------------------------------------------------------------------ wave 2: district integration proof room
+# One room per district (20 x 12 cells) built only from the district atlas: three elevators across the north wall (closed,
+# half, open) with the call panel, a seated worker behind desk_a with its desk_a_front occluder over the actor, desk_b with
+# an artifact lying on it, and one cabinet per artifact carrying it. Each district adds the placements of its own new props.
+# The helpers are shared by the Systems, Night Shift and Executive builds (they import this module as `br`).
+
+SEAT = {"chair": (8, -12), "worker": (16, 4)}   # ORIENTATION_KIT_SPEC seat convention, relative to the desk origin
+ELEVATORS = {"anim": (16, 0), "half": (96, 0), "open": (176, 0)}
+ARTIFACT_CABINETS = [(176, 150), (208, 150), (240, 150), (272, 150)]
+
+
+def integration_layout(kit, atlas_name, artifacts, extras, wall_tile="wall_n_plain", panel=None, desks=True, states=None, note=""):
+    """Placement list for the district integration proof. `extras` is a list of placement dicts (use br.at for positions);
+    `panel` is {"entry": name} or {"anim": name} for the call panel next to the first elevator."""
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(53)
+    n = 0
+    while n < 14:
+        x, y = rnd.randrange(4, 300), rnd.randrange(56, 180)
+        if 170 <= x < 300 and y >= 120 or x < 130 and y >= 120:
+            continue
+        entry("floor_chip", x, y)
+        n += 1
+    covered = {c for x in ELEVATORS.values() for c in range(x[0] // T, x[0] // T + 3)}
+    for c in range(W_CELLS):
+        if c not in covered:
+            entry(wall_tile, c * T, 0)
+    anim("elevator", *ELEVATORS["anim"])
+    entry("elevator_half", *ELEVATORS["half"])
+    entry("elevator_open", *ELEVATORS["open"])
+    if panel:
+        (kind, nm), = panel.items()
+        (anim if kind == "anim" else entry)(nm, 68, 9)
+    if desks:
+        ax, ay = 32, 84
+        entry("chair", ax + SEAT["chair"][0], ay + SEAT["chair"][1])
+        entry("desk_a", ax, ay)
+        entry("desk_a_front", ax, ay)               # after the actor, see render_integration
+        bx, by = 112, 84
+        entry("chair", bx + SEAT["chair"][0], by + SEAT["chair"][1])
+        entry("desk_b", bx, by)
+        entry("desk_b_front", bx, by)
+        entry(f"artifact_{artifacts[0]}", bx + 19, by - 5)
+    for i, slug in enumerate(artifacts[1:] if desks else artifacts):
+        cx, cy = ARTIFACT_CABINETS[i]
+        entry("cabinet_1x1", cx, cy)
+        entry(f"artifact_{slug}", cx, cy - 18)
+    pl.extend(extras)
+    return {"kit": kit, "atlas": atlas_name, "tile": T, "size_cells": [W_CELLS, H_CELLS],
+            "note": note or f"{kit} integration proof room, built only from {atlas_name}: the shared elevator set (closed, half, open) with the call panel, "
+                            "a seated worker behind desk_a with its occluder, an artifact on desk_b and on cabinets, and the district's new props. People are added by the renderer.",
+            "states": dict(states or {}),
+            "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": ok_floor_rows()},
+            "placements": pl}
+
+
+def integration_images(prefix, layout, atlas, before, after, render_fn, to_screen_fn=None):
+    """Write <prefix>-integration-proof-{before,after}-{native,1366x768}.png. Returns (before, after) canvases."""
+    to_screen_fn = to_screen_fn or to_screen
+    b, a = render_fn(layout, atlas, before), render_fn(layout, atlas, after)
+    for tag, cv in (("before", b), ("after", a)):
+        Image.fromarray(cv).save(os.path.join(HERE, f"{prefix}-integration-proof-{tag}-native.png"))
+        to_screen_fn(cv).save(os.path.join(HERE, f"{prefix}-integration-proof-{tag}-1366x768.png"))
+    return b, a
+
+
+def worker_stand_in(canvas, mod, frame, pal, desk=(32, 84)):
+    """Place a person frame behind the desk by the seat convention (feet_bc at desk origin + (16, 4))."""
+    c = type("C", (), {})()
+    c.img = canvas
+    g.place_px(c, g.frame_rgba(frame, pal), desk[0] + SEAT["worker"][0], desk[1] + SEAT["worker"][1])
+
+
+def render_integration(layout, atlas, states, people=None):
+    """BACK layers, the people, then the FRONT layers (the occluders and artifacts draw over the actors)."""
+    lay = with_states(layout, **states)
+    canvas = np.zeros((H_CELLS * T, W_CELLS * T, 3), np.uint8)
+    kitlib.render_layout(lay, atlas, layers=BACK, base=canvas)
+    for fn in (people if people is not None else [lambda cv: worker_stand_in(cv, eng, eng.IDLE["s"][0], eng.PAL)]):
+        fn(canvas)
+    kitlib.render_layout(lay, atlas, layers=FRONT, base=canvas)
+    return canvas
+
+
+def write_integration_layout(prefix, layout, meta):
+    path = os.path.join(HERE, f"{prefix}-integration-room.json")
+    with open(path, "w") as fh:
+        json.dump(layout, fh, indent=1)
+        fh.write("\n")
+    check_atlas.fails.clear()
+    check_atlas.check_layout(path, {layout["atlas"]: meta})
+    return not check_atlas.fails
+
+
+def integration_review(prefix, layout, atlas, meta, names, before, after, required, desk_front_covers=True, extra=()):
+    """Shared checks: every new integration entry is drawn, the elevator/panel/occluder/artifact geometry is Orientation's,
+    the occluder hides the seated worker's lower body, nothing required sits under the keyboard inset."""
+    with open(os.path.join(HERE, "orientation-atlas.json")) as fh:
+        orient = json.load(fh)
+    ents = {e["name"]: e for e in meta["entries"]}
+    try:
+        import quest_props
+        quest_props.check_elevator_geometry(ents, orient)
+        geom, detail = True, "elevator set, panel, occluders and artifacts match orientation-atlas.json"
+    except AssertionError as e:
+        geom, detail = False, str(e)
+    checks = [("the shared elevator, call panel, occluder and artifact entries have Orientation's geometry (size, footprint, collision, layer, anchor, shadow)", geom, detail)]
+    if desk_front_covers:
+        lay = with_states(layout, **before)
+        canvas = np.zeros((H_CELLS * T, W_CELLS * T, 3), np.uint8)
+        kitlib.render_layout(lay, atlas, layers=BACK, base=canvas)
+        worker_stand_in(canvas, eng, eng.IDLE["s"][0], eng.PAL)
+        with_occ = render_integration(layout, atlas, before)
+        ax, ay = 32 + SEAT["worker"][0], 84 + SEAT["worker"][1]
+        region = (slice(ay - 24, ay), slice(ax - 8, ax + 8))
+        hidden = int(np.any(canvas[region] != with_occ[region], axis=2).sum())
+        checks.append(("desk_a_front hides part of the seated worker's frame (the occluder draws over the actor)", hidden > 0, f"{hidden} px of the 16x24 frame are covered"))
+    checks += list(extra)
+    return quest_review(prefix, layout, atlas, names, before, after, required, extra=checks)
+
+
+# ------------------------------------------------------------------ Records integration proof
+
+INTEG_BEFORE = {"elevator": "closed", "cabinet_gate": "misaligned", "cabinet_labels": "offset", "ledger_mark": "rejected", "lamp": "on"}
+INTEG_AFTER = {"elevator": "open", "cabinet_gate": "aligned", "cabinet_labels": "aligned", "ledger_mark": "accepted", "lamp": "pulse"}
+INTEG_REQUIRED = {"elevators": (16, 0, 224, 48), "seated worker and desk": (32, 60, 150, 110), "gate and cabinets": (192, 56, 280, 90),
+                  "ledger desk": (224, 99, 262, 124), "artifact cabinets": (176, 130, 290, 170)}
+
+
+def rk_artifacts():
+    return ["carbon_copy_a", "margin_stamp", "uncut_index", "noor_annotation"]
+
+
+def records_integration_layout():
+    desk = (224, 104)
+    extras = [{"anim": "cabinet_gate", **at(192, 72)}, {"anim": "cabinet_labels", **at(240, 72)},
+              {"entry": "door_panel_address_idle", **at(230, 15)},
+              {"entry": "desk_b", **at(*desk)}, {"anim": "ledger_mark", **at(desk[0] + 22, desk[1] + 2)}]
+    return integration_layout("records", "records-atlas.json", rk_artifacts(), extras, panel={"entry": "elevator_call_panel"}, states=INTEG_BEFORE,
+                              note="Records integration proof room, built only from records-atlas: the shared elevator set (closed, half, open) and call panel, "
+                                   "a seated worker behind desk_a with its occluder, artifacts on desk_b and on cabinets, the cabinet gate, the log cabinets, the address panel "
+                                   "and the ledger mark overlay on a desk. People are added by the renderer.")
+
+
+def ledger_overlay_matches(atlas):
+    """The ledger mark overlays are the landmark's own ledger pixels: same colours at the same place."""
+    lx, ly = rk._ledger_origin()
+    by = {p.name: p for p in rk.landmark_pieces()}
+    ok_ = True
+    detail = []
+    for st, src in (("rejected", "archive_ledger_before"), ("accepted", "archive_ledger_after")):
+        ov = atlas.sprite(f"archive_ledger_mark_{st}")
+        reg = by[src].sprite[ly - rk.OY: ly - rk.OY + 7, lx - rk.OX: lx - rk.OX + 12]
+        same = bool(np.array_equal(ov, reg))
+        ok_ &= same
+        detail.append(f"{st} {'==' if same else '!='} {src}")
+    return ok_, ", ".join(detail)
+
+
+def integration_proofs(atlas, meta):
+    layout = records_integration_layout()
+    layout_ok = write_integration_layout("records", layout, meta)
+    before, after = integration_images("records", layout, atlas, INTEG_BEFORE, INTEG_AFTER, render_integration)
+    print(f"records integration: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    mark_ok, mark_detail = ledger_overlay_matches(atlas)
+    gb = blocked_grid(layout, atlas, INTEG_BEFORE)
+    ga = blocked_grid(layout, atlas, INTEG_AFTER)
+    gate_cells = [(12, 4), (13, 4)]
+    extra = [("ledger mark overlays are the landmark's own ledger pixels (a state swap cannot show two marks)", mark_ok, mark_detail),
+             ("cabinet gate misaligned blocks its two cells and aligned frees them", all(gb[y, x] for x, y in gate_cells) and not any(ga[y, x] for x, y in gate_cells), "cells (12-13, 4)")]
+    ok_ = integration_review("records", layout, atlas, meta, rk.INTEGRATION_NAMES, INTEG_BEFORE, INTEG_AFTER, INTEG_REQUIRED, extra=extra)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -341,7 +692,9 @@ def main():
     route_image(layout, atlas, before)
     print(f"{len(pieces)} entries; landmark before/after differ in {nchg} px; {len(layout['placements'])} placements")
     ok_ = review(layout, atlas)
-    sys.exit(0 if ok_ else 1)
+    qok = quest_proofs(atlas, meta)
+    iok = integration_proofs(atlas, meta)
+    sys.exit(0 if ok_ and qok and iok else 1)
 
 
 if __name__ == "__main__":

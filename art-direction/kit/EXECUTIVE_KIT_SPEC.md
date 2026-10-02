@@ -111,3 +111,81 @@ Programmatic review (`build_executive.py`, all pass):
 - `atrium_planter`'s `contact_shadow` is the bounding box of an elliptical shadow, a loose hint.
 - The east and west side rails are one 6 px run per side, not cell-aligned entries. They are placed by the landmark, and `glass_rail_side` is the kit's separate cell version.
 - `light_shaft_cool` is nearly the floor colour. If the director wants overcast to read more clearly, use a darker floor step for a shaded band instead.
+
+## Quest props (level 20: the three incident branches and the arriving coworkers' places)
+
+**Status:** built 2026-10-02 by the district-kits team (branch `feat/art-district-quest-props`). The audit of every named prop is [QUEST_PROP_AUDIT.md](QUEST_PROP_AUDIT.md) (rows E1 to E11); this section is the Executive half of its "New" rows. The 63 entries above, the reference room and every file listed in the first table are unchanged (the atlas gained 11 entries after the landmark parts, so no earlier rect moved; the landmark's `before` and `after` parts lists are byte for byte the same, and a build assertion checks it). Drawing helpers shared with the other districts (the 3x5 font, the folding stool, the Mira satchel) live in `quest_props.py`; the Executive recipes are in the "quest props" section of `executive_kit.py`.
+
+New outputs: `executive-quest-props-room.json` (a second composition built only from `executive-atlas`, 80 placements), `executive-quest-props-before-native.png` and `-before-1366x768.png` (the three branches unrepaired, the final door closed), `executive-quest-props-partial-native.png` and `-partial-1366x768.png` (The Name and The Count repaired, The Route not: the three branches are independent), and `executive-quest-props-after-native.png` and `-after-1366x768.png` (all three repaired, the final door open, the five coworkers standing at their places). The atlas is now 74 entries and 8 state sets. `build_executive.py` runs the quest review (below) and exits 1 on a failure.
+
+### Entries
+
+| Entry | Size px | Footprint, collision | Layer | y_sort | Anchor | Contact shadow |
+| --- | --- | --- | --- | --- | --- | --- |
+| `branch_name_before` | 40x12 | 3x1, `000` | rear_wall | no | [24, 16] | none |
+| `branch_name_after` | 40x12 | 3x1, `000` | rear_wall | no | [24, 16] | none |
+| `branch_route_before` | 64x32 | 4x2, `0000/0000` | floor_marking | no | [32, 32] | none |
+| `branch_route_after` | 64x32 | 4x2, `0000/0000` | floor_marking | no | [32, 32] | none |
+| `branch_count_before` | 34x29 | 2x1, `11` | rear_prop | yes | [16, 27] | [3, 27, 29, 2] |
+| `branch_count_after` | 34x29 | 2x1, `11` | rear_prop | yes | [16, 27] | [3, 27, 29, 2] |
+| `place_ivo` | 13x23 | 1x1, `1` | rear_prop | yes | [7, 21] | [2, 21, 11, 2] |
+| `place_noor` | 18x22 | 1x1, `1` | rear_prop | yes | [8, 20] | [1, 20, 17, 2] |
+| `place_hal` | 14x14 | 1x1, `1` | rear_prop | yes | [7, 14] | [2, 13, 10, 1] |
+| `place_ada` | 14x18 | 1x1, `1` | rear_prop | yes | [7, 16] | [1, 16, 9, 2] |
+| `place_mira` | 16x18 | 1x1, `1` | rear_prop | yes | [7, 15] | [1, 16, 15, 2] |
+
+State sets (each pair is cropped to one shared box): `branch_name`, `branch_route`, `branch_count` (each before, after). The landmark `atrium_tree` gains six states, so all eight combinations of the three branches are addressable: `repaired_name`, `repaired_route`, `repaired_count`, `repaired_name_route`, `repaired_name_count`, `repaired_route_count` (`before` is none, `after` is all three).
+
+| Branch | Level 20 line | Branch prop | Atrium feature (landmark state) |
+| --- | --- | --- | --- |
+| The Name (a renamed department) | "nameplates become distinct" | `branch_name`: a 40x12 copper wall plate. Before: Pace's replacement, three orderly pale bars. After: the original name in irregular lettering after a small doorway crest. | `repaired_name`: the planter's five nameplates become distinct |
+| The Route (a rewarded detour) | "copper floor lines straighten into useful paths" | `branch_route`: a 4x2 copper floor line, west edge to east edge. Before: an S of right angles with knots at the corners. After: one straight line with four east-pointing chevrons. Walkable; lay several end to end. | `repaired_route`: the well's copper lines straighten, and the four corner pots go from identical clipped cubes to varied shrubs (the "repeated geometry becomes varied" of the district row) |
+| The Count (a corrected total) | "window views resolve into real daylight" | `branch_count`: a 2x1 tally board on two walnut feet. Before: four bars that do not add up and a dull "47". After: "52" in a copper plate with a green tick. | `repaired_count`: the warm daylight pool on the well floor and the lamps pulse; in the room, switch the `window_a`, `window_b` and `window_light` sets to `daylight` |
+
+The after state of the landmark is the union of the three branches' changes; the build proves each branch changes only its own parts, each pair is the union of its two branches, and `after` is all three.
+
+| Place | What it is |
+| --- | --- |
+| `place_ivo` | A reception lectern with his tablet on the slanted top |
+| `place_noor` | A small walnut table with her stamp and a file tray of copper-tabbed folders |
+| `place_hal` | His folding stool with the tool roll leaning on it (the shared `quest_props.folding_stool`, Executive ramps) |
+| `place_ada` | A copper lantern stand with a lit lantern on a hook arm |
+| `place_mira` | A round navy cushion with her courier satchel and its copper strap |
+
+Each is one cell, blocks its cell, and sits where an arriving coworker stands: the coworker is a silhouette first (the cast atlases' silhouettes) and then the real sprite, both the cast team's. The after render shows the five sprites in front of their places.
+
+### Review (`build_executive.py`, quest room)
+
+| Check | Result |
+| --- | --- |
+| Coverage | all 11 new entries are drawn in the room |
+| Corridor | with the final door open a two-cell-wide walkway of 14 steps from (10,10) to (17,4); closed, none; the corridor cells are free of props |
+| Landmark states | eight states; each single branch changes only its own parts; each pair and `after` are the union of their branches |
+| Places | the five places block their own cells and leave the corridor rows (4-5, cols 10-17) free |
+| Inset | well, tree, Vale, door, nameplate, places, route line, tally board: none intersect the keyboard inset |
+| Palette | the existing check covers the atlas: every colour is an Executive ramp step (28 colours, unchanged), no violet, no marker hex |
+| Layout | `check_atlas.check_layout` on `executive-quest-props-room.json` is clean |
+
+### Director decisions (quest props)
+
+1. **The three branches are independent states of one landmark.** levels.md lets the player do them in any order and says each changes one atrium feature, so the landmark gets a state for every combination instead of a single after. The existing `before` and `after` lists are unchanged.
+2. **Each branch also has its own prop in its own short branch.** The atrium features are inside the well; the branch is a separate small area with the record to repair, so each gets a nameplate, a floor line or a tally board that shows its before and after on its own.
+3. **The repeated-geometry pots follow The Route.** levels.md puts "repeated geometry becomes varied" in the district row without naming a branch; a detour is the repeated geometry of the three, so the pots vary with it.
+4. **The Count carries the daylight, with the lamps.** The pool is one part, so The Count's landmark state also pulses the lamps (the schema asks for at least two visible changes per state). The window sets stay separate state sets in the room.
+5. **Places are props, not people.** The "arriving coworkers' places" are the objects the coworkers stand at; the silhouettes and sprites already exist in the cast atlases. The proof room draws the five sprites only in the after state.
+6. **Lettering is pseudo-text.** The restored nameplate is irregular runs of pale glyph blocks, not readable letters, so the art never names a department the level data has not chosen.
+7. **Names on the Wall reuses the nameplate.** The side quest's credit list is a row of `branch_name_before` and `branch_name_after` plates; no extra entry.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `executive-integration-room.json` and `executive-integration-proof-{before,after}-{native,1366x768}.png` (three elevators in the copper-and-navy ramps with the call panel, a seated worker behind `desk_a` with its occluder, the audit copy on `desk_b`, the name plaque on a side table).
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed/_half/_open` (set `elevator`), `elevator_call_panel` | 3x3 and 1x2 | rear_wall | Orientation geometry; copper casing, navy wall mass. Stays distinct from `final_door_*` (sky-glass leaves, sunrise sign, daylit terrace) |
+| `desk_a_front`, `desk_b_front` | 2x1, `00` | front_prop | Cut from the district desk (paper = the limestone floor ramp), asserted pixel-equal |
+| `artifact_public_audit_copy` | 1x1, `0` | front_prop | `artifact_prop` with limestone paper |
+| `desk_name_plaque` | 1x1, `0` | front_prop | Reward desk decoration (Names on the Wall), 14x9, copper plate with three name lines on a walnut base; never placed on the map |
+
+Not covered here: Vale softening states 2 and 3 and the silhouettes of the named cast (cast team and renderer, unchanged). The level data declares a 2x3 east-wall elevator; the kit module is the 3x3 north-wall slice, so the map must adopt it.

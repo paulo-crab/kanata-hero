@@ -1,0 +1,976 @@
+{
+ "kit": "records",
+ "atlas": "records-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Records quest-prop room, built only from records-atlas (QUEST_PROP_AUDIT.md R1-R30). Every new quest entry appears in it; the state sets are switched between the before and after renders. The corridor (cols 8-9) leads north to the repair door. People are added by the renderer.",
+ "states": {
+  "repair_door": "closed",
+  "shelf_end_light": "off",
+  "courier_chute": "idle",
+  "folder_rack": "drift",
+  "ledger_table": "before",
+  "rolling_ladder": "closed",
+  "report_table": "before",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    7,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    10,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    15,
+    14
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    2
+   ],
+   "offset": [
+    8,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    4
+   ],
+   "offset": [
+    4,
+    15
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    7
+   ],
+   "offset": [
+    0,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    9,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    2,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    9
+   ],
+   "offset": [
+    4,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    8
+   ],
+   "offset": [
+    9,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    15,
+    4
+   ],
+   "offset": [
+    7,
+    8
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    4
+   ],
+   "offset": [
+    3,
+    1
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    13,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    15,
+    12
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    3,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    2,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    6,
+    0
+   ],
+   "offset": [
+    0,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    12,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    15,
+    0
+   ],
+   "offset": [
+    0,
+    9
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    5
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    8
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    10
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    11
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "repair_door",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    2
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    2
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    3
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    3
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    4
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    4
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    5
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    6
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    6
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    7
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    7
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    8
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    9
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    9
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    10
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    10
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    8,
+    11
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "route_inlay_v",
+   "cell": [
+    9,
+    11
+   ],
+   "offset": [
+    15,
+    4
+   ]
+  },
+  {
+   "entry": "route_arrow_n",
+   "cell": [
+    8,
+    6
+   ],
+   "offset": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "route_arrow_n",
+   "cell": [
+    8,
+    9
+   ],
+   "offset": [
+    8,
+    6
+   ]
+  },
+  {
+   "entry": "shelf_2x1_a",
+   "cell": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "shelf_end_light",
+   "cell": [
+    1,
+    1
+   ],
+   "offset": [
+    13,
+    2
+   ]
+  },
+  {
+   "entry": "shelf_1x1",
+   "cell": [
+    2,
+    2
+   ],
+   "offset": [
+    12,
+    0
+   ]
+  },
+  {
+   "anim": "shelf_end_light",
+   "cell": [
+    3,
+    1
+   ],
+   "offset": [
+    9,
+    2
+   ]
+  },
+  {
+   "anim": "folder_rack",
+   "cell": [
+    4,
+    2
+   ],
+   "offset": [
+    8,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    6,
+    2
+   ],
+   "offset": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "mira_decor_archive_folder",
+   "cell": [
+    6,
+    0
+   ],
+   "offset": [
+    13,
+    14
+   ]
+  },
+  {
+   "entry": "cabinet_2x1",
+   "cell": [
+    10,
+    2
+   ],
+   "offset": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "mira_decor_courier_loop",
+   "cell": [
+    11,
+    0
+   ],
+   "offset": [
+    8,
+    15
+   ]
+  },
+  {
+   "entry": "light_shaft",
+   "cell": [
+    12,
+    2
+   ],
+   "offset": [
+    8,
+    2
+   ]
+  },
+  {
+   "entry": "light_shaft",
+   "cell": [
+    15,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "ledger_table",
+   "cell": [
+    12,
+    3
+   ],
+   "offset": [
+    4,
+    10
+   ]
+  },
+  {
+   "anim": "rolling_ladder",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "anim": "report_table",
+   "cell": [
+    12,
+    6
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "anim": "courier_chute",
+   "cell": [
+    14,
+    7
+   ],
+   "offset": [
+    12,
+    0
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    8,
+    6
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    10,
+    5
+   ],
+   "offset": [
+    6,
+    12
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    0,
+    9
+   ],
+   "offset": [
+    6,
+    6
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    6,
+    9
+   ],
+   "offset": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    16,
+    4
+   ],
+   "offset": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "pot_plant_d",
+   "cell": [
+    17,
+    9
+   ],
+   "offset": [
+    4,
+    8
+   ]
+  }
+ ]
+}

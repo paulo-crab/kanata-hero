@@ -1,0 +1,626 @@
+{
+  "id": "records-10",
+  "number": 10,
+  "title": "The Long Report",
+  "district": "records",
+  "kind": "main",
+  "requires": [
+    "records-09"
+  ],
+  "story": "Noor's report spans many pages, while Pace's summary claims nobody reviewed its first or last section. The player pages with Caps plus U and D and jumps with Caps plus T and G, citing the facts Pace left out. Light reaches the upper desk and the review chamber door opens.",
+  "steps": [
+    {
+      "id": "r10-s1",
+      "objective": "Walk to the long-report terminal in the gallery.",
+      "interaction": "report_terminal",
+      "completes_when": "interact:report_terminal",
+      "target_cell": [
+        19,
+        3
+      ]
+    },
+    {
+      "id": "r10-s2",
+      "objective": "Read forward a page at a time to the first fact.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s1-page-down"
+    },
+    {
+      "id": "r10-s3",
+      "objective": "Go back a page at a time to the second fact.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s2-page-up"
+    },
+    {
+      "id": "r10-s4",
+      "objective": "Check the first section of the report.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s3-doc-start"
+    },
+    {
+      "id": "r10-s5",
+      "objective": "Check the last section of the report.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s4-doc-end"
+    },
+    {
+      "id": "r10-s6",
+      "objective": "Answer a question about a changed report.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s5-changed-report"
+    },
+    {
+      "id": "r10-s7",
+      "objective": "Cite a fact in an unmarked report.",
+      "interaction": "report_terminal",
+      "completes_when": "scene_success:records-10-s6-recall-citation"
+    },
+    {
+      "id": "r10-s8",
+      "objective": "Watch the light reach the upper desk and the review chamber door open.",
+      "interaction": null,
+      "completes_when": "trigger:t10-complete"
+    },
+    {
+      "id": "r10-s9",
+      "objective": "Inspect the uncut index on the gallery lectern.",
+      "interaction": "artifact_uncut_index",
+      "completes_when": "interact:artifact_uncut_index",
+      "optional": true
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N10",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-10-s1-page-down"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-10-s2-page-up"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-10-s3-doc-start"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "records-10-s4-doc-end"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-10-s5-changed-report"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-10-s5-changed-report"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-10-s5-changed-report"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-10-s5-changed-report"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-10-s6-recall-citation"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-10-s6-recall-citation"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-10-s6-recall-citation"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-10-s6-recall-citation"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "records-10-s5-changed-report",
+      "note": "Plain u, d, t and g typed after Caps release."
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "records-10-s1-page-down",
+      "kind": "editor",
+      "task_summary": "Read forward a page at a time with Page Down, Caps plus D, to the first fact.",
+      "success_criteria": [
+        "Page Down is observed twice and the viewport indicator rests on page 3",
+        "The first fact is cited"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The report has six pages and a viewport indicator. Guided page markers lead to the first fact on page 3. Cite it.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": true,
+          "markers": [
+            "page 2",
+            "page 3"
+          ]
+        },
+        "items": [
+          {
+            "fact": "Fact A: route 4A takes two steps",
+            "page": 3,
+            "citation": "select the fact line and confirm"
+          }
+        ],
+        "accepts": [
+          "Page Down"
+        ],
+        "rejects": [
+          "Page Up",
+          "Command + Down"
+        ],
+        "feedback": {
+          "too_far": "Command + Down jumped to the end of the document, not one page. Page Down moves one page."
+        },
+        "layout": "Keyboard diagram highlights Caps and D; viewport indicator shows page motion."
+      }
+    },
+    {
+      "id": "records-10-s2-page-up",
+      "kind": "editor",
+      "task_summary": "Go back a page at a time with Page Up, Caps plus U, to the second fact.",
+      "success_criteria": [
+        "Page Up is observed and the viewport indicator rests on page 4",
+        "The second fact is cited"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "From page 6, go back to the second fact on page 4. Cite it.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": true,
+          "start_page": 6,
+          "markers": [
+            "page 5",
+            "page 4"
+          ]
+        },
+        "items": [
+          {
+            "fact": "Fact B: the rename had no staff request",
+            "page": 4,
+            "citation": "select the fact line and confirm"
+          }
+        ],
+        "accepts": [
+          "Page Up"
+        ],
+        "rejects": [
+          "Page Down"
+        ],
+        "feedback": {
+          "wrong_way": "Page Down moved forward. Page Up goes back."
+        },
+        "layout": "Keyboard diagram highlights Caps and U."
+      }
+    },
+    {
+      "id": "records-10-s3-doc-start",
+      "kind": "editor",
+      "task_summary": "Check the first section with Command plus Up, Caps plus T.",
+      "success_criteria": [
+        "Command + Up is observed and the cursor is in section 1",
+        "The section 1 reviewer line is cited"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Pace's summary claims nobody reviewed the first section. Jump to the start of the document and cite who reviewed it.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": true,
+          "start_page": 4
+        },
+        "items": [
+          {
+            "fact": "Section 1: reviewed by staff on 14 March",
+            "page": 1,
+            "citation": "select the reviewer line and confirm"
+          }
+        ],
+        "accepts": [
+          "Command + Up"
+        ],
+        "rejects": [
+          "Page Up pressed repeatedly is allowed but recorded as page steps"
+        ],
+        "feedback": {
+          "t_typed": "A t was typed while Caps was held and became a jump. Release Caps to type a letter."
+        },
+        "layout": "Keyboard diagram highlights Caps and T."
+      }
+    },
+    {
+      "id": "records-10-s4-doc-end",
+      "kind": "editor",
+      "task_summary": "Check the last section with Command plus Down, Caps plus G.",
+      "success_criteria": [
+        "Command + Down is observed and the cursor is in the last section",
+        "The last section's reviewer line is cited"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Jump to the end of the document and cite who reviewed the last section.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": true,
+          "start_page": 1
+        },
+        "items": [
+          {
+            "fact": "Section 6: reviewed by staff on 2 April",
+            "page": 6,
+            "citation": "select the reviewer line and confirm"
+          }
+        ],
+        "accepts": [
+          "Command + Down"
+        ],
+        "rejects": [
+          "Page Down pressed repeatedly is allowed but recorded as page steps"
+        ],
+        "feedback": {
+          "g_typed": "A g was typed while Caps was held and became a jump. Release Caps to type a letter."
+        },
+        "layout": "Keyboard diagram highlights Caps and G."
+      }
+    },
+    {
+      "id": "records-10-s5-changed-report",
+      "kind": "editor",
+      "task_summary": "Answer a question about a changed report by mixing page and document jumps, then type plain u, d, t and g after Caps is released.",
+      "success_criteria": [
+        "Both facts are cited and the citation tag reads 'udtg'",
+        "The letters u, d, t and g were typed as text after Caps was released"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A different report, six pages again: cite the fact on page 5 and the last section's closing line, then type the citation tag.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": true,
+          "start_page": 1,
+          "markers": []
+        },
+        "items": [
+          {
+            "fact": "Fact C: the detour was scored as movement",
+            "page": 5,
+            "citation": "select the fact line and confirm"
+          },
+          {
+            "fact": "Closing line: filed without review",
+            "page": 6,
+            "citation": "select the closing line and confirm"
+          }
+        ],
+        "targets": [
+          {
+            "field": "citation tag",
+            "text": "udtg"
+          }
+        ],
+        "accepts": [
+          "Page Up",
+          "Page Down",
+          "Command + Up",
+          "Command + Down",
+          "u",
+          "d",
+          "t",
+          "g"
+        ],
+        "rejects": [
+          "a letter typed while Caps is held"
+        ],
+        "feedback": {
+          "held": "A letter was pressed while Caps was held and became a jump. Release Caps to type it."
+        },
+        "layout": "Viewport indicator only; no keyboard diagram."
+      }
+    },
+    {
+      "id": "records-10-s6-recall-citation",
+      "kind": "editor",
+      "task_summary": "Cite a fact at an unmarked location with no positional hint.",
+      "success_criteria": [
+        "The requested fact is cited from a report with no page markers",
+        "No keyboard diagram or viewport markers were shown"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A third report. Cite the sentence that names who changed the department name.",
+        "document": {
+          "pages": 8,
+          "viewport_indicator": false,
+          "start_page": 1,
+          "markers": []
+        },
+        "items": [
+          {
+            "fact": "Page 7: the rename was entered without a staff request",
+            "page": 7,
+            "citation": "select the sentence and confirm"
+          }
+        ],
+        "accepts": [
+          "Page Up",
+          "Page Down",
+          "Command + Up",
+          "Command + Down"
+        ],
+        "rejects": [],
+        "feedback": {
+          "lost": "The viewport indicator is hidden here; use page or document jumps to reach the sentence."
+        },
+        "layout": "No keyboard diagram and no viewport indicator."
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "r10-hint-pgdn",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To read the next page, you need to press Page Down. Hint: Page Down is tap-hold Caps + D.",
+      "hint": {
+        "action": "To read the next page, you need to press Page Down.",
+        "key": "Page Down",
+        "gesture": "Page Down is tap-hold Caps + D."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r10-s2",
+      "cue": "10: Noor instruction (neutral)"
+    },
+    {
+      "id": "r10-hint-pgup",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "To go back a page, you need to press Page Up. Hint: Page Up is tap-hold Caps + U.",
+      "hint": {
+        "action": "To go back a page, you need to press Page Up.",
+        "key": "Page Up",
+        "gesture": "Page Up is tap-hold Caps + U."
+      },
+      "speaker_kind": "character",
+      "when": "step_start:r10-s3",
+      "cue": "10: Noor instruction (neutral)"
+    },
+    {
+      "id": "r10-hint-dstart",
+      "speaker": "report_tab",
+      "portrait": null,
+      "text": "To check the first section, you need to press Command + Up. Hint: Command + Up is tap-hold Caps + T.",
+      "hint": {
+        "action": "To check the first section, you need to press Command + Up.",
+        "key": "Command + Up",
+        "gesture": "Command + Up is tap-hold Caps + T."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r10-s4"
+    },
+    {
+      "id": "r10-hint-dend",
+      "speaker": "report_tab",
+      "portrait": null,
+      "text": "To check the last section, you need to press Command + Down. Hint: Command + Down is tap-hold Caps + G.",
+      "hint": {
+        "action": "To check the last section, you need to press Command + Down.",
+        "key": "Command + Down",
+        "gesture": "Command + Down is tap-hold Caps + G."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:r10-s5"
+    },
+    {
+      "id": "r10-noor-unimpressed",
+      "speaker": "noor",
+      "portrait": "unimpressed",
+      "text": "Pace's summary says nobody reviewed the first or the last section. I have the reviewers' lines. Both of them.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "step_start:r10-s4",
+      "cue": "10: noor_unimpressed at the summary that says nobody reviewed it"
+    },
+    {
+      "id": "r10-engineer-index",
+      "speaker": "engineer",
+      "portrait": "concerned",
+      "text": "Uncut index: the department name changed here, and nothing in the file shows a staff request.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:artifact_uncut_index",
+      "cue": "Engineer: concerned when inspecting a tampering artifact (Uncut index)"
+    },
+    {
+      "id": "r10-noor-places",
+      "speaker": "noor",
+      "portrait": "neutral",
+      "text": "There. The original report beside the summary. Read them side by side.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t10-complete",
+      "cue": "10: neutral"
+    },
+    {
+      "id": "r10-engineer-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: Caps+D and Caps+U move by page; Caps+T and Caps+G move by document. The upper desk has light again.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "trigger:t10-complete",
+      "cue": "Engineer: journal entries are neutral"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t10-complete",
+      "when": "scene_success:records-10-s6-recall-citation",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "report_table",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
+          "target": "review_door",
+          "state": "open"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate_review_door"
+        },
+        {
+          "op": "set_state",
+          "target": "upper_lamp",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "upper_desk_lit"
+        },
+        {
+          "op": "npc_state",
+          "npc": "noor",
+          "state": "records-10"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "r10-noor-places"
+        },
+        {
+          "op": "journal",
+          "text": "Page and document jumps cited both reviewers; the review chamber is open."
+        },
+        {
+          "op": "complete_level",
+          "level": "records-10"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The gallery's upper desk is dark and the review chamber door at the east end is shut.",
+    "after": "The upper desk lamp is lit, the review chamber door has slid open and Noor waits inside beside the original report.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "review_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "gate",
+        "target": "gate_review_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "light_state",
+        "target": "upper_desk_lit",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "noor",
+        "from": "records-09",
+        "to": "records-10",
+        "note": "Places the original report, then waits in the chamber."
+      },
+      {
+        "kind": "placement_state",
+        "target": "report_table",
+        "from": "before",
+        "to": "after",
+        "note": "Noor lays the original report beside Pace's grey summary."
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "records_branch:review_chamber"
+    ]
+  },
+  "optional_artifact": {
+    "id": "uncut-index",
+    "name": "Uncut index",
+    "interaction": "artifact_uncut_index",
+    "placement": "artifact_uncut_index",
+    "caption": [
+      "Uncut index: the department's original name, in the index's own ink.",
+      "No staff request is attached to the rename.",
+      "Someone changed it, and nobody asked."
+    ],
+    "engineer_portrait": "concerned"
+  },
+  "pace_copy": [
+    {
+      "text": "Summary: the first and last sections were not reviewed.",
+      "state": "repeat",
+      "placement": "pace_sign_gallery"
+    }
+  ],
+  "review_notes": "Checked at 1366x768 (x4) with the keyboard inset open (stage x 16-588, y 412-704; logical x 4-147, y 103-176). The level's main terminal `report_terminal` is approached from cell [19, 3]: the avatar's feet sit at screen 160,64 and the target is clear of the keyboard inset. The scene panels are DOM overlays above the world and the keyboard diagram sits in the inset, so the world need only keep the avatar and target clear."
+}

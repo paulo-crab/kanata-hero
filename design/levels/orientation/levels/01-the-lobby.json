@@ -1,0 +1,945 @@
+{
+ "id": "orientation-01",
+ "number": 1,
+ "title": "The Lobby",
+ "district": "orientation",
+ "kind": "main",
+ "requires": [],
+ "story": "The elevator on the north wall opens onto the west end of the lobby, northwest of the indoor garden, and Ivo, the reception lead, asks the new engineer to visit four desks before the first ticket can be assigned. Two workers beside the arrival walkway walk the same tiny loop at the same moment, an early hint that the building is over-managed.",
+ "steps": [
+  {
+   "id": "o01.s.arrive",
+   "objective": "Step out of the elevator and listen to Ivo's welcome.",
+   "interaction": "ivo_start",
+   "completes_when": "dialogue_done:o01.d.welcome",
+   "target_cell": [
+    4,
+    3
+   ]
+  },
+  {
+   "id": "o01.s.popup",
+   "objective": "Close the welcome popup.",
+   "interaction": "ivo_start",
+   "completes_when": "scene_success:o01-popup"
+  },
+  {
+   "id": "o01.s.keys",
+   "objective": "Learn the journal key, the hint key and the Layout help key Ivo names.",
+   "interaction": "ivo_start",
+   "completes_when": "dialogue_done:o01.d.journal & dialogue_done:o01.d.hint-key & dialogue_done:o01.d.layout-help"
+  },
+  {
+   "id": "o01.s.loop",
+   "objective": "Walk once around the garden: down, right, up, left.",
+   "interaction": null,
+   "completes_when": "scene_success:o01-loop",
+   "target_cell": [
+    9,
+    5
+   ]
+  },
+  {
+   "id": "o01.s.stops",
+   "objective": "Visit the north, west, south and east desks in that order.",
+   "interaction": null,
+   "completes_when": "scene_success:o01-desk-label & scene_success:o01-four-stops",
+   "target_cell": [
+    19,
+    10
+   ]
+  },
+  {
+   "id": "o01.s.recall",
+   "objective": "Walk to Ivo without prompts, then back to reception.",
+   "interaction": "ivo_north",
+   "completes_when": "scene_success:o01-unprompted",
+   "target_cell": [
+    12,
+    13
+   ]
+  },
+  {
+   "id": "o01.s.glitch",
+   "objective": "Optional: repair the folded form in the south lobby.",
+   "interaction": "glitch_lobby",
+   "completes_when": "scene_success:o01-fold",
+   "target_cell": [
+    18,
+    14
+   ],
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B06",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o01-popup"
+  },
+  {
+   "id": "B06",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o01-desk-label"
+  },
+  {
+   "id": "B06",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o01-unprompted"
+  },
+  {
+   "id": "N01",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o01-loop"
+  },
+  {
+   "id": "N01",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o01-four-stops"
+  },
+  {
+   "id": "N01",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o01-unprompted"
+  },
+  {
+   "id": "N02",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o01-loop"
+  },
+  {
+   "id": "N02",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o01-four-stops"
+  },
+  {
+   "id": "N02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o01-unprompted"
+  },
+  {
+   "id": "N03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o01-loop"
+  },
+  {
+   "id": "N03",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o01-four-stops"
+  },
+  {
+   "id": "N03",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o01-unprompted"
+  },
+  {
+   "id": "N04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o01-loop"
+  },
+  {
+   "id": "N04",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o01-four-stops"
+  },
+  {
+   "id": "N04",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o01-unprompted"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o01-popup",
+   "kind": "form",
+   "task_summary": "A welcome popup covers the lobby. Tap Caps once to close it; holding Caps and pressing a second key is not the way.",
+   "success_criteria": [
+    "Escape is observed while the popup is open",
+    "The popup closes and the map is usable again"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Welcome popup (modal over the lobby) with the keyboard inset showing Caps.",
+    "steps": [
+     {
+      "id": "tap-caps",
+      "expect": "Escape key event while the popup is open",
+      "accepts": [
+       "Escape"
+      ],
+      "rejects": [
+       "any arrow key event (that is Caps held plus H, J, K or L)",
+       "Return"
+      ],
+      "feedback": {
+       "ArrowLeft": "Left Arrow observed: that is Caps held plus H. To close the popup, tap Caps with no second key.",
+       "ArrowRight": "Right Arrow observed: that is Caps held plus L. To close the popup, tap Caps with no second key.",
+       "ArrowUp": "Up Arrow observed: that is Caps held plus K. To close the popup, tap Caps with no second key.",
+       "ArrowDown": "Down Arrow observed: that is Caps held plus J. To close the popup, tap Caps with no second key.",
+       "other": "Observed output does not close the popup. Tap Caps once and let go."
+      }
+     }
+    ],
+    "effect": "popup closes",
+    "retry_note": "Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+   }
+  },
+  {
+   "id": "o01-loop",
+   "kind": "walk",
+   "task_summary": "Walk once around the garden, one direction at a time: down, right, up, left. Each leg ends on a lit floor marker.",
+   "success_criteria": [
+    "Down Arrow (Caps + J), Right Arrow (Caps + L), Up Arrow (Caps + K) and Left Arrow (Caps + H) are each observed and move the avatar one cell",
+    "All four lit markers are reached in order"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "legs": [
+     {
+      "id": "down",
+      "gesture_id": "N02",
+      "key": "Caps + J",
+      "from": [
+       3,
+       2
+      ],
+      "to": [
+       3,
+       12
+      ],
+      "marker": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": "right",
+      "gesture_id": "N04",
+      "key": "Caps + L",
+      "from": [
+       3,
+       12
+      ],
+      "to": [
+       17,
+       12
+      ],
+      "marker": [
+       17,
+       12
+      ]
+     },
+     {
+      "id": "up",
+      "gesture_id": "N03",
+      "key": "Caps + K",
+      "from": [
+       17,
+       12
+      ],
+      "to": [
+       17,
+       5
+      ],
+      "marker": [
+       17,
+       5
+      ]
+     },
+     {
+      "id": "left",
+      "gesture_id": "N01",
+      "key": "Caps + H",
+      "from": [
+       17,
+       5
+      ],
+      "to": [
+       9,
+       5
+      ],
+      "marker": [
+       9,
+       5
+      ]
+     }
+    ],
+    "markers": "teal until reached, gold after",
+    "obstacles": "none on the west walkway (x2-3) or in the loop bands (x8-9, x17-18, y4-5, y12-13)",
+    "wrong_direction": "walking the other way is allowed and counted as exploration; the leg only completes at its marker",
+    "feedback": "Each press shows the observed arrow in the effect line (Step east, Step north...).",
+    "note": "The lap is counter-clockwise: the Pace floor arrows around the garden already point this way."
+   }
+  },
+  {
+   "id": "o01-four-stops",
+   "kind": "walk",
+   "task_summary": "Visit the north, west, south and east desks in that order. Floor markers show where each desk is, not which keys to press.",
+   "success_criteria": [
+    "Each of the four desk stops is reached in order",
+    "All four arrow directions are observed along the way"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "stops": [
+     {
+      "id": "north",
+      "interaction": "stop_north",
+      "cell": [
+       9,
+       4
+      ]
+     },
+     {
+      "id": "west",
+      "interaction": "stop_west",
+      "cell": [
+       7,
+       10
+      ],
+      "triggers_scene": "o01-desk-label"
+     },
+     {
+      "id": "south",
+      "interaction": "stop_south",
+      "cell": [
+       10,
+       14
+      ]
+     },
+     {
+      "id": "east",
+      "interaction": "stop_east",
+      "cell": [
+       19,
+       10
+      ]
+     }
+    ],
+    "order": "fixed: north, west, south, east",
+    "markers": "desk glow only; no arrow or keycap cues"
+   }
+  },
+  {
+   "id": "o01-desk-label",
+   "kind": "label",
+   "task_summary": "At the west desk a label prompt asks for the desk's name. Caps may still be held from walking: release it, then type the word.",
+   "success_criteria": [
+    "The text field contains west",
+    "No navigation event (Option + Right) was left in the field"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Desk label (west desk): type the label.",
+    "initial": "",
+    "target": "west",
+    "accepts": "text equals west (lowercase)",
+    "rejects": [
+     "Option + Right (nav + W) instead of w"
+    ],
+    "feedback": {
+     "Alt+ArrowRight": "Option + Right observed: that is Caps held plus W, a word jump. Release Caps, then tap W.",
+     "ArrowLeft": "Left Arrow observed: Caps is still held. Release Caps, then type the label.",
+     "other": "That is not the next letter of west. Next letter shown below the field."
+    },
+    "steps": [
+     {
+      "id": "type-west",
+      "expect": "w, e, s, t typed with Caps released",
+      "accepts": [
+       "w",
+       "e",
+       "s",
+       "t"
+      ]
+     }
+    ]
+   },
+   "note": "Triggered when the avatar reaches the west stop inside o01-four-stops."
+  },
+  {
+   "id": "o01-unprompted",
+   "kind": "walk",
+   "task_summary": "Ivo has gone to the north desk: walk to him with no markers, then back to reception when he returns. A badge reminder popup appears on arrival.",
+   "success_criteria": [
+    "The avatar reaches Ivo at the north desk, then at reception",
+    "Up, Left, Down and Right are all observed",
+    "The reminder popup is closed with Escape (tap Caps)"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "legs": [
+     {
+      "id": "to-north",
+      "from": [
+       19,
+       10
+      ],
+      "to": [
+       11,
+       4
+      ],
+      "target_interaction": "ivo_north"
+     },
+     {
+      "id": "back-to-reception",
+      "from": [
+       11,
+       4
+      ],
+      "to": [
+       12,
+       13
+      ],
+      "target_interaction": "ivo"
+     }
+    ],
+    "popup": {
+     "at": "reaching ivo_north",
+     "close_with": "Escape",
+     "text": "Badge reminder: please collect your badge at the printer."
+    },
+    "markers": "only Ivo's conversation marker; no floor markers, no keycap highlights"
+   }
+  },
+  {
+   "id": "o01-fold",
+   "kind": "editor",
+   "task_summary": "Optional glitch repair: a folded form in the south lobby shows the word lobb. Move to the end of the word with Caps + L, release Caps, type the missing letter.",
+   "success_criteria": [
+    "The field reads lobby",
+    "The glitch snaps into register and becomes a plain sheet of paper"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Folded form glitch, turn 1 of 1 (untimed, instant retry).",
+    "initial": "lobb",
+    "cursor": "start",
+    "target": "lobby",
+    "steps": [
+     {
+      "id": "move-end",
+      "expect": "four Right Arrow events (Caps + L) put the cursor after lobb",
+      "accepts": [
+       "ArrowRight x4"
+      ]
+     },
+     {
+      "id": "type-y",
+      "expect": "y typed after Caps is released",
+      "accepts": [
+       "y"
+      ]
+     }
+    ],
+    "feedback": {
+     "other": "The cursor is not at the end yet. Hold Caps and press L four times, then release Caps."
+    }
+   },
+   "note": "Appears after the Lobby route; no seal, artifact or gate depends on it."
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o01.d.welcome",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Welcome to the Department of Motion. I'm Ivo, reception. Before your first ticket I need you to visit four desks.",
+   "hint": null,
+   "when": "step_start:o01.s.arrive",
+   "cue": "Ivo 01-03 instructions: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.popup",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To close the welcome popup, you need to press Escape.",
+   "hint": {
+    "action": "To close the welcome popup, you need to press Escape.",
+    "key": "Escape",
+    "gesture": "Escape is tap Caps."
+   },
+   "when": "step_start:o01.s.popup",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.popup-again",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To close the welcome popup, you need to press Escape.",
+   "hint": {
+    "action": "To close the welcome popup, you need to press Escape.",
+    "key": "Escape",
+    "gesture": "Escape is tap Caps."
+   },
+   "when": "request:o01.d.popup",
+   "cue": "hint lines are neutral",
+   "on_request": true,
+   "modal": false
+  },
+  {
+   "id": "o01.d.popup-done",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Good. The popup is gone. Three more keys, then the lobby is yours to walk.",
+   "hint": null,
+   "when": "scene_success:o01-popup",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.journal",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To open your journal, you need to press Q.",
+   "hint": {
+    "action": "To open your journal, you need to press Q.",
+    "key": "Q",
+    "gesture": "Q is tap Q. It keeps the step you are on."
+   },
+   "when": "step_start:o01.s.keys",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.hint-key",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To see a hint again, you need to press Backtick.",
+   "hint": {
+    "action": "To see a hint again, you need to press Backtick.",
+    "key": "Backtick",
+    "gesture": "Backtick is tap Backtick, the key at the top left of the letter block."
+   },
+   "when": "dialogue_done:o01.d.journal",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.layout-help",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To open the Layout help, you need to press ?.",
+   "hint": {
+    "action": "To open the Layout help, you need to press ?.",
+    "key": "?",
+    "gesture": "? is tap-hold F (Shift), then tap /. It is also a row in the journal."
+   },
+   "when": "dialogue_done:o01.d.hint-key",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.loop-down",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk south along the west walkway, you need to press Down Arrow.",
+   "hint": {
+    "action": "To walk south along the west walkway, you need to press Down Arrow.",
+    "key": "Down Arrow",
+    "gesture": "Down Arrow is tap-hold Caps + J."
+   },
+   "when": "step_start:o01.s.loop",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.loop-right",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk to the east side of the garden, you need to press Right Arrow.",
+   "hint": {
+    "action": "To walk to the east side of the garden, you need to press Right Arrow.",
+    "key": "Right Arrow",
+    "gesture": "Right Arrow is tap-hold Caps (nav) + L."
+   },
+   "when": "reach_cell:3,12",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.loop-up",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk north along the garden's east edge, you need to press Up Arrow.",
+   "hint": {
+    "action": "To walk north along the garden's east edge, you need to press Up Arrow.",
+    "key": "Up Arrow",
+    "gesture": "Up Arrow is tap-hold Caps + K."
+   },
+   "when": "reach_cell:17,12",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.loop-left",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk west along the north edge, you need to press Left Arrow.",
+   "hint": {
+    "action": "To walk west along the north edge, you need to press Left Arrow.",
+    "key": "Left Arrow",
+    "gesture": "Left Arrow is tap-hold Caps + H."
+   },
+   "when": "reach_cell:17,5",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.loop-done",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "That is one full lap, in four directions. Now the desks.",
+   "hint": null,
+   "when": "scene_success:o01-loop",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.stops",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Please visit the north desk, the west desk, the south desk and the east desk, in that order.",
+   "hint": null,
+   "when": "step_start:o01.s.stops",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.west",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To walk to the west desk, you need to press Left Arrow.",
+   "hint": {
+    "action": "To walk to the west desk, you need to press Left Arrow.",
+    "key": "Left Arrow",
+    "gesture": "Left Arrow is tap-hold Caps (nav) + H."
+   },
+   "when": "reach_cell:9,4",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.label",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To label the west desk, you need to press W, E, S, T.",
+   "hint": {
+    "action": "To label the west desk, you need to press W, E, S, T.",
+    "key": "W, E, S, T",
+    "gesture": "Release Caps first. Then W is a plain tap; held with nav, W jumps by word."
+   },
+   "when": "reach_cell:7,10",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o01.d.stops-done",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "That is all four desks. Wait there; I will come to you.",
+   "hint": null,
+   "when": "scene_success:o01-four-stops",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.recall",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Come and find me at the north desk, then meet me back at reception.",
+   "hint": null,
+   "when": "step_start:o01.s.recall",
+   "cue": "Ivo 01-03: neutral (action only: recall without cues)",
+   "modal": true
+  },
+  {
+   "id": "o01.d.recall-hint",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To reach Ivo at the north desk, you need to press Up Arrow, then Left Arrow.",
+   "hint": {
+    "action": "To reach Ivo at the north desk, you need to press Up Arrow, then Left Arrow.",
+    "key": "Up Arrow, then Left Arrow",
+    "gesture": "Up Arrow is tap-hold Caps + K, then Left Arrow is tap-hold Caps + H."
+   },
+   "when": "request:o01.d.recall",
+   "cue": "hint lines are neutral",
+   "on_request": true,
+   "modal": false
+  },
+  {
+   "id": "o01.d.reminder",
+   "speaker": "popup",
+   "portrait": null,
+   "text": "Badge reminder: please collect your badge at the printer.",
+   "hint": null,
+   "speaker_kind": "object",
+   "modal": true
+  },
+  {
+   "id": "o01.d.thanks",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "Thank you. Four desks, four directions. The turnstile is open now, and I have stopped waving; you do not need the script.",
+   "hint": null,
+   "when": "scene_success:o01-unprompted",
+   "cue": "01's scripted wave becoming a nod: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.pace-sign",
+   "speaker": "pace_sign",
+   "portrait": null,
+   "text": "Approved route: follow the arrows. Efficiency is a pleasant habit.",
+   "hint": null,
+   "speaker_kind": "object",
+   "modal": true
+  },
+  {
+   "id": "o01.d.fold-intro",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "A folded form is wandering the south side. It is harmless; it only needs a letter.",
+   "hint": null,
+   "when": "trigger:o01.t.route-done",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o01.d.fold-move",
+   "speaker": "form_card",
+   "portrait": null,
+   "text": "To move to the end of the word, you need to press Right Arrow.",
+   "hint": {
+    "action": "To move to the end of the word, you need to press Right Arrow.",
+    "key": "Right Arrow",
+    "gesture": "Right Arrow is tap-hold Caps + L."
+   },
+   "speaker_kind": "object",
+   "when": "interact:glitch_lobby",
+   "modal": false
+  },
+  {
+   "id": "o01.d.fold-type",
+   "speaker": "form_card",
+   "portrait": null,
+   "text": "To finish the word, you need to press Y.",
+   "hint": {
+    "action": "To finish the word, you need to press Y.",
+    "key": "Y",
+    "gesture": "Release Caps first, then tap Y as a plain letter."
+   },
+   "speaker_kind": "object",
+   "when": "scene_success:o01-fold",
+   "modal": false
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o01.t.popup-closed",
+   "when": "scene_success:o01-popup",
+   "then": [
+    {
+     "op": "set_flag",
+     "flag": "welcome-popup-closed"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "post_wave"
+    }
+   ]
+  },
+  {
+   "id": "o01.t.loop-done",
+   "when": "scene_success:o01-loop",
+   "then": [
+    {
+     "op": "journal",
+     "text": "Desk Walker: Right, Up, Left and Down used on the garden loop."
+    }
+   ]
+  },
+  {
+   "id": "o01.t.ivo-north",
+   "when": "scene_success:o01-four-stops",
+   "then": [
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "north"
+    }
+   ]
+  },
+  {
+   "id": "o01.t.ivo-post",
+   "when": "reach_cell:11,4",
+   "then": [
+    {
+     "op": "start_dialogue",
+     "dialogue": "o01.d.reminder"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "post_wave"
+    }
+   ]
+  },
+  {
+   "id": "o01.t.route-done",
+   "when": "scene_success:o01-unprompted",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "turnstile",
+     "state": "open"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "g.turnstile"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "post_nod"
+    },
+    {
+     "op": "set_flag",
+     "flag": "turnstile-open"
+    },
+    {
+     "op": "set_flag",
+     "flag": "ivo-nodding"
+    },
+    {
+     "op": "spawn_glitch",
+     "interaction": "glitch_lobby"
+    },
+    {
+     "op": "journal",
+     "text": "Orientation 01 complete: the first route is open."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-01"
+    }
+   ]
+  },
+  {
+   "id": "o01.t.fold-done",
+   "when": "scene_success:o01-fold",
+   "then": [
+    {
+     "op": "set_flag",
+     "flag": "glitch-repaired-lobby"
+    },
+    {
+     "op": "journal",
+     "text": "Folded form repaired."
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "Turnstile barred, Ivo waving on a script, two workers pacing the same loop in step beside the arrival, Pace arrows around the garden.",
+  "after": "Turnstile open to the mailroom, Ivo nodding instead of waving, garden markers gold, a folded form wandering the south lobby.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "turnstile",
+    "from": "closed",
+    "to": "open",
+    "note": "reception turnstile"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "ivo",
+    "from": "start",
+    "to": "post_nod",
+    "note": "scripted wave becomes a nod"
+   },
+   {
+    "kind": "gate",
+    "target": "g.turnstile",
+    "from": "closed",
+    "to": "open",
+    "note": "mailroom entrance"
+   }
+  ]
+ },
+ "rewards": {
+  "unlocks": [
+   "g.turnstile"
+  ]
+ },
+ "glitch": {
+  "archetype": "form",
+  "variant": "calm",
+  "cell": [
+   18,
+   14
+  ],
+  "interaction": "glitch_lobby",
+  "scene_id": "o01-fold",
+  "note": "paper-fold glitch, harmless, after the movement tutorial"
+ },
+ "pace_copy": [
+  {
+   "text": "Please follow the approved route.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  },
+  {
+   "text": "Approved route: follow the arrows. Efficiency is a pleasant habit.",
+   "state": "default",
+   "placement": "pace_directory"
+  }
+ ],
+ "review_notes": "At 1366x768 (x4, 1280x720 stage) the camera follows the avatar at screen (160,100) and clamps at the map edges. The arrival mat (3,2), Ivo's greeting at (5,3) and the elevator call panel (5,0) sit in the top-left of the stage, well above the keyboard inset (y from 103). The first lap runs down the west walkway (x3) to row 12, where the camera clamps at the south edge and the avatar's feet stay at screen y 100, just above the inset's top edge; the remaining legs are east of x9 or above row 12. No keyboard-inset conflict is documented for this level."
+}

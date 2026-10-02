@@ -1,0 +1,941 @@
+{
+ "kit": "orientation",
+ "atlas": "orientation-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  26,
+  15
+ ],
+ "note": "Proof room for the Orientation quest props (26 x 15 cells = 416 x 240 px, the optional 427 x 240 view at x3). Every named quest prop is placed once; states are the start of the game (before) or the end of Orientation (after).",
+ "states": {
+  "elevator": "open",
+  "turnstile": "closed",
+  "clock_twin": "unsynced",
+  "conference_door": "closed",
+  "pinboard": "empty",
+  "mail_medals": "0",
+  "lamp": "off",
+  "lamp_warm": "off",
+  "corridor_stripe": "unlit",
+  "garden": "before",
+  "records_door": "closed",
+  "seating_nook": "hidden"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJHJHJHJ"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    3,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    20,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    21,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    22,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    23,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    24,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    25,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    15,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    17,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    20,
+    0
+   ],
+   "offset": [
+    10,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    22,
+    0
+   ],
+   "offset": [
+    10,
+    9
+   ]
+  },
+  {
+   "anim": "pinboard",
+   "cell": [
+    1,
+    0
+   ],
+   "offset": [
+    0,
+    9
+   ]
+  },
+  {
+   "anim": "clock_twin",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    14,
+    9
+   ]
+  },
+  {
+   "anim": "conference_door",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "projected_form_wall",
+   "cell": [
+    10,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    8
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    1,
+    8
+   ]
+  },
+  {
+   "entry": "elevator_call_panel",
+   "cell": [
+    4,
+    8
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "partition_1x1",
+   "cell": [
+    8,
+    10
+   ]
+  },
+  {
+   "entry": "partition_1x1",
+   "cell": [
+    8,
+    11
+   ]
+  },
+  {
+   "entry": "partition_2x1",
+   "cell": [
+    0,
+    12
+   ]
+  },
+  {
+   "entry": "partition_2x1",
+   "cell": [
+    2,
+    12
+   ]
+  },
+  {
+   "entry": "partition_2x1",
+   "cell": [
+    7,
+    12
+   ]
+  },
+  {
+   "anim": "turnstile",
+   "cell": [
+    4,
+    12
+   ]
+  },
+  {
+   "entry": "desk_left_cherry",
+   "cell": [
+    1,
+    3
+   ],
+   "offset": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "stamp_a",
+   "cell": [
+    1,
+    3
+   ],
+   "offset": [
+    10,
+    1
+   ]
+  },
+  {
+   "entry": "stamp_b",
+   "cell": [
+    2,
+    3
+   ],
+   "offset": [
+    2,
+    1
+   ]
+  },
+  {
+   "entry": "stamp_c",
+   "cell": [
+    2,
+    3
+   ],
+   "offset": [
+    10,
+    1
+   ]
+  },
+  {
+   "entry": "stamp_d",
+   "cell": [
+    3,
+    3
+   ],
+   "offset": [
+    2,
+    1
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    3,
+    2
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    3,
+    3
+   ],
+   "offset": [
+    14,
+    4
+   ]
+  },
+  {
+   "anim": "corridor_stripe",
+   "cell": [
+    5,
+    4
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "anim": "corridor_stripe",
+   "cell": [
+    6,
+    4
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "anim": "corridor_stripe",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "anim": "corridor_stripe",
+   "cell": [
+    8,
+    4
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "landmark": "garden",
+   "cell": [
+    10,
+    6
+   ],
+   "offset": [
+    8,
+    6
+   ]
+  },
+  {
+   "entry": "desk_right_mirror",
+   "cell": [
+    20,
+    6
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "stamp_e",
+   "cell": [
+    20,
+    6
+   ],
+   "offset": [
+    14,
+    9
+   ]
+  },
+  {
+   "entry": "stamp_f",
+   "cell": [
+    21,
+    6
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "stamp_g",
+   "cell": [
+    21,
+    6
+   ],
+   "offset": [
+    14,
+    9
+   ]
+  },
+  {
+   "entry": "stamp_h",
+   "cell": [
+    22,
+    6
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    21,
+    7
+   ],
+   "offset": [
+    7,
+    10
+   ]
+  },
+  {
+   "anim": "lamp_warm",
+   "cell": [
+    20,
+    6
+   ],
+   "offset": [
+    0,
+    10
+   ]
+  },
+  {
+   "anim": "seating_nook",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "review_table",
+   "cell": [
+    11,
+    12
+   ],
+   "offset": [
+    8,
+    4
+   ]
+  },
+  {
+   "entry": "keyboard_macbook",
+   "cell": [
+    11,
+    12
+   ],
+   "offset": [
+    11,
+    5
+   ]
+  },
+  {
+   "entry": "keyboard_spare",
+   "cell": [
+    12,
+    12
+   ],
+   "offset": [
+    14,
+    6
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    11,
+    13
+   ],
+   "offset": [
+    13,
+    6
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    13,
+    13
+   ],
+   "offset": [
+    7,
+    6
+   ]
+  },
+  {
+   "entry": "desk_a",
+   "cell": [
+    1,
+    5
+   ],
+   "offset": [
+    8,
+    12
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    3,
+    14
+   ]
+  },
+  {
+   "entry": "mail_tray",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    14,
+    12
+   ]
+  },
+  {
+   "entry": "desk_folder",
+   "cell": [
+    1,
+    5
+   ],
+   "offset": [
+    12,
+    14
+   ]
+  },
+  {
+   "entry": "desk_b",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    17,
+    2
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "entry": "desk_b_front",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "anim": "mail_medals",
+   "cell": [
+    21,
+    9
+   ],
+   "offset": [
+    8,
+    2
+   ]
+  },
+  {
+   "entry": "side_table",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    12,
+    12
+   ]
+  },
+  {
+   "entry": "artifact_unissued_badge",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "entry": "artifact_training_card",
+   "cell": [
+    3,
+    5
+   ],
+   "offset": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "artifact_mirror_card",
+   "cell": [
+    22,
+    5
+   ],
+   "offset": [
+    14,
+    14
+   ]
+  },
+  {
+   "entry": "artifact_first_route_receipt",
+   "cell": [
+    14,
+    12
+   ],
+   "offset": [
+    12,
+    4
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    0,
+    2
+   ],
+   "offset": [
+    4,
+    2
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    5,
+    2
+   ],
+   "offset": [
+    14,
+    2
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    14,
+    2
+   ],
+   "offset": [
+    8,
+    2
+   ]
+  },
+  {
+   "entry": "pot_plant_d",
+   "cell": [
+    24,
+    2
+   ],
+   "offset": [
+    12,
+    2
+   ]
+  },
+  {
+   "entry": "pot_plant_e",
+   "cell": [
+    9,
+    7
+   ],
+   "offset": [
+    6,
+    12
+   ]
+  },
+  {
+   "entry": "pot_plant_f",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    2,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_g",
+   "cell": [
+    9,
+    13
+   ],
+   "offset": [
+    6,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_h",
+   "cell": [
+    0,
+    7
+   ],
+   "offset": [
+    4,
+    12
+   ]
+  },
+  {
+   "entry": "pot_plant_i",
+   "cell": [
+    23,
+    9
+   ],
+   "offset": [
+    12,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_j",
+   "cell": [
+    16,
+    13
+   ],
+   "offset": [
+    6,
+    10
+   ]
+  },
+  {
+   "entry": "sofa",
+   "cell": [
+    17,
+    11
+   ],
+   "offset": [
+    8,
+    14
+   ]
+  },
+  {
+   "entry": "mail_counter",
+   "cell": [
+    21,
+    12
+   ],
+   "offset": [
+    4,
+    0
+   ]
+  }
+ ]
+}

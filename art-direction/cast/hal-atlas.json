@@ -144,6 +144,113 @@
       "frames": 3,
       "ms": 300,
       "mode": "once"
+    },
+    "hal_crouch_repair_s": {
+      "row": 20,
+      "frames": 4,
+      "ms": 220,
+      "mode": "loop",
+      "note": "default working pose at machines; loop; the tool taps the panel in front of the facing"
+    },
+    "hal_crouch_repair_e": {
+      "row": 21,
+      "frames": 4,
+      "ms": 220,
+      "mode": "loop",
+      "note": "default working pose at machines; loop; the tool taps the panel in front of the facing"
+    },
+    "hal_crouch_repair_w": {
+      "row": 22,
+      "frames": 4,
+      "ms": 220,
+      "mode": "loop",
+      "note": "default working pose at machines; loop; the tool taps the panel in front of the facing"
+    },
+    "hal_crouch_repair_n": {
+      "row": 23,
+      "frames": 4,
+      "ms": 220,
+      "mode": "loop",
+      "note": "default working pose at machines; loop; the tool taps the panel in front of the facing"
+    },
+    "hal_seated_stool_s": {
+      "row": 24,
+      "frames": 2,
+      "ms": 600,
+      "mode": "loop",
+      "prop": "stool_folding",
+      "prop_atlas": "hal-props-atlas.json",
+      "stool_cell_in_frame_px": [
+        0,
+        8
+      ],
+      "stool_sprite_in_frame_px": [
+        0,
+        14
+      ],
+      "note": "draw the stool (rear_prop) first, then this frame (actor) with the two anchors coinciding: the stool cell's top-left sits at (0, 8) inside the 16x24 frame, so its 16x10 sprite starts at (0, 14). Feet rest on row 23; the seat is under rows 14-17 (hips on row 17)"
+    },
+    "hal_seated_stool_e": {
+      "row": 25,
+      "frames": 2,
+      "ms": 600,
+      "mode": "loop",
+      "prop": "stool_folding",
+      "prop_atlas": "hal-props-atlas.json",
+      "stool_cell_in_frame_px": [
+        0,
+        8
+      ],
+      "stool_sprite_in_frame_px": [
+        0,
+        14
+      ],
+      "note": "draw the stool (rear_prop) first, then this frame (actor) with the two anchors coinciding: the stool cell's top-left sits at (0, 8) inside the 16x24 frame, so its 16x10 sprite starts at (0, 14). Feet rest on row 23; the seat is under rows 14-17 (hips on row 17)"
+    },
+    "hal_seated_stool_w": {
+      "row": 26,
+      "frames": 2,
+      "ms": 600,
+      "mode": "loop",
+      "prop": "stool_folding",
+      "prop_atlas": "hal-props-atlas.json",
+      "stool_cell_in_frame_px": [
+        0,
+        8
+      ],
+      "stool_sprite_in_frame_px": [
+        0,
+        14
+      ],
+      "note": "draw the stool (rear_prop) first, then this frame (actor) with the two anchors coinciding: the stool cell's top-left sits at (0, 8) inside the 16x24 frame, so its 16x10 sprite starts at (0, 14). Feet rest on row 23; the seat is under rows 14-17 (hips on row 17)"
+    },
+    "hal_false_panel_pull_s": {
+      "row": 27,
+      "frames": 4,
+      "ms": 260,
+      "mode": "once",
+      "note": "one-shot, holds the last frame (standing rest); N is the facing for the machine's south-facing panel; swap the panel prop closed to open on frame 2"
+    },
+    "hal_false_panel_pull_n": {
+      "row": 28,
+      "frames": 4,
+      "ms": 260,
+      "mode": "once",
+      "note": "one-shot, holds the last frame (standing rest); N is the facing for the machine's south-facing panel; swap the panel prop closed to open on frame 2"
+    },
+    "hal_false_panel_pull_e": {
+      "row": 29,
+      "frames": 4,
+      "ms": 260,
+      "mode": "once",
+      "note": "one-shot, holds the last frame (standing rest); N is the facing for the machine's south-facing panel; swap the panel prop closed to open on frame 2"
+    },
+    "hal_false_panel_pull_w": {
+      "row": 30,
+      "frames": 4,
+      "ms": 260,
+      "mode": "once",
+      "note": "one-shot, holds the last frame (standing rest); N is the facing for the machine's south-facing panel; swap the panel prop closed to open on frame 2"
     }
   },
   "shadow": "drawn by the renderer at the anchor, not baked into frames"

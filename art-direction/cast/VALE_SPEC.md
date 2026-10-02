@@ -6,7 +6,7 @@
 
 **Sources:** `design/characters/vale.md`, `design/characters/README.md`, `levels.md` cast table and level 20, `art-direction/palettes/PALETTES_SPEC.md` (Executive palette and `CAST_RAMPS["vale"]`), STYLE_BIBLE §3–7. Every shared person rule follows the approved Gate 1 contract in [GATE1_ENGINEER_SPEC.md](../gate1/GATE1_ENGINEER_SPEC.md): frame, anchor, idle and walk timing, contour-only darkest step, and renderer-drawn shadow. The cast frame rule comes from [IVO_SPEC.md](IVO_SPEC.md). **Director decision** marks choices made under the art-direction authority the player delegated.
 
-This delivery is softening **state 0 (0 repairs)**: rigid, square shoulders, arms tight, feet together. The three later states and the interact and reaction sets are left out for now (EXTRA sets, later).
+The base delivery (idle ×4, walk ×4) is softening **state 0 (0 repairs)**: rigid, square shoulders, arms tight, feet together. Softening states 1-3 (idle, walk and interact for every facing) were added as EXTRA sets by the poses branch; see "Softening states 1-3" at the end.
 
 ## Deliverables
 
@@ -54,7 +54,7 @@ Rebuild with `python3 build_cast.py vale` and `python3 build_vale_room.py` (Pill
 11. **Settle.** `lower()` is Ivo's: it drops the top leg row, not the hem row, so the jacket keeps its hem and the cuffs keep clear of the trousers. `eng.lower` would drop row 17 and bring the hands onto the trousers.
 12. **Pronouns.** Left unmarked (they/them): the face is a plain composed one (flat mouth, no lashes, no facial hair), and the cut is a suit, not a gendered silhouette.
 13. **Glints.** `GLINT_LIMITS = {"e": 1, "v": 1, "y": 3}` (the copper glint, the knot highlight, the lightest shirt step), enforced by the checker.
-14. **Scope.** This round is idle ×4 and walk ×4 at state 0. The three softening states (shoulders drop 1 px; arms relax with weight on one leg; open asymmetric stance), interact and the two reactions come later as EXTRA sets on these frames.
+14. **Scope.** The first round was idle ×4 and walk ×4 at state 0. The three softening states (shoulders drop 1 px; arms relax with weight on one leg; open asymmetric stance) followed as EXTRA sets on these frames (decisions 20-30); interact and the two reactions are decisions 15-19.
 
 ## Acceptance criteria
 
@@ -87,6 +87,43 @@ Tasks 8.1 (interact) and 8.2 (reactions). Same format as the Engineer, Ivo and M
 
 15. **Interact: the audit.** vale.md says "receiving or releasing the audit". Vale carries a 5×4 pale sheet low, then holds a 6×5 sheet out (it grows because it is nearer the player, as Ivo's tablet does). The sheet is a dark rim, alternating `w`/`x` lines read as text, and one `c` copper clip on the top edge. S: at Vale's right (screen-left), the hand grips its lower edge. E and W: held out toward the facing. N: only the back of the sheet shows past the shoulder. The sheet stays inside 16×24, so it uses columns 0–5 on S, W and N. It uses no new key, and `y` stays inside its glint limit. `EXTRA_ASYMMETRIC` includes `interact`.
 16. **Reaction: displeased (stiff).** vale.md's "composed" is the idle, so reaction (a) is the stiff counterpart: the head bows a notch (`dip`), a level brow pixel is added above the eyes, and the mouth corners drop onto the chin. On S the fists clench on the last frame (hands take the skin shadow steps) and the figure settles 1 px (`lower`). The face is the sprite's single ink pixels, so it reads through the brow and mouth, not through eye shape. A 2 px dark furrow was tried and read as an eye patch; it was dropped.
-17. **Reaction: reconsidering (the first softening).** vale.md's reaction (b) is "unsettled on seeing raw evidence". It is the first step of the arc, so it plays the first softening state's change: the head tilts 1 px, the hard corners of the shoulder line are cut (`sag`: the shoulders drop 1 px), and the figure settles. The last frame is the state-1 silhouette, so the same `sag` can be applied to the idle frames when the engine switches to repair 1.
+17. **Reaction: reconsidering (the first softening).** vale.md's reaction (b) is "unsettled on seeing raw evidence". It is the first step of the arc, so it plays the first softening state's change: the head tilts 1 px, the hard corners of the shoulder line are cut (`sag`: the shoulders drop 1 px), and the figure settles. The last frame is the state-1 silhouette: `sag` is the same transform that builds the state-1 idle and walk (decision 21), so the engine switches to repair 1 without a pop. (`sag` was widened with the state sets: it now takes 3 px per side off row 10 on S and N, 2 px per side on E and W, where it first cut only the two corner pixels, so state 1 is readable at ×4. The three reconsidering frames were rebuilt from it; nothing else in the approved sets changed.)
 18. **Held frame.** Both reactions end on a frame that is a valid resting pose; the engine holds it until the dialogue closes.
-19. **Open.** The state 2 and 3 poses (arms relax, weight on one leg, open stance) and the portrait expressions are still to do. N has no face, so its reactions only move the head and shoulders.
+19. **States 2 and 3** are drawn (decisions 20-30). N has no face, so its reactions only move the head and shoulders. The portraits are in `../portraits/`.
+
+## Softening states 1-3 (poses branch)
+
+`vale_sprites.py` derives the states from the approved frames, so the identity (navy suit, copper badge, living-green tie, graphite hair, head rows, anchor row 23) never forks: `state_body(k, facing)` applies the transforms, `LEGS_STAND` holds the stance legs, `walk_frame(k, facing, i)` builds the walks, and `_states()` registers `s1_*`, `s2_*`, `s3_*` in `EXTRA`. `check_gate1.py vale_sprites`: 152 frames (24 base + 128 extra), 0 failures. No set uses `EXTRA_ASYMMETRIC` (the worst anchor-mass imbalance is 0.186, state 3 interact W).
+
+| Set (each for S N E W) | Frames | Timing | Mode | Atlas rows |
+| --- | --- | --- | --- | --- |
+| `s1_idle`, `s2_idle`, `s3_idle` | 2 | 500 ms | loop | 20-23, 32-35, 44-47 |
+| `s1_walk`, `s2_walk`, `s3_walk` | 4 | 133 ms, contacts 0 and 2, 8 px per frame | loop | 24-27, 36-39, 48-51 |
+| `s1_interact`, `s2_interact`, `s3_interact` | 2 | 250 ms | once, hold last | 28-31, 40-43, 52-55 |
+
+Atlas names are `vale_s<k>_<set>_<facing>` in `vale-atlas.json` (e.g. `vale_s2_walk_e`). Each entry carries `softening_state` and a note naming the base set it replaces.
+
+### Decisions
+
+20. **Facings (the open question): all four.** Every state has idle, walk and interact for S, N, E and W, so the renderer swaps whole animation sets by state, as it swaps Mira's patch blocks. S-only was rejected: Vale walks and waits in every facing in the atrium, and a pop back to rigid on any other facing would undo the arc. The renderer rule is one line: animation name = `vale_s<k>_<set>_<facing>` with `k = min(repairs completed, 3)`, and the base `vale_<set>_<facing>` for `k = 0`. The two reactions are not repeated per state: `react_displeased` is the state-0 look (it plays before the first repair) and `react_reconsidering` is the 0 to 1 transition; neither is played afterwards.
+21. **State 1: shoulders drop 1 px.** `sag(frame)`: the outer shoulder line comes off row 10, so it starts at the neck's width and steps down onto row 11 (3 px per side on S and N, 2 per side on E and W). Silhouette difference against state 0: 6 px (S, N), 4 px (E, W). Nothing else moves, as vale.md says. It is the end frame of `react_reconsidering`.
+22. **State 2: arms relax away, weight on one leg.** S and N: the right shoulder (S: screen-right, Vale's left; N: mirrored to screen-left) rounds off on row 11 too, so one shoulder is a row lower; both forearms angle 1 px away from the torso on rows 14-16 with a one-pixel outline line between arm and body; the stance legs shift: the far foot rests back and out, the other leg carries the weight. E and W: the near cuff and hand drift 1 px forward of the hip, and the front foot steps forward (2 px). The S/N asymmetry mirrors, so the N figure is the same person seen from behind. Silhouette difference against state 0: 22 px (S), 36 px (N), 15 px (E, W).
+23. **State 3: loosened, open, asymmetric.** Both shoulder corners round off (`round_shoulders`: neck, row 10, row 11, sleeve, so no hard corner is left), the arms open from the elbow on rows 13-16, the feet stand apart with a visible gap and one knee out (E and W: the front foot 3 px forward), the head leans 1 px toward the lower shoulder (`tilt`), the near hand sits 2 px forward in E (1 px in W, where more would cover the badge), and the collar opens: shirt shows where the knot sat and the knot slips a row (S: `loosen_collar`, the tie hook that decision 5 left open; E and W show the same on their sliver). Silhouette difference against state 0: 47 px (S), 61 px (N), 41 px (E, W), roughly one fifth of the figure's pixels, in the shoulder line, arms, stance and head, not a single pixel (`vale-states-x8.png` marks them).
+24. **Portrait match.** Repairs 0 and 1 are the neutral/concerned look (rigid, then shoulders down), 2 is pleased (arms relax, weight shifts), 3 is softened (loosened, open, collar loosened), matching the cue map in `levels.md` and the portrait states in vale.md.
+25. **Walk stiffness eases.** State 0-1 swing nothing (the arms stay still; state 1 only has dropped shoulders). State 2 swings one arm 1 px per contact (S and N: the arm opposite the forward foot angles out; E and W: the near hand goes 1 px back, then 1 px forward, relative to the hip) and keeps the arms tight on the passing frames. State 3 swings further (S and N: the swinging arm opens from row 13 and both arms are open on the passing frames; E and W: the hand moves from 1 px back to 2 px forward) and the head sways 1 px on the contact frames. The shared leg cycles, the 1 px bob (`lower`), 4 × 133 ms and the column-0/15 stride limit are unchanged. The checker applies the stride rule only to base walks, so `vale_sprites.py` asserts it for the state walks at import.
+26. **Interact per state.** The audit hand-over uses the same stamps as state 0 on each state's own frames (the sheet covers the arm area on S and W; E and N keep their own hand). The epilogue release is `vale_s3_interact_*`.
+27. **No new hex, no head-row exception.** Every key is already in `PAL`; the head rows (0-9) keep hair, skin and outline keys; the glint limits (`e`, `v` 1 px, `y` 3 px) hold in every frame (collar loosening reuses the shirt keys).
+28. **Atlas contract.** `build_cast.py` gained two generic, opt-in module attributes: `EXTRA_WALK` (those sets get `px_per_frame` 8 and `contact_frames` [0, 2] like the base walks) and `EXTRA_META` (a dict merged into a set's atlas entries). Other characters do not define them, so their outputs are byte-identical.
+29. **Proof.** `vale-sheet.png` and `vale-extra.gif` now include every state frame (the GIF holds each frame for its `EXTRA_MS`). `build_vale_room.py` adds `vale-states-in-executive.png` (an Executive room at ×4: idle S, walk S, idle E and walk E for states 0-3 side by side, with the Engineer and a 1× strip of S, E, N and W) and `vale-states-x8.png` (every facing and state at ×8, and each state's outline against state 0: coral added, blue removed, with the pixel count).
+30. **Readability.** At ×4 and ×8 the four states read in order: square, sloped, relaxed with the weight shifted, open and leaning. State 1 against state 0 is the smallest step by design (vale.md: one pixel of shoulder drop); the sloped shoulder line, the 6 px outline change and the lit corner that is now gone make it visible side by side but it is the one pair that needs a second look at 1×.
+
+### Acceptance criteria (states)
+
+Automated: `check_gate1.py vale_sprites` 152 frames, 0 failures; the import-time stride assertion for the 12 state walks; `build_all.py` passes and a second run leaves `git status` clean.
+
+Coordinator review (checked by the poses team against `vale-states-in-executive.png` and `vale-states-x8.png`):
+- [x] Four states distinguishable side by side at ×4 (S and E, idle and walk)
+- [x] State 3 differs from state 0 in silhouette (41-61 px), not only a pixel
+- [x] Identity kept: navy suit, copper badge, living-green tie, graphite hair, no violet, anchor row 23
+- [x] Walk eases from stiff (state 0-1) to natural (state 3)
+- [ ] State 1 versus state 0 at 1× alone is subtle (6 px); director to confirm or ask for more

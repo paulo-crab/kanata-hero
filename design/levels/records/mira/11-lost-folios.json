@@ -1,0 +1,313 @@
+{
+  "id": "lost-folios",
+  "name": "Lost Folios",
+  "district": "records",
+  "available_after": "records-11",
+  "skills_required": [
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N17"
+  ],
+  "start_cell": [
+    32,
+    12
+  ],
+  "checkpoints": [
+    {
+      "id": "lf-cp1-gallery-shelf",
+      "cell": [
+        16,
+        4
+      ],
+      "task": "Find the first address at the report's document start and end.",
+      "scene_id": "records-folios-s1-gallery-shelf",
+      "correction": "immediate, no penalty",
+      "interaction": "folio_gallery_shelf"
+    },
+    {
+      "id": "lf-cp2-ledger-desk",
+      "cell": [
+        12,
+        3
+      ],
+      "task": "Find the second address at the ends of a ledger line.",
+      "scene_id": "records-folios-s2-ledger-desk",
+      "correction": "immediate, no penalty",
+      "interaction": "folio_ledger_desk"
+    },
+    {
+      "id": "lf-cp3-divider-cabinet",
+      "cell": [
+        10,
+        10
+      ],
+      "task": "Find the third address by word and page jumps.",
+      "scene_id": "records-folios-s3-divider-cabinet",
+      "correction": "immediate, no penalty",
+      "interaction": "folio_divider_cabinet"
+    },
+    {
+      "id": "lf-cp4-chute",
+      "cell": [
+        33,
+        12
+      ],
+      "task": "Deliver the three folders at the mail chute.",
+      "scene_id": "records-folios-s4-deliver",
+      "correction": "immediate, no penalty",
+      "interaction": "courier_chute"
+    }
+  ],
+  "destinations": [
+    "Rolling shelf in the gallery",
+    "Ledger desk in the margin room",
+    "Divider cabinet beside the log room",
+    "Mail chute (delivery)"
+  ],
+  "medal_rule": "clean baseline then personal target, never gates story",
+  "reward_patch": "archive_loop",
+  "desk_decoration": "`mira_decor_archive_folder`: a coral desk folder with a lit tab and a sheet showing.",
+  "map_design_note": "The full archive loop: pocket, up through the opened file wall into the review chamber, east door, gallery, down through the ladder gap, into the margin room, back to the foyer, and home to the chute. Every leg is a route the player has walked once; the file wall is the new piece that closes the circle.",
+  "terminal_scenes": [
+    {
+      "id": "records-folios-s1-gallery-shelf",
+      "kind": "editor",
+      "task_summary": "Find the first archive address at the report's document start and end on the rolling shelf.",
+      "success_criteria": [
+        "Both document-position addresses are cited"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The rolling shelf's report hides an address in its first and last lines. Cite both.",
+        "document": {
+          "pages": 6,
+          "viewport_indicator": false
+        },
+        "items": [
+          {
+            "fact": "first line address: stacks east 12",
+            "page": 1,
+            "citation": "select and confirm"
+          },
+          {
+            "fact": "last line address: stacks west 40",
+            "page": 6,
+            "citation": "select and confirm"
+          }
+        ],
+        "accepts": [
+          "Command + Up",
+          "Command + Down"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "Both addresses are needed."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-folios-s2-ledger-desk",
+      "kind": "editor",
+      "task_summary": "Find the second archive address at the ends of a ledger line.",
+      "success_criteria": [
+        "Both margin addresses are cited"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A ledger line holds an address at each end. Cite both.",
+        "lines": [
+          {
+            "text": "bay-4 route 4A to annex stacks bay-9",
+            "cursor": "middle",
+            "target": "bay-4 route 4A to annex stacks bay-9"
+          }
+        ],
+        "items": [
+          {
+            "fact": "opening address bay-4"
+          },
+          {
+            "fact": "closing address bay-9"
+          }
+        ],
+        "accepts": [
+          "Command + Left",
+          "Command + Right"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "Both addresses are needed."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-folios-s3-divider-cabinet",
+      "kind": "log",
+      "task_summary": "Find the third archive address by word and page jumps in the cabinet log.",
+      "success_criteria": [
+        "The drifted address is cited"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The drawer's log lists addresses on two pages. Reach the drifted one by word and page jumps and cite it.",
+        "lines": [
+          {
+            "text": "addr=drawer.south/slot-31;idx=2;ref=copy",
+            "cursor": "end",
+            "target": "addr=drawer.south/slot-13;idx=2;ref=copy"
+          }
+        ],
+        "accepts": [
+          "Option + Left",
+          "Option + Right",
+          "Page Up",
+          "Page Down",
+          "Backspace"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "The address is not repaired yet."
+        },
+        "layout": "No keyboard diagram."
+      }
+    },
+    {
+      "id": "records-folios-s4-deliver",
+      "kind": "form",
+      "task_summary": "Deliver the three folders at the mail chute.",
+      "success_criteria": [
+        "Return is observed on the delivery form"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Submit the delivery of three folders.",
+        "initial": {
+          "address": "3 folders"
+        },
+        "target": "3 folders",
+        "accepts": [
+          "Return"
+        ],
+        "rejects": [],
+        "feedback": {
+          "stuck": "Return submits the delivery."
+        },
+        "layout": "No keyboard diagram."
+      }
+    }
+  ],
+  "gestures": [
+    {
+      "id": "N11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s1-gallery-shelf"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s1-gallery-shelf"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s2-ledger-desk"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s2-ledger-desk"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s3-divider-cabinet"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s3-divider-cabinet"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s3-divider-cabinet"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s3-divider-cabinet"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "records-folios-s4-deliver"
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "rl-mira-offer",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "Three addresses, three folders. Find them in the report, then deliver. Take the opened wall if you like.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "interact:mira & state:records-11",
+      "cue": "Mira: offering any route"
+    },
+    {
+      "id": "rl-mira-admission",
+      "speaker": "mira",
+      "portrait": "concerned",
+      "text": "I kept a copy of the routes Pace tried to erase. This is the copy. These three addresses were on it.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "dialogue_done:rl-mira-offer",
+      "cue": "Mira: concerned when she shares the copy she kept"
+    },
+    {
+      "id": "rl-mira-patch",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "Archive Loop. That patch is yours.",
+      "hint": null,
+      "speaker_kind": "character",
+      "when": "scene_success:records-folios-s4-deliver",
+      "cue": "Mira: pleased on a route's first clean baseline"
+    }
+  ],
+  "baseline_note": "The first clean run only records a duration; the story reward is the Archive Loop patch."
+}

@@ -124,3 +124,93 @@ Programmatic review (`build_systems.py`, all pass):
 - The walkway part is registered at the machine's east flank on rows 4-5, so it follows the route's first segment. A level that places the machine elsewhere moves it with the landmark; the walkway cannot be repositioned alone.
 - The bridge gallery in the room is a demonstration of the deck and rail pieces, not the formula room.
 - The false panel flap hangs 4 px below the footprint. It is decoration, not collision.
+
+## Quest props (levels 12 to 16, Mira's routes after 13 and 16)
+
+**Status:** built 2026-10-02 by the district-kits team (branch `feat/art-district-quest-props`). The audit of every named prop is [QUEST_PROP_AUDIT.md](QUEST_PROP_AUDIT.md) (rows S1 to S25); this section is the Systems half of its "New" rows. The 78 entries above, the reference room and every file listed in the first table are unchanged (the atlas gained 22 entries after the landmark parts, so no earlier rect moved). Drawing helpers shared with the other districts (the courier chute, the Mira decorations, the 3x5 pixel font) live in `quest_props.py`; the Systems recipes are in the "quest props" section of `systems_kit.py`.
+
+New outputs: `systems-quest-props-room.json` (a second composition built only from `systems-atlas`, 74 placements), `systems-quest-props-before-native.png` and `-before-1366x768.png` (every new prop in its first state, Hal near his stool, Mira beside the chute), and `systems-quest-props-after-native.png` and `-after-1366x768.png` (every state set switched: keypad lit, bridge extended, sign green, display reversed, alarms separated, shutters open, formula lit, chute ready). The atlas is now 100 entries and 22 state sets. `build_systems.py` runs the quest review (below) and exits 1 on a failure.
+
+### Entries
+
+| Entry | Size px | Footprint, collision | Layer | y_sort | Anchor | Contact shadow |
+| --- | --- | --- | --- | --- | --- | --- |
+| `payroll_keypad_off` | 34x32 | 2x1, `11` | rear_prop | yes | [16, 30] | [1, 30, 33, 2] |
+| `payroll_keypad_half` | 34x32 | 2x1, `11` | rear_prop | yes | [16, 30] | [1, 30, 33, 2] |
+| `payroll_keypad_lit` | 34x32 | 2x1, `11` | rear_prop | yes | [16, 30] | [1, 30, 33, 2] |
+| `bridge_span_retracted` | 64x32 | 4x2, `0110/0110` | floor_marking | no | [32, 32] | none |
+| `bridge_span_extended` | 64x32 | 4x2, `0000/0000` | floor_marking | no | [32, 32] | none |
+| `refund_sign_red` | 24x14 | 2x1, `00` | rear_wall | no | [16, 16] | none |
+| `refund_sign_green` | 24x14 | 2x1, `00` | rear_wall | no | [16, 16] | none |
+| `calc_display_charge` | 36x18 | 2x1, `11` | rear_prop | yes | [16, 16] | [1, 16, 35, 2] |
+| `calc_display_refund` | 36x18 | 2x1, `11` | rear_prop | yes | [16, 16] | [1, 16, 35, 2] |
+| `folding_stool` | 14x14 | 1x1, `1` | rear_prop | yes | [7, 14] | [2, 13, 10, 1] |
+| `alarm_strip_merged` | 64x18 | 4x2, `0000/0000` | rear_wall | no | [32, 32] | none |
+| `alarm_strip_separated` | 64x18 | 4x2, `0000/0000` | rear_wall | no | [32, 32] | none |
+| `alarm_strip_muted` | 64x18 | 4x2, `0000/0000` | rear_wall | no | [32, 32] | none |
+| `bridge_shutter_closed` | 30x20 | 2x2, `00/00` | rear_wall | no | [16, 32] | none |
+| `bridge_shutter_open` | 30x20 | 2x2, `00/00` | rear_wall | no | [16, 32] | none |
+| `formula_wall_dark` | 96x22 | 6x2, `000000/000000` | rear_wall | no | [48, 32] | none |
+| `formula_wall_half` | 96x22 | 6x2, `000000/000000` | rear_wall | no | [48, 32] | none |
+| `formula_wall_lit` | 96x22 | 6x2, `000000/000000` | rear_wall | no | [48, 32] | none |
+| `courier_chute_idle` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `courier_chute_ready` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `mira_decor_signed_sent` | 13x9 | 1x1, `0` | rear_prop | yes | [7, 9] | none |
+| `mira_decor_relay` | 12x10 | 1x1, `0` | rear_prop | yes | [6, 10] | none |
+
+State sets (each pair or triple is cropped to one shared box, so a swap never moves a pixel): `payroll_keypad` (off, half, lit), `bridge_span` (retracted blocks, extended walks), `refund_sign` (red, green), `calc_display` (charge, refund), `alarm_strip` (merged, separated, muted), `bridge_shutter` (closed, open), `formula_wall` (dark, half, lit), `courier_chute` (idle, ready).
+
+| Prop | What it is |
+| --- | --- |
+| Payroll keypad (12) | A 2-cell console: a glass-backed ID tray with five cards (one with an orange stripe) behind a cobalt pane, a steel top plane with ten key nodes in two rows (digits 1-5, then 6-0), a cobalt face with ten progress lights. Off: all dark. Half: the first five lit mint. Lit: all ten. The machine's own ten nodes (landmark) and the `conduit_*` sets carry "each correct node lights a conduit". |
+| Bridge span (12) | The glass bridge's span, 4x2 on the floor markings with orange hazard stripes on both long edges. Retracted: a deck tile at each end and an open trussed pit with a cobalt service conduit below, the middle two columns block. Extended: deck from end to end, walkable. Put `bridge_rail` entries on the rows above and below it. |
+| Refund sign (13) | A 24x14 wall plate reading as a price tag. Red: a safety-orange plate with "+85" (the refund became a charge). Green: a mint plate with "-85". Systems has no pure red or green (decision 1 below). |
+| Calculator display (13) | A 2-cell steel desk with a display sunk into the top and an open ledger beside it. Charge: "+85" with an orange plus and an orange ledger mark. Refund: "-85" with a mint minus and a mint mark. |
+| Folding stool (13) | Hal's stool: a sand canvas seat on crossed steel legs with his orange tool roll leaning on it. Hal's pose is the cast team's. |
+| Alarm strip (14) | A 64x18 wall overlay of six alert cells, each a lamp over a porcelain label plate. Merged: six identical cobalt lamps over blank plates. Separated: six lamps (blue, green, orange, sand, pale blue, pale green) and six pictograms (ring, triangle, square, diamond, cross, bar). Muted (Quiet Alarm): as separated with the sixth lamp dark and slashed. |
+| Bridge shutter (15) | A 30x20 wall overlay in the window overlay's footprint. Closed: steel louvres over the pane. Open: the louvres stack at both sides and the cobalt pane shows. |
+| Formula wall (15) | A 96x22 wall overlay of six clause boxes joined by traces, each holding one of `& * ( ) _ +` at double size. Dark, half (three boxes and their traces lit mint), lit. |
+| Courier chute (13, 16, Mira) | Mira's chute, drawn once in `quest_props.courier_chute` for three districts: a cabinet with an orange-lipped slot, a tube rising into the ceiling, a catch tray, an indicator lamp. Ready: a slip in the slot and an orange lamp. |
+| Mira decor | Signed and Sent: an envelope with a stamped seal and a signature line. Signal Keeper: a miniature relay (cobalt block, copper coil, two terminals, a mint LED). One cell, no collision, set on a desk or locker top. |
+
+### Review (`build_systems.py`, quest room)
+
+| Check | Result |
+| --- | --- |
+| Coverage | all 22 new entries are drawn in the room (a placed state set counts all its states, so the half and muted states are covered) |
+| Bridge | retracted: the four pit cells block, the four end cells are free; extended: all eight cells free; a two-cell-wide walkway of 6 steps crosses it between the rails, and none crosses the retracted span |
+| Inset | alarm strip, formula wall, sign, keypad, display, span, chute, shutters: none intersect the keyboard inset |
+| Palette | the existing checks cover the atlas: every colour is a Systems ramp step (28 colours, unchanged), no violet, no marker hex; orange is still trim (1.2% before, 1.3% after, limit 4%) |
+| Layout | `check_atlas.check_layout` on `systems-quest-props-room.json` is clean |
+
+### Director decisions (quest props)
+
+1. **Red and green are the orange and mint ramps.** Systems has neither a red nor a green. `refund_sign_red` uses the safety-orange trim steps and `refund_sign_green` the mint circuit steps; the plus or minus and the number carry the meaning, so colour is never the only cue. The names follow the brief.
+2. **The payroll keypad folds the ID tray into one prop.** levels.md names "glass-backed ID trays" and "ten individually lit routing nodes" in the same wing; one console with a glass-backed tray, ten key nodes and ten progress lights covers both and keeps the wing to one entry set.
+3. **Six alarm hues are three hues in two steps, plus sand.** The palette has blue, green and orange families; the sixth hue is the sand wood step. Each lamp also has its own pictogram, so the six are distinct by shape, which is what the level asks for ("six distinct alert lights and pictograms").
+4. **The bridge span is floor art with its own collision.** The extended deck is the existing `bridge_deck` pattern, so a level using the old `bridge_deck` tiles and the new span matches. Rails stay separate `bridge_rail` entries so a designer can edge any run.
+5. **Shutters and the formula wall are wall overlays.** They sit on the north wall face like the window overlays and the status board; the plain wall tiles keep the collision.
+6. **The chute, the desk decorations and the 3x5 font are shared drawings.** They live in `quest_props.py` and take the district's `Pal`; Systems sets `PAL.paper` to the porcelain ramp (its wall ramp is steel blue) so slips and envelopes read as paper.
+7. **State sets share a crop box.** Pairs and triples whose bounding boxes differ (the keypad's progress lights, the strip's lamps) are cropped to one box, so a state swap never shifts a pixel.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `systems-integration-room.json` and `systems-integration-proof-{before,after}-{native,1366x768}.png` (elevators, seated worker with occluder, artifacts, the formula wall, a wall band with the alarm board, refund ledger and ten node lamps, Hal's stool); `systems-landmark-steps.png` shows the machine at before, after_12, after_13, after_14 and after.
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed/_half/_open` (set `elevator`), `elevator_call_panel` | 3x3 and 1x2 | rear_wall | Orientation geometry, Systems ramps |
+| `desk_a_front`, `desk_b_front` | 2x1, `00` | front_prop | Cut from the district desk (drawn with a Pal whose paper is the porcelain floor ramp, as the desk recolour maps stone to floor); asserted pixel-equal |
+| `artifact_id_envelope`, `artifact_alarm_strip`, `artifact_scoring_proof`, `artifact_original_routing_diagram` | 1x1, `0` | front_prop | `artifact_prop` with paper = porcelain ramp (the Systems wall ramp is steel blue) |
+| `routing_node_dark` / `routing_node_lit` (set `routing_node`) | 1x1, `0` | rear_wall | 10x10 lamp centred in its cell; place ten, one per digit. Lit: mint with a pale head |
+| `refund_ledger_charge` / `refund_ledger_refund` (set `refund_ledger`) | 2x1, `00` | rear_wall | 30x14 wall inset: calculator display and open ledger with three sign markers. Charge: `+85` orange, markers staggered. Refund: `-85` mint, markers calm. No pure red or green in this palette; the sign glyph carries the meaning |
+| `alarm_board_blank`, `alarm_board_labeled_1` to `_6` (set `alarm_board`) | 3x2, `000/000` | rear_wall | 46x30, six lamp-over-plate cells. Blank: empty slots, six dull lamps with two identical pairs. Each label restores one pictogram (ring, triangle, square, diamond, cross, bar) and its own hue |
+| `formula_wall_dim`, `formula_wall_clause_1` to `_6` | 6x2 | rear_wall | Joined to the existing `formula_wall` state set (beside dark, half, lit). `dim` has the pixels of `dark`; `clause_6` those of `lit` |
+| `folding_stool`, `folding_stool_open`, `folding_stool_folded` (set `folding_stool`: folded, open) | 1x1, `1` | rear_prop | See below |
+
+**One stool.** `folding_stool` and `folding_stool_open` are built from `hal_sprites.STOOL` (imported, no Hal file edited) and are pixel for pixel the Hal prop atlas's `stool_folding`: 16x10, footprint 1x1 whose top-left is 6 px above the sprite (`origin_px [0, -6]`), collision `1`, rear_prop, y-sort, contact shadow `[1, 9, 14, 1]`, anchor `[8, 10]`. The build compares the pixels against `cast/hal-props-atlas.png` and the geometry against its JSON. Hal's seat offset depends on this: seated Hal's anchor (8, 24) lands on the stool cell's anchor (8, 16), so the sprite's top-left is at (0, 14) in Hal's 16x24 frame (`stool_sprite_in_frame_px`). Do not move the anchor or resize either sprite. `folding_stool_folded` is a narrow packed stool in the same box and geometry (the old `folding_stool` drawing with the orange tool roll is retired; the roll is Hal's carried prop).
+
+**Machine intermediate states** (landmark `routing_machine`, registered parts only, no new pixels): `after_12` = nodes and stubs lit; `after_13` = `after_12` plus the beacon steady (`routing_beacon_after`); `after_14` = `after_13` plus the ports lit; `after` (level 16) adds the core, walkway and open panel. Lamps stay `on` until `after`.
+
+The miniature relay desk item already exists (`mira_decor_relay`), so nothing new was needed. Decisions: `dim` and `clause_6` are duplicates by design so the level data's names resolve; `refund_ledger` is a wall inset (data: wall overlay) while the older `calc_display` desk piece stays for the reference room. Contradictions with the map: the elevator is 3x3 (data 3x1); `formula_wall` is 6x2 cells (data 8x2); `bridge_shutter` is 2x2 (data 4x1); `routing_node` is 1x1 as declared.

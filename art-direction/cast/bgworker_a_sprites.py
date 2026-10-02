@@ -162,3 +162,22 @@ IDLE_VARIANTS = {
         13: "...osprrmmpqo...", 14: "...ospmmrrpqo...", 15: "...osprqrrpqo...", 16: "...osoOPPOoqo...",
     }, alt={13: "...ospmmrrpqo...", 14: "...osprrmmpqo..."}),
 }
+
+
+# Seated at a desk. Faces S, the camera-side view from behind the desk. The desk-front occluder hides
+# rows 15 and below, so hands, phone and mug live in rows 11-14 and the waist and legs below are the
+# standing ones. Typing hands alternate rather than rest on the keys, because the keyboard itself is
+# hidden behind the monitor housing.
+_HIPS = {15: "...osprqrrpqo...", 16: "...osoOPPOoqo..."}
+SEATED = {
+    "idle": common.seated(S, {**_HIPS, 13: "...osprqrrpqo...", 14: "...ospmrrmpqo..."}),
+    "typing": common.seated(S, {**_HIPS, 13: "...ospmrrrpqo...", 14: "...osprrrmpqo..."},
+                            alt={13: "...osprrrmpqo...", 14: "...ospmrrrpqo..."}, settle=False),
+    "phone": common.seated(S, {**_HIPS, 11: "...osrggggrqo...", 12: "...osmgjjgmqo...",
+                               13: "...osmgjhgmqo...", 14: "...osrggggrqo..."},
+                           alt={12: "...osmgjhgmqo...", 13: "...osmgjjgmqo..."}, settle=False),
+    "coffee": common.seated(S, {**_HIPS, 11: "...osriSirpqo...", 12: "...osmfffepqo...",
+                                13: "...osreeerpmo...", 14: "...osprqrrpqo..."}),
+}
+EXTRA = {f"seated_{k}": {"s": v} for k, v in SEATED.items()}
+EXTRA_MS = {f"seated_{k}": (250 if k == "typing" else 500) for k in SEATED}

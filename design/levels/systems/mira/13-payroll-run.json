@@ -1,0 +1,324 @@
+{
+  "id": "payroll-run",
+  "name": "Payroll Run",
+  "district": "systems",
+  "available_after": "systems-13",
+  "skills_required": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11"
+  ],
+  "start_cell": [
+    11,
+    9
+  ],
+  "checkpoints": [
+    {
+      "id": "pr-cp1",
+      "cell": [
+        32,
+        14
+      ],
+      "task": "Payroll tray (east wing): enter the run's ID and its signed amount, for example 7305 -420.",
+      "scene_id": "mira-13-cp1-payroll-tray",
+      "correction": "immediate, no penalty",
+      "interaction": "payroll-terminal"
+    },
+    {
+      "id": "pr-cp2",
+      "cell": [
+        3,
+        18
+      ],
+      "task": "Ledger desk (south-west room): enter the run's ID and a range, for example 2290 10-45.",
+      "scene_id": "mira-13-cp2-ledger-desk",
+      "correction": "immediate, no penalty",
+      "interaction": "ledger-terminal"
+    },
+    {
+      "id": "pr-cp3",
+      "cell": [
+        12,
+        3
+      ],
+      "task": "Formula-room dropbox (north, reached by the bridge): enter the run's ID and a signed amount, for example 6184 -73.",
+      "scene_id": "mira-13-cp3-formula-dropbox",
+      "correction": "immediate, no penalty",
+      "interaction": "formula-dropbox"
+    }
+  ],
+  "destinations": [
+    "Payroll tray in the east wing",
+    "Ledger desk in the south-west room",
+    "Formula-room dropbox, reached over the glass bridge"
+  ],
+  "medal_rule": "clean baseline then personal target, never gates story",
+  "reward_patch": "signed_and_sent",
+  "desk_decoration": "`mira_decor_signed_sent` beside the Signed and Sent patch.",
+  "map_design_note": "From the chute east along the cobalt conduit to the payroll tray, back west to the ledger room, then north over the glass bridge to the dropbox and home down the return walkway to the chute. The bridge and return walkway (opened by level 12) are what close the loop; later machine walkways can shorten it.",
+  "baseline_note": "The first clean run records its duration as an untimed baseline and earns the patch; an adjustable personal target of about 12% below the clean baseline is offered afterwards, never required.",
+  "terminal_scenes": [
+    {
+      "id": "mira-13-cp1-payroll-tray",
+      "kind": "form",
+      "task_summary": "Payroll tray (east wing): enter the run's ID and its signed amount, for example 7305 -420. The pool changes every run; this is the first-run seed.",
+      "success_criteria": [
+        "Field equals the run's value (seed: 7305 -420)",
+        "A wrong output is corrected at the checkpoint at once, with no lost item and no penalty"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Payroll tray (east wing): enter the run's ID and its signed amount, for example 7305 -420.",
+        "initial": "",
+        "targets": [
+          "7305 -420"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a digit swapped",
+          "a missing minus"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the desk wants the printed value. Correct it here."
+        },
+        "layout": "no keyboard overlay; a small journal note names this as the optional speed route"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "mira-13-cp2-ledger-desk",
+      "kind": "form",
+      "task_summary": "Ledger desk (south-west room): enter the run's ID and a range, for example 2290 10-45. The pool changes every run; this is the first-run seed.",
+      "success_criteria": [
+        "Field equals the run's value (seed: 2290 10-45)",
+        "A wrong output is corrected at the checkpoint at once, with no lost item and no penalty"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Ledger desk (south-west room): enter the run's ID and a range, for example 2290 10-45.",
+        "initial": "",
+        "targets": [
+          "2290 10-45"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a digit swapped",
+          "a missing minus"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the desk wants the printed value. Correct it here."
+        },
+        "layout": "no keyboard overlay; a small journal note names this as the optional speed route"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "mira-13-cp3-formula-dropbox",
+      "kind": "form",
+      "task_summary": "Formula-room dropbox (north, reached by the bridge): enter the run's ID and a signed amount, for example 6184 -73. The pool changes every run; this is the first-run seed.",
+      "success_criteria": [
+        "Field equals the run's value (seed: 6184 -73)",
+        "A wrong output is corrected at the checkpoint at once, with no lost item and no penalty"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Formula-room dropbox (north, reached by the bridge): enter the run's ID and a signed amount, for example 6184 -73.",
+        "initial": "",
+        "targets": [
+          "6184 -73"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a digit swapped",
+          "a missing minus"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the desk wants the printed value. Correct it here."
+        },
+        "layout": "no keyboard overlay; a small journal note names this as the optional speed route"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    }
+  ],
+  "gestures": [
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp1-payroll-tray"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp2-ledger-desk"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox"
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "mira-13-brief",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "Payroll Run: take the changing IDs and signed amounts to three desks. Learn the loop first; I will just record how long it takes.",
+      "hint": null,
+      "cue": "Mira neutral: offering a route"
+    },
+    {
+      "id": "mira-13-patch",
+      "speaker": "mira",
+      "portrait": "pleased",
+      "text": "Signed and sent! That is your first clean baseline, and the patch is yours.",
+      "hint": null,
+      "cue": "Mira pleased: each patch, earned on a first clean baseline"
+    }
+  ]
+}

@@ -45,6 +45,8 @@ The Engineer's full atlas is `gate1/engineer-full-atlas.png`/`.json` (built by `
 
 **Avatar customization** is a ramp swap: replace the hexes of the `hair`, `skin`, `jacket` and `trousers` slots (`SLOTS` in `gate1/engineer_sprites.py`) on the same frames. The opaque mask never changes. Customization ramps obey the marker rules (teal-hued steps ≤ 60% saturation, no violet).
 
+**Vale softening states.** Sets `s1_*` to `s3_*` (idle, walk, interact) are named `vale_s<k>_<set>_<facing>`; the renderer uses `k = min(repairs, 3)` and the base `vale_<set>_<facing>` for 0. Walk-like extra sets carry `px_per_frame` and `contact_frames`. Entries may carry `softening_state`, `prop`, `prop_atlas`, `stool_cell_in_frame_px` and `stool_sprite_in_frame_px`. **Hal poses** (`crouch_repair`, `seated_stool`, `false_panel_pull`) and the stool prop are in `cast/hal-atlas.json` and `cast/hal-props-atlas.json`; see `cast/HAL_SPEC.md` for the seat offset.
+
 ### 3.2 Background workers (`cast/bgworker_a-atlas.*`, `cast/bgworker_b-atlas.*`)
 
 Same format as 3.1, plus `palettes` (colourways `slate`, `olive`, `ash`, each with its own atlas PNG `-atlas-<palette>.png`), `variants` (phone, coffee, typing idles), `silhouette` (`-atlas-silhouette.png`, `-atlas-silhouette-lit.png`) and `sync`: until level 06, workers share one walk clock with no offset; afterwards each starts its idles at a random 0–999 ms offset.
@@ -55,7 +57,7 @@ States 0–6 of Mira's world frames, cumulative (state k wears patches 1..k). `p
 
 ### 3.4 Glitches (`glitches/glitches-atlas.*`)
 
-`archetypes` (stapler, chair, form) give the frame size, footprint, `base_bc` anchor, renderer contact shadow (`x0`, `x1`, `row`) and `flippable: false` (light is upper-left, so never mirror). `animations` (`<archetype>_roam`, `<archetype>_misregister`) give row, x, y, frames, ms, loop and per-frame movement (`move_px_per_frame`, `lift_px`). Repaired: snap to register for one frame, then swap to the ordinary prop and stop roaming.
+`archetypes` (stapler, chair, form) give the frame size, footprint, `base_bc` anchor, renderer contact shadow (`x0`, `x1`, `row`) and `flippable: false` (light is upper-left, so never mirror). `animations` (`<archetype>_roam`, `<archetype>_misregister`) give row, x, y, frames, ms, loop and per-frame movement (`move_px_per_frame`, `lift_px`). Repaired: play `<archetype>_repaired` (1 frame, 160 ms, play once) at the glitch's anchor, then swap to `<archetype>_ordinary` (static; `archetypes.<a>.ordinary` has its footprint, collision and anchor) and stop roaming. The atlas is 128x192. `variants` (palettes with `swap` and `swap_dark`, behaviours) and `districts.<id>` (keys `orientation`, `records`, `systems`, `nightshift`, `executive`) are the level-data contract; see `glitches/GLITCHES_SPEC.md`.
 
 ### 3.5 Environment kits (`kit/<district>-atlas.png` + `.json`)
 
@@ -70,6 +72,7 @@ Validated by `kit/atlas.schema.json` (`kit/check_atlas.py`). Top level: `tile` (
 
 - `collision` is one string per footprint row, one character per cell: `1` blocks movement, `0` is walkable.
 - **State sets** (`animations`, `kind: "state_set"`): each state lists the entries to draw and, for doors, whether it blocks. Doors play `closed → half → open` on approach (120 ms per state) and backward on leave; only `open` is walkable. Lamps: `off`, `on`, `pulse`.
+- Quest-prop state sets beyond doors and lamps include `elevator`, `turnstile`, `clock_twin`, `conference_door`, `pinboard`, `mail_medals` (states 0-6), `lamp_warm`, `corridor_stripe` and the district quest-prop sets listed in each kit spec's "Quest props" section and in `kit/QUEST_PROP_AUDIT.md`. North-wall doors (`repair_door`, `north_stair`) replace two plain wall tiles and must not sit above plain wall collision. The elevator is a 3x3 north-wall module. Seated workers pair with `desk_a_front` and `desk_b_front` (fit rows in `kit/ORIENTATION_KIT_SPEC.md`).
 - **Landmarks** are full-size layered parts registered at one origin (`footprint_origin_px`). A quest state is a list of parts drawn in order, so switching state never shifts a pixel. `changes_after` lists what the after state changes.
 
 ### 3.6 Room layouts (`kit/<district>-reference-room.json`)
@@ -86,7 +89,7 @@ Entries with `rect`, `footprint_cells`, `origin_px`, `anchor`, `layer`, `collisi
 
 ## 4. UI
 
-The UI is crisp DOM/CSS over the canvas, not pixel art. Take every colour, spacing, radius and type size from `ui-kit/tokens.css`. The component contract is `ui-kit/COMPONENTS.md`. `ui-kit/reference.html` is the static reference page (stage at ×4, keyboard inset open, dialogue, HUD, prompt, markers, journal, Layout help; append `#grey` for the greyscale check). Body text is at least 16 CSS px. Teal, coral and violet text on panels use the lighter `--accent-*` tokens; never set text on violet fills. Key hints follow the hint grammar in `docs/game-design.md`: the action, then the conventional key, then the Kanata gesture.
+The UI is crisp DOM/CSS over the canvas, not pixel art. Take every colour, spacing, radius and type size from `ui-kit/tokens.css`. The component contract is `ui-kit/COMPONENTS.md`. `ui-kit/reference.html` is the static reference page (stage at ×4, keyboard inset open, dialogue, HUD, prompt, markers, journal, Layout help on all four tabs, setup and calibration, terminal and editor scenes, input feedback, artifact frame, elevator map, seals and toast, Mira's results, settings, first-use and Controls; append `#grey` for the greyscale check, or `#s-<id>` for one screen); `ui-kit/screens/<id>-1366x768.png` is each screen's render. The interface keys (Return, Esc, arrows, Q, Backtick, `?`) are decided in `design/ui-key-bindings.md`; `ui-kit/bindings.py` is their source and is linted by `ui-kit/check_contrast.py`. Level data is specified in `design/levels/SCHEMA.md` and checked by `design/levels/validate_levels.py`. Body text is at least 16 CSS px. Teal, coral and violet text on panels use the lighter `--accent-*` tokens; never set text on violet fills. Key hints follow the hint grammar in `docs/game-design.md`: the action, then the conventional key, then the Kanata gesture.
 
 ## 5. Asset index
 
@@ -96,20 +99,21 @@ The UI is crisp DOM/CSS over the canvas, not pixel art. Take every colour, spaci
 | Ivo | `cast/ivo_sprites.py` | `cast/ivo-atlas.png`, `cast/ivo-atlas.json`, `cast/ivo-sheet.png`, `cast/ivo-extra.gif` | `cast/IVO_SPEC.md` |
 | Mira | `cast/mira_sprites.py`, `cast/mira_patches.py` | `cast/mira-atlas.png`, `cast/mira-atlas.json`, `cast/mira-patches-atlas.png`, `cast/mira-patches-atlas.json` | `cast/MIRA_SPEC.md`, `cast/MIRA_PATCHES_SPEC.md` |
 | Noor | `cast/noor_sprites.py` | `cast/noor-atlas.png`, `cast/noor-atlas.json`, `cast/noor-in-records.png` | `cast/NOOR_SPEC.md` |
-| Hal | `cast/hal_sprites.py` | `cast/hal-atlas.png`, `cast/hal-atlas.json`, `cast/hal-in-systems.png` | `cast/HAL_SPEC.md` |
+| Hal | `cast/hal_sprites.py` | `cast/hal-atlas.png`, `cast/hal-atlas.json`, `cast/hal-in-systems.png`, `cast/hal-props-atlas.png`, `cast/hal-props-atlas.json`, `cast/hal-poses-in-systems.png` | `cast/HAL_SPEC.md` |
 | Ada | `cast/ada_sprites.py` | `cast/ada-atlas.png`, `cast/ada-atlas.json`, `cast/ada-in-nightshift.png` | `cast/ADA_SPEC.md` |
-| Vale | `cast/vale_sprites.py` | `cast/vale-atlas.png`, `cast/vale-atlas.json`, `cast/vale-in-executive.png` | `cast/VALE_SPEC.md` |
+| Vale | `cast/vale_sprites.py` | `cast/vale-atlas.png`, `cast/vale-atlas.json`, `cast/vale-in-executive.png`, `cast/vale-states-in-executive.png` | `cast/VALE_SPEC.md` |
 | Background workers | `cast/bgworker_common.py`, `cast/bgworker_a_sprites.py`, `cast/bgworker_b_sprites.py` | `cast/bgworker_a-atlas.json`, `cast/bgworker_b-atlas.json`, `cast/bgworker_*-atlas*.png` | `cast/BACKGROUND_WORKERS_SPEC.md` |
-| Glitches | `glitches/glitch_sprites.py` | `glitches/glitches-atlas.png`, `glitches/glitches-atlas.json` | `glitches/GLITCHES_SPEC.md` |
+| Glitches | `glitches/glitch_sprites.py` | `glitches/glitches-atlas.png`, `glitches/glitches-atlas.json`, `glitches/glitch_variants.py`, `glitches/glitches-repair.gif` | `glitches/GLITCHES_SPEC.md` |
 | Pace signage | `pace/pace_art.py` | `pace/pace-atlas.png`, `pace/pace-atlas.json` | `pace/PACE_SPEC.md` |
 | Portraits (all seven, chibi) | `portraits/chibi.py`, `portraits/portrait_*.py` | `portraits/portraits-atlas.png`, `portraits/portraits-atlas.json`, `portraits/portraits-dialogue.png` | `portraits/PORTRAITS_SPEC.md`, `portraits/PORTRAIT_RULES.md`, `portraits/PORTRAIT_PERSONAS.md` |
-| Orientation kit and garden | `kit/kitlib.py`, `kit/orientation_kit.py` | `kit/orientation-atlas.png`, `kit/orientation-atlas.json`, `kit/orientation-review-room.json` | `kit/ORIENTATION_KIT_SPEC.md` |
+| Orientation kit and garden | `kit/kitlib.py`, `kit/orientation_kit.py` | `kit/orientation-atlas.png`, `kit/orientation-atlas.json`, `kit/orientation-review-room.json`, `kit/orientation_quest.py`, `kit/orientation-quest-reference-room.json`, `kit/orientation-quest-states.png` | `kit/ORIENTATION_KIT_SPEC.md` |
 | Records kit and archive desk | `kit/shared_pieces.py`, `kit/records_kit.py` | `kit/records-atlas.png`, `kit/records-atlas.json`, `kit/records-reference-room.json` | `kit/RECORDS_KIT_SPEC.md` |
 | Systems kit and routing machine | `kit/systems_kit.py` | `kit/systems-atlas.png`, `kit/systems-atlas.json`, `kit/systems-reference-room.json` | `kit/SYSTEMS_KIT_SPEC.md` |
 | Night Shift kit and long window | `kit/nightshift_kit.py` | `kit/nightshift-atlas.png`, `kit/nightshift-atlas.json`, `kit/nightshift-reference-room.json` | `kit/NIGHTSHIFT_KIT_SPEC.md` |
 | Executive kit and atrium tree | `kit/executive_kit.py` | `kit/executive-atlas.png`, `kit/executive-atlas.json`, `kit/executive-reference-room.json` | `kit/EXECUTIVE_KIT_SPEC.md` |
 | District palettes and cast ramps | `palettes/district_palettes.py` | `palettes/palettes-sheet.png` | `palettes/PALETTES_SPEC.md`, `STYLE_BIBLE.md` §3 |
-| UI tokens and components | `ui-kit/tokens.css` | `ui-kit/reference.html`, `ui-kit/reference-1366x768.png` | `ui-kit/UI_KIT_SPEC.md`, `ui-kit/COMPONENTS.md` |
+| UI tokens and components | `ui-kit/tokens.css` | `ui-kit/reference.html`, `ui-kit/reference-1366x768.png`, `ui-kit/screens/*.png`, `ui-kit/bindings.py`, `design/ui-key-bindings.md` | `ui-kit/UI_KIT_SPEC.md`, `ui-kit/COMPONENTS.md` |
+| Level data (schema, validator, inventory, five districts) | `design/levels/validate_levels.py` | `design/levels/level-data.schema.json`, `design/levels/gesture-inventory.json`, `design/levels/world.json`, `design/levels/orientation/map.json` | `design/levels/SCHEMA.md` |
 
 Approval dates and the decision behind each asset are in the README decisions log and `PRODUCTION_STATUS.md`.
 
@@ -125,12 +129,20 @@ Requirements: Python 3 with Pillow and numpy (`python3 -m venv .venv && .venv/bi
 
 PNG, GIF and JSON art files are generated outputs: change the source module, rebuild, and commit both. Never hand-edit an output.
 
-## 7. Known gaps (deliberate, not missing art)
+## 7. Known gaps
 
 - The whole asset set predates the rich finish and needs the re-render listed in OpenSpec change `adopt-rich-finish`.
-- Vale's softening states 2 and 3 are specified in `design/characters/vale.md` but not drawn.
-- Glitch repaired frames are a rule (snap, then become the prop), not drawn frames.
-- Seated background workers need the desk occluders and are not drawn.
-- Layout help draws only the `nav` tab; the other tabs are specified in `ui-kit/COMPONENTS.md`.
-- Which glitch palette and behaviour variants appear in which district is still open (`design/characters/glitches.md`).
-- Full district level maps belong to the level designer; each kit ships one reference room.
+
+Status after the producer's gap review of 2026-10-02 (register: `docs/GAP_REGISTER.md`). Wave 1 is merged (pull requests 2 to 12); wave 2, the integration pass, is in progress. Nothing here is a deliberate scoping choice, each item is unfinished work.
+
+Closed by the wave-1 branches (listed in the register with their branch names): Layout help on all four tabs and the screens the game spec requires (setup and calibration, terminal and editor scene, input feedback, artifact frame, elevator map, seals, toast, Mira's results, settings); Orientation quest props and the shared elevator, desk-front occluder and artifact builders; quest props for the four other districts; Vale softening states 1 to 3; Hal crouched repair, seated on stool, false-panel pull and the stool prop; glitch repaired frames, ordinary props and the variant and district table; level data for all five districts (schema, validator, gesture inventory, maps, collision, levels 01 to 20, Mira routes, coverage).
+
+Still open:
+
+- Seated background workers are not drawn. The desk-front occluders (`desk_a_front`, `desk_b_front`) exist and the seat convention is in `kit/ORIENTATION_KIT_SPEC.md`.
+- The elevator, desk-front occluders and generic artifact builder exist in the Orientation kit and as shared builders; the four other district kits still need them registered (the level data lists them as `art_gap` props).
+- The ten optional artifacts of Records, Systems, Night Shift and Executive have no map props yet (builder only).
+- Art gaps named by the level designers are listed per district in `design/levels/<district>/NEEDS_ART.md`; several now exist under other names and need reconciling (for example `mail_chute_*` and `courier_chute_*`, the two stool sprites).
+- UI: high-contrast and larger-text variants are described, not rendered; the Microsoft keyboard variant of Layout help is drawn for the base tab only and the practice tab for the MacBook only.
+- Vale state 1 is a 1 px shoulder drop and is subtle at 1x; Hal's south-facing crouch is the weakest frame.
+- Level data still to align with the art: Orientation `art_gap` entries that now exist in the kit, the elevator placement (kit draws a north-wall module), the garden cut-through (kit opens only the south rim), glitch placements against the district table, and the Hal and Vale animation names.

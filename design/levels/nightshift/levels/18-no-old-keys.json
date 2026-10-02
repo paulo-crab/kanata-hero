@@ -1,0 +1,1318 @@
+{
+  "id": "nightshift-18",
+  "number": 18,
+  "title": "No Old Keys",
+  "district": "nightshift",
+  "kind": "main",
+  "requires": [
+    "nightshift-17"
+  ],
+  "story": "Two office paths run north: one lined with inert legacy stations, the other lit by the skills the engineer already has. Ada says a locked tool need not mean a locked route. Every repaired ticket wakes a different lamp, and a coworker appears behind the glass.",
+  "steps": [
+    {
+      "id": "s18-1",
+      "objective": "Tell Ada whether practice is on at the start of the lit route.",
+      "interaction": "int-ada-landing",
+      "completes_when": "scene_success:n18-t0-practice-checkin"
+    },
+    {
+      "id": "s18-2",
+      "objective": "Repair the left-hand ticket at the first station.",
+      "interaction": "int-t1",
+      "completes_when": "scene_success:n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "s18-3",
+      "objective": "Repair the right-hand ticket at the second station.",
+      "interaction": "int-t2",
+      "completes_when": "scene_success:n18-t2-right-hold-repairs"
+    },
+    {
+      "id": "s18-4",
+      "objective": "Walk north along the lit route to the stair door landing.",
+      "interaction": "int-route-b-start",
+      "completes_when": "scene_success:n18-t3-lit-route-walk",
+      "target_cell": [
+        15,
+        5
+      ]
+    },
+    {
+      "id": "s18-5",
+      "objective": "Navigate the long ticket at the fourth station.",
+      "interaction": "int-t4",
+      "completes_when": "scene_success:n18-t4-navigate-ticket"
+    },
+    {
+      "id": "s18-6",
+      "objective": "Edit and select at the fifth station.",
+      "interaction": "int-t5",
+      "completes_when": "scene_success:n18-t5-edit-and-select"
+    },
+    {
+      "id": "s18-7",
+      "objective": "Fix the changed-context ticket at the recall desk under the window.",
+      "interaction": "int-recall",
+      "completes_when": "scene_success:n18-t6-recall-desk"
+    },
+    {
+      "id": "s18-8",
+      "objective": "Meet Ada at the north stair door.",
+      "interaction": "int-ada-stair",
+      "completes_when": "dialogue_done:ada-stair-open"
+    },
+    {
+      "id": "s18-chair",
+      "objective": "Optional: repair the chair with a wrong shadow.",
+      "interaction": "chair-shadow-glitch",
+      "completes_when": "scene_success:n18-glitch-chair",
+      "optional": true
+    }
+  ],
+  "gestures": [
+    {
+      "id": "V03",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t2-right-hold-repairs"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t3-lit-route-walk"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "B14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t0-practice-checkin"
+    },
+    {
+      "id": "V01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t0-practice-checkin"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "B01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t2-right-hold-repairs"
+    },
+    {
+      "id": "B02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "B03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t2-right-hold-repairs"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "B04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t1-left-hold-repairs"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t2-right-hold-repairs"
+    },
+    {
+      "id": "B05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t3-lit-route-walk"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t3-lit-route-walk"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t3-lit-route-walk"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t3-lit-route-walk"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n18-t4-navigate-ticket"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "guided",
+        "variation"
+      ],
+      "scene_id": "n18-t5-edit-and-select"
+    },
+    {
+      "id": "N13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    },
+    {
+      "id": "N20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n18-t6-recall-desk"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "n18-t0-practice-checkin",
+      "kind": "keypad",
+      "task_summary": "Declare the practice state before the tickets: confirmed or unconfirmed. Every ticket stays playable either way.",
+      "success_criteria": [
+        "The player answers \"Practice layer: player-confirmed\" or \"unconfirmed\"; both open the tickets.",
+        "The journal labels the evidence honestly (an unconfirmed run records output-observed evidence only).",
+        "The toggle sequence and the recovery cards are available on request, not shown by default."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "player-confirmed",
+      "task": {
+        "prompt": "Ada asks: is practice on? Answer from what you did, not from what the game can see.",
+        "steps": [
+          {
+            "id": "declare",
+            "player_confirm": "Practice layer: player-confirmed on / Practice layer: unconfirmed"
+          },
+          {
+            "id": "on-request",
+            "on_request": "show the toggle sequence (B14) and the recovery cards (V06)"
+          }
+        ],
+        "accepts": [
+          "either declaration"
+        ],
+        "rejects": [
+          "claiming the game detected the layer"
+        ],
+        "feedback": {
+          "unconfirmed": "Recorded: unconfirmed. The tickets are open; the journal will mark this evidence as output-observed only."
+        }
+      }
+    },
+    {
+      "id": "n18-t1-left-hold-repairs",
+      "kind": "editor",
+      "task_summary": "Repair three tickets with the left-hand home-row holds: a Shift capital, a Command shortcut and a run of plain home-row letters.",
+      "success_criteria": [
+        "Ticket 1 text equals \"Mina moved the lamp\" (Shift from tap-hold F, then M on the other hand).",
+        "Ticket 2 italic is on (Command from tap-hold D, then I on the other hand).",
+        "Ticket 3 text equals \"dad said fast\" with no modifier output (same-hand rolls stay letters)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Three raw tickets, left hand first. Physical Shift and Command are silent on practice.",
+        "items": [
+          {
+            "id": "t1-shift",
+            "prompt": "Capitalize the name.",
+            "initial": "mina moved the lamp",
+            "target": "Mina moved the lamp",
+            "accepts": "resulting text equals the target; Shift observed as a modifier state on the M keydown",
+            "rejects": [
+              "physical Shift (silent on practice)",
+              "a stray f typed from the Shift hold"
+            ]
+          },
+          {
+            "id": "t1-command",
+            "prompt": "Mark the approval note italic.",
+            "initial": "approved",
+            "target": "*approved*",
+            "accepts": "the editor toggles italic on a Command + I keydown (D held, then I)",
+            "rejects": [
+              "Command + I with I on the same hand"
+            ]
+          },
+          {
+            "id": "t1-letters",
+            "prompt": "Type the shift log words.",
+            "initial": "",
+            "target": "dad said fast",
+            "accepts": "resulting text equals the target",
+            "rejects": [
+              "any shortcut or capital from a roll"
+            ]
+          }
+        ],
+        "accepts": [
+          "all three items"
+        ],
+        "rejects": [
+          "output that differs from a target"
+        ],
+        "feedback": {
+          "stray_f": "Observed: f. The F hold was released too early and typed the letter.",
+          "same_hand": "Observed: letters instead of a shortcut. Pick the other hand for the target key."
+        }
+      }
+    },
+    {
+      "id": "n18-t2-right-hold-repairs",
+      "kind": "editor",
+      "task_summary": "Repair three tickets with the right-hand home-row holds, then one mixed left and right approval form.",
+      "success_criteria": [
+        "Ticket 1 equals \"Sol approved the plan\" (Shift from tap-hold J, then S).",
+        "Ticket 2 undo restores \"ready\" (Command from tap-hold K, then Z).",
+        "The mixed form equals \"*Sol* signed\" using Command + I (D, then I) for italic and Shift + S (J, then S)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Mirror the left-hand tickets with the right hand, then mix both hands.",
+        "items": [
+          {
+            "id": "t2-shift",
+            "prompt": "Capitalize the name.",
+            "initial": "sol approved the plan",
+            "target": "Sol approved the plan",
+            "accepts": "resulting text equals the target",
+            "rejects": [
+              "physical Shift (silent on practice)"
+            ]
+          },
+          {
+            "id": "t2-undo",
+            "prompt": "Undo the reversed stamp.",
+            "initial": "ydaer (after a mistaken edit from \"ready\")",
+            "target": "ready",
+            "accepts": "a Command + Z keydown (K held, then Z) restores the earlier text",
+            "rejects": [
+              "Command + Z with Z on the same hand"
+            ]
+          },
+          {
+            "id": "t2-mixed",
+            "prompt": "Sign the mixed approval form.",
+            "initial": "sol signed",
+            "target": "*Sol* signed",
+            "accepts": "Shift + S (J then S) capitalizes, Command + I (D then I) wraps the name in italic",
+            "rejects": [
+              "a shortcut that types letters on a same-hand roll"
+            ]
+          }
+        ],
+        "accepts": [
+          "all three items"
+        ],
+        "rejects": [
+          "output that differs from a target"
+        ],
+        "feedback": {
+          "same_hand": "Observed: letters instead of a shortcut. Pick the other hand for the target key."
+        }
+      }
+    },
+    {
+      "id": "n18-t3-lit-route-walk",
+      "kind": "walk",
+      "task_summary": "Walk north along the lit Caps route with tap-hold Caps + H/J/K/L; no key from the old route works.",
+      "success_criteria": [
+        "The avatar moves with Caps + H/J/K/L only (physical arrows and Right Command are silent on practice).",
+        "The walk ends at the north stair door landing; each press has a visible local reaction."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "route": "lit route B: strip (y 9-10), lane x 12-13 north, door landing (14-15, 4-6)",
+        "walk_target_cell": [
+          15,
+          5
+        ],
+        "observed": "Left, Down, Up and Right arrow events from Caps + H/J/K/L"
+      }
+    },
+    {
+      "id": "n18-t4-navigate-ticket",
+      "kind": "editor",
+      "task_summary": "Move through a long ticket with Caps word, line, page and document jumps and fix three marked tokens.",
+      "success_criteria": [
+        "Token A (line 3, found with Caps + W/B) reads \"north\" instead of \"nroth\".",
+        "Token B (the line end, reached with Caps + 4) ends with \".\" added.",
+        "Token C (the document end, reached with Caps + G) adds \"ok\" on the last line."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A 30-line raw ticket. Jump, do not hold arrows.",
+        "lines": [
+          "T-4410 lamp 12, east wing",
+          "reported by night caretaker",
+          "route nroth stair is lit",
+          "...",
+          "(27 more lines of the ticket; page jumps cover them)",
+          "handover: all desks closed"
+        ],
+        "items": [
+          {
+            "id": "t4-word",
+            "prompt": "Fix the misspelled word on line 3.",
+            "initial": "route nroth stair is lit",
+            "target": "route north stair is lit",
+            "accepts": "Caps + W / Caps + B word jumps and Caps + M deletes, then letters",
+            "rejects": [
+              "holding the arrow keys"
+            ]
+          },
+          {
+            "id": "t4-line",
+            "prompt": "Add the full stop at the end of line 1.",
+            "initial": "T-4410 lamp 12, east wing",
+            "target": "T-4410 lamp 12, east wing.",
+            "accepts": "Caps + 4 reaches the line end"
+          },
+          {
+            "id": "t4-doc",
+            "prompt": "Add \"ok\" after the last line.",
+            "initial": "handover: all desks closed",
+            "target": "handover: all desks closed ok",
+            "accepts": "Caps + G reaches the document end; Caps + T and Caps + U / Caps + D are used to find the other tokens"
+          }
+        ],
+        "accepts": [
+          "all three tokens fixed"
+        ],
+        "rejects": [
+          "edits outside the three tokens"
+        ],
+        "feedback": {
+          "wrong_scope": "Observed: the edit landed in the wrong line. Jump to the marked token first."
+        }
+      }
+    },
+    {
+      "id": "n18-t5-edit-and-select",
+      "kind": "editor",
+      "task_summary": "Open, select, delete both ways and cancel with the Caps editing set, then check that A, S and F stay letters under Caps.",
+      "success_criteria": [
+        "The selected ticket opens with Caps + N (Return) and the cancel step with Caps + [ and with a tap of Caps (Escape).",
+        "A Shift selection started before Caps removes the marked phrase; both Backspace routes and both forward-delete routes are used once.",
+        "The typed result equals \"fast desk\" with a, s and f typed while Caps is held (literals)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Five small edits on one ticket list. Home-row Shift is held before Caps, never after.",
+        "items": [
+          {
+            "id": "t5-open",
+            "prompt": "Open the highlighted ticket.",
+            "initial": "list: [T-4410] T-4411",
+            "target": "ticket T-4410 open",
+            "accepts": "Caps + N sends Return"
+          },
+          {
+            "id": "t5-cancel",
+            "prompt": "Close the popup.",
+            "initial": "popup open",
+            "target": "popup closed",
+            "accepts": "Caps + [ (Escape) once, a tap of Caps (Escape) once"
+          },
+          {
+            "id": "t5-select",
+            "prompt": "Remove the phrase \"very old\" with a Shift selection.",
+            "initial": "a very old lamp",
+            "target": "a lamp",
+            "accepts": "tap-hold F or J first, then Caps + B / Caps + W selects, Caps + M deletes"
+          },
+          {
+            "id": "t5-delete",
+            "prompt": "Fix the doubled letters using both Backspace routes and both forward-delete routes.",
+            "initial": "ddesk ffast",
+            "target": "desk fast",
+            "accepts": "Caps + M and Caps + Space (Backspace), Caps + comma and Caps + X (Forward Delete / Control + D)"
+          },
+          {
+            "id": "t5-literals",
+            "prompt": "Type \"fast desk\" with Caps held while you press a, s and f.",
+            "initial": "",
+            "target": "fast desk",
+            "accepts": "A, S and F stay letters while Caps is held (N20)"
+          }
+        ],
+        "accepts": [
+          "all five items"
+        ],
+        "rejects": [
+          "Shift pressed after Caps (types f)"
+        ],
+        "feedback": {
+          "late_shift": "Observed: f. Hold Shift before Caps: once Caps is held, F types a literal f."
+        }
+      }
+    },
+    {
+      "id": "n18-t6-recall-desk",
+      "kind": "editor",
+      "task_summary": "Recall desk under the long window: one changed-context ticket that needs a Shift capital, a Command shortcut, Caps movement, a selection and Return, with no key diagram.",
+      "success_criteria": [
+        "The record equals \"Kai closed the east lamp. Reported by Noor.\" at the end of the task.",
+        "No physical-position cue is shown; hints appear only on request."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "A new ticket in a different layout. Fix it from memory.",
+        "initial": "kai closed the very old east lamp\nreported by noor",
+        "target": "Kai closed the east lamp.\nReported by Noor.",
+        "steps": [
+          {
+            "id": "caps",
+            "needs": "Shift capitals on K, R, N (home-row Shift before the letter)"
+          },
+          {
+            "id": "select",
+            "needs": "a Shift selection of \"very old \" then delete (Caps + M)"
+          },
+          {
+            "id": "jump",
+            "needs": "Caps + 4 to the line end, then the full stop; Caps + J / Caps + 0 between lines"
+          },
+          {
+            "id": "command",
+            "needs": "Command + Z once on a deliberate wrong delete (opposite-hand key)"
+          }
+        ],
+        "accepts": [
+          "the exact final text"
+        ],
+        "rejects": [
+          "physical keys silenced on practice"
+        ],
+        "feedback": {
+          "diff": "Observed text differs from the record at line 1 or 2. The mismatch is shown, and you can retry instantly."
+        }
+      }
+    },
+    {
+      "id": "n18-glitch-chair",
+      "kind": "label",
+      "task_summary": "Optional glitch repair: a chair with a wrong shadow lurks at the edge of a lamp pool. Type desk 7 to register it.",
+      "success_criteria": [
+        "Label equals 'desk 7'",
+        "Untimed; immediate retry"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The chair's tag should read desk 7. Type it to bring the shadow back into register.",
+        "initial": "",
+        "targets": [
+          "desk 7"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a missing space or digit"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the tag needs the word desk, a space, then 7."
+        },
+        "layout": "overlay shown"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical key positions."
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "ada-fork",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "A locked tool need not mean a locked route. The old route is lined with silent stations; the lit one runs on skills you already own.",
+      "hint": null,
+      "when": "interact:int-ada-landing",
+      "cue": "Ada: 18 (\"a locked tool need not mean a locked route\")"
+    },
+    {
+      "id": "ada-hint-walk-north",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "To walk north along the lit route, you need to press Up Arrow. Hint: Physical arrows and Right Command are XX on practice. Use tap-hold Caps + K.",
+      "hint": {
+        "action": "To walk north along the lit route, you need to press Up Arrow.",
+        "key": "Up Arrow",
+        "gesture": "Physical arrows and Right Command are XX on practice. Use tap-hold Caps + K."
+      },
+      "when": "step_start:s18-4",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "station-card-legacy",
+      "speaker": "station-card",
+      "portrait": null,
+      "text": "Legacy station. This desk only takes the old physical keys, and practice has silenced them. It is not broken: it is waiting for a route it was never given.",
+      "hint": null,
+      "speaker_kind": "object",
+      "when": "interact:int-legacy-station"
+    },
+    {
+      "id": "ticket-hint-shift",
+      "speaker": "ticket-card",
+      "portrait": null,
+      "text": "To capitalize the name, you need to press Shift + M. Hint: Physical Shift is XX on practice. Use tap-hold F.",
+      "hint": {
+        "action": "To capitalize the name, you need to press Shift + M.",
+        "key": "Shift + M",
+        "gesture": "Physical Shift is XX on practice. Use tap-hold F."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s18-2"
+    },
+    {
+      "id": "ticket-hint-return",
+      "speaker": "ticket-card",
+      "portrait": null,
+      "text": "To open the selected ticket, you need to press Return. Hint: Physical Return is XX on practice. Use tap-hold Caps + N.",
+      "hint": {
+        "action": "To open the selected ticket, you need to press Return.",
+        "key": "Return",
+        "gesture": "Physical Return is XX on practice. Use tap-hold Caps + N."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s18-6"
+    },
+    {
+      "id": "ticket-hint-backspace",
+      "speaker": "ticket-card",
+      "portrait": null,
+      "text": "To erase the wrong word, you need to press Backspace. Hint: Physical Backspace is XX on practice. Use tap-hold Caps + M.",
+      "hint": {
+        "action": "To erase the wrong word, you need to press Backspace.",
+        "key": "Backspace",
+        "gesture": "Physical Backspace is XX on practice. Use tap-hold Caps + M."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s18-5"
+    },
+    {
+      "id": "engineer-journal-18",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: tickets repaired under the practice layer you declared. Output-observed results and player-confirmed gestures are filed separately.",
+      "hint": null,
+      "when": "scene_success:n18-t5-edit-and-select",
+      "cue": "Engineer: journal and task notes (neutral)"
+    },
+    {
+      "id": "ada-stair-open",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "Your habits held without a single old key. The north stair is open, and the service corridor behind it leads back to the break room.",
+      "hint": null,
+      "when": "interact:int-ada-stair",
+      "cue": "Ada: 18 (neutral)"
+    },
+    {
+      "id": "mira-night-wait",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "Finish the lit route first. I will be here when you come back through the corridor.",
+      "hint": null,
+      "when": "interact:int-mira",
+      "cue": "Mira: offering any route or a repeat run (neutral)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "tr-18-ticket-1",
+      "when": "scene_success:n18-t1-left-hold-repairs",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "lamp_b1",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-ticket-1"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-ticket-2",
+      "when": "scene_success:n18-t2-right-hold-repairs",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "lamp_b2",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-ticket-2"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-ticket-3",
+      "when": "scene_success:n18-t3-lit-route-walk",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "lamp_b3",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-ticket-3"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-ticket-4",
+      "when": "scene_success:n18-t4-navigate-ticket",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "lamp_b4",
+          "state": "on"
+        },
+        {
+          "op": "set_state",
+          "target": "station_b1",
+          "state": "lit"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-ticket-4"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-ticket-5",
+      "when": "scene_success:n18-t5-edit-and-select",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "lamp_b5",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-ticket-5"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-journal",
+      "when": "scene_success:n18-t5-edit-and-select",
+      "then": [
+        {
+          "op": "start_dialogue",
+          "dialogue": "engineer-journal-18"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-recall-done",
+      "when": "scene_success:n18-t6-recall-desk",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "door_stair",
+          "state": "open"
+        },
+        {
+          "op": "set_state",
+          "target": "door_service",
+          "state": "open"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate-stair-door"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate-service-door"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-18-stair-open"
+        },
+        {
+          "op": "npc_state",
+          "npc": "ada",
+          "state": "stair"
+        },
+        {
+          "op": "npc_state",
+          "npc": "worker_ledger",
+          "state": "silhouette"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-complete",
+      "when": "dialogue_done:ada-stair-open",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "mira",
+          "state": "confiding"
+        },
+        {
+          "op": "complete_level",
+          "level": "nightshift-18"
+        },
+        {
+          "op": "set_state",
+          "target": "courier_chute",
+          "state": "ready"
+        }
+      ]
+    },
+    {
+      "id": "tr-18-chair-repaired",
+      "when": "scene_success:n18-glitch-chair",
+      "then": [
+        {
+          "op": "journal",
+          "text": "The chair's shadow falls where it should and the chair stays put."
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "Rows of identical dead desks; only the lit route has pools and arrows; every ticket lamp is off; the north stair and service doors are closed.",
+    "after": "Five lamps and a station glow along the lit route, a silhouette stands behind the ledger glass, the north stair and service doors are open, and Ada waits at the stair.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "lamp_b1",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_b5",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "placement_state",
+        "target": "station_b1",
+        "from": "dead",
+        "to": "lit"
+      },
+      {
+        "kind": "placement_state",
+        "target": "door_stair",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "placement_state",
+        "target": "door_service",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "worker_ledger",
+        "to": "silhouette"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "ada",
+        "from": "landing",
+        "to": "stair"
+      },
+      {
+        "kind": "placement_state",
+        "target": "courier_chute",
+        "from": "idle",
+        "to": "ready",
+        "note": "a slip stands in the chute's slot: Mira has the Lights-Out Delivery route to offer"
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "north stair door",
+      "service corridor",
+      "Mira's Lights-Out Delivery",
+      "Desk for Dawn"
+    ]
+  },
+  "pace_copy": [
+    {
+      "text": "Walking is working. Walking is working.",
+      "state": "repeat",
+      "placement": "pace_sign_hall"
+    },
+    {
+      "text": "Route A: approved. Route A: approved. Route A: approved.",
+      "state": "repeat",
+      "placement": "pace_directory"
+    }
+  ],
+  "review_notes": "At 1366x768 (x4) the lit route runs north through rows 3-10, above the keyboard inset (view y >= 103 only covers the lower-left). The ticket terminals are approached from the strip (south) or the lane (north), so the target stays in the same column as the avatar or to its right, and the avatar sits at screen y 100, above the inset. The recall desk and station 5 sit on row 2-3 under the window. Documented conflicts: see the Keyboard-inset conflicts section of the level sheet.",
+  "glitch": {
+    "archetype": "chair",
+    "variant": "standard",
+    "cell": [
+      10,
+      12
+    ],
+    "interaction": "chair-shadow-glitch",
+    "scene_id": "n18-glitch-chair",
+    "note": "The first Night Shift glitch (glitches-atlas.json districts.nightshift.first_glitch): chair, palette standard (token fix) drawn in dark_steps with the district chair recolour, behaviour lurk (hugs the edge of the lamp pool); 1 of the room limit 2. Level 17 holds none."
+  }
+}

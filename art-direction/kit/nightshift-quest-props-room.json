@@ -1,0 +1,706 @@
+{
+ "kit": "nightshift",
+ "atlas": "nightshift-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Night Shift quest-prop room, built only from nightshift-atlas (QUEST_PROP_AUDIT.md N1-N18). Every new quest entry appears in it; the state sets are switched between the before and after renders. The north stair door (cells 2-3), the vestibule gate with its two reader pedestals, three desk islands on three rugs, the break counter and Mira's chute. People are added by the renderer (rim rules).",
+ "states": {
+  "north_stair": "closed",
+  "exit_sign": "dim",
+  "reader_pedestal": "locked",
+  "courier_chute": "idle",
+  "break_room": "dim",
+  "corridor_light": "dim",
+  "vestibule_gate": "closed",
+  "station_a": "dead",
+  "station_b": "dead"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    9
+   ],
+   "offset": [
+    2,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    10
+   ],
+   "offset": [
+    5,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    8
+   ],
+   "offset": [
+    14,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    2
+   ],
+   "offset": [
+    12,
+    15
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    5
+   ],
+   "offset": [
+    6,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    11,
+    4
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    8,
+    3
+   ],
+   "offset": [
+    9,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    3
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    11,
+    6
+   ],
+   "offset": [
+    12,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    5
+   ],
+   "offset": [
+    5,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    9,
+    8
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    8
+   ],
+   "offset": [
+    10,
+    1
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    7
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    8
+   ],
+   "offset": [
+    9,
+    15
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    7,
+    0
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    10,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    5
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    8
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    10
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    11
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "north_stair",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "anim": "exit_sign",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    10,
+    11
+   ]
+  },
+  {
+   "anim": "break_room",
+   "cell": [
+    14,
+    2
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "anim": "vestibule_gate",
+   "cell": [
+    3,
+    4
+   ],
+   "offset": [
+    8,
+    6
+   ]
+  },
+  {
+   "anim": "reader_pedestal",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    4,
+    10
+   ]
+  },
+  {
+   "anim": "reader_pedestal",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    12,
+    10
+   ]
+  },
+  {
+   "entry": "carpet_cue_c",
+   "cell": [
+    1,
+    5
+   ],
+   "offset": [
+    8,
+    12
+   ]
+  },
+  {
+   "entry": "desk_dead_b",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    7
+   ],
+   "offset": [
+    9,
+    2
+   ]
+  },
+  {
+   "entry": "carpet_cue_a",
+   "cell": [
+    8,
+    5
+   ],
+   "offset": [
+    12,
+    12
+   ]
+  },
+  {
+   "anim": "station_a",
+   "cell": [
+    9,
+    6
+   ],
+   "offset": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    9,
+    7
+   ],
+   "offset": [
+    13,
+    2
+   ]
+  },
+  {
+   "entry": "carpet_cue_b",
+   "cell": [
+    12,
+    5
+   ],
+   "offset": [
+    4,
+    12
+   ]
+  },
+  {
+   "anim": "station_b",
+   "cell": [
+    12,
+    6
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    13,
+    7
+   ],
+   "offset": [
+    5,
+    2
+   ]
+  },
+  {
+   "anim": "courier_chute",
+   "cell": [
+    14,
+    8
+   ],
+   "offset": [
+    12,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    16,
+    6
+   ],
+   "offset": [
+    2,
+    4
+   ]
+  },
+  {
+   "entry": "mira_decor_night_courier",
+   "cell": [
+    16,
+    5
+   ],
+   "offset": [
+    3,
+    2
+   ]
+  },
+  {
+   "anim": "corridor_light",
+   "cell": [
+    12,
+    9
+   ],
+   "offset": [
+    4,
+    4
+   ]
+  },
+  {
+   "anim": "corridor_light",
+   "cell": [
+    17,
+    10
+   ],
+   "offset": [
+    4,
+    8
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    0,
+    9
+   ],
+   "offset": [
+    4,
+    10
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    6,
+    9
+   ],
+   "offset": [
+    4,
+    6
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    14,
+    10
+   ]
+  }
+ ]
+}

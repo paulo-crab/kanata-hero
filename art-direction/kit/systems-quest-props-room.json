@@ -1,0 +1,743 @@
+{
+ "kit": "systems",
+ "atlas": "systems-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Systems quest-prop room, built only from systems-atlas (QUEST_PROP_AUDIT.md S1-S25). Every new quest entry appears in it; the state sets are switched between the before and after renders. The north wall carries the alarm strip, formula wall, refund sign and shutters; the bridge span crosses the middle of the room to Mira's chute. People are added by the renderer.",
+ "states": {
+  "payroll_keypad": "off",
+  "bridge_span": "retracted",
+  "refund_sign": "red",
+  "calc_display": "charge",
+  "alarm_strip": "merged",
+  "bridge_shutter": "closed",
+  "formula_wall": "dark",
+  "courier_chute": "idle",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    3,
+    10
+   ],
+   "offset": [
+    2,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    8
+   ],
+   "offset": [
+    6,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    10
+   ],
+   "offset": [
+    4,
+    15
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    3,
+    9
+   ],
+   "offset": [
+    11,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    8
+   ],
+   "offset": [
+    4,
+    8
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    13,
+    9
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    3
+   ],
+   "offset": [
+    13,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    3,
+    9
+   ],
+   "offset": [
+    2,
+    1
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    11
+   ],
+   "offset": [
+    10,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    8
+   ],
+   "offset": [
+    7,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    5
+   ],
+   "offset": [
+    1,
+    14
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    9
+   ],
+   "offset": [
+    6,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    2
+   ],
+   "offset": [
+    4,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    10
+   ],
+   "offset": [
+    7,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    11,
+    3
+   ],
+   "offset": [
+    12,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    3,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    5
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    8
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    10
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    11
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "anim": "alarm_strip",
+   "cell": [
+    0,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "anim": "formula_wall",
+   "cell": [
+    5,
+    0
+   ],
+   "offset": [
+    4,
+    8
+   ]
+  },
+  {
+   "anim": "refund_sign",
+   "cell": [
+    11,
+    0
+   ],
+   "offset": [
+    10,
+    10
+   ]
+  },
+  {
+   "anim": "bridge_shutter",
+   "cell": [
+    13,
+    0
+   ],
+   "offset": [
+    14,
+    9
+   ]
+  },
+  {
+   "anim": "bridge_shutter",
+   "cell": [
+    16,
+    0
+   ],
+   "offset": [
+    0,
+    9
+   ]
+  },
+  {
+   "anim": "payroll_keypad",
+   "cell": [
+    0,
+    3
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "anim": "calc_display",
+   "cell": [
+    3,
+    3
+   ],
+   "offset": [
+    8,
+    2
+   ]
+  },
+  {
+   "entry": "folding_stool",
+   "cell": [
+    6,
+    4
+   ],
+   "offset": [
+    2,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    8,
+    3
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "mira_decor_signed_sent",
+   "cell": [
+    8,
+    1
+   ],
+   "offset": [
+    1,
+    15
+   ]
+  },
+  {
+   "entry": "cabinet_2x1",
+   "cell": [
+    9,
+    3
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "entry": "mira_decor_relay",
+   "cell": [
+    10,
+    1
+   ],
+   "offset": [
+    0,
+    14
+   ]
+  },
+  {
+   "anim": "bridge_span",
+   "cell": [
+    10,
+    6
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    10,
+    5
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    10,
+    8
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    11,
+    5
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    11,
+    8
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    12,
+    5
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    13,
+    5
+   ]
+  },
+  {
+   "entry": "bridge_rail",
+   "cell": [
+    13,
+    8
+   ]
+  },
+  {
+   "anim": "courier_chute",
+   "cell": [
+    15,
+    8
+   ],
+   "offset": [
+    4,
+    0
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    7,
+    6
+   ],
+   "offset": [
+    8,
+    0
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    14,
+    5
+   ],
+   "offset": [
+    8,
+    4
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    17,
+    10
+   ],
+   "offset": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    0,
+    9
+   ],
+   "offset": [
+    6,
+    6
+   ]
+  },
+  {
+   "entry": "pot_plant_b",
+   "cell": [
+    6,
+    9
+   ],
+   "offset": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    17,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  }
+ ]
+}

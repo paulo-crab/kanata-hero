@@ -8,8 +8,13 @@ generated here so the diagram and its key data stay in one place.
 Run: python3 build_reference.py
 """
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import kit_screens  # noqa: E402
+import kit_screens2  # noqa: E402
+from kit_screens import ico, mk  # noqa: E402
 
 # --------------------------------------------------------------------------- SVG sprite
 SPRITE = """
@@ -66,14 +71,6 @@ SPRITE = """
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M3 12 H20 M13 5 L20 12 L13 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
 </svg>
 """
-
-
-def mk(name, cls="", style=""):
-    return f'<svg class="kh-marker {cls}" style="{style}" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-{name}"/></svg>'
-
-
-def ico(name, size=24):
-    return f'<svg class="kh-ico" width="{size}" height="{size}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-{name}"/></svg>'
 
 
 # --------------------------------------------------------------------------- CSS
@@ -191,7 +188,6 @@ code,.mono{font-family:var(--font-mono)}
 .overlay .top{display:flex;align-items:center;gap:var(--space-5)}
 .overlay .top h2{font-size:var(--text-2xl);margin:0;white-space:nowrap}
 .overlay .top .tab,.overlay .top .close{white-space:nowrap}
-.lh-note{font-size:var(--text-sm);color:var(--text-muted);line-height:1.3;align-self:center;flex:none}
 .overlay .top .grow{flex:1}
 .overlay .close{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)}
 .tabs{display:flex;gap:var(--space-2)}
@@ -220,11 +216,14 @@ code,.mono{font-family:var(--font-mono)}
 .steps li.next .dot{border-color:var(--accent-terminal);color:var(--accent-terminal)}
 .steps li.todo{color:var(--text-muted)}
 .keysline{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;background:var(--panel-sunken);border-radius:var(--radius-md);padding:var(--space-3)}
+.rowkeys{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.rowkeys b{color:var(--text)}
+.kh-dialogue .ctl .keep{white-space:normal}
 .keysline .kh-key{height:40px;min-width:40px;font-size:var(--text-base);box-shadow:0 3px 0 var(--key-edge)}
 .keysline .kh-key.held{box-shadow:0 1px 0 var(--key-held-edge)}
 
-/* Layout help */
-.kh-lh{display:flex;flex-direction:column;gap:var(--space-3);flex:1;min-height:0}
+/* Layout help (the diagram, key, detail card and legend; screens live in kit_screens.py) */
+.kh-lh{display:flex;flex-direction:column;gap:var(--space-2);flex:1;min-height:0}
 .lh-rows{display:flex;flex-direction:column;gap:var(--key-gap);align-items:center}
 .lh-row{display:flex;gap:var(--key-gap)}
 .kh-lk{height:var(--key-unit);border-radius:var(--radius-sm);background:var(--key-dim-face);color:var(--key-dim-text);box-shadow:0 3px 0 var(--key-dim-edge);display:flex;flex-direction:column;align-items:center;justify-content:center;font:var(--weight-regular) var(--text-sm)/1.15 var(--font-mono);position:relative;margin-bottom:3px;flex:none}
@@ -235,13 +234,13 @@ code,.mono{font-family:var(--font-mono)}
 .kh-lk.map::before{content:"";position:absolute;left:8px;right:8px;top:0;height:4px;background:var(--key-held-edge);border-radius:0 0 3px 3px}
 .kh-lk.layerkey{background:var(--key-held-face);color:var(--key-held-text);box-shadow:0 1px 0 var(--key-held-edge);top:3px;font-weight:var(--weight-bold)}
 .kh-lk.silent{background:var(--key-silent-face);color:var(--key-silent-text);border:2px dashed var(--border);box-shadow:none}
-.lh-detail{display:grid;grid-template-columns:auto 1fr 1fr;gap:var(--space-4) var(--space-5);align-items:start;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-5)}
+.lh-detail{display:grid;grid-template-columns:auto 1fr 1fr;gap:var(--space-2) var(--space-5);align-items:start;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-5)}
 .lh-detail .big{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
-.lh-detail .big .kh-key{min-width:72px;height:72px;font-size:var(--text-2xl)}
+.lh-detail .big .kh-key{min-width:64px;height:64px;font-size:var(--text-2xl)}
 .lh-detail dl{margin:0;display:grid;grid-template-columns:1fr;gap:var(--space-1)}
 .lh-detail dt{font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
-.lh-detail dd{margin:0 0 var(--space-2);font-size:var(--text-base)}
-.lh-legend{display:flex;gap:var(--space-5);align-items:center;font-size:var(--text-sm);color:var(--text-muted);flex-wrap:wrap}
+.lh-detail dd{margin:0 0 var(--space-1);font-size:var(--text-base)}
+.lh-legend{display:flex;gap:var(--space-4);align-items:center;font-size:var(--text-sm);color:var(--text-muted);flex-wrap:wrap}
 .lh-legend span{display:inline-flex;align-items:center;gap:var(--space-2)}
 .lh-legend .kh-lk{width:44px;height:36px;margin:0;font-size:var(--text-sm)}
 """
@@ -268,12 +267,9 @@ def stage():
   <span class="sep"></span>
   <span class="seals">{ico("seal", 24)} Seals 0</span>
 </div>
-<div class="kh-hud shortcuts">
-  <span class="chip">Journal <span class="kh-key sm">Tab</span></span>
-  <span class="chip">Layout help <span class="kh-key sm">?</span></span>
-</div>"""
+{kit_screens.hud_chips("hint", "journal", "help")}"""
     prompt = f"""
-<div class="kh-prompt" style="left:812px;top:128px;width:340px">
+<div class="kh-prompt" style="left:812px;top:128px;width:340px" aria-label="Use the badge printer. Key Return. Hint: Return is tap-hold Caps and N.">
   <div class="action">{ico("play", 20)} Use the badge printer</div>
   <div class="keys"><span class="kh-key sm">Return</span><span class="gesture">tap-hold Caps + N</span></div>
 </div>"""
@@ -306,15 +302,14 @@ def stage():
   </div>
 </section>"""
     dialogue = """
-<section class="kh-panel kh-dialogue" aria-label="Dialogue with Ivo">
+<section class="kh-panel kh-dialogue" aria-label="Instruction line from Ivo (non-modal)">
   <div class="kh-portrait" role="img" aria-label="Portrait slot, 48 by 48 pixels shown at 4 times"><span>48 x 48 portrait<br>at x4 = 192 px</span></div>
   <div class="body">
     <div class="who">Ivo <span class="role">Reception lead</span></div>
     <p class="say">To walk to the east exit, you need to press <b>Right arrow</b>.</p>
     <p class="hint">Hint: Right arrow is <b>tap-hold Caps</b> + <b>L</b>.</p>
     <div class="ctl">
-      <span><b>Continue</b> <span class="kh-key sm">Return</span> tap-hold Caps + N</span>
-      <span><b>Skip</b> <span class="kh-key sm">Esc</span></span>
+      <span class="keep">Instruction line: stays until the step is done. Movement and Esc stay live.</span>
     </div>
   </div>
 </section>"""
@@ -365,7 +360,7 @@ def keystates_section():
     {keycap("N", "focus")}
     {keycap("Return", "wide")}
     <span class="kh-keyunit"><span class="kh-key">{ico("arrow-right", 28)}</span></span>
-    <div class="kh-keyunit"><span class="kh-key sm">Tab</span><p>Small keycap, used in prompts and the HUD</p></div>
+    <div class="kh-keyunit"><span class="kh-key sm">Q</span><p>Small keycap, used in prompts and the HUD</p></div>
   </div>
   <p class="lede" style="margin:var(--space-3) 0 0">From left: tap, held, neighbour (dim), silent on the practice layer (dashed, XX), keyboard focus (ring), wide, arrow output, small.</p>
 </div>"""
@@ -393,7 +388,7 @@ def journal_section():
 <div class="kh-panel overlay" role="dialog" aria-label="Quest journal">
   <div class="top"><h2>Quest journal</h2><span class="kh-label">Orientation</span><span class="grow"></span>
     <span class="seals" style="display:inline-flex;align-items:center;gap:var(--space-2);color:var(--accent-discovery);font-weight:var(--weight-bold)">{ico("seal", 24)} Clearance seals 0 / 5</span>
-    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close &middot; <span class="kh-key sm">Q</span> toggles it</span></div>
   <div class="kh-journal">
     <div class="list">
       <div class="group main"><h3>{ico("seal", 24)} Main work</h3>
@@ -418,99 +413,16 @@ def journal_section():
       </ul>
       <span class="kh-label">Keys for this step</span>
       <div class="keysline"><span class="kh-key held">Caps</span>+<span class="kh-key">L</span><span>Right arrow</span><span style="color:var(--text-muted)">tap-hold Caps + L</span></div>
-      <span class="kh-label">Layout reference</span>
-      <div class="keysline"><span class="kh-key sm">?</span><span>Open Layout help from here or anywhere</span></div>
+      <span class="kh-label">Also from here</span>
+      <div class="keysline"><span class="kh-btn focus">Layout help <span class="kh-key sm">?</span> <span class="g">tap-hold F, then /</span></span><span class="kh-btn">Settings</span><span class="kh-btn">Controls</span></div>
+      <p class="rowkeys">To open a row, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps</b> + <b>N</b>; Up and Down (tap-hold Caps + K / J) choose the row.</p>
     </div>
   </div>
 </div>"""
     return f"""
 <div class="sheet">
   <h2>Quest journal</h2>
-  <p class="lede">Opened on demand over a dimmed world. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
-  {screen(inner)}
-</div>"""
-
-
-# Layout help --------------------------------------------------------------------
-ROWS = [
-    [("`", 1)] + [(c, 1) for c in "1234567890-="] + [("Backspace", 2)],
-    [("Tab", 1.5)] + [(c, 1) for c in "qwertyuiop[]"] + [("\\", 1.5)],
-    [("Caps", 1.75)] + [(c, 1) for c in "asdfghjkl;'"] + [("Return", 2.25)],
-    [("Shift", 2.25)] + [(c, 1) for c in "zxcvbnm,./"] + [("Shift", 2.75)],
-    [(None, 3.75), ("Space", 6.25)],
-]
-# Keys that change on the nav layer (from kanata.kbd): key -> (sublabel, is_arrow)
-NAV = {
-    "0": ("Line ←", 0), "4": ("Line →", 0),
-    "w": ("Word →", 0), "u": ("Page ↑", 0), "t": ("Doc ↑", 0),
-    "d": ("Page ↓", 0), "g": ("Doc ↓", 0),
-    "h": ("←", 1), "j": ("↓", 1), "k": ("↑", 1), "l": ("→", 1),
-    ";": ("ö", 0), "[": ("Esc", 0),
-    "b": ("Word ←", 0), "m": ("Bksp", 0), "x": ("Ctrl+D", 0), ",": ("Delete", 0),
-    "n": ("Return", 0), "Space": ("Bksp", 0),
-}
-
-
-def lk(label, u, sub=None, arrow=False, cls=""):
-    px = round(u * 64 + (u - 1) * 6)
-    shown = label.upper() if len(label) == 1 and label.isalpha() else label
-    s = f'<span class="s{" arrow" if arrow else ""}">{sub}</span>' if sub else ""
-    return f'<div class="kh-lk {cls}" style="width:{px}px"><span class="l">{shown}</span>{s}</div>'
-
-
-def layout_rows():
-    out = ""
-    for r in ROWS:
-        out += '<div class="lh-row">'
-        for key, u in r:
-            if key is None:
-                out += f'<div class="lh-note" style="width:{round(u * 64 + (u - 1) * 6) - 12}px;margin-right:12px;text-align:right">Click-hold Caps or Space to preview a layer</div>'
-            elif key == "Caps":
-                out += lk("Caps", u, "hold", cls="layerkey")
-            elif key in NAV:
-                sub, ar = NAV[key]
-                out += lk(key, u, sub, bool(ar), "map" + (" focus" if key == "l" else ""))
-            else:
-                out += lk(key, u)
-        if r[0][0] is None:
-            out += '<div class="lh-note" style="width:340px;margin-left:12px">Switch tabs: Left / Right (tap-hold Caps + H / L), or Tab / Shift + Tab</div>'
-        out += "</div>"
-    return out
-
-
-def layout_section():
-    tabs = "".join(
-        f'<span class="tab" role="tab" aria-selected="{"true" if t == "nav" else "false"}">{t}</span>'
-        for t in ("base", "nav", "numbers-symbols", "practice"))
-    inner = f"""
-<div class="kh-panel overlay" role="dialog" aria-label="Layout help">
-  <div class="top"><h2>Layout help</h2>
-    <div class="tabs" role="tablist">{tabs}</div><span class="grow"></span>
-    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
-  <div class="kh-lh">
-    <div class="lh-rows">{layout_rows()}</div>
-    <div class="lh-detail">
-      <div class="big"><span class="kh-key">L</span></div>
-      <dl>
-        <dt>Tap</dt><dd>types <span class="mono">l</span></dd>
-        <dt>Tap-hold, 200 ms</dt><dd>Right Option (<span class="mono">ralt</span>)</dd>
-      </dl>
-      <dl>
-        <dt>On nav</dt><dd>Right arrow, from <b>tap-hold Caps</b> + <b>L</b>.</dd>
-        <dt>On practice</dt><dd>Normal: the home-row hold still works.</dd>
-      </dl>
-    </div>
-    <div class="lh-legend">
-      <span><span class="kh-lk map" style="width:44px"><span class="l">W</span></span> changes on this tab, new action underneath</span>
-      <span><span class="kh-lk" style="width:44px"><span class="l">A</span></span> unchanged</span>
-      <span><span class="kh-lk silent" style="width:44px"><span class="l">XX</span></span> silent on practice</span>
-    </div>
-  </div>
-</div>"""
-    return f"""
-<div class="sheet">
-  <h2>Layout help</h2>
-  <p class="lede">Rendered from the layout manifest; the keys below follow <span class="mono">kanata.kbd</span> for the <span class="mono">nav</span> tab (Caps is the layer key, drawn held). The focus ring is on L, whose detail card follows the hint grammar.</p>
+  <p class="lede">Opened on demand with Q (tap Q, world only) over a dimmed world; Esc or Q closes it. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
   {screen(inner)}
 </div>"""
 
@@ -524,18 +436,19 @@ def page():
 <title>Kanata Hero UI kit reference</title>
 <!-- Generated by build_reference.py. Do not hand-edit. Uses tokens.css and world-native.png only. -->
 <link rel="stylesheet" href="tokens.css">
-<style>{CSS}</style>
+<style>{CSS}{kit_screens.CSS}{kit_screens2.CSS}</style>
 </head>
 <body>
 <span id="grey"></span>
-{SPRITE}
+{SPRITE}{kit_screens.SPRITE_EXTRA}{kit_screens2.SPRITE2}
 <div class="page">
 {stage()}
 <div class="bar"><span>Reference stage: 1280 x 720 at world zoom x4, letterboxed in 1366 x 768.</span><a href="#grey">Greyscale</a><a href="#">Colour</a></div>
 {markers_section()}
 {keystates_section()}
 {journal_section()}
-{layout_section()}
+{kit_screens.p0_sections()}
+{kit_screens2.p1_sections()}
 </div>
 </body>
 </html>

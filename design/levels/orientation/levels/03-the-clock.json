@@ -1,0 +1,608 @@
+{
+ "id": "orientation-03",
+ "number": 3,
+ "title": "The Clock",
+ "district": "orientation",
+ "kind": "main",
+ "requires": [
+  "orientation-02"
+ ],
+ "story": "A meeting-room clock beside the north-wall glass door shows different times on its two faces, and Ivo's scheduling form has lost its spaces and tabs. The engineer tells a tapped Space from a held one, a tapped Tab from a held one, and sees that a modifier pressed first keeps both ordinary.",
+ "steps": [
+  {
+   "id": "o03.s.talk",
+   "objective": "Ask Ivo about the clock.",
+   "interaction": "ivo",
+   "completes_when": "dialogue_done:o03.d.ask",
+   "target_cell": [
+    12,
+    13
+   ]
+  },
+  {
+   "id": "o03.s.guided",
+   "objective": "Separate the times with a tap, then try the held Space and held Tab demonstrations.",
+   "interaction": "form_wall",
+   "completes_when": "scene_success:o03-guided-space & scene_success:o03-guided-tab",
+   "target_cell": [
+    24,
+    2
+   ]
+  },
+  {
+   "id": "o03.s.modfirst",
+   "objective": "Hold a modifier first: Shift + Tab and Shift + Space.",
+   "interaction": "form_wall",
+   "completes_when": "scene_success:o03-guided-modfirst",
+   "target_cell": [
+    24,
+    2
+   ]
+  },
+  {
+   "id": "o03.s.variation",
+   "objective": "Correct the two appointment lines.",
+   "interaction": "form_wall",
+   "completes_when": "scene_success:o03-variation",
+   "target_cell": [
+    24,
+    2
+   ]
+  },
+  {
+   "id": "o03.s.recall",
+   "objective": "Fill a fresh appointment line without highlights.",
+   "interaction": "form_wall",
+   "completes_when": "scene_success:o03-recall",
+   "target_cell": [
+    24,
+    2
+   ]
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B07",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o03-guided-space"
+  },
+  {
+   "id": "B07",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o03-variation"
+  },
+  {
+   "id": "B07",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o03-recall"
+  },
+  {
+   "id": "B09",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o03-guided-tab"
+  },
+  {
+   "id": "B09",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o03-variation"
+  },
+  {
+   "id": "B09",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o03-recall"
+  },
+  {
+   "id": "B08",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o03-guided-modfirst"
+  },
+  {
+   "id": "B08",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o03-variation"
+  },
+  {
+   "id": "B08",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o03-recall"
+  },
+  {
+   "id": "B10",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "o03-guided-modfirst"
+  },
+  {
+   "id": "B10",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "o03-variation"
+  },
+  {
+   "id": "B10",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "o03-recall"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "o03-guided-space",
+   "kind": "form",
+   "task_summary": "Separate two times with a tapped Space, then see what a held Space does in a scratch field (digits, not a space), then tap Space again.",
+   "success_criteria": [
+    "The title field reads standup 0930 (a space between the words, typed with a tap)",
+    "In the scratch field the held-Space demonstration shows a digit from the numbers-symbols layer, and the field clears itself",
+    "No stray space appears when the demonstration key is released"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Scheduling form, line 1 of 1. The clock shows two different times, one on each side of the glass.",
+    "fields": [
+     {
+      "id": "title",
+      "label": "Meeting",
+      "initial": "standup0930",
+      "target": "standup 0930",
+      "cursor": "between standup and 0930"
+     },
+     {
+      "id": "scratch",
+      "label": "Scratch (demonstration only)",
+      "initial": "",
+      "auto_clear": true
+     }
+    ],
+    "steps": [
+     {
+      "id": "tap-space",
+      "expect": "a space typed between standup and 0930",
+      "accepts": [
+       " "
+      ],
+      "rejects": [
+       "a digit typed instead of a space"
+      ],
+      "feedback": {
+       "digit": "A digit appeared instead of a space: Space was held long enough (about 220 ms) to enter numbers-symbols. Tap Space and let go quickly."
+      }
+     },
+     {
+      "id": "hold-demo",
+      "expect": "hold Space until the layer shows, tap J: the scratch field shows 7 (observed output only)",
+      "accepts": [
+       "7"
+      ],
+      "feedback": {
+       "other": "Output observed in the scratch field. This page cannot see Space being held; it only sees the 7."
+      },
+      "confidence": "output-observed",
+      "clears_after": true
+     },
+     {
+      "id": "tap-again",
+      "expect": "tap Space once more: no digit, a plain space",
+      "accepts": [
+       " "
+      ]
+     }
+    ],
+    "hold_cue": "keyboard inset shows Space with a 220 ms ring",
+    "target_cursor_note": "The cursor starts between standup and 0930 so no cursor navigation is needed."
+   }
+  },
+  {
+   "id": "o03-guided-tab",
+   "kind": "form",
+   "task_summary": "Fill three fields moving with a tapped Tab; then hold Tab once and confirm what happened outside the page.",
+   "success_criteria": [
+    "Name, room and time are filled by tapping Tab between the fields (focus moves in the page)",
+    "The player answers the held-Tab confirmation (Homerow opened / nothing opened / skip); any answer continues"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "mixed",
+   "task": {
+    "prompt": "Check-in form: name, room, time. Tab moves focus; a clearly announced practice region keeps Tab inside this form and Escape (tap Caps) leaves it.",
+    "fields": [
+     {
+      "id": "name",
+      "label": "Name",
+      "target": "kit"
+     },
+     {
+      "id": "room",
+      "label": "Room",
+      "target": "b2"
+     },
+     {
+      "id": "time",
+      "label": "Time",
+      "target": "0930"
+     }
+    ],
+    "steps": [
+     {
+      "id": "tab-forward",
+      "expect": "tap Tab moves focus name to room to time",
+      "accepts": [
+       "Tab"
+      ],
+      "feedback": {
+       "other": "Tab did not move focus. Tap Tab quickly; holding it for about 250 ms asks Homerow instead."
+      }
+     },
+     {
+      "id": "hold-tab-confirm",
+      "expect": "hold Tab about 250 ms; Kanata sends Shift + Command + Space for the external app Homerow. This page cannot see it.",
+      "accepts": [
+       "confirm: Homerow opened",
+       "confirm: nothing opened or Homerow not installed",
+       "confirm: skip"
+      ],
+      "feedback": {
+       "other": "Any answer continues. The result is recorded as player-confirmed, never as an observed output."
+      },
+      "confidence": "player-confirmed",
+      "blocks_progress": false
+     }
+    ],
+    "practice_region": {
+     "announce": "Practice region: Tab stays inside this form. Press Escape (tap Caps) to leave.",
+     "exit": "Escape"
+    },
+    "keyboard_exit": "Escape closes the practice region"
+   }
+  },
+  {
+   "id": "o03-guided-modfirst",
+   "kind": "form",
+   "task_summary": "Hold a modifier before Space or Tab and see that both stay ordinary: Shift + Tab moves back a field, Shift + Space types a space.",
+   "success_criteria": [
+    "Shift + Tab (Shift held first, then Tab) moves focus back one field",
+    "Shift + Space (Shift held first, then Space) types a space, not a number"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Same check-in form. The hold on F (Shift) must come first.",
+    "fields": [
+     {
+      "id": "name",
+      "label": "Name",
+      "initial": "kit"
+     },
+     {
+      "id": "room",
+      "label": "Room",
+      "initial": "b2"
+     },
+     {
+      "id": "note",
+      "label": "Note",
+      "initial": "late",
+      "cursor": "end"
+     }
+    ],
+    "steps": [
+     {
+      "id": "shift-tab",
+      "expect": "focus starts in Room; hold F (Shift), then tap Tab: focus moves back to Name",
+      "accepts": [
+       "Shift+Tab"
+      ],
+      "feedback": {
+       "Tab": "Plain Tab observed: focus moved forward. Hold F first so Shift is down before Tab."
+      }
+     },
+     {
+      "id": "shift-space",
+      "expect": "in Note, hold F (Shift), then tap Space: a space is typed after late",
+      "accepts": [
+       "Shift+Space -> space"
+      ],
+      "feedback": {
+       "digit": "A digit appeared: Space was pressed first and held. Hold F first, then tap Space."
+      }
+     }
+    ],
+    "os_reserved": "modified Space or Tab combinations the OS may take (Command + Space, for example) are explained and shown on the diagram only; they are never required observed outputs"
+   }
+  },
+  {
+   "id": "o03-variation",
+   "kind": "form",
+   "task_summary": "Correct two appointment lines that are missing spaces and tabs, using tapped Space, tapped Tab, and one Shift + Tab to fix a wrong time.",
+   "success_criteria": [
+    "Both appointments match their targets exactly",
+    "The second time field was fixed by going back with Shift + Tab"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Appointment 1 and 2 of 2.",
+    "items": [
+     {
+      "id": "a1",
+      "fields": [
+       {
+        "id": "title",
+        "target": "design review"
+       },
+       {
+        "id": "time",
+        "target": "0945"
+       },
+       {
+        "id": "room",
+        "target": "b2"
+       }
+      ]
+     },
+     {
+      "id": "a2",
+      "fields": [
+       {
+        "id": "title",
+        "target": "lunch plan"
+       },
+       {
+        "id": "time",
+        "initial": "0954",
+        "target": "1200",
+        "note": "prefilled wrong; focus selects it so typing replaces it"
+       },
+       {
+        "id": "room",
+        "target": "c1"
+       }
+      ],
+      "fix_with": "Shift + Tab from room back to time"
+     }
+    ],
+    "accepts": "field text equals target; Tab and Shift + Tab observed via focus",
+    "feedback": {
+     "other": "The field shows the observed output; the target is below it. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "o03-recall",
+   "kind": "form",
+   "task_summary": "Fill a fresh appointment line with no highlighted keys: a two-word title, a time, a room, and one back-step.",
+   "success_criteria": [
+    "The appointment matches the target exactly",
+    "The clock hands synchronize and the glass door slides open"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Fresh appointment (no diagram highlights).",
+    "items": [
+     {
+      "id": "r1",
+      "fields": [
+       {
+        "id": "title",
+        "target": "team sync"
+       },
+       {
+        "id": "time",
+        "initial": "1013",
+        "target": "1030",
+        "note": "prefilled wrong"
+       },
+       {
+        "id": "room",
+        "target": "d4"
+       }
+      ],
+      "fix_with": "Shift + Tab from room back to time"
+     }
+    ],
+    "accepts": "field text equals target",
+    "feedback": {
+     "other": "The field shows the observed output; the target is below it. Retry is instant: a wrong output shows its own name in the feedback line and the field resets for another try. Nothing is lost."
+    }
+   }
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "o03.d.ask",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "The meeting-room clock disagrees with itself, and my scheduling form lost its spaces and tabs. Can you put them back?",
+   "hint": null,
+   "when": "step_start:o03.s.talk",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o03.d.space",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To separate the two times, you need to press Space.",
+   "hint": {
+    "action": "To separate the two times, you need to press Space.",
+    "key": "Space",
+    "gesture": "tap Space. Tap-hold would enter numbers-symbols."
+   },
+   "when": "step_start:o03.s.guided",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o03.d.tab",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To move to the next field, you need to press Tab.",
+   "hint": {
+    "action": "To move to the next field, you need to press Tab.",
+    "key": "Tab",
+    "gesture": "tap Tab. Tap-hold Tab sends Shift + Command + Space for Homerow."
+   },
+   "when": "scene_success:o03-guided-space",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o03.d.shift-tab",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To move back a field, you need to press Shift + Tab.",
+   "hint": {
+    "action": "To move back a field, you need to press Shift + Tab.",
+    "key": "Shift + Tab",
+    "gesture": "tap-hold F (Shift) first, then tap Tab. A held modifier keeps Tab ordinary."
+   },
+   "when": "scene_success:o03-guided-tab",
+   "cue": "hint lines are neutral",
+   "modal": false
+  },
+  {
+   "id": "o03.d.space-request",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "To separate the two times, you need to press Space.",
+   "hint": {
+    "action": "To separate the two times, you need to press Space.",
+    "key": "Space",
+    "gesture": "tap Space. Tap-hold would enter numbers-symbols."
+   },
+   "when": "request:o03.d.space",
+   "cue": "hint lines are neutral",
+   "on_request": true,
+   "modal": false
+  },
+  {
+   "id": "o03.d.homerow",
+   "speaker": "ivo",
+   "portrait": "neutral",
+   "text": "If Homerow opened, tell the form so; if not, tell it that too. Neither answer changes the score.",
+   "hint": null,
+   "when": "scene_success:o03-guided-space",
+   "cue": "Ivo 01-03: neutral",
+   "modal": true
+  },
+  {
+   "id": "o03.d.success",
+   "speaker": "ivo",
+   "portrait": "pleased",
+   "text": "The hands agree. Two times, one clock, and my tablet has stopped flashing.",
+   "hint": null,
+   "when": "scene_success:o03-recall",
+   "cue": "Ivo 03: when the clock hands synchronize: pleased",
+   "modal": true
+  }
+ ],
+ "triggers": [
+  {
+   "id": "o03.t.clock-synced",
+   "when": "scene_success:o03-recall",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "clock_twin",
+     "state": "synced"
+    },
+    {
+     "op": "set_state",
+     "target": "conf_door",
+     "state": "open"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "g.conference-door"
+    },
+    {
+     "op": "npc_state",
+     "npc": "ivo",
+     "state": "steady"
+    },
+    {
+     "op": "set_flag",
+     "flag": "clock-synced"
+    },
+    {
+     "op": "set_flag",
+     "flag": "conference-door-open"
+    },
+    {
+     "op": "journal",
+     "text": "Orientation 03 complete: the meeting-room door is open."
+    },
+    {
+     "op": "complete_level",
+     "level": "orientation-03"
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The twin clock shows two different times, the meeting room's glass door is closed, Ivo's tablet flashes.",
+  "after": "Both faces agree, the glass door has slid aside on its closed, half and open frames, Ivo's tablet is steady.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "clock_twin",
+    "from": "unsynced",
+    "to": "synced",
+    "note": "clock hands synchronize"
+   },
+   {
+    "kind": "placement_state",
+    "target": "conf_door",
+    "from": "closed",
+    "to": "open",
+    "note": "glass door slides aside"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "ivo",
+    "from": "tablet",
+    "to": "steady",
+    "note": "tablet stops flashing"
+   }
+  ]
+ },
+ "rewards": {
+  "unlocks": [
+   "g.conference-door"
+  ]
+ },
+ "pace_copy": [
+  {
+   "text": "Your meeting is on schedule.",
+   "state": "default",
+   "placement": "pace_wall_sign"
+  }
+ ],
+ "review_notes": "At 1366x768 the projected form (x21-24 on the north wall) and its approach (24,2) lie in the north-east. With the camera clamped at the north and east edges the avatar sits at screen (264,48) at this stop, far from the keyboard inset (x 4-147, y 103-176), so the form is readable with the inset open. The Tab practice region announces itself and Escape (tap Caps) leaves it."
+}

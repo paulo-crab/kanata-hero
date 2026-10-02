@@ -1,0 +1,401 @@
+{
+ "kit": "nightshift",
+ "atlas": "nightshift-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Night Shift integration proof room, built only from nightshift-atlas: the shared elevator set (closed, half, open) with the call panel (the Executive stop lit in the after state), Ada's shift book on a cabinet, the dawn lamp on a lit desk and the west-wall side plane. Night Shift has no desk_a or desk_b, so there is no occluder here. People are not placed.",
+ "states": {
+  "elevator": "closed",
+  "elevator_panel": "base",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    2,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    6
+   ],
+   "offset": [
+    14,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    0,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    6,
+    5
+   ],
+   "offset": [
+    9,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    4
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    10,
+    7
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    4
+   ],
+   "offset": [
+    2,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    15,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_half",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_open",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "anim": "elevator_panel",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    11,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_ada_shift_book",
+   "cell": [
+    11,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_lit_a",
+   "cell": [
+    14,
+    6
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_dawn_lamp",
+   "cell": [
+    15,
+    5
+   ],
+   "offset": [
+    8,
+    10
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    18,
+    5
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    18,
+    6
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    12,
+    8
+   ]
+  }
+ ]
+}

@@ -2173,6 +2173,1618 @@
     "light"
    ],
    "note": "after: the luminous ceiling ring lights a linen pool on the floor inside the inlay; paints only on the bare floor fill"
+  },
+  {
+   "name": "repair_door_closed",
+   "kind": "door",
+   "rect": [
+    0,
+    320,
+    32,
+    48
+   ],
+   "size_px": [
+    32,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "repair door",
+    "level 07",
+    "closed"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    32,
+    2
+   ],
+   "note": "the level 07 repair door, a north-wall door 32 x 34 px that replaces two plain wall tiles: a display band with two clear text windows (the address line with its cursor, and the two sides of the cursor: Backspace chevron left, Forward Delete chevron right), then cherry leaves with glass panes. both cherry leaves shut: the leaves meet at a seam with pulls and glass panes. Closed and half block; open walks. No flashing failure state"
+  },
+  {
+   "name": "repair_door_half",
+   "kind": "door",
+   "rect": [
+    32,
+    320,
+    32,
+    48
+   ],
+   "size_px": [
+    32,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "repair door",
+    "level 07",
+    "half"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    32,
+    2
+   ],
+   "note": "the level 07 repair door, a north-wall door 32 x 34 px that replaces two plain wall tiles: a display band with two clear text windows (the address line with its cursor, and the two sides of the cursor: Backspace chevron left, Forward Delete chevron right), then cherry leaves with glass panes. leaves slid 6 px into the jamb pockets: the lit archive shows in the gap. Closed and half block; open walks. No flashing failure state"
+  },
+  {
+   "name": "repair_door_open",
+   "kind": "door",
+   "rect": [
+    64,
+    320,
+    32,
+    48
+   ],
+   "size_px": [
+    32,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "repair door",
+    "level 07",
+    "open"
+   ],
+   "note": "the level 07 repair door, a north-wall door 32 x 34 px that replaces two plain wall tiles: a display band with two clear text windows (the address line with its cursor, and the two sides of the cursor: Backspace chevron left, Forward Delete chevron right), then cherry leaves with glass panes. leaves nearly in the pockets: a lit archive with shelf-end stripes and a mat shows through, and the threshold is lit. Closed and half block; open walks. No flashing failure state"
+  },
+  {
+   "name": "shelf_end_light_off",
+   "kind": "prop",
+   "rect": [
+    96,
+    320,
+    16,
+    16
+   ],
+   "size_px": [
+    6,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -4
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    12
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "light",
+    "shelf",
+    "level 07",
+    "off"
+   ],
+   "note": "a 6 x 12 end-of-shelf light (level 07: shelf-end lights change when the door answers). off: dull sea-blue glass. Place against the end of a shelf unit, one cell wide, no collision"
+  },
+  {
+   "name": "shelf_end_light_on",
+   "kind": "prop",
+   "rect": [
+    112,
+    320,
+    16,
+    16
+   ],
+   "size_px": [
+    6,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -4
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    12
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "light",
+    "shelf",
+    "level 07",
+    "on"
+   ],
+   "note": "a 6 x 12 end-of-shelf light (level 07: shelf-end lights change when the door answers). on: a linen core with a peach edge (not gold: gold is the UI's opened-route marker). Place against the end of a shelf unit, one cell wide, no collision"
+  },
+  {
+   "name": "courier_chute_idle",
+   "kind": "prop",
+   "rect": [
+    128,
+    320,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "chute",
+    "mira",
+    "courier",
+    "idle"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. idle: the lamp is dull, the slot empty"
+  },
+  {
+   "name": "courier_chute_ready",
+   "kind": "prop",
+   "rect": [
+    176,
+    320,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "chute",
+    "mira",
+    "courier",
+    "ready"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. ready (Mira has a route to offer): a slip stands in the slot and the lamp is lit in coral"
+  },
+  {
+   "name": "folder_rack_drift",
+   "kind": "prop",
+   "rect": [
+    224,
+    320,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     6
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "folder",
+    "file rack",
+    "level 08",
+    "drift"
+   ],
+   "contact_shadow": [
+    1,
+    22,
+    33,
+    2
+   ],
+   "note": "a low open file rack, 2 x 1 (level 08): six sea-blue folders. drift: label tabs at uneven heights and shifts, uneven folders, dull labels"
+  },
+  {
+   "name": "folder_rack_aligned",
+   "kind": "prop",
+   "rect": [
+    272,
+    320,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     6
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "folder",
+    "file rack",
+    "level 08",
+    "aligned"
+   ],
+   "contact_shadow": [
+    1,
+    22,
+    33,
+    2
+   ],
+   "note": "a low open file rack, 2 x 1 (level 08): six sea-blue folders. aligned: every tab on one line in a regular rhythm, linen labels with a coral mark"
+  },
+  {
+   "name": "ledger_table_before",
+   "kind": "prop",
+   "rect": [
+    320,
+    320,
+    80,
+    32
+   ],
+   "size_px": [
+    66,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "ledger",
+    "level 09",
+    "before"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    65,
+    2
+   ],
+   "note": "the two-sided ledger table, 4 x 1 (level 09): a long cherry table with an open folio along it. before: both sign-offs sit in the middle, the table is dull. Put one or two light_shaft entries across it for the beam of daylight"
+  },
+  {
+   "name": "ledger_table_after",
+   "kind": "prop",
+   "rect": [
+    400,
+    320,
+    80,
+    32
+   ],
+   "size_px": [
+    66,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "1111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "ledger",
+    "level 09",
+    "after"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    65,
+    2
+   ],
+   "note": "the two-sided ledger table, 4 x 1 (level 09): a long cherry table with an open folio along it. after: sign-offs at both margins, both ends lit (lit wood, bright pages). Put one or two light_shaft entries across it for the beam of daylight"
+  },
+  {
+   "name": "rolling_ladder_closed",
+   "kind": "prop",
+   "rect": [
+    480,
+    320,
+    80,
+    48
+   ],
+   "size_px": [
+    66,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     1
+    ],
+    "origin_px": [
+     0,
+     16
+    ]
+   },
+   "collision": [
+    "1111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ladder",
+    "gallery",
+    "level 09",
+    "closed"
+   ],
+   "contact_shadow": [
+    1,
+    32,
+    65,
+    2
+   ],
+   "note": "the rolling ladder gallery wall, 4 x 1 (level 09): a shelf cell at each end, a two-cell opening onto the stair to the upper gallery, a rail with wheels, a cherry ladder. closed: the ladder stands across the opening (cols 0-3 block)"
+  },
+  {
+   "name": "rolling_ladder_open",
+   "kind": "prop",
+   "rect": [
+    560,
+    320,
+    80,
+    48
+   ],
+   "size_px": [
+    66,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     1
+    ],
+    "origin_px": [
+     0,
+     16
+    ]
+   },
+   "collision": [
+    "1001"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ladder",
+    "gallery",
+    "level 09",
+    "open"
+   ],
+   "contact_shadow": [
+    1,
+    32,
+    65,
+    2
+   ],
+   "note": "the rolling ladder gallery wall, 4 x 1 (level 09): a shelf cell at each end, a two-cell opening onto the stair to the upper gallery, a rail with wheels, a cherry ladder. open: the ladder has rolled in front of the left shelf; cols 1-2 are free"
+  },
+  {
+   "name": "report_table_before",
+   "kind": "prop",
+   "rect": [
+    0,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    36,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "report",
+    "level 10",
+    "before"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    35,
+    2
+   ],
+   "note": "the report table, 2 x 1 (level 10): a cherry table. before: Pace's grey summary alone (three orderly bars)"
+  },
+  {
+   "name": "report_table_after",
+   "kind": "prop",
+   "rect": [
+    48,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    36,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "report",
+    "level 10",
+    "after"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    35,
+    2
+   ],
+   "note": "the report table, 2 x 1 (level 10): a cherry table. after: Noor has placed the original report beside the summary (cherry cover, coral spine, linen label)"
+  },
+  {
+   "name": "mira_decor_courier_loop",
+   "kind": "prop",
+   "rect": [
+    96,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -4
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    6,
+    12
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "decor",
+    "mira",
+    "desk"
+   ],
+   "note": "Courier Loop reward (after level 07): a loop-arrow medal on a small stand; a desk decoration, 1 x 1, no collision"
+  },
+  {
+   "name": "mira_decor_archive_folder",
+   "kind": "prop",
+   "rect": [
+    112,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -7
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    6,
+    9
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "decor",
+    "mira",
+    "desk"
+   ],
+   "note": "Archive Loop reward (after level 11): a coral desk folder with a lit tab and a sheet showing; a desk decoration, 1 x 1, no collision"
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    128,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    176,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    224,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    272,
+    368,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "wave 2"
+   ],
+   "note": "wall call panel for the elevator, records ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "desk_a_front",
+   "kind": "prop",
+   "rect": [
+    288,
+    368,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_a: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "desk_b_front",
+   "kind": "prop",
+   "rect": [
+    336,
+    368,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_b: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "artifact_carbon_copy_a",
+   "kind": "prop",
+   "rect": [
+    384,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "carbon_copy_a",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    15,
+    10,
+    1
+   ],
+   "note": "Carbon copy A (Records level 08): a sheet with a coral header over its carbon copy. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_margin_stamp",
+   "kind": "prop",
+   "rect": [
+    400,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "margin_stamp",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Margin stamp (Records level 09): a ruled sheet with a round coral stamp in the margin. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_uncut_index",
+   "kind": "prop",
+   "rect": [
+    416,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "uncut_index",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    6,
+    14,
+    8,
+    1
+   ],
+   "note": "Uncut index (Records level 10): an index sheet with four tabs along its long edge. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_noor_annotation",
+   "kind": "prop",
+   "rect": [
+    432,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "noor_annotation",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    12,
+    10,
+    1
+   ],
+   "note": "Noor's annotation (Records level 11): a page with a dry coral underline and a margin note over a second sheet. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "cabinet_gate_misaligned",
+   "kind": "prop",
+   "rect": [
+    448,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    36,
+    45
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     25
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    41
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "gate",
+    "cabinet",
+    "level 08",
+    "misaligned"
+   ],
+   "contact_shadow": [
+    1,
+    40,
+    35,
+    5
+   ],
+   "note": "the level 08 gate, 2 x 1: two one-cell file cabinets pushed crooked across the margin-room doorway: one low, one high, a dark crack between (blocks both cells). Same sprite box in both states, so a swap never shifts a pixel"
+  },
+  {
+   "name": "cabinet_gate_aligned",
+   "kind": "prop",
+   "rect": [
+    496,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    36,
+    45
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     25
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    41
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "gate",
+    "cabinet",
+    "level 08",
+    "aligned"
+   ],
+   "contact_shadow": [
+    1,
+    27,
+    33,
+    2
+   ],
+   "note": "the level 08 gate, 2 x 1: the same cabinets squared up side by side and pushed 14 px back against the shelf line: the doorway cells are free. Same sprite box in both states, so a swap never shifts a pixel"
+  },
+  {
+   "name": "cabinet_labels_offset",
+   "kind": "prop",
+   "rect": [
+    544,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    35,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "labels",
+    "level 08",
+    "offset"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "the level 08 log cabinets, 2 x 1: cherry log cabinet, sea-blue folders with a linen label tab each at uneven shifts and heights. Same box and footprint as cabinet_2x1"
+  },
+  {
+   "name": "cabinet_labels_aligned",
+   "kind": "prop",
+   "rect": [
+    592,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    35,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "labels",
+    "level 08",
+    "aligned"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "the level 08 log cabinets, 2 x 1: the same cabinet with every label tab on one line at the same inset and a coral mark on each. Same box and footprint as cabinet_2x1"
+  },
+  {
+   "name": "archive_ledger_mark_rejected",
+   "kind": "prop",
+   "rect": [
+    0,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    7
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "mark",
+    "level 08",
+    "rejected"
+   ],
+   "note": "the circular desk's open ledger with Noor's stamp mark, 12 x 7 px, an opaque overlay that covers the landmark's own ledger: a coral cross, the mark rejected (levels 07 to 08; the same pixels as archive_ledger_before). Place at the landmark footprint origin + (26, 4), after the landmark's parts; it lets level 08 accept the mark before the folders and ring change at level 11"
+  },
+  {
+   "name": "archive_ledger_mark_accepted",
+   "kind": "prop",
+   "rect": [
+    16,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    7
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "mark",
+    "level 08",
+    "accepted"
+   ],
+   "note": "the circular desk's open ledger with Noor's stamp mark, 12 x 7 px, an opaque overlay that covers the landmark's own ledger: a coral tick and a round seal, the mark accepted (the same pixels as archive_ledger_after). Place at the landmark footprint origin + (26, 4), after the landmark's parts; it lets level 08 accept the mark before the folders and ring change at level 11"
+  },
+  {
+   "name": "door_panel_address_idle",
+   "kind": "prop",
+   "rect": [
+    32,
+    416,
+    16,
+    32
+   ],
+   "size_px": [
+    15,
+    27
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "panel",
+    "address",
+    "door",
+    "level 07",
+    "idle"
+   ],
+   "note": "the address panel beside the repair door (level 07), 1 x 1: a wall plate 15 x 27 with two clear text windows (the address line with its cursor; the two sides of the cursor, Backspace chevron left and Forward Delete chevron right), an input slot and a dull idle lamp. Blocks its cell; the player reads it from the cell in front"
   }
  ],
  "animations": {
@@ -2261,6 +3873,270 @@
    ],
    "ms_per_frame": 200,
    "note": "the sliding file wall. Slide each unit one cell outward over about 4 steps (4 px per 50 ms) when the review completes; the open state leaves a two-cell corridor."
+  },
+  "repair_door": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "repair_door_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "repair_door_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "repair_door_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "level 07: the door retracts when the address is accepted; play forward, backward when the player leaves. Only open is walkable. Do not place plain wall tiles under it"
+  },
+  "shelf_end_light": {
+   "kind": "state_set",
+   "default": "off",
+   "states": {
+    "off": {
+     "entries": [
+      "shelf_end_light_off"
+     ]
+    },
+    "on": {
+     "entries": [
+      "shelf_end_light_on"
+     ]
+    }
+   },
+   "play": [
+    "off",
+    "on"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 07: the shelf-end lights come on when the repair door answers"
+  },
+  "courier_chute": {
+   "kind": "state_set",
+   "default": "idle",
+   "states": {
+    "idle": {
+     "entries": [
+      "courier_chute_idle"
+     ]
+    },
+    "ready": {
+     "entries": [
+      "courier_chute_ready"
+     ]
+    }
+   },
+   "play": [
+    "idle",
+    "ready"
+   ],
+   "ms_per_frame": 300,
+   "note": "Mira's chute: ready while she has a route to offer"
+  },
+  "folder_rack": {
+   "kind": "state_set",
+   "default": "drift",
+   "states": {
+    "drift": {
+     "entries": [
+      "folder_rack_drift"
+     ]
+    },
+    "aligned": {
+     "entries": [
+      "folder_rack_aligned"
+     ]
+    }
+   },
+   "play": [
+    "drift",
+    "aligned"
+   ],
+   "ms_per_frame": 150,
+   "note": "level 08: the repaired folders align"
+  },
+  "ledger_table": {
+   "kind": "state_set",
+   "default": "before",
+   "states": {
+    "before": {
+     "entries": [
+      "ledger_table_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "ledger_table_after"
+     ]
+    }
+   },
+   "play": [
+    "before",
+    "after"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 09: correct margins light both ends of the ledger table"
+  },
+  "rolling_ladder": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "rolling_ladder_closed"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "rolling_ladder_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "open"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 09: the rolling ladder moves and reveals the stair to the upper gallery (slide it about 19 px over 4 steps)"
+  },
+  "report_table": {
+   "kind": "state_set",
+   "default": "before",
+   "states": {
+    "before": {
+     "entries": [
+      "report_table_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "report_table_after"
+     ]
+    }
+   },
+   "play": [
+    "before",
+    "after"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 10: Noor places the original report beside the summary"
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"
+  },
+  "cabinet_gate": {
+   "kind": "state_set",
+   "default": "misaligned",
+   "states": {
+    "misaligned": {
+     "entries": [
+      "cabinet_gate_misaligned"
+     ],
+     "blocked": true
+    },
+    "aligned": {
+     "entries": [
+      "cabinet_gate_aligned"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "misaligned",
+    "aligned"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 08: the cabinets square up and open the margin-room doorway; misaligned blocks both cells, aligned frees them"
+  },
+  "cabinet_labels": {
+   "kind": "state_set",
+   "default": "offset",
+   "states": {
+    "offset": {
+     "entries": [
+      "cabinet_labels_offset"
+     ]
+    },
+    "aligned": {
+     "entries": [
+      "cabinet_labels_aligned"
+     ]
+    }
+   },
+   "play": [
+    "offset",
+    "aligned"
+   ],
+   "ms_per_frame": 150,
+   "note": "level 08: the repaired label tabs line up (both states block)"
+  },
+  "ledger_mark": {
+   "kind": "state_set",
+   "default": "rejected",
+   "states": {
+    "rejected": {
+     "entries": [
+      "archive_ledger_mark_rejected"
+     ]
+    },
+    "accepted": {
+     "entries": [
+      "archive_ledger_mark_accepted"
+     ]
+    }
+   },
+   "play": [
+    "rejected",
+    "accepted"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 08: Noor's stamp mark goes from rejected to accepted. An opaque overlay on the landmark's ledger, at footprint origin + (26, 4)"
   }
  },
  "landmarks": {

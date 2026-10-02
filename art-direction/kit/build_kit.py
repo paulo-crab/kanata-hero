@@ -8,7 +8,8 @@ Writes into this folder:
   orientation-garden-states.png          garden landmark before / after at x4, plus changed pixels
   orientation-review-room-native.png     the room rebuilt from the atlas (320x192, no actors)
   orientation-review-room-1366x768.png   the Gate 1 still drawn from the atlas
-Then runs the zero-diff proof (build_room.verify) and exits 1 if any pixel differs.
+Then runs the zero-diff proof (build_room.verify), then orientation_quest_room.build() (quest-prop proof room, state strip,
+seated-fit and shared-builder proofs, plus their checks), and exits 1 if any pixel differs or any quest check fails.
 """
 import json
 import os
@@ -28,7 +29,14 @@ CORAL_MARK = "#EC776D"
 BG = "#151C2B"
 SECTIONS = [(0, "FLOOR AND ROUTE"), (1, "WALLS"), (2, "SLIDING GLASS DOOR (closed, half, open)"),
             (3, "LAMP (post, off, glow states)"), (4, "PROPS"), (5, "GARDEN LANDMARK (registered parts)"),
-            (6, "SHELVING AND GLASS PARTITIONS (spec coverage, not placed in the review room)")]
+            (6, "SHELVING AND GLASS PARTITIONS (spec coverage, not placed in the review room)"),
+            (7, "QUEST PROPS: ELEVATOR AND RECEPTION TURNSTILE (state sets elevator, turnstile)"),
+            (8, "QUEST PROPS: TWIN CLOCK, CONFERENCE DOOR AND PROJECTED FORM (state sets clock_twin, conference_door)"),
+            (9, "QUEST PROPS: STAMPS, PINBOARD (state set pinboard), DESK VARIANTS AND DESK-FRONT OCCLUDERS"),
+            (10, "QUEST PROPS: REVIEW TABLE, KEYBOARDS, MAILROOM BOARD (state set mail_medals), TRAY, FOLDER"),
+            (11, "QUEST LIGHT: CORRIDOR STRIPE (state set corridor_stripe) AND THE WARM LAMP (state set lamp_warm)"),
+            (12, "ORIENTATION ARTIFACTS (16 x 16, inspectable)"),
+            (13, "COMPLETION: WEST WALL, GARDEN THROUGH-ROUTE (after state parts) AND THE SEATING NOOK (state set seating_nook)")]
 
 
 def build_atlas():
@@ -159,7 +167,10 @@ def main():
     res = build_room.build()
     bad = {k: v for k, v in res.items() if v}
     print("ZERO DIFF" if not bad else f"DIFFERS: {bad}")
-    sys.exit(1 if bad else 0)
+    import orientation_quest_room as oqr  # quest-prop proofs and checks (needs the atlas written above)
+    errs = oqr.build()
+    print("QUEST PROOF " + ("FAILED" if errs else "PASSED"))
+    sys.exit(1 if bad or errs else 0)
 
 
 if __name__ == "__main__":

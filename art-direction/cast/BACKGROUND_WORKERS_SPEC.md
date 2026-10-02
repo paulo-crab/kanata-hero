@@ -22,6 +22,10 @@
 | `bgworkers-in-room.png`, `bgworkers-sync-1366x768.gif` | Review room at ×4 with a synced pair on the tiny loop (16 frames) |
 | `bgworkers-relaxed-1366x768.png` | After level 06: individual idles |
 
+| `bgworker_seated_build.py` | Seated atlases, sheet, room render and GIF (called at the end of `build_bgworkers.build()`) |
+| `bgworker_{a,b}-seated-atlas[-olive\|-ash\|-silhouette\|-silhouette-lit].png`, `bgworker_{a,b}-seated-atlas.json` | Seated sets: rows idle, typing, phone, coffee, 2 frames each, facing S; JSON carries the seat offsets and desk pairing |
+| `bgworkers-seated-sheet.png`, `bgworkers-seated-room-1366x768.png`, `bgworkers-seated-1366x768.gif` | Proofs: frames at ×8 with the hidden rows shaded, every palette in place at ×4, the Orientation floor with real desks, chairs and occluders at ×4 (synced typing row over an individual row), animated |
+
 Rebuild: `python3 build_bgworkers.py`. Check: `python3 ../gate1/check_gate1.py bgworker_a_sprites`, the same for `bgworker_b_sprites`, then `python3 check_bgworkers.py`.
 
 ## Silhouette (how the extras differ from the cast at 1×)
@@ -47,7 +51,16 @@ Rebuild: `python3 build_bgworkers.py`. Check: `python3 ../gate1/check_gate1.py b
 10. **Silhouette.** One flat ink fill `#343650` plus the outer contour `#202337`; the interior contour steps (eyes, arm gaps, hair edge) fill in so only the shape remains. A lit-edge variant (`silhouette_lit`) steps the upper-left contour to `#535971` for figures that stand against a light source. Same rows, same timing, so a renderer can swap atlases. Applies to the named cast's level-20 arrival as well, via the same helpers.
 11. **Idle stance.** Level feet (both on row 23), unlike the Engineer's asymmetric stance, so extras read as less characterful.
 12. **West is hand-drawn.** W grids were drafted from the mirrored E grids and re-lit by hand so the light stays upper-left (Gate 1 rule).
-13. **Scope.** Seated-at-desk work is not drawn here; seated workers need a desk occluder and belong with the environment kit (task 4). No worker is interactable (brief open question 2). Variant counts per district stay at two bodies × three palettes (brief open question 1).
+13. **Scope.** No worker is interactable (brief open question 2). Variant counts per district stay at two bodies × three palettes (brief open question 1). Seated work is decision 14 onward.
+
+## Seated at a desk (director decisions)
+
+14. **Facing: S only.** The kit seats a worker behind the desk facing the camera (chair at desk origin + (8, -12), `feet_bc` at desk origin + (16, 4), `desk_a_front` / `desk_b_front` drawn after actors). A back-to-viewer N seat would need a chair and occluder on the camera side, which the kit does not have, so N is not drawn. Recorded in the seated JSON as `facing: "s"`.
+15. **Rows 0-14 carry everything.** The occluder covers rows 15-19 at columns 1-14 and rows 20-23 entirely, and its monitor housing sits right under the shoulders, so only the head and a thin shoulder band show. Heads are the standing S heads unchanged. Hands, phone and mug are drawn in rows 11-14. Rows 15-23 keep the standing lower body (drawn, hidden); columns 0 and 15 are empty below row 14 because the occluder leaves them visible.
+16. **Sets.** `idle` (hands resting inward, 1 px settle, 500 ms), `typing` (hands alternate rows 13 and 14, no settle, 250 ms, because the keyboard is behind the monitor and alternating hands is the only readable cue), `phone` (both hands, phone at the chest, screen scrolls, 500 ms; no settle so the bezel stays above row 15), `coffee` (mug at rows 11-13, 500 ms). All read in the room proof; typing and phone are small at 1×, as expected for background extras.
+17. **Pairing.** Body A defaults to `desk_a`, B to `desk_b`; the desks share one shape and occluder rows, so either body fits either desk. All three palettes and both silhouette atlases use the same rows.
+18. **Sync.** Before level 06 a seated group plays `typing` on one shared 250 ms clock with no offset; after level 06 each worker takes one set with a random `start_offset_ms` (0-999). Recorded in the JSON under `sync`.
+19. **Rules kept.** No faces needing portraits, muted tops, no marker or violet hex, hair/skin contrast, all enforced by `check_bgworkers.py` on the new frames too. The checker also loads the real occluder sprites from `kit/orientation-atlas.json` and fails if either covers a pixel in rows 0-14, if a prop key sits below row 14, or if columns 0/15 are used below row 14.
 
 ## Acceptance criteria
 

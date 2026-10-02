@@ -1,0 +1,4121 @@
+{
+  "size_cells": [
+    36,
+    16
+  ],
+  "floor": [
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV"
+  ],
+  "floor_legend": {
+    "J": "floor_j",
+    "H": "floor_h",
+    "V": "floor_v",
+    "P": "floor_p"
+  },
+  "placements": [
+    {
+      "id": "wall_n_4",
+      "entry": "wall_n_plain",
+      "cell": [
+        3,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_5",
+      "entry": "wall_n_plain",
+      "cell": [
+        4,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_6",
+      "entry": "wall_n_plain",
+      "cell": [
+        5,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_7",
+      "entry": "wall_n_plain",
+      "cell": [
+        6,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_8",
+      "entry": "wall_n_plain",
+      "cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_9",
+      "entry": "wall_n_plain",
+      "cell": [
+        8,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_10",
+      "entry": "wall_n_plain",
+      "cell": [
+        9,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_11",
+      "entry": "wall_n_plain",
+      "cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_12",
+      "entry": "wall_n_plain",
+      "cell": [
+        11,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_13",
+      "entry": "wall_n_plain",
+      "cell": [
+        12,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_14",
+      "entry": "wall_n_plain",
+      "cell": [
+        13,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_15",
+      "entry": "wall_n_plain",
+      "cell": [
+        14,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_16",
+      "entry": "wall_n_plain",
+      "cell": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_17",
+      "entry": "wall_n_plain",
+      "cell": [
+        16,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_18",
+      "entry": "wall_n_plain",
+      "cell": [
+        17,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_19",
+      "entry": "wall_n_plain",
+      "cell": [
+        18,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_20",
+      "entry": "wall_n_plain",
+      "cell": [
+        19,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_21",
+      "entry": "wall_n_plain",
+      "cell": [
+        20,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_22",
+      "entry": "wall_n_plain",
+      "cell": [
+        21,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_23",
+      "entry": "wall_n_plain",
+      "cell": [
+        22,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_24",
+      "entry": "wall_n_plain",
+      "cell": [
+        23,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_25",
+      "entry": "wall_n_plain",
+      "cell": [
+        24,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_26",
+      "entry": "wall_n_plain",
+      "cell": [
+        25,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_27",
+      "entry": "wall_n_plain",
+      "cell": [
+        26,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_28",
+      "entry": "wall_n_plain",
+      "cell": [
+        27,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_29",
+      "entry": "wall_n_plain",
+      "cell": [
+        28,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_30",
+      "entry": "wall_n_plain",
+      "cell": [
+        29,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_31",
+      "entry": "wall_n_plain",
+      "cell": [
+        30,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_32",
+      "entry": "wall_n_plain",
+      "cell": [
+        31,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_33",
+      "entry": "wall_n_plain",
+      "cell": [
+        32,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_34",
+      "entry": "wall_n_plain",
+      "cell": [
+        33,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_35",
+      "entry": "wall_n_plain",
+      "cell": [
+        34,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_36",
+      "entry": "wall_n_plain",
+      "cell": [
+        35,
+        0
+      ]
+    },
+    {
+      "id": "window_annex",
+      "entry": "wall_n_window_b",
+      "cell": [
+        4,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "window_margin_a",
+      "entry": "wall_n_window_a",
+      "cell": [
+        9,
+        0
+      ],
+      "offset": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "window_margin_b",
+      "entry": "wall_n_window_b",
+      "cell": [
+        11,
+        0
+      ],
+      "offset": [
+        14,
+        9
+      ]
+    },
+    {
+      "id": "window_gallery_a",
+      "entry": "wall_n_window_a",
+      "cell": [
+        17,
+        0
+      ],
+      "offset": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "window_gallery_b",
+      "entry": "wall_n_window_b",
+      "cell": [
+        21,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "window_gallery_c",
+      "entry": "wall_n_window_a",
+      "cell": [
+        25,
+        0
+      ],
+      "offset": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "window_chamber",
+      "entry": "wall_n_window_b",
+      "cell": [
+        31,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "wall_e_annex",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        2
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_2",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        3
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_3",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        4
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_4",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        5
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_5",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        6
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_6",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        10
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_s_annex",
+      "entry": "wall_n_plain",
+      "cell": [
+        0,
+        11
+      ]
+    },
+    {
+      "id": "wall_s_annex_2",
+      "entry": "wall_n_plain",
+      "cell": [
+        1,
+        11
+      ]
+    },
+    {
+      "id": "wall_s_annex_3",
+      "entry": "wall_n_plain",
+      "cell": [
+        2,
+        11
+      ]
+    },
+    {
+      "id": "wall_s_annex_4",
+      "entry": "wall_n_plain",
+      "cell": [
+        3,
+        11
+      ]
+    },
+    {
+      "id": "wall_s_annex_5",
+      "entry": "wall_n_plain",
+      "cell": [
+        4,
+        11
+      ]
+    },
+    {
+      "id": "wall_s_annex_6",
+      "entry": "wall_n_plain",
+      "cell": [
+        5,
+        11
+      ]
+    },
+    {
+      "id": "wall_e_annex_7",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        11
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_annex_8",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        12
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "stacks_sw",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "stacks_sw_2",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        2,
+        13
+      ]
+    },
+    {
+      "id": "stacks_sw_3",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        4,
+        13
+      ]
+    },
+    {
+      "id": "stacks_sw_4",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        6,
+        13
+      ]
+    },
+    {
+      "id": "stacks_sw_5",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        0,
+        14
+      ]
+    },
+    {
+      "id": "stacks_sw_6",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        2,
+        14
+      ]
+    },
+    {
+      "id": "stacks_sw_7",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        4,
+        14
+      ]
+    },
+    {
+      "id": "stacks_sw_8",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        6,
+        14
+      ]
+    },
+    {
+      "id": "stacks_sw_9",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "stacks_sw_10",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        2,
+        15
+      ]
+    },
+    {
+      "id": "stacks_sw_11",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        4,
+        15
+      ]
+    },
+    {
+      "id": "stacks_sw_12",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        6,
+        15
+      ]
+    },
+    {
+      "id": "wall_e_hub",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        2
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_2",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        6
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_3",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        7
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_4",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        8
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_5",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        9
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_6",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        10
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_7",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        11
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_hub_8",
+      "entry": "wall_e_plain",
+      "cell": [
+        28,
+        15
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        2
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_2",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        3
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_3",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        4
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_4",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        5
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_5",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        6
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_6",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        7
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_7",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        8
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_8",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        9
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_9",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        10
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_10",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        11
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_11",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        12
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_12",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        13
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_13",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        14
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_far_14",
+      "entry": "wall_e_plain",
+      "cell": [
+        34,
+        15
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "repair_door",
+      "entry": "repair_door_closed",
+      "cell": [
+        6,
+        7
+      ],
+      "state_set": "repair_door",
+      "state": "closed"
+    },
+    {
+      "id": "review_door",
+      "entry": "archive_door_closed",
+      "cell": [
+        28,
+        3
+      ],
+      "offset": [
+        0,
+        8
+      ],
+      "state_set": "archive_door",
+      "state": "closed"
+    },
+    {
+      "id": "divider_x14",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        2
+      ]
+    },
+    {
+      "id": "divider_x14_2",
+      "entry": "cabinet_1x1",
+      "cell": [
+        14,
+        3
+      ]
+    },
+    {
+      "id": "divider_x14_3",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        4
+      ]
+    },
+    {
+      "id": "divider_x14_4",
+      "entry": "cabinet_1x1",
+      "cell": [
+        14,
+        5
+      ]
+    },
+    {
+      "id": "divider_x14_5",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        6
+      ]
+    },
+    {
+      "id": "divider_x14_6",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        11
+      ]
+    },
+    {
+      "id": "divider_x14_7",
+      "entry": "cabinet_1x1",
+      "cell": [
+        14,
+        12
+      ]
+    },
+    {
+      "id": "divider_x14_8",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        13
+      ]
+    },
+    {
+      "id": "divider_x14_9",
+      "entry": "cabinet_1x1",
+      "cell": [
+        14,
+        14
+      ]
+    },
+    {
+      "id": "divider_x14_10",
+      "entry": "shelf_1x1",
+      "cell": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "divider_margin",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        8,
+        6
+      ]
+    },
+    {
+      "id": "divider_margin_2",
+      "entry": "shelf_1x1",
+      "cell": [
+        10,
+        6
+      ]
+    },
+    {
+      "id": "margin_gate",
+      "entry": "cabinet_gate_misaligned",
+      "cell": [
+        11,
+        6
+      ],
+      "state_set": "cabinet_gate",
+      "state": "misaligned",
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "divider_margin_3",
+      "entry": "shelf_1x1",
+      "cell": [
+        13,
+        6
+      ]
+    },
+    {
+      "id": "divider_log",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        8,
+        11
+      ]
+    },
+    {
+      "id": "divider_log_2",
+      "entry": "cabinet_1x1",
+      "cell": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "divider_log_3",
+      "entry": "cabinet_1x1",
+      "cell": [
+        13,
+        11
+      ]
+    },
+    {
+      "id": "divider_gallery",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        15,
+        6
+      ]
+    },
+    {
+      "id": "divider_gallery_2",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        17,
+        6
+      ]
+    },
+    {
+      "id": "divider_gallery_3",
+      "entry": "cabinet_2x1",
+      "cell": [
+        19,
+        6
+      ]
+    },
+    {
+      "id": "divider_gallery_6",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        26,
+        6
+      ]
+    },
+    {
+      "id": "file_wall",
+      "entry": "file_wall_closed",
+      "cell": [
+        29,
+        10
+      ],
+      "state_set": "file_wall",
+      "state": "closed"
+    },
+    {
+      "id": "archive_desk",
+      "landmark": "archive_desk",
+      "cell": [
+        19,
+        9
+      ],
+      "state": "before"
+    },
+    {
+      "id": "pace_directory_annex",
+      "entry": "pace_directory",
+      "cell": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "pace_sign_annex",
+      "entry": "pace_wall_sign_2x1",
+      "cell": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "pace_sign_gallery",
+      "entry": "pace_wall_sign_2x1",
+      "cell": [
+        14,
+        1
+      ]
+    },
+    {
+      "id": "pace_sign_chamber",
+      "entry": "pace_wall_sign_2x1",
+      "cell": [
+        33,
+        1
+      ]
+    },
+    {
+      "id": "door_panel",
+      "entry": "door_panel_address_idle",
+      "cell": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "annex_desk",
+      "entry": "desk_b",
+      "cell": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "annex_chair",
+      "entry": "chair",
+      "cell": [
+        0,
+        5
+      ],
+      "offset": [
+        11,
+        6
+      ]
+    },
+    {
+      "id": "annex_plant",
+      "entry": "pot_plant_c",
+      "cell": [
+        5,
+        3
+      ],
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "annex_plant_2",
+      "entry": "pot_plant_b",
+      "cell": [
+        5,
+        10
+      ],
+      "offset": [
+        2,
+        8
+      ]
+    },
+    {
+      "id": "desk_hub_west",
+      "entry": "desk_a",
+      "cell": [
+        15,
+        15
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "chair_hub_west",
+      "entry": "chair",
+      "cell": [
+        17,
+        15
+      ],
+      "offset": [
+        11,
+        6
+      ]
+    },
+    {
+      "id": "desk_hub_east",
+      "entry": "desk_a",
+      "cell": [
+        25,
+        15
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "chair_hub_east",
+      "entry": "chair",
+      "cell": [
+        24,
+        15
+      ],
+      "offset": [
+        11,
+        6
+      ]
+    },
+    {
+      "id": "hub_plant",
+      "entry": "pot_plant_d",
+      "cell": [
+        15,
+        7
+      ],
+      "offset": [
+        2,
+        8
+      ]
+    },
+    {
+      "id": "hub_plant_2",
+      "entry": "pot_plant_a",
+      "cell": [
+        27,
+        11
+      ],
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "log_cabinet",
+      "entry": "cabinet_labels_offset",
+      "cell": [
+        8,
+        15
+      ],
+      "state_set": "cabinet_labels",
+      "state": "offset"
+    },
+    {
+      "id": "log_cabinet_2",
+      "entry": "cabinet_labels_offset",
+      "cell": [
+        10,
+        15
+      ],
+      "state_set": "cabinet_labels",
+      "state": "offset"
+    },
+    {
+      "id": "log_cabinet_3",
+      "entry": "cabinet_labels_offset",
+      "cell": [
+        12,
+        15
+      ],
+      "state_set": "cabinet_labels",
+      "state": "offset"
+    },
+    {
+      "id": "log_terminal",
+      "entry": "terminal_desk",
+      "cell": [
+        12,
+        14
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "log_plant",
+      "entry": "pot_plant_c",
+      "cell": [
+        8,
+        12
+      ],
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "ledger_table_2",
+      "entry": "desk_b",
+      "cell": [
+        12,
+        2
+      ]
+    },
+    {
+      "id": "light_shaft_margin",
+      "entry": "light_shaft",
+      "cell": [
+        9,
+        2
+      ],
+      "offset": [
+        6,
+        2
+      ]
+    },
+    {
+      "id": "gallery_shelf",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        15,
+        2
+      ]
+    },
+    {
+      "id": "gallery_shelf_2",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        17,
+        2
+      ]
+    },
+    {
+      "id": "gallery_shelf_3",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        21,
+        2
+      ]
+    },
+    {
+      "id": "upper_lamp",
+      "entry": "lamp_off",
+      "cell": [
+        23,
+        2
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "upper_desk",
+      "entry": "desk_a",
+      "cell": [
+        24,
+        2
+      ]
+    },
+    {
+      "id": "gallery_shelf_4",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        26,
+        2
+      ]
+    },
+    {
+      "id": "rolling_shelf",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        16,
+        5
+      ]
+    },
+    {
+      "id": "light_shaft_gallery",
+      "entry": "light_shaft",
+      "cell": [
+        17,
+        2
+      ],
+      "offset": [
+        6,
+        2
+      ]
+    },
+    {
+      "id": "light_shaft_gallery_2",
+      "entry": "light_shaft",
+      "cell": [
+        21,
+        2
+      ],
+      "offset": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "light_shaft_gallery_3",
+      "entry": "light_shaft",
+      "cell": [
+        25,
+        2
+      ],
+      "offset": [
+        6,
+        2
+      ]
+    },
+    {
+      "id": "review_terminal",
+      "entry": "terminal_desk",
+      "cell": [
+        31,
+        2
+      ]
+    },
+    {
+      "id": "chamber_desk",
+      "entry": "desk_a",
+      "cell": [
+        30,
+        5
+      ]
+    },
+    {
+      "id": "chamber_chair",
+      "entry": "chair",
+      "cell": [
+        31,
+        6
+      ],
+      "offset": [
+        11,
+        6
+      ]
+    },
+    {
+      "id": "chamber_plant",
+      "entry": "pot_plant_a",
+      "cell": [
+        33,
+        9
+      ],
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "light_shaft_chamber",
+      "entry": "light_shaft",
+      "cell": [
+        31,
+        2
+      ],
+      "offset": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "pocket_plant",
+      "entry": "pot_plant_d",
+      "cell": [
+        30,
+        15
+      ],
+      "offset": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "pocket_lamp",
+      "entry": "lamp_off",
+      "cell": [
+        30,
+        12
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "route_inlay_annex_n",
+      "entry": "route_inlay",
+      "cell": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s",
+      "entry": "route_inlay",
+      "cell": [
+        0,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_annex_n_2",
+      "entry": "route_inlay",
+      "cell": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s_2",
+      "entry": "route_inlay",
+      "cell": [
+        1,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_annex_n_3",
+      "entry": "route_inlay",
+      "cell": [
+        2,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s_3",
+      "entry": "route_inlay",
+      "cell": [
+        2,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_annex_n_4",
+      "entry": "route_inlay",
+      "cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s_4",
+      "entry": "route_inlay",
+      "cell": [
+        3,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_annex_n_5",
+      "entry": "route_inlay",
+      "cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s_5",
+      "entry": "route_inlay",
+      "cell": [
+        4,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_annex_n_6",
+      "entry": "route_inlay",
+      "cell": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_annex_s_6",
+      "entry": "route_inlay",
+      "cell": [
+        5,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n",
+      "entry": "route_inlay",
+      "cell": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s",
+      "entry": "route_inlay",
+      "cell": [
+        8,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_2",
+      "entry": "route_inlay",
+      "cell": [
+        9,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_2",
+      "entry": "route_inlay",
+      "cell": [
+        9,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_3",
+      "entry": "route_inlay",
+      "cell": [
+        10,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_3",
+      "entry": "route_inlay",
+      "cell": [
+        10,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_4",
+      "entry": "route_inlay",
+      "cell": [
+        11,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_4",
+      "entry": "route_inlay",
+      "cell": [
+        11,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_5",
+      "entry": "route_inlay",
+      "cell": [
+        12,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_5",
+      "entry": "route_inlay",
+      "cell": [
+        12,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_6",
+      "entry": "route_inlay",
+      "cell": [
+        13,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_6",
+      "entry": "route_inlay",
+      "cell": [
+        13,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_n_7",
+      "entry": "route_inlay",
+      "cell": [
+        14,
+        8
+      ]
+    },
+    {
+      "id": "route_inlay_foyer_s_7",
+      "entry": "route_inlay",
+      "cell": [
+        14,
+        9
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "route_arrow_annex",
+      "entry": "route_arrow_e",
+      "cell": [
+        2,
+        8
+      ],
+      "offset": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "route_arrow_foyer",
+      "entry": "route_arrow_e",
+      "cell": [
+        11,
+        8
+      ],
+      "offset": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "elevator",
+      "entry": "elevator_closed",
+      "cell": [
+        0,
+        0
+      ],
+      "state_set": "elevator",
+      "state": "closed",
+      "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
+    },
+    {
+      "id": "elevator_call_panel",
+      "entry": "elevator_call_panel",
+      "cell": [
+        3,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "wall_e_annex_door_sill",
+      "entry": "wall_e_plain",
+      "cell": [
+        6,
+        9
+      ],
+      "offset": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "ladder_gate",
+      "entry": "rolling_ladder_closed",
+      "cell": [
+        21,
+        6
+      ],
+      "state_set": "rolling_ladder",
+      "state": "closed"
+    },
+    {
+      "id": "divider_gallery_5",
+      "entry": "shelf_1x1",
+      "cell": [
+        25,
+        6
+      ]
+    },
+    {
+      "id": "ledger_table",
+      "entry": "ledger_table_before",
+      "cell": [
+        8,
+        2
+      ],
+      "state_set": "ledger_table",
+      "state": "before"
+    },
+    {
+      "id": "report_table",
+      "entry": "report_table_before",
+      "cell": [
+        19,
+        2
+      ],
+      "state_set": "report_table",
+      "state": "before"
+    },
+    {
+      "id": "log_folders",
+      "entry": "folder_rack_drift",
+      "cell": [
+        8,
+        13
+      ],
+      "state_set": "folder_rack",
+      "state": "drift"
+    },
+    {
+      "id": "shelf_light_gallery_e",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        27,
+        5
+      ],
+      "offset": [
+        13,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_log_w",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        9,
+        10
+      ],
+      "offset": [
+        13,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_foyer_n",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        14,
+        10
+      ],
+      "offset": [
+        9,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "shelf_light_margin_e",
+      "entry": "shelf_end_light_off",
+      "cell": [
+        13,
+        5
+      ],
+      "offset": [
+        9,
+        2
+      ],
+      "state_set": "shelf_end_light",
+      "state": "off"
+    },
+    {
+      "id": "courier_chute",
+      "entry": "courier_chute_idle",
+      "cell": [
+        32,
+        13
+      ],
+      "state_set": "courier_chute",
+      "state": "idle"
+    },
+    {
+      "id": "artifact_carbon_copy_a",
+      "entry": "artifact_carbon_copy_a",
+      "cell": [
+        13,
+        14
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_margin_stamp",
+      "entry": "artifact_margin_stamp",
+      "cell": [
+        13,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_uncut_index",
+      "entry": "artifact_uncut_index",
+      "cell": [
+        15,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "artifact_noor_annotation",
+      "entry": "artifact_noor_annotation",
+      "cell": [
+        32,
+        2
+      ],
+      "offset": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "archive_ledger_mark",
+      "entry": "archive_ledger_mark_rejected",
+      "cell": [
+        20,
+        9
+      ],
+      "offset": [
+        10,
+        4
+      ],
+      "state_set": "ledger_mark",
+      "state": "rejected",
+      "note": "overlay at the archive_desk landmark origin (19,9) plus (26,4) px, as the kit proof room places it"
+    }
+  ],
+  "art_gap_entries": {},
+  "art_gap_state_sets": {},
+  "collision": [
+    "111111111111111111111111111111111111",
+    "111111111111111111111111111111111111",
+    "000011111111111111111111111111011011",
+    "000001110000001000000000000011000011",
+    "110000110000001000000000000011000011",
+    "100000110000001011000000000011110011",
+    "000001111111111111111111111111010011",
+    "000000110000000100000000000011000011",
+    "000000110000000000000000000011000011",
+    "000000110000000001011111100011000111",
+    "000001110000000000011111000011111111",
+    "111111111110011000011011000111000011",
+    "111111111000001001011011100000100011",
+    "111111111100001000000000000000001111",
+    "111111110000111000000000000000000011",
+    "111111111111111111000000111011100011"
+  ],
+  "gates": [
+    {
+      "id": "gate_repair_door",
+      "kind": "door",
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "opens_after": "records-07",
+      "placement": "repair_door",
+      "visible_change": "The repair door retracts and Noor steps out from behind the circular desk.",
+      "locked_hint": "The door panel asks for an address; the way back to the elevator stays open."
+    },
+    {
+      "id": "gate_margin",
+      "kind": "door",
+      "cells": [
+        [
+          11,
+          6
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "opens_after": "records-08",
+      "placement": "margin_gate",
+      "visible_change": "The offset cabinets square up against the shelf line and the margin-room doorway opens.",
+      "locked_hint": "Two cabinets sit crooked across the doorway; fix the log first."
+    },
+    {
+      "id": "gate_ladder",
+      "kind": "door",
+      "cells": [
+        [
+          22,
+          6
+        ],
+        [
+          23,
+          6
+        ]
+      ],
+      "opens_after": "records-09",
+      "placement": "ladder_gate",
+      "visible_change": "The rolling ladder slides along its rail and uncovers the gallery doorway.",
+      "locked_hint": "A ladder is parked across the stairs to the gallery; the ledger room moves it."
+    },
+    {
+      "id": "gate_review_door",
+      "kind": "door",
+      "cells": [
+        [
+          28,
+          3
+        ],
+        [
+          29,
+          3
+        ],
+        [
+          28,
+          4
+        ],
+        [
+          29,
+          4
+        ],
+        [
+          28,
+          5
+        ],
+        [
+          29,
+          5
+        ]
+      ],
+      "opens_after": "records-10",
+      "placement": "review_door",
+      "visible_change": "The review chamber door slides open at the east end of the gallery.",
+      "locked_hint": "The review chamber door shows the long report; cite it to open it."
+    },
+    {
+      "id": "gate_file_wall",
+      "kind": "shortcut",
+      "cells": [
+        [
+          31,
+          10
+        ],
+        [
+          32,
+          10
+        ]
+      ],
+      "opens_after": "records-11",
+      "placement": "file_wall",
+      "visible_change": "The sliding file wall opens a two-cell corridor from the review chamber to Mira's chute.",
+      "locked_hint": "The file wall closes the loop to Mira; it is visible from both sides."
+    }
+  ],
+  "zones": [
+    {
+      "id": "annex",
+      "kind": "corridor",
+      "rect": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "note": "Arrival annex: entrance, north-wall elevator, repair door panel"
+    },
+    {
+      "id": "hub",
+      "kind": "hub",
+      "rect": [
+        8,
+        7,
+        20,
+        9
+      ],
+      "note": "Foyer and ring around the circular archive desk"
+    },
+    {
+      "id": "log_room",
+      "kind": "task_room",
+      "rect": [
+        8,
+        12,
+        6,
+        4
+      ],
+      "level": "records-08"
+    },
+    {
+      "id": "log_branch",
+      "kind": "branch",
+      "rect": [
+        11,
+        11,
+        2,
+        1
+      ],
+      "level": "records-08"
+    },
+    {
+      "id": "margin_room",
+      "kind": "task_room",
+      "rect": [
+        8,
+        2,
+        6,
+        4
+      ],
+      "level": "records-09"
+    },
+    {
+      "id": "margin_branch",
+      "kind": "branch",
+      "rect": [
+        11,
+        6,
+        2,
+        1
+      ],
+      "level": "records-09"
+    },
+    {
+      "id": "gallery",
+      "kind": "task_room",
+      "rect": [
+        15,
+        2,
+        13,
+        4
+      ],
+      "level": "records-10"
+    },
+    {
+      "id": "gallery_branch",
+      "kind": "branch",
+      "rect": [
+        22,
+        6,
+        2,
+        1
+      ],
+      "level": "records-10"
+    },
+    {
+      "id": "review_chamber",
+      "kind": "review",
+      "rect": [
+        30,
+        2,
+        4,
+        8
+      ],
+      "level": "records-11"
+    },
+    {
+      "id": "chamber_branch",
+      "kind": "branch",
+      "rect": [
+        28,
+        3,
+        2,
+        3
+      ],
+      "level": "records-11"
+    },
+    {
+      "id": "file_wall_corridor",
+      "kind": "corridor",
+      "rect": [
+        31,
+        10,
+        2,
+        1
+      ],
+      "note": "Opens after level 11"
+    },
+    {
+      "id": "chute_pocket",
+      "kind": "branch",
+      "rect": [
+        30,
+        11,
+        4,
+        5
+      ],
+      "note": "Mira's mail chute"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "elevator",
+      "kind": "elevator",
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            0,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            1,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            2,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator",
+      "label": "Elevator (returns to every unlocked district)"
+    },
+    {
+      "id": "elevator_panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          3,
+          1
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            3,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator_call_panel",
+      "label": "Elevator map"
+    },
+    {
+      "id": "annex_directory",
+      "kind": "sign",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            4,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "pace_directory_annex",
+      "label": "Pace directory"
+    },
+    {
+      "id": "annex_desk",
+      "kind": "terminal",
+      "cells": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            1,
+            3
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            0,
+            3
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-courier-s3-annex-desk",
+      "level": "records-07",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "Annex desk (Courier Loop slip)"
+    },
+    {
+      "id": "door_panel",
+      "kind": "terminal",
+      "cells": [
+        [
+          5,
+          6
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            5,
+            7
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-07-s1-return",
+      "level": "records-07",
+      "label": "Repair door address panel"
+    },
+    {
+      "id": "repair_door",
+      "kind": "door",
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            5,
+            8
+          ],
+          "facing": "e"
+        }
+      ],
+      "placement": "repair_door",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "Repair door"
+    },
+    {
+      "id": "noor",
+      "kind": "npc",
+      "cells": [
+        [
+          21,
+          11
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            21,
+            12
+          ],
+          "facing": "n"
+        }
+      ],
+      "npc": "noor",
+      "dialogue_id": "r08-noor-intro",
+      "label": "Noor, archive clerk"
+    },
+    {
+      "id": "mira",
+      "kind": "mira",
+      "cells": [
+        [
+          31,
+          13
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            30,
+            13
+          ],
+          "facing": "e"
+        }
+      ],
+      "npc": "mira",
+      "dialogue_id": "rc-mira-offer",
+      "requires": [
+        "level:records-07"
+      ],
+      "visible_when": "state:records-07",
+      "label": "Mira at the mail chute"
+    },
+    {
+      "id": "courier_chute",
+      "kind": "sign",
+      "cells": [
+        [
+          32,
+          13
+        ],
+        [
+          33,
+          13
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            32,
+            12
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            33,
+            12
+          ],
+          "facing": "s"
+        }
+      ],
+      "placement": "courier_chute",
+      "label": "Courier chute"
+    },
+    {
+      "id": "desk_hub_west",
+      "kind": "terminal",
+      "cells": [
+        [
+          15,
+          15
+        ],
+        [
+          16,
+          15
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            15,
+            14
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            16,
+            14
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-courier-s2-west-desk",
+      "level": "records-07",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "West hub desk (Courier Loop slip)"
+    },
+    {
+      "id": "desk_hub_east",
+      "kind": "terminal",
+      "cells": [
+        [
+          25,
+          15
+        ],
+        [
+          26,
+          15
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            25,
+            14
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            26,
+            14
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-courier-s1-east-desk",
+      "level": "records-07",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "East hub desk (Courier Loop slip)"
+    },
+    {
+      "id": "log_terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          12,
+          14
+        ],
+        [
+          13,
+          14
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            12,
+            13
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            13,
+            13
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-08-s1-step-back",
+      "level": "records-08",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "Log terminal"
+    },
+    {
+      "id": "log_cabinet_recall",
+      "kind": "terminal",
+      "cells": [
+        [
+          10,
+          15
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            10,
+            14
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            11,
+            14
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-08-s4-recall-cabinet",
+      "level": "records-08",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "Second log cabinet"
+    },
+    {
+      "id": "artifact_carbon_copy_a",
+      "kind": "artifact",
+      "cells": [
+        [
+          13,
+          14
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            13,
+            13
+          ],
+          "facing": "s"
+        }
+      ],
+      "placement": "artifact_carbon_copy_a",
+      "requires": [
+        "level:records-07"
+      ],
+      "label": "Carbon copy A"
+    },
+    {
+      "id": "log_glitch",
+      "kind": "glitch",
+      "cells": [
+        [
+          10,
+          13
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            10,
+            12
+          ],
+          "facing": "s"
+        }
+      ],
+      "label": "Folded form glitch"
+    },
+    {
+      "id": "folio_divider_cabinet",
+      "kind": "terminal",
+      "cells": [
+        [
+          10,
+          11
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            10,
+            10
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-folios-s3-divider-cabinet",
+      "level": "records-11",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Lost Folios drawer (divider cabinet)"
+    },
+    {
+      "id": "margin_gate",
+      "kind": "door",
+      "cells": [
+        [
+          11,
+          6
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            11,
+            7
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            12,
+            7
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "margin_gate",
+      "requires": [
+        "level:records-08"
+      ],
+      "label": "Margin-room cabinets"
+    },
+    {
+      "id": "ledger_terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            10,
+            3
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            11,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-09-s1-line-start",
+      "level": "records-09",
+      "requires": [
+        "level:records-08"
+      ],
+      "label": "Ledger terminal",
+      "placement": "ledger_table"
+    },
+    {
+      "id": "folio_ledger_desk",
+      "kind": "terminal",
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            12,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-folios-s2-ledger-desk",
+      "level": "records-11",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Lost Folios ledger desk"
+    },
+    {
+      "id": "artifact_margin_stamp",
+      "kind": "artifact",
+      "cells": [
+        [
+          13,
+          2
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            13,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_margin_stamp",
+      "requires": [
+        "level:records-08"
+      ],
+      "label": "Margin stamp"
+    },
+    {
+      "id": "ladder_gate",
+      "kind": "door",
+      "cells": [
+        [
+          22,
+          6
+        ],
+        [
+          23,
+          6
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            22,
+            7
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            23,
+            7
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "ladder_gate",
+      "requires": [
+        "level:records-09"
+      ],
+      "label": "Rolling ladder"
+    },
+    {
+      "id": "report_terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          19,
+          2
+        ],
+        [
+          20,
+          2
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            19,
+            3
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            20,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-10-s1-page-down",
+      "level": "records-10",
+      "requires": [
+        "level:records-09"
+      ],
+      "label": "Long report terminal",
+      "placement": "report_table"
+    },
+    {
+      "id": "upper_desk",
+      "kind": "terminal",
+      "cells": [
+        [
+          24,
+          2
+        ],
+        [
+          25,
+          2
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            24,
+            3
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            25,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-side-misfiled-minute-s1",
+      "level": "records-11",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Upper desk (Misfiled Minute)"
+    },
+    {
+      "id": "artifact_uncut_index",
+      "kind": "artifact",
+      "cells": [
+        [
+          15,
+          2
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            15,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_uncut_index",
+      "requires": [
+        "level:records-09"
+      ],
+      "label": "Uncut index"
+    },
+    {
+      "id": "folio_gallery_shelf",
+      "kind": "terminal",
+      "cells": [
+        [
+          16,
+          5
+        ],
+        [
+          17,
+          5
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            16,
+            4
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            17,
+            4
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-folios-s1-gallery-shelf",
+      "level": "records-11",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Lost Folios rolling shelf"
+    },
+    {
+      "id": "review_door",
+      "kind": "door",
+      "cells": [
+        [
+          28,
+          3
+        ],
+        [
+          29,
+          3
+        ],
+        [
+          28,
+          4
+        ],
+        [
+          29,
+          4
+        ],
+        [
+          28,
+          5
+        ],
+        [
+          29,
+          5
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            27,
+            4
+          ],
+          "facing": "e"
+        }
+      ],
+      "placement": "review_door",
+      "requires": [
+        "level:records-10"
+      ],
+      "label": "Review chamber door"
+    },
+    {
+      "id": "review_terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          31,
+          2
+        ],
+        [
+          32,
+          2
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            31,
+            3
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            32,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "records-11-s1-shift-first",
+      "level": "records-11",
+      "requires": [
+        "level:records-10"
+      ],
+      "label": "Review terminal"
+    },
+    {
+      "id": "chamber_desk",
+      "kind": "terminal",
+      "cells": [
+        [
+          30,
+          5
+        ],
+        [
+          31,
+          5
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            30,
+            4
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            31,
+            4
+          ],
+          "facing": "s"
+        }
+      ],
+      "scene_id": "records-courier-s4-chamber-desk",
+      "level": "records-07",
+      "requires": [
+        "level:records-10"
+      ],
+      "label": "Review chamber desk (late Courier Loop slip)"
+    },
+    {
+      "id": "artifact_noor_annotation",
+      "kind": "artifact",
+      "cells": [
+        [
+          32,
+          2
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            32,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_noor_annotation",
+      "requires": [
+        "level:records-10"
+      ],
+      "label": "Noor's annotation"
+    },
+    {
+      "id": "file_wall",
+      "kind": "door",
+      "cells": [
+        [
+          31,
+          10
+        ],
+        [
+          32,
+          10
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            31,
+            9
+          ],
+          "facing": "s"
+        },
+        {
+          "cell": [
+            31,
+            11
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "file_wall",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Sliding file wall"
+    }
+  ],
+  "npcs": [
+    {
+      "id": "noor",
+      "character": "noor",
+      "start_cell": [
+        21,
+        11
+      ],
+      "facing": "s",
+      "poses_by_state": {
+        "start": "noor_posture_upright_s",
+        "records-07": "noor_posture_upright_s",
+        "records-08": "noor_interact_s",
+        "records-09": "noor_posture_upright_s",
+        "records-10": "noor_react_satisfied_s",
+        "records-11": "noor_idle_s"
+      },
+      "cells_by_state": {
+        "records-07": [
+          21,
+          13
+        ],
+        "records-08": [
+          9,
+          3
+        ],
+        "records-09": [
+          22,
+          4
+        ],
+        "records-10": [
+          30,
+          4
+        ],
+        "records-11": [
+          21,
+          13
+        ]
+      },
+      "note": "Noor follows the work. Posture ladder (the posture set plays once per cabinet step and holds its last frame): start and 07 hold posture_upright frame 0 (stooped), 07 outside the ring at the hub; 08 stamp-down (interact) in the margin room as the mark is accepted, then holds; 09 posture_upright frame 1 held, in the gallery; 10 a satisfied nod beside the original report, then waits in the review chamber; 11 base idle (fully upright) back at the hub. The hub talk interaction exists for the start position only; later lines arrive through dialogue conditions."
+    },
+    {
+      "id": "mira",
+      "character": "mira",
+      "start_cell": [
+        31,
+        13
+      ],
+      "facing": "e",
+      "poses_by_state": {
+        "start": "mira_idle_e",
+        "records-07": "mira_interact_e",
+        "records-11": "mira_react_confiding_e"
+      },
+      "note": "Absent until level 07 completes (interaction visible_when); the pocket shows the blinking chute before then."
+    }
+  ],
+  "routes": {
+    "main": [
+      {
+        "level": "records-07",
+        "from": [
+          0,
+          8
+        ],
+        "to": [
+          5,
+          7
+        ],
+        "cells": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "level": "records-08",
+        "from": [
+          5,
+          7
+        ],
+        "to": [
+          12,
+          13
+        ],
+        "cells": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            12,
+            9
+          ],
+          [
+            12,
+            10
+          ],
+          [
+            12,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            12,
+            13
+          ]
+        ]
+      },
+      {
+        "level": "records-09",
+        "from": [
+          12,
+          13
+        ],
+        "to": [
+          10,
+          3
+        ],
+        "cells": [
+          [
+            12,
+            13
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            3
+          ]
+        ]
+      },
+      {
+        "level": "records-10",
+        "from": [
+          10,
+          3
+        ],
+        "to": [
+          19,
+          3
+        ],
+        "cells": [
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            8
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            15,
+            8
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            17,
+            8
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            19,
+            8
+          ],
+          [
+            20,
+            8
+          ],
+          [
+            21,
+            8
+          ],
+          [
+            22,
+            8
+          ],
+          [
+            22,
+            7
+          ],
+          [
+            22,
+            6
+          ],
+          [
+            22,
+            5
+          ],
+          [
+            21,
+            5
+          ],
+          [
+            20,
+            5
+          ],
+          [
+            19,
+            5
+          ],
+          [
+            19,
+            4
+          ],
+          [
+            19,
+            3
+          ]
+        ]
+      },
+      {
+        "level": "records-11",
+        "from": [
+          19,
+          3
+        ],
+        "to": [
+          31,
+          3
+        ],
+        "cells": [
+          [
+            19,
+            3
+          ],
+          [
+            20,
+            3
+          ],
+          [
+            21,
+            3
+          ],
+          [
+            22,
+            3
+          ],
+          [
+            23,
+            3
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            26,
+            3
+          ],
+          [
+            27,
+            3
+          ],
+          [
+            28,
+            3
+          ],
+          [
+            29,
+            3
+          ],
+          [
+            30,
+            3
+          ],
+          [
+            31,
+            3
+          ]
+        ]
+      }
+    ],
+    "backtrack": [
+      {
+        "id": "return_to_entrance",
+        "from": [
+          31,
+          3
+        ],
+        "to": [
+          0,
+          8
+        ],
+        "cells": [
+          [
+            31,
+            3
+          ],
+          [
+            30,
+            3
+          ],
+          [
+            29,
+            3
+          ],
+          [
+            28,
+            3
+          ],
+          [
+            27,
+            3
+          ],
+          [
+            26,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            23,
+            3
+          ],
+          [
+            22,
+            3
+          ],
+          [
+            22,
+            4
+          ],
+          [
+            22,
+            5
+          ],
+          [
+            22,
+            6
+          ],
+          [
+            22,
+            7
+          ],
+          [
+            21,
+            7
+          ],
+          [
+            20,
+            7
+          ],
+          [
+            19,
+            7
+          ],
+          [
+            18,
+            7
+          ],
+          [
+            17,
+            7
+          ],
+          [
+            16,
+            7
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            15,
+            8
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            13,
+            8
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "label": "Review chamber back to the entrance the way you came (every gate stays open)."
+      },
+      {
+        "id": "file_wall_loop",
+        "from": [
+          31,
+          3
+        ],
+        "to": [
+          32,
+          12
+        ],
+        "cells": [
+          [
+            31,
+            3
+          ],
+          [
+            32,
+            3
+          ],
+          [
+            32,
+            4
+          ],
+          [
+            32,
+            5
+          ],
+          [
+            32,
+            6
+          ],
+          [
+            32,
+            7
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            9
+          ],
+          [
+            32,
+            10
+          ],
+          [
+            32,
+            11
+          ],
+          [
+            32,
+            12
+          ]
+        ],
+        "after": "records-11",
+        "label": "Review chamber straight down the opened file wall to Mira's chute."
+      },
+      {
+        "id": "hub_to_elevator",
+        "from": [
+          21,
+          14
+        ],
+        "to": [
+          1,
+          3
+        ],
+        "cells": [
+          [
+            21,
+            14
+          ],
+          [
+            20,
+            14
+          ],
+          [
+            19,
+            14
+          ],
+          [
+            18,
+            14
+          ],
+          [
+            17,
+            14
+          ],
+          [
+            16,
+            14
+          ],
+          [
+            15,
+            14
+          ],
+          [
+            15,
+            13
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            15,
+            11
+          ],
+          [
+            15,
+            10
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            13,
+            10
+          ],
+          [
+            12,
+            10
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "label": "Hub to the elevator arrival cell through the open repair door (row 8), then north along the annex."
+      }
+    ],
+    "mira": {
+      "courier-loop": [
+        [
+          25,
+          14
+        ],
+        [
+          15,
+          14
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          33,
+          12
+        ]
+      ],
+      "lost-folios": [
+        [
+          16,
+          4
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          33,
+          12
+        ]
+      ]
+    }
+  },
+  "spawns": [
+    {
+      "id": "from_orientation",
+      "cell": [
+        0,
+        8
+      ],
+      "facing": "e",
+      "when": "state:start"
+    },
+    {
+      "id": "from_elevator",
+      "cell": [
+        1,
+        3
+      ],
+      "facing": "s",
+      "when": "state:start"
+    },
+    {
+      "id": "hub_return",
+      "cell": [
+        21,
+        14
+      ],
+      "facing": "n",
+      "when": "state:records-07"
+    },
+    {
+      "id": "chute_return",
+      "cell": [
+        32,
+        12
+      ],
+      "facing": "w",
+      "when": "state:records-11"
+    }
+  ],
+  "notes": [
+    "Collision is the initial state: every progression gate starts blocked and its cells are listed under gates.",
+    "Approach facing is the direction the avatar faces toward the target.",
+    "Lamp placements marked state off are the shelf-end, ledger, upper-desk and chute lamps; they wake through the light states in district.json."
+  ]
+}

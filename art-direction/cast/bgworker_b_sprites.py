@@ -157,3 +157,19 @@ IDLE_VARIANTS = {
         13: "..osprrrmmrpqo..", 14: "..ospmmrrrrpqo..", 15: "..osprrrrrrpqo..", 16: "..osoOPPPPOoqo..",
     }, alt={13: "..ospmmrrrrpqo..", 14: "..osprrrmmrpqo.."}),
 }
+
+
+# Seated at a desk. See body A for the convention; the same rows carry the arms, with B's wider sleeves.
+_HIPS = {15: "..ospqwxxwqpqo..", 16: "..osoOPPPPOoqo.."}
+SEATED = {
+    "idle": common.seated(S, {**_HIPS, 14: "..osprmrrmrpqo.."}),
+    "typing": common.seated(S, {**_HIPS, 13: "..osprmrrrrpqo..", 14: "..osprrrrmrpqo.."},
+                            alt={13: "..osprrrrmrpqo..", 14: "..osprmrrrrpqo.."}, settle=False),
+    "phone": common.seated(S, {**_HIPS, 11: "..ossrggggrqqo..", 12: "..ospmgjjgmpqo..",
+                               13: "..ospmgjhgmpqo..", 14: "..osprggggrpqo.."},
+                           alt={12: "..ospmgjhgmpqo..", 13: "..ospmgjjgmpqo.."}, settle=False),
+    "coffee": common.seated(S, {**_HIPS, 11: "..osprriSirrpqo.", 12: "..ospmfffeqpqo..",
+                                13: "..ospreeerrpmo..", 14: "..osprrqrrrpqo.."}),
+}
+EXTRA = {f"seated_{k}": {"s": v} for k, v in SEATED.items()}
+EXTRA_MS = {f"seated_{k}": (250 if k == "typing" else 500) for k in SEATED}

@@ -1,0 +1,364 @@
+{
+ "version": "0.2",
+ "note": "Global ids every district's level data may refer to. Seal ids are the ones used in 'seal:<id>' requirements; link ids appear in district entrances, exits and elevator. Flags are persistent booleans; a district team that needs a new flag asks the producer to append it here. Version 0.2 adds the false-panel link link.panel.systems-nightshift.",
+ "districts": [
+  {
+   "id": "orientation",
+   "name": "Orientation",
+   "order": 1,
+   "levels": [
+    1,
+    6
+   ],
+   "size_cells": [
+    28,
+    18
+   ],
+   "elevator_stop": {
+    "link": "link.elevator.orientation",
+    "unlocked_by": null
+   },
+   "review_level": "orientation-06",
+   "mira_routes": [
+    "morning-mail"
+   ]
+  },
+  {
+   "id": "records",
+   "name": "Records",
+   "order": 2,
+   "levels": [
+    7,
+    11
+   ],
+   "size_cells": null,
+   "size_hint": "two 20x12 screens joined (levels.md 'about 2x(20x12)'); the Records team sets the exact size in its district.json",
+   "elevator_stop": {
+    "link": "link.elevator.records",
+    "unlocked_by": "orientation"
+   },
+   "review_level": "records-11",
+   "mira_routes": [
+    "courier-loop",
+    "lost-folios"
+   ]
+  },
+  {
+   "id": "systems",
+   "name": "Systems",
+   "order": 3,
+   "levels": [
+    12,
+    16
+   ],
+   "size_cells": [
+    38,
+    24
+   ],
+   "elevator_stop": {
+    "link": "link.elevator.systems",
+    "unlocked_by": "records"
+   },
+   "review_level": "systems-16",
+   "mira_routes": [
+    "payroll-run",
+    "glyph-dispatch"
+   ]
+  },
+  {
+   "id": "nightshift",
+   "name": "Night Shift",
+   "order": 4,
+   "levels": [
+    17,
+    19
+   ],
+   "size_cells": [
+    34,
+    20
+   ],
+   "elevator_stop": {
+    "link": "link.elevator.nightshift",
+    "unlocked_by": "systems"
+   },
+   "review_level": "nightshift-19",
+   "mira_routes": [
+    "lights-out-delivery"
+   ]
+  },
+  {
+   "id": "executive",
+   "name": "Executive Floor",
+   "order": 5,
+   "levels": [
+    20,
+    20
+   ],
+   "size_cells": [
+    30,
+    20
+   ],
+   "elevator_stop": {
+    "link": "link.elevator.executive",
+    "unlocked_by": "night"
+   },
+   "review_level": "executive-20",
+   "mira_routes": []
+  }
+ ],
+ "links": [
+  {
+   "id": "link.elevator.orientation",
+   "kind": "elevator",
+   "between": [
+    "orientation"
+   ],
+   "seal_required": null,
+   "label": "Orientation elevator stop (north wall, west end of the lobby); always available"
+  },
+  {
+   "id": "link.elevator.records",
+   "kind": "elevator",
+   "between": [
+    "records"
+   ],
+   "seal_required": "orientation",
+   "label": "Records elevator stop; opens with the Orientation seal"
+  },
+  {
+   "id": "link.elevator.systems",
+   "kind": "elevator",
+   "between": [
+    "systems"
+   ],
+   "seal_required": "records",
+   "label": "Systems elevator stop; opens with the Records seal"
+  },
+  {
+   "id": "link.elevator.nightshift",
+   "kind": "elevator",
+   "between": [
+    "nightshift"
+   ],
+   "seal_required": "systems",
+   "label": "Night Shift elevator stop; opens with the Systems seal"
+  },
+  {
+   "id": "link.elevator.executive",
+   "kind": "elevator",
+   "between": [
+    "executive"
+   ],
+   "seal_required": "night",
+   "label": "Executive Floor elevator stop; opens with the Night seal"
+  },
+  {
+   "id": "link.orientation-records",
+   "kind": "door",
+   "between": [
+    "orientation",
+    "records"
+   ],
+   "seal_required": "orientation",
+   "label": "Orientation east door (sliding glass, RECORDS mat) to the Records entrance door",
+   "cells": {
+    "orientation": [
+     26,
+     6
+    ],
+    "records": [
+     0,
+     8
+    ]
+   }
+  },
+  {
+   "id": "link.panel.systems-nightshift",
+   "kind": "panel",
+   "between": [
+    "systems",
+    "nightshift"
+   ],
+   "seal_required": "systems",
+   "label": "Systems false panel (Hal pulls it down after the Systems seal) to the Night Shift elevator stop. The Systems exit is on the machine face at (17,14); the Night Shift entrance is the elevator arrival cell (27,13).",
+   "cells": {
+    "systems": [
+     17,
+     14
+    ],
+    "nightshift": [
+     27,
+     13
+    ]
+   }
+  }
+ ],
+ "seals": [
+  {
+   "id": "orientation",
+   "name": "Orientation seal",
+   "level": "orientation-06",
+   "unlocks": "records"
+  },
+  {
+   "id": "records",
+   "name": "Records seal",
+   "level": "records-11",
+   "unlocks": "systems"
+  },
+  {
+   "id": "systems",
+   "name": "Systems seal",
+   "level": "systems-16",
+   "unlocks": "nightshift"
+  },
+  {
+   "id": "night",
+   "name": "Night seal",
+   "level": "nightshift-19",
+   "unlocks": "executive"
+  },
+  {
+   "id": "department-of-motion",
+   "name": "Department of Motion seal",
+   "level": "executive-20",
+   "unlocks": null
+  }
+ ],
+ "mira_routes": [
+  {
+   "id": "morning-mail",
+   "name": "Morning Mail",
+   "district": "orientation",
+   "available_after": "orientation-02",
+   "patch": "first_delivery",
+   "reward_extra": "mail tray for the player's desk"
+  },
+  {
+   "id": "courier-loop",
+   "name": "Courier Loop",
+   "district": "records",
+   "available_after": "records-07",
+   "patch": "clear_address"
+  },
+  {
+   "id": "lost-folios",
+   "name": "Lost Folios",
+   "district": "records",
+   "available_after": "records-11",
+   "patch": "archive_loop",
+   "reward_extra": "desk folder"
+  },
+  {
+   "id": "payroll-run",
+   "name": "Payroll Run",
+   "district": "systems",
+   "available_after": "systems-13",
+   "patch": "signed_and_sent"
+  },
+  {
+   "id": "glyph-dispatch",
+   "name": "Glyph Dispatch",
+   "district": "systems",
+   "available_after": "systems-16",
+   "patch": "signal_keeper",
+   "reward_extra": "miniature relay decoration"
+  },
+  {
+   "id": "lights-out-delivery",
+   "name": "Lights-Out Delivery",
+   "district": "nightshift",
+   "available_after": "nightshift-18",
+   "patch": "night_courier",
+   "reward_extra": "Mira's final story scene"
+  }
+ ],
+ "state_ids": {
+  "levels_done": [
+   "orientation-01",
+   "orientation-02",
+   "orientation-03",
+   "orientation-04",
+   "orientation-05",
+   "orientation-06",
+   "records-07",
+   "records-08",
+   "records-09",
+   "records-10",
+   "records-11",
+   "systems-12",
+   "systems-13",
+   "systems-14",
+   "systems-15",
+   "systems-16",
+   "nightshift-17",
+   "nightshift-18",
+   "nightshift-19",
+   "executive-20"
+  ],
+  "seals": [
+   "orientation",
+   "records",
+   "systems",
+   "night",
+   "department-of-motion"
+  ],
+  "artifacts": [
+   "unissued-badge",
+   "training-card",
+   "mirror-card",
+   "first-route-receipt",
+   "carbon-copy-a",
+   "margin-stamp",
+   "uncut-index",
+   "noors-annotation",
+   "id-envelope",
+   "alarm-strip",
+   "scoring-proof",
+   "original-routing-diagram",
+   "adas-shift-book",
+   "public-audit-copy"
+  ],
+  "patches": [
+   "first_delivery",
+   "clear_address",
+   "archive_loop",
+   "signed_and_sent",
+   "signal_keeper",
+   "night_courier"
+  ],
+  "mira_routes_cleared": [
+   "morning-mail",
+   "courier-loop",
+   "lost-folios",
+   "payroll-run",
+   "glyph-dispatch",
+   "lights-out-delivery"
+  ],
+  "flags": [
+   "setup-done",
+   "calibration-done",
+   "keyboard-macbook",
+   "keyboard-microsoft",
+   "practice-confirmed",
+   "welcome-popup-closed",
+   "turnstile-open",
+   "printer-steady",
+   "clock-synced",
+   "conference-door-open",
+   "left-desk-lit",
+   "right-desk-asymmetric",
+   "records-door-open",
+   "garden-cutthrough-open",
+   "workers-unsynced",
+   "ivo-nodding",
+   "mail-tray-on-desk",
+   "plant-tags-done",
+   "glitch-repaired-lobby",
+   "records-wall-open",
+   "systems-bridge-open",
+   "nightshift-corridor-lit",
+   "executive-door-open"
+  ]
+ }
+}

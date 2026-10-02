@@ -27,6 +27,7 @@ import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
+import quest_props as qp  # noqa: E402
 
 T = 16
 KIT = "executive"
@@ -889,17 +890,36 @@ def landmarks():
               "atrium_pots_before", "atrium_canopy_shadow", "atrium_canopy", "atrium_rail_front"]
     after = ["atrium_well", "atrium_inlay_after", "atrium_rail_back", "atrium_planter", "atrium_nameplates_after", "atrium_trunk",
              "atrium_pots_after", "atrium_canopy_shadow", "atrium_daylight_after", "atrium_canopy", "atrium_rail_front"]
+    def branch_state(name_done, route_done, count_done):
+        """The three branches change one atrium feature each (levels.md 20): The Name the nameplates, The Route the copper floor lines
+        (and the pots, the repeated geometry), The Count the daylight (the warm pool here, the window sets in the room) and the lamps."""
+        parts = ["atrium_well", "atrium_inlay_after" if route_done else "atrium_inlay_before", "atrium_rail_back", "atrium_planter",
+                 "atrium_nameplates_after" if name_done else "atrium_nameplates_before", "atrium_trunk",
+                 "atrium_pots_after" if route_done else "atrium_pots_before", "atrium_canopy_shadow"]
+        if count_done:
+            parts.append("atrium_daylight_after")
+        parts += ["atrium_canopy", "atrium_rail_front"]
+        return {"parts": parts, "lamps": {"anim": "lamp", "state": "pulse" if count_done else "on", "offsets_px": LAMP_OFFSETS}}
+    assert branch_state(0, 0, 0)["parts"] == before and branch_state(1, 1, 1)["parts"] == after
+    partial = {f"repaired_{k}": branch_state(*flags) for k, flags in (
+        ("name", (1, 0, 0)), ("route", (0, 1, 0)), ("count", (0, 0, 1)),
+        ("name_route", (1, 1, 0)), ("name_count", (1, 0, 1)), ("route_count", (0, 1, 1)))}
     return {
         "atrium_tree": {
             "note": "Executive landmark: a tall single tree in a raised round planter, inside a sunken atrium well edged with a glass balustrade. Every part is a full-size "
                     "sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The canopy is its own part (draws over the "
-                    "rail and the trunk); the south rail runs are front_prop so a person on the steps passes behind the newel posts.",
+                    "rail and the trunk); the south rail runs are front_prop so a person on the steps passes behind the newel posts. "
+                    "The three incident branches of level 20 can be done in any order, so besides before and after there is a state for every combination: "
+                    "repaired_name (The Name: the planter's nameplates become distinct), repaired_route (The Route: the copper floor lines straighten and the corner pots vary), "
+                    "repaired_count (The Count: the warm daylight pool and the lamps), and repaired_name_route, repaired_name_count, repaired_route_count. "
+                    "after is all three.",
             "size_px": [BOX_W, BOX_H],
             "footprint_origin_px": list(FP),
             "default_state": "before",
             "states": {
                 "before": {"parts": before, "lamps": {"anim": "lamp", "state": "on", "offsets_px": LAMP_OFFSETS}},
                 "after": {"parts": after, "lamps": {"anim": "lamp", "state": "pulse", "offsets_px": LAMP_OFFSETS}},
+                **partial,
             },
             "part_roles": {
                 "atrium_well": "base well", "atrium_rail_back": "base balustrade", "atrium_rail_front": "base balustrade", "atrium_planter": "base planter",
@@ -919,6 +939,251 @@ def landmarks():
     }
 
 
+# ------------------------------------------------------------------ 5. quest props (level 20: the three incident branches and the arriving coworkers' places)
+# Audit: QUEST_PROP_AUDIT.md (rows E1 to E11). Executive ramps only; copper is trim and wayfinding.
+
+QUEST_NAMES = set()
+QS = (64, 64)   # capture origin for every quest prop
+PAL.paper = PAL.floor      # paper and label plates are the pale limestone ramp; read only by quest_props.py
+
+
+def _quest(name, draw, fp, cells, collision, layer, kind, note, tags, y_sort=True, shadow=True, box=None):
+    p = ok.make(name, draw, fp, cells, collision, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=tags)
+    QUEST_NAMES.add(name)
+    return p
+
+
+def draw_branch_name(r, x0, y0, state):
+    """The Name branch's nameplate, a 40 x 12 copper wall plate on the navy wall. before: Pace's replacement, three orderly
+    pale bars (no name, no mark). after: the department's original name, irregular lettering runs after a small crest."""
+    r.rect(x0, y0, x0 + 40, y0 + 12, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 39, y0 + 11, ACC[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 39, y0 + 2, ACC[3])
+    r.rect(x0 + 1, y0 + 10, x0 + 39, y0 + 11, ACC[1])
+    r.rect(x0 + 3, y0 + 3, x0 + 37, y0 + 9, WALL[0])                    # the recessed text field
+    r.rect(x0 + 3, y0 + 3, x0 + 37, y0 + 4, INK[1])
+    if state == "before":
+        for by in (4, 6, 8):
+            r.rect(x0 + 5, y0 + by, x0 + 35, y0 + by + 1, FLOOR[2])
+    else:
+        crest = r.mask(x0 + 5, y0 + 4, x0 + 10, y0 + 9)                  # a small crest: a doorway
+        r.img[crest] = ACC[3]
+        r.rect(x0 + 7, y0 + 6, x0 + 8, y0 + 9, WALL[0])
+        x = x0 + 12
+        for w, tall in ((3, 1), (2, 0), (4, 1), (2, 1), (3, 0), (1, 1), (4, 0), (2, 1), (3, 0)):   # lettering: runs of letters of different widths
+            if x + w > x0 + 35:
+                break
+            r.rect(x, y0 + 5, x + w, y0 + 8, FLOOR[3])
+            if tall:
+                r.rect(x, y0 + 4, x + 1, y0 + 5, FLOOR[3])
+            r.rect(x + 1, y0 + 6, x + w - 1 if w > 2 else x + 1, y0 + 7, WALL[0])
+            x += w + 1
+
+
+def draw_branch_route(r, x0, y0, state):
+    """The Route branch's floor line, 4 x 2 cells on the floor markings, in copper. before: a rewarded detour, an S of right
+    angles with knots at the corners between the west and east edges. after: one straight line with four chevrons."""
+    def hline(xa, xb, y, thick=2):
+        r.rect(x0 + xa, y0 + y, x0 + xb, y0 + y + thick, ACC[1])
+        r.rect(x0 + xa, y0 + y, x0 + xb, y0 + y + 1, ACC[2])
+
+    def vline(x, ya, yb, thick=2):
+        r.rect(x0 + x, y0 + ya, x0 + x + thick, y0 + yb, ACC[1])
+        r.rect(x0 + x, y0 + ya, x0 + x + 1, y0 + yb, ACC[2])
+    if state == "before":
+        hline(0, 14, 15)
+        vline(12, 4, 17)
+        hline(12, 30, 4)
+        vline(28, 4, 29)
+        hline(28, 46, 28)
+        vline(44, 15, 30)
+        hline(44, 64, 15)
+        for kx, ky in ((12, 4), (28, 4), (28, 28), (44, 28), (12, 15), (44, 15)):     # knots at the corners
+            r.rect(x0 + kx - 1, y0 + ky - 1, x0 + kx + 3, y0 + ky + 3, ACC[2])
+            r.rect(x0 + kx - 1, y0 + ky - 1, x0 + kx + 1, y0 + ky + 1, ACC[3])
+    else:
+        hline(0, 64, 15)
+        for cx in (10, 26, 42, 58):                                                  # chevrons pointing east
+            for k in range(4):
+                r.rect(x0 + cx + k, y0 + 11 + k, x0 + cx + k + 2, y0 + 12 + k, ACC[2])
+                r.rect(x0 + cx + k, y0 + 20 - k, x0 + cx + k + 2, y0 + 21 - k, ACC[2])
+            r.rect(x0 + cx, y0 + 11, x0 + cx + 1, y0 + 12, ACC[3])
+            r.rect(x0 + cx, y0 + 20, x0 + cx + 1, y0 + 21, ACC[3])
+
+
+def draw_branch_count(r, x0, y0, state):
+    """The Count branch's tally board, 2 cells wide on two walnut feet: a pale panel with four sky-blue bars and a total plate.
+    before: the total reads 47 in a dull plate and the bars do not add up (no tick). after: the corrected total 52, a copper
+    plate and a green tick."""
+    r.cast(x0 + 2, x0 + 30, y0 + 27)
+    for fx in (x0 + 4, x0 + 25):                                        # feet
+        r.rect(fx, y0 + 22, fx + 3, y0 + 27, INK[0])
+        r.rect(fx + 1, y0 + 22, fx + 2, y0 + 26, WOOD[2])
+    r.rect(x0, y0, x0 + 32, y0 + 23, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 31, y0 + 22, WOOD[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 31, y0 + 2, WOOD[3])
+    r.rect(x0 + 1, y0 + 21, x0 + 31, y0 + 22, WOOD[0])
+    r.rect(x0 + 3, y0 + 3, x0 + 29, y0 + 20, FLOOR[3])
+    r.rect(x0 + 3, y0 + 3, x0 + 29, y0 + 4, FLOOR[2])
+    heights = (7, 5, 8, 4) if state == "before" else (6, 5, 7, 4)
+    for i, h in enumerate(heights):
+        bx = x0 + 4 + i * 4
+        r.rect(bx, y0 + 17 - h, bx + 3, y0 + 17, GLASS[1])
+        r.rect(bx, y0 + 17 - h, bx + 1, y0 + 17, GLASS[2])
+    r.rect(x0 + 4, y0 + 17, x0 + 20, y0 + 18, INK[2])                  # baseline
+    plate = (ACC[2], ACC[3], INK[0]) if state == "after" else (WALL[2], WALL[3], WALL[0])
+    r.rect(x0 + 21, y0 + 4, x0 + 30, y0 + 11, INK[0])
+    r.rect(x0 + 22, y0 + 5, x0 + 29, y0 + 10, plate[0])
+    qp.text(r, x0 + 22, y0 + 5, "52" if state == "after" else "47", INK[0] if state == "after" else plate[1])
+    if state == "after":                                                # the tick: a corrected total
+        for tx, ty in ((22, 14), (23, 15), (24, 16), (25, 15), (26, 14), (27, 13), (28, 12)):
+            r.img[y0 + ty, x0 + tx] = FOL[2]
+            r.img[y0 + ty - 1, x0 + tx] = FOL[3] if tx > 23 else FOL[2]
+    else:
+        r.rect(x0 + 23, y0 + 13, x0 + 28, y0 + 14, WALL[2])             # a mismatch dash under the total
+
+
+def draw_place_ivo(r, x0, y0):
+    """Ivo's place: a reception lectern, 1 cell, with his tablet standing on the slanted top."""
+    r.cast(x0 + 2, x0 + 12, y0 + 22, rows=2)
+    r.rect(x0 + 3, y0 + 19, x0 + 11, y0 + 22, INK[0])                    # base
+    r.rect(x0 + 4, y0 + 19, x0 + 10, y0 + 21, WOOD[1])
+    r.rect(x0 + 5, y0 + 10, x0 + 9, y0 + 19, INK[0])                     # post
+    r.rect(x0 + 6, y0 + 10, x0 + 8, y0 + 19, WOOD[1])
+    r.rect(x0 + 6, y0 + 10, x0 + 7, y0 + 19, WOOD[2])
+    top = r.mask(x0 + 1, y0 + 7, x0 + 13, y0 + 11)                       # slanted top
+    r.img[top] = WOOD[2]
+    r.rect(x0 + 1, y0 + 7, x0 + 13, y0 + 8, WOOD[3])
+    r.outline(top)
+    tab = r.mask(x0 + 2, y0 + 1, x0 + 12, y0 + 8)                        # the tablet
+    r.img[tab] = INK[0]
+    r.rect(x0 + 3, y0 + 2, x0 + 11, y0 + 7, GLASS[2])
+    r.rect(x0 + 3, y0 + 2, x0 + 11, y0 + 3, GLASS[3])
+    r.rect(x0 + 4, y0 + 4, x0 + 8, y0 + 5, GLASS[1])
+    r.img[y0 + 6, x0 + 9] = ACC[2]
+
+
+def draw_place_noor(r, x0, y0):
+    """Noor's place: a small walnut table, 1 cell, with her stamp and a file tray of copper-tabbed folders."""
+    env.block(r, x0, y0 + 6, x0 + 16, y0 + 22, 6, WOOD, WOOD)
+    r.rect(x0 + 2, y0 + 3, x0 + 10, y0 + 12, FLOOR[3])                  # the file tray: two folders with copper tabs
+    r.rect(x0 + 2, y0 + 3, x0 + 10, y0 + 4, FLOOR[2])
+    r.rect(x0 + 3, y0 + 7, x0 + 10, y0 + 12, FLOOR[2])
+    r.rect(x0 + 3, y0 + 7, x0 + 10, y0 + 8, FLOOR[3])
+    r.rect(x0 + 3, y0 + 2, x0 + 6, y0 + 4, ACC[2])
+    r.rect(x0 + 7, y0 + 6, x0 + 10, y0 + 8, ACC[3])
+    r.outline(r.mask(x0 + 2, y0 + 2, x0 + 10, y0 + 12))
+    r.rect(x0 + 12, y0 + 6, x0 + 14, y0 + 11, WOOD[3])                  # her stamp: post and knob
+    r.rect(x0 + 11, y0 + 4, x0 + 15, y0 + 6, WOOD[3])
+    r.rect(x0 + 11, y0 + 4, x0 + 15, y0 + 5, ACC[3])
+    r.outline(r.mask(x0 + 12, y0 + 6, x0 + 14, y0 + 11) | r.mask(x0 + 11, y0 + 4, x0 + 15, y0 + 6))
+
+
+def draw_place_ada(r, x0, y0):
+    """Ada's place: a copper lantern stand, 1 cell: a post on a round base with a hook arm and a lit lantern."""
+    r.cast(x0 + 1, x0 + 9, y0 + 22, rows=2)
+    base = r.disc(x0 + 5, y0 + 20, 4.5, 2)
+    r.img[base] = ACC[1]
+    r.img[base & ~shifted(base, -1, -1)] = ACC[2]
+    r.outline(base)
+    r.rect(x0 + 4, y0 + 6, x0 + 7, y0 + 20, INK[0])                      # post
+    r.rect(x0 + 5, y0 + 6, x0 + 6, y0 + 20, ACC[2])
+    r.rect(x0 + 5, y0 + 6, x0 + 12, y0 + 8, INK[0])                      # hook arm
+    r.rect(x0 + 5, y0 + 7, x0 + 12, y0 + 8, ACC[2])
+    lan = r.mask(x0 + 9, y0 + 8, x0 + 15, y0 + 17)                       # the lantern
+    r.img[lan] = ACC[1]
+    r.rect(x0 + 10, y0 + 10, x0 + 14, y0 + 16, ACC[3])
+    r.rect(x0 + 11, y0 + 11, x0 + 13, y0 + 15, FLOOR[3])
+    r.rect(x0 + 9, y0 + 8, x0 + 15, y0 + 9, ACC[2])
+    r.outline(lan)
+
+
+def draw_place_mira(r, x0, y0):
+    """Mira's place: a round navy cushion, 1 cell, with her courier satchel and its copper strap resting on it."""
+    r.cast(x0 + 1, x0 + 15, y0 + 17, rows=2)
+    cus = r.disc(x0 + 8, y0 + 13, 7.5, 3.8)
+    r.img[cus] = WALL[2]
+    r.img[cus & ~shifted(cus, -1, -1)] = WALL[3]
+    r.img[cus & ~shifted(cus, 1, 1)] = WALL[1]
+    r.outline(cus)
+    qp.mira_decor(r, "night_courier", x0 + 2, y0 + 1, PAL)
+
+
+def quest_pieces():
+    """The Executive quest props. Returns (pieces, state sets)."""
+    out = []
+    sx, sy = QS
+    for st in ("before", "after"):
+        out.append(_quest(f"branch_name_{st}", lambda r, st=st: draw_branch_name(r, sx, sy, st), (sx, sy), (3, 1), ["000"], "rear_wall", "wall",
+                          "the Name branch's nameplate (level 20, The Name: a renamed department), a 40 x 12 copper wall plate. "
+                          + ("before: Pace's replacement, three orderly pale bars, no name" if st == "before" else "after: the department's original name in irregular lettering after a small crest")
+                          + ". Place on the navy north wall face; the plain wall already blocks. Also the plate for the Names on the Wall side quest",
+                          ["nameplate", "branch", "the name", "level 20", st], y_sort=False, shadow=False, box=(sx, sy, sx + 40, sy + 12)))
+    for st in ("before", "after"):
+        out.append(_quest(f"branch_route_{st}", lambda r, st=st: draw_branch_route(r, sx, sy, st), (sx, sy), (4, 2), ["0000", "0000"], "floor_marking", "tile",
+                          "the Route branch's floor line (level 20, The Route: a rewarded detour), 4 x 2 cells in copper on the floor markings, west edge to east edge. "
+                          + ("before: an S of right angles with knots at the corners, a detour that is rewarded" if st == "before" else "after: one straight line with four chevrons pointing east")
+                          + ". Walkable; lay several end to end for a longer branch", ["route", "branch", "the route", "level 20", st],
+                          y_sort=False, shadow=False, box=(sx, sy, sx + 64, sy + 32)))
+    for st in ("before", "after"):
+        out.append(_quest(f"branch_count_{st}", lambda r, st=st: draw_branch_count(r, sx, sy, st), (sx, sy + 11), (2, 1), ["11"], "rear_prop", "prop",
+                          "the Count branch's tally board (level 20, The Count: a corrected total), 2 x 1 on two walnut feet: a pale panel with four sky-blue bars and a total plate. "
+                          + ("before: the total reads 47 in a dull plate and the bars do not add up" if st == "before" else "after: the corrected total 52 in a copper plate with a green tick"),
+                          ["board", "tally", "branch", "the count", "level 20", st], box=(sx, sy, sx + 34, sy + 29)))
+    places = (("ivo", draw_place_ivo, (14, 22), "Ivo's place: a reception lectern with his tablet on the slanted top"),
+              ("noor", draw_place_noor, (16, 22), "Noor's place: a small walnut table with her stamp and a file tray of copper-tabbed folders"),
+              ("hal", None, (16, 15), "Hal's place: his folding stool with the tool roll leaning on it (the shared drawing, Executive ramps)"),
+              ("ada", draw_place_ada, (15, 22), "Ada's place: a copper lantern stand with a lit lantern on a hook arm"),
+              ("mira", draw_place_mira, (16, 17), "Mira's place: a round navy cushion with her courier satchel and its copper strap"))
+    for who, fn, (w, h), note in places:
+        if who == "hal":
+            draw = lambda r: qp.folding_stool(r, sx, sy, PAL)   # noqa: E731
+        else:
+            draw = lambda r, fn=fn: fn(r, sx, sy)               # noqa: E731
+        out.append(_quest(f"place_{who}", draw, (sx, sy + 6) if who in ("ivo", "noor", "ada") else (sx, sy), (1, 1), ["1"], "rear_prop", "prop",
+                          note + " (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell", ["place", who, "level 20"]))
+    anims = {
+        "branch_name": {"kind": "state_set", "default": "before",
+                        "states": {"before": {"entries": ["branch_name_before"]}, "after": {"entries": ["branch_name_after"]}},
+                        "play": ["before", "after"], "ms_per_frame": 250,
+                        "note": "level 20, The Name: the renamed department gets its original name back. Pair with landmark state repaired_name (the planter's nameplates become distinct)"},
+        "branch_route": {"kind": "state_set", "default": "before",
+                         "states": {"before": {"entries": ["branch_route_before"]}, "after": {"entries": ["branch_route_after"]}},
+                         "play": ["before", "after"], "ms_per_frame": 250,
+                         "note": "level 20, The Route: the rewarded detour becomes a straight line. Pair with landmark state repaired_route (the atrium's copper lines straighten and the pots vary)"},
+        "branch_count": {"kind": "state_set", "default": "before",
+                         "states": {"before": {"entries": ["branch_count_before"]}, "after": {"entries": ["branch_count_after"]}},
+                         "play": ["before", "after"], "ms_per_frame": 250,
+                         "note": "level 20, The Count: the total is corrected. Pair with landmark state repaired_count and the window_a, window_b and window_light sets going to daylight"},
+    }
+    return out, anims
+
+
+# ------------------------------------------------------------------ 6. wave 2: district integration
+# The shared elevator set, call panel, desk occluders and the audit-copy artifact (quest_props.integration_pieces, drawn with the
+# Executive ramps) and the Names on the Wall reward (design/levels/executive/NEEDS_ART.md): desk_name_plaque.
+
+INTEGRATION_NAMES = set()
+
+
+def _imk(name, draw, box, fp, cells, coll, layer, kind, shadow=True, shadow_rect=None, y_sort=False, note="", tags=()):
+    p = ok.make(name, draw, fp, cells, coll, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=list(tags))
+    if shadow_rect:
+        p.shadow = shadow_rect
+    INTEGRATION_NAMES.add(name)
+    return p
+
+
+def _integration(desks):
+    out, anims = qp.integration_pieces(lambda *a, **k: _imk(*a, **k), PAL, "executive", desks, desk_pal=qp.artifact_pal(PAL))
+    x0, y0 = qp.IX0, qp.IY0
+    out.append(_imk("desk_name_plaque", lambda r: qp.reward_decor(r, "name_plaque", x0, y0, PAL), (x0, y0, x0 + 14, y0 + 9), (x0 - 1, y0 + 9 - 16), (1, 1), ["0"], "front_prop", "prop",
+                    shadow=False, y_sort=False,
+                    note="Names on the Wall reward: a small desk plaque (copper plate with three inked name lines on a walnut base), 14 x 9, 1 x 1, no collision. "
+                         "A desk decoration like mail_tray and desk_folder; never placed on the map", tags=["decor", "desk", "reward", "names"]))
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -928,6 +1193,11 @@ def build_pieces():
     pieces += shared_pieces()
     pieces += executive_pieces()
     pieces += landmark_pieces()
+    qpieces, qanims = quest_pieces()
+    pieces += qpieces
+    desks = {p.name: p for p in pieces if p.name in ("desk_a", "desk_b")}
+    ipieces, ianims = _integration(desks)
+    pieces += ipieces
     anims = {
         "final_door": {
             "kind": "state_set", "default": "closed",
@@ -964,11 +1234,17 @@ def build_pieces():
             "note": "the light shaft under a window pair: barely-there cool light, then warm daylight",
         },
     }
+    anims.update(qanims)
+    anims.update(ianims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in INTEGRATION_NAMES:
+        return 9
+    if n in QUEST_NAMES:
+        return 8
     if n.startswith(("floor_", "route_")):
         return 0
     if n.startswith("wall_"):
@@ -990,7 +1266,9 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS (navy, high windows i
             (3, "LAMP (post, off, glow states)"), (4, "REUSED ORIENTATION PROPS (recoloured): desks, navy seating, planters"),
             (5, "SHARED KIT: bookcase, partition, reception console, credenza, window light"),
             (6, "EXECUTIVE-ONLY: boardroom table and chair, glass balustrade"),
-            (7, "LANDMARK: THE ATRIUM TREE (registered parts)")]
+            (7, "LANDMARK: THE ATRIUM TREE (registered parts)"),
+            (8, "QUEST PROPS (level 20): the three branch props (nameplate, floor line, tally board) and the arriving coworkers' places"),
+            (9, "DISTRICT INTEGRATION (wave 2): elevator set and call panel, desk-front occluders, the audit-copy artifact, the name plaque")]
 
 
 def atlas_json(pieces, rects, anims, lms):

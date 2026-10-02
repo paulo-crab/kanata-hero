@@ -1,0 +1,713 @@
+{
+ "kit": "systems",
+ "atlas": "systems-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Systems integration proof room, built only from systems-atlas: the shared elevator set and call panel, a seated worker behind desk_a with its occluder, artifacts on desk_b and on cabinets, the formula wall, a wall band with the alarm board, refund ledger and ten routing-node lamps, and Hal's stool. People are added by the renderer.",
+ "states": {
+  "elevator": "closed",
+  "routing_node": "dark",
+  "refund_ledger": "charge",
+  "alarm_board": "blank",
+  "formula_wall": "dim",
+  "folding_stool": "folded",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    2,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    6
+   ],
+   "offset": [
+    14,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    0,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    6,
+    5
+   ],
+   "offset": [
+    9,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    4
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    10,
+    7
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    4
+   ],
+   "offset": [
+    2,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    15,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_half",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_open",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_call_panel",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_a",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_a_front",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_b",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_b_front",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "artifact_id_envelope",
+   "cell": [
+    8,
+    4
+   ],
+   "offset": [
+    3,
+    15
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    11,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_alarm_strip",
+   "cell": [
+    11,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    13,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_scoring_proof",
+   "cell": [
+    13,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    15,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_original_routing_diagram",
+   "cell": [
+    15,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "anim": "formula_wall",
+   "cell": [
+    14,
+    0
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "anim": "folding_stool",
+   "cell": [
+    9,
+    7
+   ],
+   "offset": [
+    6,
+    12
+   ]
+  },
+  {
+   "entry": "folding_stool",
+   "cell": [
+    9,
+    9
+   ],
+   "offset": [
+    6,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    3
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "anim": "alarm_board",
+   "cell": [
+    11,
+    3
+   ],
+   "offset": [
+    2,
+    10
+   ]
+  },
+  {
+   "anim": "refund_ledger",
+   "cell": [
+    14,
+    4
+   ],
+   "offset": [
+    8,
+    2
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    17,
+    3
+   ],
+   "offset": [
+    2,
+    9
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    17,
+    3
+   ],
+   "offset": [
+    13,
+    9
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    19,
+    3
+   ],
+   "offset": [
+    3,
+    9
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    16,
+    4
+   ],
+   "offset": [
+    7,
+    5
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    17,
+    4
+   ],
+   "offset": [
+    2,
+    5
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    17,
+    4
+   ],
+   "offset": [
+    13,
+    5
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    18,
+    4
+   ],
+   "offset": [
+    8,
+    5
+   ]
+  },
+  {
+   "anim": "routing_node",
+   "cell": [
+    19,
+    4
+   ],
+   "offset": [
+    3,
+    5
+   ]
+  }
+ ]
+}
