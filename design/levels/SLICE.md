@@ -23,7 +23,7 @@ The first implementation slice (`docs/game-design.md`, "Implementation slices" i
 ### Art (`art-direction/`, see `ART_HANDOFF.md`)
 
 - Kit: `kit/orientation-atlas.png` and `.json` (floor, walls, windows, alcove, `records_door`, `lamp`, planters, `sofa`, `side_table`, `printer`, `desk_a`, `desk_b`, `chair`, `bench`, `mail_counter`, partitions, `route_inlay`, `records_mat`, the `garden` landmark). Layout reference: `kit/orientation-review-room.json` and `kit/kitlib.py` (collision rules).
-- **Props not in the atlas yet** (placed with `art_gap: true`; draw a footprint rectangle in the layer's colour until the kit team ships them): see `orientation/NEEDS_ART.md`. The slice needs these art states to be visible from the start or at slice milestones: `elevator_*`, `elevator_call_panel`, `wall_w_plain`, `turnstile_*`, `clock_twin_*`, `conference_glass_door_*`, `projected_form_wall`, `mail_board`, `mail_tray`, plus (always visible in the hub) `desk_left_cherry`, `desk_right_mirror`, `stamp_a..h`, `pinboard_before`, `review_table`, `keyboard_*`. Hidden-until-later pieces are `artifact_*` and `garden_north_rim_open`.
+- **Props the kit now provides.** Wave 2 replaced every guessed prop with the real atlas entry: the north-wall `elevator` module with `elevator_call_panel`, `turnstile_*`, `clock_twin_*`, `conference_glass_door_*`, `projected_form_wall`, `pinboard_empty/_before/_after`, `desk_left_cherry`, `desk_right_mirror`, `stamp_a..h`, `review_table`, `keyboard_macbook`, `keyboard_spare`, `mail_board` with `mail_medals`, `mail_tray`, `artifact_*`, `lamp_warm` and `corridor_stripe`. Only `wall_w_plain`, `seating_nook_after` and `seating_nook_glow` are still flagged `art_gap` (built on `feat/art-orientation-completion`, not in this base yet); see `orientation/NEEDS_ART.md`. The garden cut-through is the garden landmark's own `after` state.
 - Cast: `gate1/engineer-full-atlas.*` (the avatar), `cast/ivo-atlas.*`, `cast/mira-atlas.*`, `cast/bgworker_a-atlas.*`, `cast/bgworker_b-atlas.*`; `glitches/glitches-atlas.*` (the `form` archetype for the optional folded-form repair); `pace/pace-atlas.*` (signs and floor arrows); `portraits/portraits-atlas.*` (neutral, concerned, pleased, `ivo_laugh`, `mira_grin`).
 - UI: `ui-kit/tokens.css` and `ui-kit/COMPONENTS.md`.
 
@@ -34,10 +34,10 @@ Records, Systems, Night Shift and Executive districts; levels 04 to 06 as playab
 ## Scene order
 
 1. **Setup and calibration.** MacBook or Microsoft keyboard diagram; calibration of Caps + H, Caps + N, Space + A, Space + Q and a home-row Shift hold; practice toggle-out instructions (`docs/game-design.md`, "Browser behavior and accessibility"). Not level data; it sets the flags `setup-done`, `calibration-done`, `keyboard-macbook` or `keyboard-microsoft` in `world.json`.
-2. **Hub, arrival.** `orientation/map.json` spawn `arrival` at (2,12); the elevator plays closed, half, open and the avatar steps out. Ivo's greeting starts level 01.
+2. **Hub, arrival.** `orientation/map.json` spawn `arrival` at (3,2) on the LIFT mat of the north-wall elevator; the elevator plays closed, half, open and the avatar steps out. Ivo's greeting starts level 01.
 3. **Level 01, The Lobby.** `popup` (tap Caps), `loop` (four arrows), `four-stops` (with the `desk-label` scene at the west desk), `unprompted` (recall walk to Ivo), optional `fold` glitch after.
 4. **Level 02, Badge Printer.** Four label scenes at the printer; Mira appears in the mailroom; Plant Tags becomes available.
-5. **Level 03, The Clock.** Three guided form scenes (Space, Tab, modifier-first), the variation form and the recall form; the clock room opens.
+5. **Level 03, The Clock.** Three guided form scenes (Space, Tab, modifier-first), the variation form and the recall form; the meeting-room door opens.
 6. **Morning Mail.** Mira in the mailroom (21,14); three slip checkpoints; baseline, First Delivery patch and the mail tray. Standard mode throughout.
 
 ## UI components each scene needs
@@ -47,7 +47,7 @@ Names from `art-direction/ui-kit/COMPONENTS.md`. Components being specified righ
 | Scene | Components |
 | --- | --- |
 | Setup and calibration | Setup and calibration screen (new), Keycap, Keyboard teaching inset, Layout help (reachable with `?`). |
-| Hub and every walk scene | HUD (objective, seal count), Interaction prompt, Markers (coral conversation, teal terminal, gold route, violet glitch), Keyboard teaching inset (position cue on guided and variation scenes only), Quest journal (main, optional and Mira headings), Layout help, Elevator map (new) from the call panel. |
+| Hub and every walk scene | HUD (objective, seal count), Interaction prompt, Markers (coral conversation, teal terminal, gold route, violet glitch), Keyboard teaching inset (position cue on guided and variation scenes only), Quest journal (main, optional and Mira headings), Layout help, Elevator map (new) from the call panel, Controls screen (journal footer and Settings), first-use inset (once per binding). |
 | Dialogue | Dialogue panel with the chibi portraits; hint lines render the action, the key and the gesture by difficulty (Standard shows all three, Focused on request, Violento action only). |
 | Terminal and editor scenes (`label`, `form`, `editor`, `keypad`, `log`) | Terminal and editor scene (new): reading column, strong cursor, field focus ring, scratch field with auto-clear, practice region with announced Tab trap and Escape exit. Confidence feedback (new): three separate lines for physical gesture shown, logical output observed, effect in the game, plus the confidence label (`output-observed`, `player-confirmed`, `external-only`). |
 | Held Space, held Tab, Homerow | Confidence feedback with the player-confirm buttons (opened / did not open / skip) and the 220 ms and 250 ms hold rings in the Keyboard teaching inset. |
@@ -65,11 +65,14 @@ One flow per level, in this order: greeting, task (hint object shown by difficul
 | `o01.d.welcome` | ivo (neutral) | Welcome to the Department of Motion. I'm Ivo, reception. Before your first ticket I need ... | no | `step_start:o01.s.arrive` |
 | `o01.d.popup` | ivo (neutral) | To close the welcome popup, you need to press Escape. | yes | `step_start:o01.s.popup` |
 | `o01.d.popup-again` | ivo (neutral) | To close the welcome popup, you need to press Escape. | yes (on request) | `request:o01.d.popup` |
-| `o01.d.popup-done` | ivo (neutral) | Good. The popup is gone and the lobby is yours to walk. | no | `scene_success:o01-popup` |
-| `o01.d.loop-right` | ivo (neutral) | To walk to the east side of the garden, you need to press Right Arrow. | yes | `step_start:o01.s.loop` |
+| `o01.d.popup-done` | ivo (neutral) | Good. The popup is gone. Three more keys, then the lobby is yours to walk. | no | `scene_success:o01-popup` |
+| `o01.d.journal` | ivo (neutral) | To open your journal, you need to press Q. | yes (instruction line) | `step_start:o01.s.keys` |
+| `o01.d.hint-key` | ivo (neutral) | To see a hint again, you need to press Backtick. | yes (instruction line) | `dialogue_done:o01.d.journal` |
+| `o01.d.layout-help` | ivo (neutral) | To open the Layout help, you need to press ?. | yes (instruction line) | `dialogue_done:o01.d.hint-key` |
+| `o01.d.loop-down` | ivo (neutral) | To walk south along the west walkway, you need to press Down Arrow. | yes | `step_start:o01.s.loop` |
+| `o01.d.loop-right` | ivo (neutral) | To walk to the east side of the garden, you need to press Right Arrow. | yes | `reach_cell:3,12` |
 | `o01.d.loop-up` | ivo (neutral) | To walk north along the garden's east edge, you need to press Up Arrow. | yes | `reach_cell:17,12` |
 | `o01.d.loop-left` | ivo (neutral) | To walk west along the north edge, you need to press Left Arrow. | yes | `reach_cell:17,5` |
-| `o01.d.loop-down` | ivo (neutral) | To walk south along the west edge, you need to press Down Arrow. | yes | `reach_cell:9,5` |
 | `o01.d.loop-done` | ivo (neutral) | That is one full lap, in four directions. Now the desks. | no | `scene_success:o01-loop` |
 | `o01.d.stops` | ivo (neutral) | Please visit the north desk, the west desk, the south desk and the east desk, in that order. | no | `step_start:o01.s.stops` |
 | `o01.d.west` | ivo (neutral) | To walk to the west desk, you need to press Left Arrow. | yes | `reach_cell:9,4` |
@@ -134,7 +137,7 @@ One flow per level, in this order: greeting, task (hint object shown by difficul
 | Scene | Kind | Cue | Summary |
 | --- | --- | --- | --- |
 | `o01-popup` | form | cue | A welcome popup covers the lobby. Tap Caps once to close it; holding Caps and pressing a second key is not the |
-| `o01-loop` | walk | cue | Walk once around the garden, one direction at a time: right, up, left, down. Each leg ends on a lit floor mark |
+| `o01-loop` | walk | cue | Walk once around the garden, one direction at a time: down, right, up, left. Each leg ends on a lit floor mark |
 | `o01-four-stops` | walk | cue | Visit the north, west, south and east desks in that order. Floor markers show where each desk is, not which ke |
 | `o01-desk-label` | label | cue | At the west desk a label prompt asks for the desk's name. Caps may still be held from walking: release it, the |
 | `o01-unprompted` | walk | no cue | Ivo has gone to the north desk: walk to him with no markers, then back to reception when he returns. A badge r |
@@ -158,11 +161,17 @@ Every scene has instant retry, a concrete `task` object (targets, accepted outpu
 
 Persist only ids from `world.json` `state_ids`: `levels_done`, `seals`, `artifacts`, `patches`, `mira_routes_cleared`, `flags`, plus per-NPC state names (`ivo`: `start`, `post_wave`, `north`, `post_nod`, `tablet`, `steady`, `laugh`; `mira`: `start`, `mailroom`, `right_desk`) and the Morning Mail baseline run (duration and accuracy). All of it goes to `localStorage`; nothing is needed for basic offline play.
 
+## Journal and stars (player decisions of 2026-10-02)
+
+- **"Ride to the hub" is a journal row, not a key.** The journal's "Also from here" list (Q opens it) carries a **Ride to the hub** row beside Layout help, Settings and Controls; Return confirms it. It reuses the elevator ride, so it needs no new binding and no new level data, and it only ever offers unlocked districts.
+- **Star rule note.** The Hint key (Backtick) costs the third star **in recall scenes only**: a recall scene is one that declares `position_cue: false`, and the hint card says so before it reveals the line. Guided and variation scenes are unaffected. In Violento the Hint key is off after a gesture's introduction (no chip, no prompt), recall scenes included. Layout help (`?`) is free reference and never costs a star. Dialogue `on_request` lines are the answers to Hint key presses (`request:<dialogue id>`).
+- **Dialogue modes.** Lines with a hint are non-modal instruction lines (the world stays live; they take no keys). Lines without a hint are modal conversation lines (Return continues, Esc skips). Ivo's three introductions for Q, Backtick and `?` in level 01 are instruction lines; see `design/ui-key-bindings.md`.
+
 ## Open items
 
-- **Art gaps.** 35 prop entries (28 placed kinds) need kit art; see `orientation/NEEDS_ART.md`. The slice can run with footprint rectangles.
+- **Art gaps.** Three entries (`wall_w_plain`, `seating_nook_after`, `seating_nook_glow`) wait for the kit branch `feat/art-orientation-completion`; see `orientation/NEEDS_ART.md`. Run `validate_levels.py --drop-solved-gaps orientation` after it merges. The slice does not need the nook.
 - **Setup and calibration, terminal and editor scene, confidence feedback, artifact close-up and elevator map** are being specified by the UI team now; the data here names the fields they need (`task`, `confidence`, `position_cue`, player-confirm steps) but not their layout.
 - **Mira's patched portraits.** After the first clean baseline Mira wears patch 1; the dialogue data uses the base expressions, so the runtime should swap to the `mira_patch1_*` rows of `portraits-atlas.json` after `first_delivery`.
 - **Right Command evidence.** Right Command + H/J/K/L and Caps + H/J/K/L produce the same arrows, so level 06's route comparison is output-observed only (not part of the slice).
-- **Garden cut-through** needs one extra art piece (`garden_north_rim_open`) to be a through route; not part of the slice.
+- **Garden cut-through** is the garden landmark's `after` state (parts `garden_base_open` and `garden_north_rim_open` in the kit branch); not part of the slice.
 - **Walk-scene details** such as marker sprites for the loop corners reuse `route_inlay`; a dedicated marker piece is optional.

@@ -1,6 +1,6 @@
 {
- "version": "0.1",
- "note": "Global ids every district's level data may refer to. Seal ids are the ones used in 'seal:<id>' requirements; link ids appear in district entrances, exits and elevator. Flags are persistent booleans; a district team that needs a new flag asks the producer to append it here.",
+ "version": "0.2",
+ "note": "Global ids every district's level data may refer to. Seal ids are the ones used in 'seal:<id>' requirements; link ids appear in district entrances, exits and elevator. Flags are persistent booleans; a district team that needs a new flag asks the producer to append it here. Version 0.2 adds the false-panel link link.panel.systems-nightshift.",
  "districts": [
   {
    "id": "orientation",
@@ -114,7 +114,7 @@
     "orientation"
    ],
    "seal_required": null,
-   "label": "Orientation elevator stop (southwest of the garden); always available"
+   "label": "Orientation elevator stop (north wall, west end of the lobby); always available"
   },
   {
    "id": "link.elevator.records",
@@ -169,6 +169,26 @@
     "records": [
      0,
      8
+    ]
+   }
+  },
+  {
+   "id": "link.panel.systems-nightshift",
+   "kind": "panel",
+   "between": [
+    "systems",
+    "nightshift"
+   ],
+   "seal_required": "systems",
+   "label": "Systems false panel (Hal pulls it down after the Systems seal) to the Night Shift elevator stop. The Systems exit is on the machine face at (17,14); the Night Shift entrance is the elevator arrival cell (27,13).",
+   "cells": {
+    "systems": [
+     17,
+     14
+    ],
+    "nightshift": [
+     27,
+     13
     ]
    }
   }

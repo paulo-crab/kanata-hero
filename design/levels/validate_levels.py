@@ -5,6 +5,8 @@ Usage (from anywhere; paths resolve from this file's location):
     python design/levels/validate_levels.py design/levels/orientation
     python design/levels/validate_levels.py orientation records
     python design/levels/validate_levels.py --all
+    python design/levels/validate_levels.py --selftest     (mutation tests for the newer rules)
+    python design/levels/validate_levels.py --drop-solved-gaps orientation   (after the kit branch merges)
     add -v to list every warning, --strict to treat warnings as errors.
 
 Exit code is non-zero when any error is found. Warnings cover art_gap props,
@@ -56,7 +58,13 @@ WHEN_KINDS = {
     "scene_success": "scene", "dialogue_done": "dialogue", "interact": "interaction", "step_done": "step",
     "reach_cell": "cell", "level_complete": "level", "step_start": "step", "trigger": "trigger", "state": "state",
     "request": "dialogue", "trigger_done": "trigger", "player_confirm": "scene",
+    "any_of": "group", "count": "group",
 }
+# Keys reserved by the UI (design/ui-key-bindings.md, rule 5): in every typing scene `?` and Backtick are commands,
+# so no scene may require the player to type either.
+ABSENT = "absent"  # reserved NPC state: not in the district yet (null pose, no cell, no interaction)
+RESERVED_CHARS = ("?", "`")
+RESERVED_NAMES = {"backquote", "backtick", "grave", "shift+slash", "shift + slash", "question mark"}
 
 
 class Report:
@@ -135,7 +143,9 @@ class Reference:
         self.world = load_json(WORLD_PATH, rep)
         self.inventory = load_json(INVENTORY_PATH, rep)
         if self.world is not None:
-            schema_check(self.world, "world", rel(WORLD_PATH), rep)
+            if schema_check(self.world, "world", rel(WORLD_PATH), rep):
+                for msg in world_link_problems(self.world):
+                    rep.err(rel(WORLD_PATH), msg)
         if self.inventory is not None:
             schema_check(self.inventory, "inventory", rel(INVENTORY_PATH), rep)
         self.rows = {r["id"]: r for r in (self.inventory or {}).get("rows", [])}
@@ -176,6 +186,48 @@ class Reference:
 
 def level_number(level_id):
     return int(level_id.rsplit("-", 1)[1])
+
+
+def reserved_key_hits(task):
+    """Labels of the task fields whose required text asks for a reserved key (? or Backtick).
+
+    Only fields that carry text or keys the player must produce are read: target, targets, lines, accepts,
+    items[].target and steps[].accepts. Prompts, questions and display strings may mention a question mark."""
+    hits = []
+
+    def check(label, val):
+        if isinstance(val, str):
+            if any(c in val for c in RESERVED_CHARS) or val.strip().lower() in RESERVED_NAMES:
+                hits.append(label)
+        elif isinstance(val, list):
+            for i, item in enumerate(val):
+                check(f"{label}[{i}]", item)
+
+    for key in ("target", "targets", "lines", "accepts"):
+        if key in task:
+            check(key, task[key])
+    for i, it in enumerate(task.get("items") or []):
+        if isinstance(it, dict) and "target" in it:
+            check(f"items[{i}].target", it["target"])
+    for i, st in enumerate(task.get("steps") or []):
+        if isinstance(st, dict) and "accepts" in st:
+            check(f"steps[{i}].accepts", st["accepts"])
+    return hits
+
+
+def world_link_problems(world):
+    """Messages for links whose shape is wrong. A panel link (a hidden panel between two districts) carries a
+    cell in each district it joins and the seal that reveals it."""
+    out = []
+    for lk in (world or {}).get("links", []):
+        if lk.get("kind") == "panel":
+            if len(lk["between"]) != 2:
+                out.append(f"link {lk['id']}: a panel link joins exactly two districts")
+            if set(lk.get("cells", {})) != set(lk["between"]):
+                out.append(f"link {lk['id']}: a panel link needs a cell for each of {lk['between']}")
+            if not lk.get("seal_required"):
+                out.append(f"link {lk['id']}: a panel link names the seal that reveals it")
+    return out
 
 
 # --------------------------------------------------------------------------- geometry
@@ -649,6 +701,21 @@ class DistrictCheck:
                 rep.err(where, f"placement {it['placement']!r} unknown")
             for req in it.get("requires", []):
                 self.check_token(req, where)
+            vw = it.get("visible_when", "")
+            if vw.startswith("npc_state:"):
+                mt = re.fullmatch(r"npc_state:([A-Za-z0-9_.\-]+)=([A-Za-z0-9_.\-*]+)", vw)
+                if not mt:
+                    rep.err(where, f"visible_when {vw!r}: use npc_state:<npc id>=<state> (a trailing * matches a prefix)")
+                elif mt.group(1) not in self.npcs:
+                    rep.err(where, f"visible_when {vw!r}: npc {mt.group(1)!r} unknown")
+                else:
+                    states = list(self.npcs[mt.group(1)]["poses_by_state"])
+                    pat = mt.group(2)
+                    hit = [s for s in states if (s.startswith(pat[:-1]) if pat.endswith("*") else s == pat)]
+                    if not hit:
+                        rep.err(where, f"visible_when {vw!r}: npc {mt.group(1)} has no state {pat!r}")
+                    elif all(s == ABSENT for s in hit):
+                        rep.err(where, f"visible_when {vw!r}: an NPC that is not present yet cannot be interacted with")
         for nid, n in self.npcs.items():
             where = f"{wm} npc {nid}"
             known = self.ref.cast.get(n["character"], set())
@@ -659,8 +726,16 @@ class DistrictCheck:
                 elif self.is_dim_ok() and not self.walkable(c):
                     rep.err(where, f"cell {c} is not walkable")
             for state, anim in n["poses_by_state"].items():
-                if known and anim not in known:
+                if anim is None:
+                    if state != ABSENT:
+                        rep.err(where, f"state {state!r} has a null pose; only the reserved state {ABSENT!r} (NPC not present yet) may")
+                elif known and anim not in known:
                     rep.err(where, f"pose {anim!r} (state {state}) is not an animation of {n['character']}")
+            init = n.get("initial_state", "start")
+            if init not in n["poses_by_state"]:
+                rep.err(where, f"initial state {init!r} is not in poses_by_state")
+            if ABSENT in n.get("cells_by_state", {}):
+                rep.err(where, f"state {ABSENT!r} is not drawn and has no cell")
         for sp in m["spawns"]:
             if not in_bounds(sp["cell"], size) or (self.is_dim_ok() and not self.walkable(sp["cell"])):
                 rep.err(wm, f"spawn {sp['id']}: cell {sp['cell']} is not walkable")
@@ -766,33 +841,62 @@ class DistrictCheck:
                 return
 
     # ---- when-grammar
-    def check_when(self, text, where, kinds=None):
+    def check_when(self, text, where, kinds=None, allow_request=False):
         for atom in [a.strip() for a in text.split("&")]:
-            kind, _, arg = atom.partition(":")
-            if kind not in WHEN_KINDS:
-                self.rep.err(where, f"when {atom!r}: unknown kind {kind!r} (allowed: {', '.join(sorted(WHEN_KINDS))})")
-                continue
-            what = WHEN_KINDS[kind]
-            ok = True
-            if what == "scene":
-                ok = arg in self.scenes
-            elif what == "dialogue":
-                ok = arg in self.dialogue_ids
-            elif what == "interaction":
-                ok = arg in self.interactions
-            elif what == "step":
-                ok = arg in self.step_ids
-            elif what == "trigger":
-                ok = arg in self.trigger_ids
-            elif what == "level":
-                ok = arg in self.ref.level_ids
-            elif what == "cell":
-                mt = re.fullmatch(r"(\d+),(\d+)", arg)
-                ok = bool(mt) and in_bounds([int(mt.group(1)), int(mt.group(2))], self.size())
-            elif what == "state":
-                ok = arg == "start" or arg in self.ref.level_ids or arg in self.ref.flag_ids
-            if not ok:
-                self.rep.err(where, f"when {atom!r}: {what} {arg!r} not found")
+            self.check_atom(atom, where, allow_request)
+
+    def check_atom(self, atom, where, allow_request=False, nested=False):
+        """One condition atom. `any_of:<atom>|<atom>` holds when one alternative holds; `count:<n>:<atom>|<atom>|...`
+        holds when at least n alternatives hold. Groups do not nest and never contain `request:`."""
+        kind, _, arg = atom.partition(":")
+        if kind not in WHEN_KINDS:
+            self.rep.err(where, f"when {atom!r}: unknown kind {kind!r} (allowed: {', '.join(sorted(WHEN_KINDS))})")
+            return
+        what = WHEN_KINDS[kind]
+        if kind == "request" and not allow_request:
+            self.rep.err(where, f"when {atom!r}: request: atoms are Hint key requests and may only be the whole `when` of an on_request hint line")
+            return
+        if what == "group":
+            if nested:
+                self.rep.err(where, f"when {atom!r}: any_of and count do not nest")
+                return
+            need = None
+            rest = arg
+            if kind == "count":
+                num, _, rest = arg.partition(":")
+                if not num.isdigit() or int(num) < 1:
+                    self.rep.err(where, f"when {atom!r}: count needs a positive integer first (count:<n>:<atom>|<atom>)")
+                    return
+                need = int(num)
+            alts = [a.strip() for a in rest.split("|")]
+            if len(alts) < 2 or any(not a for a in alts):
+                self.rep.err(where, f"when {atom!r}: {kind} needs at least two non-empty alternatives separated by |")
+                return
+            if need is not None and need > len(alts):
+                self.rep.err(where, f"when {atom!r}: count {need} is more than the {len(alts)} alternatives")
+            for a in alts:
+                self.check_atom(a, where, False, nested=True)
+            return
+        ok = True
+        if what == "scene":
+            ok = arg in self.scenes
+        elif what == "dialogue":
+            ok = arg in self.dialogue_ids
+        elif what == "interaction":
+            ok = arg in self.interactions
+        elif what == "step":
+            ok = arg in self.step_ids
+        elif what == "trigger":
+            ok = arg in self.trigger_ids
+        elif what == "level":
+            ok = arg in self.ref.level_ids
+        elif what == "cell":
+            mt = re.fullmatch(r"(\d+),(\d+)", arg)
+            ok = bool(mt) and in_bounds([int(mt.group(1)), int(mt.group(2))], self.size())
+        elif what == "state":
+            ok = arg == "start" or arg in self.ref.level_ids or arg in self.ref.flag_ids
+        if not ok:
+            self.rep.err(where, f"when {atom!r}: {what} {arg!r} not found")
 
     # ---- level checks
     def check_level(self, lid, path, lv):
@@ -900,6 +1004,8 @@ class DistrictCheck:
                 rep.err(where, "task needs target, targets, items, steps or lines")
         if "position_cue" not in sc and sc["kind"] != "walk":
             rep.warn(where, "position_cue not stated (recall scenes must say false)")
+        for label in reserved_key_hits(sc.get("task") or {}):
+            rep.err(where, f"task.{label} requires typing ? or Backtick, which are reserved UI keys (Layout help and Hint) in every typing scene")
 
     def check_dialogue(self, dl, wl):
         rep = self.rep
@@ -928,8 +1034,18 @@ class DistrictCheck:
                 rep.warn(where, "hint.gesture does not use Kanata vocabulary (tap, tap-hold, physical, XX, stays)")
             if h["action"] not in dl["text"] and h["action"].rstrip(".") not in dl["text"]:
                 rep.warn(where, "hint.action is not contained in text; text should lead with the action sentence")
+        # Dialogue modes (design/ui-key-bindings.md "Dialogue has two modes"): a hint-bearing line is an instruction
+        # line that takes no keys; only a conversation line owns Return and Esc.
+        if dl["hint"] is not None and dl.get("modal") is True:
+            rep.err(where, "a line with a hint is an instruction line: modal must be false or absent (a modal line would own Esc before the popup it describes sees it)")
+        # A request is the player pressing the Hint key (Backtick). Only an on_request line answers one, and it answers with the hint.
+        if dl.get("on_request"):
+            if dl["hint"] is None:
+                rep.err(where, "an on_request line answers a Hint key request and must carry a hint")
+            if not re.fullmatch(r"request:[^&|\s]+", (dl.get("when") or "").strip()):
+                rep.err(where, "an on_request line's when must be exactly request:<dialogue id> (the Hint key was pressed on that line)")
         if dl.get("when"):
-            self.check_when(dl["when"], where)
+            self.check_when(dl["when"], where, allow_request=bool(dl.get("on_request")))
 
     def check_op(self, op, where):
         rep = self.rep
@@ -1150,6 +1266,13 @@ class DistrictCheck:
                     rep.err(wd, f"side quest gesture {gu['id']!r} unknown")
             for dl in sq.get("dialogue", []):
                 self.check_dialogue(dl, wd)
+        # an NPC that starts absent must be brought in by some trigger
+        for nid, n in self.npcs.items():
+            if n.get("initial_state", "start") == ABSENT:
+                arrives = any(op.get("op") == "npc_state" and op.get("npc") == nid and op.get("state") != ABSENT
+                              for _, (_, lv) in self.levels.items() for tr in lv["triggers"] for op in tr["then"])
+                if not arrives:
+                    rep.err(wd, f"npc {nid} starts {ABSENT} but no level trigger ever brings it in (npc_state op)")
         # every level of this district named in world.json must exist
         if stop:
             first, last = stop["levels"]
@@ -1353,6 +1476,151 @@ def inventory_linkage(ref, rep, validated, landed):
             rep.warn("gesture-inventory.json", f"{len(ids)} rows owned by {owner} ({state}) are not linked to a level yet: {', '.join(sorted(ids))}")
 
 
+def drop_solved_gaps(ddir):
+    """Remove art_gap flags and declarations that the kit atlas now covers (run after the kit branch merges).
+
+    A placement keeps its entry name; only the `art_gap` flag goes. Gap entries whose name is now an atlas entry
+    and gap state sets whose name is now an atlas animation are deleted. Returns the list of what was dropped."""
+    ddir = Path(ddir)
+    mpath = ddir / "map.json"
+    m = json.loads(mpath.read_text(encoding="utf-8"))
+    dj = json.loads((ddir / "district.json").read_text(encoding="utf-8"))
+    atlas = json.loads((ROOT / dj["kit"]).read_text(encoding="utf-8"))
+    names = {e["name"] for e in atlas.get("entries", [])}
+    anims = set(atlas.get("animations", {}))
+    dropped = []
+    for p in m["placements"]:
+        if p.get("art_gap") and p.get("entry") in names:
+            del p["art_gap"]
+            dropped.append(f"placement {p['id']} ({p['entry']})")
+    for name in list(m.get("art_gap_entries", {})):
+        if name in names:
+            del m["art_gap_entries"][name]
+            dropped.append(f"art_gap_entries {name}")
+    for sname in list(m.get("art_gap_state_sets", {})):
+        if sname in anims:
+            del m["art_gap_state_sets"][sname]
+            dropped.append(f"art_gap_state_sets {sname}")
+    if not m.get("art_gap_entries"):
+        m.pop("art_gap_entries", None)
+    if not m.get("art_gap_state_sets"):
+        m.pop("art_gap_state_sets", None)
+    if dropped:
+        mpath.write_text(json.dumps(m, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return dropped
+
+
+# --------------------------------------------------------------------------- self-test (mutation tests)
+
+def selftest():
+    """Mutation tests for the rules added in schema 0.2. Each case copies the Orientation district to a temp dir,
+    injects one fault (or one valid use of a new feature) and checks that the validator reports it (or stays quiet).
+    Run: python design/levels/validate_levels.py --selftest"""
+    import copy
+    import shutil
+    import tempfile
+
+    def edit(dst, name, fn):
+        p = dst / name
+        data = json.loads(p.read_text(encoding="utf-8"))
+        fn(data)
+        p.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    def line(data, did):
+        return next(x for x in data["dialogue"] if x["id"] == did)
+
+    def scene(data, sid):
+        return next(x for x in data["terminal_scenes"] if x["id"] == sid)
+
+    def trig(data, tid):
+        return next(x for x in data["triggers"] if x["id"] == tid)
+
+    L1, L2 = "levels/01-the-lobby.json", "levels/02-badge-printer.json"
+
+    def set_when(tid, text):
+        return lambda d: trig(d, tid).__setitem__("when", text)
+
+    cases = []  # (label, [(file, fn)], expected substring or None for "no errors")
+
+    cases.append(("clean copy has no errors", [], None))
+    # reserved keys in scene tasks
+    cases.append(("backtick in a label target", [(L1, lambda d: scene(d, "o01-desk-label")["task"].__setitem__("target", "west`"))], "reserved UI keys"))
+    cases.append(("question mark in an items target", [(L2, lambda d: scene(d, "o02-guided-mapped")["task"].__setitem__("items", [{"id": "x", "target": "bea?"}]))], "reserved UI keys"))
+    cases.append(("Backquote in steps accepts", [(L1, lambda d: scene(d, "o01-popup")["task"]["steps"][0].__setitem__("accepts", ["Escape", "Backquote"]))], "reserved UI keys"))
+    cases.append(("a question in a prompt is fine", [(L1, lambda d: scene(d, "o01-desk-label")["task"].__setitem__("prompt", "Which desk is this?"))], None))
+    # dialogue modes and Hint key requests
+    cases.append(("hint line marked modal", [(L1, lambda d: line(d, "o01.d.popup").__setitem__("modal", True))], "modal must be false"))
+    cases.append(("on_request line without a hint", [(L1, lambda d: line(d, "o01.d.popup-again").__setitem__("hint", None))], "must carry a hint"))
+    cases.append(("on_request line with a non-request when", [(L1, lambda d: line(d, "o01.d.popup-again").__setitem__("when", "step_start:o01.s.popup"))], "must be exactly request:"))
+    cases.append(("request atom in a trigger", [(L1, set_when("o01.t.ivo-north", "request:o01.d.popup"))], "Hint key requests"))
+    cases.append(("request atom inside any_of", [(L1, set_when("o01.t.ivo-north", "any_of:request:o01.d.popup|scene_success:o01-loop"))], "Hint key requests"))
+    # any_of and count
+    cases.append(("any_of with two valid alternatives", [(L1, set_when("o01.t.ivo-north", "any_of:scene_success:o01-four-stops|scene_success:o01-loop"))], None))
+    cases.append(("any_of with an unknown alternative", [(L1, set_when("o01.t.ivo-north", "any_of:scene_success:o01-four-stops|scene_success:nope"))], "not found"))
+    cases.append(("any_of with one alternative", [(L1, set_when("o01.t.ivo-north", "any_of:scene_success:o01-four-stops"))], "at least two"))
+    cases.append(("nested groups", [(L1, set_when("o01.t.ivo-north", "any_of:count:2:scene_success:o01-loop|scene_success:o01-popup|scene_success:o01-loop"))], "do not nest"))
+    cases.append(("count 2 of 3", [(L1, set_when("o01.t.ivo-north", "count:2:scene_success:o01-loop|scene_success:o01-popup|scene_success:o01-four-stops & scene_success:o01-four-stops"))], None))
+    cases.append(("count above the alternatives", [(L1, set_when("o01.t.ivo-north", "count:3:scene_success:o01-loop|scene_success:o01-popup"))], "more than the 2 alternatives"))
+    cases.append(("count with a zero", [(L1, set_when("o01.t.ivo-north", "count:0:scene_success:o01-loop|scene_success:o01-popup"))], "positive integer"))
+
+    # NPC not present yet
+    def absent_start(d):
+        # a new background worker that exists only in the data: absent at the start, no trigger moves it yet
+        n = copy.deepcopy(next(x for x in d["npcs"] if x["id"] == "worker_a"))
+        n["id"] = "visitor"
+        n["poses_by_state"]["absent"] = None
+        n["initial_state"] = "absent"
+        d["npcs"].append(n)
+
+    def arrives(d):
+        trig(d, "o02.t.printer-steady")["then"].append({"op": "npc_state", "npc": "visitor", "state": "start"})
+
+    cases.append(("NPC starts absent and never arrives", [("map.json", absent_start)], "starts absent but no level trigger"))
+    cases.append(("NPC starts absent and a trigger brings it in", [("map.json", absent_start), (L2, arrives)], None))
+    cases.append(("null pose on an ordinary state", [("map.json", lambda d: next(x for x in d["npcs"] if x["id"] == "ivo")["poses_by_state"].__setitem__("tablet", None))], "only the reserved state"))
+    cases.append(("initial state missing", [("map.json", lambda d: next(x for x in d["npcs"] if x["id"] == "ivo").__setitem__("initial_state", "nowhere"))], "initial state"))
+
+    def vis_absent(d):
+        n = next(x for x in d["npcs"] if x["id"] == "ivo")
+        n["poses_by_state"]["absent"] = None
+        next(x for x in d["interactions"] if x["id"] == "ivo_start")["visible_when"] = "npc_state:ivo=absent"
+
+    cases.append(("interaction visible only while the NPC is absent", [("map.json", vis_absent)], "cannot be interacted with"))
+    cases.append(("visible_when names a missing state", [("map.json", lambda d: next(x for x in d["interactions"] if x["id"] == "ivo_start").__setitem__("visible_when", "npc_state:ivo=nope"))], "has no state"))
+
+    failures = 0
+    for label, edits, expect in cases:
+        with tempfile.TemporaryDirectory() as tmp:
+            dst = Path(tmp) / "orientation"
+            shutil.copytree(HERE / "orientation", dst)
+            for name, fn in edits:
+                edit(dst, name, fn)
+            rep = Report()
+            ref = Reference(rep)
+            DistrictCheck(ref, dst, rep).run()
+        got = [e for e in rep.errors if "gesture-inventory" not in e]
+        if expect is None:
+            ok = not got
+        else:
+            ok = any(expect in e for e in got)
+        failures += 0 if ok else 1
+        print(f"{'PASS' if ok else 'FAIL'}  {label}" + ("" if ok else f"\n        expected {expect!r}; errors: {got[:3]}"))
+    # world: panel links
+    for label, mut, expect in (
+        ("panel link without a cell for each district", lambda w: next(l for l in w["links"] if l["kind"] == "panel")["cells"].pop("nightshift"), "needs a cell for each"),
+        ("panel link without a seal", lambda w: next(l for l in w["links"] if l["kind"] == "panel").__setitem__("seal_required", None), "names the seal"),
+        ("shipped panel link is clean", lambda w: None, None),
+    ):
+        world = json.loads(WORLD_PATH.read_text(encoding="utf-8"))
+        mut(world)
+        probs = world_link_problems(world)
+        ok = (not probs) if expect is None else any(expect in p for p in probs)
+        failures += 0 if ok else 1
+        print(f"{'PASS' if ok else 'FAIL'}  {label}" + ("" if ok else f"\n        problems: {probs}"))
+    print(f"selftest: {len(cases) + 3 - failures}/{len(cases) + 3} cases behaved as expected")
+    return 1 if failures else 0
+
+
 # --------------------------------------------------------------------------- main
 
 def main(argv=None):
@@ -1361,7 +1629,17 @@ def main(argv=None):
     ap.add_argument("--all", action="store_true", help="validate every district directory that exists")
     ap.add_argument("-v", "--verbose", action="store_true", help="print every warning and info line")
     ap.add_argument("--strict", action="store_true", help="treat warnings as errors")
+    ap.add_argument("--selftest", action="store_true", help="run the mutation tests for the schema 0.2 rules and exit")
+    ap.add_argument("--drop-solved-gaps", action="store_true", help="edit map.json of the given districts: drop art_gap flags and declarations the kit atlas now covers, then exit")
     args = ap.parse_args(argv)
+    if args.selftest:
+        return selftest()
+    if args.drop_solved_gaps:
+        for item in args.dirs:
+            p = Path(item) if Path(item).exists() else HERE / item
+            done = drop_solved_gaps(p)
+            print(f"{p.name}: dropped {len(done)} solved art gaps" + "".join(f"\n  {d}" for d in done))
+        return 0
 
     rep = Report()
     landed = [d for d in DISTRICTS if (HERE / d / "district.json").exists()]

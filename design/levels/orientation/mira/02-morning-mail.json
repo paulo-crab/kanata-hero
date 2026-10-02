@@ -54,7 +54,7 @@
  "medal_rule": "clean baseline then personal target, never gates story",
  "reward_patch": "first_delivery",
  "desk_decoration": "mail tray (mail_tray) for the player's desk",
- "map_design_note": "Start at the mailroom counter (20,14), through the open turnstile (opened by level 01), west along the south band, up to the west desk, along the north band to the north desk, then down the east band to the east desk and back to the mailroom. A simple loop around the garden with no hidden door; the cut-through shortens it after level 06 but is not needed. Checkpoints show on the world map after a first attempt.",
+ "map_design_note": "Start at the mailroom counter (20,14), north out through the open turnstile lane (23,12), west to the west desk, along the north band to the north desk, then down the east band to the east desk and back through the lane to the mailroom. A simple loop around the garden with no hidden door; the cut-through shortens it after level 06 but is not needed. Each cleared route adds one medal to the mailroom's `mail_board` (state set `mail_medals`, 0 to 6). Checkpoints show on the world map after a first attempt.",
  "baseline_note": "The first clean run records the run's duration as a baseline and grants the First Delivery patch; later runs may show an adjustable personal target about 5% below the baseline. Accuracy gates the medal, speed never gates story.",
  "terminal_scenes": [
   {
@@ -164,7 +164,8 @@
    "text": "Mira, courier. Learn the loop first: three slips, three desks. No clock this time; I only write down how long your first clean run takes, as your baseline.",
    "hint": null,
    "when": "interact:mira",
-   "cue": "Mira: the Morning Mail introduction (mira_grin)"
+   "cue": "Mira: the Morning Mail introduction (mira_grin)",
+   "modal": true
   },
   {
    "id": "mm.d.offer",
@@ -173,7 +174,8 @@
    "text": "Take the slips from the tray whenever you are ready.",
    "hint": null,
    "when": "dialogue_done:mm.d.intro",
-   "cue": "Mira: offering any route"
+   "cue": "Mira: offering any route",
+   "modal": true
   },
   {
    "id": "mm.d.hint-west",
@@ -186,7 +188,8 @@
     "gesture": "tap 0, tap 4. Plain taps stay digits on base."
    },
    "speaker_kind": "object",
-   "when": "interact:mm_checkpoint_west"
+   "when": "interact:mm_checkpoint_west",
+   "modal": false
   },
   {
    "id": "mm.d.hint-north",
@@ -199,7 +202,8 @@
     "gesture": "tap U. It only pages up while nav is held."
    },
    "speaker_kind": "object",
-   "when": "interact:mm_checkpoint_north"
+   "when": "interact:mm_checkpoint_north",
+   "modal": false
   },
   {
    "id": "mm.d.hint-east",
@@ -212,7 +216,8 @@
     "gesture": "tap comma. It only deletes forward while nav is held."
    },
    "speaker_kind": "object",
-   "when": "interact:mm_checkpoint_east"
+   "when": "interact:mm_checkpoint_east",
+   "modal": false
   },
   {
    "id": "mm.d.fix",
@@ -221,7 +226,8 @@
    "text": "That slip says something else. Try the letters again; nothing is lost.",
    "hint": null,
    "when": "interact:mira",
-   "cue": "Mira: neutral"
+   "cue": "Mira: neutral",
+   "modal": true
   },
   {
    "id": "mm.d.baseline",
@@ -230,7 +236,8 @@
    "text": "Clean run. That is your baseline, and I'll sew on the patch. A quicker loop is there if you want it; it never gates anything.",
    "hint": null,
    "when": "interact:mira",
-   "cue": "Mira: each patch, earned on a route's first clean baseline (pleased)"
+   "cue": "Mira: each patch, earned on a route's first clean baseline (pleased)",
+   "modal": true
   }
  ]
 }

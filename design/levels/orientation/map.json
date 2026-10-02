@@ -47,28 +47,15 @@
    ]
   },
   {
-   "id": "wall_n_02",
-   "entry": "wall_n_plain",
+   "id": "elevator",
+   "entry": "elevator_closed",
    "cell": [
     2,
     0
-   ]
-  },
-  {
-   "id": "wall_n_03",
-   "entry": "wall_n_plain",
-   "cell": [
-    3,
-    0
-   ]
-  },
-  {
-   "id": "wall_n_04",
-   "entry": "wall_n_plain",
-   "cell": [
-    4,
-    0
-   ]
+   ],
+   "state_set": "elevator",
+   "state": "closed",
+   "note": "north wall, west end: 3x3 module (wall rows 0-1 plus a lit LIFT mat row at y2); plays closed, half, open on arrival; the centre cell (3,1) is the car"
   },
   {
    "id": "wall_n_05",
@@ -175,28 +162,15 @@
    ]
   },
   {
-   "id": "wall_n_18",
-   "entry": "wall_n_plain",
+   "id": "conf_door",
+   "entry": "conference_glass_door_closed",
    "cell": [
     18,
     0
-   ]
-  },
-  {
-   "id": "wall_n_19",
-   "entry": "wall_n_plain",
-   "cell": [
-    19,
-    0
-   ]
-  },
-  {
-   "id": "wall_n_20",
-   "entry": "wall_n_plain",
-   "cell": [
-    20,
-    0
-   ]
+   ],
+   "state_set": "conference_door",
+   "state": "closed",
+   "note": "north wall: 3x3 module (wall rows 0-1 plus a lit MEET mat row at y2); opens closed, half, open after level 03"
   },
   {
    "id": "wall_n_21",
@@ -255,74 +229,14 @@
    ]
   },
   {
-   "id": "wall_n_window_01",
+   "id": "wall_n_window_09",
    "entry": "wall_n_window_a",
    "cell": [
+    9,
+    0
+   ],
+   "offset": [
     1,
-    0
-   ],
-   "offset": [
-    4,
-    9
-   ]
-  },
-  {
-   "id": "wall_n_window_04",
-   "entry": "wall_n_window_b",
-   "cell": [
-    4,
-    0
-   ],
-   "offset": [
-    4,
-    9
-   ]
-  },
-  {
-   "id": "wall_n_window_08",
-   "entry": "wall_n_window_a",
-   "cell": [
-    8,
-    0
-   ],
-   "offset": [
-    2,
-    9
-   ]
-  },
-  {
-   "id": "wall_n_window_18",
-   "entry": "wall_n_window_b",
-   "cell": [
-    18,
-    0
-   ],
-   "offset": [
-    2,
-    9
-   ]
-  },
-  {
-   "id": "wall_n_window_21",
-   "entry": "wall_n_window_a",
-   "cell": [
-    21,
-    0
-   ],
-   "offset": [
-    2,
-    9
-   ]
-  },
-  {
-   "id": "wall_n_window_24",
-   "entry": "wall_n_window_b",
-   "cell": [
-    24,
-    0
-   ],
-   "offset": [
-    2,
     9
    ]
   },
@@ -343,10 +257,10 @@
    "id": "pace_wall_sign",
    "entry": "pace_wall_sign_2x1",
    "cell": [
-    16,
+    25,
     0
    ],
-   "note": "Pace wayfinding sign, default state"
+   "note": "Pace wayfinding sign, default state (moved to the north wall's east end)"
   },
   {
    "id": "wall_e_02",
@@ -514,6 +428,15 @@
    ]
   },
   {
+   "id": "wall_w_11",
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    11
+   ],
+   "art_gap": true
+  },
+  {
    "id": "wall_e_12",
    "entry": "wall_e_plain",
    "cell": [
@@ -526,6 +449,15 @@
    ]
   },
   {
+   "id": "wall_w_12",
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    12
+   ],
+   "art_gap": true
+  },
+  {
    "id": "wall_e_13",
    "entry": "wall_e_plain",
    "cell": [
@@ -536,6 +468,15 @@
     0,
     2
    ]
+  },
+  {
+   "id": "wall_w_13",
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    13
+   ],
+   "art_gap": true
   },
   {
    "id": "wall_e_14",
@@ -656,25 +597,17 @@
    "state": "on"
   },
   {
-   "id": "elevator",
-   "entry": "elevator_closed",
-   "cell": [
-    0,
-    11
-   ],
-   "state_set": "elevator",
-   "state": "closed",
-   "art_gap": true,
-   "note": "west wall, southwest of the garden; plays closed, half, open on arrival"
-  },
-  {
    "id": "elevator_call_panel",
    "entry": "elevator_call_panel",
    "cell": [
-    1,
-    10
+    5,
+    0
    ],
-   "art_gap": true
+   "offset": [
+    2,
+    9
+   ],
+   "note": "wall overlay beside the elevator; Interact opens the elevator map"
   },
   {
    "id": "garden",
@@ -687,19 +620,33 @@
    "note": "landmark; footprint x11-15, y7-10; ring path and three lamps are part of the landmark"
   },
   {
-   "id": "garden_north_rim",
-   "entry": "garden_north_rim_open",
+   "id": "seating_nook",
+   "entry": "seating_nook_after",
    "cell": [
-    12,
-    6
+    20,
+    7
    ],
-   "state_set": "garden_north_rim",
-   "state": "closed",
+   "state_set": "seating_nook",
+   "state": "hidden",
    "art_gap": true,
-   "note": "north opening of the cut-through column x12; drawn only after level 06"
+   "note": "the previously hidden seating nook (levels.md revisit payoff), 3x2 east of the garden beside the Records corridor; hidden until level 06, then shown"
   },
   {
-   "id": "inlay_1",
+   "id": "stripe_left_1",
+   "entry": "route_inlay",
+   "cell": [
+    7,
+    10
+   ],
+   "offset": [
+    0,
+    8
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
+  },
+  {
+   "id": "stripe_left_2",
    "entry": "route_inlay",
    "cell": [
     8,
@@ -708,10 +655,12 @@
    "offset": [
     0,
     8
-   ]
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
   },
   {
-   "id": "inlay_2",
+   "id": "stripe_left_3",
    "entry": "route_inlay",
    "cell": [
     9,
@@ -720,10 +669,12 @@
    "offset": [
     0,
     8
-   ]
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
   },
   {
-   "id": "inlay_3",
+   "id": "stripe_right_1",
    "entry": "route_inlay",
    "cell": [
     17,
@@ -732,10 +683,12 @@
    "offset": [
     0,
     8
-   ]
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
   },
   {
-   "id": "inlay_4",
+   "id": "stripe_right_2",
    "entry": "route_inlay",
    "cell": [
     18,
@@ -744,7 +697,23 @@
    "offset": [
     0,
     8
-   ]
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
+  },
+  {
+   "id": "stripe_right_3",
+   "entry": "route_inlay",
+   "cell": [
+    19,
+    10
+   ],
+   "offset": [
+    0,
+    8
+   ],
+   "state_set": "corridor_stripe",
+   "state": "unlit"
   },
   {
    "id": "inlay_5",
@@ -852,7 +821,6 @@
     2,
     0
    ],
-   "art_gap": true,
    "note": "on the side table; visible after level 02"
   },
   {
@@ -880,124 +848,54 @@
    ]
   },
   {
-   "id": "conf_wall_e_2",
-   "entry": "partition_1x1",
-   "cell": [
-    7,
-    2
-   ]
-  },
-  {
-   "id": "conf_wall_e_3",
-   "entry": "partition_1x1",
-   "cell": [
-    7,
-    3
-   ]
-  },
-  {
-   "id": "conf_wall_e_4",
-   "entry": "partition_1x1",
-   "cell": [
-    7,
-    4
-   ]
-  },
-  {
-   "id": "conf_wall_e_5",
-   "entry": "partition_1x1",
-   "cell": [
-    7,
-    5
-   ]
-  },
-  {
-   "id": "conf_wall_s_a",
-   "entry": "partition_2x1",
-   "cell": [
-    2,
-    6
-   ]
-  },
-  {
    "id": "clock_twin",
    "entry": "clock_twin_unsynced",
    "cell": [
-    4,
-    6
+    16,
+    0
+   ],
+   "offset": [
+    1,
+    9
    ],
    "state_set": "clock_twin",
    "state": "unsynced",
-   "art_gap": true,
-   "note": "two faces, one each side of the glass"
-  },
-  {
-   "id": "conf_door",
-   "entry": "conference_glass_door_closed",
-   "cell": [
-    5,
-    6
-   ],
-   "state_set": "conference_door",
-   "state": "closed",
-   "art_gap": true
-  },
-  {
-   "id": "conf_wall_s_b",
-   "entry": "partition_1x1",
-   "cell": [
-    7,
-    6
-   ]
-  },
-  {
-   "id": "conf_bench",
-   "entry": "bench",
-   "cell": [
-    3,
-    3
-   ]
-  },
-  {
-   "id": "conf_planter",
-   "entry": "pot_plant_g",
-   "cell": [
-    6,
-    2
-   ]
+   "note": "wall overlay left of the conference door; two faces that disagree until level 03"
   },
   {
    "id": "form_wall",
    "entry": "projected_form_wall",
    "cell": [
-    2,
-    7
+    21,
+    0
    ],
-   "art_gap": true,
-   "note": "scheduling form projected against the lobby side of the glass"
+   "offset": [
+    1,
+    9
+   ],
+   "note": "scheduling form projected beside the conference door; wall overlay, the terminal is approached from the row below"
   },
   {
    "id": "desk_left",
    "entry": "desk_left_cherry",
    "cell": [
-    4,
+    5,
     10
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "chair_left",
    "entry": "chair",
    "cell": [
-    5,
+    6,
     11
    ]
   },
   {
    "id": "lamp_desk_left",
-   "entry": "lamp",
+   "entry": "lamp_off",
    "cell": [
-    3,
+    4,
     10
    ],
    "offset": [
@@ -1008,58 +906,40 @@
    "state": "off"
   },
   {
-   "id": "lamp_corridor_w",
-   "entry": "lamp",
-   "cell": [
-    7,
-    11
-   ],
-   "offset": [
-    5,
-    7
-   ],
-   "state_set": "lamp",
-   "state": "off",
-   "note": "adjacent corridor stripe light; wakes with the desk lamp"
-  },
-  {
    "id": "stamp_a",
    "entry": "stamp_a",
    "cell": [
-    4,
+    5,
     10
    ],
    "offset": [
-    0,
-    2
-   ],
-   "art_gap": true
+    2,
+    1
+   ]
   },
   {
    "id": "stamp_b",
    "entry": "stamp_b",
    "cell": [
-    4,
+    5,
     10
    ],
    "offset": [
-    8,
-    3
-   ],
-   "art_gap": true
+    10,
+    1
+   ]
   },
   {
    "id": "stamp_c",
    "entry": "stamp_c",
    "cell": [
-    5,
+    6,
     10
    ],
    "offset": [
-    6,
-    2
-   ],
-   "art_gap": true
+    2,
+    1
+   ]
   },
   {
    "id": "stamp_d",
@@ -1069,10 +949,9 @@
     10
    ],
    "offset": [
-    2,
-    3
-   ],
-   "art_gap": true
+    10,
+    1
+   ]
   },
   {
    "id": "artifact_training_card",
@@ -1085,20 +964,22 @@
     8,
     4
    ],
-   "art_gap": true,
    "note": "on the left desk; visible after level 04"
   },
   {
    "id": "pinboard",
-   "entry": "pinboard_before",
+   "entry": "pinboard_empty",
    "cell": [
+    6,
+    0
+   ],
+   "offset": [
     0,
-    8
+    9
    ],
    "state_set": "pinboard",
-   "state": "before",
-   "art_gap": true,
-   "note": "west wall; becomes asymmetrical and human after level 05"
+   "state": "empty",
+   "note": "north wall beside the arrival; empty until level 04, symmetrical after it, asymmetrical and human after level 05"
   },
   {
    "id": "desk_right",
@@ -1106,8 +987,7 @@
    "cell": [
     20,
     10
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "chair_right",
@@ -1119,31 +999,18 @@
   },
   {
    "id": "lamp_desk_right",
-   "entry": "lamp",
+   "entry": "lamp_off",
    "cell": [
-    23,
+    22,
     10
    ],
    "offset": [
     5,
     7
    ],
-   "state_set": "lamp",
-   "state": "off"
-  },
-  {
-   "id": "lamp_corridor_e",
-   "entry": "lamp",
-   "cell": [
-    19,
-    11
-   ],
-   "offset": [
-    5,
-    7
-   ],
-   "state_set": "lamp",
-   "state": "off"
+   "state_set": "lamp_warm",
+   "state": "off",
+   "note": "the warmer lamp of the right desk (kit state set lamp_warm)"
   },
   {
    "id": "stamp_e",
@@ -1154,22 +1021,20 @@
    ],
    "offset": [
     2,
-    3
-   ],
-   "art_gap": true
+    1
+   ]
   },
   {
    "id": "stamp_f",
    "entry": "stamp_f",
    "cell": [
-    21,
+    20,
     10
    ],
    "offset": [
-    0,
-    2
-   ],
-   "art_gap": true
+    10,
+    1
+   ]
   },
   {
    "id": "stamp_g",
@@ -1179,53 +1044,34 @@
     10
    ],
    "offset": [
-    9,
-    3
-   ],
-   "art_gap": true
+    2,
+    1
+   ]
   },
   {
    "id": "stamp_h",
    "entry": "stamp_h",
    "cell": [
-    22,
+    21,
     10
    ],
    "offset": [
-    4,
-    2
-   ],
-   "art_gap": true
+    10,
+    1
+   ]
   },
   {
    "id": "artifact_mirror_card",
    "entry": "artifact_mirror_card",
    "cell": [
-    22,
+    21,
     10
    ],
    "offset": [
     8,
     4
    ],
-   "art_gap": true,
    "note": "on the right desk; visible after level 05"
-  },
-  {
-   "id": "sofa_east",
-   "entry": "sofa",
-   "cell": [
-    21,
-    3
-   ]
-  },
-  {
-   "id": "side_table_east",
-   "entry": "side_table",
-   "cell": [
-    23,
-    3
-   ]
   },
   {
    "id": "desk_south",
@@ -1250,7 +1096,6 @@
     15,
     15
    ],
-   "art_gap": true,
    "note": "garden review table, level 06"
   },
   {
@@ -1261,10 +1106,9 @@
     15
    ],
    "offset": [
-    2,
-    2
-   ],
-   "art_gap": true
+    3,
+    1
+   ]
   },
   {
    "id": "keyboard_spare",
@@ -1274,10 +1118,9 @@
     15
    ],
    "offset": [
-    2,
+    6,
     2
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "artifact_first_route_receipt",
@@ -1287,10 +1130,9 @@
     15
    ],
    "offset": [
-    4,
-    3
+    10,
+    0
    ],
-   "art_gap": true,
    "note": "on the review table; visible after level 06"
   },
   {
@@ -1310,32 +1152,15 @@
    ]
   },
   {
-   "id": "mail_wall_n_c",
-   "entry": "partition_2x1",
-   "cell": [
-    22,
-    12
-   ]
-  },
-  {
-   "id": "mail_wall_n_d",
-   "entry": "partition_2x1",
-   "cell": [
-    24,
-    12
-   ]
-  },
-  {
    "id": "turnstile",
    "entry": "turnstile_closed",
    "cell": [
-    19,
-    13
+    22,
+    12
    ],
    "state_set": "turnstile",
    "state": "closed",
-   "art_gap": true,
-   "note": "reception turnstile between the lobby and the mailroom; 2 cells tall"
+   "note": "3x1: pedestal, one-cell lane at (23,12), pedestal; north partition line of the mailroom; the lane lights when it opens"
   },
   {
    "id": "mail_wall_w_a",
@@ -1351,6 +1176,30 @@
    "cell": [
     19,
     16
+   ]
+  },
+  {
+   "id": "mail_wall_n_e",
+   "entry": "partition_1x1",
+   "cell": [
+    25,
+    12
+   ]
+  },
+  {
+   "id": "mail_wall_w_c",
+   "entry": "partition_1x1",
+   "cell": [
+    19,
+    13
+   ]
+  },
+  {
+   "id": "mail_wall_w_d",
+   "entry": "partition_1x1",
+   "cell": [
+    19,
+    14
    ]
   },
   {
@@ -1375,17 +1224,18 @@
    "offset": [
     4,
     0
-   ],
-   "art_gap": true
+   ]
   },
   {
    "id": "mail_board",
    "entry": "mail_board",
    "cell": [
-    24,
+    20,
     13
    ],
-   "art_gap": true
+   "state_set": "mail_medals",
+   "state": "0",
+   "note": "free-standing medal board inside the mailroom; one medal per Mira route cleared"
   },
   {
    "id": "planter_tag_1",
@@ -1461,7 +1311,7 @@
    "entry": "pot_plant_h",
    "cell": [
     2,
-    2
+    6
    ]
   }
  ],
@@ -1477,603 +1327,54 @@
     ]
    },
    "layer": "rear_wall",
-   "purpose": "West wall side plane, mirror of wall_e_plain for the elevator wall (light is upper-left, so it cannot be a flipped east piece)."
+   "purpose": "West wall side plane (rows 2-16, x0-1), mirror of wall_e_plain. Built on feat/art-orientation-completion (30x16 px, two cells thick); not in this branch's base atlas yet."
   },
-  "elevator_closed": {
-   "footprint": {
-    "cells": [
-     2,
-     3
-    ],
-    "collision": [
-     "11",
-     "11",
-     "11"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Arrival elevator door, closed.",
-   "states": [
-    "closed"
-   ]
-  },
-  "elevator_half": {
-   "footprint": {
-    "cells": [
-     2,
-     3
-    ],
-    "collision": [
-     "11",
-     "11",
-     "11"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Arrival elevator door, half.",
-   "states": [
-    "half"
-   ]
-  },
-  "elevator_open": {
-   "footprint": {
-    "cells": [
-     2,
-     3
-    ],
-    "collision": [
-     "00",
-     "00",
-     "00"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Arrival elevator door, open.",
-   "states": [
-    "open"
-   ]
-  },
-  "elevator_call_panel": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "1"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Call panel beside the elevator; opens the elevator map."
-  },
-  "turnstile_closed": {
-   "footprint": {
-    "cells": [
-     1,
-     2
-    ],
-    "collision": [
-     "1",
-     "1"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Reception turnstile pair, barred.",
-   "states": [
-    "closed"
-   ]
-  },
-  "turnstile_open": {
-   "footprint": {
-    "cells": [
-     1,
-     2
-    ],
-    "collision": [
-     "0",
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Reception turnstile pair, arms folded away.",
-   "states": [
-    "open"
-   ]
-  },
-  "clock_twin_unsynced": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "1"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Meeting-room clock with two faces showing different times.",
-   "states": [
-    "unsynced"
-   ]
-  },
-  "clock_twin_synced": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "1"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Same clock, both faces agree.",
-   "states": [
-    "synced"
-   ]
-  },
-  "conference_glass_door_closed": {
-   "footprint": {
-    "cells": [
-     2,
-     1
-    ],
-    "collision": [
-     "11"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Sliding glass door of the clock room, closed.",
-   "states": [
-    "closed"
-   ]
-  },
-  "conference_glass_door_half": {
-   "footprint": {
-    "cells": [
-     2,
-     1
-    ],
-    "collision": [
-     "11"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Sliding glass door of the clock room, half.",
-   "states": [
-    "half"
-   ]
-  },
-  "conference_glass_door_open": {
-   "footprint": {
-    "cells": [
-     2,
-     1
-    ],
-    "collision": [
-     "00"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Sliding glass door of the clock room, open.",
-   "states": [
-    "open"
-   ]
-  },
-  "projected_form_wall": {
+  "seating_nook_after": {
    "footprint": {
     "cells": [
      3,
-     1
-    ],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Scheduling form projected on glass with a clear focus outline."
-  },
-  "stamp_a": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp a, a distinct silhouette (left desk)."
-  },
-  "stamp_b": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp b, a distinct silhouette (left desk)."
-  },
-  "stamp_c": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp c, a distinct silhouette (left desk)."
-  },
-  "stamp_d": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp d, a distinct silhouette (left desk)."
-  },
-  "stamp_e": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp e, a distinct silhouette (right desk)."
-  },
-  "stamp_f": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp f, a distinct silhouette (right desk)."
-  },
-  "stamp_g": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp g, a distinct silhouette (right desk)."
-  },
-  "stamp_h": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Approval stamp h, a distinct silhouette (right desk)."
-  },
-  "pinboard_before": {
-   "footprint": {
-    "cells": [
-     2,
      2
     ],
     "collision": [
-     "00",
-     "00"
+     "111",
+     "110"
     ]
    },
-   "layer": "rear_wall",
-   "purpose": "Wall pinboard, symmetrical and empty.",
+   "layer": "rear_prop",
+   "purpose": "The previously hidden seating nook of the levels.md revisit payoff. Built on feat/art-orientation-completion (y-sorted); not in this branch's base atlas yet.",
    "states": [
-    "before"
+    "shown"
    ]
   },
-  "pinboard_after": {
+  "seating_nook_glow": {
    "footprint": {
     "cells": [
-     2,
+     3,
      2
     ],
     "collision": [
-     "00",
-     "00"
+     "000",
+     "000"
     ]
    },
-   "layer": "rear_wall",
-   "purpose": "Same pinboard, asymmetrical and human, a map pointing to the review desk.",
+   "layer": "light",
+   "purpose": "Lamp pool of the seating nook, drawn with seating_nook_after in the shown state. Built on feat/art-orientation-completion; not in this branch's base atlas yet.",
    "states": [
-    "after"
-   ]
-  },
-  "desk_left_cherry": {
-   "footprint": {
-    "cells": [
-     3,
-     1
-    ],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Left workstation: cherry desk with four stamp spots (kit desk_a is 2 cells and plain)."
-  },
-  "desk_right_mirror": {
-   "footprint": {
-    "cells": [
-     3,
-     1
-    ],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Right workstation, deliberately different layout from the left (mirror, warmer)."
-  },
-  "review_table": {
-   "footprint": {
-    "cells": [
-     3,
-     1
-    ],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Garden review table for the two keyboards."
-  },
-  "keyboard_macbook": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "MacBook keyboard prop on the review table."
-  },
-  "keyboard_spare": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Spare (Microsoft-layout) keyboard prop."
-  },
-  "mail_board": {
-   "footprint": {
-    "cells": [
-     2,
-     1
-    ],
-    "collision": [
-     "11"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Mailroom board that later carries medals."
-  },
-  "mail_tray": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Mail tray on the counter; also the desk decoration reward."
-  },
-  "artifact_unissued_badge": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Optional artifact: unissued badge; the shared document close-up frame handles the inspect view."
-  },
-  "artifact_training_card": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Optional artifact: training card; the shared document close-up frame handles the inspect view."
-  },
-  "artifact_mirror_card": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Optional artifact: mirror card; the shared document close-up frame handles the inspect view."
-  },
-  "artifact_first_route_receipt": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Optional artifact: first route receipt; the shared document close-up frame handles the inspect view."
-  },
-  "garden_north_rim_open": {
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "floor_marking",
-   "purpose": "North-rim opening that continues the garden_after_path cut-through so it becomes a through route (the kit's after state only opens the south rim).",
-   "states": [
-    "open"
+    "shown"
    ]
   }
  },
  "art_gap_state_sets": {
-  "elevator": {
-   "default": "closed",
+  "seating_nook": {
+   "default": "hidden",
    "states": {
-    "closed": {
-     "entries": [
-      "elevator_closed"
-     ],
-     "blocked": true
-    },
-    "half": {
-     "entries": [
-      "elevator_half"
-     ],
-     "blocked": true
-    },
-    "open": {
-     "entries": [
-      "elevator_open"
-     ],
-     "blocked": false
-    }
-   }
-  },
-  "turnstile": {
-   "default": "closed",
-   "states": {
-    "closed": {
-     "entries": [
-      "turnstile_closed"
-     ],
-     "blocked": true
-    },
-    "open": {
-     "entries": [
-      "turnstile_open"
-     ],
-     "blocked": false
-    }
-   }
-  },
-  "clock_twin": {
-   "default": "unsynced",
-   "states": {
-    "unsynced": {
-     "entries": [
-      "clock_twin_unsynced"
-     ]
-    },
-    "synced": {
-     "entries": [
-      "clock_twin_synced"
-     ]
-    }
-   }
-  },
-  "conference_door": {
-   "default": "closed",
-   "states": {
-    "closed": {
-     "entries": [
-      "conference_glass_door_closed"
-     ],
-     "blocked": true
-    },
-    "half": {
-     "entries": [
-      "conference_glass_door_half"
-     ],
-     "blocked": true
-    },
-    "open": {
-     "entries": [
-      "conference_glass_door_open"
-     ],
-     "blocked": false
-    }
-   }
-  },
-  "pinboard": {
-   "default": "before",
-   "states": {
-    "before": {
-     "entries": [
-      "pinboard_before"
-     ]
-    },
-    "after": {
-     "entries": [
-      "pinboard_after"
-     ]
-    }
-   }
-  },
-  "garden_north_rim": {
-   "default": "closed",
-   "states": {
-    "closed": {
+    "hidden": {
      "entries": []
     },
-    "open": {
+    "shown": {
      "entries": [
-      "garden_north_rim_open"
+      "seating_nook_after",
+      "seating_nook_glow"
      ]
     }
    }
@@ -2090,18 +1391,18 @@
  "collision": [
   "1111111111111111111111111111",
   "1111111111111111111111111111",
-  "1110001101101111110000000111",
-  "1101100101110000000001110011",
-  "1100000100000000000000000111",
-  "1100000100000000000000000011",
-  "1111111100100001000000000011",
-  "1111100000011111000000000011",
+  "1100000001101111110000000111",
+  "1100000001110000000000000011",
+  "1100000000000000000000000111",
+  "1100000000000000000000000011",
+  "1110000000100001000000000011",
+  "1100000000011111000000000011",
   "1100000000011111000000000111",
   "1100000000011111000000001111",
-  "1101111000011111000011110111",
-  "1100010100000000000101000011",
+  "1100111000011111000011100111",
+  "1100001000000000000001000011",
   "1100000000000000000111111111",
-  "1100000000000000000100001111",
+  "1100000000000000000111100011",
   "1100000000000000000100000011",
   "1100000001100001110100111011",
   "1110000001001010001100000111",
@@ -2113,17 +1414,13 @@
    "kind": "door",
    "cells": [
     [
-     19,
-     13
-    ],
-    [
-     19,
-     14
+     23,
+     12
     ]
    ],
    "opens_after": "orientation-01",
    "placement": "turnstile",
-   "visible_change": "Turnstile arms fold away and the mailroom entrance opens (2 cells wide).",
+   "visible_change": "Turnstile pedestals fold their arms away and the lit lane at (23,12) opens the mailroom entrance (one cell between the pedestals, as the kit draws it).",
    "locked_hint": "A sign by the turnstile: Reception clearance pending (finish the Lobby route)."
   },
   {
@@ -2131,18 +1428,14 @@
    "kind": "door",
    "cells": [
     [
-     5,
-     6
-    ],
-    [
-     6,
-     6
+     19,
+     1
     ]
    ],
    "opens_after": "orientation-03",
    "placement": "conf_door",
-   "visible_change": "The clock room's glass door slides aside; the room is walkable.",
-   "locked_hint": "The scheduling form is visible through the glass; the door waits for correct entries."
+   "visible_change": "The meeting room's glass door slides aside (closed, half, open); the car-sized recess behind it can be entered.",
+   "locked_hint": "The scheduling form is projected beside the glass; the door waits for correct entries."
   },
   {
    "id": "g.records-door",
@@ -2200,8 +1493,8 @@
     ]
    ],
    "opens_after": "orientation-06",
-   "placement": "garden_north_rim",
-   "visible_change": "A flagstone path opens through the garden bed (south rim from the kit after state, north rim from the garden_north_rim_open gap), joining the south and north bands along column 12."
+   "placement": "garden",
+   "visible_change": "The garden's after state opens a flagstone path through the bed along column x12 (the kit's garden_base_open and garden_north_rim_open parts), joining the south and north bands."
   }
  ],
  "zones": [
@@ -2231,12 +1524,13 @@
    "id": "z.clock",
    "kind": "task_room",
    "rect": [
+    16,
     2,
-    2,
-    6,
-    7
+    9,
+    3
    ],
-   "level": "orientation-03"
+   "level": "orientation-03",
+   "note": "meeting-room module, twin clock and projected form along the north wall (east of the printer)"
   },
   {
    "id": "z.left",
@@ -2299,11 +1593,11 @@
    "kind": "corridor",
    "rect": [
     2,
-    10,
+    2,
     6,
-    7
+    8
    ],
-   "note": "elevator arrival and the shared-clock workers"
+   "note": "elevator arrival lobby, the pinboard wall and the shared-clock workers"
   }
  ],
  "interactions": [
@@ -2312,16 +1606,16 @@
    "kind": "npc",
    "cells": [
     [
-     4,
-     11
+     5,
+     3
     ]
    ],
    "marker": "conversation",
    "approach": [
     {
      "cell": [
-      3,
-      11
+      4,
+      3
      ],
      "facing": "e"
     }
@@ -2384,22 +1678,26 @@
    "kind": "elevator",
    "cells": [
     [
-     1,
-     10
+     5,
+     0
+    ],
+    [
+     5,
+     1
     ]
    ],
    "marker": "terminal",
    "approach": [
     {
      "cell": [
-      2,
-      10
+      5,
+      2
      ],
-     "facing": "w"
+     "facing": "n"
     }
    ],
    "placement": "elevator_call_panel",
-   "label": "Elevator map"
+   "label": "Elevator map (Interact opens it)"
   },
   {
    "id": "stop_north",
@@ -2546,24 +1844,35 @@
    "kind": "terminal",
    "cells": [
     [
-     2,
-     7
+     21,
+     1
     ],
     [
-     3,
-     7
+     22,
+     1
     ],
     [
-     4,
-     7
+     23,
+     1
+    ],
+    [
+     24,
+     1
     ]
    ],
    "marker": "terminal",
    "approach": [
     {
      "cell": [
-      3,
-      8
+      24,
+      2
+     ],
+     "facing": "n"
+    },
+    {
+     "cell": [
+      22,
+      2
      ],
      "facing": "n"
     }
@@ -2580,10 +1889,6 @@
    "id": "left_desk",
    "kind": "terminal",
    "cells": [
-    [
-     4,
-     10
-    ],
     [
      5,
      10
@@ -2649,10 +1954,6 @@
     [
      21,
      10
-    ],
-    [
-     22,
-     10
     ]
    ],
    "marker": "terminal",
@@ -2678,7 +1979,7 @@
    "kind": "artifact",
    "cells": [
     [
-     22,
+     21,
      10
     ]
    ],
@@ -2686,7 +1987,7 @@
    "approach": [
     {
      "cell": [
-      22,
+      21,
       9
      ],
      "facing": "s"
@@ -3092,8 +2393,8 @@
    "id": "ivo",
    "character": "ivo",
    "start_cell": [
-    4,
-    11
+    5,
+    3
    ],
    "facing": "s",
    "poses_by_state": {
@@ -3131,7 +2432,7 @@
      14
     ]
    },
-   "note": "Reception lead. Waves at the arrival, takes his post, nods after the Lobby route, flashes his tablet while the scheduling form is broken, laughs after the Orientation seal."
+   "note": "Reception lead. Waves beside the elevator mat, takes his post after the popup, nods after the Lobby route, flashes his tablet while the scheduling form is broken, laughs after the Orientation seal."
   },
   {
    "id": "mira",
@@ -3167,26 +2468,26 @@
    "id": "worker_a",
    "character": "bgworker_a",
    "start_cell": [
-    3,
-    14
+    4,
+    6
    ],
    "facing": "e",
    "patrol": [
     [
-     3,
-     14
+     4,
+     6
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     5,
+     7
     ],
     [
      4,
-     14
-    ],
-    [
-     4,
-     15
-    ],
-    [
-     3,
-     15
+     7
     ]
    ],
    "patrol_clock": "shared",
@@ -3194,32 +2495,32 @@
     "start": "bgworker_a_walk_e",
     "relaxed": "bgworker_a_idle_phone_s"
    },
-   "note": "Walks the same tiny loop on the shared clock until level 06, then idles on a phone."
+   "note": "Walks the same tiny loop on the shared clock beside the first-leg walkway until level 06, then idles on a phone."
   },
   {
    "id": "worker_b",
    "character": "bgworker_b",
    "start_cell": [
     6,
-    14
+    6
    ],
    "facing": "e",
    "patrol": [
     [
      6,
-     14
+     6
     ],
     [
      7,
-     14
+     6
     ],
     [
      7,
-     15
+     7
     ],
     [
      6,
-     15
+     7
     ]
    ],
    "patrol_clock": "shared",
@@ -3235,8 +2536,8 @@
    {
     "level": "orientation-01",
     "from": [
-     2,
-     12
+     3,
+     2
     ],
     "to": [
      12,
@@ -3244,8 +2545,44 @@
     ],
     "cells": [
      [
-      2,
-      12
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      3,
+      5
+     ],
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      7
+     ],
+     [
+      3,
+      8
+     ],
+     [
+      3,
+      9
+     ],
+     [
+      3,
+      10
+     ],
+     [
+      3,
+      11
      ],
      [
       3,
@@ -3412,7 +2749,7 @@
       13
      ]
     ],
-    "label": "elevator, then the counter-clockwise garden loop along row 12 (right, up, left, down), then to Ivo"
+    "label": "arrival mat, then the counter-clockwise lap (down the west walkway, right along row 12, up column 17, left along row 5), then back to Ivo at reception"
    },
    {
     "level": "orientation-02",
@@ -3507,13 +2844,135 @@
      3
     ],
     "to": [
-     3,
-     8
+     24,
+     2
     ],
     "cells": [
      [
       13,
       3
+     ],
+     [
+      13,
+      4
+     ],
+     [
+      14,
+      4
+     ],
+     [
+      15,
+      4
+     ],
+     [
+      16,
+      4
+     ],
+     [
+      17,
+      4
+     ],
+     [
+      18,
+      4
+     ],
+     [
+      19,
+      4
+     ],
+     [
+      20,
+      4
+     ],
+     [
+      21,
+      4
+     ],
+     [
+      22,
+      4
+     ],
+     [
+      23,
+      4
+     ],
+     [
+      24,
+      4
+     ],
+     [
+      24,
+      3
+     ],
+     [
+      24,
+      2
+     ]
+    ],
+    "label": "printer along the north band to the projected scheduling form beside the meeting-room door"
+   },
+   {
+    "level": "orientation-04",
+    "from": [
+     24,
+     2
+    ],
+    "to": [
+     7,
+     10
+    ],
+    "cells": [
+     [
+      24,
+      2
+     ],
+     [
+      24,
+      3
+     ],
+     [
+      24,
+      4
+     ],
+     [
+      23,
+      4
+     ],
+     [
+      22,
+      4
+     ],
+     [
+      21,
+      4
+     ],
+     [
+      20,
+      4
+     ],
+     [
+      19,
+      4
+     ],
+     [
+      18,
+      4
+     ],
+     [
+      17,
+      4
+     ],
+     [
+      16,
+      4
+     ],
+     [
+      15,
+      4
+     ],
+     [
+      14,
+      4
      ],
      [
       13,
@@ -3556,69 +3015,19 @@
       8
      ],
      [
-      7,
-      8
-     ],
-     [
-      6,
-      8
-     ],
-     [
-      5,
-      8
-     ],
-     [
-      4,
-      8
-     ],
-     [
-      3,
-      8
-     ]
-    ],
-    "label": "printer to the scheduling form wall at the clock room"
-   },
-   {
-    "level": "orientation-04",
-    "from": [
-     3,
-     8
-    ],
-    "to": [
-     7,
-     10
-    ],
-    "cells": [
-     [
-      3,
-      8
-     ],
-     [
-      4,
-      8
-     ],
-     [
-      5,
-      8
-     ],
-     [
-      6,
-      8
-     ],
-     [
-      7,
-      8
-     ],
-     [
-      7,
+      8,
       9
+     ],
+     [
+      8,
+      10
      ],
      [
       7,
       10
      ]
     ],
-    "label": "clock room to the left desk"
+    "label": "form wall back along the north band, down the west band to the left desk"
    },
    {
     "level": "orientation-05",
@@ -3820,8 +3229,8 @@
      6
     ],
     "to": [
-     2,
-     12
+     3,
+     2
     ],
     "cells": [
      [
@@ -3897,63 +3306,43 @@
       5
      ],
      [
-      9,
-      6
-     ],
-     [
-      9,
-      7
-     ],
-     [
-      9,
-      8
-     ],
-     [
-      9,
-      9
-     ],
-     [
-      9,
-      10
-     ],
-     [
-      9,
-      11
-     ],
-     [
-      9,
-      12
-     ],
-     [
       8,
-      12
+      5
      ],
      [
       7,
-      12
+      5
      ],
      [
       6,
-      12
+      5
      ],
      [
       5,
-      12
+      5
      ],
      [
       4,
-      12
+      5
      ],
      [
       3,
-      12
+      5
      ],
      [
-      2,
-      12
+      3,
+      4
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      2
      ]
     ],
-    "label": "Records door back to the elevator by the north and west bands"
+    "label": "Records door back to the elevator by the north band and the west walkway"
    }
   ],
   "mira": {
@@ -3977,11 +3366,11 @@
   {
    "id": "arrival",
    "cell": [
-    2,
-    12
+    3,
+    2
    ],
-   "facing": "e",
-   "when": "new game, or elevator arrival from another district (elevator opens, avatar steps out)"
+   "facing": "s",
+   "when": "new game, or elevator arrival from another district (the elevator opens closed, half, open and the avatar steps out onto the LIFT mat)"
   },
   {
    "id": "from_records",
@@ -4003,8 +3392,11 @@
   }
  ],
  "notes": [
-  "Garden landmark footprint is x11-15, y7-10 (cell collision; offset 0). Its three lamps block (10,6) and (15,6) as in the kit; the first loop band is x8-9 / x17-18 / y4-5 / y12-13, so every loop cell has a free 2x2 block.",
-  "Counter-clockwise loop: right along row 12, up column 17, left along row 5, down column 9; the Pace floor arrows mark this 'approved route'.",
-  "wall_e_plain is omitted on the Records door rows (5-7) and wall_w_plain on the elevator rows (12-14) so the door and elevator entries govern collision. If their art does not cover the wall face there, the kit needs a frame piece (see NEEDS_ART.md)."
+  "Garden landmark footprint is x11-15, y7-10 (cell collision; offset 0). Its three lamps block (10,6), (15,6) and (15,9) as in the kit; the first-lap bands are x8-9 / x17-18 / y4-5 / y12-13 plus the west walkway at x3, so every lap cell has a free 2x2 block.",
+  "Counter-clockwise lap from the arrival mat: down the west walkway (x3), right along row 12, up column 17, left along row 5. The Pace floor arrows around the garden mark this 'approved route'.",
+  "North wall, west to east: elevator module x2-4 (wall rows 0-1, LIFT mat row y2), call panel x5, pinboard x6-8, window x9-10, printer alcove x11-15, twin clock x16-17, meeting-room door module x18-20 (MEET mat row y2), projected form x21-24, Pace sign x25-26.",
+  "Module collision is the kit's: closed and half block `111/111/000`, open leaves only the centre cell of the middle row walkable (`111/101/000`), so an open elevator or meeting-room door is a one-cell recess, not a through passage.",
+  "wall_w_plain runs on rows 2-16 now that the elevator no longer interrupts the west wall (it is still an art_gap flag only until feat/art-orientation-completion merges); wall_e_plain is omitted on the Records door rows (5-7) so the door's own collision governs.",
+  "The garden cut-through is the garden landmark's after state (column x12, y7-10); there is no separate north-rim placement."
  ]
 }
