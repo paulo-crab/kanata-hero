@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kanata Hero</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/game/css/main.css">
+</head>
+<body>
+  <div id="stage" class="stage" role="application" aria-label="Kanata Hero">
+    <canvas id="world" class="world" width="320" height="180"></canvas>
+    <div id="ui" class="ui"></div>
+    <p id="skeleton-note" class="skeleton-note">Kanata Hero: skeleton build. Engine, input, runtime and UI are not implemented yet.</p>
+  </div>
+  <div id="live" class="visually-hidden" aria-live="polite" role="status"></div>
+  <script type="module" src="/game/src/main.js"></script>
+</body>
+</html>

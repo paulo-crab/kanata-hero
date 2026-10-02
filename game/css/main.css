@@ -1,0 +1,66 @@
+/* Kanata Hero base stylesheet. Tokens come from the UI kit by path (contract section 6). */
+@import url("/art-direction/ui-kit/tokens.css");
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--letterbox);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+.stage {
+  position: relative;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.world {
+  position: absolute;
+  inset: 0;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  image-rendering: pixelated;
+  z-index: var(--z-world);
+}
+
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hud);
+}
+
+.skeleton-note {
+  position: absolute;
+  left: var(--stage-margin);
+  top: var(--stage-margin);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--panel-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  z-index: var(--z-overlay);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

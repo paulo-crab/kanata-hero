@@ -1,0 +1,11 @@
+{
+  "name": "kanata-hero-game",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Kanata Hero browser game (level 1). Static files, no runtime dependencies.",
+  "scripts": {
+    "test": "node --test tests/",
+    "serve": "python3 tools/serve.py"
+  }
+}
