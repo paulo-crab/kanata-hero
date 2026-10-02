@@ -18,7 +18,8 @@
   "lamp_warm": "off",
   "corridor_stripe": "unlit",
   "garden": "before",
-  "records_door": "closed"
+  "records_door": "closed",
+  "seating_nook": "hidden"
  },
  "floor": {
   "legend": {
@@ -593,6 +594,17 @@
    "offset": [
     0,
     10
+   ]
+  },
+  {
+   "anim": "seating_nook",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    0,
+    2
    ]
   },
   {

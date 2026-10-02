@@ -1,0 +1,225 @@
+{
+ "kit": "orientation",
+ "atlas": "orientation-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  14,
+  8
+ ],
+ "note": "Completion proof: the Orientation arrival corner. Elevator module (3x3) in the north wall at the west end, starting at cell 2 because wall_w_plain is 2 cells thick; call panel on the wall face to its right; lit LIFT mat on the floor row below.",
+ "states": {
+  "elevator": "open"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_call_panel",
+   "cell": [
+    5,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    7,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_b",
+   "cell": [
+    9,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "wall_n_window_a",
+   "cell": [
+    11,
+    0
+   ],
+   "offset": [
+    8,
+    9
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    3
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    5
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_w_plain",
+   "cell": [
+    0,
+    7
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    12,
+    4
+   ],
+   "offset": [
+    4,
+    14
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    4,
+    4
+   ]
+  }
+ ]
+}

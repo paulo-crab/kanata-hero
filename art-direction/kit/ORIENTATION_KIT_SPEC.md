@@ -209,3 +209,27 @@ So a seated worker sprite draws the head, shoulders, both forearms resting forwa
 26. **Palette.** The 48 new entries use 28 distinct colours, all from the Orientation ramps (ink, stone, glass, wood, foliage, brass, coral); no teal, coral, violet or gold marker hex, checked by `check_atlas.py` (markers) and `orientation_quest_room.py` (palette).
 
 **Proof checks** (all in `build_kit.py`, exit 1 on failure): new colours inside the Orientation palette; stamp silhouettes pairwise distinct; `pinboard_before` symmetric and `pinboard_after` not; every level swap above changes at least two separate regions; the seat-coverage rows above; `desk_a_front` and `desk_b_front` identical to the desks; and on the proof room's collision grid, with the turnstile closed only the lobby is reachable from the elevator mat, with it open the left desk, player's desk, right desk, review table, garden and mail counter all are. `check_atlas.py` also now fails a state set whose states draw the same entries.
+
+## Orientation completion (wave 2): west wall, garden through-route, seating nook
+
+Five entries and one state set are appended after the quest props (group 13 in the atlas sheet), so every earlier entry keeps its pixels, metadata and rect; the review room still rebuilds with zero differing pixels. The atlas is now 106 entries. New outputs: `orientation-completion-reference-room.json` (14x8 proof layout), `orientation-completion-room-native.png`, `orientation-completion-proof.png` (elevator corner, west wall, garden collision with the walked route, nook hidden and shown).
+
+| Entry | Footprint | Collision | Layer | y_sort | Size px | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| `wall_w_plain` | 2x1 | `11` | rear_wall | no | 30x16 | West side plane, tiles vertically; contact shadow `[28,0,2,16]` on the floor. Content starts at the cell edge. |
+| `garden_base_open` | 5x4 | `10111` x4 | rear_prop | no | 128x100 | Pixel-identical to `garden_base`; column 1 walks. |
+| `garden_north_rim_open` | 5x4 (landmark part) | all `0` | rear_prop | no | 128x100 | North rim opening cut through the crown. |
+| `seating_nook_after` | 3x2 | `111/110` | rear_prop | yes | composition | Sofa, side table, planter and lamp from existing sprites. |
+| `seating_nook_glow` | 3x2 | `000/000` | light | no | 11x10 | The nook lamp's pool, `where_color` on lit floor, registered at the nook origin. |
+
+State set `seating_nook`: `hidden` (no entries, blocks nothing; the default) and `shown` (`seating_nook_after`, `seating_nook_glow`). The schema now allows a state with an empty entry list.
+
+**Garden landmark, after state.** Parts are now `garden_ring`, `garden_base_open`, foliage, rocks, centrepiece, canopy shadow, blooms, `garden_after_path`, `garden_after_blooms`, `garden_north_rim_open` (drawn last), lamps `pulse`. The before state is unchanged. Collision: the landmark is still placed at one footprint origin (5x4 cells); after the quest cell column 1 (rows 0 to 3) walks and the other 15 bed cells block. For level data placing the garden at cell (11,7) that is cells (12,7) to (12,10). In the proof room's grid, before the quest the walk from the cell above the column to the cell below it takes 13 steps round the ring; after, 5 steps straight through. Against the current `design/levels/orientation/map.json` (informational report in the build): printer approach (13,3) to Ivo's post (12,13) drops from 17 to 11 steps through the column; walks that already take the west or east band tie (north desk to south desk, to Mira).
+
+## Director decisions (completion)
+
+27. **`wall_w_plain` is not a flipped east wall.** Light is upper-left: the east wall's inner face looks into the light and carries the lit trim on its inner edge; the west wall's inner face is in shade, so the trim sits on the outer edge, the inner edge is dark, and a 2 px shadow falls east onto the floor like the north wall's. It is 2 cells thick (collision `11`), so a west-end elevator module starts at cell x 2, not 0.
+28. **The north rim opening is a landmark part, not a 1x1 floor marking.** The crown covers the rim; only a part drawn after the centrepiece can cut through it. Level data should drop the separate `garden_north_rim` placement at (12,6) and use the landmark `after` state; the strip still reaches the ring at (12,6).
+29. **Collision opens through a second base entry.** Collision is the union of the state's parts and parts only add blocks, so the after state swaps `garden_base` for `garden_base_open` (same pixels) rather than changing the before state's block.
+30. **Seating nook position is level data.** The nook is one registered composition with its own lamp pool. The proof room puts it east of the garden ring; the level designers place it where the map has a free 3x2.
+31. **Elevator mat needs no `lift_hall_floor` strip.** In the Orientation palette the mat is brass `#F5D580` with a `#E1AC62` edge and dark lettering on `#F0DEC0` floor; it reads clearly at x4 and x1 (`orientation-completion-proof.png`), so no extra floor piece was added.

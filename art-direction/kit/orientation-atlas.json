@@ -4655,6 +4655,241 @@
     1
    ],
    "note": "First route receipt (level 06): a torn receipt with a looping detour line and an approved tick. 16 x 16 px with a baked contact shadow and a small pale-blue glint at the upper left (glass step 3) as the inspectable cue. No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "wall_w_plain",
+   "kind": "wall",
+   "rect": [
+    496,
+    416,
+    32,
+    16
+   ],
+   "size_px": [
+    30,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "wall",
+    "west",
+    "side plane"
+   ],
+   "contact_shadow": [
+    28,
+    0,
+    2,
+    16
+   ],
+   "note": "west wall segment, side plane: dark mass, lit trim on the outer edge (light is upper-left, so the inner face is in shade), then a 2 px cast shadow on the floor; tiles vertically, 28 px thick plus the shadow, content starts at the cell edge (x = 0)"
+  },
+  {
+   "name": "garden_base_open",
+   "kind": "landmark_part",
+   "rect": [
+    0,
+    464,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "10111",
+    "10111",
+    "10111",
+    "10111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "after",
+    "collision"
+   ],
+   "contact_shadow": [
+    25,
+    78,
+    81,
+    2
+   ],
+   "note": "after state's base bed: pixel-identical to garden_base, but cell column 1 of the footprint walks, so the cut-through is a real route; garden_base keeps the full block for the before state"
+  },
+  {
+   "name": "garden_north_rim_open",
+   "kind": "landmark_part",
+   "rect": [
+    128,
+    464,
+    128,
+    112
+   ],
+   "size_px": [
+    128,
+    100
+   ],
+   "footprint": {
+    "cells": [
+     5,
+     4
+    ],
+    "origin_px": [
+     24,
+     22
+    ]
+   },
+   "collision": [
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": false,
+   "anchor": [
+    64,
+    86
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "garden",
+    "landmark",
+    "after",
+    "path"
+   ],
+   "note": "after: the north rim opens above the cut-through column: inlaid strip from the ring, a gap cut through the crown, flagstone joints, a stepped sill and end caps. Landmark part, drawn last over the crown; a 1x1 floor marking could not paint over the canopy."
+  },
+  {
+   "name": "seating_nook_after",
+   "kind": "prop",
+   "rect": [
+    256,
+    464,
+    48,
+    48
+   ],
+   "size_px": [
+    45,
+    44
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     3,
+     12
+    ]
+   },
+   "collision": [
+    "111",
+    "110"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    27,
+    44
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "nook",
+    "after",
+    "composition"
+   ],
+   "note": "the hidden seating nook the cut-through reveals: terracotta sofa, side table, planter and a floor lamp on a 3x2 footprint, assembled from the existing sofa, side_table, pot_plant_g and lamp sprites. Collision 111/110; the lamp's glow pool is seating_nook_glow. State set seating_nook: hidden (nothing) then shown."
+  },
+  {
+   "name": "seating_nook_glow",
+   "kind": "light",
+   "rect": [
+    304,
+    464,
+    16,
+    16
+   ],
+   "size_px": [
+    11,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     -34,
+     -1
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    -10,
+    31
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F0DEC0"
+   },
+   "tags": [
+    "seating",
+    "nook",
+    "glow",
+    "lamp"
+   ],
+   "note": "the nook lamp's glow pool: the same single brass step as lamp_glow_on, on lit floor only"
   }
  ],
  "animations": {
@@ -4932,6 +5167,22 @@
     }
    },
    "note": "level 04: the corridor stripe beside the left desk lights as the lamp (state set lamp, off to on) wakes; place the stripe in the route_inlay's row (route_stripe_lit's origin is already 1 px up)"
+  },
+  "seating_nook": {
+   "kind": "state_set",
+   "default": "hidden",
+   "states": {
+    "hidden": {
+     "entries": []
+    },
+    "shown": {
+     "entries": [
+      "seating_nook_after",
+      "seating_nook_glow"
+     ]
+    }
+   },
+   "note": "hidden draws nothing and blocks nothing; shown adds the composition and one lamp pool (revealed with the garden cut-through, level 06)"
   }
  },
  "landmarks": {
@@ -4979,14 +5230,15 @@
     "after": {
      "parts": [
       "garden_ring",
-      "garden_base",
+      "garden_base_open",
       "garden_foliage",
       "garden_rocks",
       "garden_centrepiece",
       "garden_canopy_shadow",
       "garden_blooms",
       "garden_after_path",
-      "garden_after_blooms"
+      "garden_after_blooms",
+      "garden_north_rim_open"
      ],
      "lamps": {
       "anim": "lamp",
@@ -5018,10 +5270,14 @@
     "garden_blooms": "foliage masses",
     "garden_after_path": "quest state",
     "garden_after_blooms": "quest state",
+    "garden_base_open": "base bed",
+    "garden_north_rim_open": "quest state",
     "lamp": "light accents"
    },
    "changes_after": [
     "a built opening in the south rim (end caps, stepped threshold, inlay strip) with three flagstones: the reopened cut-through",
+    "the north rim opens too (garden_north_rim_open: a gap cut through the crown, a stepped sill and the inlaid strip), so the path runs through the bed",
+    "collision: garden_base_open replaces garden_base, and cell column 1 of the 5x4 footprint (rows 0 to 3) becomes walkable",
     "a new cluster of four coral blooms with brass centres and three brass glints",
     "all three garden lamps switch from the steady glow to the wider pulse glow"
    ]
