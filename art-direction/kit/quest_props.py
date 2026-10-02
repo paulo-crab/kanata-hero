@@ -265,3 +265,194 @@ DECOR = {"courier_loop": decor_courier_loop, "archive_folder": decor_archive_fol
 
 def mira_decor(r, kind, x0, y0, pal):
     DECOR[kind](r, x0, y0, pal)
+
+
+# ------------------------------------------------------------------ wave 2: reward desk decorations (Night Shift, Executive)
+
+def decor_dawn_lamp(r, x0, y0, pal):
+    """Desk for Dawn: a small desk lamp, a wood foot and stem under a warm shade with one lit step. 10 x 13."""
+    WD, A, G = pal.wood, pal.accent, pal.glass
+    foot = r.mask(x0 + 1, y0 + 11, x0 + 9, y0 + 13)
+    r.img[foot] = WD[1]
+    r.rect(x0 + 1, y0 + 11, x0 + 9, y0 + 12, WD[2])
+    r.outline(foot)
+    r.rect(x0 + 4, y0 + 5, x0 + 6, y0 + 11, WD[1])              # the stem
+    r.rect(x0 + 4, y0 + 5, x0 + 5, y0 + 11, WD[2])
+    shade = r.mask(x0, y0, x0 + 10, y0 + 6)
+    r.img[shade] = A[2]
+    r.rect(x0, y0, x0 + 10, y0 + 1, A[3])
+    r.rect(x0, y0, x0 + 2, y0 + 6, A[3])
+    r.rect(x0 + 8, y0 + 1, x0 + 10, y0 + 6, A[1])
+    r.rect(x0 + 1, y0 + 5, x0 + 9, y0 + 6, A[1])
+    r.outline(shade)
+    r.img[y0 + 2, x0 + 4] = G[3]                                 # a pale glint on the shade: the first light of dawn
+    r.img[y0 + 2, x0 + 5] = G[3]
+
+
+def decor_name_plaque(r, x0, y0, pal):
+    """Names on the Wall: a small desk plaque, an accent plate with three inked name lines on a wood base. 14 x 9."""
+    WD, A, W = pal.wood, pal.accent, _paper(pal)
+    base = r.mask(x0, y0 + 6, x0 + 14, y0 + 9)
+    r.img[base] = WD[1]
+    r.rect(x0, y0 + 6, x0 + 14, y0 + 7, WD[2])
+    r.rect(x0, y0 + 8, x0 + 14, y0 + 9, WD[0])
+    r.outline(base)
+    plate = r.mask(x0 + 1, y0, x0 + 13, y0 + 6)
+    r.img[plate] = A[2]
+    r.rect(x0 + 1, y0, x0 + 13, y0 + 1, A[3])
+    r.rect(x0 + 1, y0, x0 + 2, y0 + 6, A[3])
+    r.rect(x0 + 12, y0 + 1, x0 + 13, y0 + 6, A[1])
+    for i, w in enumerate((8, 6, 7)):                            # three names, each its own length
+        r.rect(x0 + 3, y0 + 1 + i * 2, x0 + 3 + w, y0 + 2 + i * 2, W[3] if i != 1 else INK[1])
+    r.outline(plate)
+
+
+REWARD_DECOR = {"dawn_lamp": decor_dawn_lamp, "name_plaque": decor_name_plaque}
+
+
+def reward_decor(r, kind, x0, y0, pal):
+    REWARD_DECOR[kind](r, x0, y0, pal)
+
+
+# ------------------------------------------------------------------ wave 2: the shared integration set
+# The elevator door set, call panel, desk-front occluders and the optional-artifact props, drawn by the Orientation
+# team's builders in shared_pieces.py (read-only here) with a district Pal. The geometry is copied from Orientation's
+# own entries (orientation_quest.py) and check_elevator_geometry asserts it against orientation-atlas.json.
+
+import shared_pieces as shp  # noqa: E402
+
+IX0, IY0 = 64, 64   # capture origin for every integration piece (the Orientation scratch origin)
+
+ARTIFACT_SLUGS = {
+    "carbon_copy_a": "carbon_copy_a", "margin_stamp": "margin_stamp", "uncut_index": "uncut_index",
+    "noor_annotation": "noors_annotation",          # the data and levels.md slug is noor_annotation, the drawing kind noors_annotation
+    "id_envelope": "id_envelope", "alarm_strip": "alarm_strip", "scoring_proof": "scoring_proof",
+    "original_routing_diagram": "original_routing_diagram", "ada_shift_book": "adas_shift_book",
+    "public_audit_copy": "public_audit_copy",
+}
+ARTIFACT_NOTES = {
+    "carbon_copy_a": "Carbon copy A (Records level 08): a sheet with a coral header over its carbon copy",
+    "margin_stamp": "Margin stamp (Records level 09): a ruled sheet with a round coral stamp in the margin",
+    "uncut_index": "Uncut index (Records level 10): an index sheet with four tabs along its long edge",
+    "noor_annotation": "Noor's annotation (Records level 11): a page with a dry coral underline and a margin note over a second sheet",
+    "id_envelope": "ID envelope (Systems level 12): an envelope with an address block and a stamp for a vanished department",
+    "alarm_strip": "Alarm strip (Systems level 14): a paper strip of six alert pictograms with one extra department mark",
+    "scoring_proof": "Scoring proof (Systems level 15): a proof sheet with three rising bars (a longer route scores higher)",
+    "original_routing_diagram": "Original routing diagram (Systems level 16): a diagram of nodes and traces with three signatures",
+    "ada_shift_book": "Ada's shift book (Night Shift level 19): a small closed book with a name label and a ribbon marker",
+    "public_audit_copy": "Public audit copy (Executive level 20): a bound audit copy with a seal over a second sheet",
+}
+ARTIFACT_LEVELS = {"records": ("carbon_copy_a", "margin_stamp", "uncut_index", "noor_annotation"),
+                   "systems": ("id_envelope", "alarm_strip", "scoring_proof", "original_routing_diagram"),
+                   "nightshift": ("ada_shift_book",), "executive": ("public_audit_copy",)}
+
+
+def call_panel_stop_lit(r, x0, y0, pal):
+    """The call panel with the Executive stop lit (Night Shift, revealed by level 19): the base panel, its display's
+    second bar and the up button turned to the accent's lit step."""
+    shp.elevator_call_panel(r, x0, y0, pal)
+    A = pal.accent
+    r.rect(x0 + 6, y0 + 4, x0 + 9, y0 + 5, A[3])
+    btn = r.disc(x0 + 6, y0 + 8 + 2.5, 3.2)
+    r.img[btn] = A[3]
+    r.img[r.edge(btn)] = INK[0]
+    r.rect(x0 + 6, y0 + 9, x0 + 7, y0 + 10, INK[0])
+    r.rect(x0 + 5, y0 + 10, x0 + 8, y0 + 11, INK[0])
+
+
+def fit_front(front, desk):
+    """Pixel check: the desk-front occluder `front` (a Piece) equals the desk sprite `desk` (a Piece) wherever it is opaque.
+    Returns (differing pixels, opaque pixels)."""
+    fx, fy = front.fp_room[0] - front.tl[0], front.fp_room[1] - front.tl[1]
+    dx, dy = desk.fp_room[0] - desk.tl[0], desk.fp_room[1] - desk.tl[1]
+    h, w = front.sprite.shape[:2]
+    bad = 0
+    n = 0
+    for j in range(h):
+        for i in range(w):
+            if front.sprite[j, i, 3] == 0:
+                continue
+            n += 1
+            ri, rj = i - fx + dx, j - fy + dy
+            if not (0 <= rj < desk.sprite.shape[0] and 0 <= ri < desk.sprite.shape[1]) or not np.array_equal(front.sprite[j, i], desk.sprite[rj, ri]):
+                bad += 1
+    return bad, n
+
+
+def artifact_pal(pal):
+    """artifact_prop paints paper with the wall ramp; a district whose wall ramp is dark (steel, indigo, navy) carries a light
+    `paper` ramp on its Pal (set by its kit module), so the artifacts get a Pal clone whose wall ramp is that paper."""
+    import copy
+    p = copy.copy(pal)
+    if hasattr(pal, "paper"):
+        p.wall = pal.paper
+    return p
+
+
+def integration_pieces(mk, pal, kit, desks=None, desk_pal=None):
+    """The wave-2 shared set for one district. `mk(name, draw, box, fp, cells, collision, layer, kind, shadow=True,
+    shadow_rect=None, y_sort=False, note='', tags=[])` captures a piece (a Night Shift mk also runs its edge passes).
+    `desks` maps 'desk_a' / 'desk_b' to the district's own desk Pieces (they get an occluder; a kit without them passes None); `desk_pal` is the
+    Pal the district's desk was recoloured with when it differs from `pal` (Systems and Executive map the desk's paper to their floor ramp).
+    Returns (pieces, state sets)."""
+    x0, y0 = IX0, IY0
+    out = []
+    box = (x0, y0, x0 + 48, y0 + 48)
+    for nm, t, coll, note in (
+            ("elevator_closed", 0.0, ["111", "111", "000"], "doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front"),
+            ("elevator_half", 0.5, ["111", "111", "000"], "leaves slid 6 px into the jamb pockets: the warm cab shows between them"),
+            ("elevator_open", 1.0, ["111", "101", "000"], "leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in")):
+        out.append(mk(nm, lambda r, t=t: shp.elevator_doors(r, x0, y0, pal, t), box, (x0, y0), (3, 3), coll, "rear_wall", "door", shadow=False, shadow_rect=(0, 32, 48, 2),
+                      y_sort=False, note=f"elevator, {note}. Orientation's module in the {kit} ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, "
+                                         "row 2 the lit mat. Replaces three wall_n_plain columns", tags=["elevator", "door", "sliding", nm.split("_")[1], "wave 2"]))
+    out.append(mk("elevator_call_panel", lambda r: shp.elevator_call_panel(r, x0, y0, pal), (x0, y0, x0 + 12, y0 + 22), (x0, y0), (1, 2), ["0", "0"], "rear_wall", "wall",
+                  shadow=False, y_sort=False, note=f"wall call panel for the elevator, {kit} ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. "
+                  "Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator", tags=["elevator", "panel", "interact", "wave 2"]))
+    if kit == "nightshift":
+        out.append(mk("elevator_call_panel_executive_lit", lambda r: call_panel_stop_lit(r, x0, y0, pal), (x0, y0, x0 + 12, y0 + 22), (x0, y0), (1, 2), ["0", "0"], "rear_wall", "wall",
+                      shadow=False, y_sort=False, note="the call panel with the Executive stop lit: the display's second bar and the up button in the lit warm step (revealed by level 19). "
+                      "Same geometry as elevator_call_panel", tags=["elevator", "panel", "interact", "executive", "wave 2"]))
+    anims = {"elevator": {"kind": "state_set", "default": "closed",
+                          "states": {"closed": {"entries": ["elevator_closed"], "blocked": True}, "half": {"entries": ["elevator_half"], "blocked": True},
+                                     "open": {"entries": ["elevator_open"], "blocked": False}},
+                          "play": ["closed", "half", "open"], "ms_per_frame": 120,
+                          "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"}}
+    if kit == "nightshift":
+        anims["elevator_panel"] = {"kind": "state_set", "default": "base",
+                                   "states": {"base": {"entries": ["elevator_call_panel"]}, "executive_lit": {"entries": ["elevator_call_panel_executive_lit"]}},
+                                   "note": "level 19: the Executive stop lights on the call panel"}
+    if desks:
+        fx, fy = x0, y0 + 2
+        assert (fx + fy) % 3 == (16 + 78) % 3 == (246 + 46) % 3   # the plant's lit tips depend on (x + y) % 3, as in Orientation
+        for nm, seed in (("desk_a_front", 7), ("desk_b_front", 8)):
+            p = mk(nm, lambda r, seed=seed: shp.desk_front(r, fx, fy, desk_pal or pal, seed), (fx, fy + shp.FRONT_TOP, fx + 35, fy + shp.FRONT_BOT), (fx, fy), (2, 1), ["00"], "front_prop", "prop",
+                   shadow=False, y_sort=True, note=f"occluder for {nm[:6]}: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; "
+                   "seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC", tags=["desk", "front", "occluder", "wave 2"])
+            bad, n = fit_front(p, desks[nm[:6]])
+            assert bad == 0, f"{kit} {nm}: {bad} of {n} opaque pixels differ from the district desk"
+            out.append(p)
+    apal = artifact_pal(pal)
+    for slug in ARTIFACT_LEVELS[kit]:
+        k = ARTIFACT_SLUGS[slug]
+        out.append(mk(f"artifact_{slug}", lambda r, k=k: shp.artifact_prop(r, x0, y0, apal, k), (x0, y0, x0 + 16, y0 + 16), (x0, y0), (1, 1), ["0"], "front_prop", "prop",
+                      shadow=True, y_sort=False, note=ARTIFACT_NOTES[slug] + ". 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue "
+                      "(never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell", tags=["artifact", "inspectable", slug, "wave 2"]))
+    return out, anims
+
+
+def check_elevator_geometry(entries, orient_atlas_json):
+    """Assert the district's elevator, panel and occluder entries have Orientation's geometry (everything but pixels, rect, note).
+    `entries` maps name -> atlas entry dict of the district."""
+    keys = ("kind", "size_px", "footprint", "collision", "layer", "y_sort", "anchor", "composite")
+    oe = {e["name"]: e for e in orient_atlas_json["entries"]}
+    for nm in ("elevator_closed", "elevator_half", "elevator_open", "elevator_call_panel", "desk_a_front", "desk_b_front"):
+        if nm not in entries:
+            continue
+        for k in keys:
+            assert entries[nm][k] == oe[nm][k], f"{nm}.{k}: {entries[nm][k]} != Orientation {oe[nm][k]}"
+        assert entries[nm].get("contact_shadow") == oe[nm].get("contact_shadow"), f"{nm}.contact_shadow"
+    for nm, e in entries.items():
+        if nm.startswith("artifact_") and nm[9:] in ARTIFACT_SLUGS:
+            o = oe["artifact_unissued_badge"]
+            for k in keys:
+                assert e[k] == o[k], f"{nm}.{k}: {e[k]} != Orientation artifact {o[k]}"
