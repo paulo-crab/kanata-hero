@@ -11,6 +11,7 @@ import { LayoutHelp } from './layout-help.js';
 import { Setup, Calibration, createScreenState, screenOpen } from './setup.js';
 import { Toast, LiveRegion, ErrorScreen } from './misc.js';
 import { RealClock } from '../shared/clock.js';
+import { DEFAULT_VIEW, sameView } from './world-space.js';
 
 const MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
@@ -65,7 +66,10 @@ export function mountUi(root, params = {}) {
     offs.push(bus.on(topic, (vm) => { if (vm && !anyModalShown()) focusReturn = doc.activeElement || null; }));
   }
 
-  const opts = { assetBase, clock, announce, state };
+  // Camera and zoom for marker and prompt placement: `ui:view` events, or the getView() parameter polled on each paint.
+  let view = DEFAULT_VIEW;
+  const getView = () => (params.getView ? params.getView() : view);
+  const opts = { assetBase, clock, announce, state, getView };
   for (const [name, Cls] of Object.entries(classes)) components[name] = new Cls(makeHost(name), bus, opts);
   components['first-use'] = new FirstUse(makeHost('first-use'), bus, opts);
   components.setup = new Setup(makeHost('setup'), bus, opts);
@@ -87,6 +91,14 @@ export function mountUi(root, params = {}) {
     offs.push(bus.on(t, () => components.feedback.render(components.feedback.vm)));
   }
 
+  // The camera moved: repaint the world-anchored components only when the view actually changed.
+  offs.push(bus.on('ui:view', (v) => {
+    if (!v || !v.camera || sameView(v, view)) return;
+    view = { camera: { x: v.camera.x, y: v.camera.y }, zoom: v.zoom };
+    components.markers.render(components.markers.vm);
+    components.prompt.render(components.prompt.vm);
+  }));
+
   // Objectives and announcements go to the live region.
   offs.push(bus.on('vm:announce', (vm) => { if (vm && vm.text) live.say(vm.text); }));
   offs.push(bus.on('intent', (i) => { if (i && i.type === 'objective' && i.text) live.say(`Objective: ${i.text}`); }));
@@ -101,7 +113,10 @@ export function mountUi(root, params = {}) {
     }
     bus.emit('ui:settings-applied', { reducedMotion: c.rm, largerText: c['large-text'], highContrast: c.hc });
   };
-  offs.push(bus.on('vm:settings', (vm) => { if (vm) { lastSettings = vm; applySettings(); } }));
+  // vm:settings-flags is the always-on copy of the display flags (the Settings screen's vm is null while it is closed).
+  for (const t of ['vm:settings', 'vm:settings-flags']) {
+    offs.push(bus.on(t, (vm) => { if (vm) { lastSettings = { ...lastSettings, ...vm }; applySettings(); } }));
+  }
   if (mq && mq.addEventListener) {
     mq.addEventListener('change', applySettings);
     offs.push(() => mq.removeEventListener('change', applySettings));

@@ -6,6 +6,7 @@ import {
   journalView, controlsView, settingsView, setupScreenView, createScreenState, toastsView, errorView, COMPONENTS, VIEW_MODEL_TOPICS,
 } from '../../src/ui/index.js';
 import { textOf } from '../../src/ui/html.js';
+import { worldToStage, markerCentre } from '../../src/ui/world-space.js';
 import { Component } from '../../src/ui/component.js';
 import { Inset } from '../../src/ui/inset.js';
 import { makeDom, markupProblem } from './dom-stub.js';
@@ -66,13 +67,17 @@ test('HUD: objective strip, seal count, chips (hint is a reminder, the others op
 
 test('prompt: coral for people, teal for devices, clamped inside the stage', () => {
   const base = { action: 'Use the badge printer', key: F.RETURN, gesture: 'tap-hold Caps + N' };
-  assert.match(s(promptView({ ...base, kind: 'person', at: { x: 10, y: 20 } })), /kh-prompt person" style="left:10px;top:20px/);
+  // `at` is the cell top-left in MAP pixels: cell (10,3) = (160,48); at x4 with the camera at the origin that is stage (640,192).
+  assert.match(s(promptView({ ...base, kind: 'person', at: { x: 160, y: 48 } })), /kh-prompt person" style="left:720px;top:160px/, 'right of the cell, level with the sprite top');
   assert.match(s(promptView({ ...base, kind: 'device', at: { x: 5000, y: 5000 } })), /kh-prompt device" style="left:920px;top:600px/);
+  const moved = { camera: { x: 16, y: 16 }, zoom: 4 };
+  assert.match(s(promptView({ ...base, kind: 'person', at: { x: 160, y: 48 } }, moved)), /left:656px;top:96px/, 'the camera shifts the prompt');
+  assert.match(s(promptView({ ...base, kind: 'person', at: { x: 80, y: 48 } }, { camera: { x: 0, y: 0 }, zoom: 6 })), /left:592px;top:240px/, 'zoom x6');
 });
 
 test('markers: four shapes, reached ones gain a check, floor markers go teal to gold', () => {
   const vm = {
-    markers: ['conversation', 'terminal', 'route', 'glitch'].map((shape, i) => ({ id: shape, shape, state: i === 2 ? 'reached' : 'idle', at: { x: 100 + i * 100, y: 200 } })),
+    markers: ['conversation', 'terminal', 'route', 'glitch'].map((shape, i) => ({ id: shape, shape, state: i === 2 ? 'reached' : 'idle', at: { x: 20 + i * 40, y: 60 } })),
     floor: [{ id: 'f1', at: { x: 50, y: 50 }, state: 'teal', shape: 'route' }, { id: 'f2', at: { x: 90, y: 50 }, state: 'gold', shape: 'route' }],
   };
   const m = s(markersView(vm));
@@ -80,7 +85,18 @@ test('markers: four shapes, reached ones gain a check, floor markers go teal to 
   assert.match(m, /data-marker="route" data-state="reached"[^]*?kh-marker-badge/);
   assert.match(m, /data-floor="f1" data-state="teal"[^]*?#m-route-teal/);
   assert.equal((m.match(/kh-marker-badge/g) || []).length, 2, 'reached marker and gold floor marker');
-  assert.match(m, /left:68px;top:168px/, 'at is the centre of the 64 px box');
+  // Map px (20,60) at x4: cell top-left (80,240); a person's marker centre floats above the head: (112,172), box left/top (80,140).
+  assert.match(m, /left:80px;top:140px/, 'map pixels are converted to stage pixels, marker box centred on the cell');
+  const shifted = s(markersView(vm, { camera: { x: 10, y: 0 }, zoom: 4 }));
+  assert.match(shifted, /left:40px;top:140px/, 'moving the camera right by 10 map px moves the marker left by 40 stage px');
+});
+
+test('world space: worldToStage matches the engine formula; a floor marker is centred on its cell', () => {
+  assert.deepEqual(worldToStage({ x: 100, y: 50 }, { x: 20, y: 10 }, 4), { x: 320, y: 160 });
+  assert.deepEqual(markerCentre({ x: 32, y: 32 }, 'route', { camera: { x: 0, y: 0 }, zoom: 4 }, true), { x: 160, y: 160 });
+  assert.deepEqual(markerCentre({ x: 32, y: 32 }, 'terminal', { camera: { x: 0, y: 0 }, zoom: 4 }), { x: 160, y: 100 });
+  const engine = { x: (200 - 40) * 6, y: (96 - 12) * 6 };
+  assert.deepEqual(worldToStage({ x: 200, y: 96 }, { x: 40, y: 12 }, 6), engine);
 });
 
 test('dialogue: hint grammar for every level 01 hint line (action, key, then Hint: gesture)', () => {

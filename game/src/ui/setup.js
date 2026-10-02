@@ -65,7 +65,10 @@ export function setupScreenView(state) {
 <section class="kh-panel overlay su" role="dialog" aria-modal="true" aria-label="${title}" data-screen="${setup ? 'setup' : 'calibration'}">
   <div class="top"><h2>${title}</h2><span class="sub">${SETUP_COPY.sub}</span><span class="grow"></span>
     <button type="button" class="kh-btn" data-fid="skip" ${cmdAttr({ type: 'skip' })}>${SETUP_COPY.skip} ${keycap(CLOSE.key, { sm: true })}</button>
-    <button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Continue ${keycap(CONTINUE.key, { sm: true })}</button></div>
+    ${setup
+    ? html`<button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Continue ${keycap(CONTINUE.key, { sm: true })}</button>`
+    // On the calibration screen Return only settles step 2, so the explicit Next control carries no key claim.
+    : html`<button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Next</button>`}</div>
   ${setup ? keyboardCards(setup) : ''}
   ${calibration ? calibrationBody(calibration, state) : ''}
 </section>`;

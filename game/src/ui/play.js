@@ -3,9 +3,7 @@ import { Component } from './component.js';
 import { html, cmdAttr } from './html.js';
 import { icon, markerSvg } from './icons.js';
 import { keycap } from './keycap.js';
-import { STAGE_W, STAGE_H } from '../shared/layout.js';
-
-const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+import { DEFAULT_VIEW, markerCentre, promptPosition } from './world-space.js';
 
 /** Chips that open a layer by mouse. The Hint chip is a reminder only: it never opens the inset. */
 const CHIP_COMMANDS = { journal: { type: 'openLayer', id: 'journal' }, 'layout-help': { type: 'openLayer', id: 'layout-help' } };
@@ -34,9 +32,9 @@ export class Hud extends Component {
   view(vm) { return hudView(vm); }
 }
 
-export function promptView(vm) {
-  const x = clamp(Math.round(vm.at.x), 0, STAGE_W - 360);
-  const y = clamp(Math.round(vm.at.y), 0, STAGE_H - 120);
+/** `vm.at` is the cell's top-left in MAP pixels; `view` is {camera, zoom} (defaults to the origin at x4). */
+export function promptView(vm, view = DEFAULT_VIEW) {
+  const { x, y } = promptPosition(vm.at, view);
   const device = vm.kind === 'device';
   return html`<div class="kh-prompt ${device ? 'device' : 'person'}" style="left:${x}px;top:${y}px" role="note"
   aria-label="${vm.action}. Key ${vm.key.label}. ${vm.gesture}">
@@ -47,29 +45,30 @@ export function promptView(vm) {
 
 export class Prompt extends Component {
   static topic = 'vm:prompt';
-  view(vm) { return promptView(vm); }
+  view(vm) { return promptView(vm, this.opts.getView ? this.opts.getView() : DEFAULT_VIEW); }
 }
 
 const MARKER_SHAPE = { conversation: 'talk', terminal: 'terminal', route: 'route', glitch: 'glitch' };
 const MARKER_WORD = { conversation: 'Conversation', terminal: 'Terminal', route: 'Route', glitch: 'Glitch' };
 
-/** `at` is the centre of the 64 px marker box on the stage (contract change request: stated in CONTRACTS). */
-export function markersView(vm) {
-  const box = 64;
-  const placed = (at, size) => `left:${Math.round(at.x - size / 2)}px;top:${Math.round(at.y - size / 2)}px`;
+/** `at` is the cell top-left in MAP pixels (as the runtime sends it); positions are converted with the camera view. */
+export function markersView(vm, view = DEFAULT_VIEW) {
+  const placed = (c, size) => `left:${Math.round(c.x - size / 2)}px;top:${Math.round(c.y - size / 2)}px`;
   const marks = (vm.markers || []).map((m) => {
     const reached = m.state === 'reached';
-    const svg = markerSvg(MARKER_SHAPE[m.shape] || 'talk', placed(m.at, box), reached ? 'reached' : '');
+    const c = markerCentre(m.at, m.shape, view);
+    const svg = markerSvg(MARKER_SHAPE[m.shape] || 'talk', placed(c, 64), reached ? 'reached' : '');
     const badge = reached
-      ? html`<span class="kh-marker-badge" style="${placed({ x: m.at.x + 22, y: m.at.y - 22 }, 28)}" aria-hidden="true">${icon('check', 18)}</span>`
+      ? html`<span class="kh-marker-badge" style="${placed({ x: c.x + 22, y: c.y - 22 }, 28)}" aria-hidden="true">${icon('check', 18)}</span>`
       : '';
     return html`<span class="kh-marker-wrap" data-marker="${m.id}" data-state="${m.state}" role="img" aria-label="${MARKER_WORD[m.shape] || m.shape}${reached ? ', reached' : ''}">${svg}${badge}</span>`;
   });
   const floor = (vm.floor || []).map((f) => {
     const gold = f.state === 'gold';
-    const svg = markerSvg(gold ? 'route' : 'route-teal', placed(f.at, 48), 'floor');
+    const c = markerCentre(f.at, 'route', view, true);
+    const svg = markerSvg(gold ? 'route' : 'route-teal', placed(c, 48), 'floor');
     const badge = gold
-      ? html`<span class="kh-marker-badge" style="${placed({ x: f.at.x, y: f.at.y }, 28)}" aria-hidden="true">${icon('check', 18)}</span>`
+      ? html`<span class="kh-marker-badge" style="${placed(c, 28)}" aria-hidden="true">${icon('check', 18)}</span>`
       : '';
     return html`<span class="kh-marker-wrap floor" data-floor="${f.id}" data-state="${f.state}" role="img" aria-label="Route marker, ${gold ? 'reached' : 'still to walk'}">${svg}${badge}</span>`;
   });
@@ -78,5 +77,5 @@ export function markersView(vm) {
 
 export class Markers extends Component {
   static topic = 'vm:markers';
-  view(vm) { return markersView(vm); }
+  view(vm) { return markersView(vm, this.opts.getView ? this.opts.getView() : DEFAULT_VIEW); }
 }

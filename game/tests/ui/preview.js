@@ -13,6 +13,7 @@ const [level, portraits, manifest] = await Promise.all([
 const bus = new EventBus();
 const ui = mountUi(document.getElementById('ui'), { bus, stage: document.getElementById('stage') });
 window.__bus = bus;
+bus.emit('ui:view', { camera: { x: 0, y: 0 }, zoom: 4 });
 window.__ui = ui;
 const log = [];
 bus.on('ui:command', (c) => log.push(c));
@@ -23,19 +24,19 @@ const world = () => {
   bus.emit('vm:hud', B.hudVm());
   bus.emit('vm:markers', {
     markers: [
-      { id: 'ivo', shape: 'conversation', state: 'idle', at: { x: 512, y: 110 } },
-      { id: 'printer', shape: 'terminal', state: 'idle', at: { x: 678, y: 46 } },
-      { id: 'door', shape: 'route', state: 'reached', at: { x: 1122, y: 270 } },
-      { id: 'glitch', shape: 'glitch', state: 'idle', at: { x: 230, y: 204 } },
+      { id: 'ivo', shape: 'conversation', state: 'idle', cell: [7, 2], at: { x: 112, y: 40 } },
+      { id: 'printer', shape: 'terminal', state: 'idle', cell: [10, 0], at: { x: 168, y: 8 } },
+      { id: 'door', shape: 'route', state: 'reached', cell: [17, 4], at: { x: 276, y: 64 } },
+      { id: 'glitch', shape: 'glitch', state: 'idle', cell: [3, 3], at: { x: 48, y: 52 } },
     ],
-    floor: [{ id: 'f1', at: { x: 400, y: 360 }, state: 'teal', shape: 'route' }, { id: 'f2', at: { x: 480, y: 360 }, state: 'gold', shape: 'route' }],
+    floor: [{ id: 'f1', at: { x: 96, y: 84 }, state: 'teal', shape: 'route' }, { id: 'f2', at: { x: 116, y: 84 }, state: 'gold', shape: 'route' }],
   });
 };
 
 const screens = {
   world() {
     world();
-    bus.emit('vm:prompt', { kind: 'device', action: 'Use the badge printer', key: B.RETURN, gesture: 'tap-hold Caps + N', at: { x: 812, y: 128 } });
+    bus.emit('vm:prompt', { kind: 'device', action: 'Use the badge printer', key: B.RETURN, gesture: 'tap-hold Caps + N', cell: [12, 2], at: { x: 192, y: 28 } });
     bus.emit('vm:inset', B.insetVm());
     bus.emit('vm:dialogue', dlg('o01.d.loop-right', { mode: 'instruction' }));
   },

@@ -118,6 +118,45 @@ test('OS reduced motion applies at mount before any settings arrive, and the eng
   void doc;
 });
 
+test('markers and prompt follow the camera: ui:view repaints them only when the view changes', () => {
+  const t = setup();
+  t.bus.emit('vm:markers', { markers: [{ id: 'ivo', shape: 'conversation', state: 'idle', cell: [5, 3], at: { x: 80, y: 48 } }], floor: [] });
+  t.bus.emit('vm:prompt', { kind: 'person', action: 'Talk', key: F.RETURN, gesture: 'tap-hold Caps + N', cell: [5, 3], at: { x: 80, y: 48 } });
+  const first = host(t, 'markers').innerHTML;
+  assert.match(first, /left:320px;top:92px/, 'default view: camera at the origin, zoom x4');
+  const h = host(t, 'markers');
+  t.bus.emit('ui:view', { camera: { x: 0, y: 0 }, zoom: 4 });
+  assert.equal(host(t, 'markers').innerHTML, first, 'same view: nothing repainted');
+  t.bus.emit('ui:view', { camera: { x: 16, y: 0 }, zoom: 4 });
+  assert.match(h.innerHTML, /left:256px;top:92px/);
+  assert.match(host(t, 'prompt').innerHTML, /left:/);
+  t.bus.emit('ui:view', { camera: { x: 16, y: 0 }, zoom: 6 });
+  assert.match(h.innerHTML, /left:/);
+  assert.notEqual(h.innerHTML.match(/left:(\d+)px/)[1], '256', 'zoom x6 moves it');
+});
+
+test('getView() supplies the camera when the page prefers polling to events', () => {
+  const { doc, root, stage } = makeDom();
+  const bus = new EventBus();
+  let cam = { camera: { x: 0, y: 0 }, zoom: 4 };
+  const ui = mountUi(root, { bus, stage, clock: new FakeClock(), matchMedia: fakeMatchMedia(false).matchMedia, getView: () => cam });
+  bus.emit('vm:markers', { markers: [{ id: 'm', shape: 'terminal', state: 'idle', at: { x: 32, y: 32 } }], floor: [] });
+  assert.match(ui.components.markers.host.innerHTML, /left:128px;top:68px/);
+  cam = { camera: { x: 16, y: 0 }, zoom: 4 };
+  bus.emit('vm:markers', { markers: [{ id: 'm', shape: 'terminal', state: 'idle', at: { x: 32, y: 32 } }], floor: [] });
+  assert.match(ui.components.markers.host.innerHTML, /left:64px;top:68px/);
+  void doc;
+});
+
+test('vm:settings-flags (always on) sets the stage classes while the Settings screen is closed', () => {
+  const t = setup();
+  t.bus.emit('vm:settings-flags', { reducedMotion: 'on', largerText: true, highContrast: false });
+  assert.deepEqual([t.stage.classList.contains('rm'), t.stage.classList.contains('large-text'), t.stage.classList.contains('hc')], [true, true, false]);
+  assert.equal(host(t, 'settings').hidden, true, 'the flags do not open the Settings screen');
+  t.bus.emit('vm:settings-flags', { reducedMotion: 'off', largerText: false, highContrast: true });
+  assert.deepEqual([t.stage.classList.contains('rm'), t.stage.classList.contains('large-text'), t.stage.classList.contains('hc')], [false, false, true]);
+});
+
 test('toasts: at most three, each gone after six seconds on the injected clock', () => {
   const t = setup();
   const toast = host(t, 'toast');
