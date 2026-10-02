@@ -85,8 +85,13 @@ export function targetIndicator({ centre, size, inset, avatar = null }) {
   return { x: spot.x, y: spot.y, angle };
 }
 
-/** The inset rectangle the markers keep clear of: the contract rectangle, in stage px at x4. */
-export const INSET_AVOID_RECT = Object.freeze({ ...INSET_STAGE_RECT });
+/**
+ * The rectangle the markers keep clear of: the contract inset rectangle at x4 plus 20 px on top, because larger text
+ * grows the inset upward by about 10 px (the contract rectangle is for the default text size).
+ */
+export const INSET_AVOID_RECT = Object.freeze({
+  x: INSET_STAGE_RECT.x, y: INSET_STAGE_RECT.y - 20, w: INSET_STAGE_RECT.w, h: INSET_STAGE_RECT.h + 20,
+});
 
 /** Avatar sprite rectangle on the stage from its feet in map px (the engineer is 16x24 with feet at 8,24). */
 export function avatarStageRect(feetPx, view = DEFAULT_VIEW, sprite = { w: 16, h: 24, ax: 8, ay: 24 }) {

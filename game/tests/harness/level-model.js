@@ -3,7 +3,9 @@
 // the keyboard-inset overlap check. Independent of the engine (it is also used to cross-check it).
 import { TILE, VIEW_W, VIEW_H, AVATAR_SCREEN, INSET_STAGE_RECT } from '../../src/shared/layout.js';
 import { DIRS } from './input-player.js';
-import { targetIndicator, markerCentre, avatarStageRect, ARROW_SIZE, DIALOGUE_STAGE_RECT } from '../../src/ui/index.js';
+import {
+  targetIndicator, markerCentre, avatarStageRect, ARROW_SIZE, DIALOGUE_STAGE_RECT, INSET_AVOID_RECT,
+} from '../../src/ui/index.js';
 
 export const STAGE_ZOOM = 4; // logical stage 1280x720 = 320x180 x 4; CSS scaling happens outside this model
 
@@ -180,7 +182,9 @@ export function targetDisplay(cell, leg, bounds, zoom = STAGE_ZOOM) {
   const size = leg.floor ? 48 : 64;
   const feet = feetOf(cell);
   const avatar = avatarStageRect(feet, view);
-  const ind = targetIndicator({ centre, size, inset: insetStageRect(zoom), avatar });
+  const k = zoom / 4;
+  const avoid = { x: INSET_AVOID_RECT.x * k, y: INSET_AVOID_RECT.y * k, w: INSET_AVOID_RECT.w * k, h: INSET_AVOID_RECT.h * k };
+  const ind = targetIndicator({ centre, size, inset: avoid, avatar });
   return ind
     ? { kind: 'edge-arrow', rect: boxAt(ind, ARROW_SIZE), angle: ind.angle, avatar }
     : { kind: 'marker', rect: boxAt(centre, size), avatar };

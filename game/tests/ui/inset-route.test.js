@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  insetRect, rectsOverlap, targetIndicator, markerCentre, avatarStageRect, ARROW_SIZE,
+  insetRect, rectsOverlap, targetIndicator, markerCentre, avatarStageRect, ARROW_SIZE, INSET_AVOID_RECT,
 } from '../../src/ui/index.js';
 import { computeCamera } from '../../src/engine/index.js';
 import { TILE, AVATAR_SCREEN } from '../../src/shared/layout.js';
@@ -87,7 +87,7 @@ function legIndicators() {
       const camera = computeCamera(feet, F.DISTRICT.camera_bounds);
       const view = { camera, zoom: ZOOM };
       const centre = markerCentre({ x: leg.marker[0] * TILE, y: leg.marker[1] * TILE }, 'route', view, true);
-      const ind = targetIndicator({ centre, size: 48, inset, avatar: avatarStageRect(feet, view) });
+      const ind = targetIndicator({ centre, size: 48, inset: INSET_AVOID_RECT, avatar: avatarStageRect(feet, view) });
       const rect = ind ? { x: ind.x - ARROW_SIZE / 2, y: ind.y - ARROW_SIZE / 2, w: ARROW_SIZE, h: ARROW_SIZE } : { x: centre.x - 24, y: centre.y - 24, w: 48, h: 48 };
       if (rectsOverlap(rect, inset)) bad.push(`avatar ${cell} leg ${leg.id} marker ${leg.marker}`);
       if (ind) arrows.push(`${leg.id}:${cell}`);
