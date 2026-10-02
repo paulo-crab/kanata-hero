@@ -11,6 +11,7 @@ Component spec for the crisp DOM/CSS layer drawn over the pixel world. Every val
 - **Focus.** A 2 px `--focus` ring with 2–3 px offset on the element that has keyboard focus. Focus is never conveyed by colour change alone.
 - **Colour roles.** Teal = terminals and held keys. Coral = people with a conversation. Violet = glitches only. Gold = completed, newly opened, and the effect line. Text on a coloured fill is `--text-on-light` (ink). Where a role colour is used as *text* on a panel, use the lighter `--accent-*` token (AA on every panel surface); the anchor hex is for fills, glyphs and outlines.
 - **Hint grammar.** Any component that tells the player which keys to press uses the three parts, in order: the action in the game, the conventional key, then the Kanata gesture ("To walk to the east exit, you need to press Right arrow. Hint: Right arrow is tap-hold Caps + L."). Prompts abbreviate it as `Action — key — gesture`.
+- **Keys.** Six keys run the interface, all decided in [`design/ui-key-bindings.md`](../../design/ui-key-bindings.md) and held as data in [`bindings.py`](bindings.py): **Return** (talk, use, continue, ride, retry: tap-hold Caps + N), **Esc** (skip, close, leave, one layer per press, and nothing in the open world: tap Caps), the **arrows** (move and choose: tap-hold Caps + H, J, K, L), **Q** (journal: tap Q), **Backtick** (show hint: tap Backtick) and **?** (Layout help: tap-hold F, then tap `/`). Tab and Space are never game keys, a held key is never the only cue, and the mouse is always an alternative. In typing scenes only `?` and Backtick are commands; the journal key is off there because Q is text. Every key press acts once (auto-repeat is ignored) and no story interaction has a time limit.
 - **Layers (z).** world 0, world fx 10, marker 20, HUD 30, prompt 40, inset 50, dialogue 60 (terminal and glitch scenes sit here too, over `--scrim-scene`), journal, Layout help, setup, elevator, artifact, award, results and settings 80 over a scrim, toast 90.
 
 ## Keycap
@@ -21,7 +22,7 @@ A raised cap that shows one key. Used in the inset, prompts, HUD chips, dialogue
 | --- | --- |
 | Size | 1u = `--key-size-inset` (56 px) square; wide caps are 2u or more; `sm` is 32 px tall for prompts and HUD chips; Layout help 1u = `--key-unit` (64 px) with `--key-gap` (6 px) between keys |
 | Face | `--key-face` (paper), legend `--key-text` (ink), `--font-mono` bold; 4 px lower edge `--key-edge`; `--radius-sm` |
-| Legend | Letters uppercase (`L`), names as written (`Caps`, `Return`, `Esc`), outputs may be an arrow glyph. At least 16 px |
+| Legend | Letters uppercase (`L`), names as written (`Caps`, `Return`, `Esc`), outputs may be an arrow glyph. At least 16 px. The Backtick key draws the `` ` `` glyph; prompts and screen-reader labels say "Backtick" in words |
 
 States:
 
@@ -43,6 +44,8 @@ Bottom-left panel, `--stage-margin` (16 px) from the stage edges, 572 px wide, a
 3. **Output.** The logical output the game observes, as a keycap glyph plus its name in mono ("Right arrow").
 4. **Effect.** The in-game result in gold with an icon ("Step east").
 
+**First use.** The inset opens by itself, once per binding, the first time that binding's prompt is on screen and its output has not been seen; it closes on the first observed output, on Esc, or when its step ends. After that it opens only on request (the Hint key) or in a new gesture's guided room. At the level 01 arrival the first Continue (Return, tap-hold Caps + N) opens it with two mini rows (bottom row and home row, Caps held, N bright), Output "Return" and Effect "Next line"; Esc (tap Caps) at the welcome popup and the one-key bindings (Q, Backtick, `?`) open a short version whose cell 2 is a single Tap. HUD chips never open it. In Focused the inset hides after the introduction until Hint; in Violento it is never reopened. Render: `screens/first-use`.
+
 Header: the action ("Move east", `--text-xl`) and the active layer name. Keycaps, not ASCII. The camera keeps the avatar and the current target outside the inset rectangle (x 16–588, y from about 412 to 704 on the stage). Check scene positions with the reference page: avatar x 832–896, y 300–396; Ivo x 480–544, y 156–252; Records door x 1200–1240, y 288–441.
 
 ## Dialogue panel
@@ -54,18 +57,18 @@ Lower-right of the stage, 672×224 px, `--stage-margin` from the edges, beside t
 | Portrait slot | 48×48 native portrait shown at world zoom: 192×192 CSS px at ×4 (`--portrait-size`). Pixelated, 2 px `--accent-conversation` frame, 16 px panel padding. The reference shows a placeholder slot; portraits arrive in task group 9 |
 | Speaker | Name in `--font-display` `--text-xl`, role in `--text-sm` muted |
 | Text | `--text-base`, one to three lines, action first. The hint line follows in muted text with the key and gesture in bold |
-| Controls | Continue (Return, tap-hold Caps + N) and Skip (Esc, tap Caps) as small keycaps, bottom of the text column |
+| Mode | **Conversation** (modal, no hint line): world input is paused and the footer carries `Continue  Return  tap-hold Caps + N` and `Skip  Esc  tap Caps` as small keycaps with their gestures; Skip ends the conversation and the step's instruction line is shown instead, so nothing is lost. **Instruction line** (non-modal, a line with a hint): it takes no key, stays until the step's `completes_when` is met, and the world and scene stay live, so Esc still closes the popup it describes (reference stage). In Focused it shows the action and key plus the dashed `Show hint  `` ` ``  tap Backtick` prompt; in Violento only the action after the introduction |
 | Placement | Must not cover the object the NPC is discussing when a task begins. The panel top (stage y 480) is below the avatar and the Records door in the reference scene |
 
 ## HUD
 
 - **Objective strip**, top-left: quest title (`--text-lg` bold), progress (`2 / 4`, mono), a divider and the seal count with a seal icon in gold. 48 px tall, `--radius-md`.
-- **Shortcut chips**, top-right: "Journal Tab" and "Layout help ?" with small keycaps.
+- **Shortcut chips**, top-right: "Hint `` ` ``", "Journal Q" and "Layout help ?", each a name and a small keycap, each with a screen-reader label in the hint grammar ("Show hint. Key Backtick. Hint: Backtick is a plain tap; Kanata leaves it alone."). Which chips show depends on the scene: all three in the world; Hint and Layout help in terminal, form and duel scenes (Q is text there); no Hint chip in Violento after the introduction. A chip is a reminder and never opens the inset.
 - No permanent side panel. The world is never shrunk to make room.
 
 ## Interaction prompt
 
-A small panel next to a person or device while the player is in range, with a 20 px tail pointing at it. Border `--accent-terminal` for devices (`--accent-conversation` for people). Line one: the action with a play icon (`--text-lg` bold). Line two: a small keycap with the conventional key and the Kanata gesture in mono (`Return  tap-hold Caps + N`). It hides while a dialogue is open. The reference shows both at once for review.
+A small panel next to a person or device while the player is in range, with a 20 px tail pointing at it. Border `--accent-terminal` for devices (`--accent-conversation` for people). Line one: the action with a play icon (`--text-lg` bold). Line two: a small keycap with the conventional key and the Kanata gesture in mono (`Return  tap-hold Caps + N`): this is **Interact**, the same Return as Continue, and it also opens the elevator at its call panel. It hides while a dialogue is open. The reference shows both at once for review.
 
 ## Markers
 
@@ -82,11 +85,11 @@ Greyscale check: open `reference.html#grey`, or the `reference-greyscale-1366x76
 
 ## Quest journal
 
-On-demand screen over a dimmed world (`--scrim`), panel inset 24 px from the stage edges. Header: title, district, seal count (`Clearance seals 0 / 5`) and the close key (Esc, tap Caps).
+On-demand screen over a dimmed world (`--scrim`), panel inset 24 px from the stage edges. Opened with **Q** (tap Q) from the world only, and closed with Esc (tap Caps) or Q again. Header: title, district, seal count (`Clearance seals 0 / 5`) and the close keys (Esc, tap Caps; Q toggles it). It pauses Mira's route like Layout help.
 
 - **Left list**, three groups, each with its own icon and heading colour: Main work (seal icon), Coworker requests (speech bubble, coral), Optional speed, Mira (stopwatch, teal).
 - **Row**: title, state, one line of detail. State is text plus an icon: Active (play), Locked (lock), Done (check, gold). The selected row has a focus outline.
-- **Detail card**: the selected quest, its steps with a dot per step (done, current, to do), the keys for the current step as keycaps with the output and the gesture, and a button-like row to open Layout help (`?`).
+- **Detail card**: the selected quest, its steps with a dot per step (done, current, to do), the keys for the current step as keycaps with the output and the gesture, and an "Also from here" row of three buttons: **Layout help** (`?`, tap-hold F, then `/`, so a player who has not learned the Shift hold can reach it with Q then Return), **Settings** and **Controls**. Up and Down (tap-hold Caps + K / J) choose a row, Return opens it; the card says so in the hint grammar.
 - Mira's quests show their skill prerequisites ("Needs: …").
 
 ## Layout help
@@ -95,7 +98,7 @@ Reference screen over a dimmed world (`--scrim`), panel inset 16 px, z 80. It is
 
 | Part | Rule |
 | --- | --- |
-| Header | Title, four layer tabs (`base`, `nav`, `numbers-symbols`, `practice`; the active tab is a filled paper pill with ink text), the **Keyboard** switch (MacBook, the default | Microsoft) and the close key (Esc, tap Caps) |
+| Header | Title, four layer tabs (`base`, `nav`, `numbers-symbols`, `practice`; the active tab is a filled paper pill with ink text), the **Keyboard** switch (MacBook, the default | Microsoft) and the close key (Esc, tap Caps). It opens with `?` (tap-hold F, then `/`: the hold is on the left hand, because J + `/` is a same-hand roll and types `j/`) from every scene, including typing scenes |
 | How line | One muted line: switch tab with Left / Right (tap-hold Caps + H / L) or Tab / Shift + Tab; click and hold the drawn Caps or Space to preview that layer; Esc closes |
 | Diagram | Five rows of 15u at `--key-unit` (64 px) with `--key-gap`. MacBook bottom row: fn, Ctrl, Opt, Cmd, Space (5u), Cmd, Opt, then Left, Up over Down (two half-height keys) and Right. Microsoft bottom row: Ctrl, Win, Alt, Space (6.25u), Alt, Win, Menu, Ctrl (its arrow cluster is not drawn) |
 | Detail card | The focused key: its large keycap, **Tap**, **Tap-hold** with timing, behaviour on the shown tab, behaviour on `practice`, then one full-width line in the hint grammar ("To … you need to press **key**. Hint: key is **gesture**.") |
@@ -140,6 +143,8 @@ First-run screen (and Settings, "Run setup again"), a full panel over the dimmed
 | Diagram | A compact keyboard (`--key-unit-sm`, 28 px) for the current step with a **Physical positions / Resulting characters** switch. Positions: key names, Space drawn held with "(held)", the target key ringed. Characters: what each key gives while Space is held (digits, symbols, plain letters), Space held, `!` ringed. A one-line caption names the view |
 | Toggle-out card | The sequence as keycaps (Control + Alt + GUI + V), the instruction in the hint grammar, and the practice-layer chip ("unconfirmed" until the player says otherwise) |
 
+Keys: Esc (tap Caps) skips the whole setup; Return continues; Up and Down (tap-hold Caps + K / J) move between steps, and a step left alone is recorded as **Skipped**. Nothing here blocks the story.
+
 Rules: calibration observes outputs only. It never asks the player to press a number-row key or claims to know which physical key was used. A step can finish as Observed or Skipped; neither blocks the story.
 
 ## Terminal and editor scene
@@ -156,12 +161,13 @@ Opened from a terminal, a form or a glitch. A panel over the world, which is dim
 | Selection | `--selection-bg` fill, `--selection-text`, and a 3 px `--focus` bar under it: shape plus fill |
 | Targets | **Target line:** gold-tinted line, a gold diamond in the gutter and a `target line` tag at the right edge. **Target word:** a dashed 2 px gold outline |
 | Success | The task strip becomes a 3 px gold frame with a check icon, "Done." and the next instruction; the target line gets a check and a `selected` tag. No full-screen effect and no motion |
-| Side column | Right of the panel (x 932, 332 px): the input-feedback card ("Observed output") for the last gesture. The "Layout help ?" chip stays top-right |
+| Side column | Right of the panel (x 932, 332 px): the input-feedback card ("Observed output") for the last gesture. The Hint and Layout help chips stay top-right; the Journal chip is off, because Q is text here |
+| Keys | Only `?` and Backtick are commands in a typing scene (reserved: no lesson asks for either as text). Esc leaves the scene (tap Caps; Caps + `[` from level 07), one layer per press. Return is whatever the scene's lesson says |
 | Inset | The standard keyboard teaching inset, with two mini rows (the key's row and the home row) when the key is off the home row |
 
 Tab practice region: the form sits in a 3 px dashed `--accent-terminal` frame labelled "Tab practice region: Tab moves between these fields only", with a lock glyph. An announcement strip (eye icon, "Announced") states in words: "You are in the Tab practice region. Tab moves between three fields. Esc (tap Caps) leaves it at any time." It is also the text of an `aria-live` region. The bar always shows the Esc route. Tab never moves focus out of the region by itself, and the player is never trapped: Esc, and the "Leave" key, always work.
 
-Glitch-repair duel (variant): a violet 2 px frame; the title carries the glitch marker and its text uses `--accent-glitch`. Turn-based and untimed: a **Turns** card (done = check in gold, current = play glyph in violet, to do = hollow) and "Untimed. Nothing is lost on a retry." The broken token has a wavy `--accent-glitch` underline (shape) as well as colour. **Retry this turn** and **Leave the duel** are real buttons under the code; Retry is focused and carries Return; reach it with Esc from the editor. A wrong result gets a plain sentence in the feedback card ("Not quite yet: one letter is still wrong. Retry restarts this turn."). No timer, no random ambush.
+Glitch-repair duel (variant): a violet 2 px frame; the title carries the glitch marker and its text uses `--accent-glitch`. Turn-based and untimed: a **Turns** card (done = check in gold, current = play glyph in violet, to do = hollow) and "Untimed. Nothing is lost on a retry." The broken token has a wavy `--accent-glitch` underline (shape) as well as colour. **Retry this turn** (Return, tap-hold Caps + N) and **Leave the duel** (Esc, tap Caps) are real buttons under the code, each with its gesture. A turn ends in success or a wrong result (the level data's `rejects`); a wrong result pauses the editor and moves focus to Retry, so Return retries and Esc leaves, with no time pressure. A duel never asks for Return as typed text. A wrong result gets a plain sentence in the feedback card ("Not quite yet: one letter is still wrong. Retry restarts this turn."). No timer, no random ambush.
 
 ## Confidence-aware input feedback
 
@@ -212,7 +218,7 @@ Overlay screen over the dimmed world (inset 24 px, z 80). Five stops, one per di
 | Detail card | For the selected stop. A locked stop shows the seal it needs (icon and name), where it is earned (the level), a **nearby objective**, a primary button to the open alternative ("Go to Records  Return") and "Stay on this floor  Esc" |
 | Way back | "Back to the floor  Esc" in the header and "Stay on this floor" in the card; both always visible |
 | Seals strip | Five seal slots with names; earned seals are gold, unearned are dashed outlines |
-| Keys | Up / Down arrow (tap-hold Caps + K / J) pick a floor, Return (tap-hold Caps + N) rides, Esc goes back, written in the hint grammar |
+| Keys | Opens with Return (Interact, tap-hold Caps + N) at the elevator's call panel. Up / Down arrow (tap-hold Caps + K / J) pick a floor, Return rides (on a locked floor Return takes the card's primary button, "Go to Records"), Esc (tap Caps) goes back, all three written in the hint grammar. There is no map key elsewhere: a global fast travel would hide a locked door's requirement |
 
 The needed seal follows `levels.md`: the Orientation seal (level 06) opens Records, Records (11) opens Systems, Systems (16) opens Night Shift, Night Shift (19) opens Executive. The fifth seal (level 20) records completion and opens nothing. Not colour alone because status is an icon (lock, diamond, arrow), a node shape (hollow, filled circle, square) and words.
 
@@ -235,11 +241,22 @@ An overlay panel (inset 16 px, z 80) saved on the device. Render: `screens/setti
 | Switch | A 52×30 track with a knob and the word **On** or **Off**. On: teal track, ink knob on the right, teal-tint text. Off: sunken track, hollow knob on the left, muted text. The state is the word and the knob position, never the colour alone |
 | Accessibility | **Larger text** (body 18 px to 22 px), **High contrast**, **Reduced motion**. Reduced motion holds idle frame 0, drops seal rays and fades |
 | Sound | **Sound** is off by default. **Effects** and **Music** are separate switches nested under it |
-| Difficulty | Three radio cards, **Standard**, **Focused**, **Violento**, with a live preview of the hint lines. Standard shows the action, the key and the gesture ("To submit the access code, you need to press Return. Hint: Return is tap-hold Caps + N."). Focused shows the action and the key and a dashed "Show hint" button ("Hint: hidden until you ask."). Violento shows the action only ("To submit the access code. Key and gesture are hidden."). The selected card has the focus outline, a check and the word "Selected". A line beside the practice-layer chip says difficulty is separate from the Kanata practice layer |
+| Difficulty | Three radio cards, **Standard**, **Focused**, **Violento**, with a live preview of the hint lines. Standard shows the action, the key and the gesture ("To submit the access code, you need to press Return. Hint: Return is tap-hold Caps + N."). Focused shows the action and the key and a dashed **Show hint** prompt that is a keycap with its gesture (`Show hint  `` ` ``  tap Backtick`, "Hint: hidden."); the mouse can still click it. Violento shows the action only ("To submit the access code. Key and gesture are hidden."). The selected card has the focus outline, a check and the word "Selected". A line beside the practice-layer chip says difficulty is separate from the Kanata practice layer |
 | Reset progress | A confirmation card with a 3 px paper frame, a warning triangle, a plain statement of what is erased ("Seals, stars, patches, artifacts and best scores"; settings stay), and two buttons. **Keep my progress** (Esc) is focused; **Reset progress** is the second, unfocused button |
-| Footer | "Run setup again" re-opens the setup and calibration screen |
+| Footer | "Run setup again" re-opens the setup and calibration screen; "Controls" opens the Controls screen |
 
-Open: the key for "Show hint" on Focused is not defined in the game spec. The reference draws it as a button; the implementer picks one when writing the input spec (not `?`, which opens Layout help, and not a letter that types in an editor).
+## Controls and key bindings
+
+A reference card, reached from the journal's "Also from here" row and from Settings (never needed to play). Render: `screens/controls`. It is generated from `bindings.py`, the same data `check_contrast.py` checks against `design/ui-key-bindings.md`.
+
+| Part | Rule |
+| --- | --- |
+| Header | Title, one line ("Six keys run the game…") and the close key (Esc, tap Caps) |
+| Example | One sentence in the full hint grammar ("To open the journal, you need to press **Q**. Hint: Q is **tap Q**.") |
+| Table | One row per binding: **Action**, **Key** (keycaps; the arrows are four), **Kanata gesture** (mono), **Live in** (world, conversations, overlays, scenes, duels) and **Alternative** (mouse click, Caps + `[` from level 07, the journal row for Layout help). Rows are 40 px; every row has a screen-reader label in the hint grammar |
+| Cards | "Practice layer: all of these still work" (physical Return, Esc and the arrows are silent there, so the Caps gestures are the way) and a dashed "Never game keys" card (Tab outside a Tab region, Space, Command or Control combinations, F1 to F12; only `?` and Backtick are commands in typing scenes; Esc does nothing in the open world) |
+
+The state is told by the keycap, the gesture text and the words in the row, never by colour. The player can read the whole control set in one screen; remapping is out of scope (a later option, see `design/ui-key-bindings.md`).
 
 ## Accessibility summary
 
