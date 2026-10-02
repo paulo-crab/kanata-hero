@@ -1029,26 +1029,8 @@ def draw_calc_display(r, x0, y0, refund):
 
 
 def draw_folding_stool(r, x0, y0):
-    """Hal's folding stool, 1 cell: a sand canvas seat on crossed steel legs, his orange tool roll leaning on the right."""
-    r.cast(x0 + 2, x0 + 12, y0 + 15, rows=1)
-    for k in range(7):                                                   # crossed legs
-        r.img[y0 + 8 + k, x0 + 3 + k] = WALL[1]
-        r.img[y0 + 8 + k, x0 + 10 - k] = INK[1]
-    r.rect(x0 + 2, y0 + 14, x0 + 5, y0 + 15, INK[1])
-    r.rect(x0 + 9, y0 + 14, x0 + 12, y0 + 15, INK[1])
-    seat = r.disc(x0 + 7, y0 + 5.5, 6, 3.6)
-    r.img[seat] = WOOD[2]
-    r.img[seat & ~shifted(seat, -1, -1)] = WOOD[3]
-    r.img[seat & ~shifted(seat, 1, 1)] = WOOD[1]
-    r.rect(x0 + 5, y0 + 5, x0 + 10, y0 + 6, WOOD[1])                      # a canvas seam
-    r.outline(seat)
-    roll = r.mask(x0 + 11, y0 + 4, x0 + 15, y0 + 13)                      # orange tool roll
-    r.img[roll] = ORANGE[2]
-    r.rect(x0 + 11, y0 + 4, x0 + 12, y0 + 13, ORANGE[3])
-    r.rect(x0 + 14, y0 + 4, x0 + 15, y0 + 13, ORANGE[1])
-    r.rect(x0 + 11, y0 + 7, x0 + 15, y0 + 8, INK[1])                      # straps
-    r.rect(x0 + 11, y0 + 10, x0 + 15, y0 + 11, INK[1])
-    r.outline(roll)
+    """Hal's folding stool (the shared drawing in quest_props.py, Systems ramps): a sand canvas seat on crossed steel legs with his orange tool roll."""
+    qp.folding_stool(r, x0, y0, PAL)
 
 
 ALARM_LIGHTS = [GLASS[2], MINT[2], ORANGE[2], WOOD[3], GLASS[3], MINT[3]]   # blue, green, orange, sand, pale blue, pale green
