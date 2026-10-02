@@ -1,0 +1,902 @@
+{
+ "id": "systems-15",
+ "number": 15,
+ "title": "Formula Room",
+ "district": "systems",
+ "kind": "main",
+ "requires": [
+  "systems-14"
+ ],
+ "story": "Above the hub a planning formula was flattened into an unreadable sentence, and Hal needs its punctuation back. Each restored clause lights part of the wall, and the finished formula reveals that Pace scores detours as extra engagement. Opening the bridge shutters gives a clean sight line back to the routing machine, and the relay room door unlocks.",
+ "steps": [
+  {
+   "id": "s15-go",
+   "objective": "Cross the glass bridge north of the machine into the formula room.",
+   "interaction": null,
+   "completes_when": "reach_cell:16,5",
+   "target_cell": [16, 5]
+  },
+  {
+   "id": "s15-talk",
+   "objective": "Talk to Hal about the formula wall.",
+   "interaction": "hal-formula",
+   "completes_when": "dialogue_done:s15-hal-intro"
+  },
+  {
+   "id": "s15-console",
+   "objective": "Go to the formula wall console.",
+   "interaction": "formula-terminal",
+   "completes_when": "interact:formula-terminal",
+   "target_cell": [14, 3]
+  },
+  {
+   "id": "s15-guided",
+   "objective": "Restore the six clauses, one symbol each.",
+   "interaction": "formula-terminal",
+   "completes_when": "scene_success:systems-15-guided-amp & scene_success:systems-15-guided-star & scene_success:systems-15-guided-open & scene_success:systems-15-guided-close & scene_success:systems-15-guided-under & scene_success:systems-15-guided-plus"
+  },
+  {
+   "id": "s15-variation",
+   "objective": "Type the nested clauses and the underscore joins.",
+   "interaction": "formula-terminal",
+   "completes_when": "scene_success:systems-15-variation-nesting & scene_success:systems-15-variation-underscores"
+  },
+  {
+   "id": "s15-revisit",
+   "objective": "Type the alarm hall's label again, in a new order.",
+   "interaction": "formula-terminal",
+   "completes_when": "scene_success:systems-15-revisit-glyphs"
+  },
+  {
+   "id": "s15-recall",
+   "objective": "Type the unseen expression without hints.",
+   "interaction": "formula-terminal",
+   "completes_when": "scene_success:systems-15-recall-expression"
+  }
+ ],
+ "gestures": [
+  {
+   "id": "S18",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-amp"
+  },
+  {
+   "id": "S18",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S19",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-star"
+  },
+  {
+   "id": "S19",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S20",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-open"
+  },
+  {
+   "id": "S20",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S21",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-close"
+  },
+  {
+   "id": "S21",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S22",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-under"
+  },
+  {
+   "id": "S22",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S23",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-15-guided-plus"
+  },
+  {
+   "id": "S23",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-recall-expression"
+  },
+  {
+   "id": "S18",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-underscores"
+  },
+  {
+   "id": "S22",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-underscores"
+  },
+  {
+   "id": "S23",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-underscores"
+  },
+  {
+   "id": "S19",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-nesting"
+  },
+  {
+   "id": "S20",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-nesting"
+  },
+  {
+   "id": "S21",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-nesting"
+  },
+  {
+   "id": "S23",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-15-variation-nesting"
+  },
+  {
+   "id": "S12",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  },
+  {
+   "id": "S13",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  },
+  {
+   "id": "S14",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  },
+  {
+   "id": "S15",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  },
+  {
+   "id": "S16",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  },
+  {
+   "id": "S17",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-15-revisit-glyphs",
+   "note": "Revisit: alarm glyphs recalled in a new order"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "systems-15-guided-amp",
+   "kind": "editor",
+   "task_summary": "Mini-expression 1 of 6: restore & in its own clause. The overlay names the physical key (U) and the displayed character (&) separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals 'r&d'",
+    "Coverage for S18 credited only when the expression contains &"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 1 lost its join. Type r&d",
+    "initial": "",
+    "targets": [
+     "r&d"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs &. Hold Space, then press the U key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed & is held Space + U, not the physical bracket key."
+    },
+    "layout": "overlay highlights the U key (physical position) and draws the emitted & in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-guided-star",
+   "kind": "editor",
+   "task_summary": "Mini-expression 2 of 6: restore * in its own clause. The overlay names the physical key (I) and the displayed character (*) separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals '3*4'",
+    "Coverage for S19 credited only when the expression contains *"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 2 lost its product. Type 3*4",
+    "initial": "",
+    "targets": [
+     "3*4"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs *. Hold Space, then press the I key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed * is held Space + I, not the physical bracket key."
+    },
+    "layout": "overlay highlights the I key (physical position) and draws the emitted * in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-guided-open",
+   "kind": "editor",
+   "task_summary": "Mini-expression 3 of 6: restore ( in its own clause. The overlay names the physical key (O) and the displayed character (() separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals 'f(x'",
+    "Coverage for S20 credited only when the expression contains ("
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 3 lost its opening bracket. Type f(x",
+    "initial": "",
+    "targets": [
+     "f(x"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs (. Hold Space, then press the O key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed ( is held Space + O, not the physical bracket key."
+    },
+    "layout": "overlay highlights the O key (physical position) and draws the emitted ( in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-guided-close",
+   "kind": "editor",
+   "task_summary": "Mini-expression 4 of 6: restore ) in its own clause. The overlay names the physical key (P) and the displayed character ()) separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals 'g(y)'",
+    "Coverage for S21 credited only when the expression contains )"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 4 lost its closing bracket. Type g(y)",
+    "initial": "",
+    "targets": [
+     "g(y)"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs ). Hold Space, then press the P key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed ) is held Space + P, not the physical bracket key."
+    },
+    "layout": "overlay highlights the P key (physical position) and draws the emitted ) in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-guided-under",
+   "kind": "editor",
+   "task_summary": "Mini-expression 5 of 6: restore _ in its own clause. The overlay names the physical key ([) and the displayed character (_) separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals 'trip_len'",
+    "Coverage for S22 credited only when the expression contains _"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 5 lost its underscore. Type trip_len",
+    "initial": "",
+    "targets": [
+     "trip_len"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs _. Hold Space, then press the [ key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed _ is held Space + [, not the physical bracket key."
+    },
+    "layout": "overlay highlights the [ key (physical position) and draws the emitted _ in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-guided-plus",
+   "kind": "editor",
+   "task_summary": "Mini-expression 6 of 6: restore + in its own clause. The overlay names the physical key (]) and the displayed character (+) separately; bracket keys are never confused with parentheses.",
+   "success_criteria": [
+    "Expression text equals 'base+bonus'",
+    "Coverage for S23 credited only when the expression contains +"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Clause 6 lost its plus. Type base+bonus",
+    "initial": "",
+    "targets": [
+     "base+bonus"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike character",
+     "a physical bracket where the held-Space output belongs",
+     "a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the clause needs +. Hold Space, then press the ] key.",
+     "bracket_key": "Observed a bracket character from the base layer: the displayed + is held Space + ], not the physical bracket key."
+    },
+    "layout": "overlay highlights the ] key (physical position) and draws the emitted + in the clause (displayed character) as two pieces"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-variation-nesting",
+   "kind": "editor",
+   "task_summary": "Nested clauses: parentheses, a product and a sum in new combinations.",
+   "success_criteria": [
+    "Expressions equal ((base+bonus)*2) and f(g(x)+1)"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Two clauses came back nested. Type each exactly.",
+    "initial": "",
+    "targets": [
+     "((base+bonus)*2)",
+     "f(g(x)+1)"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "unbalanced brackets",
+     "a lookalike character"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; check the bracket pairs and the operator."
+    },
+    "layout": "overlay on request"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-variation-underscores",
+   "kind": "editor",
+   "task_summary": "Names with underscores joined by an ampersand and a plus.",
+   "success_criteria": [
+    "Expressions equal detour_km&trip_len and bonus_total+1"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Two variable joins came back flattened. Type each exactly.",
+    "initial": "",
+    "targets": [
+     "detour_km&trip_len",
+     "bonus_total+1"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a hyphen instead of an underscore",
+     "a missing join"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the name joins with _ not a hyphen."
+    },
+    "layout": "overlay on request"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-revisit-glyphs",
+   "kind": "label",
+   "task_summary": "Revisit: the six alert glyphs from the alarm hall in a new order (^, @, %, #, $, !) on a hall label.",
+   "success_criteria": [
+    "Label equals '^top @ops 50% #9 $cap!'"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "The formula console shares the alarm hall's labels. Type the label exactly.",
+    "initial": "",
+    "targets": [
+     "^top @ops 50% #9 $cap!"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a lookalike symbol",
+     "a missing symbol"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; one alert glyph differs."
+    },
+    "layout": "no keyboard overlay, no hint line"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-15-recall-expression",
+   "kind": "editor",
+   "task_summary": "Unseen expression using all six new symbols in a different order than the guided cards, no position cue.",
+   "success_criteria": [
+    "Expression equals (trip_len*2)&(base+1)"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "The wall's last clause is blank. Type it exactly.",
+    "initial": "",
+    "targets": [
+     "(trip_len*2)&(base+1)"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "any lookalike",
+     "unbalanced brackets"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the expression differs. Retry from the start."
+    },
+    "layout": "no keyboard overlay, no highlighted key"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "s15-hal-intro",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "Someone flattened this planning formula into one unreadable sentence. Restore its punctuation, clause by clause, and it will show how Pace scores detours.",
+   "hint": null,
+   "when": "interact:hal-formula",
+   "cue": "Hal neutral: default elsewhere"
+  },
+  {
+   "id": "s15-journal",
+   "speaker": "engineer",
+   "portrait": "neutral",
+   "text": "Journal: formula wall above the hub, six clauses. & * ( ) _ + one clause at a time.",
+   "hint": null,
+   "cue": "Engineer neutral: journal"
+  },
+  {
+   "id": "s15-hint-amp",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To join the two names, you need to press & (Shift + 7).",
+   "hint": {
+    "action": "To join the two names, you need to press & (Shift + 7).",
+    "key": "& (Shift + 7)",
+    "gesture": "& is tap-hold Space + U."
+   },
+   "when": "step_start:s15-guided"
+  },
+  {
+   "id": "s15-hint-star",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To multiply the trip length, you need to press * (Shift + 8).",
+   "hint": {
+    "action": "To multiply the trip length, you need to press * (Shift + 8).",
+    "key": "* (Shift + 8)",
+    "gesture": "* is tap-hold Space + I."
+   },
+   "when": "scene_success:systems-15-guided-amp"
+  },
+  {
+   "id": "s15-hint-open",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To open the clause, you need to press ( (Shift + 9).",
+   "hint": {
+    "action": "To open the clause, you need to press ( (Shift + 9).",
+    "key": "( (Shift + 9)",
+    "gesture": "( is tap-hold Space + O."
+   },
+   "when": "scene_success:systems-15-guided-star"
+  },
+  {
+   "id": "s15-hint-close",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To close the clause, you need to press ) (Shift + 0).",
+   "hint": {
+    "action": "To close the clause, you need to press ) (Shift + 0).",
+    "key": ") (Shift + 0)",
+    "gesture": ") is tap-hold Space + P."
+   },
+   "when": "scene_success:systems-15-guided-open"
+  },
+  {
+   "id": "s15-hint-under",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To join the variable name, you need to press _ (Shift + -).",
+   "hint": {
+    "action": "To join the variable name, you need to press _ (Shift + -).",
+    "key": "_ (Shift + -)",
+    "gesture": "_ is tap-hold Space + [."
+   },
+   "when": "scene_success:systems-15-guided-close"
+  },
+  {
+   "id": "s15-hint-plus",
+   "speaker": "formula_wall",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To add the detour bonus, you need to press + (Shift + =).",
+   "hint": {
+    "action": "To add the detour bonus, you need to press + (Shift + =).",
+    "key": "+ (Shift + =)",
+    "gesture": "+ is tap-hold Space + ]."
+   },
+   "when": "scene_success:systems-15-guided-under"
+  },
+  {
+   "id": "s15-hal-variation",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "All six clauses read. Now nest them, and watch the underscores.",
+   "hint": null,
+   "when": "scene_success:systems-15-guided-plus",
+   "cue": "Hal neutral: default"
+  },
+  {
+   "id": "s15-hal-reveal",
+   "speaker": "hal",
+   "portrait": "puzzled",
+   "text": "That display is one I built. The score climbs as the route gets longer? Pace pays for the detour.",
+   "hint": null,
+   "when": "scene_success:systems-15-recall-expression",
+   "cue": "Hal signature hal_puzzled: 15, the formula reveals the detour score on a display Hal built"
+  },
+  {
+   "id": "s15-proof",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "Scoring proof: a longer route earned a higher engagement total than the shortest one.",
+   "hint": null,
+   "when": "interact:scoring-proof",
+   "cue": "Engineer concerned: inspecting a tampering artifact (Scoring proof)"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "t15-go",
+   "when": "step_done:s15-go",
+   "then": [
+    {
+     "op": "npc_state",
+     "npc": "hal",
+     "state": "formula_idle"
+    }
+   ]
+  },
+  {
+   "id": "t15-c1",
+   "when": "scene_success:systems-15-guided-amp",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_1"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_01",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-c2",
+   "when": "scene_success:systems-15-guided-star",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_2"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_02",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-c3",
+   "when": "scene_success:systems-15-guided-open",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_3"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_03",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-c4",
+   "when": "scene_success:systems-15-guided-close",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_4"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_04",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-c5",
+   "when": "scene_success:systems-15-guided-under",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_5"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_05",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-c6",
+   "when": "scene_success:systems-15-guided-plus",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "clause_6"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_06",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_orange_07",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t15-complete",
+   "when": "scene_success:systems-15-recall-expression",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "formula_wall",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "bridge_shutter",
+     "state": "open"
+    },
+    {
+     "op": "set_state",
+     "target": "lamp_formula",
+     "state": "on"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "gate-relay-door"
+    },
+    {
+     "op": "set_state",
+     "target": "relay_door",
+     "state": "open"
+    },
+    {
+     "op": "npc_state",
+     "npc": "hal",
+     "state": "formula_puzzled"
+    },
+    {
+     "op": "light_state",
+     "light_state": "circuit-orange-sightline"
+    },
+    {
+     "op": "start_dialogue",
+     "dialogue": "s15-hal-reveal"
+    },
+    {
+     "op": "complete_level",
+     "level": "systems-15"
+    },
+    {
+     "op": "journal",
+     "text": "Formula restored: Pace scores detours. The bridge shutters are open and the relay room door is unlocked."
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The formula wall is dim and flat, the bridge shutters are closed, the relay room door is shut and the formula room lamp is off.",
+  "after": "The formula wall is fully lit and readable, the bridge shutters are open with a clear view of the machine, the relay door is open, the orange conduit is lit and Hal stares at the detour score.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "formula_wall",
+    "from": "dim",
+    "to": "lit",
+    "note": "connected clauses illuminate as they become valid"
+   },
+   {
+    "kind": "placement_state",
+    "target": "bridge_shutter",
+    "from": "closed",
+    "to": "open",
+    "note": "bridge shutters open: a clean sight line back to the routing machine"
+   },
+   {
+    "kind": "placement_state",
+    "target": "relay_door",
+    "from": "closed",
+    "to": "open"
+   },
+   {
+    "kind": "placement_state",
+    "target": "lamp_formula",
+    "from": "off",
+    "to": "on"
+   },
+   {
+    "kind": "placement_state",
+    "target": "conduit_orange_01",
+    "from": "off",
+    "to": "lit"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "hal",
+    "from": "formula_idle",
+    "to": "formula_puzzled",
+    "note": "puzzled at the detour score (proxy pose hal_react_puzzled_s)"
+   },
+   {
+    "kind": "gate",
+    "target": "gate-relay-door",
+    "to": "open"
+   }
+  ]
+ },
+ "rewards": {},
+ "optional_artifact": {
+  "id": "scoring-proof",
+  "name": "Scoring proof",
+  "interaction": "scoring-proof",
+  "placement": "artifact_scoring_proof",
+  "caption": [
+   "A scoring sheet pinned beside the formula wall.",
+   "A longer route earned a higher engagement total than the shortest one.",
+   "Pace counts the detour as activity."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Glass bridge: extended routes only.",
+   "state": "default",
+   "placement": "pace_sign_bridge"
+  }
+ ],
+ "review_notes": "1366x768 (x4) with the keyboard inset open: the formula room is at the top of the map, so the camera is top-clamped and avatar and targets sit well above the inset (stage y < 412). The console is approached from the south (14..15,3, target north) and Hal from the west (16,3). The hub-side bridge landing (15..16,8) is x >= 10 where the camera scrolls, clear of the inset. No unavoidable conflicts."
+}

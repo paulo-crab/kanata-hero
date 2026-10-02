@@ -1,0 +1,1261 @@
+{
+ "id": "systems-12",
+ "number": 12,
+ "title": "Payroll IDs",
+ "district": "systems",
+ "kind": "main",
+ "requires": [
+  "records-11",
+  "seal:records"
+ ],
+ "story": "The central routing machine rejects every employee ID because its keypad was relocated to the payroll wing. Hal asks for each ID exactly as printed on the glass-backed trays, and every correct digit lights its own routing node. The first finished batch extends the glass bridge and a return walkway toward Mira's chute.",
+ "steps": [
+  {
+   "id": "s12-talk",
+   "objective": "Talk to Hal beside the routing machine about the relocated keypad.",
+   "interaction": "hal-hub",
+   "completes_when": "dialogue_done:s12-hal-intro"
+  },
+  {
+   "id": "s12-east",
+   "objective": "Follow the cobalt conduit east to the payroll keypad.",
+   "interaction": "payroll-terminal",
+   "completes_when": "interact:payroll-terminal",
+   "target_cell": [32, 14]
+  },
+  {
+   "id": "s12-guided",
+   "objective": "Enter digits 1 to 0, one mini-form each, exactly as printed on the trays.",
+   "interaction": "payroll-terminal",
+   "completes_when": "scene_success:systems-12-guided-d1 & scene_success:systems-12-guided-d2 & scene_success:systems-12-guided-d3 & scene_success:systems-12-guided-d4 & scene_success:systems-12-guided-d5 & scene_success:systems-12-guided-d6 & scene_success:systems-12-guided-d7 & scene_success:systems-12-guided-d8 & scene_success:systems-12-guided-d9 & scene_success:systems-12-guided-d0"
+  },
+  {
+   "id": "s12-variation",
+   "objective": "Enter the two shuffled ID lines from trays A and B.",
+   "interaction": "payroll-terminal",
+   "completes_when": "scene_success:systems-12-variation-a & scene_success:systems-12-variation-b"
+  },
+  {
+   "id": "s12-recall",
+   "objective": "Enter the unseen batch of five IDs.",
+   "interaction": "payroll-terminal",
+   "completes_when": "scene_success:systems-12-recall-batch"
+  }
+ ],
+ "gestures": [
+  {
+   "id": "S01",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d1"
+  },
+  {
+   "id": "S02",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d2"
+  },
+  {
+   "id": "S03",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d3"
+  },
+  {
+   "id": "S04",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d4"
+  },
+  {
+   "id": "S05",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d5"
+  },
+  {
+   "id": "S06",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d6"
+  },
+  {
+   "id": "S07",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d7"
+  },
+  {
+   "id": "S08",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d8"
+  },
+  {
+   "id": "S09",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d9"
+  },
+  {
+   "id": "S10",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-12-guided-d0"
+  },
+  {
+   "id": "S01",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S01",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S02",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S02",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S03",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S03",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S04",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S04",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S05",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S06",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S07",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S07",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S08",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S08",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S09",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S09",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S10",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-a"
+  },
+  {
+   "id": "S10",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-12-variation-b"
+  },
+  {
+   "id": "S01",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S03",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S04",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S05",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S06",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S07",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S08",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S09",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "S10",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch"
+  },
+  {
+   "id": "B07",
+   "phases": [
+    "variation",
+    "recall"
+   ],
+   "scene_id": "systems-12-recall-batch",
+   "note": "Revisit: a tapped Space between IDs stays a space; holding is only for digits"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "systems-12-guided-d1",
+   "kind": "form",
+   "task_summary": "Mini-form 1 of 10: enter digit 1 exactly as printed on tray 1. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 1",
+    "Coverage for S01 is credited by this scene, and by later scenes that contain 1; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 1 is printed '1'. Type it into the routing node 1 form.",
+    "initial": "",
+    "targets": [
+     "1"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 1 needs 1: hold Space, then press A.",
+     "letter_typed": "Observed a letter: Space was released before A. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights A with the held Space; the emitted digit 1 is drawn separately; routing node 1 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d2",
+   "kind": "form",
+   "task_summary": "Mini-form 2 of 10: enter digit 2 exactly as printed on tray 2. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 2",
+    "Coverage for S02 is credited by this scene, and by later scenes that contain 2; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 2 is printed '2'. Type it into the routing node 2 form.",
+    "initial": "",
+    "targets": [
+     "2"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 2 needs 2: hold Space, then press S.",
+     "letter_typed": "Observed a letter: Space was released before S. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights S with the held Space; the emitted digit 2 is drawn separately; routing node 2 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d3",
+   "kind": "form",
+   "task_summary": "Mini-form 3 of 10: enter digit 3 exactly as printed on tray 3. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 3",
+    "Coverage for S03 is credited by this scene, and by later scenes that contain 3; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 3 is printed '3'. Type it into the routing node 3 form.",
+    "initial": "",
+    "targets": [
+     "3"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 3 needs 3: hold Space, then press D.",
+     "letter_typed": "Observed a letter: Space was released before D. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights D with the held Space; the emitted digit 3 is drawn separately; routing node 3 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d4",
+   "kind": "form",
+   "task_summary": "Mini-form 4 of 10: enter digit 4 exactly as printed on tray 4. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 4",
+    "Coverage for S04 is credited by this scene, and by later scenes that contain 4; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 4 is printed '4'. Type it into the routing node 4 form.",
+    "initial": "",
+    "targets": [
+     "4"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 4 needs 4: hold Space, then press F.",
+     "letter_typed": "Observed a letter: Space was released before F. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights F with the held Space; the emitted digit 4 is drawn separately; routing node 4 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d5",
+   "kind": "form",
+   "task_summary": "Mini-form 5 of 10: enter digit 5 exactly as printed on tray 5. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 5",
+    "Coverage for S05 is credited by this scene, and by later scenes that contain 5; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 5 is printed '5'. Type it into the routing node 5 form.",
+    "initial": "",
+    "targets": [
+     "5"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 5 needs 5: hold Space, then press G.",
+     "letter_typed": "Observed a letter: Space was released before G. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights G with the held Space; the emitted digit 5 is drawn separately; routing node 5 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d6",
+   "kind": "form",
+   "task_summary": "Mini-form 6 of 10: enter digit 6 exactly as printed on tray 6. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 6",
+    "Coverage for S06 is credited by this scene, and by later scenes that contain 6; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 6 is printed '6'. Type it into the routing node 6 form.",
+    "initial": "",
+    "targets": [
+     "6"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 6 needs 6: hold Space, then press H.",
+     "letter_typed": "Observed a letter: Space was released before H. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights H with the held Space; the emitted digit 6 is drawn separately; routing node 6 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d7",
+   "kind": "form",
+   "task_summary": "Mini-form 7 of 10: enter digit 7 exactly as printed on tray 7. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 7",
+    "Coverage for S07 is credited by this scene, and by later scenes that contain 7; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 7 is printed '7'. Type it into the routing node 7 form.",
+    "initial": "",
+    "targets": [
+     "7"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 7 needs 7: hold Space, then press J.",
+     "letter_typed": "Observed a letter: Space was released before J. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights J with the held Space; the emitted digit 7 is drawn separately; routing node 7 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d8",
+   "kind": "form",
+   "task_summary": "Mini-form 8 of 10: enter digit 8 exactly as printed on tray 8. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 8",
+    "Coverage for S08 is credited by this scene, and by later scenes that contain 8; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 8 is printed '8'. Type it into the routing node 8 form.",
+    "initial": "",
+    "targets": [
+     "8"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 8 needs 8: hold Space, then press K.",
+     "letter_typed": "Observed a letter: Space was released before K. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights K with the held Space; the emitted digit 8 is drawn separately; routing node 8 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d9",
+   "kind": "form",
+   "task_summary": "Mini-form 9 of 10: enter digit 9 exactly as printed on tray 9. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 9",
+    "Coverage for S09 is credited by this scene, and by later scenes that contain 9; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 9 is printed '9'. Type it into the routing node 9 form.",
+    "initial": "",
+    "targets": [
+     "9"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 9 needs 9: hold Space, then press L.",
+     "letter_typed": "Observed a letter: Space was released before L. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights L with the held Space; the emitted digit 9 is drawn separately; routing node 9 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-guided-d0",
+   "kind": "form",
+   "task_summary": "Mini-form 10 of 10: enter digit 0 exactly as printed on tray 0. One form per digit; the overlay shows the physical key and the emitted digit as separate pieces.",
+   "success_criteria": [
+    "Field text equals 0",
+    "Coverage for S10 is credited by this scene, and by later scenes that contain 0; a longer ID cannot credit a digit it does not contain"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Tray 0 is printed '0'. Type it into the routing node 0 form.",
+    "initial": "",
+    "targets": [
+     "0"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "another digit",
+     "a space (Space tapped, not held)",
+     "a letter (Space released before the key)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Tray 0 needs 0: hold Space, then press ;.",
+     "letter_typed": "Observed a letter: Space was released before ;. Hold bare Space until the layer engages.",
+     "space_inserted": "Observed a space: Space was tapped. Hold it to reach digits."
+    },
+    "layout": "keyboard overlay highlights ; with the held Space; the emitted digit 0 is drawn separately; routing node 0 is the form's own lamp"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-variation-a",
+   "kind": "form",
+   "task_summary": "Shuffled IDs, tray A: two IDs typed on one line, a tapped Space between them.",
+   "success_criteria": [
+    "Line equals '4081 7392'",
+    "A tapped Space separates the IDs and stays an ordinary space (B07 revisit)"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Type each ID exactly as printed; tap Space between IDs.",
+    "initial": "",
+    "targets": [
+     "4081 7392"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a digit replaced by a neighbouring digit",
+     "a held Space left on between IDs"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Compare the tray digit by digit; the overlay highlights the first mismatch.",
+     "between_ids": "Observed a digit where a space belongs: tap Space between IDs, hold it only for digits."
+    },
+    "layout": "overlay is available on request and shows key positions; digits are not highlighted per character"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-variation-b",
+   "kind": "form",
+   "task_summary": "Shuffled IDs, tray B: three IDs typed on one line; digits arrive in an order the keypad never showed.",
+   "success_criteria": [
+    "Line equals '5160 2874 9306'",
+    "A tapped Space separates the IDs and stays an ordinary space (B07 revisit)"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Type each ID exactly as printed; tap Space between IDs.",
+    "initial": "",
+    "targets": [
+     "5160 2874 9306"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a digit replaced by a neighbouring digit",
+     "a held Space left on between IDs"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}. Compare the tray digit by digit; the overlay highlights the first mismatch.",
+     "between_ids": "Observed a digit where a space belongs: tap Space between IDs, hold it only for digits."
+    },
+    "layout": "overlay is available on request and shows key positions; digits are not highlighted per character"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-12-recall-batch",
+   "kind": "form",
+   "task_summary": "Unseen batch: five IDs on one line, every digit again in a new order, no position cue.",
+   "success_criteria": [
+    "Line equals '68205 93471 07526 41983 35280'",
+    "Each of the ten digits appears at least once, so every node is checked again"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Type the unseen batch exactly as printed; tap Space between IDs.",
+    "initial": "",
+    "targets": [
+     "68205 93471 07526 41983 35280"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "any digit swapped",
+     "a missing or doubled digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the batch differs at that place. The keypad overlay stays hidden in this scene; retry from the start of the line."
+    },
+    "layout": "no keyboard overlay, no highlighted key; the line is shown as plain text with the printed tray"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "s12-hal-intro",
+   "speaker": "hal",
+   "portrait": "puzzled",
+   "text": "The routing keypad moved, and the machine rejects every employee ID. Could you enter them exactly as printed on the trays in the payroll wing?",
+   "hint": null,
+   "cue": "Hal signature hal_puzzled: 12, the relocated keypad"
+  },
+  {
+   "id": "s12-journal",
+   "speaker": "engineer",
+   "portrait": "neutral",
+   "text": "Journal: the keypad now lives in the payroll wing, east of the hub. Ten routing nodes, one per digit. The IDs must match the trays exactly.",
+   "hint": null,
+   "cue": "Engineer neutral: task notes and journal entries"
+  },
+  {
+   "id": "s12-hint-d1",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 1 of the ID, you need to press 1.",
+   "hint": {
+    "action": "To enter digit 1 of the ID, you need to press 1.",
+    "key": "1",
+    "gesture": "1 is tap-hold Space (numbers-symbols) + A."
+   },
+   "when": "step_start:s12-guided"
+  },
+  {
+   "id": "s12-hint-d2",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 2 of the ID, you need to press 2.",
+   "hint": {
+    "action": "To enter digit 2 of the ID, you need to press 2.",
+    "key": "2",
+    "gesture": "2 is tap-hold Space + S."
+   },
+   "when": "scene_success:systems-12-guided-d1"
+  },
+  {
+   "id": "s12-hint-d3",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 3 of the ID, you need to press 3.",
+   "hint": {
+    "action": "To enter digit 3 of the ID, you need to press 3.",
+    "key": "3",
+    "gesture": "3 is tap-hold Space + D."
+   },
+   "when": "scene_success:systems-12-guided-d2"
+  },
+  {
+   "id": "s12-hint-d4",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 4 of the ID, you need to press 4.",
+   "hint": {
+    "action": "To enter digit 4 of the ID, you need to press 4.",
+    "key": "4",
+    "gesture": "4 is tap-hold Space + F."
+   },
+   "when": "scene_success:systems-12-guided-d3"
+  },
+  {
+   "id": "s12-hint-d5",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 5 of the ID, you need to press 5.",
+   "hint": {
+    "action": "To enter digit 5 of the ID, you need to press 5.",
+    "key": "5",
+    "gesture": "5 is tap-hold Space + G."
+   },
+   "when": "scene_success:systems-12-guided-d4"
+  },
+  {
+   "id": "s12-hint-d6",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 6 of the ID, you need to press 6.",
+   "hint": {
+    "action": "To enter digit 6 of the ID, you need to press 6.",
+    "key": "6",
+    "gesture": "6 is tap-hold Space + H."
+   },
+   "when": "scene_success:systems-12-guided-d5"
+  },
+  {
+   "id": "s12-hint-d7",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "To enter digit 7 of the ID, you need to press 7. (Hal, over the wing intercom.)",
+   "hint": {
+    "action": "To enter digit 7 of the ID, you need to press 7.",
+    "key": "7",
+    "gesture": "7 is tap-hold Space (numbers-symbols) + J."
+   },
+   "when": "scene_success:systems-12-guided-d6",
+   "cue": "Hal neutral: every hint line"
+  },
+  {
+   "id": "s12-hint-d8",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 8 of the ID, you need to press 8.",
+   "hint": {
+    "action": "To enter digit 8 of the ID, you need to press 8.",
+    "key": "8",
+    "gesture": "8 is tap-hold Space + K."
+   },
+   "when": "scene_success:systems-12-guided-d7"
+  },
+  {
+   "id": "s12-hint-d9",
+   "speaker": "id_tray_card",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To enter digit 9 of the ID, you need to press 9.",
+   "hint": {
+    "action": "To enter digit 9 of the ID, you need to press 9.",
+    "key": "9",
+    "gesture": "9 is tap-hold Space + L."
+   },
+   "when": "scene_success:systems-12-guided-d8"
+  },
+  {
+   "id": "s12-hint-d0",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "To enter digit 0, you need to press 0. (Hal, over the wing intercom.)",
+   "hint": {
+    "action": "To enter digit 0, you need to press 0.",
+    "key": "0",
+    "gesture": "0 is tap-hold Space + ;."
+   },
+   "when": "scene_success:systems-12-guided-d9",
+   "cue": "Hal neutral: every hint line"
+  },
+  {
+   "id": "s12-hal-batch",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "Each node lights as its digit lands. Now a shuffled set: the order is no longer the keypad's.",
+   "hint": null,
+   "when": "scene_success:systems-12-guided-d0",
+   "cue": "Hal neutral: default"
+  },
+  {
+   "id": "s12-hal-bridge",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "The first batch is through. The bridge is extending, and a walkway comes back down to Mira's chute.",
+   "hint": null,
+   "when": "trigger:t12-variation-done",
+   "cue": "Hal neutral: default"
+  },
+  {
+   "id": "s12-hal-done",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "All ten nodes are lit and every ID matches the trays. The cobalt line is live.",
+   "hint": null,
+   "when": "scene_success:systems-12-recall-batch",
+   "cue": "Hal neutral: default"
+  },
+  {
+   "id": "s12-envelope",
+   "speaker": "engineer",
+   "portrait": "concerned",
+   "text": "ID envelope: addressed to a department that no longer exists. Someone filed it after the name had already changed.",
+   "hint": null,
+   "when": "interact:id-envelope",
+   "cue": "Engineer concerned: inspecting a tampering artifact (ID envelope)"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "t12-intro-done",
+   "when": "dialogue_done:s12-hal-intro",
+   "then": [
+    {
+     "op": "journal",
+     "text": "The payroll keypad moved. Follow the cobalt conduit east to the payroll wing."
+    }
+   ]
+  },
+  {
+   "id": "t12-d1",
+   "when": "scene_success:systems-12-guided-d1",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_1",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_01",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d2",
+   "when": "scene_success:systems-12-guided-d2",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_2",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_02",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_03",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d3",
+   "when": "scene_success:systems-12-guided-d3",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_3",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_04",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d4",
+   "when": "scene_success:systems-12-guided-d4",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_4",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_05",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_06",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d5",
+   "when": "scene_success:systems-12-guided-d5",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_5",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_07",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_08",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d6",
+   "when": "scene_success:systems-12-guided-d6",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_6",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_09",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d7",
+   "when": "scene_success:systems-12-guided-d7",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_7",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_10",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_11",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d8",
+   "when": "scene_success:systems-12-guided-d8",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_8",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_12",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d9",
+   "when": "scene_success:systems-12-guided-d9",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_9",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_13",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_14",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-d0",
+   "when": "scene_success:systems-12-guided-d0",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "routing_node_10",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_15",
+     "state": "lit"
+    },
+    {
+     "op": "set_state",
+     "target": "conduit_cobalt_16",
+     "state": "lit"
+    }
+   ]
+  },
+  {
+   "id": "t12-variation-done",
+   "when": "scene_success:systems-12-variation-a & scene_success:systems-12-variation-b",
+   "then": [
+    {
+     "op": "unlock_gate",
+     "gate": "gate-bridge"
+    },
+    {
+     "op": "unlock_gate",
+     "gate": "gate-return-walkway"
+    },
+    {
+     "op": "set_state",
+     "target": "bridge_span",
+     "state": "extended"
+    },
+    {
+     "op": "set_state",
+     "target": "return_walkway_span",
+     "state": "extended"
+    },
+    {
+     "op": "set_flag",
+     "flag": "systems-bridge-open"
+    },
+    {
+     "op": "start_dialogue",
+     "dialogue": "s12-hal-bridge"
+    }
+   ]
+  },
+  {
+   "id": "t12-complete",
+   "when": "scene_success:systems-12-recall-batch",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "lamp_payroll",
+     "state": "on"
+    },
+    {
+     "op": "npc_state",
+     "npc": "hal",
+     "state": "repair_hub"
+    },
+    {
+     "op": "light_state",
+     "light_state": "circuit-cobalt-lit"
+    },
+    {
+     "op": "start_dialogue",
+     "dialogue": "s12-hal-done"
+    },
+    {
+     "op": "complete_level",
+     "level": "systems-12"
+    },
+    {
+     "op": "journal",
+     "text": "Payroll IDs entered exactly. Bridge and return walkway open."
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The machine's ten routing nodes are dark, the payroll wing is dim, the glass bridge and return walkway are retracted behind shutter plates, and Hal stares at the keypad's old place.",
+  "after": "Ten payroll nodes are lit, the cobalt conduit glows from hub to wing, the glass bridge and return walkway are extended, the payroll lamp is on and Hal is back at crouched repair.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "routing_node_10",
+    "from": "dark",
+    "to": "lit",
+    "note": "all ten nodes light, one per correct digit"
+   },
+   {
+    "kind": "placement_state",
+    "target": "conduit_cobalt_01",
+    "from": "off",
+    "to": "lit",
+    "note": "the cobalt run lights segment by segment from the hub to the payroll wing"
+   },
+   {
+    "kind": "placement_state",
+    "target": "bridge_span",
+    "from": "retracted",
+    "to": "extended",
+    "note": "glass bridge to the formula room"
+   },
+   {
+    "kind": "placement_state",
+    "target": "return_walkway_span",
+    "from": "retracted",
+    "to": "extended",
+    "note": "return walkway to Mira's chute"
+   },
+   {
+    "kind": "placement_state",
+    "target": "lamp_payroll",
+    "from": "off",
+    "to": "on"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "hal",
+    "from": "start",
+    "to": "repair_hub",
+    "note": "puzzled to crouched repair (proxy animation until drawn)"
+   },
+   {
+    "kind": "gate",
+    "target": "gate-bridge",
+    "to": "open"
+   }
+  ]
+ },
+ "rewards": {},
+ "optional_artifact": {
+  "id": "id-envelope",
+  "name": "ID envelope",
+  "interaction": "id-envelope",
+  "placement": "artifact_id_envelope",
+  "caption": [
+   "An envelope of employee IDs, addressed to a department that no longer exists.",
+   "The department was renamed after the IDs were printed.",
+   "Nobody on payroll asked for the change."
+  ],
+  "engineer_portrait": "concerned"
+ },
+ "pace_copy": [
+  {
+   "text": "Payroll: every ID verified by route.",
+   "state": "default",
+   "placement": "pace_sign_payroll"
+  },
+  {
+   "text": "Glass bridge: extended routes only.",
+   "state": "default",
+   "placement": "pace_sign_bridge"
+  }
+ ],
+ "review_notes": "1366x768 (x4) with the keyboard inset open: Hal's briefing (12,11) and the payroll keypad (approach 32..33,14) both put avatar and target outside stage x 16-588, y 412-704; the keypad is approached from the south with the target north of the avatar, and the camera is right-clamped there. The hub route, east band and payroll wing sit right of the inset. No unavoidable conflicts."
+}

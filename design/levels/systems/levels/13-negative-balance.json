@@ -1,0 +1,522 @@
+{
+ "id": "systems-13",
+ "number": 13,
+ "title": "Negative Balance",
+ "district": "systems",
+ "kind": "main",
+ "requires": [
+  "systems-12"
+ ],
+ "story": "A ledger has turned a refund into a charge, and Hal needs the sign restored before the nightly run. In a small side room the player restores the minus with the held-Space layer and learns that N and M stay letters inside values. Once the refund reads as a refund, Hal sits on his stool and Mira offers Payroll Run at the nearby chute.",
+ "steps": [
+  {
+   "id": "s13-talk",
+   "objective": "Talk to Hal at the routing machine about the ledger.",
+   "interaction": "hal-hub-13",
+   "completes_when": "dialogue_done:s13-hal-intro"
+  },
+  {
+   "id": "s13-ledger",
+   "objective": "Walk to the refund ledger in the south-west room.",
+   "interaction": "ledger-terminal",
+   "completes_when": "interact:ledger-terminal",
+   "target_cell": [3, 18]
+  },
+  {
+   "id": "s13-guided",
+   "objective": "Make the refund negative, then type the reference codes with n and m kept as letters.",
+   "interaction": "ledger-terminal",
+   "completes_when": "scene_success:systems-13-guided-minus & scene_success:systems-13-guided-literal-nm"
+  },
+  {
+   "id": "s13-variation",
+   "objective": "Correct the second invoice.",
+   "interaction": "ledger-terminal",
+   "completes_when": "scene_success:systems-13-variation-invoice"
+  },
+  {
+   "id": "s13-recall",
+   "objective": "Correct the third invoice without hints.",
+   "interaction": "ledger-terminal",
+   "completes_when": "scene_success:systems-13-recall-invoice"
+  },
+  {
+   "id": "s13-mira",
+   "objective": "Visit Mira at the chute; she offers Payroll Run.",
+   "interaction": "mira-chute",
+   "completes_when": "dialogue_done:s13-mira-offer",
+   "optional": true
+  },
+  {
+   "id": "s13-slip",
+   "objective": "Optional: repair the folded refund slip.",
+   "interaction": "refund-slip-glitch",
+   "completes_when": "scene_success:systems-13-glitch-slip",
+   "optional": true
+  }
+ ],
+ "gestures": [
+  {
+   "id": "S11",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-13-guided-minus"
+  },
+  {
+   "id": "S11",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-13-variation-invoice"
+  },
+  {
+   "id": "S11",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice"
+  },
+  {
+   "id": "S24",
+   "phases": [
+    "guided"
+   ],
+   "scene_id": "systems-13-guided-literal-nm"
+  },
+  {
+   "id": "S24",
+   "phases": [
+    "variation"
+   ],
+   "scene_id": "systems-13-variation-invoice"
+  },
+  {
+   "id": "S24",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice"
+  },
+  {
+   "id": "S03",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S04",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S05",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S06",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S09",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S10",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  },
+  {
+   "id": "S02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "systems-13-recall-invoice",
+   "note": "Revisit: the invoice digits recall earlier digits in a new order"
+  }
+ ],
+ "terminal_scenes": [
+  {
+   "id": "systems-13-guided-minus",
+   "kind": "form",
+   "task_summary": "Invoice 1, the refund: make the refund value negative with the minus on the held-Space layer, then write a short range with the same key.",
+   "success_criteria": [
+    "Field 1 equals -85",
+    "Field 2 equals 10-20",
+    "Coverage for S11 credited by output observed; the UI says output observed, not that a Space hold was proved"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Invoice 1: the refund of 85 was posted as a charge. Type it as -85, then type the range 10-20.",
+    "initial": "",
+    "targets": [
+     "-85",
+     "10-20"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a plain apostrophe",
+     "an en dash or any other dash",
+     "a digit typed from the base row (not detectable; the UI never claims it)"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the sign must be a minus (-). Hold Space and press the apostrophe key.",
+     "apostrophe": "Observed an apostrophe: Space was not held. The minus is Space + the apostrophe key."
+    },
+    "layout": "overlay highlights the apostrophe key with the held Space; emitted minus drawn separately"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-13-guided-literal-nm",
+   "kind": "form",
+   "task_summary": "Invoice 1, the reference codes: type net-30, then 3n8 and 9m1. N and M stay literal letters on numbers-symbols; they do not become digits or edits.",
+   "success_criteria": [
+    "Field 1 equals net-30",
+    "Field 2 equals 3n8 and field 3 equals 9m1",
+    "Coverage for S24 credited by output observed; a plain n or m gives the same text, so the UI never claims the layer"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Type the reference codes exactly: net-30, 3n8, 9m1. In 3n8 and 9m1, keep Space held the whole way and notice that N and M stay letters.",
+    "initial": "",
+    "targets": [
+     "net-30",
+     "3n8",
+     "9m1"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a digit in place of n or m",
+     "a backspace or other edit in place of n or m"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; N and M stay letters while Space is held.",
+     "layer_released": "Observed a letter where a digit belongs: Space was released too early in the code."
+    },
+    "layout": "overlay shows N and M on the numbers-symbols layer as literal letters, drawn greyed as 'stays n' and 'stays m'"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-13-variation-invoice",
+   "kind": "form",
+   "task_summary": "Invoice 2: new values. A negative amount, a longer range, and two reference codes that mix digits with n and m.",
+   "success_criteria": [
+    "Fields equal -7, 40-65, 2m5, 7n0"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Invoice 2 changed the figures. Type -7, then 40-65, then the codes 2m5 and 7n0.",
+    "initial": "",
+    "targets": [
+     "-7",
+     "40-65",
+     "2m5",
+     "7n0"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a charge written without the minus",
+     "n or m replaced by a digit"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; compare against the printed invoice."
+    },
+    "layout": "overlay available on request; no per-character highlight"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-13-recall-invoice",
+   "kind": "form",
+   "task_summary": "Invoice 3, no hints: signed values, a range and a code that mixes digits with n and m.",
+   "success_criteria": [
+    "Fields equal -304, 65-90, 5n2m6",
+    "No hint line is shown; the keyboard overlay is hidden"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Invoice 3 is clean except the refund: type -304, the range 65-90, and the code 5n2m6.",
+    "initial": "",
+    "targets": [
+     "-304",
+     "65-90",
+     "5n2m6"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a missing minus",
+     "any digit for n or m"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the field does not match the invoice. Retry the field."
+    },
+    "layout": "no keyboard overlay, no hint line, no highlighted key"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  },
+  {
+   "id": "systems-13-glitch-slip",
+   "kind": "label",
+   "task_summary": "Optional glitch repair: a folded refund slip drifts across the floor. Type -12 to register it.",
+   "success_criteria": [
+    "Field equals -12",
+    "Untimed; immediate retry"
+   ],
+   "retry": "instant",
+   "position_cue": true,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "The folded slip should read -12. Type it to snap the slip into register.",
+    "initial": "",
+    "targets": [
+     "-12"
+    ],
+    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+    "rejects": [
+     "a missing minus"
+    ],
+    "feedback": {
+     "wrong_character": "Observed {observed}; the slip needs a minus then 12."
+    },
+    "layout": "overlay shown"
+   },
+   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "s13-hal-intro",
+   "speaker": "hal",
+   "portrait": "concerned",
+   "text": "A ledger turned a refund into a charge, and the nightly run is close. Can you restore the minus sign in the ledger room, south-west of the hub?",
+   "hint": null,
+   "when": "interact:hal-hub-13",
+   "cue": "Hal concerned: 13 before the nightly run"
+  },
+  {
+   "id": "s13-journal",
+   "speaker": "engineer",
+   "portrait": "neutral",
+   "text": "Journal: refund 85 posted as a charge. Fix the sign, then check that n and m stay letters inside values.",
+   "hint": null,
+   "cue": "Engineer neutral: journal"
+  },
+  {
+   "id": "s13-hint-minus",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "To mark the refund negative, you need to press -.",
+   "hint": {
+    "action": "To mark the refund negative, you need to press -.",
+    "key": "-",
+    "gesture": "- is tap-hold Space + '."
+   },
+   "when": "step_start:s13-guided",
+   "cue": "Hal neutral: every hint line"
+  },
+  {
+   "id": "s13-hint-nm",
+   "speaker": "invoice",
+   "speaker_kind": "object",
+   "portrait": null,
+   "text": "To type the `n` in \"net\" mid-value, you need to press N.",
+   "hint": {
+    "action": "To type the `n` in \"net\" mid-value, you need to press N.",
+    "key": "N",
+    "gesture": "N stays literal on numbers-symbols, as does M."
+   },
+   "when": "scene_success:systems-13-guided-minus"
+  },
+  {
+   "id": "s13-hal-variation",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "Second invoice. The figures changed, and the minus is still the minus.",
+   "hint": null,
+   "when": "scene_success:systems-13-guided-literal-nm",
+   "cue": "Hal neutral: default"
+  },
+  {
+   "id": "s13-hal-end",
+   "speaker": "hal",
+   "portrait": "neutral",
+   "text": "The refund reads as a refund again, and the warning light is steady. I can sit down for this one.",
+   "hint": null,
+   "when": "scene_success:systems-13-recall-invoice",
+   "cue": "Hal neutral: the end of 13, when Hal sits instead of crouching"
+  },
+  {
+   "id": "s13-mira-offer",
+   "speaker": "mira",
+   "portrait": "neutral",
+   "text": "Payroll Run: carry changing IDs and signed amounts from the chute to three desks. Learn the loop first; your first clean run is just a baseline.",
+   "hint": null,
+   "when": "interact:mira-chute",
+   "cue": "Mira neutral: offering a route"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "t13-intro-done",
+   "when": "dialogue_done:s13-hal-intro",
+   "then": [
+    {
+     "op": "npc_state",
+     "npc": "hal",
+     "state": "ledger_repair"
+    },
+    {
+     "op": "journal",
+     "text": "Hal went ahead to the ledger room, south-west of the hub."
+    }
+   ]
+  },
+  {
+   "id": "t13-complete",
+   "when": "scene_success:systems-13-recall-invoice",
+   "then": [
+    {
+     "op": "set_state",
+     "target": "refund_ledger",
+     "state": "refund"
+    },
+    {
+     "op": "set_state",
+     "target": "folding_stool",
+     "state": "open"
+    },
+    {
+     "op": "set_state",
+     "target": "warning_lamp",
+     "state": "on"
+    },
+    {
+     "op": "set_state",
+     "target": "lamp_ledger",
+     "state": "on"
+    },
+    {
+     "op": "npc_state",
+     "npc": "hal",
+     "state": "ledger_seated"
+    },
+    {
+     "op": "npc_state",
+     "npc": "mira",
+     "state": "offering"
+    },
+    {
+     "op": "light_state",
+     "light_state": "warning-steady"
+    },
+    {
+     "op": "start_dialogue",
+     "dialogue": "s13-hal-end"
+    },
+    {
+     "op": "complete_level",
+     "level": "systems-13"
+    },
+    {
+     "op": "journal",
+     "text": "Refund sign restored. Mira offers Payroll Run at the chute."
+    }
+   ]
+  },
+  {
+   "id": "t13-slip-repaired",
+   "when": "scene_success:systems-13-glitch-slip",
+   "then": [
+    {
+     "op": "journal",
+     "text": "The folded refund slip is flat and ordinary again."
+    }
+   ]
+  }
+ ],
+ "state_changes": {
+  "before": "The ledger display shows the refund as a charge in orange, the machine's warning light pulses wide, and Hal crouches beside a folded stool.",
+  "after": "The ledger shows a green refund, the warning light is steady, the stool is open with Hal seated on it, and the ledger room lamp is on.",
+  "visible_changes": [
+   {
+    "kind": "placement_state",
+    "target": "refund_ledger",
+    "from": "charge",
+    "to": "refund",
+    "note": "refund sign flips to green"
+   },
+   {
+    "kind": "placement_state",
+    "target": "warning_lamp",
+    "from": "pulse",
+    "to": "on",
+    "note": "the machine's warning light steadies"
+   },
+   {
+    "kind": "placement_state",
+    "target": "folding_stool",
+    "from": "folded",
+    "to": "open"
+   },
+   {
+    "kind": "npc_pose",
+    "target": "hal",
+    "from": "ledger_repair",
+    "to": "ledger_seated",
+    "note": "crouched repair to seated on the stool (proxy animation until drawn)"
+   },
+   {
+    "kind": "placement_state",
+    "target": "lamp_ledger",
+    "from": "off",
+    "to": "on"
+   }
+  ]
+ },
+ "rewards": {},
+ "glitch": {
+  "archetype": "form",
+  "variant": "default",
+  "cell": [6, 17],
+  "interaction": "refund-slip-glitch",
+  "scene_id": "systems-13-glitch-slip",
+  "note": "Harmless paper-fold glitch; optional untimed repair with immediate retry."
+ },
+ "pace_copy": [
+  {
+   "text": "Ledger: charges are efficient.",
+   "state": "default"
+  }
+ ],
+ "review_notes": "1366x768 (x4) with the keyboard inset open: the ledger room is left of the camera's scroll, so everything sits where the camera is left-clamped. The ledger desk (approach 3..4,18, target north), Hal (approach 3,18 from the east) and the refund slip (approach 6,18, target north) keep avatar and target above the inset (stage y < 412); rows 19..22 of this room fall inside the inset and hold only decoration (see LEVEL_SHEET.md)."
+}
