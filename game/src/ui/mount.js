@@ -11,7 +11,7 @@ import { LayoutHelp } from './layout-help.js';
 import { Setup, Calibration, createScreenState, screenOpen } from './setup.js';
 import { Toast, LiveRegion, ErrorScreen } from './misc.js';
 import { RealClock } from '../shared/clock.js';
-import { DEFAULT_VIEW, sameView } from './world-space.js';
+import { DEFAULT_VIEW, sameView, INSET_AVOID_RECT } from './world-space.js';
 
 const MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
@@ -69,7 +69,10 @@ export function mountUi(root, params = {}) {
   // Camera and zoom for marker and prompt placement: `ui:view` events, or the getView() parameter polled on each paint.
   let view = DEFAULT_VIEW;
   const getView = () => (params.getView ? params.getView() : view);
-  const opts = { assetBase, clock, announce, state, getView };
+  // The keyboard inset rectangle while a vm:inset is on screen (markers keep the current target clear of it).
+  let insetOpen = false;
+  const getInset = () => (insetOpen ? INSET_AVOID_RECT : null);
+  const opts = { assetBase, clock, announce, state, getView, getInset };
   for (const [name, Cls] of Object.entries(classes)) components[name] = new Cls(makeHost(name), bus, opts);
   components['first-use'] = new FirstUse(makeHost('first-use'), bus, opts);
   components.setup = new Setup(makeHost('setup'), bus, opts);
@@ -93,10 +96,20 @@ export function mountUi(root, params = {}) {
 
   // The camera moved: repaint the world-anchored components only when the view actually changed.
   offs.push(bus.on('ui:view', (v) => {
-    if (!v || !v.camera || sameView(v, view)) return;
-    view = { camera: { x: v.camera.x, y: v.camera.y }, zoom: v.zoom };
+    if (!v || !v.camera) return;
+    const avatar = v.avatar ? { x: v.avatar.x, y: v.avatar.y } : null;
+    const cameraMoved = !sameView(v, view);
+    const avatarMoved = !!avatar && (!view.avatar || avatar.x !== view.avatar.x || avatar.y !== view.avatar.y);
+    if (!cameraMoved && !avatarMoved) return;
+    view = { camera: { x: v.camera.x, y: v.camera.y }, zoom: v.zoom, avatar };
     components.markers.render(components.markers.vm);
-    components.prompt.render(components.prompt.vm);
+    if (cameraMoved) components.prompt.render(components.prompt.vm);
+  }));
+  offs.push(bus.on('vm:inset', (vm) => {
+    const open = !!vm;
+    if (open === insetOpen) return;
+    insetOpen = open;
+    components.markers.render(components.markers.vm);
   }));
 
   // Objectives and announcements go to the live region.

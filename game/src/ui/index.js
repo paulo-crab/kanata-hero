@@ -5,7 +5,10 @@ import { INSET_STAGE_RECT } from '../shared/layout.js';
 export { mountUi, stageClasses } from './mount.js';
 export { Component, nextFocusIndex } from './component.js';
 export { keycap, keyunit, keycapForName, keycapName } from './keycap.js';
-export { hudView, promptView, markersView } from './play.js';
+export { hudView, promptView, markersView, edgeArrowView } from './play.js';
+export {
+  targetIndicator, markerCentre, avatarStageRect, compassWord, DIALOGUE_STAGE_RECT, INSET_AVOID_RECT, ARROW_SIZE,
+} from './world-space.js';
 export { dialogueView, hintCardView, portraitView } from './dialogue.js';
 export { insetView } from './inset.js';
 export { sceneBarView, feedbackView, fieldView } from './scene.js';

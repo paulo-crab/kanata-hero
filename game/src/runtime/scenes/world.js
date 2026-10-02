@@ -215,13 +215,14 @@ export class WalkScene extends BaseScene {
       t.legs.forEach((l, i) => {
         out.floor.push({
           id: `${this.id}:${l.id}`, cell: l.marker, at: at(l.marker), shape: 'route',
-          state: i < this.idx ? 'gold' : 'teal',
+          state: i < this.idx ? 'gold' : 'teal', current: i === this.idx,
         });
       });
     } else if (t.stops) {
       t.stops.forEach((s, i) => {
         out.markers.push({
           id: s.interaction, cell: s.cell, at: at(s.cell), shape: 'route', state: i < this.idx ? 'reached' : 'idle',
+          current: i === this.idx,
         });
       });
     }

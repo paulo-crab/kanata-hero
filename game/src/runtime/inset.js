@@ -33,15 +33,14 @@ function rowOf(manifestJson, keyId) {
   return k && k.position ? k.position.row : null;
 }
 
-/** Position cell: the home row, plus the key's own row when it is off the home row. Held keys held, lit keys bright. */
+/** Position cell: one mini row, the home row, or the key's own row when the key is off the home row. */
 function position(manifestJson, { target, held = [], lit = [] }) {
   const mark = (id) => miniKey(id, { ...(held.includes(id) ? { held: true } : {}), ...(lit.includes(id) ? { lit: true } : {}) });
-  const home = HOME_ROW.map(mark);
-  const row = rowOf(manifestJson, target.toLowerCase().length === 1 ? target.toLowerCase() : target);
+  const id = target.length === 1 ? target.toLowerCase() : target;
+  const row = rowOf(manifestJson, id);
   const homeRow = rowOf(manifestJson, 'h');
-  const out = { keys: home, target: target.length === 1 ? target.toUpperCase() : target };
-  if (row !== null && row !== homeRow) out.rows = [rowIds(manifestJson, row).map(mark), home];
-  return out;
+  const ids = row !== null && row !== homeRow ? rowIds(manifestJson, row) : HOME_ROW;
+  return { keys: ids.map(mark), target: target.length === 1 ? target.toUpperCase() : target };
 }
 
 function timing(manifestJson, id) {

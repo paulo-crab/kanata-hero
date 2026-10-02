@@ -64,6 +64,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .kh-marker { position: absolute; width: var(--marker-size); height: var(--marker-size); z-index: var(--z-marker); overflow: visible; }
 .kh-marker.floor { width: 48px; height: 48px; z-index: var(--z-world-fx); }
 .kh-marker.reached { opacity: 0.7; }
+/* Edge arrow: the current target when the inset covers it. Colour follows the marker it stands for. */
+.kh-edge-arrow { position: absolute; z-index: var(--z-marker); display: block; border-radius: var(--radius-pill); background: var(--ink); border: 3px solid var(--gold); }
+.kh-edge-arrow.teal { border-color: var(--teal); }
+.kh-edge-arrow svg { width: 100%; height: 100%; display: block; }
+.kh-edge-arrow .halo { fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: square; stroke-linejoin: miter; }
+.kh-edge-arrow .line { fill: none; stroke: var(--gold); stroke-width: 5; stroke-linecap: square; stroke-linejoin: miter; }
+.kh-edge-arrow.teal .line { stroke: var(--teal); }
 .kh-marker-badge { position: absolute; z-index: var(--z-marker); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--ink); color: var(--gold); }
 .halo { fill: var(--paper); stroke: var(--paper); stroke-width: 9; stroke-linejoin: round; }
 .line { fill: var(--ink); stroke: var(--ink); stroke-width: 5; stroke-linejoin: round; }

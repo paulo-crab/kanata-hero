@@ -170,6 +170,9 @@ export class SceneMachine {
       const topic = VM_TOPIC[layer.kind];
       if (!topic) continue;
       want.set(topic, layer.viewModel ? layer.viewModel() : null);
+      // A scene may feed a second topic (the setup screen carries the calibration steps and diagram).
+      const extra = layer.extraViewModels ? layer.extraViewModels() : {};
+      for (const [t, vm] of Object.entries(extra)) if (!want.has(t)) want.set(t, vm);
     }
     for (const topic of new Set([...this._vms.keys(), ...want.keys()])) {
       const vm = want.has(topic) ? want.get(topic) : null;

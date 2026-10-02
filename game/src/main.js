@@ -141,10 +141,11 @@ export async function bootBrowser(p = {}) {
     if (!game || !game.world || !renderer) return;
     const camera = game.world.camera();
     renderer.draw(game.world.snapshot(), camera);
-    const key = `${camera.x},${camera.y},${STAGE_ZOOM}`;
+    const feet = game.world.avatar.feetPx;
+    const key = `${camera.x},${camera.y},${feet.x},${feet.y}`;
     if (key !== lastView) {
       lastView = key;
-      bus.emit('ui:view', { camera: { x: camera.x, y: camera.y }, zoom: STAGE_ZOOM });
+      bus.emit('ui:view', { camera: { x: camera.x, y: camera.y }, zoom: STAGE_ZOOM, avatar: { x: feet.x, y: feet.y } });
     }
   };
 

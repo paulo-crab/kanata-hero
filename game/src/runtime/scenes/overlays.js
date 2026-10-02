@@ -1,6 +1,7 @@
 // Overlay scenes: dialogue layer, Layout help, journal, Controls, settings, error.
 import { BaseScene } from './base.js';
 import { keycap, KEY_GESTURE } from '../common.js';
+import { hintOutputs } from '../dialogue.js';
 
 export class DialogueScene extends BaseScene {
   constructor() {
@@ -180,13 +181,19 @@ export class JournalScene extends BaseScene {
     };
   }
 
+  /** Keys the player has learned so far: one entry per hint line whose key sequence was observed. */
   _keys(level) {
     const seen = new Set();
     const out = [];
     for (const d of level.dialogue) {
-      if (!d.hint || seen.has(d.hint.key)) continue;
+      if (!d.hint || seen.has(d.hint.key) || !this.ctx.rules.holds(`dialogue_done:${d.id}`)) continue;
       seen.add(d.hint.key);
-      out.push({ key: keycap(d.hint.key.length === 1 ? d.hint.key : d.hint.key), output: d.hint.key, gesture: d.hint.gesture });
+      const outputs = hintOutputs(d.hint.key);
+      out.push({
+        key: outputs.length === 1 ? keycap(outputs[0]) : { key: outputs[0], label: d.hint.key },
+        output: outputs.length === 1 ? '' : outputs.join(' '),
+        gesture: d.hint.gesture,
+      });
     }
     return out;
   }

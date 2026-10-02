@@ -72,7 +72,7 @@ class TerminalScene extends BaseScene {
 
   _bar(field, extra = {}) {
     return {
-      kind: this.kind, title: TITLES[this.id] || this.id, prompt: this.def.task.prompt || this.def.task_summary,
+      kind: this.kind, title: TITLES[this.id] || this.id, prompt: this.def.task_summary || this.def.task.prompt,
       field, leave: { key: keycap('Escape'), gesture: KEY_GESTURE.back }, ...extra,
     };
   }
