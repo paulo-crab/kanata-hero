@@ -170,3 +170,105 @@ def extend(m):
         for h in steps:
             out.setdefault(h.upper(), h.upper())
     return out
+
+
+# ------------------------------------------------------------------ garden parts (RICH_FINISH_SPEC.md section 3)
+
+ROCKS = [hx(h) for h in dp.RICH_EXTRAS["rocks"]]
+MOSS = hx(dp.RICH_EXTRAS["moss"][0])
+PETAL_SHADE, PETAL = [hx(h) for h in dp.RICH_EXTRAS["petals"]]
+ORANGE, PINK, YELLOW = [hx(h) for h in dp.RICH_EXTRAS["flower_accents"]]
+FOLIAGE_EDGE = hx(dp.FOLIAGE_EXTRA["orientation"]["edge"])  # canopy shadow on the bed: dark green, never navy
+
+
+def rock(r, cx, cy, rr, bed, bst):
+    """Grey rock, shaded from the upper left, a moss cap and a one-pixel crack."""
+    m = r.blob(cx, cy, rr, 1.0, lobes=4, amp=0.12) & bed
+    bst.shade_mask(r.img, m, ROCKS, k_shadow=1, k_light=1)
+    r.img[m & ~bst.shifted(m, -1, -1)] = ROCKS[3]
+    r.outline(m, ROCKS[0])
+    gx, gy = cx - 6, cy - 6  # the moss pattern counts columns from the rock's own box
+    ys, xs = np.nonzero(m[gy:gy + 12, gx:gx + 12] & np.all(r.img[gy:gy + 12, gx:gx + 12] != ROCKS[0], axis=2))
+    if len(ys):
+        top = ys.min()
+        green = hx(dp.DISTRICTS["orientation"]["foliage"][2])
+        for y, x in zip(ys, xs):
+            if y == top or (y == top + 1 and (x + y) % 2 == 0):
+                r.img[gy + y, gx + x] = MOSS if x % 2 == 0 else green
+        mid = int(np.median(xs))
+        for k in range(3):
+            r.img[gy + top + 3 + k, gx + mid - 1 + k // 2] = ROCKS[0]
+
+
+def pond_detail(r, water, glass):
+    """Ripple arcs on the lit side, a sheen band and one lily flower on the water mask."""
+    yy, xx = np.mgrid[0:r.img.shape[0], 0:r.img.shape[1]]
+    w = water.copy()
+    w[:, :118] = False
+    w[:, 172:] = False
+    w[:80] = False
+    w[130:] = False
+    for cx, cy, rr in ((150, 100, 4), (154, 112, 5), (146, 118, 3)):
+        ring = np.abs(np.hypot(xx - cx, (yy - cy) * 1.6) - rr) < 0.6
+        r.img[ring & w & (xx < cx + 2)] = glass[3]
+    r.img[w & (np.abs(xx - yy * 0.6 - 62) < 1.2)] = glass[2]
+    for x, y in ((143, 110), (144, 110), (144, 109)):
+        r.img[y, x] = PINK
+    r.img[111, 144] = ORANGE
+
+
+def trunk(r, wood, bst):
+    """Root flare, roots creeping along the bed, bark streaks, a lit left edge and two limbs."""
+    cx = 133
+    rows = {96: 4, 98: 4, 100: 5, 102: 5, 104: 6, 106: 6, 108: 7, 110: 8, 112: 10, 114: 12}
+    m = np.zeros(r.img.shape[:2], bool)
+    for y, w in rows.items():
+        m[y:y + 2, cx - w // 2: cx + (w + 1) // 2] = True
+    for dx in (-1, 1):
+        for t in range(5):
+            m[113 + t // 2, cx + dx * (6 + t)] = True
+            m[114 + t // 2, cx + dx * (6 + t)] = True
+    bst.shade_mask(r.img, m, wood, k_shadow=2, k_light=1)
+    r.outline(m, wood[0])
+    a = r.img
+    bark = np.zeros(a.shape[:2], bool)
+    for col in wood:
+        bark |= np.all(a == col, axis=2)
+    bark[:, :120] = False
+    bark[:, 150:] = False
+    rnd = np.random.RandomState(5)
+    streak = bark & (rnd.rand(*bark.shape) < 0.16) & np.roll(bark, 1, 0)
+    a[streak] = wood[0]
+    lit = bark & ~np.roll(bark, 1, 1)
+    a[lit & np.all(a == wood[2], axis=2)] = wood[3]
+    for sx in (-1, 1):  # limbs that show through the canopy
+        for t in range(7):
+            x, y = 133 + sx * (3 + t), 100 - t
+            a[y:y + 2, x] = wood[2] if sx < 0 else wood[1]
+            a[y + 2, x] = wood[0]
+
+
+def grass_tufts(r, bed, dark, light, seed=4, n=14):
+    """Three-blade grass tufts on the dark bed."""
+    rnd = random.Random(seed)
+    ys, xs = np.nonzero(bed)
+    for _ in range(n):
+        i = rnd.randrange(len(ys))
+        x, y = int(xs[i]), int(ys[i])
+        if tuple(r.img[y, x]) in [tuple(c) for c in dark]:
+            for dx, h in ((-1, 2), (0, 3), (1, 2)):
+                for k in range(h):
+                    if 0 <= y - k < r.img.shape[0]:
+                        r.img[y - k, x + dx] = light[0] if k < h - 1 else light[1]
+
+
+def flower(r, x, y, pair=False):
+    """White flower with an orange centre; every second one carries a pair of yellow dots."""
+    r.img[y - 1, x] = PETAL
+    r.img[y + 1, x] = PETAL_SHADE
+    r.img[y, x - 1] = PETAL
+    r.img[y, x + 1] = PETAL_SHADE
+    r.img[y, x] = ORANGE
+    if pair:
+        r.img[y - 1, x - 1] = YELLOW
+        r.img[y - 1, x + 1] = YELLOW

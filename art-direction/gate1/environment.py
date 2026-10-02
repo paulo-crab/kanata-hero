@@ -364,7 +364,10 @@ def mail_counter(r, x0, y0):
 
 # ------------------------------------------------------------------ garden landmark
 
-def garden(r):
+def garden(r, stage=None):
+    """The garden landmark. `stage(name)` is called as each part is complete (base, foliage, rocks,
+    canopy, trunk, accents) so the kit can capture the parts; drawing does not depend on it."""
+    stage = stage or (lambda name: None)
     x0, y0, x1, y1, face = 96, 78, 176, 134, 8
     r.cast(x0, x1, y1, rows=2)
     # Rim: lit top plane, jointed side face, dark base.
@@ -381,7 +384,7 @@ def garden(r):
     r.outline(r.mask(x0, y0, x1, y1))
     bed = r.mask(x0 + 4, y0 + 4, x1 - 4, y1 - face - 2)
     r.img[bed] = GREEN[0]
-    # Stream: a winding channel with a pool, cool ramp, one highlight step.
+    # Stream: a winding channel with a pool, cool ramp, one highlight step, then ripples, a sheen and a lily.
     water = np.zeros((H, W), bool)
     for t in np.linspace(0, 1, 40):
         cx = 150 + 10 * math.sin(t * 5.0)
@@ -395,32 +398,32 @@ def garden(r):
     for lx, ly in [(143, 116), (151, 99)]:
         pad = r.disc(lx, ly, 2.2, 1.6)
         r.img[pad & water] = GREEN[3]
+    rich_finish.pond_detail(r, water, GLASS)
+    stage("base")
     # Ground cover and shrubs around the edge, back to front.
     clip = bed & ~water
     for i, (sx, sy) in enumerate([(106, 88), (118, 86), (164, 88), (104, 104), (166, 104), (108, 118), (122, 120), (164, 118)]):
         leaves(r, sx, sy, 5.5, 40 + i, count=5, spread=5, clip=clip)
-    # Rocks by the water.
-    for rx, ry, rr in [(132, 112, 5), (160, 112, 4)]:
-        rock = r.blob(rx, ry, rr, 1.0, lobes=4, amp=0.12) & bed
-        shade_mask(r.img, rock, INK, k_shadow=1, k_light=1)
-        r.img[rock & ~shifted(rock, -1, -1)] = INK[3]
-        r.outline(rock, INK[0])
-    # Tree: trunk with root flare, then a layered canopy that overhangs the rim.
-    trunk = r.mask(130, 100, 137, 114) | r.mask(127, 110, 140, 114)
-    shade_mask(r.img, trunk, WOOD, k_shadow=2, k_light=1)
-    r.outline(trunk, WOOD[0])
+    stage("foliage")
+    # Grey rocks with a moss cap and a crack.
+    for rx, ry, rr in [(111, 113, 5), (161, 108, 4)]:
+        rich_finish.rock(r, rx, ry, rr, bed, bst)
+    stage("rocks")
+    # Canopy: seven smaller fans per crown, overhanging the rim.
     canopy = np.zeros((H, W), bool)
     for i, (cx, cy, cr) in enumerate([(117, 84, 10), (149, 84, 10), (133, 77, 10), (122, 94, 7), (145, 94, 7), (133, 89, 9)]):
         canopy |= leaves(r, cx, cy, cr, 70 + i, count=6, spread=cr * 0.8)
-    # Canopy shadow: one cool step on the bed below-right of the crown.
+    stage("canopy")
+    # Trunk with root flare, bark and limbs, drawn over the canopy's lower edge.
+    rich_finish.trunk(r, WOOD, bst)
+    stage("trunk")
+    # Canopy shadow: one flat step of dark green on the bed below-right of the crown.
     shadow = r.disc(140, 104, 17, 7) & clip & ~canopy
-    r.img[shadow & np.all(r.img == GREEN[0], axis=2)] = INK[1]
-    # Flowers: coral and brass clusters with a lit centre.
-    for fx, fy in [(104, 112), (106, 120), (168, 110), (124, 121), (162, 121)]:
-        m = r.disc(fx, fy, 2.4, 2.0) & clip
-        r.img[m] = CORAL[3]
-        r.img[m & ~shifted(m, 1, 1)] = CORAL[1]
-        r.img[fy, fx] = BRASS[3]
+    r.img[shadow & np.all(r.img == GREEN[0], axis=2)] = rich_finish.FOLIAGE_EDGE
+    # Grass tufts, then white flowers with orange centres.
+    rich_finish.grass_tufts(r, clip & ~canopy, [GREEN[0], rich_finish.FOLIAGE_EDGE], [GREEN[2], GREEN[3]])
+    for i, (fx, fy) in enumerate([(104, 112), (106, 120), (168, 110), (124, 121), (162, 121)]):
+        rich_finish.flower(r, fx, fy, pair=bool(i % 2))
     # Lamp posts at the rim corners.
     for cx, cy in [(92, 72), (180, 72), (180, 130)]:  # the inset covers the fourth corner
         lamp(r, cx, cy)
