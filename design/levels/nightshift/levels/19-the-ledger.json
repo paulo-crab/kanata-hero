@@ -1,0 +1,1211 @@
+{
+  "id": "nightshift-19",
+  "number": 19,
+  "title": "The Ledger",
+  "district": "nightshift",
+  "kind": "review",
+  "requires": [
+    "nightshift-18"
+  ],
+  "story": "The northern ledger holds raw tickets that Pace never included in its reports; the margins show staff proposed shorter routes long before the system did. The engineer re-runs every held-Space output under player-confirmed practice. When the ledger is correct, the break room window glows and the corridor wakes.",
+  "steps": [
+    {
+      "id": "s19-1",
+      "objective": "Walk through the open north stair door into the ledger room.",
+      "interaction": "int-door-stair",
+      "completes_when": "reach_cell:18,5"
+    },
+    {
+      "id": "s19-2",
+      "objective": "Answer the check-in questions at the ledger noticeboard.",
+      "interaction": "int-ledger-card",
+      "completes_when": "scene_success:n19-t0-ledger-checkin"
+    },
+    {
+      "id": "s19-3",
+      "objective": "Re-run the held-Space outputs at the ledger desk.",
+      "interaction": "int-ledger-desk",
+      "completes_when": "scene_success:n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "s19-4",
+      "objective": "Copy the mixed records from the raw ticket cabinet.",
+      "interaction": "int-ledger-cabinet",
+      "completes_when": "scene_success:n19-t2-mixed-records"
+    },
+    {
+      "id": "s19-5",
+      "objective": "Recall the shuffled records at the archive shelf, with no diagram.",
+      "interaction": "int-ledger-shelf",
+      "completes_when": "scene_success:n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "s19-6",
+      "objective": "Make the final correction at the ledger terminal.",
+      "interaction": "int-ledger-final",
+      "completes_when": "scene_success:n19-t4-final-correction"
+    },
+    {
+      "id": "s19-7",
+      "objective": "Read Ada's shift book on the ledger desk.",
+      "interaction": "int-artifact-shift-book",
+      "completes_when": "interact:int-artifact-shift-book",
+      "optional": true
+    },
+    {
+      "id": "s19-8",
+      "objective": "Walk back through the lit service corridor to the break room.",
+      "interaction": "int-door-service",
+      "completes_when": "reach_cell:30,13",
+      "target_cell": [
+        30,
+        13
+      ]
+    }
+  ],
+  "gestures": [
+    {
+      "id": "V05",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "V05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "V05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S05",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S07",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S08",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S11",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S18",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S19",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S20",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S21",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S22",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S23",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S24",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t3-shuffled-ledger-recall"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n19-t1-ledger-guided-rerun"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "S25",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t4-final-correction"
+    },
+    {
+      "id": "S26",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t4-final-correction"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n19-t2-mixed-records"
+    },
+    {
+      "id": "V03",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t4-final-correction"
+    },
+    {
+      "id": "V04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t4-final-correction"
+    },
+    {
+      "id": "V02",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t0-ledger-checkin"
+    },
+    {
+      "id": "B13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t0-ledger-checkin"
+    },
+    {
+      "id": "V06",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t0-ledger-checkin"
+    },
+    {
+      "id": "B14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t0-ledger-checkin"
+    },
+    {
+      "id": "V01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "n19-t0-ledger-checkin"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "n19-t0-ledger-checkin",
+      "kind": "keypad",
+      "task_summary": "Ledger check-in: declare the practice state again and answer the operations-card questions from memory (reload, toggle, last resort).",
+      "success_criteria": [
+        "The player declares the practice state without a key diagram (on request only).",
+        "The player answers three card questions: how to leave practice, how to reload, and what the last resort costs.",
+        "Both declarations open the ledger; unconfirmed runs are labelled output-observed in the journal."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "external-only",
+      "task": {
+        "prompt": "The ledger asks the same three things Ada asked, with no diagram.",
+        "steps": [
+          {
+            "id": "declare",
+            "player_confirm": "Practice layer: player-confirmed on / unconfirmed"
+          },
+          {
+            "id": "q-leave",
+            "question": "How do you leave practice?",
+            "answer": "press the same real Control + Alt + GUI + V again"
+          },
+          {
+            "id": "q-reload",
+            "question": "How do you reload Kanata?",
+            "answer": "Control + Shift + R: tap-hold A, tap-hold J, then R (operations card, not performed here)"
+          },
+          {
+            "id": "q-last",
+            "question": "What does the last resort cost?",
+            "answer": "it quits Kanata; remapping stays off until Kanata is restarted"
+          }
+        ],
+        "accepts": [
+          "all three answers"
+        ],
+        "rejects": [
+          "asking the player to press the reload or emergency keys here"
+        ],
+        "feedback": {
+          "wrong": "The emergency exit quits Kanata and is not a layer toggle; the toggle on the exit card is the way back."
+        }
+      }
+    },
+    {
+      "id": "n19-t1-ledger-guided-rerun",
+      "kind": "form",
+      "task_summary": "Re-run the held-Space outputs on practice with the key diagram open: ten digits and minus, six symbols, six more symbols, literal n and m, Space + Caps, and a modifier-first Space.",
+      "success_criteria": [
+        "Record 1 equals \"5812-340967\" (S01-S11).",
+        "Record 2 equals \"flag!@ tag#$ pct%^\" (S12-S17).",
+        "Record 3 equals \"(a&b)*c_d+e\" (S18-S23).",
+        "Record 4 equals \"3n4m\" with n and m typed while Space is held (S24).",
+        "Space + Caps + H moves the caret left three times (S25; the Tab half is player-confirmed).",
+        "Shift held first, then Space, types an ordinary space (S26).",
+        "Each output is ticked in the journal checklist (the per-output checklist stays visible in the journal)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Raw ledger entries, one family at a time. The physical number row is silent here, so every digit needs the held-Space layer.",
+        "items": [
+          {
+            "id": "r1",
+            "target": "5812-340967",
+            "covers": "S01-S11",
+            "accepts": "resulting text equals the target"
+          },
+          {
+            "id": "r2",
+            "target": "flag!@ tag#$ pct%^",
+            "covers": "S12-S17",
+            "accepts": "resulting text equals the target"
+          },
+          {
+            "id": "r3",
+            "target": "(a&b)*c_d+e",
+            "covers": "S18-S23",
+            "accepts": "resulting text equals the target"
+          },
+          {
+            "id": "r4",
+            "target": "3n4m",
+            "covers": "S24 (with S03 and S04)",
+            "accepts": "n and m stay letters while Space is held"
+          },
+          {
+            "id": "r5",
+            "initial": "ledger|",
+            "target": "|ledger",
+            "covers": "S25",
+            "accepts": "caret moves left with Space + Caps + H; Tab behavior is player-confirmed",
+            "confidence": "mixed"
+          },
+          {
+            "id": "r6",
+            "target": "go on",
+            "covers": "S26",
+            "accepts": "tap-hold F (Shift) first, then Space types a space and does not open the layer"
+          }
+        ],
+        "checklist": "every one of the 23 held-Space outputs is ticked when it appears in the text",
+        "accepts": [
+          "all six items"
+        ],
+        "rejects": [
+          "physical number-row digits (silent on practice)"
+        ],
+        "feedback": {
+          "wrong_char": "Observed: a different character than the record. The checklist shows which output was missing.",
+          "source_unknown": "The browser cannot tell a held-Space digit from a physical digit. Held-Space use is player-confirmed here."
+        }
+      }
+    },
+    {
+      "id": "n19-t2-mixed-records",
+      "kind": "log",
+      "task_summary": "Copy six short natural records in a new order: held-Space outputs mixed with Caps edits and ordinary text.",
+      "success_criteria": [
+        "Every record in the log equals its target.",
+        "Each held-Space output is ticked (the per-output checklist stays visible in the journal).",
+        "One record needs a Caps edit (word jump and delete) before it matches."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "Raw tickets Pace never put in a report. Copy each exactly.",
+        "lines": [
+          {
+            "id": "m1",
+            "target": "ticket 204: -17 (n2)",
+            "initial": ""
+          },
+          {
+            "id": "m2",
+            "target": "rate 9% & 6^2",
+            "initial": ""
+          },
+          {
+            "id": "m3",
+            "target": "key_5+6 * 0",
+            "initial": ""
+          },
+          {
+            "id": "m4",
+            "target": "desk #3 @ east!",
+            "initial": ""
+          },
+          {
+            "id": "m5",
+            "target": "cost $8-1",
+            "initial": ""
+          },
+          {
+            "id": "m6",
+            "target": "ref 4",
+            "initial": ""
+          }
+        ],
+        "edit": {
+          "line": "m3",
+          "initial": "key_5+6 * 0 oops",
+          "target": "key_5+6 * 0",
+          "needs": "Caps + B twice, Caps + M repeated (word jump and Backspace)"
+        },
+        "accepts": [
+          "all six lines"
+        ],
+        "rejects": [
+          "physical digits (silent on practice)"
+        ],
+        "feedback": {
+          "wrong_char": "Observed: a different character than the record."
+        }
+      }
+    },
+    {
+      "id": "n19-t3-shuffled-ledger-recall",
+      "kind": "form",
+      "task_summary": "Recall with no diagram: six shuffled records that need every held-Space output once, with the checklist but no key positions.",
+      "success_criteria": [
+        "Every record equals its target.",
+        "The journal checklist ticks all 23 outputs across the set.",
+        "No physical-position cue is shown; hints appear only on request."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "The ledger changes its order. There is no key diagram this time.",
+        "items": [
+          {
+            "id": "q1",
+            "target": "A-90 (b)"
+          },
+          {
+            "id": "q2",
+            "target": "q&r_7+1"
+          },
+          {
+            "id": "q3",
+            "target": "#6 @ 38%"
+          },
+          {
+            "id": "q4",
+            "target": "tot $2^5 * 4!"
+          },
+          {
+            "id": "q5",
+            "target": "id 105-29"
+          },
+          {
+            "id": "q6",
+            "target": "x(1)y"
+          }
+        ],
+        "checklist": "S01-S23 all ticked across the six records",
+        "accepts": [
+          "all six records"
+        ],
+        "rejects": [
+          "physical number-row digits"
+        ],
+        "feedback": {
+          "wrong_char": "Observed: a different character than the record."
+        }
+      }
+    },
+    {
+      "id": "n19-t4-final-correction",
+      "kind": "editor",
+      "task_summary": "Final correction: fix the ledger total with one home-row modifier and one Caps edit.",
+      "success_criteria": [
+        "The text equals \"Ledger total 48 (closed)\".",
+        "A home-row Shift capital and a Caps edit were both used; no key diagram is shown."
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "mixed",
+      "task": {
+        "prompt": "The last ticket in the ledger has a wrong total and a stray word.",
+        "initial": "ledger total 40 (closed early)",
+        "target": "Ledger total 48 (closed)",
+        "steps": [
+          {
+            "id": "shift",
+            "needs": "home-row Shift capital L (tap-hold F first; L is on the other hand)"
+          },
+          {
+            "id": "digit",
+            "needs": "0 becomes 8: Caps + M deletes, then Space + K types 8"
+          },
+          {
+            "id": "edit",
+            "needs": "delete \" early\" with Caps + B and Caps + M"
+          }
+        ],
+        "accepts": [
+          "the exact final text"
+        ],
+        "rejects": [
+          "physical Shift and physical Backspace (silent on practice)"
+        ],
+        "feedback": {
+          "diff": "The text differs from the target. Retry instantly."
+        }
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "ada-ledger-lights",
+      "speaker": "ada",
+      "portrait": "pleased",
+      "text": "Look at the break room window: it is warm again, and the corridor behind it is lit. The ledger kept the raw tickets in the open, and so did you.",
+      "hint": null,
+      "when": "trigger:tr-19-seal",
+      "cue": "Ada: 19 when the break room lights (pleased)"
+    },
+    {
+      "id": "ledger-hint-zero",
+      "speaker": "ledger-page",
+      "portrait": null,
+      "text": "To write the 0 in the total, you need to press 0. Hint: The number row is XX on practice. Use tap-hold Space + ;.",
+      "hint": {
+        "action": "To write the 0 in the total, you need to press 0.",
+        "key": "0",
+        "gesture": "The number row is XX on practice. Use tap-hold Space + ;."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s19-3"
+    },
+    {
+      "id": "ledger-hint-minus",
+      "speaker": "ledger-page",
+      "portrait": null,
+      "text": "To mark the range, you need to press -. Hint: tap-hold Space + '. The physical minus key still passes through, but the ledger is asking for the layer.",
+      "hint": {
+        "action": "To mark the range, you need to press -.",
+        "key": "-",
+        "gesture": "tap-hold Space + '. The physical minus key still passes through, but the ledger is asking for the layer."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s19-5"
+    },
+    {
+      "id": "engineer-seal-night",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Journal: Night seal. The ledger run was labelled honestly: output observed for the text, player-confirmed for held-Space use and the practice layer.",
+      "hint": null,
+      "when": "trigger:tr-19-seal",
+      "cue": "Engineer: the 19 seal (pleased)"
+    },
+    {
+      "id": "engineer-shift-book",
+      "speaker": "engineer",
+      "portrait": "pleased",
+      "text": "Journal: Ada's shift book lists the people who kept the raw tickets safe, one name per night.",
+      "hint": null,
+      "when": "interact:int-artifact-shift-book",
+      "cue": "Engineer: Ada's shift book (pleased)"
+    },
+    {
+      "id": "mira-return",
+      "speaker": "mira",
+      "portrait": "neutral",
+      "text": "The corridor is lit and quiet. I have a route for you whenever you want one.",
+      "hint": null,
+      "when": "trigger:tr-19-seal",
+      "cue": "Mira: offering any route or a repeat run (neutral)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "tr-19-seal",
+      "when": "scene_success:n19-t4-final-correction",
+      "then": [
+        {
+          "op": "grant",
+          "kind": "seal",
+          "id": "night"
+        },
+        {
+          "op": "set_state",
+          "target": "long_window",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_br_a",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_br_b",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_c1",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_c2",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_c3",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_c4",
+          "state": "pulse"
+        },
+        {
+          "op": "set_state",
+          "target": "elevator_panel",
+          "state": "executive_lit"
+        },
+        {
+          "op": "set_state",
+          "target": "station_dawn",
+          "state": "lit"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-19-lit"
+        },
+        {
+          "op": "set_flag",
+          "flag": "nightshift-corridor-lit"
+        },
+        {
+          "op": "npc_state",
+          "npc": "worker_c1",
+          "state": "nightshift-19"
+        },
+        {
+          "op": "npc_state",
+          "npc": "worker_c2",
+          "state": "nightshift-19"
+        },
+        {
+          "op": "npc_state",
+          "npc": "worker_ledger",
+          "state": "nightshift-19"
+        },
+        {
+          "op": "move_npc",
+          "npc": "ada",
+          "state": "nightshift-19"
+        },
+        {
+          "op": "npc_state",
+          "npc": "ada",
+          "state": "nightshift-19"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "ada-ledger-lights"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "engineer-seal-night"
+        },
+        {
+          "op": "journal",
+          "text": "Award After Hours (practice-layer review) recorded; the Executive Floor elevator stop is revealed."
+        },
+        {
+          "op": "complete_level",
+          "level": "nightshift-19"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "One warm ledger lamp against deep indigo; the break room window is dark; the corridor lamps are off and the elevator panel shows no Executive stop.",
+    "after": "The window shows a lit break room with silhouettes; every end lamp pulses; the corridor is warm with moving coworkers; the elevator panel lights the Executive stop.",
+    "visible_changes": [
+      {
+        "kind": "landmark_state",
+        "target": "long_window",
+        "from": "before",
+        "to": "after"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_c1",
+        "from": "off",
+        "to": "pulse"
+      },
+      {
+        "kind": "placement_state",
+        "target": "elevator_panel",
+        "from": "base",
+        "to": "executive_lit"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "worker_c1",
+        "to": "nightshift-19"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "ada",
+        "from": "nightshift-18",
+        "to": "nightshift-19"
+      },
+      {
+        "kind": "light_state",
+        "target": "ls-19-lit",
+        "to": "warm break room and corridor"
+      }
+    ]
+  },
+  "rewards": {
+    "seal": "night",
+    "unlocks": [
+      "Executive Floor elevator stop",
+      "lit service corridor",
+      "After Hours award"
+    ]
+  },
+  "optional_artifact": {
+    "id": "adas-shift-book",
+    "name": "Ada's shift book",
+    "interaction": "int-artifact-shift-book",
+    "placement": "artifact_shift_book",
+    "caption": [
+      "A night caretaker's shift book, one name per line.",
+      "Each entry marks who kept the raw tickets safe and which night.",
+      "Pace's reports never listed any of them."
+    ],
+    "engineer_portrait": "pleased"
+  },
+  "pace_copy": [
+    {
+      "text": "Night shift: all clear. Night shift: all clear.",
+      "state": "repeat",
+      "placement": "pace_sign_hall"
+    }
+  ],
+  "review_notes": "At 1366x768 (x4) the ledger room, the corridor and the window sit in rows 2-12 above the keyboard inset. The ledger terminals are approached from the south or north so the target never lies lower-left of the avatar. The break-room return (Mira, Ada) is at x >= 29 where the camera clamps to the south-east corner."
+}
