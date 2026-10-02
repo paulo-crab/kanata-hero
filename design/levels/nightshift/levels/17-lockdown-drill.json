@@ -1,0 +1,658 @@
+{
+  "id": "nightshift-17",
+  "number": 17,
+  "title": "Lockdown Drill",
+  "district": "nightshift",
+  "kind": "main",
+  "requires": [
+    "systems-16",
+    "seal:systems"
+  ],
+  "story": "Ada meets the engineer in a warmly lit break room. The night floor's old input stations were locked under a training policy, and she will only open the security glass after explaining how to leave practice safely. The way back is on screen the whole time.",
+  "steps": [
+    {
+      "id": "s17-1",
+      "objective": "Talk to Ada by the kettle in the break room.",
+      "interaction": "int-ada-break",
+      "completes_when": "dialogue_done:ada-greeting"
+    },
+    {
+      "id": "s17-2",
+      "objective": "Enter the practice layer at the first console.",
+      "interaction": "int-console-enter",
+      "completes_when": "scene_success:n17-t1-enter-practice"
+    },
+    {
+      "id": "s17-3",
+      "objective": "Check the silent keys in the safe text box.",
+      "interaction": "int-console-check",
+      "completes_when": "scene_success:n17-t2-self-check"
+    },
+    {
+      "id": "s17-4",
+      "objective": "Leave practice at the second console and confirm you are back on base.",
+      "interaction": "int-console-leave",
+      "completes_when": "scene_success:n17-t3-leave-practice"
+    },
+    {
+      "id": "s17-5",
+      "objective": "Read the operations cards on the noticeboard.",
+      "interaction": "int-noticeboard-cards",
+      "completes_when": "scene_success:n17-t4-operations-cards"
+    },
+    {
+      "id": "s17-6",
+      "objective": "Talk through the recovery scenarios with Ada.",
+      "interaction": "int-ada-recovery",
+      "completes_when": "scene_success:n17-t5-recovery-scenarios"
+    },
+    {
+      "id": "s17-7",
+      "objective": "Re-enter practice at the vestibule keypad and confirm how to leave.",
+      "interaction": "int-console-vestibule",
+      "completes_when": "scene_success:n17-t6-vestibule-glass"
+    },
+    {
+      "id": "s17-8",
+      "objective": "Walk through the open security glass to the landing.",
+      "interaction": "int-gate-vestibule",
+      "completes_when": "reach_cell:22,11"
+    }
+  ],
+  "gestures": [
+    {
+      "id": "B14",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n17-t1-enter-practice"
+    },
+    {
+      "id": "V01",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n17-t1-enter-practice"
+    },
+    {
+      "id": "B14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t3-leave-practice"
+    },
+    {
+      "id": "V01",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t3-leave-practice"
+    },
+    {
+      "id": "V02",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n17-t2-self-check"
+    },
+    {
+      "id": "V02",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t6-vestibule-glass"
+    },
+    {
+      "id": "B14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t6-vestibule-glass"
+    },
+    {
+      "id": "B13",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n17-t4-operations-cards"
+    },
+    {
+      "id": "V06",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "n17-t4-operations-cards"
+    },
+    {
+      "id": "B13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t5-recovery-scenarios"
+    },
+    {
+      "id": "V06",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "n17-t5-recovery-scenarios"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "n17-t1-enter-practice",
+      "kind": "keypad",
+      "task_summary": "Enter the practice layer with the real Control + Alt + GUI + V, wait for the release, then confirm.",
+      "success_criteria": [
+        "The scene observed Control, Alt, GUI (Meta) and V pressed together and then all four released.",
+        "The player confirms they toggled practice on; the UI states that it cannot detect the active layer.",
+        "Home-row holds and a lone V are rejected with feedback that names the observed output."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "player-confirmed",
+      "task": {
+        "prompt": "Hold physical Control, Alt (Option) and GUI (Command), tap V, then release every key.",
+        "layout": "MacBook physical diagram by default; the Microsoft setup maps Alt to Command, Windows to Option and Right Alt to Right Command",
+        "steps": [
+          {
+            "id": "press",
+            "observe": "keydown for Control, Alt, Meta and KeyV before any of them is released"
+          },
+          {
+            "id": "release",
+            "observe": "keyup for all four keys; the scene waits for this before it continues"
+          },
+          {
+            "id": "confirm",
+            "player_confirm": "I toggled practice on. (The game never claims to detect the layer.)"
+          }
+        ],
+        "accepts": [
+          "all four keydowns followed by all four keyups",
+          "the player confirmation"
+        ],
+        "rejects": [
+          "home-row holds on A, S, D, F, J, K, L or ; (the toggle checks input real)",
+          "V alone (types v)"
+        ],
+        "feedback": {
+          "home_row_only": "Observed: a home-row key held as a modifier. The toggle needs the real Control, Alt and GUI keys.",
+          "v_only": "Observed: v. V alone still types v.",
+          "early_release": "Observed: a key was released before the others. Hold all four, then release together."
+        }
+      }
+    },
+    {
+      "id": "n17-t2-self-check",
+      "kind": "editor",
+      "task_summary": "In a safe text box try physical Shift and physical Backspace and report what happened (a self-check, not proof).",
+      "success_criteria": [
+        "The text box shows the observed output for each try, with no claim about which layer is active.",
+        "The player reports both results; either answer is accepted and recorded honestly in the journal."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "player-confirmed",
+      "task": {
+        "prompt": "Practice should now be on. Press physical Shift together with n, then physical Backspace, and say what you saw.",
+        "initial": "night",
+        "targets": [
+          {
+            "id": "shift-check",
+            "try": "physical Shift + n",
+            "practice_on": "a plain n appears (no capital N): physical Shift is XX",
+            "practice_off": "N appears"
+          },
+          {
+            "id": "backspace-check",
+            "try": "physical Backspace",
+            "practice_on": "nothing is erased: physical Backspace is XX",
+            "practice_off": "the last letter is erased"
+          }
+        ],
+        "accepts": [
+          "the player answers each question with what they saw"
+        ],
+        "rejects": [
+          "presenting the result as proof of the active layer"
+        ],
+        "feedback": {
+          "unproven": "Observed output only. A matching result suggests practice is on, but the game cannot prove it."
+        }
+      }
+    },
+    {
+      "id": "n17-t3-leave-practice",
+      "kind": "keypad",
+      "task_summary": "Leave practice with the same four real keys, then show that physical Backspace works again.",
+      "success_criteria": [
+        "The scene observed Control, Alt, GUI and V pressed together and released.",
+        "In the safe text box physical Backspace erases the last letter (observed output).",
+        "The player confirms they are back on base."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "player-confirmed",
+      "task": {
+        "prompt": "Press the same four real keys again, release them, then press physical Backspace once in the text box.",
+        "initial": "night",
+        "steps": [
+          {
+            "id": "press",
+            "observe": "keydown for Control, Alt, Meta and KeyV"
+          },
+          {
+            "id": "release",
+            "observe": "keyup for all four keys"
+          },
+          {
+            "id": "backspace",
+            "observe": "the text box content changes from \"night\" to \"nigh\""
+          },
+          {
+            "id": "confirm",
+            "player_confirm": "I am back on base."
+          }
+        ],
+        "accepts": [
+          "the key sequence and the erase observed",
+          "the player confirmation"
+        ],
+        "rejects": [
+          "skipping the Backspace check"
+        ],
+        "feedback": {
+          "no_erase": "Observed: nothing erased. Practice may still be on: press the four keys again, or confirm that you are still in practice."
+        }
+      }
+    },
+    {
+      "id": "n17-t4-operations-cards",
+      "kind": "label",
+      "task_summary": "Read the reload card and the last-resort card; name the card that returns you to base (neither).",
+      "success_criteria": [
+        "The player opens both cards; neither card asks for an in-scene action.",
+        "The player answers that the normal way back is the toggle on the exit card, not either card."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "external-only",
+      "task": {
+        "prompt": "Open each card, then answer: which card returns you to base?",
+        "items": [
+          {
+            "id": "card-reload",
+            "card": "Operations card: reload Kanata",
+            "shows": "Control + Shift + R is tap-hold A (Control), tap-hold J (Shift), then R. Plain Control + R stays available.",
+            "rule": "operations card only; never a scored task"
+          },
+          {
+            "id": "card-last-resort",
+            "card": "Last resort: stop Kanata",
+            "shows": "physical Left Control + Space + Escape quits Kanata. Remapping stays off until Kanata is restarted. It is not the practice toggle.",
+            "rule": "last resort only, with the restart step stated"
+          }
+        ],
+        "question": {
+          "prompt": "Which card returns you to base?",
+          "choices": [
+            "the reload card",
+            "the last-resort card",
+            "neither: press the toggle again (exit card)"
+          ],
+          "answer": "neither: press the toggle again (exit card)"
+        },
+        "accepts": [
+          "both cards opened",
+          "the correct answer"
+        ],
+        "rejects": [
+          "asking the player to press Control + Shift + R or the emergency sequence in this scene"
+        ],
+        "feedback": {
+          "wrong": "The reload card only reloads the configuration, and the last-resort card stops Kanata. The toggle on the exit card is the way back."
+        }
+      }
+    },
+    {
+      "id": "n17-t5-recovery-scenarios",
+      "kind": "form",
+      "task_summary": "Choose the right recovery step in three stuck situations, ending with the last resort stated with its consequence.",
+      "success_criteria": [
+        "Each situation is answered correctly, or the correction names the reason.",
+        "The last-resort answer includes the consequence (remapping stays off until Kanata is restarted)."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "external-only",
+      "task": {
+        "prompt": "Ada describes three situations. Pick what you do first.",
+        "items": [
+          {
+            "id": "sit-1",
+            "situation": "Letters still type, but Shift and Backspace do nothing.",
+            "choices": [
+              "reload Kanata",
+              "press the toggle again to return to base",
+              "stop Kanata"
+            ],
+            "answer": "press the toggle again to return to base"
+          },
+          {
+            "id": "sit-2",
+            "situation": "You edited the config and want it picked up.",
+            "choices": [
+              "reload with the operations card (tap-hold A, tap-hold J, R)",
+              "press the emergency sequence",
+              "restart the machine"
+            ],
+            "answer": "reload with the operations card (tap-hold A, tap-hold J, R)"
+          },
+          {
+            "id": "sit-3",
+            "situation": "The toggle does nothing and every key behaves strangely.",
+            "choices": [
+              "use the emergency exit only as a last resort and restart Kanata afterwards",
+              "keep pressing the toggle",
+              "ignore it"
+            ],
+            "answer": "use the emergency exit only as a last resort and restart Kanata afterwards"
+          }
+        ],
+        "accepts": [
+          "all three answers"
+        ],
+        "rejects": [
+          "any answer that treats the emergency exit as a layer toggle"
+        ],
+        "feedback": {
+          "toggle_confusion": "The emergency exit is not a layer toggle. It quits Kanata, and remapping stays off until Kanata is restarted."
+        }
+      }
+    },
+    {
+      "id": "n17-t6-vestibule-glass",
+      "kind": "keypad",
+      "task_summary": "At the security glass, re-enter practice, try legacy keys on the keypad (silent), and confirm the exit before the glass opens.",
+      "success_criteria": [
+        "The keypad reports \"Observed: nothing\" for physical Return, a physical arrow and physical Backspace while practice is confirmed on.",
+        "The player confirms practice is on, then states how to leave (the toggle) and when to use the last resort.",
+        "The glass opens only after that confirmation; it never opens from an observed key alone."
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "player-confirmed",
+      "task": {
+        "prompt": "Press the toggle to re-enter practice, then try the keypad with physical Return, a physical arrow and physical Backspace.",
+        "steps": [
+          {
+            "id": "re-enter",
+            "observe": "Control, Alt, Meta and V pressed and released",
+            "player_confirm": "Practice is on."
+          },
+          {
+            "id": "try-return",
+            "try": "physical Return",
+            "practice_on": "the keypad shows no input"
+          },
+          {
+            "id": "try-arrow",
+            "try": "a physical arrow key",
+            "practice_on": "the keypad shows no input"
+          },
+          {
+            "id": "try-backspace",
+            "try": "physical Backspace",
+            "practice_on": "the keypad shows no input"
+          },
+          {
+            "id": "confirm-exit",
+            "player_confirm": "To leave practice I press the same four real keys again; the emergency exit is only the last resort."
+          }
+        ],
+        "accepts": [
+          "the player confirmations",
+          "the keypad observations recorded"
+        ],
+        "rejects": [
+          "opening the glass without the exit confirmation"
+        ],
+        "feedback": {
+          "input_seen": "Observed: the keypad received a key. Practice may be off: press the toggle, or confirm that it is off and continue honestly."
+        }
+      }
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "ada-greeting",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "You found the break room. The night floor locked its old input stations under a training policy, and I will not open the security glass until you know how to leave practice safely.",
+      "hint": null,
+      "when": "interact:int-ada-break",
+      "cue": "Ada: the 17 greeting (neutral)"
+    },
+    {
+      "id": "ada-hint-enter",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "To enter the practice layer, you need to press physical Control + Alt + GUI + V. Hint: Use the real modifier keys. The toggle checks `input real`, so home-row holds don't count, and V alone still types `v`. Press it again to return to base.",
+      "hint": {
+        "action": "To enter the practice layer, you need to press physical Control + Alt + GUI + V.",
+        "key": "physical Control + Alt + GUI + V",
+        "gesture": "Use the real modifier keys. The toggle checks `input real`, so home-row holds don't count, and V alone still types `v`. Press it again to return to base."
+      },
+      "when": "step_start:s17-2",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "ada-explain-exit",
+      "speaker": "ada",
+      "portrait": "concerned",
+      "text": "Practice is a Kanata layer, not a game mode. You go in and out with the same four real keys, and the game only trusts what you tell it. Leave first, then fix whatever looks wrong.",
+      "hint": null,
+      "when": "scene_success:n17-t3-leave-practice",
+      "cue": "Ada: 17 practice-exit explanation (concerned)"
+    },
+    {
+      "id": "card-reload",
+      "speaker": "operations-card",
+      "portrait": null,
+      "text": "To reload Kanata, you need to press Control + Shift + R. Hint: tap-hold A (Control), then tap-hold J (Shift), then R. F would type `f`, because R is on the same hand.",
+      "hint": {
+        "action": "To reload Kanata, you need to press Control + Shift + R.",
+        "key": "Control + Shift + R",
+        "gesture": "tap-hold A (Control), then tap-hold J (Shift), then R. F would type `f`, because R is on the same hand."
+      },
+      "speaker_kind": "object",
+      "when": "step_start:s17-5"
+    },
+    {
+      "id": "ada-explain-emergency",
+      "speaker": "ada",
+      "portrait": "concerned",
+      "text": "There is one more way out and I hope you never need it. It stops Kanata completely, and nothing remaps again until someone restarts it. Use the toggle first.",
+      "hint": null,
+      "when": "scene_success:n17-t4-operations-cards",
+      "cue": "Ada: 17 emergency-exit explanation (concerned)"
+    },
+    {
+      "id": "ada-hint-last-resort",
+      "speaker": "ada",
+      "portrait": "neutral",
+      "text": "To stop Kanata entirely, only as a last resort, you need to press physical Left Control + Space + Escape. Hint: Physical keys only. This is Kanata's emergency exit, not a layer toggle. All remapping stops until Kanata is restarted.",
+      "hint": {
+        "action": "To stop Kanata entirely, only as a last resort, you need to press physical Left Control + Space + Escape.",
+        "key": "physical Left Control + Space + Escape",
+        "gesture": "Physical keys only. This is Kanata's emergency exit, not a layer toggle. All remapping stops until Kanata is restarted."
+      },
+      "when": "dialogue_done:ada-explain-emergency",
+      "cue": "every hint line is neutral"
+    },
+    {
+      "id": "hud-exit-card",
+      "speaker": "exit-card",
+      "portrait": null,
+      "text": "To leave practice and return to base, you need to press physical Control + Alt + GUI + V again. Hint: Press it again to return to base. It is the same real modifier keys: home-row holds do not count, and V alone still types `v`.",
+      "hint": {
+        "action": "To leave practice and return to base, you need to press physical Control + Alt + GUI + V again.",
+        "key": "physical Control + Alt + GUI + V",
+        "gesture": "Press it again to return to base. It is the same real modifier keys: home-row holds do not count, and V alone still types `v`."
+      },
+      "speaker_kind": "object",
+      "when": "reach_cell:31,16"
+    },
+    {
+      "id": "engineer-journal-17",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: practice is player-confirmed. The browser cannot see which Kanata layer is active, so each practice scene labels its evidence.",
+      "hint": null,
+      "when": "scene_success:n17-t1-enter-practice",
+      "cue": "Engineer: journal and task notes (neutral)"
+    },
+    {
+      "id": "ada-confirm",
+      "speaker": "ada",
+      "portrait": "pleased",
+      "text": "Then the glass is yours. I will walk with you as far as the lit route, and the exit card stays on your screen the whole way.",
+      "hint": null,
+      "when": "trigger:tr-17-glass-open",
+      "cue": "Ada: 17 once the player confirms and she walks alongside (pleased)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "tr-17-pin-exit-card",
+      "when": "reach_cell:31,16",
+      "then": [
+        {
+          "op": "start_dialogue",
+          "dialogue": "hud-exit-card"
+        },
+        {
+          "op": "journal",
+          "text": "Exit card pinned to the HUD for the rest of Night Shift: leave practice with the same four real keys."
+        }
+      ]
+    },
+    {
+      "id": "tr-17-practice-entered",
+      "when": "scene_success:n17-t1-enter-practice & player_confirm:n17-t1-enter-practice",
+      "then": [
+        {
+          "op": "set_flag",
+          "flag": "practice-confirmed",
+          "value": true
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "engineer-journal-17"
+        }
+      ]
+    },
+    {
+      "id": "tr-17-practice-left",
+      "when": "scene_success:n17-t3-leave-practice",
+      "then": [
+        {
+          "op": "set_flag",
+          "flag": "practice-confirmed",
+          "value": false
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "ada-explain-exit"
+        }
+      ]
+    },
+    {
+      "id": "tr-17-glass-open",
+      "when": "scene_success:n17-t6-vestibule-glass & player_confirm:n17-t6-vestibule-glass",
+      "then": [
+        {
+          "op": "set_flag",
+          "flag": "practice-confirmed",
+          "value": true
+        },
+        {
+          "op": "set_state",
+          "target": "vestibule_gate",
+          "state": "open"
+        },
+        {
+          "op": "unlock_gate",
+          "gate": "gate-vestibule"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_landing",
+          "state": "on"
+        },
+        {
+          "op": "light_state",
+          "light_state": "ls-17-glass-open"
+        },
+        {
+          "op": "npc_state",
+          "npc": "ada",
+          "state": "landing"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "ada-confirm"
+        },
+        {
+          "op": "complete_level",
+          "level": "nightshift-17"
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "Warm break room lit by lamp pools; the security glass is closed; the hall beyond is dark and the landing lamp is off.",
+    "after": "The security glass is open to a two-cell walkway, the landing lamp wakes, and Ada has walked the engineer to the start of the lit route.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "vestibule_gate",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_landing",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "ada",
+        "from": "start",
+        "to": "landing"
+      },
+      {
+        "kind": "gate",
+        "target": "gate-vestibule",
+        "to": "open"
+      }
+    ]
+  },
+  "rewards": {
+    "unlocks": [
+      "security glass",
+      "lit route B",
+      "practice operations cards"
+    ]
+  },
+  "pace_copy": [
+    {
+      "text": "Practice mode: all paths approved.",
+      "state": "repeat",
+      "placement": "pace_sign_hall"
+    }
+  ],
+  "review_notes": "At 1366x768 (x4, letterboxed to 1280x720) every required break-room target (Ada, the consoles, the noticeboard, the elevator) sits at x >= 23, where the camera clamps to the south-east corner and keeps the avatar and the target clear of the keyboard inset (stage x 16-588, y 412-704). The vestibule keypad is the only target left of that line; it sits on row 13, above the inset. The lower-left of the break room (x 19-23, y 16-19) is decor only."
+}

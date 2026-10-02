@@ -1,0 +1,11 @@
+{
+  "district": "executive",
+  "note": "Level 20 owns no inventory rows (every gesture it reviews was introduced earlier). Its scenes claim variation in the three branches and recall in the final audit (n20-t4-final-audit, position_cue false) for B01-B12, N01-N21 and S01-S26, plus recall of the operations cards B13, B14, V01 and V06.",
+  "levels": {
+    "executive-20": {
+      "owned": [],
+      "gestures": {}
+    }
+  },
+  "uncovered": []
+}
