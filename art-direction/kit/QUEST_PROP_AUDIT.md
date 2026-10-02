@@ -70,7 +70,7 @@ State sets follow `<thing>_<state>` (for example `refund_sign_red`, `refund_sign
 | S17 | 15 | "hanging planters reflected in the floor" | `pot_plant_a/_b` (mint planters) | Rearrangement | `pot_plant_a/_b` on the bridge deck near the formula wall |
 | S18 | 15 | "a clean sight line back to the routing machine" | none | Rearrangement | layout only |
 | S19 | 15 | Optional artifact Scoring proof | none | Other team | none |
-| S20 | 16 | "Relay room around a broad window onto the hub machine; three conduit families stay visually separate" | `wall_n_window_a/b`, `conduit_*` | Rearrangement | three `wall_n_window` placements side by side; conduits as in the reference room |
+| S20 | 16 | "Relay room around a broad window onto the hub machine; three conduit families stay visually separate" | `wall_n_window_a/b`, `conduit_*` | Rearrangement | three `wall_n_window_a/_b` placements side by side; conduits as in the reference room |
 | S21 | 16 | "The machine lights in an intelligible sequence", "a service walkway opens", "Hal pulls down a false panel" | `conduit_*` lit, `routing_walkway_after`, `routing_panel_open` | In atlas | none |
 | S22 | 16 | Optional artifact Original routing diagram | none | Other team | none |
 | S23 | Mira after 13 | Payroll Run: "Signed and Sent patch" | patch is a Mira atlas frame | New (decor) | `mira_decor_signed_sent` |
@@ -118,4 +118,11 @@ State sets follow `<thing>_<state>` (for example `refund_sign_red`, `refund_sign
 
 ## Open
 
-Filled in at the end of the build; see the "Open" section of the producer report. Optional artifacts (R11, R15, R22, R27, S4, S13, S19, S22, N16, E10) are not drawn here: the generic artifact builder owns the close-up and its map placement and is integrated in wave 2.
+Every row marked New is built and registered (checked by script against the four atlases: every backticked name above exists, and every quest entry in the atlases is listed above). What is left is deliberate or belongs to someone else:
+
+- **Optional artifacts** (R11, R15, R22, R27, S4, S13, S19, S22, N16, E10): not drawn here. The generic artifact builder owns the close-up and its map placement; integrating it into the district kits is the wave-2 task.
+- **Elevator, desk-front occluders, seated background workers** (N15 and the Orientation team's list): not touched.
+- **Cast poses** (Noor stepping out from behind the desk, Hal sitting, Ada walking alongside, the coworkers arriving as silhouettes then sprites): the cast team's. The props they stand at or sit on are here (`archive_desk`, `folding_stool`, `place_*`).
+- **DOM UI** (the editor panel, seals, the exit instruction card, the audit release): not art in the atlases.
+- **Interpretations for the producer to confirm** (each recorded as a decision in the district spec): gold shelf-end lights are linen and peach because gold is a UI marker hex (R3); `refund_sign_red` is orange and `refund_sign_green` is mint because Systems has no pure red or green (S6); six alarm hues are three hues in two steps plus sand, with six pictograms (S10); `rolling_ladder` doubles as the elevator-like rolling shelf (R17); the Courier Loop and Signed and Sent rewards are patches only in levels.md, and the brief asked for desk decorations, so `mira_decor_courier_loop` and `mira_decor_signed_sent` are small tokens made for them (R28, S23); the coworkers' "places" are objects they stand at, not people (E6).
+- **Placement** of the new props in district maps is the level designers' task; the quest-prop rooms are proofs of readability and of collision and state behaviour, not level layouts.
