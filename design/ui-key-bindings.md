@@ -181,3 +181,12 @@ Amend Layout help, "Opening and closing": "`?` (Shift + /) opens it. The gesture
 - **A "quick route back to the hub"** is promised by the game spec's opening tutorial but has no key. Recommendation: no new key; add a "Ride to the hub" row to the journal footer (Q, then Return).
 - **Does the Hint key cost the third star?** The spec gives three stars for a clean recall run "without hints". Recommendation: yes in `recall` scenes only, and the card says so before it reveals the line.
 - **Whether Show hint should also work in Violento during a recall scene.** Today it does not (spec: action only after introduction).
+
+## Player decisions (2026-10-02)
+
+These close the open questions in the first version of this document.
+
+- **Hint costs the third star in recall scenes only.** Using the Hint key (Backtick) in a recall scene forfeits the third star for that scene. Guided and variation scenes are unaffected. The hint card must say so before the player reveals the hint.
+- **Hint does not work in Violento recall scenes.** In Violento the Hint key stays off after a gesture's introduction, including in recall scenes.
+- **"Ride to the hub" is a journal row, not a new key.** The game spec's quick route back to the hub is reached from the journal's "Also from here" row and confirmed with Return.
+- **Backtick and `?` are reserved in typing scenes.** No level may ask the player to type either as text; the level-data validator should reject such a task.
