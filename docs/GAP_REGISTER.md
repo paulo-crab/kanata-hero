@@ -33,7 +33,7 @@ Merge order: the base `feat/art-production` first, then the eight team branches 
 
 - Approve or reject the new Orientation kit section (its spec says "pending the producer's review") and the other approvals the director would normally record.
 - Fourteen Systems hints and four Night Shift/Executive hints were derived from the gesture inventory, not copied from `levels.md`; check them against `~/.config/kanata/kanata.kbd`.
-- The layout manifest for Layout help (derived from `kanata.kbd`) is not created; it belongs to the implementation change.
+- The layout manifest (`design/layout/layout-manifest.json`) is created and checked (2026-10-02). Still to test on the real machine: keys that `numbers-symbols` does not list are assumed transparent, and the emergency exit (Left Control + Space + Escape) has never been run. The UI kit's nav and numbers-symbols tabs omit four keys (`;`, R, V, Right Command + nav); they are tracked in `design/layout/kit-known-mismatches.json`.
 - Records: the review terminal sits in the far-east chamber and the circular desk lights up on the seal; confirm that reading of `levels.md` level 11.
 - UI keys not defined by the game spec: Focused-mode "Show hint", interact, journal, back, elevator (see `UI_KIT_SPEC.md`).
 - The deck's ask slide says "38 commits on feat/art-production"; the branch has 40.
