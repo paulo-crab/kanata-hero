@@ -387,3 +387,28 @@ def light_orientation(a, bst):
     return light_room(a, floor, [(x, y - 1) for x, y in ((92, 72), (180, 72), (180, 130), (284, 52), (284, 126))],
                       [(38, 26), (212, 26), (244, 26)], bst.BRASS[3], canopy=((56, 136, 90, 182), fol[1:]),
                       rug=(76, 106, 260, 292))
+
+
+def light_layout(a, layout, atlas, district, T=16):
+    """Light stage for a district reference room (display only; checks run on the unlit render). Lamps and
+    north windows come from the layout's placements, as in the Orientation reference. Night Shift keeps its
+    own lamp pools and moonlight, so it gets only slab drift and cast shadows; a layout that already places a
+    `window_light` animation keeps its own shafts."""
+    pal = dp.DISTRICTS[district]
+    floor = [hx(pal["floor"][i]) for i in (3, 2, 1)]
+    out = np.array(a, copy=True)
+    lamps, windows, has_light = [], [], False
+    for p in layout["placements"]:
+        x = p["cell"][0] * T + p.get("offset", [0, 0])[0]
+        y = p["cell"][1] * T + p.get("offset", [0, 0])[1]
+        if p.get("anim") == "lamp":
+            lamps.append((x + 7, y + 6))
+        elif p.get("entry", "").startswith("wall_n_window") and x + 2 < 280:
+            windows.append((x + 2, 26))
+        elif p.get("anim") == "window_light":
+            has_light = True
+    if district == "nightshift":
+        lamps, windows = [], []
+    elif has_light:
+        windows = []
+    return light_room(out, floor, lamps, windows, hx(pal["accent"][3]))

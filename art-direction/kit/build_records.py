@@ -27,6 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import records_kit as rk  # noqa: E402
 import build_gate1 as g  # noqa: E402
 import build_scale_test as bst  # noqa: E402
@@ -685,6 +686,7 @@ def main():
     nchg = landmark_states(layout, atlas)
     before = render(layout, atlas, STATES_BEFORE)
     after = render(layout, atlas, STATES_AFTER)
+    before, after = rf.light_layout(before, layout, atlas, "records"), rf.light_layout(after, layout, atlas, "records")  # rich finish light, display only
     Image.fromarray(before).save(os.path.join(HERE, "records-reference-room-native.png"))
     Image.fromarray(after).save(os.path.join(HERE, "records-reference-room-after-native.png"))
     to_screen(before).save(os.path.join(HERE, "records-reference-room-1366x768.png"))

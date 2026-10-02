@@ -8,15 +8,15 @@
 
 ## 2. People, props and shadows
 
-- [ ] 2.1 Change the outline key to `#0E1020` and move the ink shoe ramp to `#1C2038` `#3A4160` `#6A7392` in every sprite module (Engineer, Ivo, Mira, Noor, Hal, Ada, Vale, both background workers); verify `check_gate1.py <module>` passes for each and every atlas and JSON is rebuilt
-- [ ] 2.2 Update the glitch and Pace modules for the outline colour; verify their builds and checks pass
-- [ ] 2.3 Change the renderer contact shadow to `#3A4160` outer and `#1C2038` core in `gate1/build_gate1.py` and the atlas `shadow` notes; verify the Gate 1 scene builds
+- [x] 2.1 Change the outline key to `#0E1020` and move the ink shoe ramp to `#1C2038` `#3A4160` `#6A7392` in every sprite module (Engineer, Ivo, Mira, Noor, Hal, Ada, Vale, both background workers); verify `check_gate1.py <module>` passes for each and every atlas and JSON is rebuilt
+- [x] 2.2 Update the glitch and Pace modules for the outline colour; verify their builds and checks pass
+- [x] 2.3 Change the renderer contact shadow to `#3A4160` outer and `#1C2038` core in `gate1/build_gate1.py` and the atlas `shadow` notes; verify the Gate 1 scene builds
 - [ ] 2.4 Review the chibi portraits' outline against `#0E1020`, record the decision in `portraits/PORTRAITS_SPEC.md`, and rebuild if changed; verify `check_portraits.py` passes
 
 ## 3. Orientation
 
-- [ ] 3.1 Re-render the Orientation kit with the v2 palette and leaf-fan foliage and planters; verify `kit/check_atlas.py` passes and every footprint, collision string, layer and anchor is unchanged
-- [ ] 3.2 Rebuild the garden landmark parts (tree, pond, rocks, flowers, benches, lamps) for both quest states per the spec; verify the after state still changes at least two visible things
+- [x] 3.1 Re-render the Orientation kit with the v2 palette and leaf-fan foliage and planters; verify `kit/check_atlas.py` passes and every footprint, collision string, layer and anchor is unchanged
+- [x] 3.2 Rebuild the garden landmark parts (tree, pond, rocks, flowers, benches, lamps) for both quest states per the spec; verify the after state still changes at least two visible things
 - [ ] 3.3 Add the light passes to the reference-room renderer and rebuild the review room; verify the frame matches the approved Mock 2.1 and rebase the `build_room.py` zero-difference test onto it
 
 ## 4. Districts

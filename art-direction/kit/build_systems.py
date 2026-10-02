@@ -29,6 +29,7 @@ sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
 import build_records as br  # noqa: E402
 import kitlib  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import systems_kit as sk  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
@@ -433,6 +434,7 @@ def main():
     nchg = landmark_states(layout, atlas)
     before = br.render(layout, atlas, STATES_BEFORE, engineer=ENGINEER)
     after = br.render(layout, atlas, STATES_AFTER, engineer=ENGINEER)
+    before, after = rf.light_layout(before, layout, atlas, "systems"), rf.light_layout(after, layout, atlas, "systems")  # rich finish light, display only
     Image.fromarray(before).save(os.path.join(HERE, "systems-reference-room-native.png"))
     Image.fromarray(after).save(os.path.join(HERE, "systems-reference-room-after-native.png"))
     br.to_screen(before).save(os.path.join(HERE, "systems-reference-room-1366x768.png"))
