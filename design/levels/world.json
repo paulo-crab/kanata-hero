@@ -180,15 +180,15 @@
     "nightshift"
    ],
    "seal_required": "systems",
-   "label": "Systems false panel (Hal pulls it down after the Systems seal) to the Night Shift elevator stop. PLACEHOLDER cells: the Systems exit is parked at (22,3) and the Night Shift entrance at the Night Shift elevator arrival (31,16); the Systems team places the real panel cell and updates this link.",
+   "label": "Systems false panel (Hal pulls it down after the Systems seal) to the Night Shift elevator stop. The Systems exit is on the machine face at (17,14); the Night Shift entrance is the elevator arrival cell (27,13).",
    "cells": {
     "systems": [
-     22,
-     3
+     17,
+     14
     ],
     "nightshift": [
-     31,
-     16
+     27,
+     13
     ]
    }
   }
