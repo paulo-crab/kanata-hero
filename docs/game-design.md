@@ -112,7 +112,7 @@ The keyboard teaching overlay shows the same information as keycaps (physical po
 ### Layout help
 A reference screen that shows the keyboard exactly as `kanata.kbd` configures it, rendered from the layout manifest so it can never drift from the config. It is the "full layout diagram on demand" the teaching overlay promises. It never scores anything and is available everywhere, including inside terminal scenes and Mira's routes (which pause while it is open).
 
-- **Opening and closing:** `?` (Shift + /) opens it. The gesture is a held home-row Shift on the left hand (tap-hold F, then `/`), which produces `?` on every layer including `practice`; a right-hand Shift hold on J would type `j/` because `/` is a right-hand key. It is also in the journal, and in the story it lives on Ivo's tablet. Escape (tap Caps) closes it and returns focus to where the player was.
+- **Opening and closing:** `?` (Shift + /) opens it. The gesture is a held home-row Shift on the left hand (tap-hold F, then `/`), which produces `?` on `base` and `practice`, the layers the player types on (on `nav` F types `f` while Caps is held, so release Caps first); a right-hand Shift hold on J would type `j/` because `/` is a right-hand key. It is also in the journal, and in the story it lives on Ivo's tablet. Escape (tap Caps) closes it and returns focus to where the player was.
 - **Switching layers by keyboard:** the layers are tabs: `base`, `nav`, `numbers-symbols`, `practice`. Left/Right (tap-hold Caps + H / L) moves between them, so the gesture is the same one the player uses to walk. Tab and Shift + Tab also cycle tabs while the screen is open. Tab focus is held inside the screen, and Escape always leaves it. Bare tap-hold Tab still sends the external Homerow shortcut, so the screen relies only on tap Tab.
 - **Click-hold a layer key:** pressing and holding the mouse on the drawn Caps or Space keycap shows that layer for as long as the button is held, and releasing returns to the previous tab. This mirrors `layer-while-held`. Keyboard players get the same view by selecting the layer tab instead.
 - **Key detail:** selecting any keycap, by click or by moving focus across the drawn keys, shows its tap action, its tap-hold action, its timing, and its practice behavior (normal or XX), in the same wording as the [hint grammar](#hint-grammar).
@@ -179,7 +179,7 @@ The layout manifest must enumerate every row below as an individual or grouped s
 
 | ID | Physical gesture | Output and rule | Game treatment |
 | --- | --- | --- | --- |
-| B01 | Plain letter, digit, and punctuation taps, including mapped `B W 0 4 U T M X N V R ,` | Ordinary characters unless a documented chord/layer changes them | Type code, ticket text, and IDs; explicitly contrast plain keys with their Caps or Space variants. |
+| B01 | Plain letter, digit, and punctuation taps, including mapped `B W 0 4 U T M X N V R G H ,` | Ordinary characters unless a documented chord/layer changes them | Type code, ticket text, and IDs; explicitly contrast plain keys with their Caps or Space variants. |
 | B02 | Tap A/S/D/F and J/K/L/; | Literal `a s d f j k l ;` | Accurate home-row typing, including rolls that should remain letters. |
 | B03 | Hold A/S/D/F about 200 ms | Left Control / Option / Command / Shift | Teach each hold separately, then safe combined shortcuts and Shift capitals. |
 | B04 | Hold J/K/L/; about 200 ms | Right Shift / Command / Option / Control | Mirror B03; require both sides in separate rooms. |
@@ -212,7 +212,7 @@ All gestures below mean **hold Caps while pressing the second key**. Releasing C
 | N17 | N | Return | Submit/open a selected item, then return to typing. |
 | N18 | `[` | Escape | Cancel a modal while Caps remains held; tap Caps is the other Escape route. |
 | N19 | Shift + supported navigation gesture | Selection where the destination supports it | Teach Shift holds on F/J or physical Shift in base. Establish the Shift hold **before** pressing Caps: once Caps is held, F types a literal `f` (N20) and J is Down. Note Caps+4 consumes Shift and goes to plain line end. |
-| N20 | A / S / F while Caps is held | Literal `a` / `s` / `f` | Explicit exception: these do not become nav commands. |
+| N20 | A / S / F / `;` while Caps is held | Literal `a` / `s` / `f` / `;` | Explicit exception: these do not become nav commands. |
 | N21 | Right Command + H/J/K/L | Same four arrow directions | Alternative path; other Caps-only extended mappings are **not** granted by Right Command. |
 
 The source has `D` as page down and `G` as document end in the Caps layer; the table above covers both. Caps+`[` is Escape even though `[` has another base-layer behavior outside this scope. Levels must check that plain `B W 0 4 U D T G M X N ,` continue to type or behave normally after Caps release.
@@ -327,7 +327,7 @@ Offer a setup screen for MacBook versus Microsoft keyboard, a calibration exerci
 11. The shipped visual style follows the approved art direction in `art-direction/STYLE_BIBLE.md`: clean pixel sprites and crisp UI, with distinct silhouettes, palettes, landmarks, and lighting for all five districts. It reuses a shared tile/prop kit and does not rely on dense per-room art, CRT filters, tiny sprites, or an ASCII-rendered world.
 
 ## OpenSpec starting decisions
-- Treat this document and the layout manifest (once checked in) as the curriculum source of truth; `levels.md` owns story and per-level detail, and `art-direction/` owns visual style.
+- Treat this document and the layout manifest (`design/layout/layout-manifest.json`) as the curriculum source of truth; `levels.md` owns story and per-level detail, and `art-direction/` owns visual style.
 - Build the vertical slice first, but reserve level IDs and inventory coverage for the complete campaign.
 - Keep Kanata config changes in a separate proposal from the browser game.
 - Validate the visual direction with a full-size Orientation gameplay composition and a walkable Records room before producing all five districts; preserve the original office mystery setting and readable keyboard diagrams.

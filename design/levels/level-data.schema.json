@@ -79,6 +79,7 @@
       "type": "object", "required": ["version", "source", "rows"], "additionalProperties": false,
       "properties": {
         "version": {"type": "string"}, "source": {"type": "string"}, "note": {"type": "string"},
+        "manifest": {"type": "string", "description": "path of the layout manifest that links every row to its keys (design/layout/layout-manifest.json)"},
         "rows": {"type": "array", "items": {
           "type": "object", "required": ["id", "layer", "input", "output", "notes", "source_line", "introduced_in", "external_only", "player_confirmed"], "additionalProperties": false,
           "properties": {
