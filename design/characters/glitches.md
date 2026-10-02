@@ -41,9 +41,25 @@ Size range: **16–32 logical px**, depending on role. Distinguish encounters wi
 | --- | --- |
 | Roam | Small looping drift or hop along the floor, 2–4 frames |
 | Misregister | A 1–2 px offset flicker between the object and its outline or shadow |
-| Repaired | Snaps back into register, then becomes an ordinary prop or disappears |
+| Repaired | Snaps back into register for one frame (160 ms, play once), then becomes the ordinary prop and stops roaming (decided 2026-10-02; drawn) |
 
 Keep them out of text-editing focus areas. A wrong key gets a local reaction, never a full-screen effect.
+
+## Variants and districts (decided 2026-10-02)
+
+The three silhouettes are reused. A variant swaps the violet steps or changes the behaviour numbers; it never changes the art. Full tables, hexes and the data contract: [GLITCHES_SPEC.md](../../art-direction/glitches/GLITCHES_SPEC.md) "Variants and districts"; the same data is in `glitches-atlas.json` under `variants` and `districts`, keyed by district id.
+
+- **Palette variants:** `standard` (fix a token), `plum` (choose a route), `dusk` (edit a code fragment), each with a lifted `dark_steps` ramp for the Night Shift floor. The colour is a second cue for the duel kind; the shape cue still carries the meaning.
+- **Behaviour variants:** `drift` (calm), `patrol` (the approved baseline), `stutter` and `lurk` (uncanny, quiet), `settle` (relief): roam speed, path shape, pause pattern, misregister cadence and amplitude.
+- **Ramp:** Orientation calm (1), Records the uncanny begins (2), Systems the peak (3), Night Shift the deepest and quietest (4), Executive relief (1).
+
+| District | First glitch | Archetypes (from level) | Per room |
+| --- | --- | --- | --- |
+| `orientation` | level 01, the harmless paper fold (`form`, `standard`, `drift`) | form (01), stapler (04) | 1 |
+| `records` | level 08 Filing Drift (`form`, `standard`, `drift`); level 07 is glitch-free | form (08), chair (09), stapler (10) | 2 |
+| `systems` | level 12 Payroll IDs (`stapler`, `standard`, `patrol`) | stapler (12), form (13), chair (14) | 3 |
+| `nightshift` | level 18 No Old Keys (`chair`, `standard`, `lurk`); level 17 is glitch-free | chair (18), form (19), stapler (19) | 2 |
+| `executive` | level 20, one per incident branch (`settle`), each in its duel's palette | form (The Name), chair (The Route), stapler (The Count) | 1 |
 
 ## Don'ts
 
@@ -53,5 +69,6 @@ Keep them out of text-editing focus areas. A wrong key gets a local reaction, ne
 
 ## Open questions
 
-1. ~~Final choice of the three archetypes~~ Decided 2026-10-02: displaced stapler, duplicate chair shadow and folded form (`art-direction/glitches/GLITCHES_SPEC.md`). Still open: which palette and behaviour variants appear in which district.
-2. ~~What a repaired glitch becomes~~ Decided 2026-10-02: it snaps into register for one frame, then stays as the ordinary prop and stops roaming.
+1. ~~Final choice of the three archetypes~~ Decided 2026-10-02: displaced stapler, duplicate chair shadow and folded form (`art-direction/glitches/GLITCHES_SPEC.md`).
+2. ~~What a repaired glitch becomes~~ Decided 2026-10-02: it snaps into register for one frame, then stays as the ordinary prop and stops roaming. Both are drawn.
+3. ~~Which palette and behaviour variants appear in which district~~ Decided 2026-10-02: see "Variants and districts" above.
