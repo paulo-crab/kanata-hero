@@ -216,6 +216,9 @@ code,.mono{font-family:var(--font-mono)}
 .steps li.next .dot{border-color:var(--accent-terminal);color:var(--accent-terminal)}
 .steps li.todo{color:var(--text-muted)}
 .keysline{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;background:var(--panel-sunken);border-radius:var(--radius-md);padding:var(--space-3)}
+.rowkeys{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.rowkeys b{color:var(--text)}
+.kh-dialogue .ctl .keep{white-space:normal}
 .keysline .kh-key{height:40px;min-width:40px;font-size:var(--text-base);box-shadow:0 3px 0 var(--key-edge)}
 .keysline .kh-key.held{box-shadow:0 1px 0 var(--key-held-edge)}
 
@@ -264,12 +267,9 @@ def stage():
   <span class="sep"></span>
   <span class="seals">{ico("seal", 24)} Seals 0</span>
 </div>
-<div class="kh-hud shortcuts">
-  <span class="chip">Journal <span class="kh-key sm">Tab</span></span>
-  <span class="chip">Layout help <span class="kh-key sm">?</span></span>
-</div>"""
+{kit_screens.hud_chips("hint", "journal", "help")}"""
     prompt = f"""
-<div class="kh-prompt" style="left:812px;top:128px;width:340px">
+<div class="kh-prompt" style="left:812px;top:128px;width:340px" aria-label="Use the badge printer. Key Return. Hint: Return is tap-hold Caps and N.">
   <div class="action">{ico("play", 20)} Use the badge printer</div>
   <div class="keys"><span class="kh-key sm">Return</span><span class="gesture">tap-hold Caps + N</span></div>
 </div>"""
@@ -302,15 +302,14 @@ def stage():
   </div>
 </section>"""
     dialogue = """
-<section class="kh-panel kh-dialogue" aria-label="Dialogue with Ivo">
+<section class="kh-panel kh-dialogue" aria-label="Instruction line from Ivo (non-modal)">
   <div class="kh-portrait" role="img" aria-label="Portrait slot, 48 by 48 pixels shown at 4 times"><span>48 x 48 portrait<br>at x4 = 192 px</span></div>
   <div class="body">
     <div class="who">Ivo <span class="role">Reception lead</span></div>
     <p class="say">To walk to the east exit, you need to press <b>Right arrow</b>.</p>
     <p class="hint">Hint: Right arrow is <b>tap-hold Caps</b> + <b>L</b>.</p>
     <div class="ctl">
-      <span><b>Continue</b> <span class="kh-key sm">Return</span> tap-hold Caps + N</span>
-      <span><b>Skip</b> <span class="kh-key sm">Esc</span></span>
+      <span class="keep">Instruction line: stays until the step is done. Movement and Esc stay live.</span>
     </div>
   </div>
 </section>"""
@@ -361,7 +360,7 @@ def keystates_section():
     {keycap("N", "focus")}
     {keycap("Return", "wide")}
     <span class="kh-keyunit"><span class="kh-key">{ico("arrow-right", 28)}</span></span>
-    <div class="kh-keyunit"><span class="kh-key sm">Tab</span><p>Small keycap, used in prompts and the HUD</p></div>
+    <div class="kh-keyunit"><span class="kh-key sm">Q</span><p>Small keycap, used in prompts and the HUD</p></div>
   </div>
   <p class="lede" style="margin:var(--space-3) 0 0">From left: tap, held, neighbour (dim), silent on the practice layer (dashed, XX), keyboard focus (ring), wide, arrow output, small.</p>
 </div>"""
@@ -389,7 +388,7 @@ def journal_section():
 <div class="kh-panel overlay" role="dialog" aria-label="Quest journal">
   <div class="top"><h2>Quest journal</h2><span class="kh-label">Orientation</span><span class="grow"></span>
     <span class="seals" style="display:inline-flex;align-items:center;gap:var(--space-2);color:var(--accent-discovery);font-weight:var(--weight-bold)">{ico("seal", 24)} Clearance seals 0 / 5</span>
-    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close &middot; <span class="kh-key sm">Q</span> toggles it</span></div>
   <div class="kh-journal">
     <div class="list">
       <div class="group main"><h3>{ico("seal", 24)} Main work</h3>
@@ -414,15 +413,16 @@ def journal_section():
       </ul>
       <span class="kh-label">Keys for this step</span>
       <div class="keysline"><span class="kh-key held">Caps</span>+<span class="kh-key">L</span><span>Right arrow</span><span style="color:var(--text-muted)">tap-hold Caps + L</span></div>
-      <span class="kh-label">Layout reference</span>
-      <div class="keysline"><span class="kh-key sm">?</span><span>Open Layout help from here or anywhere</span></div>
+      <span class="kh-label">Also from here</span>
+      <div class="keysline"><span class="kh-btn focus">Layout help <span class="kh-key sm">?</span> <span class="g">tap-hold F, then /</span></span><span class="kh-btn">Settings</span><span class="kh-btn">Controls</span></div>
+      <p class="rowkeys">To open a row, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps</b> + <b>N</b>; Up and Down (tap-hold Caps + K / J) choose the row.</p>
     </div>
   </div>
 </div>"""
     return f"""
 <div class="sheet">
   <h2>Quest journal</h2>
-  <p class="lede">Opened on demand over a dimmed world. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
+  <p class="lede">Opened on demand with Q (tap Q, world only) over a dimmed world; Esc or Q closes it. Main work, coworker requests and Mira's optional speed routes have separate headings and icons: a seal, a speech bubble and a stopwatch. State is text plus an icon (play, lock, check).</p>
   {screen(inner)}
 </div>"""
 

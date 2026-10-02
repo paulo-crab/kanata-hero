@@ -8,6 +8,8 @@ z-layers come from tokens.css; the few layout sizes (panel widths, key widths) a
 local to a component.
 """
 
+import bindings
+
 # --------------------------------------------------------------------------- helpers
 
 
@@ -35,6 +37,19 @@ def keycap(label, cls="", tag=None, tagcls=""):
 def kc(label, cls="sm"):
     """Inline keycap (small by default)."""
     return f'<span class="kh-key {cls}">{label}</span>'
+
+
+HUD_NAMES = {"hint": "Hint", "journal": "Journal", "help": "Layout help"}
+
+
+def hud_chips(*ids):
+    """The top-right shortcut chips: a name and a keycap each, plus a screen-reader label in the hint grammar.
+
+    Which chips show depends on the scene: the journal key is off in typing scenes (Q is text there), and the
+    Hint chip is absent in Violento. The labels come from bindings.py so the kit cannot drift from it."""
+    by = {b["id"]: b for b in bindings.BINDINGS}
+    out = "".join(f'<span class="chip" aria-label="{by[i]["aria"]}">{HUD_NAMES[i]} {kc(by[i]["key"])}</span>' for i in ids)
+    return f'<div class="kh-hud shortcuts">{out}</div>'
 
 
 # --------------------------------------------------------------------------- sprite additions
@@ -96,6 +111,9 @@ b,strong{font-weight:var(--weight-bold)}
 .kh-btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .kh-btn.focus{outline:2px solid var(--focus);outline-offset:3px}
 .kh-btn .kh-key.sm{height:28px;min-width:28px;box-shadow:0 2px 0 var(--key-edge);margin-bottom:2px}
+.kh-btn .g{font:var(--weight-regular) var(--text-sm)/1 var(--font-mono);color:var(--text-muted)}
+.kh-btn.primary .g{color:var(--ink)}
+.kh-key.bt{font-size:var(--text-lg)}
 
 /* ---- Layout help ------------------------------------------------------------------------------ */
 .lh-overlay{left:16px;right:16px;top:16px;bottom:16px;gap:6px;padding:var(--space-2) var(--space-5) var(--space-3)}
@@ -703,7 +721,7 @@ def setup_screen(device, mode):
     <div class="su-steps">
       <div class="head"><span class="kh-label">Calibration: five optional steps</span><span class="kh-label">3 observed · 1 skipped</span></div>
       {steps}
-      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used.</p>
+      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used. Down (tap-hold Caps + J) moves to the next step; a step left alone is recorded as Skipped.</p>
     </div>
     <div class="su-side">
       <div class="su-diagram">
@@ -739,7 +757,7 @@ def code_line(n, body, cls="", tag="", icon="target"):
     return f'<div class="kh-line {cls}"><span class="no">{marker}{n}</span><span>{body}</span>{t}</div>'
 
 
-def inset_scene(title, layer, row_top, row_home, hold, tap, outcap, effect, foot):
+def inset_scene(title, layer, row_top, row_home, hold, tap, outcap, effect, foot, icon="step-east"):
     top = "".join(row_top)
     home = "".join(row_home)
     return f"""
@@ -761,7 +779,7 @@ def inset_scene(title, layer, row_top, row_home, hold, tap, outcap, effect, foot
     </div>
     <div class="kh-cell">
       <div class="kh-label"><span class="kh-order">4</span> Effect</div>
-      <div class="kh-effect">{ico("step-east", 28)}<span>{effect}</span></div>
+      <div class="kh-effect">{ico(icon, 28)}<span>{effect}</span></div>
     </div>
   </div>
   </section>"""
@@ -817,7 +835,7 @@ def term_scene(state="working"):
   {task}
   <div class="kh-code" aria-label="Log, five lines">{l1}{l2}{l3}{l4}{l5}</div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+{hud_chips("hint", "help")}
 <div class="kh-side" style="top:88px">{fb}</div>
 {inset}"""
 
@@ -866,7 +884,7 @@ def tab_scene():
   <div class="kh-announce" role="status"><span class="kh-label">{ico("eye", 18)} Announced</span>
     <span>You are in the Tab practice region. Tab moves between three fields. <b>Esc</b> (tap Caps) leaves it at any time.</span></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+{hud_chips("hint", "help")}
 <div class="kh-side" style="top:88px">{fb_card("observed", kc("Tab") + " tap", '<span class="mono">Tab</span>', "Focus moved to Desk", "The game saw the Tab key event. Tab never leaves the region on its own.")}</div>
 {inset}"""
 
@@ -876,7 +894,7 @@ def duel_scene():
 {code_line(1, '<span class="k">ship_to</span> = "Harbour <span class="gl">Strret</span> 12"')}
 {code_line(2, '<span class="k">items</span>   = 3')}
 {code_line(3, '<span class="k">paid</span>    = true')}"""
-    top = mini(["Tab", "z", "x", "c", "v", "b", "n", "m"], "m")
+    top = mini(["Shift", "z", "x", "c", "v", "b", "n", "m"], "m")
     home = mini(["Caps", "a", "s", "d", "f", "g", "h"], None, held="Caps")
     inset = inset_scene("Delete a letter", "nav layer · tap-hold Caps · 200 ms", top, home, None, "M",
                         ("⌫", "Backspace"), "Remove a letter",
@@ -902,10 +920,10 @@ def duel_scene():
     <span class="count">{ico("target", 20)} turn 2 / 3</span>
   </div>
   <div class="kh-code" aria-label="Code fragment">{code}</div>
-  <div class="kh-retry"><span class="kh-btn focus">{ico("arrow-left", 18)} Retry this turn <span class="kh-key sm">Return</span></span>
-    <span class="kh-btn">Leave the duel <span class="kh-key sm">Esc</span></span></div>
+  <div class="kh-retry"><span class="kh-btn focus">{ico("arrow-left", 18)} Retry this turn <span class="kh-key sm">Return</span> <span class="g">tap-hold Caps + N</span></span>
+    <span class="kh-btn">Leave the duel <span class="kh-key sm">Esc</span> <span class="g">tap Caps</span></span></div>
 </section>
-<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+{hud_chips("hint", "help")}
 <div class="kh-side" style="top:88px">{turns}{fb}</div>
 {inset}"""
 
@@ -918,10 +936,10 @@ def scene_sections():
                 "Success is shown as text, a check icon, a thicker gold frame and a gold highlight on the target; no full-screen effect. The counter advances.",
                 term_scene("success"), scrim="scene")
     out += shot("terminal-tab-practice", "Terminal scene: Tab practice region",
-                "Tab lessons run inside a dashed, labelled region. The announcement is written out (and read by screen readers); Esc leaves at any time, and the region never traps focus.",
+                "Tab lessons run inside a dashed, labelled region. The announcement is written out (and read by screen readers); Esc leaves at any time, and the region never traps focus. Only Hint and Layout help are live as chips: every other key is text here.",
                 tab_scene(), scrim="scene")
     out += shot("glitch-duel", "Glitch-repair duel",
-                "Turn-based and untimed. Violet frames and glyphs only; the title text uses the lighter glitch accent. Retry is a visible button; a wrong result gets a plain explanation.",
+                "Turn-based and untimed. Violet frames and glyphs only; the title text uses the lighter glitch accent. A wrong result moves focus to the Retry button (Return retries, Esc leaves) and gets a plain explanation; the Hint and Layout help chips stay, the journal chip is off because Q is text here.",
                 duel_scene(), scrim="scene")
     return out
 

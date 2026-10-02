@@ -231,6 +231,31 @@ ids = re.findall(r'<span class="a" id="s-([\w-]+)">', HTML)
 report(len(ids) == len(set(ids)) and len(ids) >= 5, f"{len(ids)} screens carry unique #s-<id> targets")
 report("<script" not in HTML, "reference page has no script")
 
+# ---- Key bindings (design/ui-key-bindings.md is the decision record; bindings.py is the data) ---------
+import bindings  # noqa: E402
+
+for ok, text in bindings.check():
+    report(ok, "bindings: " + text)
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+DOC_PATH = os.path.join(ROOT, "design", "ui-key-bindings.md")
+DOC = open(DOC_PATH, encoding="utf-8").read().replace("`", "") if os.path.exists(DOC_PATH) else ""
+report(bool(DOC), "design/ui-key-bindings.md exists")
+missing = [b["id"] for b in bindings.BINDINGS if b["gesture"].replace("`", "") not in DOC]
+report(DOC and not missing, "every binding's gesture appears in design/ui-key-bindings.md" + (f": {missing}" if missing else ""))
+journal_chips = len(re.findall(r'Journal <span class="kh-key sm">Q</span>', HTML))
+report(journal_chips >= 3 and not re.search(r'Journal <span class="kh-key sm">Tab', HTML),
+       f"the journal chip shows Q on {journal_chips} screens and never Tab")
+report(len(re.findall(r'Hint <span class="kh-key sm">`</span>', HTML)) >= 6 and 'Layout help <span class="kh-key sm">?</span>' in HTML,
+       "the Hint (Backtick) and Layout help (?) chips are drawn on the screens that carry them")
+report(re.search(r'Show hint <span class="kh-key sm">`</span>', HTML) is not None,
+       "Show hint is a keycap with its gesture, not a mouse-only button")
+report("Controls" in HTML and 'id="s-controls"' in HTML and 'id="s-first-use"' in HTML,
+       "the Controls and first-use screens exist")
+stale = re.search(r"\bpropos(?:al|als|ed)\b|key for .{0,40}is (?:not )?(?:undefined|not defined)", HTML + "".join(
+    open(os.path.join(HERE, f), encoding="utf-8").read() for f in ("COMPONENTS.md", "UI_KIT_SPEC.md")), flags=re.I)
+report(stale is None, "no 'proposal' or 'undefined key' wording left for interact, journal, skip, back, hint or elevator"
+       + (f": {stale.group(0)!r}" if stale else ""))
+
 print()
 print("ALL CHECKS PASSED" if not fails else f"{fails} CHECK(S) FAILED")
 sys.exit(1 if fails else 0)
