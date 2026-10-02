@@ -166,6 +166,9 @@ def check_atlas(path, schema):
             for n in s["entries"]:
                 if n not in entries:
                     fail(f"{name}:{an}.{st}: unknown entry {n}")
+        lists = [tuple(s["entries"]) for s in a["states"].values()]
+        if len(set(lists)) != len(lists):
+            fail(f"{name}:{an}: two states draw the same entries (a state swap must change something)")
         for key in ("play", "loop"):
             for st in a.get(key, []):
                 if st not in a["states"]:

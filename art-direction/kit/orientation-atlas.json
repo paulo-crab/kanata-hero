@@ -2428,6 +2428,2233 @@
     2
    ],
    "note": "free-standing glass partition, two cells, with a middle post and a reflection band per pane"
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    80,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, brass casing with two lamps, lit floor indicator, lit LIFT mat in front. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the mat."
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    128,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the mat."
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    176,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the mat."
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    224,
+    336,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact"
+   ],
+   "note": "wall call panel for the elevator: steel plate, small lit display, up and down buttons with arrows. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "turnstile_closed",
+   "kind": "prop",
+   "rect": [
+    240,
+    336,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "turnstile",
+    "gate",
+    "reception",
+    "closed"
+   ],
+   "contact_shadow": [
+    4,
+    27,
+    43,
+    2
+   ],
+   "note": "two glass flaps meet across the lane, pedestal stripes dark: all three cells block. Glass pedestals with card readers, 3 cells wide, y-sorted"
+  },
+  {
+   "name": "turnstile_open",
+   "kind": "prop",
+   "rect": [
+    288,
+    336,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "101"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "turnstile",
+    "gate",
+    "reception",
+    "open"
+   ],
+   "contact_shadow": [
+    4,
+    27,
+    43,
+    2
+   ],
+   "note": "flaps folded away and both pedestal stripes lit in brass: the lane is walkable (centre cell). Glass pedestals with card readers, 3 cells wide, y-sorted"
+  },
+  {
+   "name": "turnstile_lane_lit",
+   "kind": "tile",
+   "rect": [
+    336,
+    336,
+    48,
+    16
+   ],
+   "size_px": [
+    48,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    24,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "turnstile",
+    "floor",
+    "lit"
+   ],
+   "note": "lit brass floor inlay with a north arrow in the lane cell; belongs to the open state only, so the closed to open swap changes flaps, pedestal lights and floor"
+  },
+  {
+   "name": "clock_twin_unsynced",
+   "kind": "wall",
+   "rect": [
+    384,
+    336,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "clock",
+    "twin",
+    "wall",
+    "unsynced"
+   ],
+   "note": "two faces behind one pane of glass show different times (10:10 and 4:40); status lamp dark. Wall overlay, 30 x 20 px, no collision of its own; place on the wall face"
+  },
+  {
+   "name": "clock_twin_synced",
+   "kind": "wall",
+   "rect": [
+    416,
+    336,
+    32,
+    32
+   ],
+   "size_px": [
+    30,
+    20
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "clock",
+    "twin",
+    "wall",
+    "synced"
+   ],
+   "note": "both faces show 10:10; the status lamp under the glass is lit brass. Wall overlay, 30 x 20 px, no collision of its own; place on the wall face"
+  },
+  {
+   "name": "conference_glass_door_closed",
+   "kind": "door",
+   "rect": [
+    448,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "conference",
+    "closed"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "meeting-room glass door shut: two glass leaves with a reflection band and brass pulls meet mid frame; the lit room is visible through them. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the lit MEET mat."
+  },
+  {
+   "name": "conference_glass_door_half",
+   "kind": "door",
+   "rect": [
+    496,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "conference",
+    "half"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "leaves slid 8 px apart: the sunlit room shows through the gap. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the lit MEET mat."
+  },
+  {
+   "name": "conference_glass_door_open",
+   "kind": "door",
+   "rect": [
+    544,
+    336,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "sliding glass",
+    "conference",
+    "open"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "leaves fully slid aside (15 px): the doorway is open, the centre cell walks in. Replaces three wall_n_plain columns; rows 0-1 are wall, row 2 is the lit MEET mat."
+  },
+  {
+   "name": "projected_form_wall",
+   "kind": "wall",
+   "rect": [
+    0,
+    384,
+    64,
+    32
+   ],
+   "size_px": [
+    62,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "form",
+    "projection",
+    "focus",
+    "wall",
+    "level 03"
+   ],
+   "note": "scheduling form projected on a wall: lit rectangle, title bar, three fields (the first entry has no spaces), and a blue double-line focus outline around the second field (level 03's Tab target). Wall overlay, 62 x 22 px, no collision of its own"
+  },
+  {
+   "name": "stamp_a",
+   "kind": "prop",
+   "rect": [
+    64,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "left desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "left-desk approval stamp A: mushroom knob on a neck and wide plate (coral). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_b",
+   "kind": "prop",
+   "rect": [
+    80,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "left desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "left-desk approval stamp B: T handle over a thin stem (green). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_c",
+   "kind": "prop",
+   "rect": [
+    96,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "left desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "left-desk approval stamp C: rocker dome (glass blue). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_d",
+   "kind": "prop",
+   "rect": [
+    112,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "left desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "left-desk approval stamp D: square dater box with window and dials (brass). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_e",
+   "kind": "prop",
+   "rect": [
+    128,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "right desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "right-desk approval stamp E: hook grip leaning right (warm wood). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_f",
+   "kind": "prop",
+   "rect": [
+    144,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "right desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "right-desk approval stamp F: cone widening to its plate (green). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_g",
+   "kind": "prop",
+   "rect": [
+    160,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "right desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "right-desk approval stamp G: dater wheel with a side tab on a stem (plum wood). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "stamp_h",
+   "kind": "prop",
+   "rect": [
+    176,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    8,
+    9
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "stamp",
+    "desk prop",
+    "right desk"
+   ],
+   "contact_shadow": [
+    1,
+    8,
+    7,
+    1
+   ],
+   "note": "right-desk approval stamp H: pen stamp: a long thin diagonal grip (peach wood). 8 x 9 px with a one-row contact shadow. Drawn after the desk, no collision; the four stamps of a desk sit 8 px apart along the front of the top plane"
+  },
+  {
+   "name": "pinboard_empty",
+   "kind": "wall",
+   "rect": [
+    192,
+    384,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "pinboard",
+    "wall",
+    "empty"
+   ],
+   "note": "bare cork with four faint sheet outlines and pins: the board before level 04. Wall overlay, 48 x 23 px, no collision of its own"
+  },
+  {
+   "name": "pinboard_before",
+   "kind": "wall",
+   "rect": [
+    240,
+    384,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "pinboard",
+    "wall",
+    "before"
+   ],
+   "note": "orderly: four identical sheets in a symmetrical row, one centred pin each, a centred header strip. The board after level 04 (each approved sheet joined it). Wall overlay, 48 x 23 px, no collision of its own"
+  },
+  {
+   "name": "pinboard_after",
+   "kind": "wall",
+   "rect": [
+    288,
+    384,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "pinboard",
+    "wall",
+    "after"
+   ],
+   "note": "asymmetrical and human: sheets of different sizes at different heights, a sticky note, a tilted sheet, a string, and a hand-drawn map whose route arrow points right toward the review desk. After level 05. Wall overlay, 48 x 23 px, no collision of its own"
+  },
+  {
+   "name": "desk_left_cherry",
+   "kind": "prop",
+   "rect": [
+    336,
+    384,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     6
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "left desk",
+    "cherry"
+   ],
+   "contact_shadow": [
+    2,
+    22,
+    35,
+    2
+   ],
+   "note": "left desk (level 04): cherry wood, small monitor, sheet stack, ink pad and a four-slot stamp tray along the front. Same footprint as desk_a; place stamp_a to stamp_d at x +2, +10, +18, +26 px, y +1 px (tops sit under the monitor line)"
+  },
+  {
+   "name": "desk_right_mirror",
+   "kind": "prop",
+   "rect": [
+    384,
+    384,
+    48,
+    32
+   ],
+   "size_px": [
+    37,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     1,
+     6
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    17,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "right desk",
+    "mirror"
+   ],
+   "contact_shadow": [
+    2,
+    22,
+    35,
+    2
+   ],
+   "note": "right desk (level 05): the desk_a family with a mirrored layout (monitor left, sheets and pad right) and the same four-slot tray; place stamp_e to stamp_h at x +2, +10, +18, +26 px, y +1 px"
+  },
+  {
+   "name": "desk_a_front",
+   "kind": "prop",
+   "rect": [
+    432,
+    384,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder"
+   ],
+   "note": "occluder for desk_a: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). See ORIENTATION_KIT_SPEC for the rows it covers"
+  },
+  {
+   "name": "desk_b_front",
+   "kind": "prop",
+   "rect": [
+    480,
+    384,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder"
+   ],
+   "note": "occluder for desk_b: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). See ORIENTATION_KIT_SPEC for the rows it covers"
+  },
+  {
+   "name": "review_table",
+   "kind": "prop",
+   "rect": [
+    528,
+    384,
+    64,
+    32
+   ],
+   "size_px": [
+    51,
+    19
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     1,
+     0
+    ]
+   },
+   "collision": [
+    "111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    25,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "table",
+    "review",
+    "level 06"
+   ],
+   "contact_shadow": [
+    2,
+    16,
+    49,
+    2
+   ],
+   "note": "garden review table (level 06): 3 cells, wood top with two inlaid blotters, one 16 px wide for the laptop on the left and one 24 px for the spare keyboard on the right. Place keyboard_macbook at x +3 px, y +1 px and keyboard_spare at x +22 px, y +2 px"
+  },
+  {
+   "name": "keyboard_macbook",
+   "kind": "prop",
+   "rect": [
+    592,
+    384,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    11
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "keyboard",
+    "macbook",
+    "laptop",
+    "level 06"
+   ],
+   "contact_shadow": [
+    1,
+    9,
+    13,
+    1
+   ],
+   "note": "MacBook-style laptop seen from above: dark bezel and lit screen, silver deck, key rows and a trackpad. 14 x 9 px, no collision; the default physical diagram for level 06"
+  },
+  {
+   "name": "keyboard_spare",
+   "kind": "prop",
+   "rect": [
+    608,
+    384,
+    32,
+    16
+   ],
+   "size_px": [
+    24,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     3
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    16,
+    19
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "keyboard",
+    "spare",
+    "wired",
+    "level 06"
+   ],
+   "contact_shadow": [
+    1,
+    11,
+    23,
+    1
+   ],
+   "note": "spare full-size wired keyboard: beige body, light keycaps in rows, a separate number pad and a cable. 24 x 8 px, physically different from keyboard_macbook (wider, flat, corded, number pad, beige against silver); no collision"
+  },
+  {
+   "name": "mail_board",
+   "kind": "prop",
+   "rect": [
+    0,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "board",
+    "medals"
+   ],
+   "contact_shadow": [
+    3,
+    30,
+    45,
+    2
+   ],
+   "note": "free-standing mailroom board on two legs: a brass MAIL plate over a cork strip with six empty medal slots (Mira's route medals). State set mail_medals draws it plus 0 to 6 medals"
+  },
+  {
+   "name": "mail_medals_1",
+   "kind": "prop",
+   "rect": [
+    48,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "1"
+   ],
+   "note": "overlay with the first 1 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_medals_2",
+   "kind": "prop",
+   "rect": [
+    96,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "2"
+   ],
+   "note": "overlay with the first 2 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_medals_3",
+   "kind": "prop",
+   "rect": [
+    144,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "3"
+   ],
+   "note": "overlay with the first 3 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_medals_4",
+   "kind": "prop",
+   "rect": [
+    192,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "4"
+   ],
+   "note": "overlay with the first 4 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_medals_5",
+   "kind": "prop",
+   "rect": [
+    240,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "5"
+   ],
+   "note": "overlay with the first 5 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_medals_6",
+   "kind": "prop",
+   "rect": [
+    288,
+    416,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    33
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     14
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    30
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mailroom",
+    "medals",
+    "6"
+   ],
+   "note": "overlay with the first 6 medal(s) hung on mail_board, drawn over it; same origin and size as the board. Ribbons follow Mira's patch colours (peach, lime, warm wood, ink, pale brass, glass)"
+  },
+  {
+   "name": "mail_tray",
+   "kind": "prop",
+   "rect": [
+    336,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "mail",
+    "reward",
+    "desk prop"
+   ],
+   "contact_shadow": [
+    1,
+    9,
+    12,
+    1
+   ],
+   "note": "First Delivery reward for the player's desk: a glass letter tray with three envelopes. 12 x 10 px, no collision"
+  },
+  {
+   "name": "desk_folder",
+   "kind": "prop",
+   "rect": [
+    352,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "folder",
+    "reward",
+    "desk prop"
+   ],
+   "contact_shadow": [
+    2,
+    9,
+    11,
+    1
+   ],
+   "note": "Archive Loop reward: a manila folder with a tab, papers peeking out and a label. 12 x 10 px, no collision"
+  },
+  {
+   "name": "route_stripe_lit",
+   "kind": "tile",
+   "rect": [
+    368,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    3
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     1
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    8,
+    17
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "floor",
+    "route",
+    "lit",
+    "level 04"
+   ],
+   "note": "lit corridor stripe: a 3 px brass band (mid tone core, pale edges) that replaces the 1 px route_inlay line in the same row. Place at the route_inlay's cell with a y offset of 1 less, or use state set corridor_stripe"
+  },
+  {
+   "name": "lamp_warm",
+   "kind": "prop",
+   "rect": [
+    384,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    5,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -5,
+     -3
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    3,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "lamp",
+    "warm"
+   ],
+   "contact_shadow": [
+    1,
+    13,
+    4,
+    1
+   ],
+   "note": "warm lamp for the right desk: the approved lamp with an amber head and a peach lit step"
+  },
+  {
+   "name": "lamp_warm_glow_on",
+   "kind": "light",
+   "rect": [
+    400,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    11,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -1
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    6,
+    15
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F0DEC0"
+   },
+   "tags": [
+    "lamp",
+    "warm",
+    "glow",
+    "on"
+   ],
+   "note": "warm glow, one hard amber step (radius 5.2); paints only on lit stone"
+  },
+  {
+   "name": "lamp_warm_glow_pulse",
+   "kind": "light",
+   "rect": [
+    416,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    13,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    7,
+    16
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#F0DEC0"
+   },
+   "tags": [
+    "lamp",
+    "warm",
+    "glow",
+    "pulse"
+   ],
+   "note": "warm pulse glow, radius 6.4"
+  },
+  {
+   "name": "artifact_unissued_badge",
+   "kind": "prop",
+   "rect": [
+    432,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "unissued_badge"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Unissued badge (level 02): a staff badge with a warm department band that differs from today's sign, a photo block and a blank name bar. 16 x 16 px with a baked contact shadow and a small pale-blue glint at the upper left (glass step 3) as the inspectable cue. No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_training_card",
+   "kind": "prop",
+   "rect": [
+    448,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "training_card"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Training card, first printing (level 04): a card with three short steps, shorter than Pace's script. 16 x 16 px with a baked contact shadow and a small pale-blue glint at the upper left (glass step 3) as the inspectable cue. No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_mirror_card",
+   "kind": "prop",
+   "rect": [
+    464,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "mirror_card"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Mirror card (level 05): a card with a reversed R and a handwritten arrow for the right-hand route. 16 x 16 px with a baked contact shadow and a small pale-blue glint at the upper left (glass step 3) as the inspectable cue. No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_first_route_receipt",
+   "kind": "prop",
+   "rect": [
+    480,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "first_route_receipt"
+   ],
+   "contact_shadow": [
+    6,
+    15,
+    7,
+    1
+   ],
+   "note": "First route receipt (level 06): a torn receipt with a looping detour line and an approved tick. 16 x 16 px with a baked contact shadow and a small pale-blue glint at the upper left (glass step 3) as the inspectable cue. No collision: lay it on a desk, a table or a blocked cell"
   }
  ],
  "animations": {
@@ -2490,6 +4717,221 @@
    ],
    "ms_per_frame": 600,
    "note": "glow states: off, on (approved look), pulse (wider ring). Wake = off -> on; idle breathing = on <-> pulse."
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through"
+  },
+  "turnstile": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "turnstile_closed"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "turnstile_open",
+      "turnstile_lane_lit"
+     ],
+     "blocked": false
+    }
+   },
+   "note": "level 01 opens it: flaps, pedestal lights and the lane inlay change together (Ivo's wave to a nod is level data)"
+  },
+  "clock_twin": {
+   "kind": "state_set",
+   "default": "unsynced",
+   "states": {
+    "unsynced": {
+     "entries": [
+      "clock_twin_unsynced"
+     ]
+    },
+    "synced": {
+     "entries": [
+      "clock_twin_synced"
+     ]
+    }
+   },
+   "note": "level 03: the right face's hands move to match the left and the status lamp lights; the conference_door swaps with it"
+  },
+  "conference_door": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "conference_glass_door_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "conference_glass_door_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "conference_glass_door_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "level 03 slides it aside as the clock synchronizes; same frame timing as the Records door"
+  },
+  "pinboard": {
+   "kind": "state_set",
+   "default": "empty",
+   "states": {
+    "empty": {
+     "entries": [
+      "pinboard_empty"
+     ]
+    },
+    "before": {
+     "entries": [
+      "pinboard_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "pinboard_after"
+     ]
+    }
+   },
+   "note": "empty before level 04; before = orderly and symmetrical after level 04; after = asymmetrical and human after level 05"
+  },
+  "mail_medals": {
+   "kind": "state_set",
+   "default": "0",
+   "states": {
+    "0": {
+     "entries": [
+      "mail_board"
+     ]
+    },
+    "1": {
+     "entries": [
+      "mail_board",
+      "mail_medals_1"
+     ]
+    },
+    "2": {
+     "entries": [
+      "mail_board",
+      "mail_medals_2"
+     ]
+    },
+    "3": {
+     "entries": [
+      "mail_board",
+      "mail_medals_3"
+     ]
+    },
+    "4": {
+     "entries": [
+      "mail_board",
+      "mail_medals_4"
+     ]
+    },
+    "5": {
+     "entries": [
+      "mail_board",
+      "mail_medals_5"
+     ]
+    },
+    "6": {
+     "entries": [
+      "mail_board",
+      "mail_medals_6"
+     ]
+    }
+   },
+   "note": "state k hangs Mira's first k route medals (one per clean baseline); entries are drawn in order at one placement point"
+  },
+  "lamp_warm": {
+   "kind": "state_set",
+   "default": "on",
+   "states": {
+    "off": {
+     "entries": [
+      "lamp_off"
+     ]
+    },
+    "on": {
+     "entries": [
+      "lamp_warm",
+      "lamp_warm_glow_on"
+     ]
+    },
+    "pulse": {
+     "entries": [
+      "lamp_warm",
+      "lamp_warm_glow_pulse"
+     ]
+    }
+   },
+   "loop": [
+    "on",
+    "pulse"
+   ],
+   "ms_per_frame": 600,
+   "note": "the right desk's warmer lamp: same states as lamp (off, on, pulse), amber instead of brass"
+  },
+  "corridor_stripe": {
+   "kind": "state_set",
+   "default": "unlit",
+   "states": {
+    "unlit": {
+     "entries": [
+      "route_inlay"
+     ]
+    },
+    "lit": {
+     "entries": [
+      "route_stripe_lit"
+     ]
+    }
+   },
+   "note": "level 04: the corridor stripe beside the left desk lights as the lamp (state set lamp, off to on) wakes; place the stripe in the route_inlay's row (route_stripe_lit's origin is already 1 px up)"
   }
  },
  "landmarks": {

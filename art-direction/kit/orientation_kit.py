@@ -591,6 +591,11 @@ def build_pieces():
     extract_garden(pieces, placements)
     pieces.extend(garden_after_pieces())
     pieces.extend(shared_pieces())
+    # quest props (appended last, so every earlier entry keeps its exact pixels, metadata and atlas rect)
+    import orientation_quest as oq
+    quest, quest_anims = oq.build({p.name: p for p in pieces})
+    pieces.extend(quest)
+    anims.update(quest_anims)
     mail = [p for p in placements if p[0] == "mail_counter"]
     placements = [p for p in placements if p[0] != "mail_counter"] + mail
     return pieces, placements, anims
@@ -631,8 +636,21 @@ def make_layout(placements, states):
     }
 
 
+QUEST_GROUPS = [  # (rank, name prefixes or exact names), checked before the older groups
+    (7, ("elevator_", "turnstile_")),
+    (8, ("clock_twin_", "conference_glass_door_", "projected_form_wall")),
+    (9, ("stamp_", "pinboard_", "desk_left_cherry", "desk_right_mirror", "desk_a_front", "desk_b_front")),
+    (10, ("review_table", "keyboard_", "mail_board", "mail_medals_", "mail_tray", "desk_folder")),
+    (11, ("route_stripe_lit", "lamp_warm")),
+    (12, ("artifact_",)),
+]
+
+
 def group_rank(p):
     n = p.name
+    for rank, keys in QUEST_GROUPS:
+        if n.startswith(keys):
+            return rank
     if n.startswith("floor_") or n.startswith("route_") or n == "records_mat":
         return 0
     if n.startswith("wall_"):
