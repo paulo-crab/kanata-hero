@@ -70,8 +70,10 @@ def palette_swap(img, district):
             out[m] = rgb(d)
             done[m] = True
 
-    for s in bst.INK:  # shared ramp: leave as is
-        done |= np.all(img == s, axis=2)
+    for s_ink, d_ink in zip(bst.INK, dp.INK):  # shared ramp: the deeper rich-finish ink in every district
+        m = np.all(img == s_ink, axis=2)
+        out[m] = rgb(d_ink)
+        done |= m
     swap(bst.STONE, pal["wall"], rows & np.ones(img.shape[:2], bool))
     swap(bst.STONE, pal["floor"])
     swap(bst.GLASS, pal["glass"])
@@ -200,10 +202,10 @@ def build():
     SW, SH, RG = 46, 40, 16
     ramp_w = 4 * SW
     left = 150
-    sheet_w = left + 9 * (ramp_w + RG) + 20
+    sheet_w = left + 10 * (ramp_w + RG) + 20
     block_h = SH + 34
     y_top = 64
-    y_tiles = y_top + 5 * block_h + 30
+    y_tiles = y_top + 6 * block_h + 30
     y_cast = y_tiles + TILE_H * ZOOM + 70
     cast_h = 7 * 56 + 40
     y_heads = y_cast + cast_h + 10
@@ -212,12 +214,12 @@ def build():
     d.text((20, 16), "Kanata Hero district palettes · 8 ramps x 4 steps, shadow to light · Director decision 2026-10-02",
            font=bst.font(18, bold=True), fill=INK_TXT)
     d.text((20, 40), "Ink and violet are identical in every district. Orientation is the approved palette (wall shares the stone "
-           "ramp; coral shown as ninth ramp).", font=bst.font(13), fill=DIM_TXT)
+           "ramp; coral shown as ninth ramp). Rich finish v2 ramps on Orientation, deeper shared ink.", font=bst.font(13), fill=DIM_TXT)
     for row, (district, pal) in enumerate(dp.DISTRICTS.items()):
         y = y_top + row * block_h
         d.text((20, y + 6), dp.NAMES[district], font=bst.font(17, bold=True), fill=INK_TXT)
         if district == "orientation":
-            d.text((20, y + 26), "approved 2026-10-01", font=bst.font(11), fill=DIM_TXT)
+            d.text((20, y + 26), "approved 2026-10-01, v2 finish", font=bst.font(11), fill=DIM_TXT)
         elif district == "nightshift":
             d.text((20, y + 26), "dark floor: edge-light rule", font=bst.font(11), fill=DIM_TXT)
         for i, role in enumerate(dp.ROLES):
@@ -229,6 +231,22 @@ def build():
     swatch_row(d, left + 8 * (ramp_w + RG), y_top, dp.ORIENTATION_EXTRA["coral"], SW, SH)
     d.text((left + 8 * (ramp_w + RG), y_top + SH + 4), "coral (people, Orientation only)", font=bst.font(11), fill=DIM_TXT)
 
+    # leaf-fan edge and tip tones: a tenth slot per district
+    for row, district in enumerate(dp.DISTRICTS):
+        y = y_top + row * block_h
+        x = left + 9 * (ramp_w + RG)
+        ex = dp.FOLIAGE_EXTRA[district]
+        swatch_row(d, x, y, [ex["edge"], ex["tip"]], SW, SH)
+        d.text((x, y + SH + 4), "foliage edge, tip", font=bst.font(11), fill=DIM_TXT)
+    # rich-finish garden extras
+    y = y_top + 5 * block_h
+    d.text((20, y + 6), "Rich finish", font=bst.font(17, bold=True), fill=INK_TXT)
+    d.text((20, y + 26), "garden extras", font=bst.font(11), fill=DIM_TXT)
+    x = left
+    for name, steps in dp.RICH_EXTRAS.items():
+        swatch_row(d, x, y, steps, SW, SH)
+        d.text((x, y + SH + 4), name.replace("_", " "), font=bst.font(11), fill=DIM_TXT)
+        x += len(steps) * SW + RG
     d.text((20, y_tiles - 22), "Sample tiles at x4: Orientation's floor, glass wall, desk and planters recoloured by palette swap; "
            "Engineer and Ivo drawn with their own palettes", font=bst.font(13), fill=DIM_TXT)
     for i, district in enumerate(dp.DISTRICTS):

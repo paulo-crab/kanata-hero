@@ -7,9 +7,12 @@ everywhere). `floor` step 3 is the broad fill and step 2 the slab mid tone, the
 indices environment.py already uses for STONE. The darkest step of a ramp goes on
 contours and joints only, as in STYLE_BIBLE section 3.
 
-Orientation is the approved palette from STYLE_BIBLE section 3. It has no separate
-wall ramp (walls reuse the stone ramp) and keeps coral as a ninth, people ramp.
-Spec and derivation: PALETTES_SPEC.md. Checks: check_palettes.py.
+Orientation is the approved palette from STYLE_BIBLE section 3 with the rich-finish v2
+ramps (2026-10-02, ../rich-finish/RICH_FINISH_SPEC.md): ink, glass, wood, foliage and
+brass/accent are the v2 hexes, stone is unchanged. It has no separate wall ramp (walls reuse
+the stone ramp) and keeps coral as a ninth, people ramp. The deeper v2 ink is shared by every
+district. Every district's foliage also has a sunlit tip and an edge tone (FOLIAGE_EXTRA) for
+the leaf fans. Spec and derivation: PALETTES_SPEC.md. Checks: check_palettes.py.
 """
 import importlib
 import os
@@ -18,7 +21,7 @@ import sys
 ROLES = ("ink", "floor", "wall", "glass", "wood", "foliage", "accent", "violet")
 FLOOR_FILL, FLOOR_MID = 3, 2  # indices into the floor ramp (environment.py: STONE[3] fill, STONE[2] joints)
 
-INK = ["#202337", "#343650", "#535971", "#777A8C"]
+INK = ["#0E1020", "#1C2038", "#3A4160", "#6A7392"]  # rich finish v2; replaced #202337 #343650 #535971 #777A8C
 VIOLET = ["#413755", "#67547C", "#9477AF", "#C3A6D6"]  # glitches only, identical in every district
 
 MARKERS = {"teal": "#19AFA2", "coral": "#EC776D", "violet": "#9876D5", "gold": "#E6B750"}
@@ -28,10 +31,10 @@ DISTRICTS = {
         "ink": INK,
         "floor": ["#665D65", "#968A85", "#C7B7A0", "#F0DEC0"],
         "wall": ["#665D65", "#968A85", "#C7B7A0", "#F0DEC0"],  # shares the stone ramp
-        "glass": ["#203A50", "#366479", "#5AA3AE", "#A0DDD4"],
-        "wood": ["#523D4C", "#85565A", "#BA785F", "#E4AA73"],
-        "foliage": ["#21484A", "#326D60", "#5FA06D", "#B2CE78"],
-        "accent": ["#705056", "#AC7655", "#E1AC62", "#F5D580"],  # brass / discovery
+        "glass": ["#0F3550", "#1D7396", "#3CBAD6", "#A8F0EE"],  # v2 (was #203A50 #366479 #5AA3AE #A0DDD4)
+        "wood": ["#3A2216", "#7C4220", "#B8671F", "#E69A3A"],  # v2 (was #523D4C #85565A #BA785F #E4AA73)
+        "foliage": ["#134A22", "#1F7A2B", "#3FA832", "#7BD23C"],  # v2 garden green (was #21484A #326D60 #5FA06D #B2CE78)
+        "accent": ["#7A4A2A", "#C98A3A", "#FFC83D", "#FFF0A0"],  # v2 brass / discovery (was #705056 #AC7655 #E1AC62 #F5D580)
         "violet": VIOLET,
     },
     "records": {
@@ -76,7 +79,34 @@ DISTRICTS = {
     },
 }
 # Orientation keeps coral (people / upholstery) beside its eight ramps.
-ORIENTATION_EXTRA = {"coral": ["#71394F", "#B65761", "#E67A70", "#F6B18E"]}
+ORIENTATION_EXTRA = {"coral": ["#7A2E40", "#C8485A", "#F26A5A", "#FFB38A"]}  # v2 (was #71394F #B65761 #E67A70 #F6B18E)
+
+# Rich-finish foliage tones, deepest to sunlit tip. Orientation's foliage ramp is steps 0-3 of this.
+FOLIAGE_TONES = ["#134A22", "#1F7A2B", "#3FA832", "#7BD23C", "#C4F061"]
+
+# Every district's foliage ramp gains a sunlit tip (lighter than step 3: the single-pixel leaf
+# sparkles) and a dark edge tone (darker than step 0: the line between overlapping leaves).
+# The four-step ramps above stay as approved.
+FOLIAGE_EXTRA = {
+    "orientation": {"tip": "#C4F061", "edge": "#0B2B17"},
+    "records": {"tip": "#D5E0C7", "edge": "#1A2A26"},
+    "systems": {"tip": "#E7FAF2", "edge": "#102226"},
+    "nightshift": {"tip": "#A6C8A4", "edge": "#0D1B1A"},
+    "executive": {"tip": "#D0E7AB", "edge": "#0F281C"},
+}
+
+# Garden and planter extras that exist only in the rich finish (RICH_FINISH_SPEC.md section 1).
+# Lists are ordered shadow -> light unless a note says otherwise.
+RICH_EXTRAS = {
+    "planter": ["#16223C", "#26395E", "#3D5C8E"],  # blue planters
+    "planter_lip": ["#6F92C4"],  # lit top lip
+    "planter_bolt": ["#8FB0DA"],  # metal band bolts
+    "mulch": ["#5A3418", "#9A5A22", "#E8892B"],  # soil, mulch, orange flecks
+    "rocks": ["#2B2F3A", "#565B66", "#8A8F99", "#B8BDC6"],  # grey rocks
+    "moss": ["#4E8F2E"],  # rock caps
+    "petals": ["#E9D2C0", "#FFF6EA"],  # flower petals: shade, lit
+    "flower_accents": ["#E8892B", "#F7B6C8", "#FFD84A"],  # centre, pink lily, yellow dots (unordered)
+}
 
 # Ramps that are emissive devices: they may be teal-hued above 60% saturation
 # (terminals, mint circuitry) but still never come near a UI marker.

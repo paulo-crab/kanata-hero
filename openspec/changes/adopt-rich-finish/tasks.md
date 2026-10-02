@@ -3,8 +3,8 @@
 ## 1. Shared implementation and palettes
 
 - [ ] 1.1 Promote the v2 remap, leaf fans, planters, garden parts and light passes from `art-direction/rich-finish/` into `art-direction/kit/rich_finish.py`; verify that rebuilding Mock 2.1 from the shared module has zero differing pixels against `rich-finish/m2_1_organic.png`
-- [ ] 1.2 Add the Orientation v2 ramps and the foliage, planter, rock and flower extras to `palettes/district_palettes.py`, and teach `check_palettes.py` the marker-distance (dE 10) and teal-saturation checks for them; verify `check_palettes.py` passes
-- [ ] 1.3 Add the fifth foliage tone and edge tone to each district's foliage ramp; verify `check_palettes.py` passes and `palettes-sheet.png` is rebuilt
+- [x] 1.2 Add the Orientation v2 ramps and the foliage, planter, rock and flower extras to `palettes/district_palettes.py`, and teach `check_palettes.py` the marker-distance (dE 10) and teal-saturation checks for them; verify `check_palettes.py` passes
+- [x] 1.3 Add the fifth foliage tone and edge tone to each district's foliage ramp; verify `check_palettes.py` passes and `palettes-sheet.png` is rebuilt
 
 ## 2. People, props and shadows
 

@@ -14,7 +14,11 @@ Run: python3 check_palettes.py            (needs numpy only; exit code 1 on any 
   (d) shared      ink and violet ramps are identical in every district
   (e) cast        new skin/hair ramps: corresponding mid steps >= 12 dE from every other cast
                   member, hair separated from skin, ramps clear of markers and violet
-Orientation is the approved palette: it is reported (INFO) but not failed.
+  (h) rich finish v2 ramps and extras (RICH_FINISH_SPEC.md): every step of the garden and planter extras
+                  and of every district's foliage tip and edge tones is >= dE 10 from every marker;
+                  Orientation's foliage ramp plus tip is the five rich-finish foliage tones; each tip is
+                  lighter than foliage step 3 and each edge darker than step 0, both >= dE 8 away
+The v2 Orientation ramps are held to the same checks as every other district.
 """
 import colorsys
 import itertools
@@ -25,7 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import district_palettes as dp  # noqa: E402
 
-OUTLINE = "#202337"
+OUTLINE = dp.INK[0]  # rich finish v2 outline #0E1020
 MIN_DE_MARKER = 10.0
 MIN_DE_CAST = 12.0
 MIN_CONTRAST = 3.0
@@ -179,7 +183,7 @@ def run(verbose=True):
     for d, pal in dp.DISTRICTS.items():
         for name, steps in pal.items():
             for i in range(3):
-                if de(steps[i], steps[i + 1]) < 8 and d != "orientation":
+                if de(steps[i], steps[i + 1]) < 8:
                     fails.append(f"(f) {d}.{name}[{i}->{i + 1}] only dE {de(steps[i], steps[i + 1]):.1f}")
 
     # (a) markers and (b) teal saturation, per district
@@ -187,7 +191,7 @@ def run(verbose=True):
     pools = {d: dict(pal) for d, pal in dp.DISTRICTS.items()}
     pools["orientation"].update(dp.ORIENTATION_EXTRA)
     for d, pal in pools.items():
-        bucket = info if d == "orientation" else fails
+        bucket = fails
         for name, i, h in ramp_steps(pal):
             for mk, mh in dp.MARKERS.items():
                 if name == "violet":
@@ -215,7 +219,7 @@ def run(verbose=True):
     for r in rows:
         out(f"{dp.NAMES[r['district']]:12} {r['sprite']:9} {r['outline']:8.2f} {r['rim']:6.2f} "
             f"{r['worst']:7.2f} ({r['worst_key']:10}) {r['low']}/{r['n']}  {r['cov'] * 100:6.0f}% / {r['cov_mid'] * 100:3.0f}%")
-        bucket = info if r["district"] == "orientation" else fails
+        bucket = fails
         if is_dark_floor(r["district"]):
             if r["rim"] < MIN_RIM_CONTRAST:
                 bucket.append(f"(c) {r['district']}: rim {rim_hex()} only {r['rim']:.2f}:1 against the floor (moonlight level {MIN_RIM_CONTRAST}:1)")
@@ -281,6 +285,37 @@ def run(verbose=True):
         ds = de(allc[a]["skin"][2], allc[b]["skin"][2])
         if min(dh, ds) < MIN_DE_CAST and (a in dp.CAST_RAMPS or b in dp.CAST_RAMPS):
             fails.append(f"(e) {a}/{b}: hair dE {dh:.1f}, skin dE {ds:.1f}")
+
+    # (h) rich finish: foliage tones, tip and edge, garden extras
+    out("\n(h) Rich finish: foliage tip and edge tones per district, garden extras vs markers")
+    if dp.DISTRICTS["orientation"]["foliage"] + [dp.FOLIAGE_EXTRA["orientation"]["tip"]] != dp.FOLIAGE_TONES:
+        fails.append("(h) orientation foliage ramp plus tip is not FOLIAGE_TONES")
+    if set(dp.FOLIAGE_EXTRA) != set(dp.DISTRICTS):
+        fails.append("(h) FOLIAGE_EXTRA must cover exactly the five districts")
+    for d, ex in dp.FOLIAGE_EXTRA.items():
+        f = dp.DISTRICTS[d]["foliage"]
+        tip, edge = ex["tip"], ex["edge"]
+        out(f"  {dp.NAMES[d]:12} tip {tip} (dE {de(tip, f[3]):4.1f} from step 3)  edge {edge} (dE {de(edge, f[0]):4.1f} from step 0)")
+        if lab(tip)[0] <= lab(f[3])[0] or de(tip, f[3]) < 8:
+            fails.append(f"(h) {d}: foliage tip {tip} must be lighter than step 3 {f[3]} and dE >= 8 from it")
+        if lab(edge)[0] >= lab(f[0])[0] or de(edge, f[0]) < 8:
+            fails.append(f"(h) {d}: foliage edge {edge} must be darker than step 0 {f[0]} and dE >= 8 from it")
+        for tag, h in (("tip", tip), ("edge", edge)):
+            for mk, mh in dp.MARKERS.items():
+                if de(h, mh) < MIN_DE_MARKER:
+                    fails.append(f"(h) {d}: foliage {tag} {h} only dE {de(h, mh):.1f} from the {mk} marker")
+            hue, sat, _ = hsl(h)
+            if 160 <= hue <= 200 and sat > 60 and "foliage" not in dp.DEVICE_RAMPS[d]:
+                fails.append(f"(h) {d}: foliage {tag} {h} teal-hued at {sat:.0f}% saturation")
+    for name, steps in dp.RICH_EXTRAS.items():
+        for h in steps:
+            for mk, mh in dp.MARKERS.items():
+                if de(h, mh) < MIN_DE_MARKER:
+                    fails.append(f"(h) extras.{name} {h} only dE {de(h, mh):.1f} from the {mk} marker")
+        if name in ("planter", "rocks", "mulch", "petals"):
+            if sorted(steps, key=lambda h: lab(h)[0]) != list(steps):
+                fails.append(f"(h) extras.{name} is not ordered shadow -> light")
+    out("  extras: " + ", ".join(f"{n} x{len(v)}" for n, v in dp.RICH_EXTRAS.items()))
 
     out("")
     for line in info:
