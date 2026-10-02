@@ -173,6 +173,8 @@ export function mountUi(root, params = {}) {
     if (!modal || !modal.host.querySelectorAll) return;
     const list = [...modal.host.querySelectorAll('button:not([disabled]),[tabindex]:not([tabindex="-1"])')];
     const at = list.indexOf(doc.activeElement);
+    // Focus on an element the list does not know (a scroll region the browser made focusable): let the browser move on.
+    if (at < 0 && modal.host.contains && modal.host.contains(doc.activeElement) && doc.activeElement !== modal.host) return;
     const next = nextFocusIndex(list.length, at, ev.shiftKey);
     const wraps = at < 0 || (ev.shiftKey ? at === 0 : at === list.length - 1);
     if (wraps && next >= 0) { ev.preventDefault(); list[next].focus(); }

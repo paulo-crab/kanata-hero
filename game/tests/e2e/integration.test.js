@@ -104,6 +104,15 @@ test('overlay screens do not stack: Settings over the journal hides the journal 
   assert.ok(t.last('vm:journal'), 'the journal comes back when Settings closes');
 });
 
+test('focus returns to the play surface after a layer closes: the view-model is gone before ui:restore-focus', async () => {
+  const t = intoHub(await start());
+  t.player.tap('q');
+  t.rec.clear();
+  t.player.tap('Escape');
+  const seq = t.rec.events.map((e) => (e.topic === 'vm:journal' ? `journal:${e.payload === null ? 'null' : 'vm'}` : e.topic)).filter((x) => x === 'journal:null' || x === 'ui:restore-focus');
+  assert.deepEqual(seq, ['journal:null', 'ui:restore-focus']);
+});
+
 test('resetProgress without confirmation opens the confirm card and erases nothing; confirmed erases', async () => {
   const storage = new MemoryStorage();
   const t = intoHub(await start({ storage }));

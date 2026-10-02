@@ -83,6 +83,8 @@ export class SceneMachine {
     const below = this.top;
     if (below) {
       below.enter(this.ctx, { restore: this._saved.get(below) });
+      // Publish first: the UI only returns focus once the closed layer's view-model is gone.
+      this.publish();
       this.ctx.bus.emit('ui:restore-focus', { sceneId: below.id });
     }
     this._after();
