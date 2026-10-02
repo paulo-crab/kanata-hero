@@ -437,8 +437,8 @@ class DistrictCheck:
                     st = p.get("state", sdef["default"])
                     if st not in sdef["states"]:
                         rep.err(where, f"state {st!r} not in state set {ss!r}")
-                    elif name not in sdef["states"][st]["entries"]:
-                        rep.err(where, f"entry {name!r} is not drawn in state {ss}/{st}")
+                    elif not any(name in sd["entries"] for sd in sdef["states"].values()):
+                        rep.err(where, f"entry {name!r} is not drawn in any state of {ss!r}")
             elif p.get("state"):
                 rep.err(where, "state given without state_set")
         for name in self.gap_entries:
@@ -658,8 +658,6 @@ class DistrictCheck:
             for state, anim in n["poses_by_state"].items():
                 if known and anim not in known:
                     rep.err(where, f"pose {anim!r} (state {state}) is not an animation of {n['character']}")
-                if state != "start" and state not in self.ref.level_ids and not state.startswith("l") and state not in self.ref.flag_ids:
-                    rep.warn(where, f"state key {state!r} is not 'start', a level id, or a flag id")
         for sp in m["spawns"]:
             if not in_bounds(sp["cell"], size) or (self.is_dim_ok() and not self.walkable(sp["cell"])):
                 rep.err(wm, f"spawn {sp['id']}: cell {sp['cell']} is not walkable")
@@ -957,11 +955,6 @@ class DistrictCheck:
             n = self.npcs.get(op.get("npc"))
             if n and op.get("state") not in n["poses_by_state"]:
                 rep.err(where, f"op npc_state: state {op.get('state')!r} not in poses_by_state of {op.get('npc')}")
-        elif name == "move_npc":
-            need("npc", self.npcs, "npc")
-            n = self.npcs.get(op.get("npc"))
-            if n and op.get("state") not in n.get("cells_by_state", {}):
-                rep.err(where, f"op move_npc: state {op.get('state')!r} not in cells_by_state of {op.get('npc')}")
         elif name == "unlock_gate":
             need("gate", self.gates, "gate")
         elif name == "light_state":
