@@ -9,7 +9,7 @@
 | Role | A software engineer on a late shift, called in to repair a run of small office incidents. Coworkers remember their work. |
 | Personality | Observant and competent; mostly defined by the player's choices. Their journal records evidence rather than speeches. |
 | Pronouns | Not specified; the player defines the character. Sheets use they/them. |
-| Where seen | Everywhere. Arrives by the Orientation elevator (southwest of the garden). |
+| Where seen | Everywhere. Arrives by the Orientation elevator (north wall, west end of the reception floor). |
 
 Sources: `levels.md` cast table; `docs/game-design.md` "Characters and UI"; STYLE_BIBLE §5.
 

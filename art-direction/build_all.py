@@ -46,6 +46,7 @@ STEPS = [
     ("ui-kit", "check_contrast.py", []),
     ("ui-kit", "build_world.py", []),
     ("ui-kit", "build_reference.py", []),
+    ("../design/levels", "validate_levels.py", ["--all"]),   # level data against the atlases, inventory and world index
     (".", "check_handoff.py", []),        # every path listed in ART_HANDOFF.md exists
 ]
 
