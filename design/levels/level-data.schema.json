@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "kanata-hero/level-data.schema.json",
   "title": "Kanata Hero level data",
+  "x-schema-version": "0.2",
   "description": "One schema file, many shapes. validate_levels.py picks the definition by file: district.json -> district, map.json -> map, levels/NN-*.json -> level, mira/NN-*.json -> mira_route, coverage.json -> coverage, world.json -> world, gesture-inventory.json -> inventory. See SCHEMA.md for meaning.",
   "$defs": {
     "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$", "maxLength": 80},
@@ -49,7 +50,7 @@
         "links": {"type": "array", "items": {
           "type": "object", "required": ["id", "kind", "between", "label"], "additionalProperties": false,
           "properties": {
-            "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["elevator", "door"]},
+            "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["elevator", "door", "panel"]},
             "between": {"type": "array", "items": {"$ref": "#/$defs/district_id"}, "minItems": 1, "maxItems": 2},
             "seal_required": {"type": ["string", "null"]}, "label": {"$ref": "#/$defs/text"},
             "cells": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cell"}, "description": "door links: the door cell in each district, keyed by district id; a district exit on this link must use its cell"}
@@ -200,7 +201,8 @@
             "id": {"$ref": "#/$defs/id"}, "character": {"enum": ["engineer", "ivo", "mira", "noor", "hal", "ada", "vale", "bgworker_a", "bgworker_b"]},
             "start_cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"},
             "patrol": {"$ref": "#/$defs/cells"}, "patrol_clock": {"type": "string"},
-            "poses_by_state": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}},
+            "initial_state": {"type": "string", "description": "state the NPC holds when the game starts; default start. The reserved state absent (pose null) means the NPC is not in the district yet"},
+            "poses_by_state": {"type": "object", "minProperties": 1, "additionalProperties": {"type": ["string", "null"]}, "description": "state id to animation name; only the reserved state absent may use null (not drawn, no interaction)"},
             "cells_by_state": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cell"}},
             "note": {"type": "string"}
           }}},
@@ -250,9 +252,11 @@
         "speaker_kind": {"enum": ["character", "object"]},
         "portrait": {"type": ["string", "null"], "description": "the expression suffix: neutral | concerned | pleased | the signature suffix (laugh, grin, unimpressed, puzzled, softened). The validator looks up <speaker>_<portrait> in portraits-atlas.json, so noor_unimpressed is written as unimpressed. null for object speakers"},
         "text": {"$ref": "#/$defs/text"}, "hint": {"anyOf": [{"$ref": "#/$defs/hint"}, {"type": "null"}]},
-        "when": {"type": "string", "description": "start grammar: step:<id>, trigger:<id>, scene_success:<id>, interact:<id>, on_request:<dialogue id>"},
+        "when": {"type": "string", "description": "start grammar: step:<id>, trigger:<id>, scene_success:<id>, interact:<id>, request:<dialogue id> (on_request lines only)"},
         "cue": {"type": "string", "description": "why this portrait: the Portrait cue map row used"},
-        "next": {"type": "string"}, "on_request": {"type": "boolean"}
+        "next": {"type": "string"},
+        "on_request": {"type": "boolean", "description": "true: the line answers a Hint key request (when is exactly request:<dialogue id>) and must carry a hint"},
+        "modal": {"type": "boolean", "description": "true: a conversation line that owns Return (Continue) and Esc (Skip) and pauses the world; false: an instruction line that takes no keys and closes when the step completes. Default when absent: true if hint is null, false if a hint is set. A line with a hint must not be modal"}
       }
     },
 
