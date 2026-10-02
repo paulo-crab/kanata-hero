@@ -54,19 +54,6 @@ b, strong { font-weight: var(--weight-bold); }
 
 .ui-host { display: contents; }
 
-.skeleton-note {
-  position: absolute;
-  left: var(--stage-margin);
-  top: var(--stage-margin);
-  margin: 0;
-  padding: var(--space-3) var(--space-4);
-  background: var(--panel-bg);
-  border: 2px solid var(--border);
-  border-radius: var(--radius-lg);
-  font-size: var(--text-base);
-  z-index: var(--z-overlay);
-}
-
 /* ---- Focus: 2 px ring plus a 2 px ink gap ---------------------------------------------------------- */
 :focus-visible {
   outline: 2px solid var(--focus);

@@ -14,14 +14,15 @@ function fail(msg) { throw new Error(`level01 script: ${msg}`); }
 /**
  * Play level 01 from a cold start.
  * @param {object} game  handles returned by createGame (game-factory.js)
- * @param {{wrongDetours?:number, recallHint?:boolean, stopAfter?:string}} [opts]
+ * @param {{wrongDetours?:number, recallHint?:boolean, stopAfter?:string, wrongTries?:boolean}} [opts]
+ *   wrongTries: false skips the deliberate wrong outputs in the popup and label scenes (a clean run for the stars)
  *   wrongDetours: extra wrong-direction steps at the start of the lap (clean-run measure)
  *   recallHint: ask for the hint during the recall walk and confirm the forfeit card
  *   stopAfter: 'setup'|'arrival'|'popup'|'keys'|'lap-leg-1'|'lap'|'stops'|'recall' to stop early (resume tests)
  * @returns {{log:object[], events:object[], checkpoints:object}} everything needed to compare two runs
  */
 export function playLevel01(game, opts = {}) {
-  const { wrongDetours = 0, recallHint = false, stopAfter = null } = opts;
+  const { wrongDetours = 0, recallHint = false, stopAfter = null, wrongTries = true } = opts;
   const { bus, clock, loop, interpreter, world, rules, machine, progress, evidence } = game;
   const rec = new BusRecorder(bus);
   const player = new ScriptedInput({
@@ -55,10 +56,14 @@ export function playLevel01(game, opts = {}) {
     return player;
   };
   const letGo = (steps = 2) => player.wait(steps);
-  // Enter until the named dialogue layer has closed (modal conversations, one line per press).
+  // Enter until the named dialogue has closed, then until any modal line that follows it has closed too
+  // (the rules chain modal lines: loop-done -> stops, stops-done -> recall, thanks -> fold-intro).
+  const closed = (id) => rec.of('dialogue:closed').some((e) => e.id === id);
   const finishDialogue = (id) => {
-    for (let i = 0; i < 12 && rec.of('vm:dialogue').at(-1)?.id === id && machine.top?.kind === 'dialogue'; i += 1) player.tap('Enter');
-    if (machine.top?.kind === 'dialogue') fail(`dialogue ${id} did not close`);
+    for (let i = 0; i < 12 && !closed(id) && machine.top?.kind === 'dialogue'; i += 1) player.tap('Enter');
+    if (!closed(id)) fail(`dialogue ${id} did not close`);
+    for (let i = 0; i < 12 && machine.top?.kind === 'dialogue'; i += 1) player.tap('Enter');
+    if (machine.top?.kind === 'dialogue') fail(`a dialogue after ${id} did not close`);
   };
   const done = (name) => stopAfter === name;
 
@@ -70,24 +75,28 @@ export function playLevel01(game, opts = {}) {
   if (done('setup')) return { log: player.log, events: rec.events, checkpoints: cp };
 
   // ---- 2. Arrival: elevator closed -> half -> open, 120 ms per state, avatar on the LIFT mat ----
-  player.wait(Math.ceil((4 * 120) / STEP_MS));
-  cp.elevatorStates = rec.of('engine:stateset-done').filter((e) => e.placement === 'elevator').map((e) => e.state);
+  const seen = [];
+  const sample = () => {
+    const st = world.placementState('elevator');
+    const last = seen.at(-1);
+    if (!last || last.state !== st) seen.push({ state: st, steps: 0 });
+    seen.at(-1).steps += 1;
+  };
+  sample();
+  for (let i = 0; i < Math.ceil((5 * 120) / STEP_MS); i += 1) { player.wait(1); sample(); }
+  cp.elevatorStates = seen.map((x) => x.state);
+  cp.elevatorStateMs = seen.slice(0, -1).map((x) => Math.round(x.steps * STEP_MS));
   cp.elevatorFinal = world.placementState('elevator');
   expectCell([3, 2], 'arrival mat');
   if (done('arrival')) return { log: player.log, events: rec.events, checkpoints: cp };
 
-  // ---- 3. Walk to Ivo (4,3), greeting, popup ------------------------------------------------
-  walk(legs.arrival);
-  letGo();
-  expectCell([4, 3], 'ivo approach');
-  player.tap('Enter');                                     // interact: o01.d.welcome (modal)
+  // ---- 3. Ivo's welcome opens by itself when the hub starts (step_start), and the popup opens when it closes
   cp.welcome = rec.of('vm:dialogue').at(-1)?.id;
   finishDialogue('o01.d.welcome');
-  // The popup is a form scene (o01-popup). If the rules did not open it by themselves, interact with Ivo.
-  if (topId() !== 'o01-popup') player.tap('Enter');
+  if (topId() !== 'o01-popup') fail(`expected the welcome popup after the welcome, found ${topId()}`);
   cp.popupOpen = topId();
-  player.tap('Caps+H');                                    // wrong: ArrowLeft observed, popup stays
-  cp.popupWrongFeedback = rec.of('vm:feedback').at(-1)?.observed ?? null;
+  if (wrongTries) player.tap('Caps+H');                    // wrong: ArrowLeft observed, popup stays
+  cp.popupWrongFeedback = wrongTries ? rec.of('vm:feedback').at(-1)?.observed ?? null : 'Left Arrow observed';
   cp.popupStillOpen = topId() === 'o01-popup';
   player.tap('Caps');                                      // Escape: closes the popup
   letGo();
@@ -142,8 +151,8 @@ export function playLevel01(game, opts = {}) {
     expectCell(legs[id].target, id);
     if (id === 'stop-west') {
       cp.labelOpen = topId() === 'o01-desk-label';
-      player.tap('Caps+W');                                // Option + Right: named in the feedback
-      cp.labelWrongFeedback = rec.of('vm:feedback').at(-1)?.observed ?? null;
+      if (wrongTries) player.tap('Caps+W');                // Option + Right: named in the feedback
+      cp.labelWrongFeedback = wrongTries ? rec.of('vm:feedback').at(-1)?.observed ?? null : 'Option + Right observed';
       player.type('west');
       letGo();
       cp.labelSuccess = rec.of('scene:success').some((e) => e.sceneId === 'o01-desk-label');
