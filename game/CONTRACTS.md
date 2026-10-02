@@ -541,7 +541,26 @@ Hint-grammar text always comes from the level data (`hint.action`, `hint.key`, `
 
 ## 8. Boot (`src/main.js`)
 
+**Headless entry point (added by the producer, 2026-10-02).** `main.js` also exports `createGame({fetchFn, baseUrl, loadImage, clock, storage, headless: true}) -> {bus, clock, data, atlases, world, rules, dialogue, evidence, progress, machine, interpreter, loop, destroy()}`. With `headless: true` it touches no canvas, DOM or `window`, still emits every `vm:*` topic, and is the entry point of `game/tests/e2e`. The browser boot is `createGame` plus the canvas, DOM and listener adapters. Test-visible handles beyond the contract text: `machine.top.id` and `machine.top.kind`, `world.avatar.cell` and `.facing`, `rules.currentStep.id`; the first scene is `setup`.
+
+**Atlas lookups.** An animation or pose name resolves from the atlas `animations` object or its `variants` object (the background workers' phone, coffee and typing idles live under `variants`). Seated worker sets are in separate `*-seated-atlas.json` files and are not needed for level 01.
+
+**Calibration and Return.** On the calibration screen Return settles step 2 (Caps + N) only; it does not also continue. Continue on that screen is the explicit Next control.
+
 `main.js` creates the bus, clock, loads `GameData` and `AtlasSet`, builds `World`, `ProgressStore`, `SceneMachine`, `KeyInterpreter`, mounts the UI, starts `GameLoop`, and routes `DataLoadError` to the `error` scene. In the skeleton it only loads nothing and shows a "skeleton" notice; integration (group 7) fills it.
+
+## 8a. Runtime and engine additions (producer, 2026-10-02)
+
+Additive changes fixed by the first implementations; they are part of the contract.
+
+- `vm:markers` and `vm:prompt` carry `cell: [x, y]` and `at: {x, y}` in map pixels (cell * 16, top-left), not stage pixels; the UI converts with `worldToStage`.
+- `ProgressDoc.levels[levelId]` gains `facts: string[]` and `sceneProgress: {[sceneId]: number}` for resume.
+- `SceneContext` gains `machine`, `dialogue`, `manifest`, `actions` and `held`; `input` is the input module namespace, injected by `createSession`.
+- `World.serialize()` and `World.restore()` use the slice `{placements: {id: state}, npcs: {id: stateName}, gates: [ids], avatar: {cell, facing}, glitches}`.
+- `DialogueRuntime` emits `dialogue:open` and `dialogue:closed {id, by}`; `RuleRuntime` emits `rules:step-start` and `rules:step-done`.
+- `World` options are `{bus, random, reducedMotion, avatarCharacter, spawn}`; it also exposes `setReducedMotion`, `setMarkers(list)`, `camera()`, `glitch(id)` and `avatarFrame()`. `engine:glitch-repaired` fires when the snap frame starts.
+- `createSession` wires machine, rules, dialogue, evidence, progress, world and bus. `session.update(ms)` updates the machine only, so boot must also call `world.update(ms)` and `world.setReducedMotion`.
+- A `reach_cell` fact counts only while the step whose walk scene uses that cell is current.
 
 ## 9. Worked example: one Escape press through the whole stack
 

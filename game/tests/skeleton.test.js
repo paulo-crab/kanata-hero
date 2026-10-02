@@ -28,11 +28,6 @@ test('module stubs import and export the contract names', () => {
   }
 });
 
-test('stubs throw not implemented', async () => {
-  await assert.rejects(() => engine.loadGameData(), /not implemented/);
-  assert.throws(() => new runtime.ProgressStore({}), /not implemented/);
-});
-
 test('pure engine helpers match the contract', () => {
   assert.equal(engine.chooseZoom(1366, 768), 4);
   assert.equal(engine.chooseZoom(1920, 1080), 6);
