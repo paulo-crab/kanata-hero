@@ -8,7 +8,7 @@
 | --- | --- |
 | Role | Night caretaker who sees what happens when staff leave. Gives Act IV quests (17–19) and the **Desk for Dawn** side quest. Teaches how to leave practice mode safely. |
 | Personality | Direct, kind, practical about recovery. Calm. |
-| Pronouns | Not specified; use they/them until decided |
+| Pronouns | she/her (decided by the player 2026-10-02, matching `levels.md`) |
 | Signature prop | **Warm lantern** |
 
 Sources: `levels.md` cast table, Night Shift row, levels 17–19.
@@ -73,10 +73,10 @@ No signature expression (none specified). The lantern at the lower right carries
 ## Assumptions
 
 1. The rim light is drawn into the sprite as a fixed 1 px edge, not a runtime effect.
-2. The reactions and portraits are derived from their voice; portrait story cues now live in the `levels.md` Portrait cue map.
+2. The reactions and portraits are derived from her voice; portrait story cues now live in the `levels.md` Portrait cue map.
 
 ## Open questions
 
 1. Skin, hair, and coat colors.
 2. The Night Shift hex palette.
-3. Pronouns.
+3. ~~Pronouns.~~ Decided 2026-10-02: she/her.

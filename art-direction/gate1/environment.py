@@ -11,7 +11,12 @@ import random
 
 import numpy as np
 
-import build_scale_test as bst
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "kit"))
+import build_scale_test as bst  # noqa: E402
+import rich_finish  # noqa: E402
 
 INK, STONE, GLASS, WOOD, GREEN, BRASS, CORAL = bst.INK, bst.STONE, bst.GLASS, bst.WOOD, bst.GREEN, bst.BRASS, bst.CORAL
 shifted, shade_mask = bst.shifted, bst.shade_mask
@@ -257,40 +262,13 @@ def block(r, x0, y0, x1, y1, face, top, side, shadow=True):
 
 
 def leaves(r, cx, cy, rad, seed, ramp=GREEN, count=5, spread=None, clip=None):
-    rnd = random.Random(seed)
-    spread = spread or rad * 0.9
-    parts = []
-    for i in range(count):
-        a = 2 * math.pi * i / count + rnd.uniform(-0.3, 0.3)
-        d = spread * rnd.uniform(0.35, 1.0)
-        parts.append((cx + math.cos(a) * d, cy + math.sin(a) * d * 0.8, rad * rnd.uniform(0.6, 0.85)))
-    parts.append((cx - rad * 0.15, cy - rad * 0.2, rad * 0.75))
-    whole = np.zeros((H, W), bool)
-    for px, py, pr in sorted(parts, key=lambda p: p[1]):
-        m = r.blob(px, py, pr, rnd.uniform(0, 6.28), lobes=5, amp=0.2)
-        if clip is not None:
-            m &= clip
-        shade_mask(r.img, m, ramp, k_shadow=1, k_light=1)
-        r.img[m & ~(shifted(m, 1, 0) & shifted(m, 0, 1))] = ramp[0]
-        whole |= m
-    # Warm tips: a few top-left leaf points in the lightest step.
-    tips = whole & ~shifted(whole, -1, -1) & ~shifted(whole, 0, -2)
-    r.img[tips & ((r.x.astype(int) + r.y.astype(int)) % 3 == 0)] = ramp[3]
-    ring = (shifted(whole, 1, 0) | shifted(whole, 0, 1) | shifted(whole, -1, 0) | shifted(whole, 0, -1)) & ~whole
-    r.img[ring & ~shifted(whole, 0, 1)] = INK[0]
-    return whole
+    """Rich-finish leaf fans (kit/rich_finish.py): five tones, dark edge, two layers, sparkle tips."""
+    return rich_finish.leaves(r, cx, cy, rad, seed, ramp, count=count, spread=spread, clip=clip)
 
 
 def pot_plant(r, x, y, seed):
-    """Slate planter with a leafy plant, the 08 prop that frames every edge."""
-    r.cast(x, x + 12, y + 12)
-    pot = r.mask(x, y + 4, x + 12, y + 12)
-    r.img[pot] = INK[1]
-    r.rect(x, y + 4, x + 12, y + 6, INK[2])
-    r.rect(x, y + 4, x + 1, y + 12, INK[2])
-    r.rect(x, y + 11, x + 12, y + 12, INK[0])
-    r.outline(pot)
-    leaves(r, x + 6, y + 1, 6.5, seed, count=6, spread=6)
+    """Blue planter with a leaf fan, the 08 prop that frames every edge (rich finish)."""
+    rich_finish.planter(r, x, y, seed, GREEN)
 
 
 def desk(r, x0, y0, seed):

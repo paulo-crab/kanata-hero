@@ -142,6 +142,11 @@ def edge_light(sprite, rim=SILVER, bg=FLOOR_FILL, shadow=None, skip_rows=None, m
         near = sum(pad[1 + dy:1 + dy + lit.shape[0], 1 + dx:1 + dx + lit.shape[1]] for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dx, dy) != (0, 0))
         lone = lit & (near == 0)
         out[lone, :3] = sprite[lone, :3]
+        # a lone leaf-edge pixel too dark against the floor takes the foliage tip (a sunlit leaf tip, not a frost speck)
+        tip = rgb(dp.FOLIAGE_EXTRA["nightshift"]["tip"])
+        for y, x in zip(*np.nonzero(lone)):
+            if contrast(sprite[y, x, :3], bg) < minimum:
+                out[y, x, :3] = tip
     return out
 
 

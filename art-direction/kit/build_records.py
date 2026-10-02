@@ -250,6 +250,7 @@ def review(layout, atlas):
     # palette discipline: every opaque atlas pixel is a Records ramp step (ink and violet shared); no violet at all
     import district_palettes as dp
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in dp.DISTRICTS["records"][role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['records'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is a Records ramp step; no violet", used <= allowed and not (used & violet),

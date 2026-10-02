@@ -1023,7 +1023,54 @@
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    560,
+    0,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -1061,16 +1108,16 @@
    "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
   },
   {
-   "name": "pot_plant_b",
+   "name": "pot_plant_c",
    "kind": "prop",
    "rect": [
-    560,
+    592,
     0,
     32,
     32
    ],
    "size_px": [
-    20,
+    19,
     21
    ],
    "footprint": {
@@ -1079,7 +1126,7 @@
      1
     ],
     "origin_px": [
-     4,
+     3,
      11
     ]
    },
@@ -1089,7 +1136,7 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    12,
+    11,
     27
    ],
    "composite": {
@@ -1100,55 +1147,8 @@
     "planter"
    ],
    "contact_shadow": [
-    5,
+    4,
     19,
-    13,
-    2
-   ],
-   "note": "slate planter with a dusty-sage plant; four leaf layouts (a to d)"
-  },
-  {
-   "name": "pot_plant_c",
-   "kind": "prop",
-   "rect": [
-    592,
-    0,
-    32,
-    32
-   ],
-   "size_px": [
-    20,
-    22
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     12
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    28
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
-    20,
     13,
     2
    ],
@@ -1164,8 +1164,8 @@
     32
    ],
    "size_px": [
-    21,
-    21
+    17,
+    22
    ],
    "footprint": {
     "cells": [
@@ -1173,8 +1173,8 @@
      1
     ],
     "origin_px": [
-     5,
-     11
+     2,
+     12
     ]
    },
    "collision": [
@@ -1183,8 +1183,8 @@
    "layer": "rear_prop",
    "y_sort": true,
    "anchor": [
-    13,
-    27
+    10,
+    28
    ],
    "composite": {
     "mode": "over"
@@ -1194,8 +1194,8 @@
     "planter"
    ],
    "contact_shadow": [
-    6,
-    19,
+    3,
+    20,
     13,
     2
    ],

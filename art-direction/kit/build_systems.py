@@ -168,6 +168,7 @@ def review(layout, atlas):
     lo, lw = br.luminance(opening), br.luminance(wall)
     check("doorway (open) is brighter than the adjacent east wall", lo > lw * 1.5, f"{lo:.0f} vs {lw:.0f} luma")
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in dp.DISTRICTS["systems"][role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['systems'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is a Systems ramp step; no violet", used <= allowed and not (used & violet),

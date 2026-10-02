@@ -32,15 +32,15 @@ Every new-skill site follows **hub → short branch → task room → changed re
 
 ### Recurring cast and portrait direction
 
-| Character | Story role and dialogue voice | Sprite and portrait cues |
+| Character (pronouns) | Story role and dialogue voice | Sprite and portrait cues |
 | --- | --- | --- |
-| Engineer avatar | Observant, competent, and mostly defined by the player's choices. Their journal records evidence rather than making grand speeches. | Custom hair, skin, and clothing color within a stable silhouette; deliberate foot placement, quick turns, readable concerned and satisfied poses. |
-| Mira | Courier who knows every shortcut. Starts playful, later admits she kept copies of routes Pace tried to erase. | Coral bag strap visible even in dark rooms; lively diagonal posture; one small patch added for each clean courier baseline. |
-| Ivo | Reception lead who believes clear instructions help people; begins to question repeated onboarding scripts. | Broad cardigan and rectangular tablet; greeting wave becomes an unscripted laugh after the review. |
-| Noor | Archive clerk and keeper of unaltered paper records. Precise, dry humor, quietly defiant. | Tall outline, rolled sleeves, stamp and file tabs; posture straightens as cabinets open. |
-| Hal | Technician who built parts of Pace's routing display and notices the wrong assumptions. | Utility vest, folding stool, orange tool roll; crouched repair and puzzled reactions. |
-| Ada | Night caretaker who sees what happens when staff leave. Direct, kind, practical about recovery. | Long coat and lantern; warm rim light, steady gestures in otherwise still rooms. |
-| Vale | Executive liaison who signed summaries without seeing raw tickets. Wants a defensible audit once shown the evidence. | Navy suit, copper badge, rigid pose that softens across three final repairs. |
+| Engineer avatar (player-defined) | Observant, competent, and mostly defined by the player's choices. Their journal records evidence rather than making grand speeches. | Custom hair, skin, and clothing color within a stable silhouette; deliberate foot placement, quick turns, readable concerned and satisfied poses. |
+| Mira (she/her) | Courier who knows every shortcut. Starts playful, later admits she kept copies of routes Pace tried to erase. | Coral bag strap visible even in dark rooms; lively diagonal posture; one small patch added for each clean courier baseline. |
+| Ivo (he/him) | Reception lead who believes clear instructions help people; begins to question repeated onboarding scripts. | Broad cardigan and rectangular tablet; greeting wave becomes an unscripted laugh after the review. |
+| Noor (she/her) | Archive clerk and keeper of unaltered paper records. Precise, dry humor, quietly defiant. | Tall outline, rolled sleeves, stamp and file tabs; posture straightens as cabinets open. |
+| Hal (she/her) | Technician who built parts of Pace's routing display and notices the wrong assumptions. | Utility vest, folding stool, orange tool roll; crouched repair and puzzled reactions. |
+| Ada (she/her) | Night caretaker who sees what happens when staff leave. Direct, kind, practical about recovery. | Long coat and lantern; warm rim light, steady gestures in otherwise still rooms. |
+| Vale (she/her) | Executive liaison who signed summaries without seeing raw tickets. Wants a defensible audit once shown the evidence. | Navy suit, copper badge, rigid pose that softens across three final repairs. |
 | Pace | The campus performance system; a presence in signage and small UI copy. Its language becomes more repetitive as errors accumulate. | Rounded wayfinding icon and orderly horizontal bars; no face, jump scare, or hostile full-screen animation. |
 
 ### Portrait cue map

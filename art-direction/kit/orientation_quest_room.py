@@ -771,6 +771,9 @@ def allowed_palette():
     for role in ("ink", "floor", "glass", "wood", "foliage", "accent"):
         hexes |= {h.upper() for h in D[role]}
     hexes |= {h.upper() for h in dp.ORIENTATION_EXTRA["coral"]}
+    hexes |= {h.upper() for h in dp.FOLIAGE_EXTRA["orientation"].values()}  # rich finish: leaf edge and tip
+    for steps in dp.RICH_EXTRAS.values():  # planter, mulch, rocks, moss, petals, flower accents
+        hexes |= {h.upper() for h in steps}
     return hexes
 
 

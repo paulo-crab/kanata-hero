@@ -91,7 +91,7 @@ FOLIAGE_EXTRA = {
     "orientation": {"tip": "#C4F061", "edge": "#0B2B17"},
     "records": {"tip": "#D5E0C7", "edge": "#1A2A26"},
     "systems": {"tip": "#E7FAF2", "edge": "#102226"},
-    "nightshift": {"tip": "#A6C8A4", "edge": "#0D1B1A"},
+    "nightshift": {"tip": "#D4EACC", "edge": "#0D1B1A"},
     "executive": {"tip": "#D0E7AB", "edge": "#0F281C"},
 }
 

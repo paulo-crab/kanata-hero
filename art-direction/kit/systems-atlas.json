@@ -2098,7 +2098,54 @@
     32
    ],
    "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     2,
+     12
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    10,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "plant",
+    "planter"
+   ],
+   "contact_shadow": [
+    3,
     20,
+    13,
+    2
+   ],
+   "note": "slate planter with a circuit-lit mint plant (device ramp, not living foliage); two leaf layouts. Use sparingly"
+  },
+  {
+   "name": "pot_plant_b",
+   "kind": "prop",
+   "rect": [
+    352,
+    48,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
     21
    ],
    "footprint": {
@@ -2129,53 +2176,6 @@
    ],
    "contact_shadow": [
     4,
-    19,
-    13,
-    2
-   ],
-   "note": "slate planter with a circuit-lit mint plant (device ramp, not living foliage); two leaf layouts. Use sparingly"
-  },
-  {
-   "name": "pot_plant_b",
-   "kind": "prop",
-   "rect": [
-    352,
-    48,
-    32,
-    32
-   ],
-   "size_px": [
-    20,
-    21
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     4,
-     11
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    12,
-    27
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "plant",
-    "planter"
-   ],
-   "contact_shadow": [
-    5,
     19,
     13,
     2

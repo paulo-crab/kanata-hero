@@ -244,6 +244,7 @@ def review(layout, atlas):
           tuple(kitlib.hex2rgb(dp.DISTRICTS["executive"]["wall"][0])) in cm and tuple(kitlib.hex2rgb(dp.DISTRICTS["executive"]["wall"][0])) in pm)
     # palette discipline
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in dp.DISTRICTS["executive"][role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['executive'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is an Executive ramp step; no violet", used <= allowed and not (used & violet),

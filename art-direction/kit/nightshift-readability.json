@@ -686,8 +686,8 @@
   "desk_dead_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.0,
-    "px": 110
+    "mean": 4.96,
+    "px": 108
    }
   },
   "chair": {
@@ -706,14 +706,14 @@
    "floor": {
     "min": 4.92,
     "mean": 4.96,
-    "px": 58
+    "px": 54
    }
   },
   "desk_lit_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.02,
-    "px": 88
+    "mean": 5.1,
+    "px": 86
    },
    "pool": {
     "min": 2.5,
@@ -725,7 +725,7 @@
    "floor": {
     "min": 4.92,
     "mean": 4.97,
-    "px": 47
+    "px": 43
    },
    "pool": {
     "min": 2.5,
@@ -774,34 +774,34 @@
   "pot_plant_a": {
    "floor": {
     "min": 4.92,
-    "mean": 5.02,
-    "px": 23
+    "mean": 4.98,
+    "px": 26
    }
   },
   "pot_plant_b": {
    "floor": {
     "min": 4.92,
-    "mean": 5.1,
-    "px": 50
+    "mean": 5.22,
+    "px": 42
    },
    "pool": {
     "min": 2.5,
-    "mean": 2.6,
-    "px": 24
+    "mean": 2.68,
+    "px": 20
    }
   },
   "pot_plant_c": {
    "floor": {
     "min": 4.92,
-    "mean": 5.06,
-    "px": 78
+    "mean": 5.02,
+    "px": 64
    }
   },
   "pot_plant_d": {
    "floor": {
     "min": 4.92,
-    "mean": 5.04,
-    "px": 37
+    "mean": 5.03,
+    "px": 31
    }
   }
  }

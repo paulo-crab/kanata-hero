@@ -23,6 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import kitlib  # noqa: E402
 import orientation_kit as ok  # noqa: E402
+import rich_finish as rf  # noqa: E402
 import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
@@ -57,7 +58,7 @@ def _merge(maps):
     out = {}
     for s, d in maps:
         out.update(_ramp_map(s, d))
-    return out
+    return rf.extend(out)
 
 
 def recolour_rect(sprite, maps, rules=()):

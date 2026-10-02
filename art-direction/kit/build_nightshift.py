@@ -456,6 +456,7 @@ def review(layout, atlas, pieces):
     check("route B is brighter than the silent old route A", route_l > old_l * 1.15, f"{route_l:.0f} vs {old_l:.0f} luma")
     # --- palette
     allowed = {h.upper() for role in ("ink", "floor", "wall", "glass", "wood", "foliage", "accent") for h in NIGHT[role]}
+    allowed |= {h.upper() for h in dp.FOLIAGE_EXTRA['nightshift'].values()} | {h.upper() for v in dp.RICH_EXTRAS.values() for h in v}  # rich finish: leaf edge and tip, planters
     violet = {h.upper() for h in dp.VIOLET}
     used = {kitlib.hexs(c) for c in np.unique(atlas.img[atlas.img[:, :, 3] > 0][:, :3], axis=0)}
     check("every atlas pixel is a Night Shift ramp step; no violet", used <= allowed and not (used & violet),
