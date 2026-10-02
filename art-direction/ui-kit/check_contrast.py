@@ -7,6 +7,9 @@ Parses every `--name: value;` in tokens.css, resolves `var()` aliases, then asse
   - the panel alpha leaves text legible over the worst-case world (white and black),
   - the type scale never drops below 16 px and the body face is not a pixel font,
   - the stage maths (320x180 world at an integer zoom is the 1280x720 stage).
+  - the generated reference page (every screen in kit_screens.py): no text under 16 px, no pixel font,
+    teal/coral/violet never used as text colour (the lighter --accent-* tokens carry text), no violet fill
+    behind text, and every "you need to press" instruction followed by a Kanata "Hint:".
 Exit status 0 when everything passes.
 """
 import os
@@ -97,6 +100,40 @@ PAIRS = [
     ("coral", "panel", LARGE, "conversation glyph on a panel"),
     ("violet", "panel", LARGE, "glitch glyph on a panel"),
     ("gold", "panel", LARGE, "route glyph on a panel"),
+    # ---- Screens added by the layout-help / setup / scene / feedback work ----------------------------
+    ("accent-terminal", "panel-sunken", NORMAL, "teal text in code wells: region label, announcement"),
+    ("accent-conversation", "panel-sunken", NORMAL, "coral text on recessed wells"),
+    ("accent-glitch", "panel-sunken", NORMAL, "violet-tint text in the glitch code well"),
+    ("accent-discovery", "panel-sunken", NORMAL, "gold text: target tag, success line, line number"),
+    ("selection-text", "selection-bg", NORMAL, "selected text in an editor scene"),
+    ("cursor-text", "cursor-face", NORMAL, "glyph under the block cursor"),
+    ("focus", "selection-bg", LARGE, "3 px bar under a selection against the selection fill"),
+    ("focus", "panel-sunken", LARGE, "selection bar against the code well"),
+    ("cursor-face", "panel-sunken", LARGE, "block cursor against the code well"),
+    ("focus", "panel-sunken", LARGE, "focus ring on a recessed well"),
+    ("border", "panel-sunken", LARGE, "dashed and solid edges on a recessed well"),
+    ("key-face", "panel-raised", LARGE, "keycap and double border against a card"),
+    ("key-held-face", "panel-sunken", LARGE, "held keycap in the inset wells"),
+    ("teal", "panel-raised", LARGE, "terminal glyph and held key on a card"),
+    ("teal", "panel-sunken", LARGE, "terminal glyph on a well"),
+    ("gold", "panel-raised", LARGE, "gold glyph and frame on a card"),
+    ("gold", "panel-sunken", LARGE, "target marker on a well"),
+    ("violet", "panel-sunken", LARGE, "glitch glyph on a well"),
+    ("border-strong", "panel-raised", LARGE, "teal frame on a card"),
+    ("text-muted", "key-silent-face", NORMAL, "legend text beside a silent key"),
+    ("text", "key-silent-face", NORMAL, "XX legend on a silent key (Layout help)"),
+]
+
+# Synthetic backgrounds: a gold tint over the code well (the target line).
+def blend(fg_name, bg_name, alpha):
+    return over(rgb(fg_name), rgb(bg_name), alpha)
+
+
+TARGET_LINE = blend("gold", "panel-sunken", 0.16)
+PAIRS_RGB = [
+    ("text", TARGET_LINE, NORMAL, "code text on the gold-tinted target line"),
+    ("accent-discovery", TARGET_LINE, NORMAL, "gold line number and tag on the target line"),
+    ("text-muted", TARGET_LINE, NORMAL, "muted code keyword on the target line"),
 ]
 
 fails = 0
@@ -112,6 +149,9 @@ def report(ok, text):
 for fg, bg, need, use in PAIRS:
     r = ratio(rgb(fg), rgb(bg))
     report(r >= need, f"{fg:<20} on {bg:<13} {r:5.2f}:1 (need {need:g}) {use}")
+for fg, bg, need, use in PAIRS_RGB:
+    r = ratio(rgb(fg), bg)
+    report(r >= need, f"{fg:<20} on {'#%02X%02X%02X' % bg:<13} {r:5.2f}:1 (need {need:g}) {use}")
 
 # Panels are nearly opaque: re-test the text pairs over the worst-case world (white, black).
 alpha = float(resolve("panel-alpha"))
@@ -148,6 +188,35 @@ report(px("portrait-native") * zoom == px("portrait-size"), "48 px portrait x zo
 PUBLISHED = {"ink": "#182B38", "paper": "#F4F2EC", "teal": "#19AFA2", "coral": "#EC776D", "violet": "#9876D5", "gold": "#E6B750"}
 for name, hexv in PUBLISHED.items():
     report(resolve(name).upper() == hexv, f"anchor --{name} is {resolve(name).upper()} (published {hexv})")
+
+# ---- Lint the generated reference page (all screens) ------------------------------------------------
+sys.path.insert(0, HERE)
+import build_reference  # noqa: E402
+
+HTML = build_reference.page()
+STYLE = "".join(re.findall(r"<style>(.*?)</style>", HTML, flags=re.S)) + "".join(re.findall(r'style="([^"]*)"', HTML))
+bad = []
+for m in re.finditer(r"font-size:\s*([^;}\"]+)", STYLE):
+    v = m.group(1).strip()
+    if v.startswith("var(--text-"):
+        continue
+    mm = re.fullmatch(r"(\d+(?:\.\d+)?)px", v)
+    if not mm or float(mm.group(1)) < 16:
+        bad.append("font-size:" + v)
+for m in re.finditer(r"(?<![-\w])font:\s*([^;}\"]+)", STYLE):
+    if "var(--text-" not in m.group(1):
+        bad.append("font:" + m.group(1))
+report(not bad, "every font-size and font shorthand in the page is >= 16 px" + (": " + "; ".join(bad[:4]) if bad else ""))
+report(not re.search(r"font-family:\s*(?!var\(--font-)", STYLE), "font-family only through the --font-* tokens (no pixel font)")
+report(not re.search(r"(?<![-\w])color:\s*var\(--(teal|coral|violet)\)", STYLE),
+       "teal, coral and violet are never a text colour (the lighter --accent-* tokens carry text)")
+report(not re.search(r"background(?:-color)?:\s*var\(--violet\)", STYLE), "no text sits on a violet fill (violet is a glyph and outline colour only)")
+texts = [m.start() for m in re.finditer(r"you need to press", HTML)]
+missing = [i for i in texts if "Hint:" not in HTML[i:i + 420]]
+report(texts and not missing, f"hint grammar: all {len(texts)} instructions saying 'you need to press' carry a 'Hint:' (action, key, gesture)")
+ids = re.findall(r'<span class="a" id="s-([\w-]+)">', HTML)
+report(len(ids) == len(set(ids)) and len(ids) >= 5, f"{len(ids)} screens carry unique #s-<id> targets")
+report("<script" not in HTML, "reference page has no script")
 
 print()
 print("ALL CHECKS PASSED" if not fails else f"{fails} CHECK(S) FAILED")
