@@ -55,10 +55,24 @@ export async function createGame(opts = {}) {
   const applyMotion = () => world.setReducedMotion(effectiveReducedMotion(rmFlag, systemReducedMotion(opts)));
   bus.on('vm:settings-flags', (f) => { if (f) { rmFlag = f.reducedMotion; applyMotion(); } });
 
+  // A throwing step must never freeze the page: report it once per message on the bus and keep the loop running.
+  const reported = new Set();
+  const guarded = (where, fn) => (...args) => {
+    try {
+      fn(...args);
+    } catch (error) {
+      const key = `${where}:${error && error.message}`;
+      if (!reported.has(key)) {
+        reported.add(key);
+        bus.emit('bus:error', { topic: `loop:${where}`, error });
+        if (typeof console !== 'undefined') console.error(error);
+      }
+    }
+  };
   const loop = new engine.GameLoop({
     clock,
-    update: (ms) => { world.update(ms); session.update(ms); },
-    render: () => { if (opts.render) opts.render(); },
+    update: guarded('update', (ms) => { world.update(ms); session.update(ms); }),
+    render: guarded('render', () => { if (opts.render) opts.render(); }),
     raf: opts.raf,
     caf: opts.caf,
   });

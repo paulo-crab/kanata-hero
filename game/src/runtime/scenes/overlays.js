@@ -54,6 +54,12 @@ export class LayoutHelpScene extends BaseScene {
 
   select(patch) {
     Object.assign(this.state, patch);
+    // A key that the other keyboard does not have (Win-L on the Microsoft board) cannot stay selected.
+    const m = this.ctx.manifest;
+    if (patch.variant && this.state.selectedKey && m && m.keyboard) {
+      const ids = new Set(m.keyboard(this.state.variant).rows.flat().map((k) => k.id));
+      if (!ids.has(this.state.selectedKey)) this.state.selectedKey = null;
+    }
   }
 
   handle(ev) {

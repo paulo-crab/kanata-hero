@@ -195,3 +195,23 @@ test('a DataLoadError becomes the error scene with the file named, never a throw
   assert.equal(g2.error.file, '/design/levels/world.json');
   assert.equal(g2.error.kind, 'missing');
 });
+
+test('Layout help: switching the keyboard drops a selected key the other keyboard does not have, and a throwing step never stops the loop', async () => {
+  const t = intoHub(await start());
+  t.player.tap('?');
+  t.command({ type: 'selectVariant', id: 'microsoft' });
+  t.command({ type: 'selectKey', id: 'Win-L' });
+  assert.equal(t.last('vm:layout-help').card.label.length > 0, true);
+  t.command({ type: 'selectVariant', id: 'macbook' });
+  assert.equal(t.last('vm:layout-help').variant, 'macbook');
+  assert.equal(t.last('vm:layout-help').card, null, 'the Microsoft-only key is deselected');
+  // a step that throws is reported once and the next steps still run
+  const errors = [];
+  t.game.bus.on('bus:error', (e) => errors.push(e));
+  const real = t.game.session.update.bind(t.game.session);
+  let calls = 0;
+  t.game.session.update = (ms) => { calls += 1; if (calls === 1) throw new Error('boom'); real(ms); };
+  t.game.loop.advance(100);
+  assert.ok(calls > 3, 'the loop went on after the throw');
+  assert.equal(errors.filter((e) => e.topic === 'loop:update').length, 1);
+});
