@@ -29,7 +29,6 @@ test('module stubs import and export the contract names', () => {
 });
 
 test('stubs throw not implemented', async () => {
-  await assert.rejects(() => engine.loadGameData(), /not implemented/);
   assert.throws(() => new runtime.ProgressStore({}), /not implemented/);
 });
 
