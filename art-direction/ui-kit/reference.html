@@ -120,7 +120,6 @@ code,.mono{font-family:var(--font-mono)}
 .overlay .top{display:flex;align-items:center;gap:var(--space-5)}
 .overlay .top h2{font-size:var(--text-2xl);margin:0;white-space:nowrap}
 .overlay .top .tab,.overlay .top .close{white-space:nowrap}
-.lh-note{font-size:var(--text-sm);color:var(--text-muted);line-height:1.3;align-self:center;flex:none}
 .overlay .top .grow{flex:1}
 .overlay .close{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)}
 .tabs{display:flex;gap:var(--space-2)}
@@ -152,8 +151,8 @@ code,.mono{font-family:var(--font-mono)}
 .keysline .kh-key{height:40px;min-width:40px;font-size:var(--text-base);box-shadow:0 3px 0 var(--key-edge)}
 .keysline .kh-key.held{box-shadow:0 1px 0 var(--key-held-edge)}
 
-/* Layout help */
-.kh-lh{display:flex;flex-direction:column;gap:var(--space-3);flex:1;min-height:0}
+/* Layout help (the diagram, key, detail card and legend; screens live in kit_screens.py) */
+.kh-lh{display:flex;flex-direction:column;gap:var(--space-2);flex:1;min-height:0}
 .lh-rows{display:flex;flex-direction:column;gap:var(--key-gap);align-items:center}
 .lh-row{display:flex;gap:var(--key-gap)}
 .kh-lk{height:var(--key-unit);border-radius:var(--radius-sm);background:var(--key-dim-face);color:var(--key-dim-text);box-shadow:0 3px 0 var(--key-dim-edge);display:flex;flex-direction:column;align-items:center;justify-content:center;font:var(--weight-regular) var(--text-sm)/1.15 var(--font-mono);position:relative;margin-bottom:3px;flex:none}
@@ -164,15 +163,222 @@ code,.mono{font-family:var(--font-mono)}
 .kh-lk.map::before{content:"";position:absolute;left:8px;right:8px;top:0;height:4px;background:var(--key-held-edge);border-radius:0 0 3px 3px}
 .kh-lk.layerkey{background:var(--key-held-face);color:var(--key-held-text);box-shadow:0 1px 0 var(--key-held-edge);top:3px;font-weight:var(--weight-bold)}
 .kh-lk.silent{background:var(--key-silent-face);color:var(--key-silent-text);border:2px dashed var(--border);box-shadow:none}
-.lh-detail{display:grid;grid-template-columns:auto 1fr 1fr;gap:var(--space-4) var(--space-5);align-items:start;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-5)}
+.lh-detail{display:grid;grid-template-columns:auto 1fr 1fr;gap:var(--space-2) var(--space-5);align-items:start;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-5)}
 .lh-detail .big{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
-.lh-detail .big .kh-key{min-width:72px;height:72px;font-size:var(--text-2xl)}
+.lh-detail .big .kh-key{min-width:64px;height:64px;font-size:var(--text-2xl)}
 .lh-detail dl{margin:0;display:grid;grid-template-columns:1fr;gap:var(--space-1)}
 .lh-detail dt{font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
-.lh-detail dd{margin:0 0 var(--space-2);font-size:var(--text-base)}
-.lh-legend{display:flex;gap:var(--space-5);align-items:center;font-size:var(--text-sm);color:var(--text-muted);flex-wrap:wrap}
+.lh-detail dd{margin:0 0 var(--space-1);font-size:var(--text-base)}
+.lh-legend{display:flex;gap:var(--space-4);align-items:center;font-size:var(--text-sm);color:var(--text-muted);flex-wrap:wrap}
 .lh-legend span{display:inline-flex;align-items:center;gap:var(--space-2)}
 .lh-legend .kh-lk{width:44px;height:36px;margin:0;font-size:var(--text-sm)}
+
+/* ---- Screen shells: every new screen is a 1366 x 768 viewport with the 1280 x 720 stage ------ */
+.shot{position:relative;padding:var(--space-6) 0 var(--space-5)}
+.shot .sheet-head{width:1280px;margin:0 auto var(--space-4)}
+.shot .sheet-head h2{font-size:var(--text-2xl);margin-bottom:var(--space-2)}
+.shot .sheet-head .lede{color:var(--text-muted);margin:0;max-width:980px}
+.shot .viewport{margin:0 auto}
+.shot .a{position:absolute;left:0;top:0;width:1px;height:1px}
+.shot .note{width:1280px;margin:var(--space-3) auto 0;color:var(--text-muted);font-size:var(--text-sm)}
+.stage .scrim{z-index:var(--z-overlay)}
+.stage .scrim.scene{background:var(--scrim-scene);z-index:var(--z-world-fx)}
+.page:has(.a:target)>:not(.shot){display:none}
+.page:has(.a:target)>.shot:not(:has(.a:target)){display:none}
+html:has(.a:target){overflow:hidden}
+.shot:has(.a:target){padding:0}
+.shot:has(.a:target) .sheet-head,.shot:has(.a:target) .note{display:none}
+.shot:has(.a.g:target) .viewport{filter:grayscale(1)}
+.mono{font-family:var(--font-mono)}
+b,strong{font-weight:var(--weight-bold)}
+
+/* ---- Segmented control and buttons ---------------------------------------------------------- */
+.seg{display:inline-flex;border:2px solid var(--border);border-radius:var(--radius-pill);padding:2px;gap:2px;background:var(--panel-sunken)}
+.seg span{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-4);border-radius:var(--radius-pill);font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);color:var(--text);white-space:nowrap}
+.seg span[aria-pressed="true"]{background:var(--paper);color:var(--ink)}
+.seg span.focus{outline:2px solid var(--focus);outline-offset:2px}
+.kh-btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border:2px solid var(--border);border-radius:var(--radius-md);background:var(--panel-raised);color:var(--text);font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);white-space:nowrap}
+.kh-btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.kh-btn.focus{outline:2px solid var(--focus);outline-offset:3px}
+.kh-btn .kh-key.sm{height:28px;min-width:28px;box-shadow:0 2px 0 var(--key-edge);margin-bottom:2px}
+
+/* ---- Layout help ------------------------------------------------------------------------------ */
+.lh-overlay{left:16px;right:16px;top:16px;bottom:16px;gap:6px;padding:var(--space-2) var(--space-5) var(--space-3)}
+.lh-overlay .kh-lh{gap:6px}
+.lh-overlay .top{gap:var(--space-4)}
+.lh-overlay .top h2{font-size:var(--text-xl)}
+.lh-how{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.lh-how b{color:var(--text)}
+.kh-lk.same{color:var(--key-dim-text)}
+.kh-lk.same .s{font-weight:var(--weight-regular)}
+.kh-lk.silent .l{font-weight:var(--weight-bold)}
+.kh-lk.silent .s{font-weight:var(--weight-regular)}
+.kh-lk.half{height:29px;flex-direction:row;gap:var(--space-1);margin:0}
+.kh-lk.half .s{font-weight:var(--weight-bold)}
+.kh-lk.layerkey .s,.kh-lk.map .s{color:inherit}
+.lh-stack{display:flex;flex-direction:column;gap:var(--key-gap);margin-bottom:3px}
+.lh-gap{flex:none}
+.lh-detail.lh-4{grid-template-columns:auto 1fr 1fr}
+.lh-detail .hintline{grid-column:1/-1;margin:0;padding-top:var(--space-2);border-top:2px solid var(--border);font-size:var(--text-base)}
+.lh-detail .hintline .hint{color:var(--text-muted)}
+.lh-detail .hintline b{color:var(--text)}
+.lh-cards{display:grid;grid-template-columns:1.15fr 1.45fr 1fr;gap:var(--space-3)}
+.lh-card{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-4);display:flex;flex-direction:column;gap:var(--space-1);font-size:var(--text-sm)}
+.lh-card p{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.lh-card p b{color:var(--text)}
+.lh-card .kh-label{display:flex;align-items:center;gap:var(--space-2)}
+.lh-card .seq{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.lh-card .seq .kh-key{height:36px;min-width:36px;font-size:var(--text-sm);box-shadow:0 3px 0 var(--key-edge)}
+.lh-card.locked{border-style:dashed;background:var(--panel-sunken)}
+.lh-card .row{display:flex;align-items:center;gap:var(--space-3)}
+.lh-card .row .kh-key{height:40px;min-width:40px;box-shadow:0 3px 0 var(--key-edge)}
+.lh-foot{display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap;justify-content:space-between}
+.lh-device{display:inline-flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--text-muted)}
+.lh-remap{display:flex;gap:var(--space-4);flex-wrap:wrap;font-size:var(--text-sm);color:var(--text)}
+.lh-remap span{display:inline-flex;align-items:center;gap:var(--space-2)}
+.lh-also{font-size:var(--text-sm);color:var(--text-muted);margin:0}
+.lh-also b{color:var(--text)}
+
+/* ---- Feedback card ------------------------------------------------------------------------------ */
+.kh-fb{background:var(--panel-raised);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.kh-fb.observed{border:2px solid var(--accent-terminal)}
+.kh-fb.confirmed{border:6px double var(--paper);padding:calc(var(--space-3) - 4px) calc(var(--space-4) - 4px)}
+.kh-fb.reserved{border:2px dashed var(--border)}
+.kh-fb .what{display:flex;align-items:center;gap:var(--space-2);font:var(--weight-bold) var(--text-base)/var(--leading-tight) var(--font-body)}
+.kh-fb.observed .what{color:var(--accent-terminal)}
+.kh-fb.confirmed .what{color:var(--text)}
+.kh-fb.reserved .what{color:var(--text)}
+.kh-fb dl{margin:0;display:grid;grid-template-columns:1fr;gap:0}
+.kh-fb dt{font:var(--weight-bold) var(--text-sm)/1.3 var(--font-body);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+.kh-fb dd{margin:0 0 var(--space-1);font-size:var(--text-base);line-height:1.5}
+.kh-fb dd .mono{font-weight:var(--weight-bold)}
+.kh-fb dd.fx{color:var(--accent-discovery);font-weight:var(--weight-bold)}
+.kh-fb dd .kh-key.sm{vertical-align:middle}
+.kh-fb .why{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.kh-fb .why b{color:var(--text)}
+.kh-chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font:var(--weight-bold) var(--text-sm)/1.2 var(--font-body);white-space:nowrap;color:var(--text)}
+.kh-chip.confirmed{border:2px solid var(--paper);background:var(--panel-sunken)}
+.kh-chip.unconfirmed{border:2px dashed var(--border);background:var(--panel-sunken);color:var(--text-muted)}
+.kh-chip.obs{border:2px solid var(--accent-terminal);background:var(--panel-sunken)}
+.kh-chip.skip{border:2px dashed var(--border);background:var(--panel-sunken);color:var(--text-muted)}
+.kh-chip.todo{border:2px solid var(--border);background:var(--panel-sunken);color:var(--text-muted)}
+
+/* Feedback sheet (three states + wording rules) */
+.fb-sheet{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+.fb-cell{display:flex;flex-direction:column;gap:var(--space-2)}
+.fb-cell>p{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.fb-rules{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+.fb-rules .kh-panel{padding:var(--space-3) var(--space-4)}
+.fb-rules h3{font-size:var(--text-lg);margin-bottom:var(--space-2);display:flex;align-items:center;gap:var(--space-2)}
+.fb-rules ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-sm)}
+.fb-rules li{display:grid;grid-template-columns:24px 1fr;gap:var(--space-2);align-items:start}
+.fb-rules li .kh-ico{margin-top:1px}
+.fb-rules .no li span.q{color:var(--text-muted);text-decoration:line-through}
+.fb-layers{display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap;font-size:var(--text-sm);color:var(--text-muted)}
+.fb-layers .box{background:var(--panel-sunken);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);color:var(--text);display:inline-flex;align-items:center;gap:var(--space-2)}
+
+/* ---- Setup and calibration ----------------------------------------------------------------------- */
+.su{left:16px;right:16px;top:16px;bottom:16px;padding:var(--space-3) var(--space-5);gap:var(--space-2)}
+.su .top .sub{font-size:var(--text-sm);color:var(--text-muted)}
+.kh-label .kh-chip{text-transform:none;letter-spacing:0}
+.su .top h2{font-size:var(--text-xl)}
+.su-choice{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+.su-opt{display:grid;grid-template-columns:1fr auto;gap:var(--space-1) var(--space-3);background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4)}
+.su-opt.sel{border-color:var(--focus);outline:2px solid var(--focus);outline-offset:2px}
+.su-opt h3{font-size:var(--text-lg);display:flex;align-items:center;gap:var(--space-2)}
+.su-opt .pick{display:inline-flex;align-items:center;gap:var(--space-1);font:var(--weight-bold) var(--text-sm)/1 var(--font-body);color:var(--text-muted)}
+.su-opt.sel .pick{color:var(--text)}
+.su-opt p{margin:0;grid-column:1/-1;font-size:var(--text-sm);color:var(--text-muted)}
+.su-opt p b{color:var(--text)}
+.su-opt .strip{grid-column:1/-1;display:flex;gap:4px;align-items:flex-end;margin-top:var(--space-1)}
+.su-opt .strip .kh-key{min-width:50px;height:36px;padding:0 var(--space-2);font-size:var(--text-sm);box-shadow:0 3px 0 var(--key-edge);margin-bottom:3px}
+.su-opt .strip .kh-key.dim{box-shadow:0 3px 0 var(--key-dim-edge)}
+.su-opt .strip .kh-key.sp{min-width:120px}
+.su-opt .strip .map{position:relative}
+.su-opt .strip .arrowto{font:var(--weight-bold) var(--text-sm)/1 var(--font-body);color:var(--text);padding:0 var(--space-1)}
+.su-body{display:grid;grid-template-columns:660px 1fr;gap:var(--space-4);flex:1;min-height:0}
+.su-steps{display:flex;flex-direction:column;gap:6px;min-width:0}
+.su-steps .head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3)}
+.su-step{display:grid;grid-template-columns:28px 1fr auto;gap:0 var(--space-3);align-items:center;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-1) var(--space-3)}
+.su-step.cur{border-color:var(--focus);outline:2px solid var(--focus);outline-offset:2px}
+.su-step .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:var(--radius-pill);background:var(--paper);color:var(--ink);font:var(--weight-bold) var(--text-sm)/1 var(--font-body);grid-row:1/3}
+.su-step .t{display:flex;align-items:center;gap:var(--space-2);font-weight:var(--weight-bold);font-size:var(--text-base)}
+.su-step .t .mono{font-size:var(--text-sm);color:var(--text-muted);font-weight:var(--weight-regular)}
+.su-step .kh-chip{grid-row:1;grid-column:3}
+.su-step .d{grid-column:2/4;font-size:var(--text-sm);color:var(--text-muted);line-height:1.3}
+.su-step .d b{color:var(--text)}
+.su-foot{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.su-foot b{color:var(--text)}
+.su-side{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.su-diagram{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.su-diagram .head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);flex-wrap:wrap}
+.sk-rows{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.sk-row{display:flex;gap:3px}
+.kh-sk{height:var(--key-unit-sm);border-radius:5px;background:var(--key-dim-face);color:var(--key-dim-text);box-shadow:0 2px 0 var(--key-dim-edge);display:flex;align-items:center;justify-content:center;font:var(--weight-regular) var(--text-sm)/1 var(--font-mono);flex:none;margin-bottom:2px}
+.kh-sk.layerkey{background:var(--key-held-face);color:var(--key-held-text);box-shadow:0 1px 0 var(--key-held-edge);font-weight:var(--weight-bold);position:relative;top:2px}
+.kh-sk.target{background:var(--key-face);color:var(--key-text);box-shadow:0 3px 0 var(--key-edge);font-weight:var(--weight-bold);outline:2px solid var(--focus);outline-offset:2px}
+.kh-sk.lit{background:var(--key-face);color:var(--key-text);box-shadow:0 3px 0 var(--key-edge);font-weight:var(--weight-bold)}
+.su-diagram .cap{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.su-diagram .cap b{color:var(--text)}
+.su-toggle{background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.su-toggle p{margin:0;font-size:var(--text-sm);color:var(--text-muted)}
+.su-toggle p b{color:var(--text)}
+.su-toggle .seq{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.su-toggle .seq .kh-key{height:36px;min-width:36px;font-size:var(--text-sm);box-shadow:0 3px 0 var(--key-edge)}
+.su-toggle .kh-label{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
+
+/* ---- Terminal / editor scene -------------------------------------------------------------------- */
+.kh-term{position:absolute;z-index:var(--z-dialogue);left:var(--stage-margin);top:var(--stage-margin);width:900px;padding:var(--space-3) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.kh-term .bar{width:auto;margin:0;padding:0;background:transparent;display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm)}
+.kh-term .bar .name{font:var(--weight-bold) var(--text-base)/1 var(--font-mono);color:var(--text)}
+.kh-term .bar .where{color:var(--text-muted)}
+.kh-term .bar .grow{flex:1}
+.kh-term .bar .leave{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--text-muted)}
+.kh-task{display:grid;grid-template-columns:1fr auto;gap:var(--space-1) var(--space-4);align-items:center;background:var(--panel-raised);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3)}
+.kh-task p{margin:0;font-size:var(--text-base);line-height:1.35}
+.kh-task p .hint{color:var(--text-muted)}
+.kh-task p b{color:var(--text)}
+.kh-task .count{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--accent-discovery);font:var(--weight-bold) var(--text-base)/1 var(--font-mono);grid-row:1/2;grid-column:2}
+.kh-task.ok{border-color:var(--accent-discovery);border-width:3px}
+.kh-task.ok .win{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-base)}
+.kh-task.ok .win b{color:var(--accent-discovery)}
+.kh-code{background:var(--panel-sunken);border:2px solid var(--border);border-radius:var(--radius-md);padding:var(--space-2) 0;font:var(--weight-regular) var(--text-base)/32px var(--font-mono);color:var(--text)}
+.kh-line{display:grid;grid-template-columns:64px 1fr;white-space:pre;position:relative}
+.kh-line .no{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-1);padding-right:var(--space-3);color:var(--text-muted)}
+.kh-line .no .kh-ico{color:var(--accent-discovery)}
+.kh-line.tl{background:color-mix(in srgb,var(--gold) 16%,transparent)}
+.kh-line.tl .no{color:var(--accent-discovery);font-weight:var(--weight-bold)}
+.kh-line .tag{position:absolute;right:var(--space-3);top:4px;height:24px;display:inline-flex;align-items:center;gap:var(--space-1);padding:0 var(--space-2);border:2px solid var(--accent-discovery);border-radius:var(--radius-sm);font:var(--weight-bold) var(--text-sm)/1 var(--font-body);color:var(--accent-discovery);background:var(--panel-sunken);white-space:nowrap}
+.kh-code .k{color:var(--text-muted)}
+.kh-code .sel{background:var(--selection-bg);color:var(--selection-text);box-shadow:0 4px 0 var(--focus)}
+.kh-code .cur{background:var(--cursor-face);color:var(--cursor-text);outline:2px solid var(--focus);outline-offset:1px;position:relative}
+.kh-code .tw{outline:2px dashed var(--accent-discovery);outline-offset:2px;border-radius:2px}
+.kh-code .done{background:color-mix(in srgb,var(--gold) 28%,transparent);box-shadow:0 4px 0 var(--accent-discovery)}
+.kh-code .gl{text-decoration:underline wavy var(--accent-glitch) 2px;text-underline-offset:5px}
+.kh-code .gtag{color:var(--accent-glitch);font-weight:var(--weight-bold)}
+.kh-code .field{display:inline-block;min-width:260px;border:2px solid var(--border);border-radius:var(--radius-sm);padding:0 var(--space-2);line-height:28px;vertical-align:middle;background:var(--panel-bg)}
+.kh-code .field.on{border-color:var(--focus);outline:2px solid var(--focus);outline-offset:2px}
+.kh-region{margin:var(--space-2);border:3px dashed var(--accent-terminal);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);display:flex;flex-direction:column;gap:var(--space-1)}
+.kh-region .lab{display:flex;align-items:center;gap:var(--space-2);font:var(--weight-bold) var(--text-sm)/1.3 var(--font-body);color:var(--accent-terminal);letter-spacing:var(--tracking-label);text-transform:uppercase}
+.kh-region .frow{display:grid;grid-template-columns:140px 1fr;align-items:center;font:var(--weight-regular) var(--text-base)/36px var(--font-body);color:var(--text)}
+.kh-announce{display:flex;align-items:center;gap:var(--space-3);background:var(--panel-sunken);border:2px solid var(--accent-terminal);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);font-size:var(--text-sm)}
+.kh-announce .kh-label{color:var(--accent-terminal);white-space:nowrap}
+.kh-term.glitch{border-color:var(--violet)}
+.kh-term .glt{display:flex;align-items:center;gap:var(--space-2);font:var(--weight-bold) var(--text-lg)/1.2 var(--font-display);color:var(--accent-glitch)}
+.kh-side{position:absolute;z-index:var(--z-dialogue);left:932px;width:332px;display:flex;flex-direction:column;gap:var(--space-3)}
+.kh-side .kh-panel{padding:var(--space-3) var(--space-4)}
+.kh-turns{display:flex;flex-direction:column;gap:var(--space-2)}
+.kh-turns h3{font-size:var(--text-lg);display:flex;align-items:center;gap:var(--space-2)}
+.kh-turn{display:grid;grid-template-columns:28px 1fr;gap:var(--space-2);align-items:center;font-size:var(--text-sm)}
+.kh-turn .dot{width:28px;height:28px;border-radius:var(--radius-pill);border:2px solid var(--border);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-discovery)}
+.kh-turn.cur .dot{border-color:var(--accent-glitch);color:var(--accent-glitch)}
+.kh-turn.cur{font-weight:var(--weight-bold)}
+.kh-turn.todo{color:var(--text-muted)}
+.kh-turns .free{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--text-muted);font-size:var(--text-sm)}
+.kh-retry{display:flex;gap:var(--space-3);flex-wrap:wrap}
+.inset-tall .kh-mini{margin-bottom:var(--space-1)}
+.inset-tall .kh-effect{font-size:var(--text-base)}
+.kh-mini .kh-key.gap{visibility:hidden;min-width:14px}
 </style>
 </head>
 <body>
@@ -229,6 +435,32 @@ code,.mono{font-family:var(--font-mono)}
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3 L20 12 L6 21 Z" fill="currentColor"/></symbol>
   <symbol id="i-step-east" viewBox="0 0 24 24"><path d="M2 12 H17 M11 5 L18 12 L11 19 M21 4 V20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M3 12 H20 M13 5 L20 12 L13 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
+</svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <!-- Feedback state icons: eye = observed, person with check = you confirmed, shield with keyhole = OS-reserved -->
+  <symbol id="i-eye" viewBox="0 0 24 24">
+    <path d="M1.5 12 C5 5.5 9 4.5 12 4.5 C15 4.5 19 5.5 22.5 12 C19 18.5 15 19.5 12 19.5 C9 19.5 5 18.5 1.5 12 Z" fill="currentColor"/>
+    <circle cx="12" cy="12" r="3.6" fill="#182B38"/>
+  </symbol>
+  <symbol id="i-person-check" viewBox="0 0 24 24">
+    <circle cx="9" cy="7.5" r="4.2" fill="currentColor"/>
+    <path d="M1.5 21 C1.5 15 5 12.8 9 12.8 C11 12.8 12.6 13.3 13.8 14.2 L13.8 21 Z" fill="currentColor"/>
+    <path d="M14.5 17 L18 20.5 L23 13.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+  </symbol>
+  <symbol id="i-shield-key" viewBox="0 0 24 24">
+    <path d="M12 1.5 L21 4.8 V12 C21 17.2 17.2 20.8 12 22.5 C6.8 20.8 3 17.2 3 12 V4.8 Z" fill="currentColor"/>
+    <circle cx="12" cy="10" r="2.9" fill="#182B38"/>
+    <path d="M10.6 11.5 H13.4 L14.2 17 H9.8 Z" fill="#182B38"/>
+  </symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+  <symbol id="i-skip" viewBox="0 0 24 24"><path d="M4 5 L15 12 L4 19 Z M18.5 4.5 V19.5" fill="currentColor" stroke="currentColor" stroke-width="2.6" stroke-linejoin="miter"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24">
+    <path d="M12 2 L23 21.5 H1 Z" fill="currentColor"/>
+    <path d="M12 9 V15" stroke="#182B38" stroke-width="2.8" stroke-linecap="square"/><rect x="10.7" y="16.7" width="2.6" height="2.6" fill="#182B38"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><path d="M12 2 L22 12 L12 22 L2 12 Z" fill="currentColor"/><circle cx="12" cy="12" r="3" fill="#182B38"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M21 12 H4 M11 5 L4 12 L11 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
 </svg>
 
 <div class="page">
@@ -384,40 +616,610 @@ code,.mono{font-family:var(--font-mono)}
 </div>
 </div>
 
-<div class="sheet">
-  <h2>Layout help</h2>
-  <p class="lede">Rendered from the layout manifest; the keys below follow <span class="mono">kanata.kbd</span> for the <span class="mono">nav</span> tab (Caps is the layer key, drawn held). The focus ring is on L, whose detail card follows the hint grammar.</p>
-  
-<div class="stage screen">
-  <img class="world" src="world-native.png" width="320" height="180" alt="">
-  <div class="scrim"></div>
-  
-<div class="kh-panel overlay" role="dialog" aria-label="Layout help">
+<section class="shot" aria-label="Layout help: base tab (MacBook, the default diagram)">
+  <span class="a" id="s-layout-base"></span><span class="a g" id="s-layout-base-grey"></span>
+  <div class="sheet-head"><h2>Layout help: base tab (MacBook, the default diagram)</h2><p class="lede">Home-row letters carry their hold action underneath; Caps, Space and Tab show tap and hold; R and V are the reload and practice-toggle chords; Right Command also holds the nav layer. The bottom row is the MacBook's. Detail card: F.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay lh-overlay" role="dialog" aria-label="Layout help, base tab">
   <div class="top"><h2>Layout help</h2>
-    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="false">base</span><span class="tab" role="tab" aria-selected="true">nav</span><span class="tab" role="tab" aria-selected="false">numbers-symbols</span><span class="tab" role="tab" aria-selected="false">practice</span></div><span class="grow"></span>
+    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="true">base</span><span class="tab" role="tab" aria-selected="false">nav</span><span class="tab" role="tab" aria-selected="false">numbers-symbols</span><span class="tab" role="tab" aria-selected="false">practice</span></div>
+    <span class="lh-device">Keyboard <div class="seg" role="group"><span class="" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>MacBook</span><span class="" aria-pressed="false">Microsoft</span></div></span><span class="grow"></span>
     <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="lh-how">Switch tab: <b>Left / Right</b> (tap-hold Caps + H / L) or <b>Tab / Shift + Tab</b>. Click and hold the drawn <b>Caps</b> or <b>Space</b> to preview that layer. <b>Esc</b> (tap Caps) closes.</p>
   <div class="kh-lh">
-    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px"><span class="l">`</span></div><div class="kh-lk " style="width:64px"><span class="l">1</span></div><div class="kh-lk " style="width:64px"><span class="l">2</span></div><div class="kh-lk " style="width:64px"><span class="l">3</span></div><div class="kh-lk map" style="width:64px"><span class="l">4</span><span class="s">Line →</span></div><div class="kh-lk " style="width:64px"><span class="l">5</span></div><div class="kh-lk " style="width:64px"><span class="l">6</span></div><div class="kh-lk " style="width:64px"><span class="l">7</span></div><div class="kh-lk " style="width:64px"><span class="l">8</span></div><div class="kh-lk " style="width:64px"><span class="l">9</span></div><div class="kh-lk map" style="width:64px"><span class="l">0</span><span class="s">Line ←</span></div><div class="kh-lk " style="width:64px"><span class="l">-</span></div><div class="kh-lk " style="width:64px"><span class="l">=</span></div><div class="kh-lk " style="width:134px"><span class="l">Backspace</span></div></div><div class="lh-row"><div class="kh-lk " style="width:99px"><span class="l">Tab</span></div><div class="kh-lk " style="width:64px"><span class="l">Q</span></div><div class="kh-lk map" style="width:64px"><span class="l">W</span><span class="s">Word →</span></div><div class="kh-lk " style="width:64px"><span class="l">E</span></div><div class="kh-lk " style="width:64px"><span class="l">R</span></div><div class="kh-lk map" style="width:64px"><span class="l">T</span><span class="s">Doc ↑</span></div><div class="kh-lk " style="width:64px"><span class="l">Y</span></div><div class="kh-lk map" style="width:64px"><span class="l">U</span><span class="s">Page ↑</span></div><div class="kh-lk " style="width:64px"><span class="l">I</span></div><div class="kh-lk " style="width:64px"><span class="l">O</span></div><div class="kh-lk " style="width:64px"><span class="l">P</span></div><div class="kh-lk map" style="width:64px"><span class="l">[</span><span class="s">Esc</span></div><div class="kh-lk " style="width:64px"><span class="l">]</span></div><div class="kh-lk " style="width:99px"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk layerkey" style="width:116px"><span class="l">Caps</span><span class="s">hold</span></div><div class="kh-lk " style="width:64px"><span class="l">A</span></div><div class="kh-lk " style="width:64px"><span class="l">S</span></div><div class="kh-lk map" style="width:64px"><span class="l">D</span><span class="s">Page ↓</span></div><div class="kh-lk " style="width:64px"><span class="l">F</span></div><div class="kh-lk map" style="width:64px"><span class="l">G</span><span class="s">Doc ↓</span></div><div class="kh-lk map" style="width:64px"><span class="l">H</span><span class="s arrow">←</span></div><div class="kh-lk map" style="width:64px"><span class="l">J</span><span class="s arrow">↓</span></div><div class="kh-lk map" style="width:64px"><span class="l">K</span><span class="s arrow">↑</span></div><div class="kh-lk map focus" style="width:64px"><span class="l">L</span><span class="s arrow">→</span></div><div class="kh-lk map" style="width:64px"><span class="l">;</span><span class="s">ö</span></div><div class="kh-lk " style="width:64px"><span class="l">'</span></div><div class="kh-lk " style="width:152px"><span class="l">Return</span></div></div><div class="lh-row"><div class="kh-lk " style="width:152px"><span class="l">Shift</span></div><div class="kh-lk " style="width:64px"><span class="l">Z</span></div><div class="kh-lk map" style="width:64px"><span class="l">X</span><span class="s">Ctrl+D</span></div><div class="kh-lk " style="width:64px"><span class="l">C</span></div><div class="kh-lk " style="width:64px"><span class="l">V</span></div><div class="kh-lk map" style="width:64px"><span class="l">B</span><span class="s">Word ←</span></div><div class="kh-lk map" style="width:64px"><span class="l">N</span><span class="s">Return</span></div><div class="kh-lk map" style="width:64px"><span class="l">M</span><span class="s">Bksp</span></div><div class="kh-lk map" style="width:64px"><span class="l">,</span><span class="s">Delete</span></div><div class="kh-lk " style="width:64px"><span class="l">.</span></div><div class="kh-lk " style="width:64px"><span class="l">/</span></div><div class="kh-lk " style="width:186px"><span class="l">Shift</span></div></div><div class="lh-row"><div class="lh-note" style="width:244px;margin-right:12px;text-align:right">Click-hold Caps or Space to preview a layer</div><div class="kh-lk map" style="width:432px"><span class="l">Space</span><span class="s">Bksp</span></div><div class="lh-note" style="width:340px;margin-left:12px">Switch tabs: Left / Right (tap-hold Caps + H / L), or Tab / Shift + Tab</div></div></div>
+    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="`"><span class="l">`</span></div><div class="kh-lk " style="width:64px" data-key="1"><span class="l">1</span></div><div class="kh-lk " style="width:64px" data-key="2"><span class="l">2</span></div><div class="kh-lk " style="width:64px" data-key="3"><span class="l">3</span></div><div class="kh-lk " style="width:64px" data-key="4"><span class="l">4</span></div><div class="kh-lk " style="width:64px" data-key="5"><span class="l">5</span></div><div class="kh-lk " style="width:64px" data-key="6"><span class="l">6</span></div><div class="kh-lk " style="width:64px" data-key="7"><span class="l">7</span></div><div class="kh-lk " style="width:64px" data-key="8"><span class="l">8</span></div><div class="kh-lk " style="width:64px" data-key="9"><span class="l">9</span></div><div class="kh-lk " style="width:64px" data-key="0"><span class="l">0</span></div><div class="kh-lk " style="width:64px" data-key="-"><span class="l">-</span></div><div class="kh-lk " style="width:64px" data-key="="><span class="l">=</span></div><div class="kh-lk " style="width:134px" data-key="Backspace"><span class="l">Backspace</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:99px" data-key="Tab"><span class="l">Tab</span><span class="s">Homerow</span></div><div class="kh-lk " style="width:64px" data-key="q"><span class="l">Q</span></div><div class="kh-lk " style="width:64px" data-key="w"><span class="l">W</span></div><div class="kh-lk " style="width:64px" data-key="e"><span class="l">E</span></div><div class="kh-lk map" style="width:64px" data-key="r"><span class="l">R</span><span class="s">reload</span></div><div class="kh-lk " style="width:64px" data-key="t"><span class="l">T</span></div><div class="kh-lk " style="width:64px" data-key="y"><span class="l">Y</span></div><div class="kh-lk " style="width:64px" data-key="u"><span class="l">U</span></div><div class="kh-lk " style="width:64px" data-key="i"><span class="l">I</span></div><div class="kh-lk " style="width:64px" data-key="o"><span class="l">O</span></div><div class="kh-lk " style="width:64px" data-key="p"><span class="l">P</span></div><div class="kh-lk " style="width:64px" data-key="["><span class="l">[</span></div><div class="kh-lk " style="width:64px" data-key="]"><span class="l">]</span></div><div class="kh-lk " style="width:99px" data-key="\"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:116px" data-key="Caps"><span class="l">Caps</span><span class="s">Esc | nav</span></div><div class="kh-lk map" style="width:64px" data-key="a"><span class="l">A</span><span class="s">Ctrl</span></div><div class="kh-lk map" style="width:64px" data-key="s"><span class="l">S</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key="d"><span class="l">D</span><span class="s">Cmd</span></div><div class="kh-lk map focus" style="width:64px" data-key="f"><span class="l">F</span><span class="s">Shift</span></div><div class="kh-lk " style="width:64px" data-key="g"><span class="l">G</span></div><div class="kh-lk " style="width:64px" data-key="h"><span class="l">H</span></div><div class="kh-lk map" style="width:64px" data-key="j"><span class="l">J</span><span class="s">Shift</span></div><div class="kh-lk map" style="width:64px" data-key="k"><span class="l">K</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:64px" data-key="l"><span class="l">L</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key=";"><span class="l">;</span><span class="s">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="'"><span class="l">'</span></div><div class="kh-lk " style="width:152px" data-key="Return"><span class="l">Return</span></div></div><div class="lh-row"><div class="kh-lk " style="width:152px" data-key="Shift-L"><span class="l">Shift</span></div><div class="kh-lk " style="width:64px" data-key="z"><span class="l">Z</span></div><div class="kh-lk " style="width:64px" data-key="x"><span class="l">X</span></div><div class="kh-lk " style="width:64px" data-key="c"><span class="l">C</span></div><div class="kh-lk map" style="width:64px" data-key="v"><span class="l">V</span><span class="s">toggle</span></div><div class="kh-lk " style="width:64px" data-key="b"><span class="l">B</span></div><div class="kh-lk " style="width:64px" data-key="n"><span class="l">N</span></div><div class="kh-lk " style="width:64px" data-key="m"><span class="l">M</span></div><div class="kh-lk " style="width:64px" data-key=","><span class="l">,</span></div><div class="kh-lk " style="width:64px" data-key="."><span class="l">.</span></div><div class="kh-lk " style="width:64px" data-key="/"><span class="l">/</span></div><div class="kh-lk " style="width:186px" data-key="Shift-R"><span class="l">Shift</span></div></div><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="fn"><span class="l">fn</span></div><div class="kh-lk " style="width:64px" data-key="Ctrl-L"><span class="l">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="Opt-L"><span class="l">Opt</span></div><div class="kh-lk " style="width:82px" data-key="Cmd-L"><span class="l">Cmd</span></div><div class="kh-lk map" style="width:344px" data-key="Space"><span class="l">Space</span><span class="s">tap Space | hold numbers</span></div><div class="kh-lk map" style="width:82px" data-key="Cmd-R"><span class="l">Cmd</span><span class="s">+ nav</span></div><div class="kh-lk " style="width:64px" data-key="Opt-R"><span class="l">Opt</span></div><div class="lh-gap" style="width:23px"></div><div class="kh-lk " style="width:64px" data-key="Left"><span class="l">←</span></div><div class="lh-stack" style="width:64px"><div class="kh-lk half"><span class="l">↑</span></div><div class="kh-lk half"><span class="l">↓</span></div></div><div class="kh-lk " style="width:64px" data-key="Right"><span class="l">→</span></div></div></div>
+    
+    
     <div class="lh-detail">
-      <div class="big"><span class="kh-key">L</span></div>
-      <dl>
-        <dt>Tap</dt><dd>types <span class="mono">l</span></dd>
-        <dt>Tap-hold, 200 ms</dt><dd>Right Option (<span class="mono">ralt</span>)</dd>
-      </dl>
-      <dl>
-        <dt>On nav</dt><dd>Right arrow, from <b>tap-hold Caps</b> + <b>L</b>.</dd>
-        <dt>On practice</dt><dd>Normal: the home-row hold still works.</dd>
-      </dl>
+      <div class="big"><span class="kh-key ">F</span></div>
+      <dl><dt>Tap</dt><dd>types <span class="mono">f</span></dd><dt>Tap-hold, 200 ms</dt><dd>Left Shift (<span class="mono">lsft</span>). A roll with a left-hand key types the letter.</dd></dl>
+      <dl><dt>On base</dt><dd>The home-row hold is the Shift. Pick a key on the other hand.</dd><dt>On practice</dt><dd>Normal: the hold still works.</dd></dl>
+      <p class="hintline">To type a capital J, you need to press <b>Shift + J</b>. <span class="hint">Hint: Shift is <b>tap-hold F</b>, then tap <b>J</b>.</span></p>
     </div>
-    <div class="lh-legend">
-      <span><span class="kh-lk map" style="width:44px"><span class="l">W</span></span> changes on this tab, new action underneath</span>
-      <span><span class="kh-lk" style="width:44px"><span class="l">A</span></span> unchanged</span>
-      <span><span class="kh-lk silent" style="width:44px"><span class="l">XX</span></span> silent on practice</span>
+    
+    <div class="lh-foot"><div class="lh-legend"><span><span class="kh-lk map" style="width:44px"><span class="l">A</span></span> hold action underneath</span><span><span class="kh-lk " style="width:44px"><span class="l">B</span></span> unchanged</span></div></div>
+  </div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Layout help: nav tab">
+  <span class="a" id="s-layout-nav"></span><span class="a g" id="s-layout-nav-grey"></span>
+  <div class="sheet-head"><h2>Layout help: nav tab</h2><p class="lede">Caps is drawn held. Every key that does something with Caps down prints its output; A, S and F stay letters. Detail card: L (Right arrow).</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay lh-overlay" role="dialog" aria-label="Layout help, nav tab">
+  <div class="top"><h2>Layout help</h2>
+    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="false">base</span><span class="tab" role="tab" aria-selected="true">nav</span><span class="tab" role="tab" aria-selected="false">numbers-symbols</span><span class="tab" role="tab" aria-selected="false">practice</span></div>
+    <span class="lh-device">Keyboard <div class="seg" role="group"><span class="" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>MacBook</span><span class="" aria-pressed="false">Microsoft</span></div></span><span class="grow"></span>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="lh-how">Switch tab: <b>Left / Right</b> (tap-hold Caps + H / L) or <b>Tab / Shift + Tab</b>. Click and hold the drawn <b>Caps</b> or <b>Space</b> to preview that layer. <b>Esc</b> (tap Caps) closes.</p>
+  <div class="kh-lh">
+    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="`"><span class="l">`</span></div><div class="kh-lk " style="width:64px" data-key="1"><span class="l">1</span></div><div class="kh-lk " style="width:64px" data-key="2"><span class="l">2</span></div><div class="kh-lk " style="width:64px" data-key="3"><span class="l">3</span></div><div class="kh-lk map" style="width:64px" data-key="4"><span class="l">4</span><span class="s">Line →</span></div><div class="kh-lk " style="width:64px" data-key="5"><span class="l">5</span></div><div class="kh-lk " style="width:64px" data-key="6"><span class="l">6</span></div><div class="kh-lk " style="width:64px" data-key="7"><span class="l">7</span></div><div class="kh-lk " style="width:64px" data-key="8"><span class="l">8</span></div><div class="kh-lk " style="width:64px" data-key="9"><span class="l">9</span></div><div class="kh-lk map" style="width:64px" data-key="0"><span class="l">0</span><span class="s">Line ←</span></div><div class="kh-lk " style="width:64px" data-key="-"><span class="l">-</span></div><div class="kh-lk " style="width:64px" data-key="="><span class="l">=</span></div><div class="kh-lk " style="width:134px" data-key="Backspace"><span class="l">Backspace</span></div></div><div class="lh-row"><div class="kh-lk " style="width:99px" data-key="Tab"><span class="l">Tab</span></div><div class="kh-lk " style="width:64px" data-key="q"><span class="l">Q</span></div><div class="kh-lk map" style="width:64px" data-key="w"><span class="l">W</span><span class="s">Word →</span></div><div class="kh-lk " style="width:64px" data-key="e"><span class="l">E</span></div><div class="kh-lk " style="width:64px" data-key="r"><span class="l">R</span></div><div class="kh-lk map" style="width:64px" data-key="t"><span class="l">T</span><span class="s">Doc ↑</span></div><div class="kh-lk " style="width:64px" data-key="y"><span class="l">Y</span></div><div class="kh-lk map" style="width:64px" data-key="u"><span class="l">U</span><span class="s">Page ↑</span></div><div class="kh-lk " style="width:64px" data-key="i"><span class="l">I</span></div><div class="kh-lk " style="width:64px" data-key="o"><span class="l">O</span></div><div class="kh-lk " style="width:64px" data-key="p"><span class="l">P</span></div><div class="kh-lk map" style="width:64px" data-key="["><span class="l">[</span><span class="s">Esc</span></div><div class="kh-lk " style="width:64px" data-key="]"><span class="l">]</span></div><div class="kh-lk " style="width:99px" data-key="\"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk layerkey" style="width:116px" data-key="Caps"><span class="l">Caps</span><span class="s">hold</span></div><div class="kh-lk same" style="width:64px" data-key="a"><span class="l">A</span><span class="s">= a</span></div><div class="kh-lk same" style="width:64px" data-key="s"><span class="l">S</span><span class="s">= s</span></div><div class="kh-lk map" style="width:64px" data-key="d"><span class="l">D</span><span class="s">Page ↓</span></div><div class="kh-lk same" style="width:64px" data-key="f"><span class="l">F</span><span class="s">= f</span></div><div class="kh-lk map" style="width:64px" data-key="g"><span class="l">G</span><span class="s">Doc ↓</span></div><div class="kh-lk map" style="width:64px" data-key="h"><span class="l">H</span><span class="s arrow">←</span></div><div class="kh-lk map" style="width:64px" data-key="j"><span class="l">J</span><span class="s arrow">↓</span></div><div class="kh-lk map" style="width:64px" data-key="k"><span class="l">K</span><span class="s arrow">↑</span></div><div class="kh-lk map focus" style="width:64px" data-key="l"><span class="l">L</span><span class="s arrow">→</span></div><div class="kh-lk " style="width:64px" data-key=";"><span class="l">;</span></div><div class="kh-lk " style="width:64px" data-key="'"><span class="l">'</span></div><div class="kh-lk " style="width:152px" data-key="Return"><span class="l">Return</span></div></div><div class="lh-row"><div class="kh-lk " style="width:152px" data-key="Shift-L"><span class="l">Shift</span></div><div class="kh-lk " style="width:64px" data-key="z"><span class="l">Z</span></div><div class="kh-lk map" style="width:64px" data-key="x"><span class="l">X</span><span class="s">Ctrl+D</span></div><div class="kh-lk " style="width:64px" data-key="c"><span class="l">C</span></div><div class="kh-lk " style="width:64px" data-key="v"><span class="l">V</span></div><div class="kh-lk map" style="width:64px" data-key="b"><span class="l">B</span><span class="s">Word ←</span></div><div class="kh-lk map" style="width:64px" data-key="n"><span class="l">N</span><span class="s">Return</span></div><div class="kh-lk map" style="width:64px" data-key="m"><span class="l">M</span><span class="s">Bksp</span></div><div class="kh-lk map" style="width:64px" data-key=","><span class="l">,</span><span class="s">Delete</span></div><div class="kh-lk " style="width:64px" data-key="."><span class="l">.</span></div><div class="kh-lk " style="width:64px" data-key="/"><span class="l">/</span></div><div class="kh-lk " style="width:186px" data-key="Shift-R"><span class="l">Shift</span></div></div><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="fn"><span class="l">fn</span></div><div class="kh-lk " style="width:64px" data-key="Ctrl-L"><span class="l">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="Opt-L"><span class="l">Opt</span></div><div class="kh-lk " style="width:82px" data-key="Cmd-L"><span class="l">Cmd</span></div><div class="kh-lk map" style="width:344px" data-key="Space"><span class="l">Space</span><span class="s">Bksp</span></div><div class="kh-lk " style="width:82px" data-key="Cmd-R"><span class="l">Cmd</span></div><div class="kh-lk " style="width:64px" data-key="Opt-R"><span class="l">Opt</span></div><div class="lh-gap" style="width:23px"></div><div class="kh-lk " style="width:64px" data-key="Left"><span class="l">←</span></div><div class="lh-stack" style="width:64px"><div class="kh-lk half"><span class="l">↑</span></div><div class="kh-lk half"><span class="l">↓</span></div></div><div class="kh-lk " style="width:64px" data-key="Right"><span class="l">→</span></div></div></div>
+    
+    
+    <div class="lh-detail">
+      <div class="big"><span class="kh-key ">L</span></div>
+      <dl><dt>Tap</dt><dd>types <span class="mono">l</span></dd><dt>Tap-hold, 200 ms</dt><dd>Right Option (<span class="mono">ralt</span>)</dd></dl>
+      <dl><dt>On nav</dt><dd>Right arrow.</dd><dt>On practice</dt><dd>Normal: the home-row hold still works.</dd></dl>
+      <p class="hintline">To step one cell east, you need to press <b>Right arrow</b>. <span class="hint">Hint: Right arrow is <b>tap-hold Caps</b> + <b>L</b>.</span></p>
+    </div>
+    
+    <div class="lh-foot"><div class="lh-legend"><span><span class="kh-lk map" style="width:44px"><span class="l">W</span></span> output with Caps held</span><span><span class="kh-lk same" style="width:44px"><span class="l">A</span></span> stays a letter</span><span><span class="kh-lk " style="width:44px"><span class="l">Q</span></span> unchanged</span><span><span class="kh-lk layerkey" style="width:44px"><span class="l">Caps</span></span> Caps held</span></div></div>
+  </div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Layout help: numbers-symbols tab">
+  <span class="a" id="s-layout-numbers-symbols"></span><span class="a g" id="s-layout-numbers-symbols-grey"></span>
+  <div class="sheet-head"><h2>Layout help: numbers-symbols tab</h2><p class="lede">Space is drawn held. The home row gives 1 to 0 and minus, the top row gives the twelve symbols; N and M stay letters; Caps and Tab keep their roles. Detail card: Q.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay lh-overlay" role="dialog" aria-label="Layout help, numbers-symbols tab">
+  <div class="top"><h2>Layout help</h2>
+    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="false">base</span><span class="tab" role="tab" aria-selected="false">nav</span><span class="tab" role="tab" aria-selected="true">numbers-symbols</span><span class="tab" role="tab" aria-selected="false">practice</span></div>
+    <span class="lh-device">Keyboard <div class="seg" role="group"><span class="" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>MacBook</span><span class="" aria-pressed="false">Microsoft</span></div></span><span class="grow"></span>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="lh-how">Switch tab: <b>Left / Right</b> (tap-hold Caps + H / L) or <b>Tab / Shift + Tab</b>. Click and hold the drawn <b>Caps</b> or <b>Space</b> to preview that layer. <b>Esc</b> (tap Caps) closes.</p>
+  <div class="kh-lh">
+    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="`"><span class="l">`</span></div><div class="kh-lk " style="width:64px" data-key="1"><span class="l">1</span></div><div class="kh-lk " style="width:64px" data-key="2"><span class="l">2</span></div><div class="kh-lk " style="width:64px" data-key="3"><span class="l">3</span></div><div class="kh-lk " style="width:64px" data-key="4"><span class="l">4</span></div><div class="kh-lk " style="width:64px" data-key="5"><span class="l">5</span></div><div class="kh-lk " style="width:64px" data-key="6"><span class="l">6</span></div><div class="kh-lk " style="width:64px" data-key="7"><span class="l">7</span></div><div class="kh-lk " style="width:64px" data-key="8"><span class="l">8</span></div><div class="kh-lk " style="width:64px" data-key="9"><span class="l">9</span></div><div class="kh-lk " style="width:64px" data-key="0"><span class="l">0</span></div><div class="kh-lk " style="width:64px" data-key="-"><span class="l">-</span></div><div class="kh-lk " style="width:64px" data-key="="><span class="l">=</span></div><div class="kh-lk " style="width:134px" data-key="Backspace"><span class="l">Backspace</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:99px" data-key="Tab"><span class="l">Tab</span><span class="s">Homerow</span></div><div class="kh-lk map focus" style="width:64px" data-key="q"><span class="l">Q</span><span class="s arrow">!</span></div><div class="kh-lk map" style="width:64px" data-key="w"><span class="l">W</span><span class="s arrow">@</span></div><div class="kh-lk map" style="width:64px" data-key="e"><span class="l">E</span><span class="s arrow">#</span></div><div class="kh-lk map" style="width:64px" data-key="r"><span class="l">R</span><span class="s arrow">$</span></div><div class="kh-lk map" style="width:64px" data-key="t"><span class="l">T</span><span class="s arrow">%</span></div><div class="kh-lk map" style="width:64px" data-key="y"><span class="l">Y</span><span class="s arrow">^</span></div><div class="kh-lk map" style="width:64px" data-key="u"><span class="l">U</span><span class="s arrow">&</span></div><div class="kh-lk map" style="width:64px" data-key="i"><span class="l">I</span><span class="s arrow">*</span></div><div class="kh-lk map" style="width:64px" data-key="o"><span class="l">O</span><span class="s arrow">(</span></div><div class="kh-lk map" style="width:64px" data-key="p"><span class="l">P</span><span class="s arrow">)</span></div><div class="kh-lk map" style="width:64px" data-key="["><span class="l">[</span><span class="s arrow">_</span></div><div class="kh-lk map" style="width:64px" data-key="]"><span class="l">]</span><span class="s arrow">+</span></div><div class="kh-lk " style="width:99px" data-key="\"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:116px" data-key="Caps"><span class="l">Caps</span><span class="s">nav</span></div><div class="kh-lk map" style="width:64px" data-key="a"><span class="l">A</span><span class="s arrow">1</span></div><div class="kh-lk map" style="width:64px" data-key="s"><span class="l">S</span><span class="s arrow">2</span></div><div class="kh-lk map" style="width:64px" data-key="d"><span class="l">D</span><span class="s arrow">3</span></div><div class="kh-lk map" style="width:64px" data-key="f"><span class="l">F</span><span class="s arrow">4</span></div><div class="kh-lk map" style="width:64px" data-key="g"><span class="l">G</span><span class="s arrow">5</span></div><div class="kh-lk map" style="width:64px" data-key="h"><span class="l">H</span><span class="s arrow">6</span></div><div class="kh-lk map" style="width:64px" data-key="j"><span class="l">J</span><span class="s arrow">7</span></div><div class="kh-lk map" style="width:64px" data-key="k"><span class="l">K</span><span class="s arrow">8</span></div><div class="kh-lk map" style="width:64px" data-key="l"><span class="l">L</span><span class="s arrow">9</span></div><div class="kh-lk map" style="width:64px" data-key=";"><span class="l">;</span><span class="s arrow">0</span></div><div class="kh-lk map" style="width:64px" data-key="'"><span class="l">'</span><span class="s arrow">-</span></div><div class="kh-lk " style="width:152px" data-key="Return"><span class="l">Return</span></div></div><div class="lh-row"><div class="kh-lk " style="width:152px" data-key="Shift-L"><span class="l">Shift</span></div><div class="kh-lk " style="width:64px" data-key="z"><span class="l">Z</span></div><div class="kh-lk " style="width:64px" data-key="x"><span class="l">X</span></div><div class="kh-lk " style="width:64px" data-key="c"><span class="l">C</span></div><div class="kh-lk " style="width:64px" data-key="v"><span class="l">V</span></div><div class="kh-lk " style="width:64px" data-key="b"><span class="l">B</span></div><div class="kh-lk same" style="width:64px" data-key="n"><span class="l">N</span><span class="s">= n</span></div><div class="kh-lk same" style="width:64px" data-key="m"><span class="l">M</span><span class="s">= m</span></div><div class="kh-lk " style="width:64px" data-key=","><span class="l">,</span></div><div class="kh-lk " style="width:64px" data-key="."><span class="l">.</span></div><div class="kh-lk " style="width:64px" data-key="/"><span class="l">/</span></div><div class="kh-lk " style="width:186px" data-key="Shift-R"><span class="l">Shift</span></div></div><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="fn"><span class="l">fn</span></div><div class="kh-lk " style="width:64px" data-key="Ctrl-L"><span class="l">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="Opt-L"><span class="l">Opt</span></div><div class="kh-lk " style="width:82px" data-key="Cmd-L"><span class="l">Cmd</span></div><div class="kh-lk layerkey" style="width:344px" data-key="Space"><span class="l">Space</span><span class="s">hold</span></div><div class="kh-lk " style="width:82px" data-key="Cmd-R"><span class="l">Cmd</span></div><div class="kh-lk " style="width:64px" data-key="Opt-R"><span class="l">Opt</span></div><div class="lh-gap" style="width:23px"></div><div class="kh-lk " style="width:64px" data-key="Left"><span class="l">←</span></div><div class="lh-stack" style="width:64px"><div class="kh-lk half"><span class="l">↑</span></div><div class="kh-lk half"><span class="l">↓</span></div></div><div class="kh-lk " style="width:64px" data-key="Right"><span class="l">→</span></div></div></div>
+    
+    
+    <div class="lh-detail">
+      <div class="big"><span class="kh-key ">Q</span></div>
+      <dl><dt>Tap</dt><dd>types <span class="mono">q</span></dd><dt>Tap-hold</dt><dd>none: Q is a plain letter</dd></dl>
+      <dl><dt>On numbers-symbols</dt><dd><span class="mono">!</span> (Shift + 1), after Space is held about 220 ms.</dd><dt>On practice</dt><dd>Normal: held Space still gives it.</dd></dl>
+      <p class="hintline">To type an exclamation mark, you need to press <b>!</b> (Shift + 1). <span class="hint">Hint: <b>!</b> is <b>tap-hold Space</b> + <b>Q</b>.</span></p>
+    </div>
+    
+    <div class="lh-foot"><div class="lh-legend"><span><span class="kh-lk map" style="width:44px"><span class="l">Q</span></span> symbol while Space is held</span><span><span class="kh-lk same" style="width:44px"><span class="l">N</span></span> stays a letter</span><span><span class="kh-lk " style="width:44px"><span class="l">Z</span></span> unchanged</span><span><span class="kh-lk layerkey" style="width:44px"><span class="l">Spc</span></span> Space held</span></div></div>
+  </div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Layout help: practice tab">
+  <span class="a" id="s-layout-practice"></span><span class="a g" id="s-layout-practice-grey"></span>
+  <div class="sheet-head"><h2>Layout help: practice tab</h2><p class="lede">Silenced physical keys are dashed and read XX (the key's name is underneath). Home-row holds, Caps and held Space still work. The toggle-out sequence is shown; the emergency exit stays locked until its behaviour is verified.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay lh-overlay" role="dialog" aria-label="Layout help, practice tab">
+  <div class="top"><h2>Layout help</h2>
+    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="false">base</span><span class="tab" role="tab" aria-selected="false">nav</span><span class="tab" role="tab" aria-selected="false">numbers-symbols</span><span class="tab" role="tab" aria-selected="true">practice</span></div>
+    <span class="lh-device">Keyboard <div class="seg" role="group"><span class="" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>MacBook</span><span class="" aria-pressed="false">Microsoft</span></div></span><span class="grow"></span>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="lh-how">Switch tab: <b>Left / Right</b> (tap-hold Caps + H / L) or <b>Tab / Shift + Tab</b>. Click and hold the drawn <b>Caps</b> or <b>Space</b> to preview that layer. <b>Esc</b> (tap Caps) closes.</p>
+  <div class="kh-lh">
+    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="`"><span class="l">`</span></div><div class="kh-lk silent" style="width:64px" data-key="1"><span class="l">XX</span><span class="s">1</span></div><div class="kh-lk silent" style="width:64px" data-key="2"><span class="l">XX</span><span class="s">2</span></div><div class="kh-lk silent" style="width:64px" data-key="3"><span class="l">XX</span><span class="s">3</span></div><div class="kh-lk silent" style="width:64px" data-key="4"><span class="l">XX</span><span class="s">4</span></div><div class="kh-lk silent" style="width:64px" data-key="5"><span class="l">XX</span><span class="s">5</span></div><div class="kh-lk silent" style="width:64px" data-key="6"><span class="l">XX</span><span class="s">6</span></div><div class="kh-lk silent" style="width:64px" data-key="7"><span class="l">XX</span><span class="s">7</span></div><div class="kh-lk silent" style="width:64px" data-key="8"><span class="l">XX</span><span class="s">8</span></div><div class="kh-lk silent" style="width:64px" data-key="9"><span class="l">XX</span><span class="s">9</span></div><div class="kh-lk silent" style="width:64px" data-key="0"><span class="l">XX</span><span class="s">0</span></div><div class="kh-lk " style="width:64px" data-key="-"><span class="l">-</span></div><div class="kh-lk " style="width:64px" data-key="="><span class="l">=</span></div><div class="kh-lk silent focus" style="width:134px" data-key="Backspace"><span class="l">XX</span><span class="s">Bksp</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:99px" data-key="Tab"><span class="l">Tab</span><span class="s">Homerow</span></div><div class="kh-lk " style="width:64px" data-key="q"><span class="l">Q</span></div><div class="kh-lk " style="width:64px" data-key="w"><span class="l">W</span></div><div class="kh-lk " style="width:64px" data-key="e"><span class="l">E</span></div><div class="kh-lk map" style="width:64px" data-key="r"><span class="l">R</span><span class="s">reload</span></div><div class="kh-lk " style="width:64px" data-key="t"><span class="l">T</span></div><div class="kh-lk " style="width:64px" data-key="y"><span class="l">Y</span></div><div class="kh-lk " style="width:64px" data-key="u"><span class="l">U</span></div><div class="kh-lk " style="width:64px" data-key="i"><span class="l">I</span></div><div class="kh-lk " style="width:64px" data-key="o"><span class="l">O</span></div><div class="kh-lk " style="width:64px" data-key="p"><span class="l">P</span></div><div class="kh-lk " style="width:64px" data-key="["><span class="l">[</span></div><div class="kh-lk " style="width:64px" data-key="]"><span class="l">]</span></div><div class="kh-lk " style="width:99px" data-key="\"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:116px" data-key="Caps"><span class="l">Caps</span><span class="s">Esc | nav</span></div><div class="kh-lk map" style="width:64px" data-key="a"><span class="l">A</span><span class="s">Ctrl</span></div><div class="kh-lk map" style="width:64px" data-key="s"><span class="l">S</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key="d"><span class="l">D</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:64px" data-key="f"><span class="l">F</span><span class="s">Shift</span></div><div class="kh-lk " style="width:64px" data-key="g"><span class="l">G</span></div><div class="kh-lk " style="width:64px" data-key="h"><span class="l">H</span></div><div class="kh-lk map" style="width:64px" data-key="j"><span class="l">J</span><span class="s">Shift</span></div><div class="kh-lk map" style="width:64px" data-key="k"><span class="l">K</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:64px" data-key="l"><span class="l">L</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key=";"><span class="l">;</span><span class="s">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="'"><span class="l">'</span></div><div class="kh-lk silent" style="width:152px" data-key="Return"><span class="l">XX</span><span class="s">Return</span></div></div><div class="lh-row"><div class="kh-lk silent" style="width:152px" data-key="Shift-L"><span class="l">XX</span><span class="s">Shift</span></div><div class="kh-lk " style="width:64px" data-key="z"><span class="l">Z</span></div><div class="kh-lk " style="width:64px" data-key="x"><span class="l">X</span></div><div class="kh-lk " style="width:64px" data-key="c"><span class="l">C</span></div><div class="kh-lk map" style="width:64px" data-key="v"><span class="l">V</span><span class="s">toggle</span></div><div class="kh-lk " style="width:64px" data-key="b"><span class="l">B</span></div><div class="kh-lk " style="width:64px" data-key="n"><span class="l">N</span></div><div class="kh-lk " style="width:64px" data-key="m"><span class="l">M</span></div><div class="kh-lk " style="width:64px" data-key=","><span class="l">,</span></div><div class="kh-lk " style="width:64px" data-key="."><span class="l">.</span></div><div class="kh-lk " style="width:64px" data-key="/"><span class="l">/</span></div><div class="kh-lk silent" style="width:186px" data-key="Shift-R"><span class="l">XX</span><span class="s">Shift</span></div></div><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="fn"><span class="l">fn</span></div><div class="kh-lk silent" style="width:64px" data-key="Ctrl-L"><span class="l">XX</span><span class="s">Ctrl</span></div><div class="kh-lk silent" style="width:64px" data-key="Opt-L"><span class="l">XX</span><span class="s">Opt</span></div><div class="kh-lk silent" style="width:82px" data-key="Cmd-L"><span class="l">XX</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:344px" data-key="Space"><span class="l">Space</span><span class="s">tap Space | hold numbers</span></div><div class="kh-lk silent" style="width:82px" data-key="Cmd-R"><span class="l">XX</span><span class="s">Cmd</span></div><div class="kh-lk silent" style="width:64px" data-key="Opt-R"><span class="l">XX</span><span class="s">Opt</span></div><div class="lh-gap" style="width:23px"></div><div class="kh-lk silent" style="width:64px" data-key="Left"><span class="l">XX</span><span class="s">←</span></div><div class="lh-stack" style="width:64px"><div class="kh-lk half silent"><span class="l">↑</span><span class="s">XX</span></div><div class="kh-lk half silent"><span class="l">↓</span><span class="s">XX</span></div></div><div class="kh-lk silent" style="width:64px" data-key="Right"><span class="l">XX</span><span class="s">→</span></div></div></div>
+    <p class="lh-also"><b>Also silent:</b> Esc, Forward Delete, Home, End, Page Up and Down. Digits 1 to 0 and their symbols are blocked; <span class="mono">- = `</span> still type.</p>
+    
+    <div class="lh-cards">
+      <div class="lh-card">
+        <span class="kh-label">Focused key</span>
+        <div class="row"><span class="kh-key silent">XX</span><div><b>Backspace</b> is silent. Caps + M sends it instead.</div></div>
+        <p>To delete the character before the cursor, you need to press <b>Backspace</b>. Hint: it is <b>tap-hold Caps</b> + <b>M</b>.</p>
+      </div>
+      <div class="lh-card">
+        <span class="kh-label">Toggle out of practice</span>
+        <div class="seq"><span class="kh-key sm">Control</span>+<span class="kh-key sm">Alt</span>+<span class="kh-key sm">GUI</span>+<span class="kh-key sm">V</span></div>
+        <p>To return to base, you need to press <b>physical Control + Alt + GUI + V</b>. Hint: home-row holds do not count. The game cannot see this: tell it.</p>
+      </div>
+      <div class="lh-card locked">
+        <span class="kh-label"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg> Emergency exit</span>
+        <p><b>Shown after its runtime behaviour is verified</b> on this machine.</p>
+      </div>
+    </div>
+    
+    <div class="lh-foot"><div class="lh-legend"><span><span class="kh-lk silent" style="width:44px"><span class="l">XX</span></span> silent: sends nothing</span><span><span class="kh-lk map" style="width:44px"><span class="l">A</span></span> still works here</span><span><span class="kh-lk " style="width:44px"><span class="l">B</span></span> unchanged</span></div></div>
+  </div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Layout help: base tab, Microsoft keyboard selected">
+  <span class="a" id="s-layout-base-microsoft"></span><span class="a g" id="s-layout-base-microsoft-grey"></span>
+  <div class="sheet-head"><h2>Layout help: base tab, Microsoft keyboard selected</h2><p class="lede">Same screen with the keyboard switch set to Microsoft: the bottom row is a PC row, and Alt becomes Command, Windows becomes Option. The default (MacBook) is the first render.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay lh-overlay" role="dialog" aria-label="Layout help, base tab">
+  <div class="top"><h2>Layout help</h2>
+    <div class="tabs" role="tablist"><span class="tab" role="tab" aria-selected="true">base</span><span class="tab" role="tab" aria-selected="false">nav</span><span class="tab" role="tab" aria-selected="false">numbers-symbols</span><span class="tab" role="tab" aria-selected="false">practice</span></div>
+    <span class="lh-device">Keyboard <div class="seg" role="group"><span class="" aria-pressed="false">MacBook</span><span class="focus" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Microsoft</span></div></span><span class="grow"></span>
+    <span class="close"><span class="kh-key sm">Esc</span> tap Caps to close</span></div>
+  <p class="lh-how">Switch tab: <b>Left / Right</b> (tap-hold Caps + H / L) or <b>Tab / Shift + Tab</b>. Click and hold the drawn <b>Caps</b> or <b>Space</b> to preview that layer. <b>Esc</b> (tap Caps) closes.</p>
+  <div class="kh-lh">
+    <div class="lh-rows"><div class="lh-row"><div class="kh-lk " style="width:64px" data-key="`"><span class="l">`</span></div><div class="kh-lk " style="width:64px" data-key="1"><span class="l">1</span></div><div class="kh-lk " style="width:64px" data-key="2"><span class="l">2</span></div><div class="kh-lk " style="width:64px" data-key="3"><span class="l">3</span></div><div class="kh-lk " style="width:64px" data-key="4"><span class="l">4</span></div><div class="kh-lk " style="width:64px" data-key="5"><span class="l">5</span></div><div class="kh-lk " style="width:64px" data-key="6"><span class="l">6</span></div><div class="kh-lk " style="width:64px" data-key="7"><span class="l">7</span></div><div class="kh-lk " style="width:64px" data-key="8"><span class="l">8</span></div><div class="kh-lk " style="width:64px" data-key="9"><span class="l">9</span></div><div class="kh-lk " style="width:64px" data-key="0"><span class="l">0</span></div><div class="kh-lk " style="width:64px" data-key="-"><span class="l">-</span></div><div class="kh-lk " style="width:64px" data-key="="><span class="l">=</span></div><div class="kh-lk " style="width:134px" data-key="Backspace"><span class="l">Backspace</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:99px" data-key="Tab"><span class="l">Tab</span><span class="s">Homerow</span></div><div class="kh-lk " style="width:64px" data-key="q"><span class="l">Q</span></div><div class="kh-lk " style="width:64px" data-key="w"><span class="l">W</span></div><div class="kh-lk " style="width:64px" data-key="e"><span class="l">E</span></div><div class="kh-lk map" style="width:64px" data-key="r"><span class="l">R</span><span class="s">reload</span></div><div class="kh-lk " style="width:64px" data-key="t"><span class="l">T</span></div><div class="kh-lk " style="width:64px" data-key="y"><span class="l">Y</span></div><div class="kh-lk " style="width:64px" data-key="u"><span class="l">U</span></div><div class="kh-lk " style="width:64px" data-key="i"><span class="l">I</span></div><div class="kh-lk " style="width:64px" data-key="o"><span class="l">O</span></div><div class="kh-lk " style="width:64px" data-key="p"><span class="l">P</span></div><div class="kh-lk " style="width:64px" data-key="["><span class="l">[</span></div><div class="kh-lk " style="width:64px" data-key="]"><span class="l">]</span></div><div class="kh-lk " style="width:99px" data-key="\"><span class="l">\</span></div></div><div class="lh-row"><div class="kh-lk map" style="width:116px" data-key="Caps"><span class="l">Caps</span><span class="s">Esc | nav</span></div><div class="kh-lk map" style="width:64px" data-key="a"><span class="l">A</span><span class="s">Ctrl</span></div><div class="kh-lk map" style="width:64px" data-key="s"><span class="l">S</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key="d"><span class="l">D</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:64px" data-key="f"><span class="l">F</span><span class="s">Shift</span></div><div class="kh-lk " style="width:64px" data-key="g"><span class="l">G</span></div><div class="kh-lk " style="width:64px" data-key="h"><span class="l">H</span></div><div class="kh-lk map" style="width:64px" data-key="j"><span class="l">J</span><span class="s">Shift</span></div><div class="kh-lk map" style="width:64px" data-key="k"><span class="l">K</span><span class="s">Cmd</span></div><div class="kh-lk map" style="width:64px" data-key="l"><span class="l">L</span><span class="s">Opt</span></div><div class="kh-lk map" style="width:64px" data-key=";"><span class="l">;</span><span class="s">Ctrl</span></div><div class="kh-lk " style="width:64px" data-key="'"><span class="l">'</span></div><div class="kh-lk " style="width:152px" data-key="Return"><span class="l">Return</span></div></div><div class="lh-row"><div class="kh-lk " style="width:152px" data-key="Shift-L"><span class="l">Shift</span></div><div class="kh-lk " style="width:64px" data-key="z"><span class="l">Z</span></div><div class="kh-lk " style="width:64px" data-key="x"><span class="l">X</span></div><div class="kh-lk " style="width:64px" data-key="c"><span class="l">C</span></div><div class="kh-lk map" style="width:64px" data-key="v"><span class="l">V</span><span class="s">toggle</span></div><div class="kh-lk " style="width:64px" data-key="b"><span class="l">B</span></div><div class="kh-lk " style="width:64px" data-key="n"><span class="l">N</span></div><div class="kh-lk " style="width:64px" data-key="m"><span class="l">M</span></div><div class="kh-lk " style="width:64px" data-key=","><span class="l">,</span></div><div class="kh-lk " style="width:64px" data-key="."><span class="l">.</span></div><div class="kh-lk " style="width:64px" data-key="/"><span class="l">/</span></div><div class="kh-lk " style="width:186px" data-key="Shift-R"><span class="l">Shift</span></div></div><div class="lh-row"><div class="kh-lk " style="width:82px" data-key="Ctrl-L"><span class="l">Ctrl</span></div><div class="kh-lk map" style="width:82px" data-key="Win-L"><span class="l">Win</span><span class="s">→ Opt</span></div><div class="kh-lk map focus" style="width:82px" data-key="Alt-L"><span class="l">Alt</span><span class="s">→ Cmd</span></div><div class="kh-lk map" style="width:432px" data-key="Space"><span class="l">Space</span><span class="s">tap Space | hold numbers</span></div><div class="kh-lk map" style="width:82px" data-key="Alt-R"><span class="l">Alt</span><span class="s">→ R Cmd</span></div><div class="kh-lk map" style="width:82px" data-key="Win-R"><span class="l">Win</span><span class="s">→ R Opt</span></div><div class="kh-lk " style="width:82px" data-key="Menu"><span class="l">Menu</span></div><div class="kh-lk " style="width:82px" data-key="Ctrl-R"><span class="l">Ctrl</span></div></div></div>
+    
+    
+    <div class="lh-detail">
+      <div class="big"><span class="kh-key ">Alt</span></div>
+      <dl><dt>Physical key</dt><dd>Left Alt, next to Space</dd><dt>Result</dt><dd>Command (<span class="mono">lmet</span>) on this keyboard only</dd></dl>
+      <dl><dt>Also remapped</dt><dd>Windows becomes Option; Right Alt becomes Right Command and also holds nav; Right Windows becomes Right Option.</dd></dl>
+      <p class="hintline">To save a file, you need to press <b>Command + S</b>. <span class="hint">Hint: Command is <b>physical Alt</b> on this keyboard (tap-hold D works on both).</span></p>
+    </div>
+    
+    <div class="lh-foot">
+      <div class="lh-remap"><span><span class="kh-key sm">Alt</span> <svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Command</span><span><span class="kh-key sm">Win</span> <svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Option</span><span><span class="kh-key sm">Alt</span> right <svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Right Command + nav</span></div></div>
+  </div>
+</div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Setup and calibration: MacBook, physical positions">
+  <span class="a" id="s-setup-calibration"></span><span class="a g" id="s-setup-calibration-grey"></span>
+  <div class="sheet-head"><h2>Setup and calibration: MacBook, physical positions</h2><p class="lede">First-run screen. Keyboard choice, five calibration steps with a status each (not started, observed output, skipped), the diagram in its physical-positions view, and the practice toggle-out sequence. Everything can be skipped.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay su" role="dialog" aria-label="Setup and calibration">
+  <div class="top"><h2>Set up your keyboard</h2><span class="sub">About two minutes. Nothing here blocks the story.</span>
+    <span class="grow"></span>
+    <span class="kh-btn">Skip setup <span class="kh-key sm">Esc</span></span>
+    <span class="kh-btn primary focus">Continue <span class="kh-key sm">Return</span></span></div>
+  <div class="su-choice" role="radiogroup" aria-label="Keyboard">
+    <div class="su-opt sel" role="radio" aria-checked="true">
+      <h3>MacBook keyboard <span class="kh-label">default</span></h3><span class="pick"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Selected</span>
+      <div class="strip"><span class="kh-key dim">Ctrl</span><span class="kh-key dim">Opt</span><span class="kh-key">Cmd</span><span class="kh-key sp">Space</span><span class="kh-key">Cmd</span><span class="kh-key dim">Opt</span></div>
+      <p>The diagrams are drawn for this keyboard.</p>
+    </div>
+    <div class="su-opt" role="radio" aria-checked="false">
+      <h3>Microsoft keyboard</h3><span class="pick">Not selected</span>
+      <div class="strip"><span class="kh-key dim">Ctrl</span><span class="kh-key dim">Win</span><span class="arrowto"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Opt</span><span class="kh-key">Alt</span><span class="arrowto"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Cmd</span><span class="kh-key sp">Space</span></div>
+      <p>Right Alt becomes Right Command and also holds nav.</p>
+    </div>
+  </div>
+  <div class="su-body">
+    <div class="su-steps">
+      <div class="head"><span class="kh-label">Calibration: five optional steps</span><span class="kh-label">3 observed · 1 skipped</span></div>
+      
+    <div class="su-step">
+      <span class="n">1</span>
+      <span class="t">Caps + H <span class="mono">→ Left arrow</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To walk west, you need to press <b>Left arrow</b>. Hint: it is <b>tap-hold Caps + H</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">2</span>
+      <span class="t">Caps + N <span class="mono">→ Return</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To submit, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps + N</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">3</span>
+      <span class="t">Space + A <span class="mono">→ 1</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To type a one, you need to press <b>1</b>. Hint: 1 is <b>tap-hold Space + A</b>.</span>
+    </div>
+    <div class="su-step cur">
+      <span class="n">4</span>
+      <span class="t">Space + Q <span class="mono">→ !</span></span>
+      <span class="kh-chip todo"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Not started</span>
+      <span class="d">To type an exclamation mark, you need to press <b>!</b>. Hint: it is <b>tap-hold Space + Q</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">5</span>
+      <span class="t">Shift on the home row <span class="mono">→ capital J</span></span>
+      <span class="kh-chip skip"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-skip"/></svg> Skipped</span>
+      <span class="d">To type a capital J, you need to press <b>Shift + J</b>. Hint: Shift is <b>tap-hold F</b>, then J.</span>
+    </div>
+      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used.</p>
+    </div>
+    <div class="su-side">
+      <div class="su-diagram">
+        <div class="head"><span class="kh-label">Diagram</span><div class="seg" role="group"><span class="" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Physical positions</span><span class="" aria-pressed="false">Resulting characters</span></div></div>
+        <div class="sk-rows"><div class="sk-row"><div class="kh-sk " style="width:28px">`</div><div class="kh-sk " style="width:28px">1</div><div class="kh-sk " style="width:28px">2</div><div class="kh-sk " style="width:28px">3</div><div class="kh-sk " style="width:28px">4</div><div class="kh-sk " style="width:28px">5</div><div class="kh-sk " style="width:28px">6</div><div class="kh-sk " style="width:28px">7</div><div class="kh-sk " style="width:28px">8</div><div class="kh-sk " style="width:28px">9</div><div class="kh-sk " style="width:28px">0</div><div class="kh-sk " style="width:28px">-</div><div class="kh-sk " style="width:28px">=</div><div class="kh-sk " style="width:59px">Bksp</div></div><div class="sk-row"><div class="kh-sk " style="width:44px">Tab</div><div class="kh-sk target" style="width:28px">Q</div><div class="kh-sk " style="width:28px">W</div><div class="kh-sk " style="width:28px">E</div><div class="kh-sk " style="width:28px">R</div><div class="kh-sk " style="width:28px">T</div><div class="kh-sk " style="width:28px">Y</div><div class="kh-sk " style="width:28px">U</div><div class="kh-sk " style="width:28px">I</div><div class="kh-sk " style="width:28px">O</div><div class="kh-sk " style="width:28px">P</div><div class="kh-sk " style="width:28px">[</div><div class="kh-sk " style="width:28px">]</div><div class="kh-sk " style="width:44px">\</div></div><div class="sk-row"><div class="kh-sk " style="width:51px">Caps</div><div class="kh-sk " style="width:28px">A</div><div class="kh-sk " style="width:28px">S</div><div class="kh-sk " style="width:28px">D</div><div class="kh-sk " style="width:28px">F</div><div class="kh-sk " style="width:28px">G</div><div class="kh-sk " style="width:28px">H</div><div class="kh-sk " style="width:28px">J</div><div class="kh-sk " style="width:28px">K</div><div class="kh-sk " style="width:28px">L</div><div class="kh-sk " style="width:28px">;</div><div class="kh-sk " style="width:28px">'</div><div class="kh-sk " style="width:67px">Return</div></div><div class="sk-row"><div class="kh-sk " style="width:67px">Shift</div><div class="kh-sk " style="width:28px">Z</div><div class="kh-sk " style="width:28px">X</div><div class="kh-sk " style="width:28px">C</div><div class="kh-sk " style="width:28px">V</div><div class="kh-sk " style="width:28px">B</div><div class="kh-sk " style="width:28px">N</div><div class="kh-sk " style="width:28px">M</div><div class="kh-sk " style="width:28px">,</div><div class="kh-sk " style="width:28px">.</div><div class="kh-sk " style="width:28px">/</div><div class="kh-sk " style="width:82px">Shift</div></div><div class="sk-row"><div class="kh-sk " style="width:44px">Ctrl</div><div class="kh-sk " style="width:44px">Opt</div><div class="kh-sk " style="width:44px">Cmd</div><div class="kh-sk layerkey" style="width:152px">Space (held)</div><div class="kh-sk " style="width:44px">Cmd</div><div class="kh-sk " style="width:44px">Opt</div></div></div>
+        <p class="cap"><b>Physical positions</b>: hold <b>Space</b> about 220 ms, then tap <b>Q</b>.</p>
+      </div>
+      <div class="su-toggle">
+        <span class="kh-label">Practice toggle-out</span>
+        <div class="seq"><span class="kh-key sm">Control</span>+<span class="kh-key sm">Alt</span>+<span class="kh-key sm">GUI</span>+<span class="kh-key sm">V</span></div>
+        <p>To return to base, you need to press <b>physical Control + Alt + GUI + V</b>. Hint: home-row holds do not count.</p>
+        <div><span class="kh-chip unconfirmed"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Practice layer: unconfirmed</span></div>
+      </div>
     </div>
   </div>
 </div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Setup and calibration: Microsoft keyboard, resulting characters">
+  <span class="a" id="s-setup-characters"></span><span class="a g" id="s-setup-characters-grey"></span>
+  <div class="sheet-head"><h2>Setup and calibration: Microsoft keyboard, resulting characters</h2><p class="lede">The same screen with the Microsoft keyboard selected and the diagram switched to resulting characters.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay su" role="dialog" aria-label="Setup and calibration">
+  <div class="top"><h2>Set up your keyboard</h2><span class="sub">About two minutes. Nothing here blocks the story.</span>
+    <span class="grow"></span>
+    <span class="kh-btn">Skip setup <span class="kh-key sm">Esc</span></span>
+    <span class="kh-btn primary focus">Continue <span class="kh-key sm">Return</span></span></div>
+  <div class="su-choice" role="radiogroup" aria-label="Keyboard">
+    <div class="su-opt" role="radio" aria-checked="false">
+      <h3>MacBook keyboard <span class="kh-label">default</span></h3><span class="pick">Not selected</span>
+      <div class="strip"><span class="kh-key dim">Ctrl</span><span class="kh-key dim">Opt</span><span class="kh-key">Cmd</span><span class="kh-key sp">Space</span><span class="kh-key">Cmd</span><span class="kh-key dim">Opt</span></div>
+      <p>The diagrams are drawn for this keyboard.</p>
+    </div>
+    <div class="su-opt sel" role="radio" aria-checked="true">
+      <h3>Microsoft keyboard</h3><span class="pick"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Selected</span>
+      <div class="strip"><span class="kh-key dim">Ctrl</span><span class="kh-key dim">Win</span><span class="arrowto"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Opt</span><span class="kh-key">Alt</span><span class="arrowto"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg> Cmd</span><span class="kh-key sp">Space</span></div>
+      <p>Right Alt becomes Right Command and also holds nav.</p>
+    </div>
+  </div>
+  <div class="su-body">
+    <div class="su-steps">
+      <div class="head"><span class="kh-label">Calibration: five optional steps</span><span class="kh-label">3 observed · 1 skipped</span></div>
+      
+    <div class="su-step">
+      <span class="n">1</span>
+      <span class="t">Caps + H <span class="mono">→ Left arrow</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To walk west, you need to press <b>Left arrow</b>. Hint: it is <b>tap-hold Caps + H</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">2</span>
+      <span class="t">Caps + N <span class="mono">→ Return</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To submit, you need to press <b>Return</b>. Hint: Return is <b>tap-hold Caps + N</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">3</span>
+      <span class="t">Space + A <span class="mono">→ 1</span></span>
+      <span class="kh-chip obs"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Observed output</span>
+      <span class="d">To type a one, you need to press <b>1</b>. Hint: 1 is <b>tap-hold Space + A</b>.</span>
+    </div>
+    <div class="su-step cur">
+      <span class="n">4</span>
+      <span class="t">Space + Q <span class="mono">→ !</span></span>
+      <span class="kh-chip todo"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Not started</span>
+      <span class="d">To type an exclamation mark, you need to press <b>!</b>. Hint: it is <b>tap-hold Space + Q</b>.</span>
+    </div>
+    <div class="su-step">
+      <span class="n">5</span>
+      <span class="t">Shift on the home row <span class="mono">→ capital J</span></span>
+      <span class="kh-chip skip"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-skip"/></svg> Skipped</span>
+      <span class="d">To type a capital J, you need to press <b>Shift + J</b>. Hint: Shift is <b>tap-hold F</b>, then J.</span>
+    </div>
+      <p class="su-foot">The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used.</p>
+    </div>
+    <div class="su-side">
+      <div class="su-diagram">
+        <div class="head"><span class="kh-label">Diagram</span><div class="seg" role="group"><span class="" aria-pressed="false">Physical positions</span><span class="focus" aria-pressed="true"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Resulting characters</span></div></div>
+        <div class="sk-rows"><div class="sk-row"><div class="kh-sk " style="width:28px">`</div><div class="kh-sk " style="width:28px">1</div><div class="kh-sk " style="width:28px">2</div><div class="kh-sk " style="width:28px">3</div><div class="kh-sk " style="width:28px">4</div><div class="kh-sk " style="width:28px">5</div><div class="kh-sk " style="width:28px">6</div><div class="kh-sk " style="width:28px">7</div><div class="kh-sk " style="width:28px">8</div><div class="kh-sk " style="width:28px">9</div><div class="kh-sk " style="width:28px">0</div><div class="kh-sk " style="width:28px">-</div><div class="kh-sk " style="width:28px">=</div><div class="kh-sk " style="width:59px">Bksp</div></div><div class="sk-row"><div class="kh-sk " style="width:44px">Tab</div><div class="kh-sk target" style="width:28px">!</div><div class="kh-sk " style="width:28px">@</div><div class="kh-sk " style="width:28px">#</div><div class="kh-sk " style="width:28px">$</div><div class="kh-sk " style="width:28px">%</div><div class="kh-sk " style="width:28px">^</div><div class="kh-sk " style="width:28px">&</div><div class="kh-sk " style="width:28px">*</div><div class="kh-sk " style="width:28px">(</div><div class="kh-sk " style="width:28px">)</div><div class="kh-sk " style="width:28px">_</div><div class="kh-sk " style="width:28px">+</div><div class="kh-sk " style="width:44px">\</div></div><div class="sk-row"><div class="kh-sk " style="width:51px">Caps</div><div class="kh-sk " style="width:28px">1</div><div class="kh-sk " style="width:28px">2</div><div class="kh-sk " style="width:28px">3</div><div class="kh-sk " style="width:28px">4</div><div class="kh-sk " style="width:28px">5</div><div class="kh-sk " style="width:28px">6</div><div class="kh-sk " style="width:28px">7</div><div class="kh-sk " style="width:28px">8</div><div class="kh-sk " style="width:28px">9</div><div class="kh-sk " style="width:28px">0</div><div class="kh-sk " style="width:28px">-</div><div class="kh-sk " style="width:67px">Return</div></div><div class="sk-row"><div class="kh-sk " style="width:67px">Shift</div><div class="kh-sk " style="width:28px">z</div><div class="kh-sk " style="width:28px">x</div><div class="kh-sk " style="width:28px">c</div><div class="kh-sk " style="width:28px">v</div><div class="kh-sk " style="width:28px">b</div><div class="kh-sk " style="width:28px">n</div><div class="kh-sk " style="width:28px">m</div><div class="kh-sk " style="width:28px">,</div><div class="kh-sk " style="width:28px">.</div><div class="kh-sk " style="width:28px">/</div><div class="kh-sk " style="width:82px">Shift</div></div><div class="sk-row"><div class="kh-sk " style="width:44px">Ctrl</div><div class="kh-sk " style="width:44px">Opt</div><div class="kh-sk " style="width:44px">Cmd</div><div class="kh-sk layerkey" style="width:152px">Space</div><div class="kh-sk " style="width:44px">Cmd</div><div class="kh-sk " style="width:44px">Opt</div></div></div>
+        <p class="cap"><b>Resulting characters</b> while Space is held: <b>Q</b> gives <b>!</b>.</p>
+      </div>
+      <div class="su-toggle">
+        <span class="kh-label">Practice toggle-out</span>
+        <div class="seq"><span class="kh-key sm">Control</span>+<span class="kh-key sm">Alt</span>+<span class="kh-key sm">GUI</span>+<span class="kh-key sm">V</span></div>
+        <p>To return to base, you need to press <b>physical Control + Alt + GUI + V</b>. Hint: home-row holds do not count.</p>
+        <div><span class="kh-chip unconfirmed"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Practice layer: unconfirmed</span></div>
+      </div>
+    </div>
+  </div>
 </div>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Terminal scene: editor with the keyboard inset open">
+  <span class="a" id="s-terminal-scene"></span><span class="a g" id="s-terminal-scene-grey"></span>
+  <div class="sheet-head"><h2>Terminal scene: editor with the keyboard inset open</h2><p class="lede">Widened reading column (900 px, 18 px mono), the world dimmed but still visible, a strong block cursor, a selection with a bar under it, a target line (gold gutter marker and tag) and a target word (dashed outline). The inset sits below the editor and never covers the cursor line.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
+    
+<section class="kh-panel kh-term" aria-label="Terminal scene: ticket log">
+  <div class="bar"><span class="name">ticket-4821.log</span><span class="where">Records · Filing Drift</span><span class="grow"></span>
+    <span class="leave">Leave the terminal <span class="kh-key sm">Esc</span> tap Caps</span></div>
+  
+  <div class="kh-task">
+    <p>To select the next word, you need to press <b>Shift + Option + Right</b>. <span class="hint">Hint: Shift + Option + Right is <b>tap-hold F</b> (Shift) first, then <b>tap-hold Caps + W</b>.</span></p>
+    <span class="count"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> 1 / 3</span>
+  </div>
+  <div class="kh-code" aria-label="Log, five lines"><div class="kh-line "><span class="no">1</span><span><span class="k">FROM</span>    records-desk</span></div><div class="kh-line "><span class="no">2</span><span><span class="k">TO</span>      harbour-street-12</span></div><div class="kh-line "><span class="no">3</span><span><span class="k">NOTE</span>    parcel <span class="sel">was moved</span><span class="cur"> </span>twice</span></div><div class="kh-line tl"><span class="no"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg>4</span><span><span class="k">NOTE</span>    <span class="tw">address</span> does not match the form</span><span class="tag"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> target line</span></div><div class="kh-line "><span class="no">5</span><span><span class="k">STATUS</span>  waiting for review</span></div></div>
+</section>
+<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-side" style="top:88px">
+<div class="kh-fb observed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">F</span> hold + <span class="kh-key sm">Caps</span> hold + <span class="kh-key sm">W</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">Shift + Option + Right</span></dd>
+    <dt>Effect</dt><dd class="fx">Selected the next word</dd>
+  </dl>
+  <p class="why">The game saw this output. It cannot see which physical key made it.</p>
+</div></div>
+
+<section class="kh-panel kh-inset inset-tall" aria-label="Keyboard teaching inset: Select the next word">
+  <div class="head"><h3>Select the next word</h3><span class="layer">nav layer · tap-hold Caps · 200 ms</span></div>
+  <div class="kh-cell">
+    <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">top row and home row</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Tab</span><span class="kh-key dim">Q</span><span class="kh-key">W</span><span class="kh-key dim">E</span><span class="kh-key dim">R</span><span class="kh-key dim">T</span><span class="kh-key dim">Y</span></div>
+    <div class="kh-mini" aria-label="Home row" style="margin-top:2px"><span class="kh-key cap held">Caps</span><span class="kh-key dim">A</span><span class="kh-key dim">S</span><span class="kh-key dim">D</span><span class="kh-key dim">F</span><span class="kh-key dim">G</span><span class="kh-key dim">H</span></div>
+  </div>
+  <div class="row">
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">2</span> Hold order</div>
+      <div class="kh-hold"><span class="kh-keyunit"><span class="kh-key held">Caps</span><span class="kh-tag hold">Hold</span></span><span class="plus">+</span><span class="kh-keyunit"><span class="kh-key ">W</span><span class="kh-tag tap">Tap</span></span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">3</span> Output</div>
+      <div class="kh-out"><span class="kh-key"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><span>Option + Right</span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">4</span> Effect</div>
+      <div class="kh-effect"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-step-east"/></svg><span>Next word</span></div>
+    </div>
+  </div>
+  </section>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Terminal scene: success state">
+  <span class="a" id="s-terminal-success"></span><span class="a g" id="s-terminal-success-grey"></span>
+  <div class="sheet-head"><h2>Terminal scene: success state</h2><p class="lede">Success is shown as text, a check icon, a thicker gold frame and a gold highlight on the target; no full-screen effect. The counter advances.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
+    
+<section class="kh-panel kh-term" aria-label="Terminal scene: ticket log">
+  <div class="bar"><span class="name">ticket-4821.log</span><span class="where">Records · Filing Drift</span><span class="grow"></span>
+    <span class="leave">Leave the terminal <span class="kh-key sm">Esc</span> tap Caps</span></div>
+  
+  <div class="kh-task ok" role="status">
+    <div class="win"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span><b>Done.</b> <b>address</b> is selected on the target line. Next, to delete it you need to press <b>Backspace</b>. Hint: Backspace is <b>tap-hold Caps</b> + <b>M</b>.</span></div>
+    <span class="count"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> 2 / 3</span>
+  </div>
+  <div class="kh-code" aria-label="Log, five lines"><div class="kh-line "><span class="no">1</span><span><span class="k">FROM</span>    records-desk</span></div><div class="kh-line "><span class="no">2</span><span><span class="k">TO</span>      harbour-street-12</span></div><div class="kh-line "><span class="no">3</span><span><span class="k">NOTE</span>    parcel was moved twice</span></div><div class="kh-line tl"><span class="no"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>4</span><span><span class="k">NOTE</span>    <span class="sel">address</span><span class="cur"> </span>does not match the form</span><span class="tag"><svg class="kh-ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> selected</span></div><div class="kh-line "><span class="no">5</span><span><span class="k">STATUS</span>  waiting for review</span></div></div>
+</section>
+<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-side" style="top:88px">
+<div class="kh-fb observed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">F</span> hold + <span class="kh-key sm">Caps</span> hold + <span class="kh-key sm">W</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">Shift + Option + Right</span></dd>
+    <dt>Effect</dt><dd class="fx">Selected the next word</dd>
+  </dl>
+  <p class="why">The game saw this output. It cannot see which physical key made it.</p>
+</div></div>
+
+<section class="kh-panel kh-inset inset-tall" aria-label="Keyboard teaching inset: Select the next word">
+  <div class="head"><h3>Select the next word</h3><span class="layer">nav layer · tap-hold Caps · 200 ms</span></div>
+  <div class="kh-cell">
+    <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">top row and home row</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Tab</span><span class="kh-key dim">Q</span><span class="kh-key">W</span><span class="kh-key dim">E</span><span class="kh-key dim">R</span><span class="kh-key dim">T</span><span class="kh-key dim">Y</span></div>
+    <div class="kh-mini" aria-label="Home row" style="margin-top:2px"><span class="kh-key cap held">Caps</span><span class="kh-key dim">A</span><span class="kh-key dim">S</span><span class="kh-key dim">D</span><span class="kh-key dim">F</span><span class="kh-key dim">G</span><span class="kh-key dim">H</span></div>
+  </div>
+  <div class="row">
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">2</span> Hold order</div>
+      <div class="kh-hold"><span class="kh-keyunit"><span class="kh-key held">Caps</span><span class="kh-tag hold">Hold</span></span><span class="plus">+</span><span class="kh-keyunit"><span class="kh-key ">W</span><span class="kh-tag tap">Tap</span></span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">3</span> Output</div>
+      <div class="kh-out"><span class="kh-key"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><span>Option + Right</span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">4</span> Effect</div>
+      <div class="kh-effect"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-step-east"/></svg><span>Next word</span></div>
+    </div>
+  </div>
+  </section>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Terminal scene: Tab practice region">
+  <span class="a" id="s-terminal-tab-practice"></span><span class="a g" id="s-terminal-tab-practice-grey"></span>
+  <div class="sheet-head"><h2>Terminal scene: Tab practice region</h2><p class="lede">Tab lessons run inside a dashed, labelled region. The announcement is written out (and read by screen readers); Esc leaves at any time, and the region never traps focus.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
+    
+<section class="kh-panel kh-term" aria-label="Terminal scene: ticket form, Tab practice region">
+  <div class="bar"><span class="name">ticket-form</span><span class="where">Orientation · The Clock</span><span class="grow"></span>
+    <span class="leave">Leave the region <span class="kh-key sm">Esc</span> tap Caps</span></div>
+  <div class="kh-task">
+    <p>To move to the next field, you need to press <b>Tab</b>. <span class="hint">Hint: Tab is <b>tap Tab</b>: a tap, not a hold.</span></p>
+    <span class="count"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> 2 / 3</span>
+  </div>
+  <div class="kh-code" style="padding:0">
+    <div class="kh-region" role="group" aria-label="Tab practice region">
+      <span class="lab"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg> Tab practice region: Tab moves between these fields only</span>
+      <div class="frow"><span>Ticket</span><span class="field">4821</span></div>
+      <div class="frow"><span>Desk</span><span class="field on">West desk</span></div>
+      <div class="frow"><span>Note</span><span class="field">&nbsp;</span></div>
+    </div>
+  </div>
+  <div class="kh-announce" role="status"><span class="kh-label"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> Announced</span>
+    <span>You are in the Tab practice region. Tab moves between three fields. <b>Esc</b> (tap Caps) leaves it at any time.</span></div>
+</section>
+<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-side" style="top:88px">
+<div class="kh-fb observed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">Tab</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">Tab</span></dd>
+    <dt>Effect</dt><dd class="fx">Focus moved to Desk</dd>
+  </dl>
+  <p class="why">The game saw the Tab key event. Tab never leaves the region on its own.</p>
+</div></div>
+
+<section class="kh-panel kh-inset inset-tall" aria-label="Keyboard teaching inset: Tab">
+  <div class="head"><h3>Move to the next field</h3><span class="layer">base layer · tap Tab</span></div>
+  <div class="kh-cell">
+    <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">top row, left edge</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key">Tab</span><span class="kh-key dim">Q</span><span class="kh-key dim">W</span><span class="kh-key dim">E</span><span class="kh-key dim">R</span><span class="kh-key dim">T</span><span class="kh-key dim">Y</span></div>
+  </div>
+  <div class="row">
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">2</span> Hold order</div>
+      <div class="kh-hold"><span class="kh-keyunit"><span class="kh-key wide">Tab</span><span class="kh-tag tap">Tap</span></span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">3</span> Output</div>
+      <div class="kh-out"><span class="kh-key wide">Tab</span><span>Tab</span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">4</span> Effect</div>
+      <div class="kh-effect"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-step-east"/></svg><span>Next field</span></div>
+    </div>
+  </div>
+</section>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Glitch-repair duel">
+  <span class="a" id="s-glitch-duel"></span><span class="a g" id="s-glitch-duel-grey"></span>
+  <div class="sheet-head"><h2>Glitch-repair duel</h2><p class="lede">Turn-based and untimed. Violet frames and glyphs only; the title text uses the lighter glitch accent. Retry is a visible button; a wrong result gets a plain explanation.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim scene"></div>
+    
+<section class="kh-panel kh-term glitch" aria-label="Glitch repair duel">
+  <div class="bar"><span class="glt"><svg class="kh-ico" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-glitch"/></svg> Glitch repair: the misprinted address</span><span class="grow"></span>
+    <span class="leave">Leave the duel <span class="kh-key sm">Esc</span> tap Caps</span></div>
+  <div class="kh-task">
+    <p>To delete the extra letter, you need to press <b>Backspace</b>. <span class="hint">Hint: Backspace is <b>tap-hold Caps</b> + <b>M</b>.</span></p>
+    <span class="count"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg> turn 2 / 3</span>
+  </div>
+  <div class="kh-code" aria-label="Code fragment">
+<div class="kh-line "><span class="no">1</span><span><span class="k">ship_to</span> = "Harbour <span class="gl">Strret</span> 12"</span></div>
+<div class="kh-line "><span class="no">2</span><span><span class="k">items</span>   = 3</span></div>
+<div class="kh-line "><span class="no">3</span><span><span class="k">paid</span>    = true</span></div></div>
+  <div class="kh-retry"><span class="kh-btn focus"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-left"/></svg> Retry this turn <span class="kh-key sm">Return</span></span>
+    <span class="kh-btn">Leave the duel <span class="kh-key sm">Esc</span></span></div>
+</section>
+<div class="kh-hud shortcuts"><span class="chip">Layout help <span class="kh-key sm">?</span></span></div>
+<div class="kh-side" style="top:88px">
+<section class="kh-panel kh-turns" aria-label="Repair turns">
+  <h3><svg class="kh-ico" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><use href="#m-glitch"/></svg> Turns</h3>
+  <div class="kh-turn"><span class="dot"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span><span>Turn 1: found the token</span></div>
+  <div class="kh-turn cur"><span class="dot"><svg class="kh-ico" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg></span><span>Turn 2: fix the token</span></div>
+  <div class="kh-turn todo"><span class="dot"></span><span>Turn 3: send the order</span></div>
+  <span class="free"><svg class="kh-ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Untimed. Nothing is lost on a retry.</span>
+</section>
+<div class="kh-fb observed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">Caps</span> hold, then <span class="kh-key sm">M</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">Backspace</span></dd>
+    <dt>Effect</dt><dd class="fx">Removed one letter: &quot;Strret&quot; is now &quot;Stret&quot;</dd>
+  </dl>
+  <p class="why">Not quite yet: one letter is still wrong. Retry restarts this turn.</p>
+</div></div>
+
+<section class="kh-panel kh-inset inset-tall" aria-label="Keyboard teaching inset: Delete a letter">
+  <div class="head"><h3>Delete a letter</h3><span class="layer">nav layer · tap-hold Caps · 200 ms</span></div>
+  <div class="kh-cell">
+    <div class="kh-label"><span class="kh-order">1</span> Key position <span style="font-weight:400;text-transform:none;letter-spacing:0">bottom row and home row</span></div>
+    <div class="kh-mini" aria-hidden="true"><span class="kh-key dim">Tab</span><span class="kh-key dim">Z</span><span class="kh-key dim">X</span><span class="kh-key dim">C</span><span class="kh-key dim">V</span><span class="kh-key dim">B</span><span class="kh-key dim">N</span><span class="kh-key">M</span></div>
+    <div class="kh-mini" aria-label="Home row" style="margin-top:2px"><span class="kh-key cap held">Caps</span><span class="kh-key dim">A</span><span class="kh-key dim">S</span><span class="kh-key dim">D</span><span class="kh-key dim">F</span><span class="kh-key dim">G</span><span class="kh-key dim">H</span></div>
+  </div>
+  <div class="row">
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">2</span> Hold order</div>
+      <div class="kh-hold"><span class="kh-keyunit"><span class="kh-key held">Caps</span><span class="kh-tag hold">Hold</span></span><span class="plus">+</span><span class="kh-keyunit"><span class="kh-key ">M</span><span class="kh-tag tap">Tap</span></span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">3</span> Output</div>
+      <div class="kh-out"><span class="kh-key">⌫</span><span>Backspace</span></div>
+    </div>
+    <div class="kh-cell">
+      <div class="kh-label"><span class="kh-order">4</span> Effect</div>
+      <div class="kh-effect"><svg class="kh-ico" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-step-east"/></svg><span>Remove a letter</span></div>
+    </div>
+  </div>
+  </section>
+  </div></div>
+  
+</section>
+<section class="shot" aria-label="Confidence-aware input feedback">
+  <span class="a" id="s-input-feedback"></span><span class="a g" id="s-input-feedback-grey"></span>
+  <div class="sheet-head"><h2>Confidence-aware input feedback</h2><p class="lede">Every result says what the game can know. Observed output is solid teal with an eye; a confirmation is a double paper border with a person and a check; an OS-reserved case is a dashed border with a shield. The wording rules follow game-design acceptance criteria 5 and 6.</p></div>
+  <div class="viewport"><div class="stage">
+    <img class="world" src="world-native.png" width="320" height="180" alt=""><div class="scrim "></div>
+    
+<div class="kh-panel overlay su" role="dialog" aria-label="Input feedback states">
+  <div class="top"><h2>Input feedback</h2><span class="sub">Three states, each with its own icon, border and words.</span><span class="grow"></span>
+    <span class="kh-chip confirmed"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-person-check"/></svg> Practice layer: player-confirmed</span> <span class="kh-chip unconfirmed"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg> Practice layer: unconfirmed</span></div>
+  <div class="fb-sheet"><div class="fb-cell"><p>The game saw a character or key event it can score.</p>
+<div class="kh-fb observed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>Observed output</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">F</span> hold + <span class="kh-key sm">Caps</span> hold + <span class="kh-key sm">W</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">Shift + Option + Right</span></dd>
+    <dt>Effect</dt><dd class="fx">Selected the next word</dd>
+  </dl>
+  <p class="why">The game saw this output. It cannot see which physical key made it.</p>
+</div></div><div class="fb-cell"><p>The output is ambiguous or external; you vouched for the physical gesture.</p>
+<div class="kh-fb confirmed" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-person-check"/></svg><span>You confirmed this gesture</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">Space</span> hold, then <span class="kh-key sm">A</span> tap</dd>
+    <dt>Output</dt><dd><span class="mono">1</span> observed; the 1 key gives it too</dd>
+    <dt>Effect</dt><dd class="fx">Counts as confirmed, not as observed</dd>
+  </dl>
+  <p class="why">You said you used <b>Space + A</b>. It stays your word, never proof.</p>
+</div></div><div class="fb-cell"><p>macOS or the browser keeps the shortcut. Nothing can be scored.</p>
+<div class="kh-fb reserved" style="" role="status">
+  <div class="what"><svg class="kh-ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield-key"/></svg><span>Can't be observed here (OS-reserved)</span></div>
+  <dl>
+    <dt>Gesture shown</dt><dd><span class="kh-key sm">Tab</span> hold about 250 ms</dd>
+    <dt>Output</dt><dd>none the browser can see</dd>
+    <dt>Effect</dt><dd class="fx">Confirm it, or skip: no penalty</dd>
+  </dl>
+  <p class="why">macOS handles it before the page. A missing event is not a mistake.</p>
+</div></div></div>
+  <div class="fb-layers"><span class="kh-label">Two layer facts, kept apart</span>
+    <span class="box"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg> The scene is showing: <b>nav</b> (the game's own scene)</span>
+    <span class="box"><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-person-check"/></svg> You said practice is: <b>active</b> (only your word)</span></div>
+  <div class="fb-rules">
+    <div class="kh-panel">
+      <h3><svg class="kh-ico" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> Say</h3>
+      <ul>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span>&quot;<b>Observed output</b>: Option + Right.&quot;</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-person-check"/></svg><span>&quot;<b>You confirmed</b> tap-hold Space + A.&quot;</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield-key"/></svg><span>&quot;<b>Can't be observed here</b> (OS-reserved).&quot; Then confirm or skip.</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-circle"/></svg><span>&quot;Practice layer: <b>player-confirmed</b> / <b>unconfirmed</b>.&quot;</span></li>
+      </ul>
+    </div>
+    <div class="kh-panel no">
+      <h3><svg class="kh-ico" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg> Never say</h3>
+      <ul>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-warn"/></svg><span><span class="q">You are in the nav layer.</span> Held layers are invisible.</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-warn"/></svg><span><span class="q">You pressed Space + A.</span> Or the number row: same 1.</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-warn"/></svg><span><span class="q">Practice mode detected.</span> It cannot be detected.</span></li>
+        <li><svg class="kh-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-warn"/></svg><span><span class="q">Failed</span>, for an OS-reserved shortcut.</span></li>
+      </ul>
+    </div>
+  </div>
 </div>
+  </div></div>
+  
+</section>
 </div>
 </body>
 </html>

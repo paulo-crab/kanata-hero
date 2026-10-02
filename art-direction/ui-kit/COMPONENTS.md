@@ -91,12 +91,101 @@ On-demand screen over a dimmed world (`--scrim`), panel inset 24 px from the sta
 
 ## Layout help
 
-Reference screen, over a dimmed world, panel inset 24 px. It is drawn from the layout manifest so it cannot drift from `kanata.kbd`.
+Reference screen over a dimmed world (`--scrim`), panel inset 16 px, z 80. It is drawn from the layout manifest so it cannot drift from `kanata.kbd`. Renders: `screens/layout-base`, `layout-nav`, `layout-numbers-symbols`, `layout-practice` and `layout-base-microsoft` (each `-1366x768.png`); the practice tab also has a `-grey` render.
 
-- **Header**: title, four layer tabs (`base`, `nav`, `numbers-symbols`, `practice`; the active one is a filled pill), close key.
-- **Diagram**: a US keyboard (rows of 15u) drawn from keycaps of `--key-unit`. Keys that change on the shown tab are paper with a teal top bar and the new action printed under the legend (`Word →`, `Page ↓`, arrows at 20 px). Unchanged keys are dim. Silent keys on `practice` are dashed and read `XX`. The layer key itself (Caps on `nav`, Space on `numbers-symbols`) is drawn held in teal with the word "hold".
-- **Detail card**: for the focused key: Tap, Tap-hold with its timing, behaviour on the shown tab, behaviour on `practice`. Wording follows the hint grammar. The focused key has the focus ring.
-- **Behaviour**: Left / Right (tap-hold Caps + H / L) and Tab / Shift + Tab switch tabs; Escape closes; clicking and holding Caps or Space previews that layer while the button is down; focus is trapped in the screen. These behaviours are for the implementer; the reference page draws the static state only.
+| Part | Rule |
+| --- | --- |
+| Header | Title, four layer tabs (`base`, `nav`, `numbers-symbols`, `practice`; the active tab is a filled paper pill with ink text), the **Keyboard** switch (MacBook, the default | Microsoft) and the close key (Esc, tap Caps) |
+| How line | One muted line: switch tab with Left / Right (tap-hold Caps + H / L) or Tab / Shift + Tab; click and hold the drawn Caps or Space to preview that layer; Esc closes |
+| Diagram | Five rows of 15u at `--key-unit` (64 px) with `--key-gap`. MacBook bottom row: fn, Ctrl, Opt, Cmd, Space (5u), Cmd, Opt, then Left, Up over Down (two half-height keys) and Right. Microsoft bottom row: Ctrl, Win, Alt, Space (6.25u), Alt, Win, Menu, Ctrl (its arrow cluster is not drawn) |
+| Detail card | The focused key: its large keycap, **Tap**, **Tap-hold** with timing, behaviour on the shown tab, behaviour on `practice`, then one full-width line in the hint grammar ("To … you need to press **key**. Hint: key is **gesture**.") |
+| Legend | One row, only the key kinds that appear on the tab |
+| Keyboard switch | A segmented control (`.seg`); the selected segment is a paper pill with a check. It swaps the bottom row and the remap card; it never changes which tab is open |
+
+Key kinds (the diagram is the only place that uses `.kh-lk`):
+
+| Kind | Look | Not colour alone because |
+| --- | --- | --- |
+| Changes | paper face, teal top bar, the hold action or output printed under the legend (`Ctrl`, `Word →`, `!`) | the printed action |
+| Layer key, held | teal face, sunk 3 px, the word `hold` | position and the word |
+| Stays a letter | dim face, `= a` printed under the legend | the printed `= a` |
+| Silent | `--key-silent-face`, dashed 2 px border, legend `XX`, the key's own name under it (`Bksp`) | dashed border and XX |
+| Unchanged | dim face, plain legend | none needed |
+| Focused | 2 px `--focus` ring, 3 px offset | a ring is a shape |
+
+What each tab draws (all derived from `kanata.kbd`; Swedish remaps are out of scope and not drawn):
+
+| Tab | Held layer key | Keys that change | Detail card |
+| --- | --- | --- | --- |
+| `base` | none | A S D F / J K L ; print their hold (Ctrl, Opt, Cmd, Shift / Shift, Cmd, Opt, Ctrl); Caps prints `Esc \| nav`; Space prints `tap Space \| hold numbers`; Tab prints `Homerow`; R prints `reload`; V prints `toggle`; right Cmd prints `+ nav` | F: tap, tap-hold 200 ms, opposite-hand Shift hint |
+| `nav` | Caps, `hold` | 0 4 W B U D T G, H J K L (arrows), `[` Esc, M Bksp, X Ctrl+D, `,` Delete, N Return, Space Bksp; A S F stay letters | L: Right arrow |
+| `numbers-symbols` | Space, `hold` | A to `'` print 1 to 0 and `-`; Q to `]` print `! @ # $ % ^ & * ( ) _ +`; N and M stay letters; Caps prints `nav`; Tab prints `Homerow` | Q: `!` |
+| `practice` | none | Silent: digits 1 to 0, Backspace, Return, both Shift, Ctrl, Opt, Cmd (both sides), arrows. Still working: home-row holds, Caps, Space, Tab; V prints `toggle`. A note lists Esc, Forward Delete, Home, End, Page Up and Down as also silent and `- = \`` as still typing | Three cards: the focused silent key (Backspace, with its Caps + M replacement), the **toggle-out** sequence (Control + Alt + GUI + V, physical keys), and a locked **Emergency exit** card that says only "Shown after its runtime behaviour is verified" (the sequence is never drawn until the runtime check exists) |
+
+Microsoft variant: the same screen with the switch on Microsoft. Win prints `→ Opt`, Alt prints `→ Cmd`, right Alt `→ R Cmd`, right Win `→ R Opt`; the detail card names the physical Alt key and explains that right Alt also holds nav. The remap strip under the diagram repeats the three pairs.
+
+Behaviour (for the implementer; the reference page draws static states): Left / Right and Tab / Shift + Tab switch tabs, Escape closes and returns focus, click-and-hold on the drawn Caps or Space previews that layer for as long as the button is down, focus is trapped in the screen and Escape always leaves, focusing a key moves the detail card to it. The screen never scores anything and is reachable from every scene, including terminals and Mira's routes (which pause).
+
+## Setup and calibration
+
+First-run screen (and Settings, "Run setup again"), a full panel over the dimmed world, inset 16 px, z 80. Renders: `screens/setup-calibration` (MacBook, physical positions) and `screens/setup-characters` (Microsoft, resulting characters).
+
+| Part | Rule |
+| --- | --- |
+| Header | Title, "About two minutes. Nothing here blocks the story.", **Skip setup** (Esc) and **Continue** (Return, focused). Skipping is always allowed |
+| Keyboard choice | Two radio cards: MacBook (default) and Microsoft. Each shows its modifier strip; Microsoft draws `Win → Opt` and `Alt → Cmd` and says right Alt becomes Right Command and also holds nav. The chosen card has the focus outline and the word "Selected" with a check; the other says "Not selected" |
+| Calibration | Five optional steps: Caps + H, Caps + N, Space + A, Space + Q, a home-row Shift hold. Each row: number, the gesture and its expected output, one line in the hint grammar, and a status chip. The current step has the focus outline |
+| Status chips | **Not started** (hollow circle, solid border), **Observed output** (eye, teal border), **Skipped** (skip icon, dashed border). No other statuses, and no chip says "verified" or "detected" |
+| Footnote | "The number row gives the same 1 and ! as Space + A and Space + Q, so observed output never proves which key you used." |
+| Diagram | A compact keyboard (`--key-unit-sm`, 28 px) for the current step with a **Physical positions / Resulting characters** switch. Positions: key names, Space drawn held with "(held)", the target key ringed. Characters: what each key gives while Space is held (digits, symbols, plain letters), Space held, `!` ringed. A one-line caption names the view |
+| Toggle-out card | The sequence as keycaps (Control + Alt + GUI + V), the instruction in the hint grammar, and the practice-layer chip ("unconfirmed" until the player says otherwise) |
+
+Rules: calibration observes outputs only. It never asks the player to press a number-row key or claims to know which physical key was used. A step can finish as Observed or Skipped; neither blocks the story.
+
+## Terminal and editor scene
+
+Opened from a terminal, a form or a glitch. A panel over the world, which is dimmed with `--scrim-scene` (58%) and stays readable. Renders: `screens/terminal-scene` (working), `terminal-success`, `terminal-tab-practice`, and `glitch-duel`.
+
+| Part | Rule |
+| --- | --- |
+| Reading column | 900 px wide, `--stage-margin` from the top-left, `--z-dialogue`. Code is `--font-mono` `--text-base` (18 px) on a 32 px line, never below 16 px. The panel is at most 400 px tall and ends above the keyboard inset (which starts below it; with two mini rows the inset starts at about stage y 370, the working scene's panel ends at about y 350), so the inset never covers the cursor line |
+| Bar | File or scene name in mono, the place ("Records · Filing Drift"), and the escape route: "Leave the terminal  Esc  tap Caps" |
+| Task strip | The hint grammar in two lines (action and key; then the gesture as a muted hint) and a target counter with a gold target glyph ("1 / 3") |
+| Code well | `--panel-sunken`, 2 px `--border`, line numbers in the gutter |
+| Cursor | A paper block (`--cursor-face`, glyph in `--cursor-text`) with a 2 px `--focus` outline; it never blinks under reduced motion |
+| Selection | `--selection-bg` fill, `--selection-text`, and a 3 px `--focus` bar under it: shape plus fill |
+| Targets | **Target line:** gold-tinted line, a gold diamond in the gutter and a `target line` tag at the right edge. **Target word:** a dashed 2 px gold outline |
+| Success | The task strip becomes a 3 px gold frame with a check icon, "Done." and the next instruction; the target line gets a check and a `selected` tag. No full-screen effect and no motion |
+| Side column | Right of the panel (x 932, 332 px): the input-feedback card ("Observed output") for the last gesture. The "Layout help ?" chip stays top-right |
+| Inset | The standard keyboard teaching inset, with two mini rows (the key's row and the home row) when the key is off the home row |
+
+Tab practice region: the form sits in a 3 px dashed `--accent-terminal` frame labelled "Tab practice region: Tab moves between these fields only", with a lock glyph. An announcement strip (eye icon, "Announced") states in words: "You are in the Tab practice region. Tab moves between three fields. Esc (tap Caps) leaves it at any time." It is also the text of an `aria-live` region. The bar always shows the Esc route. Tab never moves focus out of the region by itself, and the player is never trapped: Esc, and the "Leave" key, always work.
+
+Glitch-repair duel (variant): a violet 2 px frame; the title carries the glitch marker and its text uses `--accent-glitch`. Turn-based and untimed: a **Turns** card (done = check in gold, current = play glyph in violet, to do = hollow) and "Untimed. Nothing is lost on a retry." The broken token has a wavy `--accent-glitch` underline (shape) as well as colour. **Retry this turn** and **Leave the duel** are real buttons under the code; Retry is focused and carries Return; reach it with Esc from the editor. A wrong result gets a plain sentence in the feedback card ("Not quite yet: one letter is still wrong. Retry restarts this turn."). No timer, no random ambush.
+
+## Confidence-aware input feedback
+
+The card that reports what the game knows about the last gesture. It appears in terminal scenes (side column), in calibration, and in the journal's per-gesture evidence. Render: `screens/input-feedback` (also `-grey`).
+
+| State | Words | Icon | Border | When |
+| --- | --- | --- | --- | --- |
+| Observed output | "Observed output" | eye | solid 2 px `--accent-terminal` | the page saw a key event it can score |
+| You confirmed | "You confirmed this gesture" | person with a check | double 6 px `--paper` | the output is ambiguous (Space + A gives the same 1 as the number row) or the gesture is external, and the player says they did it |
+| Can't be observed | "Can't be observed here (OS-reserved)" | shield with a keyhole | dashed 2 px `--border` | macOS or the browser keeps the shortcut (Command + Space, the Tab hold) |
+
+Every card has the same rows, in the order the game spec names them: **Gesture shown** (keycaps), **Output** (the logical output, in mono, or what the browser cannot see), **Effect** (gold). A muted line explains the confidence. A state is told by its icon, its border style and its words, so none depends on colour.
+
+Practice-layer chip: "Practice layer: player-confirmed" (person with a check, solid paper border) or "Practice layer: unconfirmed" (hollow circle, dashed border). The game shows the layer **its own scene** is teaching and the layer **the player says** is active as two separate boxes; it never merges them.
+
+Wording rules (game-design acceptance criteria 5 and 6):
+
+| Say | Never say |
+| --- | --- |
+| "Observed output: Option + Right." "The game saw a 1." | "You are in the nav layer." The page cannot see held layers |
+| "You confirmed tap-hold Space + A." (the player's word, labelled as such) | "You pressed Space + A" or "You used the number row." The same 1 comes from both |
+| "Can't be observed here (OS-reserved)." then "Confirm it, or skip: no penalty" | "Failed" for a shortcut the OS keeps |
+| "Practice layer: player-confirmed" or "unconfirmed" | "Practice mode detected / enabled / disabled." It cannot be |
+| "Digits and their shifted symbols are silent on the number row in practice; minus and equals still type" | A claim that the practice layer blocks every number-row key |
 
 ## Accessibility summary
 
