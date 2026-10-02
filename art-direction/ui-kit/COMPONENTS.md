@@ -1,6 +1,6 @@
 # Kanata Hero UI components
 
-Component spec for the crisp DOM/CSS layer drawn over the pixel world. Every value comes from [`tokens.css`](tokens.css); a component never hard-codes a colour, spacing, radius, type size or z-index. The live example is [`reference.html`](reference.html), built by `build_reference.py`.
+Component spec for the crisp DOM/CSS layer drawn over the pixel world. Every value comes from [`tokens.css`](tokens.css); a component never hard-codes a colour, spacing, radius, type size or z-index. The live example is [`reference.html`](reference.html), built by `build_reference.py` (the stage, markers and journal) and `kit_screens.py` / `kit_screens2.py` (every other screen). Each screen has a committed 1366×768 render in [`screens/`](screens/).
 
 ## Shared rules
 
@@ -11,7 +11,7 @@ Component spec for the crisp DOM/CSS layer drawn over the pixel world. Every val
 - **Focus.** A 2 px `--focus` ring with 2–3 px offset on the element that has keyboard focus. Focus is never conveyed by colour change alone.
 - **Colour roles.** Teal = terminals and held keys. Coral = people with a conversation. Violet = glitches only. Gold = completed, newly opened, and the effect line. Text on a coloured fill is `--text-on-light` (ink). Where a role colour is used as *text* on a panel, use the lighter `--accent-*` token (AA on every panel surface); the anchor hex is for fills, glyphs and outlines.
 - **Hint grammar.** Any component that tells the player which keys to press uses the three parts, in order: the action in the game, the conventional key, then the Kanata gesture ("To walk to the east exit, you need to press Right arrow. Hint: Right arrow is tap-hold Caps + L."). Prompts abbreviate it as `Action — key — gesture`.
-- **Layers (z).** world 0, world fx 10, marker 20, HUD 30, prompt 40, inset 50, dialogue 60, journal and Layout help 80 over a scrim, toast 90.
+- **Layers (z).** world 0, world fx 10, marker 20, HUD 30, prompt 40, inset 50, dialogue 60 (terminal and glitch scenes sit here too, over `--scrim-scene`), journal, Layout help, setup, elevator, artifact, award, results and settings 80 over a scrim, toast 90.
 
 ## Keycap
 
@@ -187,9 +187,64 @@ Wording rules (game-design acceptance criteria 5 and 6):
 | "Practice layer: player-confirmed" or "unconfirmed" | "Practice mode detected / enabled / disabled." It cannot be |
 | "Digits and their shifted symbols are silent on the number row in practice; minus and equals still type" | A claim that the practice layer blocks every number-row key |
 
+## Artifact close-up frame
+
+One shared frame for every optional artifact (the unissued badge, the training card, the first route receipt, and so on). A centred panel (680 px) over the dimmed world, z 80. Render: `screens/artifact-closeup`.
+
+| Part | Rule |
+| --- | --- |
+| Icon slot | 72×72, `--panel-raised`, 2 px gold frame, a 44 px gold icon (`i-receipt`, `i-doc`, or any 24-grid icon) |
+| Heading | "Artifact · district" label, the title in `--text-xl`, one muted line saying where it was found |
+| Document | A paper card (`--paper`, ink text, mono) with a folded corner and a 4 px lower edge; a title line, up to four label/value rows and an optional stamp. Only ink on paper, so no accent text sits on it |
+| Caption | Two to four lines, `--text-base`, never over four |
+| Back key | "Back to the world  Esc" as a focused button, top right of the frame; Esc (tap Caps) always closes. The journal row "Added to the journal" confirms the artifact was kept |
+
+Only the icon, title, document text and caption change between artifacts. States: closed, open. Not colour alone because the gold frame is paired with the check and the words "Added to the journal"; the document is distinguished by paper against a dark panel.
+
+## Elevator map
+
+Overlay screen over the dimmed world (inset 24 px, z 80). Five stops, one per district, bottom to top. Render: `screens/elevator-map` (also `-grey`).
+
+| Part | Rule |
+| --- | --- |
+| Shaft | A vertical rail with one node per stop and 104 px rows: floor badge, district name, a sub line, a status |
+| Stop states | **You are here**: filled square node, paper floor badge, filled arrow, the words. **Open**: gold node, route diamond, "Open" (and "· new" for a stop opened since the last visit). **Locked**: hollow node, dashed floor badge, lock, "Locked", and the sub line "Needs *seal icon* **X seal**" |
+| Detail card | For the selected stop. A locked stop shows the seal it needs (icon and name), where it is earned (the level), a **nearby objective**, a primary button to the open alternative ("Go to Records  Return") and "Stay on this floor  Esc" |
+| Way back | "Back to the floor  Esc" in the header and "Stay on this floor" in the card; both always visible |
+| Seals strip | Five seal slots with names; earned seals are gold, unearned are dashed outlines |
+| Keys | Up / Down arrow (tap-hold Caps + K / J) pick a floor, Return (tap-hold Caps + N) rides, Esc goes back, written in the hint grammar |
+
+The needed seal follows `levels.md`: the Orientation seal (level 06) opens Records, Records (11) opens Systems, Systems (16) opens Night Shift, Night Shift (19) opens Executive. The fifth seal (level 20) records completion and opens nothing. Not colour alone because status is an icon (lock, diamond, arrow), a node shape (hollow, filled circle, square) and words.
+
+## Seal award, toast and Mira's route results
+
+**Seal icons.** Five gold octagons, each 64×64 with a 3.5 px ink outline and its own ink glyph: Orientation (a sprout), Records (a ring with a centre), Systems (a three-node network), Night Shift (a crescent and a star), Executive (a tree with roots). They are used at 96, 40 and 24 px. An unearned slot is the same octagon as a dashed `--border` outline. Render: `screens/seal-icons` (also `-grey`).
+
+**Seal award moment.** A centred card (680 px, 3 px gold frame, z 81) over the dimmed world. Order: a "Clearance seal 1 of 5" kicker in gold text, the seal at 120 px inside static gold rays, the seal name in `--text-2xl`, one line saying which level awarded it, a list of the visible changes (route diamond bullets), the Continue button (Return, focused) and the five-seal strip. The rays are static: with reduced motion the seal simply appears, and the card says so. Render: `screens/seal-award` (also `-grey`). Not colour alone because earned and unearned seals differ by shape (filled octagon with a glyph against a dashed outline) and by the kicker's count.
+
+**Toast.** `--z-toast` (90), top centre (460 px, 80 px below the stage top), at most three stacked. A panel with an 8 px left bar (gold; peach for Mira's patches), a 44 px icon, a bold line with the key words in gold text and one muted line. It is an `aria-live="polite"` region, carries no key, and disappears after about six seconds (a plain removal under reduced motion). Kinds in the reference: seal earned, artifact found, patch earned. Render: `screens/toast`.
+
+**Mira's route results.** A card (1000 px) after an optional speed route. Left: the **clean-run medal** (gold medal icon, 3 px gold frame, "Clean-run medal" and the rule in words) and a stats table that sets this run against the player's own baseline (route time, accuracy, task-critical outputs, the optional target), then the sentence "Speed here is optional. It never changes your stars, seals or the ending." Right: Mira's six patches in a 3×2 grid, each a stitched 64 px patch in the colours of `art-direction/cast/MIRA_PATCHES_SPEC.md` with its name and the route that earns it: **First Delivery** (Morning Mail), **Clear Address** (Courier Loop), **Archive Loop** (Lost Folios), **Signed and Sent** (Payroll Run), **Signal Keeper** (Glyph Dispatch), **Night Courier** (Lights-Out Delivery). An earned patch has a 3 px gold frame, a check and the word "Earned"; the others are dashed, greyed and say "Not yet" with a lock. On a first clean run the heading line says "Baseline recorded" and awards the patch; the medal appears only on a later faster clean run. Render: `screens/mira-results`.
+
+## Settings and accessibility
+
+An overlay panel (inset 16 px, z 80) saved on the device. Render: `screens/settings`.
+
+| Part | Rule |
+| --- | --- |
+| Switch | A 52×30 track with a knob and the word **On** or **Off**. On: teal track, ink knob on the right, teal-tint text. Off: sunken track, hollow knob on the left, muted text. The state is the word and the knob position, never the colour alone |
+| Accessibility | **Larger text** (body 18 px to 22 px), **High contrast**, **Reduced motion**. Reduced motion holds idle frame 0, drops seal rays and fades |
+| Sound | **Sound** is off by default. **Effects** and **Music** are separate switches nested under it |
+| Difficulty | Three radio cards, **Standard**, **Focused**, **Violento**, with a live preview of the hint lines. Standard shows the action, the key and the gesture ("To submit the access code, you need to press Return. Hint: Return is tap-hold Caps + N."). Focused shows the action and the key and a dashed "Show hint" button ("Hint: hidden until you ask."). Violento shows the action only ("To submit the access code. Key and gesture are hidden."). The selected card has the focus outline, a check and the word "Selected". A line beside the practice-layer chip says difficulty is separate from the Kanata practice layer |
+| Reset progress | A confirmation card with a 3 px paper frame, a warning triangle, a plain statement of what is erased ("Seals, stars, patches, artifacts and best scores"; settings stay), and two buttons. **Keep my progress** (Esc) is focused; **Reset progress** is the second, unfocused button |
+| Footer | "Run setup again" re-opens the setup and calibration screen |
+
+Open: the key for "Show hint" on Focused is not defined in the game spec. The reference draws it as a button; the implementer picks one when writing the input spec (not `?`, which opens Layout help, and not a letter that types in an editor).
+
 ## Accessibility summary
 
 - Contrast AA is asserted by `check_contrast.py` for every pair the kit uses (text 4.5:1, UI glyphs and borders 3:1).
-- Nothing is conveyed by colour alone: markers by shape, held keys by position and a tag, states by text and an icon.
+- Nothing is conveyed by colour alone: markers by shape, held keys by position and a tag, states by text and an icon. Feedback states differ by icon, border style (solid, double, dashed) and words; switches by knob position and On/Off; seals by shape, earned or not.
+- `reference.html#s-<screen>` shows one screen on its own at 1366×768 and `#s-<screen>-grey` the same in greyscale (the `:target` technique, no script). `render_screens.py` writes each to `screens/<screen>-1366x768.png`.
 - Minimum text size is 16 CSS px. The inset, dialogue and prompt are the same size at every supported zoom.
 - A visible focus ring on every interactive element.
