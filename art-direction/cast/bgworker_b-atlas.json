@@ -201,9 +201,9 @@
   "silhouette": {
     "atlas": "bgworker_b-atlas-silhouette.png",
     "atlas_lit_edge": "bgworker_b-atlas-silhouette-lit.png",
-    "fill": "#343650",
-    "contour": "#202337",
-    "lit_edge": "#535971",
+    "fill": "#1C2038",
+    "contour": "#0E1020",
+    "lit_edge": "#3A4160",
     "use": "distant or through-glass figures; same rows and frame timing as the full-colour atlas"
   },
   "sync": {

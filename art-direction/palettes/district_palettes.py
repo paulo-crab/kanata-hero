@@ -21,7 +21,7 @@ import sys
 ROLES = ("ink", "floor", "wall", "glass", "wood", "foliage", "accent", "violet")
 FLOOR_FILL, FLOOR_MID = 3, 2  # indices into the floor ramp (environment.py: STONE[3] fill, STONE[2] joints)
 
-INK = ["#0E1020", "#1C2038", "#3A4160", "#6A7392"]  # rich finish v2; replaced #202337 #343650 #535971 #777A8C
+INK = ["#0E1020", "#1C2038", "#3A4160", "#6A7392"]  # rich finish v2; replaced #0E1020 #343650 #535971 #777A8C
 VIOLET = ["#413755", "#67547C", "#9477AF", "#C3A6D6"]  # glitches only, identical in every district
 
 MARKERS = {"teal": "#19AFA2", "coral": "#EC776D", "violet": "#9876D5", "gold": "#E6B750"}
@@ -122,7 +122,7 @@ NAMES = {"orientation": "Orientation", "records": "Records", "systems": "Systems
          "nightshift": "Night Shift", "executive": "Executive"}
 
 # Night Shift edge-light rule (documented in PALETTES_SPEC.md): the floor is too dark for the
-# #202337 outline to carry a silhouette, so the renderer draws a 1 px hard COOL MOONLIGHT rim on the lit
+# #0E1020 outline to carry a silhouette, so the renderer draws a 1 px hard COOL MOONLIGHT rim on the lit
 # (upper-left) contour of every person, in this glass step (#8E96B8; player decision 2026-10-02, it replaced
 # the warm accent step 3 that read as a selection highlight near discovery gold). Per-pixel rule and the
 # reference implementation: night_rim.py. Single source of truth for the people rim colour.

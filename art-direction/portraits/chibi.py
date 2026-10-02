@@ -10,7 +10,7 @@ modules vary the head shape, the hair, the costume and their own expression stam
 
 A portrait is composed from layers, back to front: body, head, hair, face stamps. Body and head are
 per-row span tables, hair is a hand-placed key grid, face features are small stamps. The outline
-(`#202337`, key `o`) is added around each layer as it is painted, so the silhouette is closed by
+(`#0E1020`, key `o`) is added around each layer as it is painted, so the silhouette is closed by
 construction: the body and the hair take an outline only toward transparency, the head also takes one
 over the body (the chin line).
 
@@ -36,7 +36,7 @@ import build_gate1 as g1  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 
 W = H = 48
-OUTLINE = "#202337"
+OUTLINE = "#0E1020"
 MARKERS = {"#19AFA2", "#EC776D", "#9876D5", "#E6B750"}
 VIOLET = {"#413755", "#67547C", "#9477AF", "#C3A6D6"}
 STANDARD = ("neutral", "concerned", "pleased")

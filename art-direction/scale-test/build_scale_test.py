@@ -26,13 +26,13 @@ def ramp(*cs):
 
 
 # Orientation palette from STYLE_BIBLE.md, plus character skin/hair ramps.
-INK = ramp("#202337", "#343650", "#535971", "#777A8C")
+INK = ramp("#0E1020", "#1C2038", "#3A4160", "#6A7392")  # rich finish v2 ink (was #202337 #343650 #535971 #777A8C)
 STONE = ramp("#665D65", "#968A85", "#C7B7A0", "#F0DEC0")
-GLASS = ramp("#203A50", "#366479", "#5AA3AE", "#A0DDD4")
-WOOD = ramp("#523D4C", "#85565A", "#BA785F", "#E4AA73")
-GREEN = ramp("#21484A", "#326D60", "#5FA06D", "#B2CE78")
-BRASS = ramp("#705056", "#AC7655", "#E1AC62", "#F5D580")
-CORAL = ramp("#71394F", "#B65761", "#E67A70", "#F6B18E")
+GLASS = ramp("#0F3550", "#1D7396", "#3CBAD6", "#A8F0EE")  # rich finish v2
+WOOD = ramp("#3A2216", "#7C4220", "#B8671F", "#E69A3A")  # rich finish v2
+GREEN = ramp("#134A22", "#1F7A2B", "#3FA832", "#7BD23C")  # rich finish v2
+BRASS = ramp("#7A4A2A", "#C98A3A", "#FFC83D", "#FFF0A0")  # rich finish v2
+CORAL = ramp("#7A2E40", "#C8485A", "#F26A5A", "#FFB38A")  # rich finish v2
 VIOLET = ramp("#413755", "#67547C", "#9477AF", "#C3A6D6")
 NAVY = ramp("#202337", "#2C3352", "#3E4870", "#59658F")
 TEALJ = ramp("#1B4450", "#25707A", "#3A9C9C", "#7CCFC2")

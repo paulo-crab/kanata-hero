@@ -4,7 +4,7 @@ Run: python3 check_portraits.py     Exit code 1 on any failure.
 Rules (PORTRAIT_RULES.md): 48x48; every key is a key of the character's world-sprite PAL with the same
 hex (recorded extras are pale eye-glint keys that already exist in that PAL; Mira's patch icons use
 mira_patches.PATCH_PAL); no UI marker hex; no violet; row 0 and the side columns empty; a closed
-outline (every opaque pixel that touches transparency is #202337); an oversized head; skin steps within
+outline (every opaque pixel that touches transparency is #0E1020); an oversized head; skin steps within
 a budget of two (the blush key is counted apart); hair and clothing identity cues; the standard
 expressions neutral, concerned and pleased exist and differ; shoulders identical across expressions;
 the signature expressions differ from the standard ones; no two characters share a face (feature

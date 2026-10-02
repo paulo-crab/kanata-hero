@@ -214,7 +214,7 @@ def run(verbose=True):
     # (c) floor contrast
     cast = dp.existing_cast()
     rows = floor_rows(cast)
-    out("\n(c) Floor contrast: person outline #202337, rim, and cast mid tones vs floor steps 2 and 3 (WCAG ratio)")
+    out("\n(c) Floor contrast: person outline #0E1020, rim, and cast mid tones vs floor steps 2 and 3 (WCAG ratio)")
     out(f"{'district':12} {'sprite':9} {'outline':>8} {'rim':>6} {'worst mid':>10} {'mid<3:1':>8} {'body px>=3:1 fill/mid':>22}")
     for r in rows:
         out(f"{dp.NAMES[r['district']]:12} {r['sprite']:9} {r['outline']:8.2f} {r['rim']:6.2f} "

@@ -4,7 +4,7 @@ Status: exploration, not a rollout. The current portraits (../portrait_*.py) are
 
 Every portrait is composed from layers, back to front: body (+ neck), head, hair, face stamps.
 Body and head are written as per-row span tables (hand-placed numbers), hair as run-length rows
-(`R`), face features as small character stamps. Outlines (#202337, key `o`) are added around each
+(`R`), face features as small character stamps. Outlines (#0E1020, key `o`) are added around each
 layer as it is painted, so the silhouette is closed by construction: the body and hair take an
 outline only toward transparency, the head also takes one over the body (the chin line).
 
@@ -29,7 +29,7 @@ import ivo_sprites as ivo  # noqa: E402
 import mira_sprites as mira  # noqa: E402
 
 W = H = 48
-OUTLINE = "#202337"
+OUTLINE = "#0E1020"
 MARKERS = {"#19AFA2", "#EC776D", "#9876D5", "#E6B750"}
 VIOLET = {"#413755", "#67547C", "#9477AF", "#C3A6D6"}
 EXPRESSIONS = ("neutral", "concerned", "pleased")

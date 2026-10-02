@@ -12,7 +12,7 @@ import engineer_sprites as eng  # noqa: E402  (shared walk legs and lower())
 
 PAL = {
     ".": None,
-    "o": "#202337",
+    "o": "#0E1020",
     # hair, silver: fill D C B, A only on contour
     "A": "#535971", "B": "#8C8F9C", "C": "#BFC0C6", "D": "#E6E4E0",
     # skin: fill n m l, k only on contour
@@ -24,7 +24,7 @@ PAL = {
     # trousers (navy)
     "O": "#2C3352", "P": "#3E4870",
     # shoes (ink ramp)
-    "S": "#343650", "T": "#535971", "U": "#777A8C",
+    "S": "#1C2038", "T": "#3A4160", "U": "#6A7392",
     # tablet face: blue glass, never #19AFA2, lightest step on 1 px only; back is ink (S T)
     "g": "#203A50", "h": "#366479", "j": "#5AA3AE", "J": "#A0DDD4",
 }
