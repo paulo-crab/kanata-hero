@@ -1,867 +1,851 @@
 {
- "id": "systems-14",
- "number": 14,
- "title": "Alarm Glyphs",
- "district": "systems",
- "kind": "main",
- "requires": [
-  "systems-13"
- ],
- "story": "The alarm board in the west hall has lost six punctuation labels, so two distinct alerts look identical. Hal, anxious about a real alert slipping past, asks for the exact glyphs: one card at a time, then shuffled, then an unseen mixed alert. When the six labels return, the board separates into six hues and a maintenance door opens.",
- "steps": [
-  {
-   "id": "s14-go",
-   "objective": "Walk west along the mint conduit into the alarm hall.",
-   "interaction": null,
-   "completes_when": "reach_cell:7,13",
-   "target_cell": [7, 13]
-  },
-  {
-   "id": "s14-talk",
-   "objective": "Talk to Hal about the alarm board.",
-   "interaction": "hal-alarm",
-   "completes_when": "dialogue_done:s14-hal-intro"
-  },
-  {
-   "id": "s14-desk",
-   "objective": "Go to the alarm label desk.",
-   "interaction": "alarm-terminal",
-   "completes_when": "interact:alarm-terminal",
-   "target_cell": [5, 13]
-  },
-  {
-   "id": "s14-guided",
-   "objective": "Restore the six alert cards, one symbol each.",
-   "interaction": "alarm-terminal",
-   "completes_when": "scene_success:systems-14-guided-excl & scene_success:systems-14-guided-at & scene_success:systems-14-guided-hash & scene_success:systems-14-guided-dollar & scene_success:systems-14-guided-percent & scene_success:systems-14-guided-caret"
-  },
-  {
-   "id": "s14-variation",
-   "objective": "Label the shuffled cards.",
-   "interaction": "alarm-terminal",
-   "completes_when": "scene_success:systems-14-variation-shuffled"
-  },
-  {
-   "id": "s14-recall",
-   "objective": "Type the unseen mixed alert string.",
-   "interaction": "alarm-terminal",
-   "completes_when": "scene_success:systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "s14-chair",
-   "objective": "Optional: repair the chair with a second shadow.",
-   "interaction": "chair-shadow-glitch",
-   "completes_when": "scene_success:systems-14-glitch-chair",
-   "optional": true
-  }
- ],
- "gestures": [
-  {
-   "id": "S12",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-excl"
-  },
-  {
-   "id": "S12",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S12",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S13",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-at"
-  },
-  {
-   "id": "S13",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S13",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S14",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-hash"
-  },
-  {
-   "id": "S14",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S14",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S15",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-dollar"
-  },
-  {
-   "id": "S15",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S15",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S16",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-percent"
-  },
-  {
-   "id": "S16",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S16",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S17",
-   "phases": [
-    "guided"
-   ],
-   "scene_id": "systems-14-guided-caret"
-  },
-  {
-   "id": "S17",
-   "phases": [
-    "variation"
-   ],
-   "scene_id": "systems-14-variation-shuffled"
-  },
-  {
-   "id": "S17",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert"
-  },
-  {
-   "id": "S09",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert",
-   "note": "Revisit: digits inside the alert string"
-  },
-  {
-   "id": "S10",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert",
-   "note": "Revisit: digits inside the alert string"
-  },
-  {
-   "id": "S01",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert",
-   "note": "Revisit: digits inside the alert string"
-  },
-  {
-   "id": "S04",
-   "phases": [
-    "recall"
-   ],
-   "scene_id": "systems-14-recall-mixed-alert",
-   "note": "Revisit: digits inside the alert string"
-  }
- ],
- "terminal_scenes": [
-  {
-   "id": "systems-14-guided-excl",
-   "kind": "label",
-   "task_summary": "Alert card 1 of 6: restore ! in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals 'pump offline!'",
-    "Coverage for S12 credited by this scene only when the label contains !"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 1 lost its urgent mark. Type the alert text pump offline!",
-    "initial": "",
-    "targets": [
-     "pump offline!"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs !. Hold Space, then press Q.",
-     "digit_typed": "Observed a digit: ! is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights Q with the held Space; emitted ! drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-guided-at",
-   "kind": "label",
-   "task_summary": "Alert card 2 of 6: restore @ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals 'page @hal'",
-    "Coverage for S13 credited by this scene only when the label contains @"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 2 lost its mention. Type page @hal",
-    "initial": "",
-    "targets": [
-     "page @hal"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs @. Hold Space, then press W.",
-     "digit_typed": "Observed a digit: @ is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights W with the held Space; emitted @ drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-guided-hash",
-   "kind": "label",
-   "task_summary": "Alert card 3 of 6: restore # in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals 'alert #7'",
-    "Coverage for S14 credited by this scene only when the label contains #"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 3 lost its alert number tag. Type alert #7",
-    "initial": "",
-    "targets": [
-     "alert #7"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs #. Hold Space, then press E.",
-     "digit_typed": "Observed a digit: # is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights E with the held Space; emitted # drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-guided-dollar",
-   "kind": "label",
-   "task_summary": "Alert card 4 of 6: restore $ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals '$cost'",
-    "Coverage for S15 credited by this scene only when the label contains $"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 4 lost its cost variable. Type $cost",
-    "initial": "",
-    "targets": [
-     "$cost"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs $. Hold Space, then press R.",
-     "digit_typed": "Observed a digit: $ is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights R with the held Space; emitted $ drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-guided-percent",
-   "kind": "label",
-   "task_summary": "Alert card 5 of 6: restore % in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals 'load at 85%'",
-    "Coverage for S16 credited by this scene only when the label contains %"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 5 lost its load percentage. Type load at 85%",
-    "initial": "",
-    "targets": [
-     "load at 85%"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs %. Hold Space, then press T.",
-     "digit_typed": "Observed a digit: % is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights T with the held Space; emitted % drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-guided-caret",
-   "kind": "label",
-   "task_summary": "Alert card 6 of 6: restore ^ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
-   "success_criteria": [
-    "Label text equals '2^8'",
-    "Coverage for S17 credited by this scene only when the label contains ^"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Card 6 lost its exponent. Type 2^8",
-    "initial": "",
-    "targets": [
-     "2^8"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
-     "a space"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the card needs ^. Hold Space, then press Y.",
-     "digit_typed": "Observed a digit: ^ is a symbol, not the number-row digit."
-    },
-    "layout": "overlay highlights Y with the held Space; emitted ^ drawn separately; Shift + digit shown only as the conventional key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-variation-shuffled",
-   "kind": "label",
-   "task_summary": "Shuffled cards: all six symbols again in new contexts and a new order (%, @, ^, !, $, #).",
-   "success_criteria": [
-    "Labels equal: disk 91%, notify @ops, x^3, stop!, $rate, #5 relay"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "Six alert cards came back in a different order. Type each label exactly.",
-    "initial": "",
-    "targets": [
-     "disk 91%",
-     "notify @ops",
-     "x^3",
-     "stop!",
-     "$rate",
-     "#5 relay"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol",
-     "a missing symbol"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; compare the card symbol by symbol."
-    },
-    "layout": "overlay on request; no per-character highlight"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-recall-mixed-alert",
-   "kind": "label",
-   "task_summary": "Unseen mixed alert string with every symbol in an order not used before ($, %, @, ^, #, !), no position cue.",
-   "success_criteria": [
-    "Label equals '$cost over 90%: page @hal ^top, alert #14!'",
-    "No hint line shown; overlay hidden"
-   ],
-   "retry": "instant",
-   "position_cue": false,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "A real alert came in. Type it exactly.",
-    "initial": "",
-    "targets": [
-     "$cost over 90%: page @hal ^top, alert #14!"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "any lookalike symbol",
-     "a missing symbol"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the alert differs. Retry from the start of the line."
-    },
-    "layout": "no keyboard overlay, no highlighted key"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  },
-  {
-   "id": "systems-14-glitch-chair",
-   "kind": "label",
-   "task_summary": "Optional glitch repair: a chair with a second shadow. Type #3 to register it.",
-   "success_criteria": [
-    "Label equals '#3'",
-    "Untimed; immediate retry"
-   ],
-   "retry": "instant",
-   "position_cue": true,
-   "confidence": "output-observed",
-   "task": {
-    "prompt": "The chair's tag should read #3. Type it to bring the shadow back into register.",
-    "initial": "",
-    "targets": [
-     "#3"
-    ],
-    "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
-    "rejects": [
-     "a lookalike symbol"
-    ],
-    "feedback": {
-     "wrong_character": "Observed {observed}; the tag needs # then 3."
-    },
-    "layout": "overlay shown"
-   },
-   "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
-  }
- ],
- "dialogue": [
-  {
-   "id": "s14-hal-intro",
-   "speaker": "hal",
-   "portrait": "concerned",
-   "text": "Six alarm labels are gone, so two different alerts look identical. I need the exact glyphs back before something real fires.",
-   "hint": null,
-   "when": "interact:hal-alarm",
-   "cue": "Hal concerned: the start of 14 (anxious)"
-  },
-  {
-   "id": "s14-journal",
-   "speaker": "engineer",
-   "portrait": "neutral",
-   "text": "Journal: alarm board, six blank labels. Restore ! @ # $ % ^ one card at a time.",
-   "hint": null,
-   "cue": "Engineer neutral: journal"
-  },
-  {
-   "id": "s14-hint-excl",
-   "speaker": "alarm_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To mark the alert urgent, you need to press ! (Shift + 1).",
-   "hint": {
-    "action": "To mark the alert urgent, you need to press ! (Shift + 1).",
-    "key": "! (Shift + 1)",
-    "gesture": "! is tap-hold Space + Q."
-   },
-   "when": "step_start:s14-guided"
-  },
-  {
-   "id": "s14-hint-at",
-   "speaker": "alarm_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To mention Hal in the alert note, you need to press @ (Shift + 2).",
-   "hint": {
-    "action": "To mention Hal in the alert note, you need to press @ (Shift + 2).",
-    "key": "@ (Shift + 2)",
-    "gesture": "@ is tap-hold Space + W."
-   },
-   "when": "scene_success:systems-14-guided-excl"
-  },
-  {
-   "id": "s14-hint-hash",
-   "speaker": "alarm_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To tag the alert number, you need to press # (Shift + 3).",
-   "hint": {
-    "action": "To tag the alert number, you need to press # (Shift + 3).",
-    "key": "# (Shift + 3)",
-    "gesture": "# is tap-hold Space + E."
-   },
-   "when": "scene_success:systems-14-guided-at"
-  },
-  {
-   "id": "s14-hint-dollar",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "To prefix the cost variable, you need to press $ (Shift + 4).",
-   "hint": {
-    "action": "To prefix the cost variable, you need to press $ (Shift + 4).",
-    "key": "$ (Shift + 4)",
-    "gesture": "$ is tap-hold Space + R."
-   },
-   "when": "scene_success:systems-14-guided-hash",
-   "cue": "Hal neutral: every hint line"
-  },
-  {
-   "id": "s14-hint-percent",
-   "speaker": "alarm_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To write the load as a percentage, you need to press % (Shift + 5).",
-   "hint": {
-    "action": "To write the load as a percentage, you need to press % (Shift + 5).",
-    "key": "% (Shift + 5)",
-    "gesture": "% is tap-hold Space + T."
-   },
-   "when": "scene_success:systems-14-guided-dollar"
-  },
-  {
-   "id": "s14-hint-caret",
-   "speaker": "alarm_card",
-   "speaker_kind": "object",
-   "portrait": null,
-   "text": "To raise the value to a power, you need to press ^ (Shift + 6).",
-   "hint": {
-    "action": "To raise the value to a power, you need to press ^ (Shift + 6).",
-    "key": "^ (Shift + 6)",
-    "gesture": "^ is tap-hold Space + Y."
-   },
-   "when": "scene_success:systems-14-guided-percent"
-  },
-  {
-   "id": "s14-hal-variation",
-   "speaker": "hal",
-   "portrait": "neutral",
-   "text": "That is all six. Now the cards are shuffled, so you cannot lean on their order.",
-   "hint": null,
-   "when": "scene_success:systems-14-guided-caret",
-   "cue": "Hal neutral: default"
-  },
-  {
-   "id": "s14-hal-fix",
-   "speaker": "hal",
-   "portrait": "pleased",
-   "text": "Six alerts, six distinct colours. That settles me. The maintenance door unlocked too: it leads straight to the formula room.",
-   "hint": null,
-   "when": "scene_success:systems-14-recall-mixed-alert",
-   "cue": "Hal pleased: the 14 fix (settled focus)"
-  },
-  {
-   "id": "s14-strip",
-   "speaker": "engineer",
-   "portrait": "concerned",
-   "text": "Alarm strip: the old alert names carry an extra department that no staff request ever added.",
-   "hint": null,
-   "when": "interact:alarm-strip",
-   "cue": "Engineer concerned: inspecting a tampering artifact (Alarm strip)"
-  }
- ],
- "triggers": [
-  {
-   "id": "t14-arrive",
-   "when": "step_done:s14-go",
-   "then": [
-    {
-     "op": "npc_state",
-     "npc": "hal",
-     "state": "alarm_anxious"
-    }
-   ]
-  },
-  {
-   "id": "t14-c1",
-   "when": "scene_success:systems-14-guided-excl",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_1"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_01",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-c2",
-   "when": "scene_success:systems-14-guided-at",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_2"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_02",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_03",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-c3",
-   "when": "scene_success:systems-14-guided-hash",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_3"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_04",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_05",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-c4",
-   "when": "scene_success:systems-14-guided-dollar",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_4"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_06",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_07",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-c5",
-   "when": "scene_success:systems-14-guided-percent",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_5"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_08",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_09",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-c6",
-   "when": "scene_success:systems-14-guided-caret",
-   "then": [
-    {
-     "op": "set_state",
-     "target": "alarm_board",
-     "state": "labeled_6"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_10",
-     "state": "lit"
-    },
-    {
-     "op": "set_state",
-     "target": "conduit_mint_11",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "t14-complete",
-   "when": "scene_success:systems-14-recall-mixed-alert",
-   "then": [
-    {
-     "op": "unlock_gate",
-     "gate": "gate-maintenance-door"
-    },
-    {
-     "op": "set_state",
-     "target": "maintenance_door",
-     "state": "open"
-    },
-    {
-     "op": "set_state",
-     "target": "lamp_alarm",
-     "state": "on"
-    },
-    {
-     "op": "npc_state",
-     "npc": "hal",
-     "state": "alarm_settled"
-    },
-    {
-     "op": "light_state",
-     "light_state": "circuit-mint-lit"
-    },
-    {
-     "op": "start_dialogue",
-     "dialogue": "s14-hal-fix"
-    },
-    {
-     "op": "complete_level",
-     "level": "systems-14"
-    },
-    {
-     "op": "journal",
-     "text": "Alarm labels restored. The maintenance door joins the alarm hall to the formula room."
-    }
-   ]
-  }
- ],
- "state_changes": {
-  "before": "The alarm board shows six lights with blank pictograms, the maintenance door is shut, the alarm hall lamp is off and Hal fidgets with a loose cable.",
-  "after": "Six pictograms and six distinct light hues are on the board, the maintenance door is open, the lamp is on, the mint conduit is lit and Hal stands settled.",
-  "visible_changes": [
-   {
-    "kind": "placement_state",
-    "target": "alarm_board",
-    "from": "blank",
-    "to": "labeled_6",
-    "note": "six pictograms return and each light takes its own hue"
-   },
-   {
-    "kind": "placement_state",
-    "target": "maintenance_door",
-    "from": "closed",
-    "to": "open"
-   },
-   {
-    "kind": "placement_state",
-    "target": "lamp_alarm",
-    "from": "off",
-    "to": "on"
-   },
-   {
-    "kind": "npc_pose",
-    "target": "hal",
-    "from": "alarm_anxious",
-    "to": "alarm_settled",
-    "note": "anxious to settled focus"
-   },
-   {
-    "kind": "placement_state",
-    "target": "conduit_mint_01",
-    "from": "off",
-    "to": "lit"
-   },
-   {
-    "kind": "gate",
-    "target": "gate-maintenance-door",
-    "to": "open"
-   }
-  ]
- },
- "rewards": {},
- "optional_artifact": {
-  "id": "alarm-strip",
-  "name": "Alarm strip",
-  "interaction": "alarm-strip",
-  "placement": "artifact_alarm_strip",
-  "caption": [
-   "A strip of alarm names from before the labels were lost.",
-   "Each name carries an extra department that appears nowhere in the current directory.",
-   "Someone added it without a staff request."
+  "id": "systems-14",
+  "number": 14,
+  "title": "Alarm Glyphs",
+  "district": "systems",
+  "kind": "main",
+  "requires": [
+    "systems-13"
   ],
-  "engineer_portrait": "concerned"
- },
- "glitch": {
-  "archetype": "chair",
-  "variant": "default",
-  "cell": [3, 9],
-  "interaction": "chair-shadow-glitch",
-  "scene_id": "systems-14-glitch-chair",
-  "note": "Optional untimed repair beside the label desk."
- },
- "pace_copy": [
-  {
-   "text": "Alerts are acknowledged. Alerts are acknowledged.",
-   "state": "repeat",
-   "placement": "pace_sign_alarm"
-  }
- ],
- "review_notes": "1366x768 (x4) with the keyboard inset open: the alarm hall is left-clamped, so each target is approached from the south or the east with the target at or above the avatar's row: label desk (approach 5..6,13, target north), Hal (approach 4,12 from the east), artifact (approach 2,6 from the east), chair glitch (approach 4,9 from the east), maintenance door (approach 7,4 from the west). No target falls inside the inset; there are no unavoidable conflicts here."
+  "story": "The alarm board in the west hall has lost six punctuation labels, so two distinct alerts look identical. Hal, anxious about a real alert slipping past, asks for the exact glyphs: one card at a time, then shuffled, then an unseen mixed alert. When the six labels return, the board separates into six hues and a maintenance door opens.",
+  "steps": [
+    {
+      "id": "s14-go",
+      "objective": "Walk west along the mint conduit into the alarm hall.",
+      "interaction": null,
+      "completes_when": "reach_cell:7,13",
+      "target_cell": [
+        7,
+        13
+      ]
+    },
+    {
+      "id": "s14-talk",
+      "objective": "Talk to Hal about the alarm board.",
+      "interaction": "hal-alarm",
+      "completes_when": "dialogue_done:s14-hal-intro"
+    },
+    {
+      "id": "s14-desk",
+      "objective": "Go to the alarm label desk.",
+      "interaction": "alarm-terminal",
+      "completes_when": "interact:alarm-terminal",
+      "target_cell": [
+        5,
+        13
+      ]
+    },
+    {
+      "id": "s14-guided",
+      "objective": "Restore the six alert cards, one symbol each.",
+      "interaction": "alarm-terminal",
+      "completes_when": "scene_success:systems-14-guided-excl & scene_success:systems-14-guided-at & scene_success:systems-14-guided-hash & scene_success:systems-14-guided-dollar & scene_success:systems-14-guided-percent & scene_success:systems-14-guided-caret"
+    },
+    {
+      "id": "s14-variation",
+      "objective": "Label the shuffled cards.",
+      "interaction": "alarm-terminal",
+      "completes_when": "scene_success:systems-14-variation-shuffled"
+    },
+    {
+      "id": "s14-recall",
+      "objective": "Type the unseen mixed alert string.",
+      "interaction": "alarm-terminal",
+      "completes_when": "scene_success:systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "s14-chair",
+      "objective": "Optional: repair the chair with a second shadow.",
+      "interaction": "chair-shadow-glitch",
+      "completes_when": "scene_success:systems-14-glitch-chair",
+      "optional": true
+    }
+  ],
+  "gestures": [
+    {
+      "id": "S12",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-excl"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S12",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-at"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S13",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-hash"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S14",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-dollar"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S15",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-percent"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S16",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "guided"
+      ],
+      "scene_id": "systems-14-guided-caret"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "variation"
+      ],
+      "scene_id": "systems-14-variation-shuffled"
+    },
+    {
+      "id": "S17",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert"
+    },
+    {
+      "id": "S09",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert",
+      "note": "Revisit: digits inside the alert string"
+    },
+    {
+      "id": "S10",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert",
+      "note": "Revisit: digits inside the alert string"
+    },
+    {
+      "id": "S01",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert",
+      "note": "Revisit: digits inside the alert string"
+    },
+    {
+      "id": "S04",
+      "phases": [
+        "recall"
+      ],
+      "scene_id": "systems-14-recall-mixed-alert",
+      "note": "Revisit: digits inside the alert string"
+    }
+  ],
+  "terminal_scenes": [
+    {
+      "id": "systems-14-guided-excl",
+      "kind": "label",
+      "task_summary": "Alert card 1 of 6: restore ! in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals 'pump offline!'",
+        "Coverage for S12 credited by this scene only when the label contains !"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 1 lost its urgent mark. Type the alert text pump offline!",
+        "initial": "",
+        "targets": [
+          "pump offline!"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs !. Hold Space, then press Q.",
+          "digit_typed": "Observed a digit: ! is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights Q with the held Space; emitted ! drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-guided-at",
+      "kind": "label",
+      "task_summary": "Alert card 2 of 6: restore @ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals 'page @hal'",
+        "Coverage for S13 credited by this scene only when the label contains @"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 2 lost its mention. Type page @hal",
+        "initial": "",
+        "targets": [
+          "page @hal"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs @. Hold Space, then press W.",
+          "digit_typed": "Observed a digit: @ is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights W with the held Space; emitted @ drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-guided-hash",
+      "kind": "label",
+      "task_summary": "Alert card 3 of 6: restore # in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals 'alert #7'",
+        "Coverage for S14 credited by this scene only when the label contains #"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 3 lost its alert number tag. Type alert #7",
+        "initial": "",
+        "targets": [
+          "alert #7"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs #. Hold Space, then press E.",
+          "digit_typed": "Observed a digit: # is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights E with the held Space; emitted # drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-guided-dollar",
+      "kind": "label",
+      "task_summary": "Alert card 4 of 6: restore $ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals '$cost'",
+        "Coverage for S15 credited by this scene only when the label contains $"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 4 lost its cost variable. Type $cost",
+        "initial": "",
+        "targets": [
+          "$cost"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs $. Hold Space, then press R.",
+          "digit_typed": "Observed a digit: $ is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights R with the held Space; emitted $ drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-guided-percent",
+      "kind": "label",
+      "task_summary": "Alert card 5 of 6: restore % in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals 'load at 85%'",
+        "Coverage for S16 credited by this scene only when the label contains %"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 5 lost its load percentage. Type load at 85%",
+        "initial": "",
+        "targets": [
+          "load at 85%"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs %. Hold Space, then press T.",
+          "digit_typed": "Observed a digit: % is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights T with the held Space; emitted % drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-guided-caret",
+      "kind": "label",
+      "task_summary": "Alert card 6 of 6: restore ^ in a plausible alert or code line. The overlay shows the physical key and the emitted symbol separately.",
+      "success_criteria": [
+        "Label text equals '2^8'",
+        "Coverage for S17 credited by this scene only when the label contains ^"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Card 6 lost its exponent. Type 2^8",
+        "initial": "",
+        "targets": [
+          "2^8"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a digit where the symbol belongs (the shifted digit is not the held-Space output)",
+          "a space"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the card needs ^. Hold Space, then press Y.",
+          "digit_typed": "Observed a digit: ^ is a symbol, not the number-row digit."
+        },
+        "layout": "overlay highlights Y with the held Space; emitted ^ drawn separately; Shift + digit shown only as the conventional key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-variation-shuffled",
+      "kind": "label",
+      "task_summary": "Shuffled cards: all six symbols again in new contexts and a new order (%, @, ^, !, $, #).",
+      "success_criteria": [
+        "Labels equal: disk 91%, notify @ops, x^3, stop!, $rate, #5 relay"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "Six alert cards came back in a different order. Type each label exactly.",
+        "initial": "",
+        "targets": [
+          "disk 91%",
+          "notify @ops",
+          "x^3",
+          "stop!",
+          "$rate",
+          "#5 relay"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol",
+          "a missing symbol"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; compare the card symbol by symbol."
+        },
+        "layout": "overlay on request; no per-character highlight"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-recall-mixed-alert",
+      "kind": "label",
+      "task_summary": "Unseen mixed alert string with every symbol in an order not used before ($, %, @, ^, #, !), no position cue.",
+      "success_criteria": [
+        "Label equals '$cost over 90%: page @hal ^top, alert #14!'",
+        "No hint line shown; overlay hidden"
+      ],
+      "retry": "instant",
+      "position_cue": false,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "A real alert came in. Type it exactly.",
+        "initial": "",
+        "targets": [
+          "$cost over 90%: page @hal ^top, alert #14!"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "any lookalike symbol",
+          "a missing symbol"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the alert differs. Retry from the start of the line."
+        },
+        "layout": "no keyboard overlay, no highlighted key"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    },
+    {
+      "id": "systems-14-glitch-chair",
+      "kind": "label",
+      "task_summary": "Optional glitch repair: a chair with a second shadow. Type #3 to register it.",
+      "success_criteria": [
+        "Label equals '#3'",
+        "Untimed; immediate retry"
+      ],
+      "retry": "instant",
+      "position_cue": true,
+      "confidence": "output-observed",
+      "task": {
+        "prompt": "The chair's tag should read #3. Type it to bring the shadow back into register.",
+        "initial": "",
+        "targets": [
+          "#3"
+        ],
+        "accepts": "the field text equals the target character for character; extra or missing characters fail only that field and the field resets",
+        "rejects": [
+          "a lookalike symbol"
+        ],
+        "feedback": {
+          "wrong_character": "Observed {observed}; the tag needs # then 3."
+        },
+        "layout": "overlay shown"
+      },
+      "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+    }
+  ],
+  "dialogue": [
+    {
+      "id": "s14-hal-intro",
+      "speaker": "hal",
+      "portrait": "concerned",
+      "text": "Six alarm labels are gone, so two different alerts look identical. I need the exact glyphs back before something real fires.",
+      "hint": null,
+      "when": "interact:hal-alarm",
+      "cue": "Hal concerned: the start of 14 (anxious)"
+    },
+    {
+      "id": "s14-journal",
+      "speaker": "engineer",
+      "portrait": "neutral",
+      "text": "Journal: alarm board, six blank labels. Restore ! @ # $ % ^ one card at a time.",
+      "hint": null,
+      "cue": "Engineer neutral: journal"
+    },
+    {
+      "id": "s14-hint-excl",
+      "speaker": "alarm_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To mark the alert urgent, you need to press ! (Shift + 1).",
+      "hint": {
+        "action": "To mark the alert urgent, you need to press ! (Shift + 1).",
+        "key": "! (Shift + 1)",
+        "gesture": "! is tap-hold Space + Q."
+      },
+      "when": "step_start:s14-guided"
+    },
+    {
+      "id": "s14-hint-at",
+      "speaker": "alarm_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To mention Hal in the alert note, you need to press @ (Shift + 2).",
+      "hint": {
+        "action": "To mention Hal in the alert note, you need to press @ (Shift + 2).",
+        "key": "@ (Shift + 2)",
+        "gesture": "@ is tap-hold Space + W."
+      },
+      "when": "scene_success:systems-14-guided-excl"
+    },
+    {
+      "id": "s14-hint-hash",
+      "speaker": "alarm_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To tag the alert number, you need to press # (Shift + 3).",
+      "hint": {
+        "action": "To tag the alert number, you need to press # (Shift + 3).",
+        "key": "# (Shift + 3)",
+        "gesture": "# is tap-hold Space + E."
+      },
+      "when": "scene_success:systems-14-guided-at"
+    },
+    {
+      "id": "s14-hint-dollar",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "To prefix the cost variable, you need to press $ (Shift + 4).",
+      "hint": {
+        "action": "To prefix the cost variable, you need to press $ (Shift + 4).",
+        "key": "$ (Shift + 4)",
+        "gesture": "$ is tap-hold Space + R."
+      },
+      "when": "scene_success:systems-14-guided-hash",
+      "cue": "Hal neutral: every hint line"
+    },
+    {
+      "id": "s14-hint-percent",
+      "speaker": "alarm_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To write the load as a percentage, you need to press % (Shift + 5).",
+      "hint": {
+        "action": "To write the load as a percentage, you need to press % (Shift + 5).",
+        "key": "% (Shift + 5)",
+        "gesture": "% is tap-hold Space + T."
+      },
+      "when": "scene_success:systems-14-guided-dollar"
+    },
+    {
+      "id": "s14-hint-caret",
+      "speaker": "alarm_card",
+      "speaker_kind": "object",
+      "portrait": null,
+      "text": "To raise the value to a power, you need to press ^ (Shift + 6).",
+      "hint": {
+        "action": "To raise the value to a power, you need to press ^ (Shift + 6).",
+        "key": "^ (Shift + 6)",
+        "gesture": "^ is tap-hold Space + Y."
+      },
+      "when": "scene_success:systems-14-guided-percent"
+    },
+    {
+      "id": "s14-hal-variation",
+      "speaker": "hal",
+      "portrait": "neutral",
+      "text": "That is all six. Now the cards are shuffled, so you cannot lean on their order.",
+      "hint": null,
+      "when": "scene_success:systems-14-guided-caret",
+      "cue": "Hal neutral: default"
+    },
+    {
+      "id": "s14-hal-fix",
+      "speaker": "hal",
+      "portrait": "pleased",
+      "text": "Six alerts, six distinct colours. That settles me. The maintenance door unlocked too: it leads straight to the formula room.",
+      "hint": null,
+      "when": "scene_success:systems-14-recall-mixed-alert",
+      "cue": "Hal pleased: the 14 fix (settled focus)"
+    },
+    {
+      "id": "s14-strip",
+      "speaker": "engineer",
+      "portrait": "concerned",
+      "text": "Alarm strip: the old alert names carry an extra department that no staff request ever added.",
+      "hint": null,
+      "when": "interact:alarm-strip",
+      "cue": "Engineer concerned: inspecting a tampering artifact (Alarm strip)"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t14-arrive",
+      "when": "step_done:s14-go",
+      "then": [
+        {
+          "op": "npc_state",
+          "npc": "hal",
+          "state": "alarm_anxious"
+        }
+      ]
+    },
+    {
+      "id": "t14-c1",
+      "when": "scene_success:systems-14-guided-excl",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_mint_01",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-c2",
+      "when": "scene_success:systems-14-guided-at",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_mint_02",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_03",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-c3",
+      "when": "scene_success:systems-14-guided-hash",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_mint_04",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_05",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-c4",
+      "when": "scene_success:systems-14-guided-dollar",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_mint_06",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_07",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-c5",
+      "when": "scene_success:systems-14-guided-percent",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "conduit_mint_08",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_09",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-c6",
+      "when": "scene_success:systems-14-guided-caret",
+      "then": [
+        {
+          "op": "set_state",
+          "target": "alarm_board",
+          "state": "separated"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_10",
+          "state": "lit"
+        },
+        {
+          "op": "set_state",
+          "target": "conduit_mint_11",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "t14-complete",
+      "when": "scene_success:systems-14-recall-mixed-alert",
+      "then": [
+        {
+          "op": "unlock_gate",
+          "gate": "gate-maintenance-door"
+        },
+        {
+          "op": "set_state",
+          "target": "maintenance_door",
+          "state": "open"
+        },
+        {
+          "op": "set_state",
+          "target": "lamp_alarm",
+          "state": "on"
+        },
+        {
+          "op": "npc_state",
+          "npc": "hal",
+          "state": "alarm_settled"
+        },
+        {
+          "op": "light_state",
+          "light_state": "circuit-mint-lit"
+        },
+        {
+          "op": "start_dialogue",
+          "dialogue": "s14-hal-fix"
+        },
+        {
+          "op": "complete_level",
+          "level": "systems-14"
+        },
+        {
+          "op": "journal",
+          "text": "Alarm labels restored. The maintenance door joins the alarm hall to the formula room."
+        }
+      ]
+    }
+  ],
+  "state_changes": {
+    "before": "The alarm board shows six lights with blank pictograms, the maintenance door is shut, the alarm hall lamp is off and Hal fidgets with a loose cable.",
+    "after": "Six pictograms and six distinct light hues are on the board, the maintenance door is open, the lamp is on, the mint conduit is lit and Hal stands settled.",
+    "visible_changes": [
+      {
+        "kind": "placement_state",
+        "target": "alarm_board",
+        "from": "merged",
+        "to": "separated",
+        "note": "kit alarm_strip: six identical lights and blank plates become six hues with six pictograms once the sixth label is right (the conduit segments light per label); the Quiet Alarm side quest later mutes one light (`muted`)"
+      },
+      {
+        "kind": "placement_state",
+        "target": "maintenance_door",
+        "from": "closed",
+        "to": "open"
+      },
+      {
+        "kind": "placement_state",
+        "target": "lamp_alarm",
+        "from": "off",
+        "to": "on"
+      },
+      {
+        "kind": "npc_pose",
+        "target": "hal",
+        "from": "alarm_anxious",
+        "to": "alarm_settled",
+        "note": "anxious to settled focus"
+      },
+      {
+        "kind": "placement_state",
+        "target": "conduit_mint_01",
+        "from": "off",
+        "to": "lit"
+      },
+      {
+        "kind": "gate",
+        "target": "gate-maintenance-door",
+        "to": "open"
+      }
+    ]
+  },
+  "rewards": {},
+  "optional_artifact": {
+    "id": "alarm-strip",
+    "name": "Alarm strip",
+    "interaction": "alarm-strip",
+    "placement": "artifact_alarm_strip",
+    "caption": [
+      "A strip of alarm names from before the labels were lost.",
+      "Each name carries an extra department that appears nowhere in the current directory.",
+      "Someone added it without a staff request."
+    ],
+    "engineer_portrait": "concerned"
+  },
+  "glitch": {
+    "archetype": "chair",
+    "variant": "standard",
+    "cell": [
+      3,
+      9
+    ],
+    "interaction": "chair-shadow-glitch",
+    "scene_id": "systems-14-glitch-chair",
+    "note": "Optional untimed repair beside the label desk: archetype chair (from level 14), palette standard (token fix), behaviour stutter (starts at 14); 2 of the room limit 3 are never live at once."
+  },
+  "pace_copy": [
+    {
+      "text": "Alerts are acknowledged. Alerts are acknowledged.",
+      "state": "repeat",
+      "placement": "pace_sign_alarm"
+    }
+  ],
+  "review_notes": "1366x768 (x4) with the keyboard inset open: the alarm hall is left-clamped, so each target is approached from the south or the east with the target at or above the avatar's row: label desk (approach 5..6,13, target north), Hal (approach 4,12 from the east), artifact (approach 2,6 from the east), chair glitch (approach 4,9 from the east), maintenance door (approach 7,4 from the west). No target falls inside the inset; there are no unavoidable conflicts here."
 }

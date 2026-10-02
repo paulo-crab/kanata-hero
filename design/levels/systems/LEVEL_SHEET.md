@@ -9,31 +9,31 @@
       01234567890123456789012345678901234567
 y00   ######################################
 y01   ######################################
-y02   #.....####.##.##..#####...##........##
-y03   #.......GG..........##....####.##.####
+y02   #.....####.##.##..####....##........##
+y03   #.......GG..........##.@..####.##.####
 y04   ##......GG..........##....##........##
-y05   ##......GG..........##....GG..@.....##
+y05   ##......GG..........###...GG..@.....##
 y06   ##..##..##GG###GG#####....GG......####
 y07   ##......##GG###GG#####....GG.......###
 y08   ##......##..##............###..#....##
 y09   #.......##..m#...........#############
 y10   #......###..#.MMMMMM......############
-y11   #.......##....MMMMMM......######...###
+y11   #.......##....MMMMMM......########.###
 y12   #....##.....#.MMMMMM.....###.......###
 y13   #.#..........#MMMMMM#.....##....##..##
 y14   #................@..................##
 y15   ##########..........................##
 y16   ########.....#.....................###
 y17   ##.##.....................##........##
-y18   #.........................##..##....##
+y18   ##........................##..##....##
 y19   #.......###..............###........##
 y20   #.......###...........##..##........##
-y21   #.......###..#..@.......#.##........##
-y22   ##...#####.#....####.....####......###
+y21   #.......###..#..........#.##........##
+y22   ##...#####.#.............####......###
 y23   ######################################
 ```
 
-`#` blocked in the initial state (walls, props, machine body), `.` walkable, `G` gate cell (blocked until its level opens it), `M` machine footprint, `@` spawn, `m` Mira at the chute. Rooms: alarm hall x1-7 y2-14; ledger room x1-7 y17-22; formula room x10-19 y2-5; hub x10-25 y8-22 with the gallery x22-25 y2-7; relay room x28-35 y2-8; payroll wing x28-35 y11-22.
+`#` blocked in the initial state (walls, props, machine body), `.` walkable, `G` gate cell (blocked until its level opens it), `M` machine footprint, `@` spawn, `m` Mira at the chute. Rooms: alarm hall x1-7 y2-14; ledger room x1-7 y17-22; formula room x10-19 y2-5; hub x10-25 y8-22 with the gallery x22-25 y2-7 (the elevator module is on its north wall, x22-24); relay room x28-35 y2-8; payroll wing x28-35 y11-22.
 
 Hub, short branch, task room, changed return: the **east branch** (cobalt conduit along row 14, gap y14-16) goes to the payroll wing (12); the **west branch** (mint conduit along row 14, gap y12-14) goes to the alarm hall (14), with the short **ledger branch** (gap y16-18) to the ledger room (13); the **glass bridge** (x15-16, y6-7) leads over the machine's north strip to the formula room (15) and the **return walkway** (x10-11, y6-7) comes down beside Mira's chute; the **relay room** (16) lies beyond all three, behind the relay door.
 
@@ -43,13 +43,13 @@ Cells are `(x,y)`. Waypoints are the corners of the BFS path; every cell has a f
 
 | Level | Segment | Path (corners) | Cells |
 | --- | --- | --- | --- |
-| 12 | Elevator to the payroll keypad: north up the spine, east along the band and through the payroll gap | (16,21) > (16,16) > (32,16) > (32,14) | 24 |
+| 12 | Elevator to the payroll keypad: south down the gallery and the hub's east side, east along row 16 and through the payroll gap | (23,3) > (23,16) > (32,16) > (32,14) | 25 |
 | 13 | Payroll wing to the refund ledger: back through the gap, west along row 18 and the ledger branch | (32,14) > (32,16) > (21,16) > (21,18) > (3,18) | 34 |
 | 14 | Ledger room to the alarm label desk: back out the ledger branch, north along the west strip, through the alarm gap | (3,18) > (10,18) > (10,13) > (5,13) | 18 |
 | 15 | Alarm hall to the formula console: through the hall and the maintenance door (open after 14) to the formula room | (5,13) > (3,13) > (3,4) > (14,4) > (14,3) | 24 |
 | 16 | Formula room to the relay review console: over the glass bridge, along the north strip, up the gallery and through the relay door | (14,3) > (16,3) > (16,8) > (25,8) > (25,6) > (33,6) > (33,7) > (34,7) | 29 |
 
-Full walk, elevator (16,21) to the review console approach (34,7), by the segments above with every gate open. Gates opened by earlier levels: bridge and return walkway after 12, maintenance door after 14, relay door after 15. Before its gate opens, each locked route shows what it needs: the Pace sign at the bridge head (`bridge-sign`), the door sign plates (three conduit families, one lit per branch) and the glass beside the relay door that already shows the machine.
+Full walk, elevator arrival (23,3) to the review console approach (34,7), by the segments above with every gate open. Gates opened by earlier levels: bridge and return walkway after 12, maintenance door after 14, relay door after 15. Before its gate opens, each locked route shows what it needs: the Pace sign at the bridge head (`bridge-sign`), the door sign plates (three conduit families, one lit per branch) and the glass beside the relay door that already shows the machine.
 
 ## Mira routes
 
@@ -68,18 +68,18 @@ All 23 held-Space outputs are carried by Glyph Dispatch: S01 to S11 at the payro
 | --- | --- | --- | --- |
 | `bridge-return-loop` | systems-12 | (14,3) to (11,9) | (14,3) > (14,5) > (11,5) > (11,9) |
 | `alarm-to-formula-door` | systems-14 | (4,7) to (14,3) | (4,7) > (7,7) > (7,4) > (14,4) > (14,3) |
-| `relay-home` | systems-15 | (34,7) to (16,21) | (34,7) > (33,7) > (33,6) > (24,6) > (24,16) > (17,16) > (17,21) > (16,21) |
+| `relay-home` | systems-15 | (34,7) to (23,3) | (34,7) > (33,7) > (33,6) > (24,6) > (24,3) > (23,3) |
 
-Every room has a way home: all task rooms open onto the hub, the elevator (16..18,22) returns to unlocked districts, and the relay room's door is a plain walk back to the hub spine. Revisit payoff: lit conduits show the way to the old branches, the bridge loop makes the north rooms reachable without crossing the hub strip, and the service walkway beside the machine (20..21,11..12) opens after the review.
+Every room has a way home: all task rooms open onto the hub, the elevator (22..24,0..2) returns to unlocked districts, and the relay room's door is a plain walk back to the hub spine. Revisit payoff: lit conduits show the way to the old branches, the bridge loop makes the north rooms reachable without crossing the hub strip, and the service walkway beside the machine (20..21,11..12) opens after the review.
 
 ## Before and after
 
 | Level | Before | After (at least two visible changes) |
 | --- | --- | --- |
-| 12 Payroll IDs | ten dark nodes, retracted bridge and walkway, dim payroll lamp, Hal puzzled | ten lit nodes, cobalt conduit lit, bridge and return walkway extended, lamp on, Hal at crouched repair |
-| 13 Negative Balance | refund shows as a charge, warning lamp pulses wide, Hal crouched | green refund, steady warning lamp, open stool with Hal seated, ledger lamp on; Mira offers Payroll Run |
-| 14 Alarm Glyphs | blank alarm board, shut maintenance door, Hal anxious | six hues, open maintenance door, mint conduit lit, alarm lamp on, Hal settled |
-| 15 Formula Room | dim formula wall, closed bridge shutters, shut relay door | lit wall, open shutters (sight line to the machine), open relay door, orange conduit lit, Hal puzzled at the score |
+| 12 Payroll IDs | payroll keypad `off`, retracted bridge and walkway, dim payroll lamp, Hal puzzled | keypad `half` after the fifth digit and `lit` after the tenth, cobalt conduit lit, bridge and return walkway extended, lamp on, Hal at crouched repair (`hal_crouch_repair_e`) |
+| 13 Negative Balance | `refund_sign` red and `calc_display` charge, warning lamp pulses wide, courier chute idle, Hal crouched | `refund_sign` green and `calc_display` refund, steady warning lamp, courier chute ready, Hal seated on his stool (`hal_seated_stool_s`), ledger lamp on; Mira offers Payroll Run |
+| 14 Alarm Glyphs | `alarm_strip` merged (six identical lights), shut maintenance door, Hal anxious | `alarm_strip` separated (six hues, six pictograms), open maintenance door, mint conduit lit, alarm lamp on, Hal settled |
+| 15 Formula Room | `formula_wall` dark, closed bridge shutters, shut relay door | wall `half` after the third clause and `lit` after the recall, open shutters (sight line to the machine), open relay door, orange conduit lit, Hal puzzled at the score |
 | 16 Crossed Wires (review) | machine `before`, dark relay conduits, Mira at the chute | machine `after` (walkway, false panel open on the Night Shift stop), three relay conduit families lit, hub lamps pulse, Mira in the relay room, Systems seal |
 
 ## Lighting states (`district.json` light_states)
@@ -90,7 +90,7 @@ Every room has a way home: all task rooms open onto the hub, the elevator (16..1
 
 Model: avatar feet at screen (160,100); the camera clamps at the map edges; inset logical x 4-147, y 103-176 (stage x 16-588, y 412-704 at x4). The validator's check (first approach cell of every interaction) finds no conflict. Cells it does not check:
 
-- `systems-elevator`: the first approach (16,21) is clear. The two other approach cells (17,21) and (18,21) are one and two cells right of the lift's left edge, so the lift's left cell sits partly under the inset's right edge (11 and 27 logical px, 44 and 108 px at x4). The lift is only a way out, not a task target; stand at (16,21) for a clean view.
+- `systems-elevator`: the module is on the north wall at the head of the gallery, so the camera is top-clamped and the avatar on the mat (22..24,2) or at the arrival cell (23,3) is well above the inset. The call panel `elevator_panel` is approached from (25,2), also clear.
 - Ledger room (zone-ledger), rows 19 to 22 at x 1..7: the camera is clamped at the bottom-left there, so an avatar standing in those cells is under the inset. The room's tasks are at rows 17 and 18 (desk `ledger-terminal`, approach (3..4,18), target north; `hal-ledger`, approach (3,18); `refund-slip-glitch`, approach (6,18), target north), all clear. Rows 19 to 22 hold only decoration (shelf, plant, lamp) and nothing required.
 - NPC positions that change with `move_npc` are all at rows at or above their approach row, so the targets stay at or above the avatar.
 
@@ -99,9 +99,9 @@ Every other interaction approaches a target that is north of, or level with, the
 ## Data conventions and notes for developers
 
 - `map.json` `collision` is the initial state. Gates (`gates`) open for any level whose number exceeds `opens_after`; the gate placements are state sets (`bridge_span` retracted/extended, `service_door` closed/open).
-- Hal is one NPC. Each state sets pose and cell together (`npc_state`): `start` and `repair_hub` (hub), `ledger_repair` and `ledger_seated` (ledger room), `alarm_anxious` and `alarm_settled` (alarm hall), `formula_idle` and `formula_puzzled` (formula room), `relay_idle` (relay room), `panel_pull` and `panel_done` (machine face). Mira's states: `start` and `offering` (chute), `relay_pleased` (relay room, after 16). `visible_when` strings on NPC interactions read `npc:<id>=<state>`.
+- Hal is one NPC. Each state sets pose and cell together (`npc_state`): `start` and `repair_hub` (hub), `ledger_repair` (`hal_crouch_repair_e`) and `ledger_seated` (`hal_seated_stool_s`) (ledger room), `alarm_anxious` and `alarm_settled` (alarm hall), `formula_idle` and `formula_puzzled` (formula room), `relay_idle` (relay room), `panel_pull` (`hal_false_panel_pull_n`, one-shot) and `panel_done` (machine face). Mira's states: `start` and `offering` (chute), `relay_pleased` (relay room, after 16). `visible_when` strings on NPC interactions read `npc:<id>=<state>`.
 - The hub, ledger, alarm, formula and relay conversations are separate interactions bound to the same Hal (`hal-hub`, `hal-hub-13`, `hal-ledger`, `hal-alarm`, `hal-formula`, `hal-relay`); the one matching Hal's current state is live.
-- Systems exit and entrance links: `world.json` has no link between systems and nightshift, so the false-panel entrance and exit reuse `link.elevator.systems` with a note; the intended target is the Night Shift elevator stop.
+- Systems exit and entrance links: the false-panel entrance and exit use the world link `link.panel.systems-nightshift` (added to `world.json` by the Orientation team in the same wave; until that file merges, the validator reports it as unknown).
 - Pace signs use the Pace atlas (`pace_wall_sign_2x1`, `pace_wall_sign_2x1_repeat`), listed in `district.json` `pace_signs`.
 - Held-Space evidence is output-observed only: the UI says the output was observed, never that Space was held. Tap-hold Tab (Homerow) is explained and player-confirmed in the S25 lane, never scored.
 
@@ -110,4 +110,15 @@ Every other interaction approaches a target that is north of, or level with, the
 - `levels.md` (Systems row) says the bridge and return walkway open in levels 12 and 15, while level 12 says the first batch extends both and level 15 says bridge shutters open. Read as: span and walkway extend at 12, shutters open at 15 (`bridge_span` and `bridge_shutter`).
 - `levels.md` gives progressive machine lighting to levels 12 to 14 (nodes, warning light) but the atlas landmark has only `before` and `after`, and level ops can set only those; the data lights the surroundings and the whole machine at 16 (see NEEDS_ART.md).
 - `levels.md` puts Mira's Payroll Run at the chute and Glyph Dispatch in the relay room; the data moves Mira from the chute to the relay room when level 16 completes. The brief names three Systems artifacts; `levels.md` and `world.json` also list the Original routing diagram (level 16), so all four are placed.
-- `world.json` has no link between systems and nightshift for the false-panel stop (see conventions). `levels.md` does not say when Quiet Alarm becomes available; the data offers it after level 15 so the short expression can use `)`.
+- `levels.md` does not say when Quiet Alarm becomes available; the data offers it after level 15 so the short expression can use `)`.
+
+## Wave 2 reconciliation
+
+1. **Kit names adopted.** `payroll_keypad_off/_half/_lit` (one keypad replaces the ten node overlays: `half` after digit 5, `lit` after digit 0; each digit still lights a conduit segment), `bridge_span_retracted/_extended`, `bridge_shutter_closed/_open` (a pair of 2 x 2 overlays across the bridge head: `bridge_shutter` and `bridge_shutter_b`), `refund_sign_red/_green` with `calc_display_charge/_refund`, `alarm_strip_merged/_separated` (`_muted` is for the Quiet Alarm side quest), `courier_chute_idle/_ready` (replaces the cabinet stand-in; `ready` when Mira offers Payroll Run), `formula_wall_dark/_half/_lit`, `folding_stool`, `mira_decor_signed_sent` and `mira_decor_relay` (reward items, not placements).
+2. **Formula wall steps.** The kit has three steps, the quest has six clauses and a recall. Mapping: `dark` until the third guided clause, `half` (three boxes lit) from clause 3 to the end of the guided run, `lit` when the recall scene passes. Clauses 1, 2, 4, 5 and 6 give their feedback through the orange conduit segments.
+3. **Alarm strip steps.** `merged` until the sixth label is right, then `separated`; labels 1 to 5 light their mint conduit segments only.
+4. **Bridge spans.** The kit's 4 x 2 span is drawn for an east-west run with its pit in the middle two columns; the pit is placed on the old gate footprint ((15-16,6-7) and (10-11,6-7)), and the end stubs sit under the existing bridge rails and the partition. Both Systems bridges run north-south, so the art will need a rotated variant or a re-lay (request in NEEDS_ART.md).
+5. **Elevator.** North-wall 3 x 3 module at (22,0) with its call panel at (25,0), arrival cell (23,3). Level 12 now starts at the head of the gallery and walks down the hub's east side to the payroll gap; the plant that stood at (22,2) moved to (22,5).
+6. **Hal.** Poses are the drawn `hal_crouch_repair_e` (levels 12 and 13), `hal_seated_stool_s` (end of 13, with hal-props-atlas `stool_folding` under him; the placed `folding_stool` at (1,18) is hidden then) and `hal_false_panel_pull_n` (16, one-shot; on frame 2 the machine's `routing_panel_closed` part swaps for `routing_panel_open`).
+7. **Glitches** (`glitches-atlas.json districts.systems`): level 12 `stapler` palette `standard` behaviour `patrol` at (29,19) (first Systems glitch, new); level 13 `form` `standard` `patrol`; level 14 `chair` `standard` `stutter` at (3,9). One per level (limit 3 per room). The level schema has no `behaviour` key, so the behaviour is in each glitch `note`.
+8. **Intermediate machine states.** Levels 12 to 14 still light only the machine's surroundings; the landmark states `after_12`, `after_13` and `after_14` are a documented request (NEEDS_ART.md) that the kit team is adding.

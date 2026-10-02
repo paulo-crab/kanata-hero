@@ -1,3439 +1,5168 @@
 {
- "size_cells": [38, 24],
- "floor": [
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
-  "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
-  "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
-  "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
-  "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV"
- ],
- "floor_legend": {
-  "J": "floor_j",
-  "H": "floor_h",
-  "V": "floor_v",
-  "P": "floor_p"
- },
- "placements": [
-  {
-   "id": "wall_n_00",
-   "entry": "wall_n_plain",
-   "cell": [0, 0]
-  },
-  {
-   "id": "wall_n_01",
-   "entry": "wall_n_plain",
-   "cell": [1, 0]
-  },
-  {
-   "id": "wall_n_02",
-   "entry": "wall_n_plain",
-   "cell": [2, 0]
-  },
-  {
-   "id": "wall_n_03",
-   "entry": "wall_n_plain",
-   "cell": [3, 0]
-  },
-  {
-   "id": "wall_n_04",
-   "entry": "wall_n_plain",
-   "cell": [4, 0]
-  },
-  {
-   "id": "wall_n_05",
-   "entry": "wall_n_plain",
-   "cell": [5, 0]
-  },
-  {
-   "id": "wall_n_06",
-   "entry": "wall_n_plain",
-   "cell": [6, 0]
-  },
-  {
-   "id": "wall_n_07",
-   "entry": "wall_n_plain",
-   "cell": [7, 0]
-  },
-  {
-   "id": "wall_n_08",
-   "entry": "wall_n_plain",
-   "cell": [8, 0]
-  },
-  {
-   "id": "wall_n_09",
-   "entry": "wall_n_plain",
-   "cell": [9, 0]
-  },
-  {
-   "id": "wall_n_10",
-   "entry": "wall_n_plain",
-   "cell": [10, 0]
-  },
-  {
-   "id": "wall_n_11",
-   "entry": "wall_n_plain",
-   "cell": [11, 0]
-  },
-  {
-   "id": "wall_n_12",
-   "entry": "wall_n_plain",
-   "cell": [12, 0]
-  },
-  {
-   "id": "wall_n_13",
-   "entry": "wall_n_plain",
-   "cell": [13, 0]
-  },
-  {
-   "id": "wall_n_14",
-   "entry": "wall_n_plain",
-   "cell": [14, 0]
-  },
-  {
-   "id": "wall_n_15",
-   "entry": "wall_n_plain",
-   "cell": [15, 0]
-  },
-  {
-   "id": "wall_n_16",
-   "entry": "wall_n_plain",
-   "cell": [16, 0]
-  },
-  {
-   "id": "wall_n_17",
-   "entry": "wall_n_plain",
-   "cell": [17, 0]
-  },
-  {
-   "id": "wall_n_18",
-   "entry": "wall_n_plain",
-   "cell": [18, 0]
-  },
-  {
-   "id": "wall_n_19",
-   "entry": "wall_n_plain",
-   "cell": [19, 0]
-  },
-  {
-   "id": "wall_n_20",
-   "entry": "wall_n_plain",
-   "cell": [20, 0]
-  },
-  {
-   "id": "wall_n_21",
-   "entry": "wall_n_plain",
-   "cell": [21, 0]
-  },
-  {
-   "id": "wall_n_22",
-   "entry": "wall_n_plain",
-   "cell": [22, 0]
-  },
-  {
-   "id": "wall_n_23",
-   "entry": "wall_n_plain",
-   "cell": [23, 0]
-  },
-  {
-   "id": "wall_n_24",
-   "entry": "wall_n_plain",
-   "cell": [24, 0]
-  },
-  {
-   "id": "wall_n_25",
-   "entry": "wall_n_plain",
-   "cell": [25, 0]
-  },
-  {
-   "id": "wall_n_26",
-   "entry": "wall_n_plain",
-   "cell": [26, 0]
-  },
-  {
-   "id": "wall_n_27",
-   "entry": "wall_n_plain",
-   "cell": [27, 0]
-  },
-  {
-   "id": "wall_n_28",
-   "entry": "wall_n_plain",
-   "cell": [28, 0]
-  },
-  {
-   "id": "wall_n_29",
-   "entry": "wall_n_plain",
-   "cell": [29, 0]
-  },
-  {
-   "id": "wall_n_30",
-   "entry": "wall_n_plain",
-   "cell": [30, 0]
-  },
-  {
-   "id": "wall_n_31",
-   "entry": "wall_n_plain",
-   "cell": [31, 0]
-  },
-  {
-   "id": "wall_n_32",
-   "entry": "wall_n_plain",
-   "cell": [32, 0]
-  },
-  {
-   "id": "wall_n_33",
-   "entry": "wall_n_plain",
-   "cell": [33, 0]
-  },
-  {
-   "id": "wall_n_34",
-   "entry": "wall_n_plain",
-   "cell": [34, 0]
-  },
-  {
-   "id": "wall_n_35",
-   "entry": "wall_n_plain",
-   "cell": [35, 0]
-  },
-  {
-   "id": "wall_e_boundary_00",
-   "entry": "wall_e_plain",
-   "cell": [36, 0]
-  },
-  {
-   "id": "wall_e_boundary_01",
-   "entry": "wall_e_plain",
-   "cell": [36, 1]
-  },
-  {
-   "id": "wall_e_boundary_02",
-   "entry": "wall_e_plain",
-   "cell": [36, 2]
-  },
-  {
-   "id": "wall_e_boundary_03",
-   "entry": "wall_e_plain",
-   "cell": [36, 3]
-  },
-  {
-   "id": "wall_e_boundary_04",
-   "entry": "wall_e_plain",
-   "cell": [36, 4]
-  },
-  {
-   "id": "wall_e_boundary_05",
-   "entry": "wall_e_plain",
-   "cell": [36, 5]
-  },
-  {
-   "id": "wall_e_boundary_06",
-   "entry": "wall_e_plain",
-   "cell": [36, 6]
-  },
-  {
-   "id": "wall_e_boundary_07",
-   "entry": "wall_e_plain",
-   "cell": [36, 7]
-  },
-  {
-   "id": "wall_e_boundary_08",
-   "entry": "wall_e_plain",
-   "cell": [36, 8]
-  },
-  {
-   "id": "wall_e_boundary_09",
-   "entry": "wall_e_plain",
-   "cell": [36, 9]
-  },
-  {
-   "id": "wall_e_boundary_10",
-   "entry": "wall_e_plain",
-   "cell": [36, 10]
-  },
-  {
-   "id": "wall_e_boundary_11",
-   "entry": "wall_e_plain",
-   "cell": [36, 11]
-  },
-  {
-   "id": "wall_e_boundary_12",
-   "entry": "wall_e_plain",
-   "cell": [36, 12]
-  },
-  {
-   "id": "wall_e_boundary_13",
-   "entry": "wall_e_plain",
-   "cell": [36, 13]
-  },
-  {
-   "id": "wall_e_boundary_14",
-   "entry": "wall_e_plain",
-   "cell": [36, 14]
-  },
-  {
-   "id": "wall_e_boundary_15",
-   "entry": "wall_e_plain",
-   "cell": [36, 15]
-  },
-  {
-   "id": "wall_e_boundary_16",
-   "entry": "wall_e_plain",
-   "cell": [36, 16]
-  },
-  {
-   "id": "wall_e_boundary_17",
-   "entry": "wall_e_plain",
-   "cell": [36, 17]
-  },
-  {
-   "id": "wall_e_boundary_18",
-   "entry": "wall_e_plain",
-   "cell": [36, 18]
-  },
-  {
-   "id": "wall_e_boundary_19",
-   "entry": "wall_e_plain",
-   "cell": [36, 19]
-  },
-  {
-   "id": "wall_e_boundary_20",
-   "entry": "wall_e_plain",
-   "cell": [36, 20]
-  },
-  {
-   "id": "wall_e_boundary_21",
-   "entry": "wall_e_plain",
-   "cell": [36, 21]
-  },
-  {
-   "id": "wall_e_boundary_22",
-   "entry": "wall_e_plain",
-   "cell": [36, 22]
-  },
-  {
-   "id": "wall_e_boundary_23",
-   "entry": "wall_e_plain",
-   "cell": [36, 23]
-  },
-  {
-   "id": "wall_s_00",
-   "entry": "partition_2x1",
-   "cell": [0, 23]
-  },
-  {
-   "id": "wall_s_02",
-   "entry": "partition_2x1",
-   "cell": [2, 23]
-  },
-  {
-   "id": "wall_s_04",
-   "entry": "partition_2x1",
-   "cell": [4, 23]
-  },
-  {
-   "id": "wall_s_06",
-   "entry": "partition_2x1",
-   "cell": [6, 23]
-  },
-  {
-   "id": "wall_s_08",
-   "entry": "partition_2x1",
-   "cell": [8, 23]
-  },
-  {
-   "id": "wall_s_10",
-   "entry": "partition_2x1",
-   "cell": [10, 23]
-  },
-  {
-   "id": "wall_s_12",
-   "entry": "partition_2x1",
-   "cell": [12, 23]
-  },
-  {
-   "id": "wall_s_14",
-   "entry": "partition_2x1",
-   "cell": [14, 23]
-  },
-  {
-   "id": "wall_s_16",
-   "entry": "partition_2x1",
-   "cell": [16, 23]
-  },
-  {
-   "id": "wall_s_18",
-   "entry": "partition_2x1",
-   "cell": [18, 23]
-  },
-  {
-   "id": "wall_s_20",
-   "entry": "partition_2x1",
-   "cell": [20, 23]
-  },
-  {
-   "id": "wall_s_22",
-   "entry": "partition_2x1",
-   "cell": [22, 23]
-  },
-  {
-   "id": "wall_s_24",
-   "entry": "partition_2x1",
-   "cell": [24, 23]
-  },
-  {
-   "id": "wall_s_26",
-   "entry": "partition_2x1",
-   "cell": [26, 23]
-  },
-  {
-   "id": "wall_s_28",
-   "entry": "partition_2x1",
-   "cell": [28, 23]
-  },
-  {
-   "id": "wall_s_30",
-   "entry": "partition_2x1",
-   "cell": [30, 23]
-  },
-  {
-   "id": "wall_s_32",
-   "entry": "partition_2x1",
-   "cell": [32, 23]
-  },
-  {
-   "id": "wall_s_34",
-   "entry": "partition_2x1",
-   "cell": [34, 23]
-  },
-  {
-   "id": "wall_w_02",
-   "entry": "partition_1x1",
-   "cell": [0, 2]
-  },
-  {
-   "id": "wall_w_03",
-   "entry": "partition_1x1",
-   "cell": [0, 3]
-  },
-  {
-   "id": "wall_w_04",
-   "entry": "partition_1x1",
-   "cell": [0, 4]
-  },
-  {
-   "id": "wall_w_05",
-   "entry": "partition_1x1",
-   "cell": [0, 5]
-  },
-  {
-   "id": "wall_w_06",
-   "entry": "partition_1x1",
-   "cell": [0, 6]
-  },
-  {
-   "id": "wall_w_07",
-   "entry": "partition_1x1",
-   "cell": [0, 7]
-  },
-  {
-   "id": "wall_w_08",
-   "entry": "partition_1x1",
-   "cell": [0, 8]
-  },
-  {
-   "id": "wall_w_09",
-   "entry": "partition_1x1",
-   "cell": [0, 9]
-  },
-  {
-   "id": "wall_w_10",
-   "entry": "partition_1x1",
-   "cell": [0, 10]
-  },
-  {
-   "id": "wall_w_11",
-   "entry": "partition_1x1",
-   "cell": [0, 11]
-  },
-  {
-   "id": "wall_w_12",
-   "entry": "partition_1x1",
-   "cell": [0, 12]
-  },
-  {
-   "id": "wall_w_13",
-   "entry": "partition_1x1",
-   "cell": [0, 13]
-  },
-  {
-   "id": "wall_w_14",
-   "entry": "partition_1x1",
-   "cell": [0, 14]
-  },
-  {
-   "id": "wall_w_15",
-   "entry": "partition_1x1",
-   "cell": [0, 15]
-  },
-  {
-   "id": "wall_w_16",
-   "entry": "partition_1x1",
-   "cell": [0, 16]
-  },
-  {
-   "id": "wall_w_17",
-   "entry": "partition_1x1",
-   "cell": [0, 17]
-  },
-  {
-   "id": "wall_w_18",
-   "entry": "partition_1x1",
-   "cell": [0, 18]
-  },
-  {
-   "id": "wall_w_19",
-   "entry": "partition_1x1",
-   "cell": [0, 19]
-  },
-  {
-   "id": "wall_w_20",
-   "entry": "partition_1x1",
-   "cell": [0, 20]
-  },
-  {
-   "id": "wall_w_21",
-   "entry": "partition_1x1",
-   "cell": [0, 21]
-  },
-  {
-   "id": "wall_w_22",
-   "entry": "partition_1x1",
-   "cell": [0, 22]
-  },
-  {
-   "id": "wall_a_02",
-   "entry": "wall_e_plain",
-   "cell": [8, 2]
-  },
-  {
-   "id": "wall_a_06",
-   "entry": "wall_e_plain",
-   "cell": [8, 6]
-  },
-  {
-   "id": "wall_a_07",
-   "entry": "wall_e_plain",
-   "cell": [8, 7]
-  },
-  {
-   "id": "wall_a_08",
-   "entry": "wall_e_plain",
-   "cell": [8, 8]
-  },
-  {
-   "id": "wall_a_09",
-   "entry": "wall_e_plain",
-   "cell": [8, 9]
-  },
-  {
-   "id": "wall_a_10",
-   "entry": "wall_e_plain",
-   "cell": [8, 10]
-  },
-  {
-   "id": "wall_a_11",
-   "entry": "wall_e_plain",
-   "cell": [8, 11]
-  },
-  {
-   "id": "wall_a_15",
-   "entry": "wall_e_plain",
-   "cell": [8, 15]
-  },
-  {
-   "id": "wall_a_19",
-   "entry": "wall_e_plain",
-   "cell": [8, 19]
-  },
-  {
-   "id": "wall_a_20",
-   "entry": "wall_e_plain",
-   "cell": [8, 20]
-  },
-  {
-   "id": "wall_a_21",
-   "entry": "wall_e_plain",
-   "cell": [8, 21]
-  },
-  {
-   "id": "wall_a_22",
-   "entry": "wall_e_plain",
-   "cell": [8, 22]
-  },
-  {
-   "id": "maintenance_door",
-   "entry": "service_door_closed",
-   "cell": [8, 3],
-   "offset": [0, 8],
-   "state_set": "service_door",
-   "state": "closed",
-   "note": "Alarm hall to formula room; opens with level 14. Cells (8..9, 3..5)."
-  },
-  {
-   "id": "wall_alarm_s_1",
-   "entry": "wall_n_plain",
-   "cell": [1, 15]
-  },
-  {
-   "id": "wall_alarm_s_2",
-   "entry": "wall_n_plain",
-   "cell": [2, 15]
-  },
-  {
-   "id": "wall_alarm_s_3",
-   "entry": "wall_n_plain",
-   "cell": [3, 15]
-  },
-  {
-   "id": "wall_alarm_s_4",
-   "entry": "wall_n_plain",
-   "cell": [4, 15]
-  },
-  {
-   "id": "wall_alarm_s_5",
-   "entry": "wall_n_plain",
-   "cell": [5, 15]
-  },
-  {
-   "id": "wall_alarm_s_6",
-   "entry": "wall_n_plain",
-   "cell": [6, 15]
-  },
-  {
-   "id": "wall_alarm_s_7",
-   "entry": "wall_n_plain",
-   "cell": [7, 15]
-  },
-  {
-   "id": "wall_formula_s_12",
-   "entry": "wall_n_plain",
-   "cell": [12, 6]
-  },
-  {
-   "id": "wall_formula_s_13",
-   "entry": "wall_n_plain",
-   "cell": [13, 6]
-  },
-  {
-   "id": "wall_formula_s_18",
-   "entry": "wall_n_plain",
-   "cell": [18, 6]
-  },
-  {
-   "id": "wall_formula_s_19",
-   "entry": "wall_n_plain",
-   "cell": [19, 6]
-  },
-  {
-   "id": "bridge_rail_w_6",
-   "entry": "bridge_rail",
-   "cell": [14, 6]
-  },
-  {
-   "id": "bridge_rail_e_6",
-   "entry": "bridge_rail",
-   "cell": [17, 6]
-  },
-  {
-   "id": "bridge_rail_w_7",
-   "entry": "bridge_rail",
-   "cell": [14, 7]
-  },
-  {
-   "id": "bridge_rail_e_7",
-   "entry": "bridge_rail",
-   "cell": [17, 7]
-  },
-  {
-   "id": "bridge_span",
-   "entry": "bridge_span_retracted",
-   "cell": [15, 6],
-   "state_set": "bridge_span",
-   "state": "retracted",
-   "art_gap": true,
-   "note": "Glass bridge head: 2x2 cells (15..16, 6..7). Extends with level 12."
-  },
-  {
-   "id": "return_walkway_span",
-   "entry": "bridge_span_retracted",
-   "cell": [10, 6],
-   "state_set": "bridge_span",
-   "state": "retracted",
-   "art_gap": true,
-   "note": "Return walkway to Mira's chute: 2x2 cells (10..11, 6..7). Extends with level 12."
-  },
-  {
-   "id": "wall_formula_e_2",
-   "entry": "wall_e_plain",
-   "cell": [20, 2]
-  },
-  {
-   "id": "wall_formula_e_3",
-   "entry": "wall_e_plain",
-   "cell": [20, 3]
-  },
-  {
-   "id": "wall_formula_e_4",
-   "entry": "wall_e_plain",
-   "cell": [20, 4]
-  },
-  {
-   "id": "wall_formula_e_5",
-   "entry": "wall_e_plain",
-   "cell": [20, 5]
-  },
-  {
-   "id": "wall_formula_e_6",
-   "entry": "wall_e_plain",
-   "cell": [20, 6]
-  },
-  {
-   "id": "wall_formula_e_7",
-   "entry": "wall_e_plain",
-   "cell": [20, 7]
-  },
-  {
-   "id": "relay_glass_a_2",
-   "entry": "bridge_rail",
-   "cell": [26, 2]
-  },
-  {
-   "id": "relay_glass_b_2",
-   "entry": "bridge_rail",
-   "cell": [27, 2]
-  },
-  {
-   "id": "relay_glass_a_3",
-   "entry": "bridge_rail",
-   "cell": [26, 3]
-  },
-  {
-   "id": "relay_glass_b_3",
-   "entry": "bridge_rail",
-   "cell": [27, 3]
-  },
-  {
-   "id": "relay_glass_a_4",
-   "entry": "bridge_rail",
-   "cell": [26, 4]
-  },
-  {
-   "id": "relay_glass_b_4",
-   "entry": "bridge_rail",
-   "cell": [27, 4]
-  },
-  {
-   "id": "relay_glass_a_8",
-   "entry": "bridge_rail",
-   "cell": [26, 8]
-  },
-  {
-   "id": "relay_glass_b_8",
-   "entry": "bridge_rail",
-   "cell": [27, 8]
-  },
-  {
-   "id": "relay_door",
-   "entry": "service_door_closed",
-   "cell": [26, 5],
-   "offset": [0, 8],
-   "state_set": "service_door",
-   "state": "closed",
-   "note": "Relay room door; opens when levels 12 to 15 are complete. Cells (26..27, 5..7)."
-  },
-  {
-   "id": "wall_b_09",
-   "entry": "wall_e_plain",
-   "cell": [26, 9]
-  },
-  {
-   "id": "wall_b_10",
-   "entry": "wall_e_plain",
-   "cell": [26, 10]
-  },
-  {
-   "id": "wall_b_11",
-   "entry": "wall_e_plain",
-   "cell": [26, 11]
-  },
-  {
-   "id": "wall_b_12",
-   "entry": "wall_e_plain",
-   "cell": [26, 12]
-  },
-  {
-   "id": "wall_b_13",
-   "entry": "wall_e_plain",
-   "cell": [26, 13]
-  },
-  {
-   "id": "wall_b_17",
-   "entry": "wall_e_plain",
-   "cell": [26, 17]
-  },
-  {
-   "id": "wall_b_18",
-   "entry": "wall_e_plain",
-   "cell": [26, 18]
-  },
-  {
-   "id": "wall_b_19",
-   "entry": "wall_e_plain",
-   "cell": [26, 19]
-  },
-  {
-   "id": "wall_b_20",
-   "entry": "wall_e_plain",
-   "cell": [26, 20]
-  },
-  {
-   "id": "wall_b_21",
-   "entry": "wall_e_plain",
-   "cell": [26, 21]
-  },
-  {
-   "id": "wall_b_22",
-   "entry": "wall_e_plain",
-   "cell": [26, 22]
-  },
-  {
-   "id": "wall_relay_s_28",
-   "entry": "wall_n_plain",
-   "cell": [28, 9]
-  },
-  {
-   "id": "wall_relay_s_29",
-   "entry": "wall_n_plain",
-   "cell": [29, 9]
-  },
-  {
-   "id": "wall_relay_s_30",
-   "entry": "wall_n_plain",
-   "cell": [30, 9]
-  },
-  {
-   "id": "wall_relay_s_31",
-   "entry": "wall_n_plain",
-   "cell": [31, 9]
-  },
-  {
-   "id": "wall_relay_s_32",
-   "entry": "wall_n_plain",
-   "cell": [32, 9]
-  },
-  {
-   "id": "wall_relay_s_33",
-   "entry": "wall_n_plain",
-   "cell": [33, 9]
-  },
-  {
-   "id": "wall_relay_s_34",
-   "entry": "wall_n_plain",
-   "cell": [34, 9]
-  },
-  {
-   "id": "wall_relay_s_35",
-   "entry": "wall_n_plain",
-   "cell": [35, 9]
-  },
-  {
-   "id": "routing_machine",
-   "landmark": "routing_machine",
-   "cell": [14, 10],
-   "state": "before",
-   "note": "Footprint (14..19, 10..13). The four atlas lamps land on (12,10), (12,12), (13,13), (20,13)."
-  },
-  {
-   "id": "elevator",
-   "entry": "elevator_closed",
-   "cell": [16, 22],
-   "state_set": "elevator",
-   "state": "closed",
-   "art_gap": true
-  },
-  {
-   "id": "elevator_call_panel",
-   "entry": "elevator_call_panel",
-   "cell": [19, 22],
-   "art_gap": true
-  },
-  {
-   "id": "inlay_spine_l_15",
-   "entry": "route_inlay_v",
-   "cell": [16, 15]
-  },
-  {
-   "id": "inlay_spine_r_15",
-   "entry": "route_inlay_v",
-   "cell": [17, 15],
-   "offset": [15, 0]
-  },
-  {
-   "id": "inlay_spine_l_16",
-   "entry": "route_inlay_v",
-   "cell": [16, 16]
-  },
-  {
-   "id": "inlay_spine_r_16",
-   "entry": "route_inlay_v",
-   "cell": [17, 16],
-   "offset": [15, 0]
-  },
-  {
-   "id": "inlay_spine_l_17",
-   "entry": "route_inlay_v",
-   "cell": [16, 17]
-  },
-  {
-   "id": "inlay_spine_r_17",
-   "entry": "route_inlay_v",
-   "cell": [17, 17],
-   "offset": [15, 0]
-  },
-  {
-   "id": "inlay_spine_l_18",
-   "entry": "route_inlay_v",
-   "cell": [16, 18]
-  },
-  {
-   "id": "inlay_spine_r_18",
-   "entry": "route_inlay_v",
-   "cell": [17, 18],
-   "offset": [15, 0]
-  },
-  {
-   "id": "inlay_spine_l_19",
-   "entry": "route_inlay_v",
-   "cell": [16, 19]
-  },
-  {
-   "id": "inlay_spine_r_19",
-   "entry": "route_inlay_v",
-   "cell": [17, 19],
-   "offset": [15, 0]
-  },
-  {
-   "id": "inlay_spine_l_20",
-   "entry": "route_inlay_v",
-   "cell": [16, 20]
-  },
-  {
-   "id": "inlay_spine_r_20",
-   "entry": "route_inlay_v",
-   "cell": [17, 20],
-   "offset": [15, 0]
-  },
-  {
-   "id": "arrow_spine_a",
-   "entry": "route_arrow_n",
-   "cell": [16, 18],
-   "offset": [8, 14]
-  },
-  {
-   "id": "arrow_spine_b",
-   "entry": "route_arrow_n",
-   "cell": [16, 20],
-   "offset": [8, 6]
-  },
-  {
-   "id": "inlay_east_a_18",
-   "entry": "route_inlay",
-   "cell": [18, 15]
-  },
-  {
-   "id": "inlay_east_b_18",
-   "entry": "route_inlay",
-   "cell": [18, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_19",
-   "entry": "route_inlay",
-   "cell": [19, 15]
-  },
-  {
-   "id": "inlay_east_b_19",
-   "entry": "route_inlay",
-   "cell": [19, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_20",
-   "entry": "route_inlay",
-   "cell": [20, 15]
-  },
-  {
-   "id": "inlay_east_b_20",
-   "entry": "route_inlay",
-   "cell": [20, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_21",
-   "entry": "route_inlay",
-   "cell": [21, 15]
-  },
-  {
-   "id": "inlay_east_b_21",
-   "entry": "route_inlay",
-   "cell": [21, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_22",
-   "entry": "route_inlay",
-   "cell": [22, 15]
-  },
-  {
-   "id": "inlay_east_b_22",
-   "entry": "route_inlay",
-   "cell": [22, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_23",
-   "entry": "route_inlay",
-   "cell": [23, 15]
-  },
-  {
-   "id": "inlay_east_b_23",
-   "entry": "route_inlay",
-   "cell": [23, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_24",
-   "entry": "route_inlay",
-   "cell": [24, 15]
-  },
-  {
-   "id": "inlay_east_b_24",
-   "entry": "route_inlay",
-   "cell": [24, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "inlay_east_a_25",
-   "entry": "route_inlay",
-   "cell": [25, 15]
-  },
-  {
-   "id": "inlay_east_b_25",
-   "entry": "route_inlay",
-   "cell": [25, 16],
-   "offset": [0, 15]
-  },
-  {
-   "id": "arrow_east_a",
-   "entry": "route_arrow_e",
-   "cell": [21, 15],
-   "offset": [8, 8]
-  },
-  {
-   "id": "conduit_cobalt_01",
-   "entry": "conduit_ne_cobalt",
-   "cell": [18, 14],
-   "state_set": "conduit_ne_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_02",
-   "entry": "conduit_h_cobalt",
-   "cell": [19, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_03",
-   "entry": "conduit_h_cobalt",
-   "cell": [20, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_04",
-   "entry": "conduit_h_cobalt",
-   "cell": [21, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_05",
-   "entry": "conduit_h_cobalt",
-   "cell": [22, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_06",
-   "entry": "conduit_h_cobalt",
-   "cell": [23, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_07",
-   "entry": "conduit_h_cobalt",
-   "cell": [24, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_08",
-   "entry": "conduit_h_cobalt",
-   "cell": [25, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_09",
-   "entry": "conduit_h_cobalt",
-   "cell": [26, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_10",
-   "entry": "conduit_h_cobalt",
-   "cell": [27, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_11",
-   "entry": "conduit_h_cobalt",
-   "cell": [28, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_12",
-   "entry": "conduit_h_cobalt",
-   "cell": [29, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_13",
-   "entry": "conduit_h_cobalt",
-   "cell": [30, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_14",
-   "entry": "conduit_h_cobalt",
-   "cell": [31, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_15",
-   "entry": "conduit_h_cobalt",
-   "cell": [32, 14],
-   "state_set": "conduit_h_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_cobalt_16",
-   "entry": "conduit_nw_cobalt",
-   "cell": [33, 14],
-   "state_set": "conduit_nw_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_01",
-   "entry": "conduit_nw_mint",
-   "cell": [14, 14],
-   "state_set": "conduit_nw_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_02",
-   "entry": "conduit_h_mint",
-   "cell": [13, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_03",
-   "entry": "conduit_h_mint",
-   "cell": [12, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_04",
-   "entry": "conduit_h_mint",
-   "cell": [11, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_05",
-   "entry": "conduit_h_mint",
-   "cell": [10, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_06",
-   "entry": "conduit_h_mint",
-   "cell": [9, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_07",
-   "entry": "conduit_h_mint",
-   "cell": [8, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_08",
-   "entry": "conduit_h_mint",
-   "cell": [7, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_09",
-   "entry": "conduit_h_mint",
-   "cell": [6, 14],
-   "state_set": "conduit_h_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_10",
-   "entry": "conduit_ne_mint",
-   "cell": [5, 14],
-   "state_set": "conduit_ne_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_mint_11",
-   "entry": "conduit_v_mint",
-   "cell": [5, 13],
-   "state_set": "conduit_v_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_01",
-   "entry": "conduit_v_orange",
-   "cell": [15, 9],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_02",
-   "entry": "conduit_v_orange",
-   "cell": [15, 8],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_03",
-   "entry": "conduit_v_orange",
-   "cell": [15, 7],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_04",
-   "entry": "conduit_v_orange",
-   "cell": [15, 6],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_05",
-   "entry": "conduit_v_orange",
-   "cell": [15, 5],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_06",
-   "entry": "conduit_v_orange",
-   "cell": [15, 4],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_orange_07",
-   "entry": "conduit_v_orange",
-   "cell": [15, 3],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_cobalt_1",
-   "entry": "conduit_v_cobalt",
-   "cell": [29, 4],
-   "state_set": "conduit_v_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_cobalt_2",
-   "entry": "conduit_v_cobalt",
-   "cell": [29, 5],
-   "state_set": "conduit_v_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_cobalt_3",
-   "entry": "conduit_v_cobalt",
-   "cell": [29, 6],
-   "state_set": "conduit_v_cobalt",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_orange_1",
-   "entry": "conduit_v_orange",
-   "cell": [32, 4],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_orange_2",
-   "entry": "conduit_v_orange",
-   "cell": [32, 5],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_orange_3",
-   "entry": "conduit_v_orange",
-   "cell": [32, 6],
-   "state_set": "conduit_v_orange",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_mint_1",
-   "entry": "conduit_v_mint",
-   "cell": [35, 4],
-   "state_set": "conduit_v_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_mint_2",
-   "entry": "conduit_v_mint",
-   "cell": [35, 5],
-   "state_set": "conduit_v_mint",
-   "state": "off"
-  },
-  {
-   "id": "conduit_relay_mint_3",
-   "entry": "conduit_v_mint",
-   "cell": [35, 6],
-   "state_set": "conduit_v_mint",
-   "state": "off"
-  },
-  {
-   "id": "rack_hub_w_19",
-   "entry": "rack_1x1",
-   "cell": [10, 19]
-  },
-  {
-   "id": "rack_hub_w_20",
-   "entry": "rack_1x1",
-   "cell": [10, 20]
-  },
-  {
-   "id": "rack_hub_w_21",
-   "entry": "rack_1x1",
-   "cell": [10, 21]
-  },
-  {
-   "id": "plant_hub_sw",
-   "entry": "pot_plant_a",
-   "cell": [11, 22]
-  },
-  {
-   "id": "plant_hub_se",
-   "entry": "pot_plant_b",
-   "cell": [25, 22]
-  },
-  {
-   "id": "plant_hub_ne",
-   "entry": "pot_plant_a",
-   "cell": [25, 9]
-  },
-  {
-   "id": "shelf_hub_se",
-   "entry": "shelf_2x1_a",
-   "cell": [22, 20]
-  },
-  {
-   "id": "cabinet_hub_se",
-   "entry": "cabinet_1x1",
-   "cell": [25, 19]
-  },
-  {
-   "id": "lamp_hub_1",
-   "entry": "lamp",
-   "cell": [13, 16],
-   "state_set": "lamp",
-   "state": "on"
-  },
-  {
-   "id": "lamp_hub_2",
-   "entry": "lamp",
-   "cell": [25, 12],
-   "state_set": "lamp",
-   "state": "on"
-  },
-  {
-   "id": "lamp_hub_3",
-   "entry": "lamp",
-   "cell": [13, 21],
-   "state_set": "lamp",
-   "state": "on"
-  },
-  {
-   "id": "lamp_hub_4",
-   "entry": "lamp",
-   "cell": [24, 21],
-   "state_set": "lamp",
-   "state": "on"
-  },
-  {
-   "id": "warning_lamp",
-   "entry": "lamp",
-   "cell": [13, 9],
-   "state_set": "lamp",
-   "state": "pulse"
-  },
-  {
-   "id": "mira_chute",
-   "entry": "cabinet_2x1",
-   "cell": [12, 8],
-   "note": "Mail chute housing (shared cabinet piece); Mira stands at (12,9)."
-  },
-  {
-   "id": "routing_node_1",
-   "entry": "routing_node_dark",
-   "cell": [30, 9],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_6",
-   "entry": "routing_node_dark",
-   "cell": [30, 10],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_2",
-   "entry": "routing_node_dark",
-   "cell": [31, 9],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_7",
-   "entry": "routing_node_dark",
-   "cell": [31, 10],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_3",
-   "entry": "routing_node_dark",
-   "cell": [32, 9],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_8",
-   "entry": "routing_node_dark",
-   "cell": [32, 10],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_4",
-   "entry": "routing_node_dark",
-   "cell": [33, 9],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_9",
-   "entry": "routing_node_dark",
-   "cell": [33, 10],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_5",
-   "entry": "routing_node_dark",
-   "cell": [34, 9],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "routing_node_10",
-   "entry": "routing_node_dark",
-   "cell": [34, 10],
-   "state_set": "routing_node",
-   "state": "dark",
-   "art_gap": true
-  },
-  {
-   "id": "pace_sign_payroll",
-   "entry": "pace_wall_sign_2x1",
-   "cell": [28, 9]
-  },
-  {
-   "id": "shelf_trays_a",
-   "entry": "shelf_2x1_a",
-   "cell": [28, 11]
-  },
-  {
-   "id": "shelf_trays_b",
-   "entry": "shelf_2x1_b",
-   "cell": [30, 11]
-  },
-  {
-   "id": "artifact_id_envelope",
-   "entry": "artifact_id_envelope",
-   "cell": [28, 11],
-   "offset": [2, 0],
-   "art_gap": true
-  },
-  {
-   "id": "desk_payroll",
-   "entry": "terminal_desk",
-   "cell": [32, 13]
-  },
-  {
-   "id": "desk_payroll_check",
-   "entry": "terminal_desk",
-   "cell": [30, 18]
-  },
-  {
-   "id": "cabinet_payroll_a",
-   "entry": "cabinet_1x1",
-   "cell": [35, 11]
-  },
-  {
-   "id": "cabinet_payroll_b",
-   "entry": "cabinet_1x1",
-   "cell": [35, 12]
-  },
-  {
-   "id": "plant_payroll_sw",
-   "entry": "pot_plant_a",
-   "cell": [28, 22]
-  },
-  {
-   "id": "plant_payroll_se",
-   "entry": "pot_plant_b",
-   "cell": [35, 22]
-  },
-  {
-   "id": "lamp_payroll",
-   "entry": "lamp_off",
-   "cell": [35, 16],
-   "state_set": "lamp",
-   "state": "off"
-  },
-  {
-   "id": "alarm_board",
-   "entry": "alarm_board_blank",
-   "cell": [3, 0],
-   "state_set": "alarm_board",
-   "state": "blank",
-   "art_gap": true
-  },
-  {
-   "id": "pace_sign_alarm",
-   "entry": "pace_wall_sign_2x1_repeat",
-   "cell": [6, 0]
-  },
-  {
-   "id": "rack_alarm_4",
-   "entry": "rack_1x1",
-   "cell": [1, 4]
-  },
-  {
-   "id": "rack_alarm_5",
-   "entry": "rack_1x1",
-   "cell": [1, 5]
-  },
-  {
-   "id": "rack_alarm_6",
-   "entry": "rack_1x1",
-   "cell": [1, 6]
-  },
-  {
-   "id": "rack_alarm_7",
-   "entry": "rack_1x1",
-   "cell": [1, 7]
-  },
-  {
-   "id": "rack_alarm_8",
-   "entry": "rack_1x1",
-   "cell": [1, 8]
-  },
-  {
-   "id": "artifact_alarm_strip",
-   "entry": "artifact_alarm_strip",
-   "cell": [1, 6],
-   "offset": [3, 0],
-   "art_gap": true
-  },
-  {
-   "id": "rack_alarm_ne",
-   "entry": "rack_2x1_a",
-   "cell": [6, 2]
-  },
-  {
-   "id": "desk_alarm",
-   "entry": "terminal_desk",
-   "cell": [5, 12]
-  },
-  {
-   "id": "desk_quiet_alarm",
-   "entry": "terminal_desk",
-   "cell": [4, 6]
-  },
-  {
-   "id": "plant_alarm",
-   "entry": "pot_plant_b",
-   "cell": [2, 13]
-  },
-  {
-   "id": "lamp_alarm",
-   "entry": "lamp_off",
-   "cell": [7, 10],
-   "state_set": "lamp",
-   "state": "off"
-  },
-  {
-   "id": "refund_ledger",
-   "entry": "refund_ledger_charge",
-   "cell": [3, 16],
-   "state_set": "refund_ledger",
-   "state": "charge",
-   "art_gap": true
-  },
-  {
-   "id": "desk_ledger",
-   "entry": "terminal_desk",
-   "cell": [3, 17]
-  },
-  {
-   "id": "folding_stool",
-   "entry": "folding_stool_folded",
-   "cell": [2, 18],
-   "state_set": "folding_stool",
-   "state": "folded",
-   "art_gap": true
-  },
-  {
-   "id": "cabinet_ledger",
-   "entry": "cabinet_1x1",
-   "cell": [1, 17]
-  },
-  {
-   "id": "shelf_ledger",
-   "entry": "shelf_2x1_b",
-   "cell": [5, 22]
-  },
-  {
-   "id": "plant_ledger",
-   "entry": "pot_plant_a",
-   "cell": [7, 22]
-  },
-  {
-   "id": "lamp_ledger",
-   "entry": "lamp_off",
-   "cell": [1, 22],
-   "state_set": "lamp",
-   "state": "off"
-  },
-  {
-   "id": "formula_wall",
-   "entry": "formula_wall_dim",
-   "cell": [12, 0],
-   "state_set": "formula_wall",
-   "state": "dim",
-   "art_gap": true
-  },
-  {
-   "id": "desk_formula",
-   "entry": "terminal_desk",
-   "cell": [14, 2]
-  },
-  {
-   "id": "cabinet_dropbox",
-   "entry": "cabinet_1x1",
-   "cell": [12, 2],
-   "note": "Mira's formula-room dropbox."
-  },
-  {
-   "id": "shelf_formula_proof",
-   "entry": "shelf_1x1",
-   "cell": [18, 2]
-  },
-  {
-   "id": "artifact_scoring_proof",
-   "entry": "artifact_scoring_proof",
-   "cell": [18, 2],
-   "offset": [2, 0],
-   "art_gap": true
-  },
-  {
-   "id": "plant_formula",
-   "entry": "pot_plant_a",
-   "cell": [19, 2]
-  },
-  {
-   "id": "lamp_formula",
-   "entry": "lamp_off",
-   "cell": [11, 2],
-   "state_set": "lamp",
-   "state": "off"
-  },
-  {
-   "id": "bridge_shutter",
-   "entry": "bridge_shutter_closed",
-   "cell": [14, 5],
-   "state_set": "bridge_shutter",
-   "state": "closed",
-   "art_gap": true
-  },
-  {
-   "id": "pace_sign_bridge",
-   "entry": "pace_wall_sign_2x1",
-   "cell": [18, 7]
-  },
-  {
-   "id": "plant_gallery",
-   "entry": "pot_plant_b",
-   "cell": [22, 2]
-  },
-  {
-   "id": "status_board_relay_a",
-   "entry": "status_board",
-   "cell": [29, 0],
-   "offset": [0, 0]
-  },
-  {
-   "id": "status_board_relay_b",
-   "entry": "status_board",
-   "cell": [33, 0],
-   "offset": [0, 0]
-  },
-  {
-   "id": "desk_relay_a",
-   "entry": "terminal_desk",
-   "cell": [28, 3]
-  },
-  {
-   "id": "desk_relay_b",
-   "entry": "terminal_desk",
-   "cell": [31, 3]
-  },
-  {
-   "id": "desk_relay_c",
-   "entry": "terminal_desk",
-   "cell": [34, 3]
-  },
-  {
-   "id": "desk_relay_final",
-   "entry": "terminal_desk",
-   "cell": [34, 6]
-  },
-  {
-   "id": "cabinet_relay",
-   "entry": "cabinet_1x1",
-   "cell": [35, 7]
-  },
-  {
-   "id": "artifact_original_routing_diagram",
-   "entry": "artifact_original_routing_diagram",
-   "cell": [35, 7],
-   "offset": [2, 0],
-   "art_gap": true
-  },
-  {
-   "id": "plant_relay",
-   "entry": "pot_plant_a",
-   "cell": [28, 8]
-  },
-  {
-   "id": "lamp_relay",
-   "entry": "lamp_off",
-   "cell": [31, 8],
-   "state_set": "lamp",
-   "state": "off"
-  }
- ],
- "art_gap_entries": {
-  "elevator_closed": {
-   "footprint": {
-    "cells": [3, 1],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Systems arrival elevator, closed doors. Same set as Orientation's elevator_closed/_half/_open recoloured to the Systems ramps; footprint stays blocked in every state because the player never walks in.",
-   "states": [
-    "closed",
-    "half",
-    "open"
-   ]
-  },
-  "elevator_half": {
-   "footprint": {
-    "cells": [3, 1],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Systems arrival elevator, half doors. Same set as Orientation's elevator_closed/_half/_open recoloured to the Systems ramps; footprint stays blocked in every state because the player never walks in.",
-   "states": [
-    "closed",
-    "half",
-    "open"
-   ]
-  },
-  "elevator_open": {
-   "footprint": {
-    "cells": [3, 1],
-    "collision": [
-     "111"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Systems arrival elevator, open doors. Same set as Orientation's elevator_closed/_half/_open recoloured to the Systems ramps; footprint stays blocked in every state because the player never walks in.",
-   "states": [
-    "closed",
-    "half",
-    "open"
-   ]
-  },
-  "elevator_call_panel": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "1"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Call panel beside the arrival elevator (Orientation prop name, Systems ramps)."
-  },
-  "routing_node_dark": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "One of ten routing-node lamps on the payroll wing wall, dark.",
-   "states": [
-    "dark",
-    "lit"
-   ]
-  },
-  "routing_node_lit": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "The same node lit mint with a pale head.",
-   "states": [
-    "dark",
-    "lit"
-   ]
-  },
-  "refund_ledger_charge": {
-   "footprint": {
-    "cells": [2, 1],
-    "collision": [
-     "00"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Inset calculator and ledger display showing the refund as a charge, with orange sign markers.",
-   "states": [
-    "charge",
-    "refund"
-   ]
-  },
-  "refund_ledger_refund": {
-   "footprint": {
-    "cells": [2, 1],
-    "collision": [
-     "00"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "The same display after the sign flips: refund, in green, markers calm.",
-   "states": [
-    "charge",
-    "refund"
-   ]
-  },
-  "alarm_board_blank": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with six lost labels: six pictogram slots blank, two pairs of lights look identical.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_1": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 1 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_2": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 2 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_3": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 3 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_4": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 4 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_5": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 5 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "alarm_board_labeled_6": {
-   "footprint": {
-    "cells": [3, 2],
-    "collision": [
-     "000",
-     "000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Alarm board with 6 of 6 pictograms restored; each restored light takes its own hue.",
-   "states": [
-    "blank",
-    "labeled_1",
-    "labeled_2",
-    "labeled_3",
-    "labeled_4",
-    "labeled_5",
-    "labeled_6"
-   ]
-  },
-  "formula_wall_dim": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Large formula wall, flattened into one unreadable line, dim.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_1": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..1 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_2": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..2 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_3": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..3 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_4": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..4 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_5": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..5 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_clause_6": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall with clauses 1..6 valid and lit; connected parts glow mint.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "formula_wall_lit": {
-   "footprint": {
-    "cells": [8, 2],
-    "collision": [
-     "00000000",
-     "00000000"
-    ]
-   },
-   "layer": "rear_wall",
-   "purpose": "Formula wall fully valid and lit; the detour-score term is readable.",
-   "states": [
-    "dim",
-    "clause_1",
-    "clause_2",
-    "clause_3",
-    "clause_4",
-    "clause_5",
-    "clause_6",
-    "lit"
-   ]
-  },
-  "bridge_span_retracted": {
-   "footprint": {
-    "cells": [2, 2],
-    "collision": [
-     "11",
-     "11"
-    ]
-   },
-   "layer": "floor_marking",
-   "purpose": "Glass bridge span before level 12: retracted, closed by two porcelain shutter plates with an orange hazard edge. Used twice (bridge and return walkway).",
-   "states": [
-    "retracted",
-    "extended"
-   ]
-  },
-  "bridge_span_extended": {
-   "footprint": {
-    "cells": [2, 2],
-    "collision": [
-     "00",
-     "00"
-    ]
-   },
-   "layer": "floor_marking",
-   "purpose": "The span extended: 2x2 cells of the existing bridge_deck tile with glass rails already placed beside it. Used twice (bridge and return walkway).",
-   "states": [
-    "retracted",
-    "extended"
-   ]
-  },
-  "bridge_shutter_closed": {
-   "footprint": {
-    "cells": [4, 1],
-    "collision": [
-     "0000"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "Louvred shutter band across the formula room's bridge head, closed: no sight line to the routing machine.",
-   "states": [
-    "closed",
-    "open"
-   ]
-  },
-  "bridge_shutter_open": {
-   "footprint": {
-    "cells": [4, 1],
-    "collision": [
-     "0000"
-    ]
-   },
-   "layer": "front_prop",
-   "purpose": "The shutter drawn up: clear glass, the machine visible from the formula room.",
-   "states": [
-    "closed",
-    "open"
-   ]
-  },
-  "folding_stool_folded": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Folding stool folded against the wall (Hal crouches beside it).",
-   "states": [
-    "folded",
-    "open"
-   ]
-  },
-  "folding_stool_open": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Folding stool open; Hal sits on it after level 13. Footprint walkable because Hal's cell is the stool cell.",
-   "states": [
-    "folded",
-    "open"
-   ]
-  },
-  "artifact_id_envelope": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "ID envelope lying on the payroll ID trays: addressed to a department that no longer exists."
-  },
-  "artifact_alarm_strip": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Alarm strip tucked in the alarm-hall rack: old alert names with an extra department."
-  },
-  "artifact_scoring_proof": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Scoring proof pinned to the formula-room shelf: a longer route earned a higher engagement total."
-  },
-  "artifact_original_routing_diagram": {
-   "footprint": {
-    "cells": [1, 1],
-    "collision": [
-     "0"
-    ]
-   },
-   "layer": "rear_prop",
-   "purpose": "Original routing diagram rolled on the relay cabinet, signed by several employees rather than Pace."
-  }
- },
- "art_gap_state_sets": {
-  "elevator": {
-   "default": "closed",
-   "states": {
-    "closed": {
-     "entries": [
-      "elevator_closed"
-     ],
-     "blocked": true
-    },
-    "half": {
-     "entries": [
-      "elevator_half"
-     ],
-     "blocked": true
-    },
-    "open": {
-     "entries": [
-      "elevator_open"
-     ],
-     "blocked": true
-    }
-   }
-  },
-  "routing_node": {
-   "default": "dark",
-   "states": {
-    "dark": {
-     "entries": [
-      "routing_node_dark"
-     ]
-    },
-    "lit": {
-     "entries": [
-      "routing_node_lit"
-     ]
-    }
-   }
-  },
-  "refund_ledger": {
-   "default": "charge",
-   "states": {
-    "charge": {
-     "entries": [
-      "refund_ledger_charge"
-     ]
-    },
-    "refund": {
-     "entries": [
-      "refund_ledger_refund"
-     ]
-    }
-   }
-  },
-  "alarm_board": {
-   "default": "blank",
-   "states": {
-    "blank": {
-     "entries": [
-      "alarm_board_blank"
-     ]
-    },
-    "labeled_1": {
-     "entries": [
-      "alarm_board_labeled_1"
-     ]
-    },
-    "labeled_2": {
-     "entries": [
-      "alarm_board_labeled_2"
-     ]
-    },
-    "labeled_3": {
-     "entries": [
-      "alarm_board_labeled_3"
-     ]
-    },
-    "labeled_4": {
-     "entries": [
-      "alarm_board_labeled_4"
-     ]
-    },
-    "labeled_5": {
-     "entries": [
-      "alarm_board_labeled_5"
-     ]
-    },
-    "labeled_6": {
-     "entries": [
-      "alarm_board_labeled_6"
-     ]
-    }
-   }
-  },
-  "formula_wall": {
-   "default": "dim",
-   "states": {
-    "dim": {
-     "entries": [
-      "formula_wall_dim"
-     ]
-    },
-    "clause_1": {
-     "entries": [
-      "formula_wall_clause_1"
-     ]
-    },
-    "clause_2": {
-     "entries": [
-      "formula_wall_clause_2"
-     ]
-    },
-    "clause_3": {
-     "entries": [
-      "formula_wall_clause_3"
-     ]
-    },
-    "clause_4": {
-     "entries": [
-      "formula_wall_clause_4"
-     ]
-    },
-    "clause_5": {
-     "entries": [
-      "formula_wall_clause_5"
-     ]
-    },
-    "clause_6": {
-     "entries": [
-      "formula_wall_clause_6"
-     ]
-    },
-    "lit": {
-     "entries": [
-      "formula_wall_lit"
-     ]
-    }
-   }
-  },
-  "bridge_span": {
-   "default": "retracted",
-   "states": {
-    "retracted": {
-     "entries": [
-      "bridge_span_retracted"
-     ],
-     "blocked": true
-    },
-    "extended": {
-     "entries": [
-      "bridge_span_extended"
-     ]
-    }
-   }
-  },
-  "bridge_shutter": {
-   "default": "closed",
-   "states": {
-    "closed": {
-     "entries": [
-      "bridge_shutter_closed"
-     ]
-    },
-    "open": {
-     "entries": [
-      "bridge_shutter_open"
-     ]
-    }
-   }
-  },
-  "folding_stool": {
-   "default": "folded",
-   "states": {
-    "folded": {
-     "entries": [
-      "folding_stool_folded"
-     ]
-    },
-    "open": {
-     "entries": [
-      "folding_stool_open"
-     ]
-    }
-   }
-  }
- },
- "collision": [
-  "11111111111111111111111111111111111111",
-  "11111111111111111111111111111111111111",
-  "10000011110110110011111000110000000011",
-  "10000000110000000000110000111101101111",
-  "11000000110000000000110000110000000011",
-  "11000000110000000000110000110000000011",
-  "11001100111111111111110000110000001111",
-  "11000000111111111111110000110000000111",
-  "11000000110011000000000000111001000011",
-  "10000000110001000000000001111111111111",
-  "10000001110010111111000000111111111111",
-  "10000000110000111111000000111111000111",
-  "10000110000010111111000001110000000111",
-  "10100000000001111111100000110000110011",
-  "10000000000000000000000000000000000011",
-  "11111111110000000000000000000000000011",
-  "11111111000001000000000000000000000111",
-  "11011000000000000000000000110000000011",
-  "10000000000000000000000000110011000011",
-  "10000000111000000000000001110000000011",
-  "10000000111000000000001100110000000011",
-  "10000000111001000000000010110000000011",
-  "11000111110100001111000001111000000111",
-  "11111111111111111111111111111111111111"
- ],
- "gates": [
-  {
-   "id": "gate-bridge",
-   "kind": "shortcut",
-   "cells": [[15, 6], [16, 6], [15, 7], [16, 7]],
-   "opens_after": "systems-12",
-   "placement": "bridge_span",
-   "visible_change": "The glass bridge extends: two shutter plates retract and the deck runs from the hub's north strip to the formula room.",
-   "locked_hint": "Sign by the bridge head: the span extends after Payroll IDs (level 12)."
-  },
-  {
-   "id": "gate-return-walkway",
-   "kind": "shortcut",
-   "cells": [[10, 6], [11, 6], [10, 7], [11, 7]],
-   "opens_after": "systems-12",
-   "placement": "return_walkway_span",
-   "visible_change": "The return walkway extends from the formula room's west end down to Mira's chute.",
-   "locked_hint": "Visible through the glass: the walkway lands beside Mira's chute."
-  },
-  {
-   "id": "gate-maintenance-door",
-   "kind": "door",
-   "cells": [[8, 3], [9, 3], [8, 4], [9, 4], [8, 5], [9, 5]],
-   "opens_after": "systems-14",
-   "placement": "maintenance_door",
-   "visible_change": "The alarm hall's maintenance door slides aside and opens a direct path to the formula room.",
-   "locked_hint": "The door's sign plate shows the alarm board still has unlabeled alerts."
-  },
-  {
-   "id": "gate-relay-door",
-   "kind": "door",
-   "cells": [[26, 5], [27, 5], [26, 6], [27, 6], [26, 7], [27, 7]],
-   "opens_after": "systems-15",
-   "placement": "relay_door",
-   "visible_change": "The relay room door opens once all three branch conduits are lit; the glass beside it already shows the machine.",
-   "locked_hint": "The door's sign plate shows three conduit families, one lit per finished branch."
-  }
- ],
- "zones": [
-  {
-   "id": "zone-hub",
-   "kind": "hub",
-   "rect": [10, 8, 16, 15],
-   "note": "Service floor around the routing machine (14..19, 10..13); elevator at the south edge."
-  },
-  {
-   "id": "zone-gallery",
-   "kind": "corridor",
-   "rect": [22, 2, 4, 6],
-   "note": "North-east gallery leading to the relay door."
-  },
-  {
-   "id": "zone-payroll-branch",
-   "kind": "branch",
-   "rect": [26, 14, 2, 3],
-   "note": "East branch: cobalt conduit through the wall gap to the payroll wing."
-  },
-  {
-   "id": "zone-payroll",
-   "kind": "task_room",
-   "rect": [28, 11, 8, 12],
-   "level": "systems-12"
-  },
-  {
-   "id": "zone-ledger-branch",
-   "kind": "branch",
-   "rect": [8, 16, 2, 3],
-   "note": "Short west branch to the refund ledger room."
-  },
-  {
-   "id": "zone-ledger",
-   "kind": "task_room",
-   "rect": [1, 17, 7, 6],
-   "level": "systems-13"
-  },
-  {
-   "id": "zone-alarm-branch",
-   "kind": "branch",
-   "rect": [8, 12, 2, 3],
-   "note": "West branch: mint conduit along row 14 into the alarm hall."
-  },
-  {
-   "id": "zone-alarm",
-   "kind": "task_room",
-   "rect": [1, 2, 7, 13],
-   "level": "systems-14"
-  },
-  {
-   "id": "zone-bridge",
-   "kind": "corridor",
-   "rect": [15, 6, 2, 2],
-   "note": "Glass bridge to the formula room."
-  },
-  {
-   "id": "zone-return-walkway",
-   "kind": "corridor",
-   "rect": [10, 6, 2, 2],
-   "note": "Return walkway from the formula room to Mira's chute."
-  },
-  {
-   "id": "zone-formula",
-   "kind": "task_room",
-   "rect": [10, 2, 10, 4],
-   "level": "systems-15"
-  },
-  {
-   "id": "zone-relay-door",
-   "kind": "corridor",
-   "rect": [26, 5, 2, 3],
-   "note": "Relay door in wall B; glass either side."
-  },
-  {
-   "id": "zone-relay",
-   "kind": "review",
-   "rect": [28, 2, 8, 7],
-   "level": "systems-16"
-  }
- ],
- "interactions": [
-  {
-   "id": "systems-elevator",
-   "kind": "elevator",
-   "cells": [[16, 22], [17, 22], [18, 22]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [16, 21],
-     "facing": "s"
-    },
-    {
-     "cell": [17, 21],
-     "facing": "s"
-    },
-    {
-     "cell": [18, 21],
-     "facing": "s"
-    }
-   ],
-   "placement": "elevator",
-   "label": "Elevator to every unlocked district"
-  },
-  {
-   "id": "hal-hub",
-   "kind": "npc",
-   "cells": [[13, 11]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [12, 11],
-     "facing": "e"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s12-hal-intro",
-   "level": "systems-12",
-   "visible_when": "npc:hal=start",
-   "label": "Hal at the routing machine"
-  },
-  {
-   "id": "hal-hub-13",
-   "kind": "npc",
-   "cells": [[13, 11]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [12, 11],
-     "facing": "e"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s13-hal-intro",
-   "level": "systems-13",
-   "visible_when": "npc:hal=repair_hub",
-   "label": "Hal at the routing machine (level 13 briefing)"
-  },
-  {
-   "id": "hal-ledger",
-   "kind": "npc",
-   "cells": [[2, 18]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [3, 18],
-     "facing": "w"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s13-hal-intro",
-   "level": "systems-13",
-   "label": "Hal in the ledger room"
-  },
-  {
-   "id": "hal-alarm",
-   "kind": "npc",
-   "cells": [[3, 12]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [4, 12],
-     "facing": "w"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s14-hal-intro",
-   "level": "systems-14",
-   "label": "Hal in the alarm hall"
-  },
-  {
-   "id": "hal-formula",
-   "kind": "npc",
-   "cells": [[17, 3]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [16, 3],
-     "facing": "e"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s15-hal-intro",
-   "level": "systems-15",
-   "label": "Hal in the formula room"
-  },
-  {
-   "id": "hal-relay",
-   "kind": "npc",
-   "cells": [[32, 7]],
-   "marker": "conversation",
-   "approach": [
-    {
-     "cell": [32, 8],
-     "facing": "n"
-    }
-   ],
-   "npc": "hal",
-   "dialogue_id": "s16-hal-intro",
-   "level": "systems-16",
-   "label": "Hal in the relay room"
-  },
-  {
-   "id": "mira-chute",
-   "kind": "mira",
-   "cells": [[12, 9]],
-   "marker": "route",
-   "approach": [
-    {
-     "cell": [11, 9],
-     "facing": "e"
-    }
-   ],
-   "npc": "mira",
-   "dialogue_id": "s13-mira-offer",
-   "level": "systems-13",
-   "requires": [
-    "level:systems-13"
-   ],
-   "label": "Mira at the mail chute: Payroll Run",
-   "visible_when": "npc:mira=offering"
-  },
-  {
-   "id": "mira-relay",
-   "kind": "mira",
-   "cells": [[29, 7]],
-   "marker": "route",
-   "approach": [
-    {
-     "cell": [29, 8],
-     "facing": "n"
-    }
-   ],
-   "npc": "mira",
-   "dialogue_id": "s16-mira-offer",
-   "requires": [
-    "level:systems-16"
-   ],
-   "label": "Mira in the relay room: Glyph Dispatch",
-   "visible_when": "npc:mira=relay_pleased"
-  },
-  {
-   "id": "payroll-terminal",
-   "kind": "terminal",
-   "cells": [[32, 13], [33, 13]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [32, 14],
-     "facing": "n"
-    },
-    {
-     "cell": [33, 14],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-12-guided-d1",
-   "level": "systems-12",
-   "placement": "desk_payroll",
-   "label": "Payroll keypad (relocated)"
-  },
-  {
-   "id": "id-envelope",
-   "kind": "artifact",
-   "cells": [[28, 11]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [28, 12],
-     "facing": "n"
-    }
-   ],
-   "placement": "artifact_id_envelope",
-   "level": "systems-12",
-   "label": "ID envelope"
-  },
-  {
-   "id": "ledger-terminal",
-   "kind": "terminal",
-   "cells": [[3, 17], [4, 17]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [3, 18],
-     "facing": "n"
-    },
-    {
-     "cell": [4, 18],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-13-guided-minus",
-   "level": "systems-13",
-   "requires": [
-    "level:systems-12"
-   ],
-   "placement": "desk_ledger",
-   "label": "Refund ledger"
-  },
-  {
-   "id": "refund-slip-glitch",
-   "kind": "glitch",
-   "cells": [[6, 17]],
-   "marker": "glitch",
-   "approach": [
-    {
-     "cell": [6, 18],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-13-glitch-slip",
-   "level": "systems-13",
-   "requires": [
-    "level:systems-12"
-   ],
-   "label": "Folded refund slip (optional repair)"
-  },
-  {
-   "id": "alarm-terminal",
-   "kind": "terminal",
-   "cells": [[5, 12], [6, 12]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [5, 13],
-     "facing": "n"
-    },
-    {
-     "cell": [6, 13],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-14-guided-excl",
-   "level": "systems-14",
-   "requires": [
-    "level:systems-13"
-   ],
-   "placement": "desk_alarm",
-   "label": "Alarm label desk"
-  },
-  {
-   "id": "alarm-strip",
-   "kind": "artifact",
-   "cells": [[1, 6]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [2, 6],
-     "facing": "w"
-    }
-   ],
-   "placement": "artifact_alarm_strip",
-   "level": "systems-14",
-   "label": "Alarm strip"
-  },
-  {
-   "id": "chair-shadow-glitch",
-   "kind": "glitch",
-   "cells": [[3, 9]],
-   "marker": "glitch",
-   "approach": [
-    {
-     "cell": [4, 9],
-     "facing": "w"
-    }
-   ],
-   "scene_id": "systems-14-glitch-chair",
-   "level": "systems-14",
-   "requires": [
-    "level:systems-13"
-   ],
-   "label": "Chair with a second shadow (optional repair)"
-  },
-  {
-   "id": "quiet-alarm-panel",
-   "kind": "terminal",
-   "cells": [[4, 6], [5, 6]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [4, 7],
-     "facing": "n"
-    },
-    {
-     "cell": [5, 7],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-side-quiet-alarm",
-   "level": "systems-15",
-   "requires": [
-    "level:systems-15"
-   ],
-   "placement": "desk_quiet_alarm",
-   "label": "Quiet Alarm: mute one alert"
-  },
-  {
-   "id": "maintenance-door",
-   "kind": "door",
-   "cells": [[8, 3], [9, 3], [8, 4], [9, 4], [8, 5], [9, 5]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [7, 4],
-     "facing": "e"
-    }
-   ],
-   "placement": "maintenance_door",
-   "requires": [
-    "level:systems-14"
-   ],
-   "label": "Maintenance door to the formula room"
-  },
-  {
-   "id": "formula-terminal",
-   "kind": "terminal",
-   "cells": [[14, 2], [15, 2]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [14, 3],
-     "facing": "n"
-    },
-    {
-     "cell": [15, 3],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-15-guided-amp",
-   "level": "systems-15",
-   "requires": [
-    "level:systems-14"
-   ],
-   "placement": "desk_formula",
-   "label": "Formula wall console"
-  },
-  {
-   "id": "scoring-proof",
-   "kind": "artifact",
-   "cells": [[18, 2]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [18, 3],
-     "facing": "n"
-    }
-   ],
-   "placement": "artifact_scoring_proof",
-   "level": "systems-15",
-   "label": "Scoring proof"
-  },
-  {
-   "id": "formula-dropbox",
-   "kind": "terminal",
-   "cells": [[12, 2]],
-   "marker": "route",
-   "approach": [
-    {
-     "cell": [12, 3],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "mira-13-cp3-formula-dropbox",
-   "requires": [
-    "mira:payroll-run"
-   ],
-   "placement": "cabinet_dropbox",
-   "label": "Payroll Run drop (third destination)"
-  },
-  {
-   "id": "bridge-sign",
-   "kind": "sign",
-   "cells": [[18, 7], [19, 7]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [18, 8],
-     "facing": "n"
-    },
-    {
-     "cell": [19, 8],
-     "facing": "n"
-    }
-   ],
-   "placement": "pace_sign_bridge",
-   "label": "Pace sign: the glass bridge extends after Payroll IDs"
-  },
-  {
-   "id": "relay-door",
-   "kind": "door",
-   "cells": [[26, 5], [27, 5], [26, 6], [27, 6], [26, 7], [27, 7]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [25, 6],
-     "facing": "e"
-    }
-   ],
-   "placement": "relay_door",
-   "requires": [
-    "level:systems-15"
-   ],
-   "label": "Relay room door"
-  },
-  {
-   "id": "relay-circuit-a",
-   "kind": "terminal",
-   "cells": [[28, 3], [29, 3]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [28, 4],
-     "facing": "n"
-    },
-    {
-     "cell": [29, 4],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-16-layer-caps",
-   "level": "systems-16",
-   "requires": [
-    "level:systems-15"
-   ],
-   "placement": "desk_relay_a",
-   "label": "Relay card desk A: cobalt, numbers"
-  },
-  {
-   "id": "relay-circuit-b",
-   "kind": "terminal",
-   "cells": [[31, 3], [32, 3]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [31, 4],
-     "facing": "n"
-    },
-    {
-     "cell": [32, 4],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-16-mod-space-shift",
-   "level": "systems-16",
-   "requires": [
-    "level:systems-15"
-   ],
-   "placement": "desk_relay_b",
-   "label": "Relay card desk B: orange, expression"
-  },
-  {
-   "id": "relay-circuit-c",
-   "kind": "terminal",
-   "cells": [[34, 3], [35, 3]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [34, 4],
-     "facing": "n"
-    },
-    {
-     "cell": [35, 4],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-16-tab-lane",
-   "level": "systems-16",
-   "requires": [
-    "level:systems-15"
-   ],
-   "placement": "desk_relay_c",
-   "label": "Relay card desk C: mint, typo"
-  },
-  {
-   "id": "relay-final",
-   "kind": "terminal",
-   "cells": [[34, 6], [35, 6]],
-   "marker": "terminal",
-   "approach": [
-    {
-     "cell": [34, 7],
-     "facing": "n"
-    }
-   ],
-   "scene_id": "systems-16-final-recall",
-   "level": "systems-16",
-   "requires": [
-    "level:systems-15"
-   ],
-   "placement": "desk_relay_final",
-   "label": "Relay review console: final mixed recall"
-  },
-  {
-   "id": "routing-diagram",
-   "kind": "artifact",
-   "cells": [[35, 7]],
-   "marker": "none",
-   "approach": [
-    {
-     "cell": [35, 8],
-     "facing": "n"
-    }
-   ],
-   "placement": "artifact_original_routing_diagram",
-   "level": "systems-16",
-   "label": "Original routing diagram"
-  },
-  {
-   "id": "machine-panel",
-   "kind": "elevator",
-   "cells": [[16, 13], [17, 13]],
-   "marker": "route",
-   "approach": [
-    {
-     "cell": [16, 14],
-     "facing": "n"
-    },
-    {
-     "cell": [17, 14],
-     "facing": "n"
-    }
-   ],
-   "requires": [
-    "level:systems-16"
-   ],
-   "label": "False panel: the Night Shift elevator stop",
-   "placement": "routing_machine"
-  }
- ],
- "npcs": [
-  {
-   "id": "hal",
-   "character": "hal",
-   "start_cell": [13, 11],
-   "facing": "e",
-   "poses_by_state": {
-    "start": "hal_react_puzzled_e",
-    "repair_hub": "hal_interact_e",
-    "ledger_repair": "hal_interact_e",
-    "ledger_seated": "hal_idle_s",
-    "alarm_anxious": "hal_react_anxious_s",
-    "alarm_settled": "hal_idle_s",
-    "formula_idle": "hal_idle_e",
-    "formula_puzzled": "hal_react_puzzled_s",
-    "relay_idle": "hal_idle_e",
-    "panel_pull": "hal_interact_n",
-    "panel_done": "hal_idle_s"
-   },
-   "cells_by_state": {
-    "start": [13, 11],
-    "repair_hub": [13, 11],
-    "ledger_repair": [2, 18],
-    "ledger_seated": [2, 18],
-    "alarm_anxious": [3, 12],
-    "alarm_settled": [3, 12],
-    "formula_idle": [17, 3],
-    "formula_puzzled": [17, 3],
-    "relay_idle": [32, 7],
-    "panel_pull": [15, 14],
-    "panel_done": [15, 14]
-   },
-   "note": "One Hal moves between rooms; each state sets pose and cell together (npc_state). Crouched repair, seated on the stool and the false-panel pull are not drawn yet: hal_interact_e, hal_idle_s and hal_interact_n stand in (NEEDS_ART.md)."
-  },
-  {
-   "id": "mira",
-   "character": "mira",
-   "start_cell": [12, 9],
-   "facing": "s",
-   "poses_by_state": {
-    "start": "mira_idle_s",
-    "offering": "mira_interact_s",
-    "relay_pleased": "mira_react_pleased_s"
-   },
-   "cells_by_state": {
-    "start": [12, 9],
-    "offering": [12, 9],
-    "relay_pleased": [29, 7]
-   },
-   "note": "At the chute until level 16 completes, then in the relay room (Glyph Dispatch); she offers both routes there."
-  },
-  {
-   "id": "worker-payroll-check",
-   "character": "bgworker_b",
-   "start_cell": [30, 17],
-   "facing": "s",
-   "poses_by_state": {
-    "start": "bgworker_b_idle_typing_s"
-   },
-   "note": "Typing at the ID check desk; idle offset is random per worker, not synchronised."
-  },
-  {
-   "id": "worker-hub-patrol",
-   "character": "bgworker_a",
-   "start_cell": [20, 16],
-   "facing": "e",
-   "patrol": [[20, 16], [24, 16], [24, 18], [20, 18]],
-   "patrol_clock": "independent",
-   "poses_by_state": {
-    "start": "bgworker_a_walk_e"
-   },
-   "note": "Walks a loop on the hub's south-east floor; independent clock because Orientation level 06 is long complete."
-  }
- ],
- "routes": {
-  "main": [
-   {
-    "level": "systems-12",
-    "label": "Elevator to the payroll keypad: north up the spine, east along the band and through the payroll gap",
-    "from": [16, 21],
-    "to": [32, 14],
-    "cells": [
-     [16, 21], [16, 20], [16, 19], [16, 18], [16, 17], [16, 16], [17, 16], [18, 16],
-     [19, 16], [20, 16], [21, 16], [22, 16], [23, 16], [24, 16], [25, 16], [26, 16],
-     [27, 16], [28, 16], [29, 16], [30, 16], [31, 16], [32, 16], [32, 15], [32, 14]
-    ]
-   },
-   {
-    "level": "systems-13",
-    "label": "Payroll wing to the refund ledger: back through the gap, west along row 18 and the ledger branch",
-    "from": [32, 14],
-    "to": [3, 18],
-    "cells": [
-     [32, 14], [32, 15], [32, 16], [31, 16], [30, 16], [29, 16], [28, 16], [27, 16],
-     [26, 16], [25, 16], [24, 16], [23, 16], [22, 16], [21, 16], [21, 17], [21, 18],
-     [20, 18], [19, 18], [18, 18], [17, 18], [16, 18], [15, 18], [14, 18], [13, 18],
-     [12, 18], [11, 18], [10, 18], [9, 18], [8, 18], [7, 18], [6, 18], [5, 18],
-     [4, 18], [3, 18]
-    ]
-   },
-   {
-    "level": "systems-14",
-    "label": "Ledger room to the alarm label desk: back out the ledger branch, north along the west strip, through the alarm gap",
-    "from": [3, 18],
-    "to": [5, 13],
-    "cells": [
-     [3, 18], [4, 18], [5, 18], [6, 18], [7, 18], [8, 18], [9, 18], [10, 18],
-     [10, 17], [10, 16], [10, 15], [10, 14], [10, 13], [9, 13], [8, 13], [7, 13],
-     [6, 13], [5, 13]
-    ]
-   },
-   {
-    "level": "systems-15",
-    "label": "Alarm hall to the formula console: through the hall and the maintenance door (open after 14) to the formula room",
-    "from": [5, 13],
-    "to": [14, 3],
-    "cells": [
-     [5, 13], [4, 13], [3, 13], [3, 12], [3, 11], [3, 10], [3, 9], [3, 8],
-     [3, 7], [3, 6], [3, 5], [3, 4], [4, 4], [5, 4], [6, 4], [7, 4],
-     [8, 4], [9, 4], [10, 4], [11, 4], [12, 4], [13, 4], [14, 4], [14, 3]
-    ]
-   },
-   {
-    "level": "systems-16",
-    "label": "Formula room to the relay review console: over the glass bridge, along the north strip, up the gallery and through the relay door",
-    "from": [14, 3],
-    "to": [34, 7],
-    "cells": [
-     [14, 3], [15, 3], [16, 3], [16, 4], [16, 5], [16, 6], [16, 7], [16, 8],
-     [17, 8], [18, 8], [19, 8], [20, 8], [21, 8], [22, 8], [23, 8], [24, 8],
-     [25, 8], [25, 7], [25, 6], [26, 6], [27, 6], [28, 6], [29, 6], [30, 6],
-     [31, 6], [32, 6], [33, 6], [33, 7], [34, 7]
-    ]
-   }
+  "size_cells": [
+    38,
+    24
   ],
-  "backtrack": [
-   {
-    "id": "bridge-return-loop",
-    "label": "Formula room back to Mira's chute by the return walkway",
-    "from": [14, 3],
-    "to": [11, 9],
-    "after": "systems-12",
-    "cells": [[14, 3], [14, 4], [14, 5], [13, 5], [12, 5], [11, 5], [11, 6], [11, 7], [11, 8], [11, 9]]
-   },
-   {
-    "id": "alarm-to-formula-door",
-    "label": "Quiet Alarm panel in the alarm hall straight to the formula room through the maintenance door",
-    "from": [4, 7],
-    "to": [14, 3],
-    "after": "systems-14",
-    "cells": [
-     [4, 7], [5, 7], [6, 7], [7, 7], [7, 6], [7, 5], [7, 4], [8, 4],
-     [9, 4], [10, 4], [11, 4], [12, 4], [13, 4], [14, 4], [14, 3]
-    ]
-   },
-   {
-    "id": "relay-home",
-    "label": "Relay room back to the elevator: gallery, hub east strip, spine, arrival cell",
-    "from": [34, 7],
-    "to": [16, 21],
-    "after": "systems-15",
-    "cells": [
-     [34, 7], [33, 7], [33, 6], [32, 6], [31, 6], [30, 6], [29, 6], [28, 6],
-     [27, 6], [26, 6], [25, 6], [24, 6], [24, 7], [24, 8], [24, 9], [24, 10],
-     [24, 11], [24, 12], [24, 13], [24, 14], [24, 15], [24, 16], [23, 16], [22, 16],
-     [21, 16], [20, 16], [19, 16], [18, 16], [17, 16], [17, 17], [17, 18], [17, 19],
-     [17, 20], [17, 21], [16, 21]
-    ]
-   }
+  "floor": [
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV",
+    "JHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJH",
+    "VPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVP",
+    "HJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJ",
+    "PVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPVPV"
   ],
-  "mira": {
-   "payroll-run": [[32, 14], [3, 18], [12, 3]],
-   "glyph-dispatch": [[32, 14], [5, 13], [14, 3], [34, 4]]
-  }
- },
- "spawns": [
-  {
-   "id": "spawn-elevator",
-   "cell": [16, 21],
-   "facing": "n",
-   "when": "arriving by the Systems elevator stop"
+  "floor_legend": {
+    "J": "floor_j",
+    "H": "floor_h",
+    "V": "floor_v",
+    "P": "floor_p"
   },
-  {
-   "id": "spawn-panel-stop",
-   "cell": [17, 14],
-   "facing": "s",
-   "when": "returning through the false panel from Night Shift (after level 16)"
+  "placements": [
+    {
+      "id": "wall_n_00",
+      "entry": "wall_n_plain",
+      "cell": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_01",
+      "entry": "wall_n_plain",
+      "cell": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_02",
+      "entry": "wall_n_plain",
+      "cell": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_03",
+      "entry": "wall_n_plain",
+      "cell": [
+        3,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_04",
+      "entry": "wall_n_plain",
+      "cell": [
+        4,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_05",
+      "entry": "wall_n_plain",
+      "cell": [
+        5,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_06",
+      "entry": "wall_n_plain",
+      "cell": [
+        6,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_07",
+      "entry": "wall_n_plain",
+      "cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_08",
+      "entry": "wall_n_plain",
+      "cell": [
+        8,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_09",
+      "entry": "wall_n_plain",
+      "cell": [
+        9,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_10",
+      "entry": "wall_n_plain",
+      "cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_11",
+      "entry": "wall_n_plain",
+      "cell": [
+        11,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_12",
+      "entry": "wall_n_plain",
+      "cell": [
+        12,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_13",
+      "entry": "wall_n_plain",
+      "cell": [
+        13,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_14",
+      "entry": "wall_n_plain",
+      "cell": [
+        14,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_15",
+      "entry": "wall_n_plain",
+      "cell": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_16",
+      "entry": "wall_n_plain",
+      "cell": [
+        16,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_17",
+      "entry": "wall_n_plain",
+      "cell": [
+        17,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_18",
+      "entry": "wall_n_plain",
+      "cell": [
+        18,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_19",
+      "entry": "wall_n_plain",
+      "cell": [
+        19,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_20",
+      "entry": "wall_n_plain",
+      "cell": [
+        20,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_21",
+      "entry": "wall_n_plain",
+      "cell": [
+        21,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_25",
+      "entry": "wall_n_plain",
+      "cell": [
+        25,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_26",
+      "entry": "wall_n_plain",
+      "cell": [
+        26,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_27",
+      "entry": "wall_n_plain",
+      "cell": [
+        27,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_28",
+      "entry": "wall_n_plain",
+      "cell": [
+        28,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_29",
+      "entry": "wall_n_plain",
+      "cell": [
+        29,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_30",
+      "entry": "wall_n_plain",
+      "cell": [
+        30,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_31",
+      "entry": "wall_n_plain",
+      "cell": [
+        31,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_32",
+      "entry": "wall_n_plain",
+      "cell": [
+        32,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_33",
+      "entry": "wall_n_plain",
+      "cell": [
+        33,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_34",
+      "entry": "wall_n_plain",
+      "cell": [
+        34,
+        0
+      ]
+    },
+    {
+      "id": "wall_n_35",
+      "entry": "wall_n_plain",
+      "cell": [
+        35,
+        0
+      ]
+    },
+    {
+      "id": "wall_e_boundary_00",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        0
+      ]
+    },
+    {
+      "id": "wall_e_boundary_01",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        1
+      ]
+    },
+    {
+      "id": "wall_e_boundary_02",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        2
+      ]
+    },
+    {
+      "id": "wall_e_boundary_03",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        3
+      ]
+    },
+    {
+      "id": "wall_e_boundary_04",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        4
+      ]
+    },
+    {
+      "id": "wall_e_boundary_05",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        5
+      ]
+    },
+    {
+      "id": "wall_e_boundary_06",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        6
+      ]
+    },
+    {
+      "id": "wall_e_boundary_07",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        7
+      ]
+    },
+    {
+      "id": "wall_e_boundary_08",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        8
+      ]
+    },
+    {
+      "id": "wall_e_boundary_09",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        9
+      ]
+    },
+    {
+      "id": "wall_e_boundary_10",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        10
+      ]
+    },
+    {
+      "id": "wall_e_boundary_11",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        11
+      ]
+    },
+    {
+      "id": "wall_e_boundary_12",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        12
+      ]
+    },
+    {
+      "id": "wall_e_boundary_13",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        13
+      ]
+    },
+    {
+      "id": "wall_e_boundary_14",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        14
+      ]
+    },
+    {
+      "id": "wall_e_boundary_15",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        15
+      ]
+    },
+    {
+      "id": "wall_e_boundary_16",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        16
+      ]
+    },
+    {
+      "id": "wall_e_boundary_17",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        17
+      ]
+    },
+    {
+      "id": "wall_e_boundary_18",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        18
+      ]
+    },
+    {
+      "id": "wall_e_boundary_19",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        19
+      ]
+    },
+    {
+      "id": "wall_e_boundary_20",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        20
+      ]
+    },
+    {
+      "id": "wall_e_boundary_21",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        21
+      ]
+    },
+    {
+      "id": "wall_e_boundary_22",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        22
+      ]
+    },
+    {
+      "id": "wall_e_boundary_23",
+      "entry": "wall_e_plain",
+      "cell": [
+        36,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_00",
+      "entry": "partition_2x1",
+      "cell": [
+        0,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_02",
+      "entry": "partition_2x1",
+      "cell": [
+        2,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_04",
+      "entry": "partition_2x1",
+      "cell": [
+        4,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_06",
+      "entry": "partition_2x1",
+      "cell": [
+        6,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_08",
+      "entry": "partition_2x1",
+      "cell": [
+        8,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_10",
+      "entry": "partition_2x1",
+      "cell": [
+        10,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_12",
+      "entry": "partition_2x1",
+      "cell": [
+        12,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_14",
+      "entry": "partition_2x1",
+      "cell": [
+        14,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_16",
+      "entry": "partition_2x1",
+      "cell": [
+        16,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_18",
+      "entry": "partition_2x1",
+      "cell": [
+        18,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_20",
+      "entry": "partition_2x1",
+      "cell": [
+        20,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_22",
+      "entry": "partition_2x1",
+      "cell": [
+        22,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_24",
+      "entry": "partition_2x1",
+      "cell": [
+        24,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_26",
+      "entry": "partition_2x1",
+      "cell": [
+        26,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_28",
+      "entry": "partition_2x1",
+      "cell": [
+        28,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_30",
+      "entry": "partition_2x1",
+      "cell": [
+        30,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_32",
+      "entry": "partition_2x1",
+      "cell": [
+        32,
+        23
+      ]
+    },
+    {
+      "id": "wall_s_34",
+      "entry": "partition_2x1",
+      "cell": [
+        34,
+        23
+      ]
+    },
+    {
+      "id": "wall_w_02",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "wall_w_03",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "wall_w_04",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "wall_w_05",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "wall_w_06",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        6
+      ]
+    },
+    {
+      "id": "wall_w_07",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        7
+      ]
+    },
+    {
+      "id": "wall_w_08",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "wall_w_09",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "wall_w_10",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        10
+      ]
+    },
+    {
+      "id": "wall_w_11",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        11
+      ]
+    },
+    {
+      "id": "wall_w_12",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        12
+      ]
+    },
+    {
+      "id": "wall_w_13",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "wall_w_14",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        14
+      ]
+    },
+    {
+      "id": "wall_w_15",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "wall_w_16",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        16
+      ]
+    },
+    {
+      "id": "wall_w_17",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        17
+      ]
+    },
+    {
+      "id": "wall_w_18",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        18
+      ]
+    },
+    {
+      "id": "wall_w_19",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        19
+      ]
+    },
+    {
+      "id": "wall_w_20",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "wall_w_21",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        21
+      ]
+    },
+    {
+      "id": "wall_w_22",
+      "entry": "partition_1x1",
+      "cell": [
+        0,
+        22
+      ]
+    },
+    {
+      "id": "wall_a_02",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        2
+      ]
+    },
+    {
+      "id": "wall_a_06",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        6
+      ]
+    },
+    {
+      "id": "wall_a_07",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        7
+      ]
+    },
+    {
+      "id": "wall_a_08",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "wall_a_09",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "wall_a_10",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        10
+      ]
+    },
+    {
+      "id": "wall_a_11",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        11
+      ]
+    },
+    {
+      "id": "wall_a_15",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        15
+      ]
+    },
+    {
+      "id": "wall_a_19",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        19
+      ]
+    },
+    {
+      "id": "wall_a_20",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        20
+      ]
+    },
+    {
+      "id": "wall_a_21",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        21
+      ]
+    },
+    {
+      "id": "wall_a_22",
+      "entry": "wall_e_plain",
+      "cell": [
+        8,
+        22
+      ]
+    },
+    {
+      "id": "maintenance_door",
+      "entry": "service_door_closed",
+      "cell": [
+        8,
+        3
+      ],
+      "offset": [
+        0,
+        8
+      ],
+      "state_set": "service_door",
+      "state": "closed",
+      "note": "Alarm hall to formula room; opens with level 14. Cells (8..9, 3..5)."
+    },
+    {
+      "id": "wall_alarm_s_1",
+      "entry": "wall_n_plain",
+      "cell": [
+        1,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_2",
+      "entry": "wall_n_plain",
+      "cell": [
+        2,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_3",
+      "entry": "wall_n_plain",
+      "cell": [
+        3,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_4",
+      "entry": "wall_n_plain",
+      "cell": [
+        4,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_5",
+      "entry": "wall_n_plain",
+      "cell": [
+        5,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_6",
+      "entry": "wall_n_plain",
+      "cell": [
+        6,
+        15
+      ]
+    },
+    {
+      "id": "wall_alarm_s_7",
+      "entry": "wall_n_plain",
+      "cell": [
+        7,
+        15
+      ]
+    },
+    {
+      "id": "wall_formula_s_12",
+      "entry": "wall_n_plain",
+      "cell": [
+        12,
+        6
+      ]
+    },
+    {
+      "id": "wall_formula_s_13",
+      "entry": "wall_n_plain",
+      "cell": [
+        13,
+        6
+      ]
+    },
+    {
+      "id": "wall_formula_s_18",
+      "entry": "wall_n_plain",
+      "cell": [
+        18,
+        6
+      ]
+    },
+    {
+      "id": "wall_formula_s_19",
+      "entry": "wall_n_plain",
+      "cell": [
+        19,
+        6
+      ]
+    },
+    {
+      "id": "bridge_rail_w_6",
+      "entry": "bridge_rail",
+      "cell": [
+        14,
+        6
+      ]
+    },
+    {
+      "id": "bridge_rail_e_6",
+      "entry": "bridge_rail",
+      "cell": [
+        17,
+        6
+      ]
+    },
+    {
+      "id": "bridge_rail_w_7",
+      "entry": "bridge_rail",
+      "cell": [
+        14,
+        7
+      ]
+    },
+    {
+      "id": "bridge_rail_e_7",
+      "entry": "bridge_rail",
+      "cell": [
+        17,
+        7
+      ]
+    },
+    {
+      "id": "bridge_span",
+      "entry": "bridge_span_retracted",
+      "cell": [
+        14,
+        6
+      ],
+      "state_set": "bridge_span",
+      "state": "retracted",
+      "note": "kit bridge_span: 4x2, end stubs at columns 0 and 3, pit (blocked while retracted) at columns 1-2"
+    },
+    {
+      "id": "return_walkway_span",
+      "entry": "bridge_span_retracted",
+      "cell": [
+        9,
+        6
+      ],
+      "state_set": "bridge_span",
+      "state": "retracted",
+      "note": "kit bridge_span: 4x2, end stubs at columns 0 and 3, pit (blocked while retracted) at columns 1-2"
+    },
+    {
+      "id": "wall_formula_e_2",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        2
+      ]
+    },
+    {
+      "id": "wall_formula_e_3",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        3
+      ]
+    },
+    {
+      "id": "wall_formula_e_4",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        4
+      ]
+    },
+    {
+      "id": "wall_formula_e_5",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        5
+      ]
+    },
+    {
+      "id": "wall_formula_e_6",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        6
+      ]
+    },
+    {
+      "id": "wall_formula_e_7",
+      "entry": "wall_e_plain",
+      "cell": [
+        20,
+        7
+      ]
+    },
+    {
+      "id": "relay_glass_a_2",
+      "entry": "bridge_rail",
+      "cell": [
+        26,
+        2
+      ]
+    },
+    {
+      "id": "relay_glass_b_2",
+      "entry": "bridge_rail",
+      "cell": [
+        27,
+        2
+      ]
+    },
+    {
+      "id": "relay_glass_a_3",
+      "entry": "bridge_rail",
+      "cell": [
+        26,
+        3
+      ]
+    },
+    {
+      "id": "relay_glass_b_3",
+      "entry": "bridge_rail",
+      "cell": [
+        27,
+        3
+      ]
+    },
+    {
+      "id": "relay_glass_a_4",
+      "entry": "bridge_rail",
+      "cell": [
+        26,
+        4
+      ]
+    },
+    {
+      "id": "relay_glass_b_4",
+      "entry": "bridge_rail",
+      "cell": [
+        27,
+        4
+      ]
+    },
+    {
+      "id": "relay_glass_a_8",
+      "entry": "bridge_rail",
+      "cell": [
+        26,
+        8
+      ]
+    },
+    {
+      "id": "relay_glass_b_8",
+      "entry": "bridge_rail",
+      "cell": [
+        27,
+        8
+      ]
+    },
+    {
+      "id": "relay_door",
+      "entry": "service_door_closed",
+      "cell": [
+        26,
+        5
+      ],
+      "offset": [
+        0,
+        8
+      ],
+      "state_set": "service_door",
+      "state": "closed",
+      "note": "Relay room door; opens when levels 12 to 15 are complete. Cells (26..27, 5..7)."
+    },
+    {
+      "id": "wall_b_09",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        9
+      ]
+    },
+    {
+      "id": "wall_b_10",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        10
+      ]
+    },
+    {
+      "id": "wall_b_11",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        11
+      ]
+    },
+    {
+      "id": "wall_b_12",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        12
+      ]
+    },
+    {
+      "id": "wall_b_13",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        13
+      ]
+    },
+    {
+      "id": "wall_b_17",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        17
+      ]
+    },
+    {
+      "id": "wall_b_18",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        18
+      ]
+    },
+    {
+      "id": "wall_b_19",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        19
+      ]
+    },
+    {
+      "id": "wall_b_20",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        20
+      ]
+    },
+    {
+      "id": "wall_b_21",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        21
+      ]
+    },
+    {
+      "id": "wall_b_22",
+      "entry": "wall_e_plain",
+      "cell": [
+        26,
+        22
+      ]
+    },
+    {
+      "id": "wall_relay_s_28",
+      "entry": "wall_n_plain",
+      "cell": [
+        28,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_29",
+      "entry": "wall_n_plain",
+      "cell": [
+        29,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_30",
+      "entry": "wall_n_plain",
+      "cell": [
+        30,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_31",
+      "entry": "wall_n_plain",
+      "cell": [
+        31,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_32",
+      "entry": "wall_n_plain",
+      "cell": [
+        32,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_33",
+      "entry": "wall_n_plain",
+      "cell": [
+        33,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_34",
+      "entry": "wall_n_plain",
+      "cell": [
+        34,
+        9
+      ]
+    },
+    {
+      "id": "wall_relay_s_35",
+      "entry": "wall_n_plain",
+      "cell": [
+        35,
+        9
+      ]
+    },
+    {
+      "id": "routing_machine",
+      "landmark": "routing_machine",
+      "cell": [
+        14,
+        10
+      ],
+      "state": "before",
+      "note": "Footprint (14..19, 10..13). The four atlas lamps land on (12,10), (12,12), (13,13), (20,13)."
+    },
+    {
+      "id": "inlay_spine_l_15",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        15
+      ]
+    },
+    {
+      "id": "inlay_spine_r_15",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        15
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "inlay_spine_l_16",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        16
+      ]
+    },
+    {
+      "id": "inlay_spine_r_16",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        16
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "inlay_spine_l_17",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": "inlay_spine_r_17",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        17
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "inlay_spine_l_18",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        18
+      ]
+    },
+    {
+      "id": "inlay_spine_r_18",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        18
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "inlay_spine_l_19",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        19
+      ]
+    },
+    {
+      "id": "inlay_spine_r_19",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        19
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "inlay_spine_l_20",
+      "entry": "route_inlay_v",
+      "cell": [
+        16,
+        20
+      ]
+    },
+    {
+      "id": "inlay_spine_r_20",
+      "entry": "route_inlay_v",
+      "cell": [
+        17,
+        20
+      ],
+      "offset": [
+        15,
+        0
+      ]
+    },
+    {
+      "id": "arrow_spine_a",
+      "entry": "route_arrow_n",
+      "cell": [
+        16,
+        18
+      ],
+      "offset": [
+        8,
+        14
+      ]
+    },
+    {
+      "id": "arrow_spine_b",
+      "entry": "route_arrow_n",
+      "cell": [
+        16,
+        20
+      ],
+      "offset": [
+        8,
+        6
+      ]
+    },
+    {
+      "id": "inlay_east_a_18",
+      "entry": "route_inlay",
+      "cell": [
+        18,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_18",
+      "entry": "route_inlay",
+      "cell": [
+        18,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_19",
+      "entry": "route_inlay",
+      "cell": [
+        19,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_19",
+      "entry": "route_inlay",
+      "cell": [
+        19,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_20",
+      "entry": "route_inlay",
+      "cell": [
+        20,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_20",
+      "entry": "route_inlay",
+      "cell": [
+        20,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_21",
+      "entry": "route_inlay",
+      "cell": [
+        21,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_21",
+      "entry": "route_inlay",
+      "cell": [
+        21,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_22",
+      "entry": "route_inlay",
+      "cell": [
+        22,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_22",
+      "entry": "route_inlay",
+      "cell": [
+        22,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_23",
+      "entry": "route_inlay",
+      "cell": [
+        23,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_23",
+      "entry": "route_inlay",
+      "cell": [
+        23,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_24",
+      "entry": "route_inlay",
+      "cell": [
+        24,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_24",
+      "entry": "route_inlay",
+      "cell": [
+        24,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_a_25",
+      "entry": "route_inlay",
+      "cell": [
+        25,
+        15
+      ]
+    },
+    {
+      "id": "inlay_east_b_25",
+      "entry": "route_inlay",
+      "cell": [
+        25,
+        16
+      ],
+      "offset": [
+        0,
+        15
+      ]
+    },
+    {
+      "id": "arrow_east_a",
+      "entry": "route_arrow_e",
+      "cell": [
+        21,
+        15
+      ],
+      "offset": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "conduit_cobalt_01",
+      "entry": "conduit_ne_cobalt",
+      "cell": [
+        18,
+        14
+      ],
+      "state_set": "conduit_ne_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_02",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        19,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_03",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        20,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_04",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        21,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_05",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        22,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_06",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        23,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_07",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        24,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_08",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        25,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_09",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        26,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_10",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        27,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_11",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        28,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_12",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        29,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_13",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        30,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_14",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        31,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_15",
+      "entry": "conduit_h_cobalt",
+      "cell": [
+        32,
+        14
+      ],
+      "state_set": "conduit_h_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_cobalt_16",
+      "entry": "conduit_nw_cobalt",
+      "cell": [
+        33,
+        14
+      ],
+      "state_set": "conduit_nw_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_01",
+      "entry": "conduit_nw_mint",
+      "cell": [
+        14,
+        14
+      ],
+      "state_set": "conduit_nw_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_02",
+      "entry": "conduit_h_mint",
+      "cell": [
+        13,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_03",
+      "entry": "conduit_h_mint",
+      "cell": [
+        12,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_04",
+      "entry": "conduit_h_mint",
+      "cell": [
+        11,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_05",
+      "entry": "conduit_h_mint",
+      "cell": [
+        10,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_06",
+      "entry": "conduit_h_mint",
+      "cell": [
+        9,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_07",
+      "entry": "conduit_h_mint",
+      "cell": [
+        8,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_08",
+      "entry": "conduit_h_mint",
+      "cell": [
+        7,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_09",
+      "entry": "conduit_h_mint",
+      "cell": [
+        6,
+        14
+      ],
+      "state_set": "conduit_h_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_10",
+      "entry": "conduit_ne_mint",
+      "cell": [
+        5,
+        14
+      ],
+      "state_set": "conduit_ne_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_mint_11",
+      "entry": "conduit_v_mint",
+      "cell": [
+        5,
+        13
+      ],
+      "state_set": "conduit_v_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_01",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        9
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_02",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        8
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_03",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        7
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_04",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        6
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_05",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        5
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_06",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        4
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_orange_07",
+      "entry": "conduit_v_orange",
+      "cell": [
+        15,
+        3
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_cobalt_1",
+      "entry": "conduit_v_cobalt",
+      "cell": [
+        29,
+        4
+      ],
+      "state_set": "conduit_v_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_cobalt_2",
+      "entry": "conduit_v_cobalt",
+      "cell": [
+        29,
+        5
+      ],
+      "state_set": "conduit_v_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_cobalt_3",
+      "entry": "conduit_v_cobalt",
+      "cell": [
+        29,
+        6
+      ],
+      "state_set": "conduit_v_cobalt",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_orange_1",
+      "entry": "conduit_v_orange",
+      "cell": [
+        32,
+        4
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_orange_2",
+      "entry": "conduit_v_orange",
+      "cell": [
+        32,
+        5
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_orange_3",
+      "entry": "conduit_v_orange",
+      "cell": [
+        32,
+        6
+      ],
+      "state_set": "conduit_v_orange",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_mint_1",
+      "entry": "conduit_v_mint",
+      "cell": [
+        35,
+        4
+      ],
+      "state_set": "conduit_v_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_mint_2",
+      "entry": "conduit_v_mint",
+      "cell": [
+        35,
+        5
+      ],
+      "state_set": "conduit_v_mint",
+      "state": "off"
+    },
+    {
+      "id": "conduit_relay_mint_3",
+      "entry": "conduit_v_mint",
+      "cell": [
+        35,
+        6
+      ],
+      "state_set": "conduit_v_mint",
+      "state": "off"
+    },
+    {
+      "id": "rack_hub_w_19",
+      "entry": "rack_1x1",
+      "cell": [
+        10,
+        19
+      ]
+    },
+    {
+      "id": "rack_hub_w_20",
+      "entry": "rack_1x1",
+      "cell": [
+        10,
+        20
+      ]
+    },
+    {
+      "id": "rack_hub_w_21",
+      "entry": "rack_1x1",
+      "cell": [
+        10,
+        21
+      ]
+    },
+    {
+      "id": "plant_hub_sw",
+      "entry": "pot_plant_a",
+      "cell": [
+        11,
+        22
+      ]
+    },
+    {
+      "id": "plant_hub_se",
+      "entry": "pot_plant_b",
+      "cell": [
+        25,
+        22
+      ]
+    },
+    {
+      "id": "plant_hub_ne",
+      "entry": "pot_plant_a",
+      "cell": [
+        25,
+        9
+      ]
+    },
+    {
+      "id": "shelf_hub_se",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        22,
+        20
+      ]
+    },
+    {
+      "id": "cabinet_hub_se",
+      "entry": "cabinet_1x1",
+      "cell": [
+        25,
+        19
+      ]
+    },
+    {
+      "id": "lamp_hub_1",
+      "entry": "lamp",
+      "cell": [
+        13,
+        16
+      ],
+      "state_set": "lamp",
+      "state": "on"
+    },
+    {
+      "id": "lamp_hub_2",
+      "entry": "lamp",
+      "cell": [
+        25,
+        12
+      ],
+      "state_set": "lamp",
+      "state": "on"
+    },
+    {
+      "id": "lamp_hub_3",
+      "entry": "lamp",
+      "cell": [
+        13,
+        21
+      ],
+      "state_set": "lamp",
+      "state": "on"
+    },
+    {
+      "id": "lamp_hub_4",
+      "entry": "lamp",
+      "cell": [
+        24,
+        21
+      ],
+      "state_set": "lamp",
+      "state": "on"
+    },
+    {
+      "id": "warning_lamp",
+      "entry": "lamp",
+      "cell": [
+        13,
+        9
+      ],
+      "state_set": "lamp",
+      "state": "pulse"
+    },
+    {
+      "id": "pace_sign_payroll",
+      "entry": "pace_wall_sign_2x1",
+      "cell": [
+        28,
+        9
+      ]
+    },
+    {
+      "id": "shelf_trays_a",
+      "entry": "shelf_2x1_a",
+      "cell": [
+        28,
+        11
+      ]
+    },
+    {
+      "id": "shelf_trays_b",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        30,
+        11
+      ]
+    },
+    {
+      "id": "artifact_id_envelope",
+      "entry": "artifact_id_envelope",
+      "cell": [
+        28,
+        11
+      ],
+      "offset": [
+        2,
+        0
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "desk_payroll",
+      "entry": "terminal_desk",
+      "cell": [
+        32,
+        13
+      ]
+    },
+    {
+      "id": "desk_payroll_check",
+      "entry": "terminal_desk",
+      "cell": [
+        30,
+        18
+      ]
+    },
+    {
+      "id": "cabinet_payroll_a",
+      "entry": "cabinet_1x1",
+      "cell": [
+        35,
+        11
+      ]
+    },
+    {
+      "id": "cabinet_payroll_b",
+      "entry": "cabinet_1x1",
+      "cell": [
+        35,
+        12
+      ]
+    },
+    {
+      "id": "plant_payroll_sw",
+      "entry": "pot_plant_a",
+      "cell": [
+        28,
+        22
+      ]
+    },
+    {
+      "id": "plant_payroll_se",
+      "entry": "pot_plant_b",
+      "cell": [
+        35,
+        22
+      ]
+    },
+    {
+      "id": "lamp_payroll",
+      "entry": "lamp_off",
+      "cell": [
+        35,
+        16
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "pace_sign_alarm",
+      "entry": "pace_wall_sign_2x1_repeat",
+      "cell": [
+        6,
+        0
+      ]
+    },
+    {
+      "id": "rack_alarm_4",
+      "entry": "rack_1x1",
+      "cell": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "rack_alarm_5",
+      "entry": "rack_1x1",
+      "cell": [
+        1,
+        5
+      ]
+    },
+    {
+      "id": "rack_alarm_6",
+      "entry": "rack_1x1",
+      "cell": [
+        1,
+        6
+      ]
+    },
+    {
+      "id": "rack_alarm_7",
+      "entry": "rack_1x1",
+      "cell": [
+        1,
+        7
+      ]
+    },
+    {
+      "id": "rack_alarm_8",
+      "entry": "rack_1x1",
+      "cell": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "artifact_alarm_strip",
+      "entry": "artifact_alarm_strip",
+      "cell": [
+        1,
+        6
+      ],
+      "offset": [
+        3,
+        0
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "rack_alarm_ne",
+      "entry": "rack_2x1_a",
+      "cell": [
+        6,
+        2
+      ]
+    },
+    {
+      "id": "desk_alarm",
+      "entry": "terminal_desk",
+      "cell": [
+        5,
+        12
+      ]
+    },
+    {
+      "id": "desk_quiet_alarm",
+      "entry": "terminal_desk",
+      "cell": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "plant_alarm",
+      "entry": "pot_plant_b",
+      "cell": [
+        2,
+        13
+      ]
+    },
+    {
+      "id": "lamp_alarm",
+      "entry": "lamp_off",
+      "cell": [
+        7,
+        10
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "desk_ledger",
+      "entry": "terminal_desk",
+      "cell": [
+        3,
+        17
+      ]
+    },
+    {
+      "id": "folding_stool",
+      "entry": "folding_stool",
+      "cell": [
+        1,
+        18
+      ],
+      "note": "Hal's stool, set against the ledger cabinet. When Hal sits (hal_seated_stool_s at (2,18)) the renderer draws hal-props-atlas `stool_folding` under him and hides this prop: he pulls the stool to the desk."
+    },
+    {
+      "id": "cabinet_ledger",
+      "entry": "cabinet_1x1",
+      "cell": [
+        1,
+        17
+      ]
+    },
+    {
+      "id": "shelf_ledger",
+      "entry": "shelf_2x1_b",
+      "cell": [
+        5,
+        22
+      ]
+    },
+    {
+      "id": "plant_ledger",
+      "entry": "pot_plant_a",
+      "cell": [
+        7,
+        22
+      ]
+    },
+    {
+      "id": "lamp_ledger",
+      "entry": "lamp_off",
+      "cell": [
+        1,
+        22
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "formula_wall",
+      "entry": "formula_wall_dark",
+      "cell": [
+        12,
+        0
+      ],
+      "state_set": "formula_wall",
+      "state": "dark",
+      "offset": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "desk_formula",
+      "entry": "terminal_desk",
+      "cell": [
+        14,
+        2
+      ]
+    },
+    {
+      "id": "cabinet_dropbox",
+      "entry": "cabinet_1x1",
+      "cell": [
+        12,
+        2
+      ],
+      "note": "Mira's formula-room dropbox."
+    },
+    {
+      "id": "shelf_formula_proof",
+      "entry": "shelf_1x1",
+      "cell": [
+        18,
+        2
+      ]
+    },
+    {
+      "id": "artifact_scoring_proof",
+      "entry": "artifact_scoring_proof",
+      "cell": [
+        18,
+        2
+      ],
+      "offset": [
+        2,
+        0
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "plant_formula",
+      "entry": "pot_plant_a",
+      "cell": [
+        19,
+        2
+      ]
+    },
+    {
+      "id": "lamp_formula",
+      "entry": "lamp_off",
+      "cell": [
+        11,
+        2
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "pace_sign_bridge",
+      "entry": "pace_wall_sign_2x1",
+      "cell": [
+        18,
+        7
+      ]
+    },
+    {
+      "id": "status_board_relay_a",
+      "entry": "status_board",
+      "cell": [
+        29,
+        0
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "status_board_relay_b",
+      "entry": "status_board",
+      "cell": [
+        33,
+        0
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "desk_relay_a",
+      "entry": "terminal_desk",
+      "cell": [
+        28,
+        3
+      ]
+    },
+    {
+      "id": "desk_relay_b",
+      "entry": "terminal_desk",
+      "cell": [
+        31,
+        3
+      ]
+    },
+    {
+      "id": "desk_relay_c",
+      "entry": "terminal_desk",
+      "cell": [
+        34,
+        3
+      ]
+    },
+    {
+      "id": "desk_relay_final",
+      "entry": "terminal_desk",
+      "cell": [
+        34,
+        6
+      ]
+    },
+    {
+      "id": "cabinet_relay",
+      "entry": "cabinet_1x1",
+      "cell": [
+        35,
+        7
+      ]
+    },
+    {
+      "id": "artifact_original_routing_diagram",
+      "entry": "artifact_original_routing_diagram",
+      "cell": [
+        35,
+        7
+      ],
+      "offset": [
+        2,
+        0
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "plant_relay",
+      "entry": "pot_plant_a",
+      "cell": [
+        28,
+        8
+      ]
+    },
+    {
+      "id": "lamp_relay",
+      "entry": "lamp_off",
+      "cell": [
+        31,
+        8
+      ],
+      "state_set": "lamp",
+      "state": "off"
+    },
+    {
+      "id": "elevator",
+      "entry": "elevator_closed",
+      "cell": [
+        22,
+        0
+      ],
+      "state_set": "elevator",
+      "state": "closed",
+      "art_gap": true,
+      "note": "north-wall module: wall rows y..y+1, lit mat row y+2; plays closed, half, open on arrival"
+    },
+    {
+      "id": "elevator_call_panel",
+      "entry": "elevator_call_panel",
+      "cell": [
+        25,
+        0
+      ],
+      "offset": [
+        4,
+        9
+      ],
+      "art_gap": true
+    },
+    {
+      "id": "plant_gallery",
+      "entry": "pot_plant_b",
+      "cell": [
+        22,
+        5
+      ]
+    },
+    {
+      "id": "bridge_shutter",
+      "entry": "bridge_shutter_closed",
+      "cell": [
+        14,
+        5
+      ],
+      "offset": [
+        0,
+        9
+      ],
+      "state_set": "bridge_shutter",
+      "state": "closed"
+    },
+    {
+      "id": "bridge_shutter_b",
+      "entry": "bridge_shutter_closed",
+      "cell": [
+        16,
+        5
+      ],
+      "offset": [
+        2,
+        9
+      ],
+      "state_set": "bridge_shutter",
+      "state": "closed"
+    },
+    {
+      "id": "payroll_keypad",
+      "entry": "payroll_keypad_off",
+      "cell": [
+        32,
+        11
+      ],
+      "offset": [
+        6,
+        4
+      ],
+      "state_set": "payroll_keypad",
+      "state": "off"
+    },
+    {
+      "id": "refund_sign",
+      "entry": "refund_sign_red",
+      "cell": [
+        3,
+        16
+      ],
+      "state_set": "refund_sign",
+      "state": "red"
+    },
+    {
+      "id": "calc_display",
+      "entry": "calc_display_charge",
+      "cell": [
+        5,
+        16
+      ],
+      "state_set": "calc_display",
+      "state": "charge"
+    },
+    {
+      "id": "alarm_board",
+      "entry": "alarm_strip_merged",
+      "cell": [
+        2,
+        0
+      ],
+      "offset": [
+        0,
+        9
+      ],
+      "state_set": "alarm_strip",
+      "state": "merged"
+    },
+    {
+      "id": "courier_chute",
+      "entry": "courier_chute_idle",
+      "cell": [
+        12,
+        8
+      ],
+      "state_set": "courier_chute",
+      "state": "idle"
+    }
+  ],
+  "art_gap_entries": {
+    "artifact_id_envelope": {
+      "footprint": {
+        "cells": [
+          1,
+          1
+        ],
+        "collision": [
+          "0"
+        ]
+      },
+      "layer": "rear_prop",
+      "purpose": "ID envelope lying on the payroll ID trays: addressed to a department that no longer exists."
+    },
+    "artifact_alarm_strip": {
+      "footprint": {
+        "cells": [
+          1,
+          1
+        ],
+        "collision": [
+          "0"
+        ]
+      },
+      "layer": "rear_prop",
+      "purpose": "Alarm strip tucked in the alarm-hall rack: old alert names with an extra department."
+    },
+    "artifact_scoring_proof": {
+      "footprint": {
+        "cells": [
+          1,
+          1
+        ],
+        "collision": [
+          "0"
+        ]
+      },
+      "layer": "rear_prop",
+      "purpose": "Scoring proof pinned to the formula-room shelf: a longer route earned a higher engagement total."
+    },
+    "artifact_original_routing_diagram": {
+      "footprint": {
+        "cells": [
+          1,
+          1
+        ],
+        "collision": [
+          "0"
+        ]
+      },
+      "layer": "rear_prop",
+      "purpose": "Original routing diagram rolled on the relay cabinet, signed by several employees rather than Pace."
+    },
+    "elevator_closed": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "North-wall arrival elevator module, doors shut (Systems recolour of the Orientation set): rows 0-1 are wall, row 2 is the lit mat. Same 3x3 geometry as `elevator_closed` in orientation-atlas.json.",
+      "states": [
+        "closed"
+      ]
+    },
+    "elevator_half": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "111",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors half open (arrival and departure).",
+      "states": [
+        "half"
+      ]
+    },
+    "elevator_open": {
+      "footprint": {
+        "cells": [
+          3,
+          3
+        ],
+        "collision": [
+          "111",
+          "101",
+          "000"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Doors open: the centre cell of row 1 walks into the cab.",
+      "states": [
+        "open"
+      ]
+    },
+    "elevator_call_panel": {
+      "footprint": {
+        "cells": [
+          1,
+          2
+        ],
+        "collision": [
+          "0",
+          "0"
+        ]
+      },
+      "layer": "rear_wall",
+      "purpose": "Wall call panel one cell beside the elevator (Systems recolour); overlay on a plain wall column, placed with offset [4, 9].",
+      "states": [
+        "idle"
+      ]
+    }
   },
-  {
-   "id": "spawn-relay",
-   "cell": [30, 5],
-   "facing": "s",
-   "when": "restarting Glyph Dispatch (Mira's relay start)"
-  }
- ],
- "notes": [
-  "Collision is the initial state: gate cells start blocked and the validator opens each gate for later levels.",
-  "Machine footprint (14..19,10..13); atlas lamps at (12,10), (12,12), (13,13), (20,13).",
-  "Walls: north wall rows 0-1; east wall x 36-37; wall A (x 8-9) separates alarm hall and ledger room from hub and formula room; wall B (x 26-27) separates gallery and hub from relay room and payroll wing; west edge and south row are partitions."
- ]
+  "art_gap_state_sets": {
+    "elevator": {
+      "default": "closed",
+      "states": {
+        "closed": {
+          "entries": [
+            "elevator_closed"
+          ],
+          "blocked": true
+        },
+        "half": {
+          "entries": [
+            "elevator_half"
+          ],
+          "blocked": true
+        },
+        "open": {
+          "entries": [
+            "elevator_open"
+          ],
+          "blocked": false
+        }
+      }
+    }
+  },
+  "collision": [
+    "11111111111111111111111111111111111111",
+    "11111111111111111111111111111111111111",
+    "10000011110110110011110000110000000011",
+    "10000000110000000000110000111101101111",
+    "11000000110000000000110000110000000011",
+    "11000000110000000000111000110000000011",
+    "11001100111111111111110000110000001111",
+    "11000000111111111111110000110000000111",
+    "11000000110011000000000000111001000011",
+    "10000000110001000000000001111111111111",
+    "10000001110010111111000000111111111111",
+    "10000000110000111111000000111111110111",
+    "10000110000010111111000001110000000111",
+    "10100000000001111111100000110000110011",
+    "10000000000000000000000000000000000011",
+    "11111111110000000000000000000000000011",
+    "11111111000001000000000000000000000111",
+    "11011000000000000000000000110000000011",
+    "11000000000000000000000000110011000011",
+    "10000000111000000000000001110000000011",
+    "10000000111000000000001100110000000011",
+    "10000000111001000000000010110000000011",
+    "11000111110100000000000001111000000111",
+    "11111111111111111111111111111111111111"
+  ],
+  "gates": [
+    {
+      "id": "gate-bridge",
+      "kind": "shortcut",
+      "cells": [
+        [
+          15,
+          6
+        ],
+        [
+          16,
+          6
+        ],
+        [
+          15,
+          7
+        ],
+        [
+          16,
+          7
+        ]
+      ],
+      "opens_after": "systems-12",
+      "placement": "bridge_span",
+      "visible_change": "The glass bridge extends: two shutter plates retract and the deck runs from the hub's north strip to the formula room.",
+      "locked_hint": "Sign by the bridge head: the span extends after Payroll IDs (level 12)."
+    },
+    {
+      "id": "gate-return-walkway",
+      "kind": "shortcut",
+      "cells": [
+        [
+          10,
+          6
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          11,
+          7
+        ]
+      ],
+      "opens_after": "systems-12",
+      "placement": "return_walkway_span",
+      "visible_change": "The return walkway extends from the formula room's west end down to Mira's chute.",
+      "locked_hint": "Visible through the glass: the walkway lands beside Mira's chute."
+    },
+    {
+      "id": "gate-maintenance-door",
+      "kind": "door",
+      "cells": [
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "opens_after": "systems-14",
+      "placement": "maintenance_door",
+      "visible_change": "The alarm hall's maintenance door slides aside and opens a direct path to the formula room.",
+      "locked_hint": "The door's sign plate shows the alarm board still has unlabeled alerts."
+    },
+    {
+      "id": "gate-relay-door",
+      "kind": "door",
+      "cells": [
+        [
+          26,
+          5
+        ],
+        [
+          27,
+          5
+        ],
+        [
+          26,
+          6
+        ],
+        [
+          27,
+          6
+        ],
+        [
+          26,
+          7
+        ],
+        [
+          27,
+          7
+        ]
+      ],
+      "opens_after": "systems-15",
+      "placement": "relay_door",
+      "visible_change": "The relay room door opens once all three branch conduits are lit; the glass beside it already shows the machine.",
+      "locked_hint": "The door's sign plate shows three conduit families, one lit per finished branch."
+    }
+  ],
+  "zones": [
+    {
+      "id": "zone-hub",
+      "kind": "hub",
+      "rect": [
+        10,
+        8,
+        16,
+        15
+      ],
+      "note": "Service floor around the routing machine (14..19, 10..13); elevator at the south edge."
+    },
+    {
+      "id": "zone-gallery",
+      "kind": "corridor",
+      "rect": [
+        22,
+        2,
+        4,
+        6
+      ],
+      "note": "North-east gallery leading to the relay door."
+    },
+    {
+      "id": "zone-payroll-branch",
+      "kind": "branch",
+      "rect": [
+        26,
+        14,
+        2,
+        3
+      ],
+      "note": "East branch: cobalt conduit through the wall gap to the payroll wing."
+    },
+    {
+      "id": "zone-payroll",
+      "kind": "task_room",
+      "rect": [
+        28,
+        11,
+        8,
+        12
+      ],
+      "level": "systems-12"
+    },
+    {
+      "id": "zone-ledger-branch",
+      "kind": "branch",
+      "rect": [
+        8,
+        16,
+        2,
+        3
+      ],
+      "note": "Short west branch to the refund ledger room."
+    },
+    {
+      "id": "zone-ledger",
+      "kind": "task_room",
+      "rect": [
+        1,
+        17,
+        7,
+        6
+      ],
+      "level": "systems-13"
+    },
+    {
+      "id": "zone-alarm-branch",
+      "kind": "branch",
+      "rect": [
+        8,
+        12,
+        2,
+        3
+      ],
+      "note": "West branch: mint conduit along row 14 into the alarm hall."
+    },
+    {
+      "id": "zone-alarm",
+      "kind": "task_room",
+      "rect": [
+        1,
+        2,
+        7,
+        13
+      ],
+      "level": "systems-14"
+    },
+    {
+      "id": "zone-bridge",
+      "kind": "corridor",
+      "rect": [
+        15,
+        6,
+        2,
+        2
+      ],
+      "note": "Glass bridge to the formula room."
+    },
+    {
+      "id": "zone-return-walkway",
+      "kind": "corridor",
+      "rect": [
+        10,
+        6,
+        2,
+        2
+      ],
+      "note": "Return walkway from the formula room to Mira's chute."
+    },
+    {
+      "id": "zone-formula",
+      "kind": "task_room",
+      "rect": [
+        10,
+        2,
+        10,
+        4
+      ],
+      "level": "systems-15"
+    },
+    {
+      "id": "zone-relay-door",
+      "kind": "corridor",
+      "rect": [
+        26,
+        5,
+        2,
+        3
+      ],
+      "note": "Relay door in wall B; glass either side."
+    },
+    {
+      "id": "zone-relay",
+      "kind": "review",
+      "rect": [
+        28,
+        2,
+        8,
+        7
+      ],
+      "level": "systems-16"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "systems-elevator",
+      "kind": "elevator",
+      "cells": [
+        [
+          22,
+          1
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          24,
+          1
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            22,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            23,
+            2
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            24,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator",
+      "label": "Elevator to every unlocked district"
+    },
+    {
+      "id": "elevator_panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          25,
+          1
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            25,
+            2
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "elevator_call_panel",
+      "label": "Elevator map"
+    },
+    {
+      "id": "hal-hub",
+      "kind": "npc",
+      "cells": [
+        [
+          13,
+          11
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            12,
+            11
+          ],
+          "facing": "e"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s12-hal-intro",
+      "level": "systems-12",
+      "visible_when": "npc:hal=start",
+      "label": "Hal at the routing machine"
+    },
+    {
+      "id": "hal-hub-13",
+      "kind": "npc",
+      "cells": [
+        [
+          13,
+          11
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            12,
+            11
+          ],
+          "facing": "e"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s13-hal-intro",
+      "level": "systems-13",
+      "visible_when": "npc:hal=repair_hub",
+      "label": "Hal at the routing machine (level 13 briefing)"
+    },
+    {
+      "id": "hal-ledger",
+      "kind": "npc",
+      "cells": [
+        [
+          2,
+          18
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            3,
+            18
+          ],
+          "facing": "w"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s13-hal-intro",
+      "level": "systems-13",
+      "label": "Hal in the ledger room"
+    },
+    {
+      "id": "hal-alarm",
+      "kind": "npc",
+      "cells": [
+        [
+          3,
+          12
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            4,
+            12
+          ],
+          "facing": "w"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s14-hal-intro",
+      "level": "systems-14",
+      "label": "Hal in the alarm hall"
+    },
+    {
+      "id": "hal-formula",
+      "kind": "npc",
+      "cells": [
+        [
+          17,
+          3
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            16,
+            3
+          ],
+          "facing": "e"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s15-hal-intro",
+      "level": "systems-15",
+      "label": "Hal in the formula room"
+    },
+    {
+      "id": "hal-relay",
+      "kind": "npc",
+      "cells": [
+        [
+          32,
+          7
+        ]
+      ],
+      "marker": "conversation",
+      "approach": [
+        {
+          "cell": [
+            32,
+            8
+          ],
+          "facing": "n"
+        }
+      ],
+      "npc": "hal",
+      "dialogue_id": "s16-hal-intro",
+      "level": "systems-16",
+      "label": "Hal in the relay room"
+    },
+    {
+      "id": "mira-chute",
+      "kind": "mira",
+      "cells": [
+        [
+          12,
+          9
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            11,
+            9
+          ],
+          "facing": "e"
+        }
+      ],
+      "npc": "mira",
+      "dialogue_id": "s13-mira-offer",
+      "level": "systems-13",
+      "requires": [
+        "level:systems-13"
+      ],
+      "label": "Mira at the mail chute: Payroll Run",
+      "visible_when": "npc:mira=offering"
+    },
+    {
+      "id": "mira-relay",
+      "kind": "mira",
+      "cells": [
+        [
+          29,
+          7
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            29,
+            8
+          ],
+          "facing": "n"
+        }
+      ],
+      "npc": "mira",
+      "dialogue_id": "s16-mira-offer",
+      "requires": [
+        "level:systems-16"
+      ],
+      "label": "Mira in the relay room: Glyph Dispatch",
+      "visible_when": "npc:mira=relay_pleased"
+    },
+    {
+      "id": "payroll-terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          32,
+          13
+        ],
+        [
+          33,
+          13
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            32,
+            14
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            33,
+            14
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-12-guided-d1",
+      "level": "systems-12",
+      "placement": "desk_payroll",
+      "label": "Payroll keypad (relocated)"
+    },
+    {
+      "id": "id-envelope",
+      "kind": "artifact",
+      "cells": [
+        [
+          28,
+          11
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            28,
+            12
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_id_envelope",
+      "level": "systems-12",
+      "label": "ID envelope"
+    },
+    {
+      "id": "ledger-terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          17
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            3,
+            18
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            4,
+            18
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-13-guided-minus",
+      "level": "systems-13",
+      "requires": [
+        "level:systems-12"
+      ],
+      "placement": "desk_ledger",
+      "label": "Refund ledger"
+    },
+    {
+      "id": "refund-slip-glitch",
+      "kind": "glitch",
+      "cells": [
+        [
+          6,
+          17
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            6,
+            18
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-13-glitch-slip",
+      "level": "systems-13",
+      "requires": [
+        "level:systems-12"
+      ],
+      "label": "Folded refund slip (optional repair)"
+    },
+    {
+      "id": "alarm-terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          5,
+          12
+        ],
+        [
+          6,
+          12
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            5,
+            13
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            6,
+            13
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-14-guided-excl",
+      "level": "systems-14",
+      "requires": [
+        "level:systems-13"
+      ],
+      "placement": "desk_alarm",
+      "label": "Alarm label desk"
+    },
+    {
+      "id": "alarm-strip",
+      "kind": "artifact",
+      "cells": [
+        [
+          1,
+          6
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            2,
+            6
+          ],
+          "facing": "w"
+        }
+      ],
+      "placement": "artifact_alarm_strip",
+      "level": "systems-14",
+      "label": "Alarm strip"
+    },
+    {
+      "id": "chair-shadow-glitch",
+      "kind": "glitch",
+      "cells": [
+        [
+          3,
+          9
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            4,
+            9
+          ],
+          "facing": "w"
+        }
+      ],
+      "scene_id": "systems-14-glitch-chair",
+      "level": "systems-14",
+      "requires": [
+        "level:systems-13"
+      ],
+      "label": "Chair with a second shadow (optional repair)"
+    },
+    {
+      "id": "quiet-alarm-panel",
+      "kind": "terminal",
+      "cells": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            4,
+            7
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            5,
+            7
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-side-quiet-alarm",
+      "level": "systems-15",
+      "requires": [
+        "level:systems-15"
+      ],
+      "placement": "desk_quiet_alarm",
+      "label": "Quiet Alarm: mute one alert"
+    },
+    {
+      "id": "maintenance-door",
+      "kind": "door",
+      "cells": [
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            7,
+            4
+          ],
+          "facing": "e"
+        }
+      ],
+      "placement": "maintenance_door",
+      "requires": [
+        "level:systems-14"
+      ],
+      "label": "Maintenance door to the formula room"
+    },
+    {
+      "id": "formula-terminal",
+      "kind": "terminal",
+      "cells": [
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            14,
+            3
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            15,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-15-guided-amp",
+      "level": "systems-15",
+      "requires": [
+        "level:systems-14"
+      ],
+      "placement": "desk_formula",
+      "label": "Formula wall console"
+    },
+    {
+      "id": "scoring-proof",
+      "kind": "artifact",
+      "cells": [
+        [
+          18,
+          2
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            18,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_scoring_proof",
+      "level": "systems-15",
+      "label": "Scoring proof"
+    },
+    {
+      "id": "formula-dropbox",
+      "kind": "terminal",
+      "cells": [
+        [
+          12,
+          2
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            12,
+            3
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "mira-13-cp3-formula-dropbox",
+      "requires": [
+        "mira:payroll-run"
+      ],
+      "placement": "cabinet_dropbox",
+      "label": "Payroll Run drop (third destination)"
+    },
+    {
+      "id": "bridge-sign",
+      "kind": "sign",
+      "cells": [
+        [
+          18,
+          7
+        ],
+        [
+          19,
+          7
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            18,
+            8
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            19,
+            8
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "pace_sign_bridge",
+      "label": "Pace sign: the glass bridge extends after Payroll IDs"
+    },
+    {
+      "id": "relay-door",
+      "kind": "door",
+      "cells": [
+        [
+          26,
+          5
+        ],
+        [
+          27,
+          5
+        ],
+        [
+          26,
+          6
+        ],
+        [
+          27,
+          6
+        ],
+        [
+          26,
+          7
+        ],
+        [
+          27,
+          7
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            25,
+            6
+          ],
+          "facing": "e"
+        }
+      ],
+      "placement": "relay_door",
+      "requires": [
+        "level:systems-15"
+      ],
+      "label": "Relay room door"
+    },
+    {
+      "id": "relay-circuit-a",
+      "kind": "terminal",
+      "cells": [
+        [
+          28,
+          3
+        ],
+        [
+          29,
+          3
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            28,
+            4
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            29,
+            4
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-16-layer-caps",
+      "level": "systems-16",
+      "requires": [
+        "level:systems-15"
+      ],
+      "placement": "desk_relay_a",
+      "label": "Relay card desk A: cobalt, numbers"
+    },
+    {
+      "id": "relay-circuit-b",
+      "kind": "terminal",
+      "cells": [
+        [
+          31,
+          3
+        ],
+        [
+          32,
+          3
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            31,
+            4
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            32,
+            4
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-16-mod-space-shift",
+      "level": "systems-16",
+      "requires": [
+        "level:systems-15"
+      ],
+      "placement": "desk_relay_b",
+      "label": "Relay card desk B: orange, expression"
+    },
+    {
+      "id": "relay-circuit-c",
+      "kind": "terminal",
+      "cells": [
+        [
+          34,
+          3
+        ],
+        [
+          35,
+          3
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            34,
+            4
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            35,
+            4
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-16-tab-lane",
+      "level": "systems-16",
+      "requires": [
+        "level:systems-15"
+      ],
+      "placement": "desk_relay_c",
+      "label": "Relay card desk C: mint, typo"
+    },
+    {
+      "id": "relay-final",
+      "kind": "terminal",
+      "cells": [
+        [
+          34,
+          6
+        ],
+        [
+          35,
+          6
+        ]
+      ],
+      "marker": "terminal",
+      "approach": [
+        {
+          "cell": [
+            34,
+            7
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-16-final-recall",
+      "level": "systems-16",
+      "requires": [
+        "level:systems-15"
+      ],
+      "placement": "desk_relay_final",
+      "label": "Relay review console: final mixed recall"
+    },
+    {
+      "id": "routing-diagram",
+      "kind": "artifact",
+      "cells": [
+        [
+          35,
+          7
+        ]
+      ],
+      "marker": "none",
+      "approach": [
+        {
+          "cell": [
+            35,
+            8
+          ],
+          "facing": "n"
+        }
+      ],
+      "placement": "artifact_original_routing_diagram",
+      "level": "systems-16",
+      "label": "Original routing diagram"
+    },
+    {
+      "id": "machine-panel",
+      "kind": "elevator",
+      "cells": [
+        [
+          16,
+          13
+        ],
+        [
+          17,
+          13
+        ]
+      ],
+      "marker": "route",
+      "approach": [
+        {
+          "cell": [
+            16,
+            14
+          ],
+          "facing": "n"
+        },
+        {
+          "cell": [
+            17,
+            14
+          ],
+          "facing": "n"
+        }
+      ],
+      "requires": [
+        "level:systems-16"
+      ],
+      "label": "False panel: the Night Shift elevator stop",
+      "placement": "routing_machine"
+    },
+    {
+      "id": "stapler-glitch",
+      "kind": "glitch",
+      "cells": [
+        [
+          29,
+          19
+        ]
+      ],
+      "marker": "glitch",
+      "approach": [
+        {
+          "cell": [
+            29,
+            20
+          ],
+          "facing": "n"
+        }
+      ],
+      "scene_id": "systems-12-glitch-stapler",
+      "level": "systems-12",
+      "requires": [
+        "level:records-11"
+      ],
+      "label": "Stapler with a misprinted ID tag (optional repair)"
+    }
+  ],
+  "npcs": [
+    {
+      "id": "hal",
+      "character": "hal",
+      "start_cell": [
+        13,
+        11
+      ],
+      "facing": "e",
+      "poses_by_state": {
+        "start": "hal_react_puzzled_e",
+        "repair_hub": "hal_crouch_repair_e",
+        "ledger_repair": "hal_crouch_repair_e",
+        "ledger_seated": "hal_seated_stool_s",
+        "alarm_anxious": "hal_react_anxious_s",
+        "alarm_settled": "hal_idle_s",
+        "formula_idle": "hal_idle_e",
+        "formula_puzzled": "hal_react_puzzled_s",
+        "relay_idle": "hal_idle_e",
+        "panel_pull": "hal_false_panel_pull_n",
+        "panel_done": "hal_idle_s"
+      },
+      "cells_by_state": {
+        "start": [
+          13,
+          11
+        ],
+        "repair_hub": [
+          13,
+          11
+        ],
+        "ledger_repair": [
+          2,
+          18
+        ],
+        "ledger_seated": [
+          2,
+          18
+        ],
+        "alarm_anxious": [
+          3,
+          12
+        ],
+        "alarm_settled": [
+          3,
+          12
+        ],
+        "formula_idle": [
+          17,
+          3
+        ],
+        "formula_puzzled": [
+          17,
+          3
+        ],
+        "relay_idle": [
+          32,
+          7
+        ],
+        "panel_pull": [
+          15,
+          14
+        ],
+        "panel_done": [
+          15,
+          14
+        ]
+      },
+      "note": "One Hal moves between rooms; each state sets pose and cell together (npc_state). Crouched repair (levels 12-13), seated on the stool (end of 13) and the false-panel pull (16) use the drawn poses hal_crouch_repair_e, hal_seated_stool_s (stool prop `stool_folding` from hal-props-atlas.json drawn under him) and hal_false_panel_pull_n (one-shot, holds the last frame). On frame 2 of the pull the renderer swaps the machine's `routing_panel_closed` part for `routing_panel_open`."
+    },
+    {
+      "id": "mira",
+      "character": "mira",
+      "start_cell": [
+        12,
+        9
+      ],
+      "facing": "s",
+      "poses_by_state": {
+        "start": "mira_idle_s",
+        "offering": "mira_interact_s",
+        "relay_pleased": "mira_react_pleased_s"
+      },
+      "cells_by_state": {
+        "start": [
+          12,
+          9
+        ],
+        "offering": [
+          12,
+          9
+        ],
+        "relay_pleased": [
+          29,
+          7
+        ]
+      },
+      "note": "At the chute until level 16 completes, then in the relay room (Glyph Dispatch); she offers both routes there."
+    },
+    {
+      "id": "worker-payroll-check",
+      "character": "bgworker_b",
+      "start_cell": [
+        30,
+        17
+      ],
+      "facing": "s",
+      "poses_by_state": {
+        "start": "bgworker_b_idle_typing_s"
+      },
+      "note": "Typing at the ID check desk; idle offset is random per worker, not synchronised."
+    },
+    {
+      "id": "worker-hub-patrol",
+      "character": "bgworker_a",
+      "start_cell": [
+        20,
+        16
+      ],
+      "facing": "e",
+      "patrol": [
+        [
+          20,
+          16
+        ],
+        [
+          24,
+          16
+        ],
+        [
+          24,
+          18
+        ],
+        [
+          20,
+          18
+        ]
+      ],
+      "patrol_clock": "independent",
+      "poses_by_state": {
+        "start": "bgworker_a_walk_e"
+      },
+      "note": "Walks a loop on the hub's south-east floor; independent clock because Orientation level 06 is long complete."
+    }
+  ],
+  "routes": {
+    "main": [
+      {
+        "level": "systems-12",
+        "label": "Elevator to the payroll keypad: north up the spine, east along the band and through the payroll gap",
+        "from": [
+          23,
+          3
+        ],
+        "to": [
+          32,
+          14
+        ],
+        "cells": [
+          [
+            23,
+            3
+          ],
+          [
+            23,
+            4
+          ],
+          [
+            23,
+            5
+          ],
+          [
+            23,
+            6
+          ],
+          [
+            23,
+            7
+          ],
+          [
+            23,
+            8
+          ],
+          [
+            23,
+            9
+          ],
+          [
+            23,
+            10
+          ],
+          [
+            23,
+            11
+          ],
+          [
+            23,
+            12
+          ],
+          [
+            23,
+            13
+          ],
+          [
+            23,
+            14
+          ],
+          [
+            23,
+            15
+          ],
+          [
+            23,
+            16
+          ],
+          [
+            24,
+            16
+          ],
+          [
+            25,
+            16
+          ],
+          [
+            26,
+            16
+          ],
+          [
+            27,
+            16
+          ],
+          [
+            28,
+            16
+          ],
+          [
+            29,
+            16
+          ],
+          [
+            30,
+            16
+          ],
+          [
+            31,
+            16
+          ],
+          [
+            32,
+            16
+          ],
+          [
+            32,
+            15
+          ],
+          [
+            32,
+            14
+          ]
+        ]
+      },
+      {
+        "level": "systems-13",
+        "label": "Payroll wing to the refund ledger: back through the gap, west along row 18 and the ledger branch",
+        "from": [
+          32,
+          14
+        ],
+        "to": [
+          3,
+          18
+        ],
+        "cells": [
+          [
+            32,
+            14
+          ],
+          [
+            32,
+            15
+          ],
+          [
+            32,
+            16
+          ],
+          [
+            31,
+            16
+          ],
+          [
+            30,
+            16
+          ],
+          [
+            29,
+            16
+          ],
+          [
+            28,
+            16
+          ],
+          [
+            27,
+            16
+          ],
+          [
+            26,
+            16
+          ],
+          [
+            25,
+            16
+          ],
+          [
+            24,
+            16
+          ],
+          [
+            23,
+            16
+          ],
+          [
+            22,
+            16
+          ],
+          [
+            21,
+            16
+          ],
+          [
+            21,
+            17
+          ],
+          [
+            21,
+            18
+          ],
+          [
+            20,
+            18
+          ],
+          [
+            19,
+            18
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            15,
+            18
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            12,
+            18
+          ],
+          [
+            11,
+            18
+          ],
+          [
+            10,
+            18
+          ],
+          [
+            9,
+            18
+          ],
+          [
+            8,
+            18
+          ],
+          [
+            7,
+            18
+          ],
+          [
+            6,
+            18
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            4,
+            18
+          ],
+          [
+            3,
+            18
+          ]
+        ]
+      },
+      {
+        "level": "systems-14",
+        "label": "Ledger room to the alarm label desk: back out the ledger branch, north along the west strip, through the alarm gap",
+        "from": [
+          3,
+          18
+        ],
+        "to": [
+          5,
+          13
+        ],
+        "cells": [
+          [
+            3,
+            18
+          ],
+          [
+            4,
+            18
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            6,
+            18
+          ],
+          [
+            7,
+            18
+          ],
+          [
+            8,
+            18
+          ],
+          [
+            9,
+            18
+          ],
+          [
+            10,
+            18
+          ],
+          [
+            10,
+            17
+          ],
+          [
+            10,
+            16
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            10,
+            13
+          ],
+          [
+            9,
+            13
+          ],
+          [
+            8,
+            13
+          ],
+          [
+            7,
+            13
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            5,
+            13
+          ]
+        ]
+      },
+      {
+        "level": "systems-15",
+        "label": "Alarm hall to the formula console: through the hall and the maintenance door (open after 14) to the formula room",
+        "from": [
+          5,
+          13
+        ],
+        "to": [
+          14,
+          3
+        ],
+        "cells": [
+          [
+            5,
+            13
+          ],
+          [
+            4,
+            13
+          ],
+          [
+            3,
+            13
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            3
+          ]
+        ]
+      },
+      {
+        "level": "systems-16",
+        "label": "Formula room to the relay review console: over the glass bridge, along the north strip, up the gallery and through the relay door",
+        "from": [
+          14,
+          3
+        ],
+        "to": [
+          34,
+          7
+        ],
+        "cells": [
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16,
+            3
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            16,
+            5
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            16,
+            7
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            17,
+            8
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            19,
+            8
+          ],
+          [
+            20,
+            8
+          ],
+          [
+            21,
+            8
+          ],
+          [
+            22,
+            8
+          ],
+          [
+            23,
+            8
+          ],
+          [
+            24,
+            8
+          ],
+          [
+            25,
+            8
+          ],
+          [
+            25,
+            7
+          ],
+          [
+            25,
+            6
+          ],
+          [
+            26,
+            6
+          ],
+          [
+            27,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            29,
+            6
+          ],
+          [
+            30,
+            6
+          ],
+          [
+            31,
+            6
+          ],
+          [
+            32,
+            6
+          ],
+          [
+            33,
+            6
+          ],
+          [
+            33,
+            7
+          ],
+          [
+            34,
+            7
+          ]
+        ]
+      }
+    ],
+    "backtrack": [
+      {
+        "id": "bridge-return-loop",
+        "label": "Formula room back to Mira's chute by the return walkway",
+        "from": [
+          14,
+          3
+        ],
+        "to": [
+          11,
+          9
+        ],
+        "after": "systems-12",
+        "cells": [
+          [
+            14,
+            3
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            11,
+            9
+          ]
+        ]
+      },
+      {
+        "id": "alarm-to-formula-door",
+        "label": "Quiet Alarm panel in the alarm hall straight to the formula room through the maintenance door",
+        "from": [
+          4,
+          7
+        ],
+        "to": [
+          14,
+          3
+        ],
+        "after": "systems-14",
+        "cells": [
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "relay-home",
+        "label": "Relay room back to the elevator: relay door, gallery, arrival cell",
+        "from": [
+          34,
+          7
+        ],
+        "to": [
+          23,
+          3
+        ],
+        "after": "systems-15",
+        "cells": [
+          [
+            34,
+            7
+          ],
+          [
+            33,
+            7
+          ],
+          [
+            33,
+            6
+          ],
+          [
+            32,
+            6
+          ],
+          [
+            31,
+            6
+          ],
+          [
+            30,
+            6
+          ],
+          [
+            29,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            27,
+            6
+          ],
+          [
+            26,
+            6
+          ],
+          [
+            25,
+            6
+          ],
+          [
+            24,
+            6
+          ],
+          [
+            24,
+            5
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            23,
+            3
+          ]
+        ]
+      }
+    ],
+    "mira": {
+      "payroll-run": [
+        [
+          32,
+          14
+        ],
+        [
+          3,
+          18
+        ],
+        [
+          12,
+          3
+        ]
+      ],
+      "glyph-dispatch": [
+        [
+          32,
+          14
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          34,
+          4
+        ]
+      ]
+    }
+  },
+  "spawns": [
+    {
+      "id": "spawn-elevator",
+      "cell": [
+        23,
+        3
+      ],
+      "facing": "s",
+      "when": "arriving by the Systems elevator stop"
+    },
+    {
+      "id": "spawn-panel-stop",
+      "cell": [
+        17,
+        14
+      ],
+      "facing": "s",
+      "when": "returning through the false panel from Night Shift (after level 16)"
+    },
+    {
+      "id": "spawn-relay",
+      "cell": [
+        30,
+        5
+      ],
+      "facing": "s",
+      "when": "restarting Glyph Dispatch (Mira's relay start)"
+    }
+  ],
+  "notes": [
+    "Collision is the initial state: gate cells start blocked and the validator opens each gate for later levels.",
+    "Machine footprint (14..19,10..13); atlas lamps at (12,10), (12,12), (13,13), (20,13).",
+    "Walls: north wall rows 0-1; east wall x 36-37; wall A (x 8-9) separates alarm hall and ledger room from hub and formula room; wall B (x 26-27) separates gallery and hub from relay room and payroll wing; west edge and south row are partitions."
+  ]
 }

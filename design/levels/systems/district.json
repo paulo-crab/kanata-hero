@@ -1,320 +1,348 @@
 {
- "id": "systems",
- "name": "Systems",
- "size_cells": [38, 24],
- "kit": "art-direction/kit/systems-atlas.json",
- "palette": "systems",
- "camera_bounds": {
-  "x": 0,
-  "y": 0,
-  "w": 38,
-  "h": 24
- },
- "hub_cell": [17, 16],
- "entrances": [
-  {
-   "id": "elevator-arrival",
-   "cell": [16, 21],
-   "facing": "n",
-   "from": {
-    "district": "systems",
-    "link": "link.elevator.systems"
-   },
-   "note": "The Systems elevator stop opens with the Records seal. The routing machine is straight ahead (north) from the arrival cell."
+  "id": "systems",
+  "name": "Systems",
+  "size_cells": [
+    38,
+    24
+  ],
+  "kit": "art-direction/kit/systems-atlas.json",
+  "palette": "systems",
+  "camera_bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 38,
+    "h": 24
   },
-  {
-   "id": "panel-stop-return",
-   "cell": [17, 14],
-   "facing": "s",
-   "from": {
-    "district": "systems",
-    "link": "link.elevator.systems"
-   },
-   "note": "Arrival from Night Shift through the machine's false panel (after level 16). world.json has no link between systems and nightshift, so this reuses the Systems elevator link; the producer may add a link such as link.panel.systems-nightshift."
-  }
- ],
- "exits": [
-  {
-   "id": "elevator-exit",
-   "cell": [16, 21],
-   "to": {
-    "district": "systems",
-    "link": "link.elevator.systems"
-   },
-   "note": "Face the elevator (16..18,22) and interact; the elevator map offers every unlocked district."
-  },
-  {
-   "id": "panel-stop",
-   "cell": [17, 14],
-   "to": {
-    "district": "systems",
-    "link": "link.elevator.systems"
-   },
-   "requires": "seal:systems",
-   "locked_sign": "The false panel on the machine's face stays shut until the Systems seal is earned.",
-   "note": "Intended target is the Night Shift elevator stop; the link id is a stand-in until world.json has a systems/nightshift link."
-  }
- ],
- "elevator": {
-  "cell": [16, 22],
-  "facing": "n",
-  "placement": "elevator",
-  "link": "link.elevator.systems",
-  "arrival_cell": [16, 21],
-  "note": "Three cells wide (16..18,22) with the call panel at (19,22); the elevator always returns to unlocked districts."
- },
- "light_states": [
-  {
-   "id": "circuit-cobalt-lit",
-   "description": "After level 12: the payroll node lamps and the cobalt conduit from hub to payroll wing are lit; the payroll wing lamp comes on.",
-   "applies_when": "t12-complete",
-   "changes": [
+  "hub_cell": [
+    17,
+    16
+  ],
+  "entrances": [
     {
-     "placement": "lamp_payroll",
-     "state": "on"
-    },
-    {
-     "placement": "conduit_cobalt_01",
-     "state": "lit"
-    },
-    {
-     "placement": "routing_node_10",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "warning-steady",
-   "description": "After level 13: the machine's warning light steadies and the ledger room lamp comes on.",
-   "applies_when": "t13-complete",
-   "changes": [
-    {
-     "placement": "warning_lamp",
-     "state": "on"
-    },
-    {
-     "placement": "lamp_ledger",
-     "state": "on"
-    }
-   ]
-  },
-  {
-   "id": "circuit-mint-lit",
-   "description": "After level 14: the mint conduit lights from the hub to the alarm hall, the six alarm lights take six hues and the alarm hall lamp comes on.",
-   "applies_when": "t14-complete",
-   "changes": [
-    {
-     "placement": "lamp_alarm",
-     "state": "on"
-    },
-    {
-     "placement": "conduit_mint_01",
-     "state": "lit"
-    },
-    {
-     "placement": "alarm_board",
-     "state": "labeled_6"
-    }
-   ]
-  },
-  {
-   "id": "circuit-orange-sightline",
-   "description": "After level 15: the orange conduit lights, the formula wall is fully lit, the bridge shutters open to a clear sight line back to the machine and the formula room lamp comes on.",
-   "applies_when": "t15-complete",
-   "changes": [
-    {
-     "placement": "lamp_formula",
-     "state": "on"
-    },
-    {
-     "placement": "bridge_shutter",
-     "state": "open"
-    },
-    {
-     "placement": "conduit_orange_01",
-     "state": "lit"
-    },
-    {
-     "placement": "formula_wall",
-     "state": "lit"
-    }
-   ]
-  },
-  {
-   "id": "all-circuits",
-   "description": "After level 16: the machine lights in sequence (landmark after state), hub lamps widen to the pulse glow, the relay conduits are lit and the relay room lamp comes on.",
-   "applies_when": "t16-complete",
-   "changes": [
-    {
-     "placement": "routing_machine",
-     "state": "after"
-    },
-    {
-     "placement": "lamp_hub_1",
-     "state": "pulse"
-    },
-    {
-     "placement": "lamp_hub_2",
-     "state": "pulse"
-    },
-    {
-     "placement": "lamp_hub_3",
-     "state": "pulse"
-    },
-    {
-     "placement": "lamp_hub_4",
-     "state": "pulse"
-    },
-    {
-     "placement": "lamp_relay",
-     "state": "on"
-    },
-    {
-     "placement": "conduit_relay_cobalt_1",
-     "state": "lit"
-    },
-    {
-     "placement": "conduit_relay_orange_1",
-     "state": "lit"
-    },
-    {
-     "placement": "conduit_relay_mint_1",
-     "state": "lit"
-    }
-   ]
-  }
- ],
- "ambient": "Low ventilation, relay clicks and bridge footfalls; routing clicks build a sequence one circuit at a time, with no failure alarm over text. After the review the circuits illuminate in sequence, a service walkway opens, and the Night Shift elevator stop is revealed.",
- "side_quests": [
-  {
-   "id": "quiet-alarm",
-   "title": "Quiet Alarm",
-   "giver": "hal",
-   "available_after": "systems-15",
-   "interactions": [
-    "quiet-alarm-panel"
-   ],
-   "terminal_scenes": [
-    {
-     "id": "systems-side-quiet-alarm",
-     "kind": "editor",
-     "task_summary": "Quiet Alarm: correct a short expression so one alert can be muted accurately. Add the closing bracket, then repair the transposed alert number with Caps navigation and editing.",
-     "success_criteria": [
-      "Text equals mute(alert#14)",
-      "The # and ( stay as typed; only the bracket and the number change"
-     ],
-     "retry": "instant",
-     "position_cue": false,
-     "confidence": "output-observed",
-     "task": {
-      "prompt": "The mute rule reads 'mute(alert#41'. Close the bracket and make the alert number 14.",
-      "initial": "mute(alert#41",
-      "target": "mute(alert#14)",
-      "steps": [
-       "Type ) at the end with held Space + P",
-       "Caps + H moves Left once, before the )",
-       "Caps + M deletes the 1 and the 4",
-       "Type 1 then 4 with held Space + A and held Space + F"
+      "id": "elevator-arrival",
+      "cell": [
+        23,
+        3
       ],
-      "accepts": "text equals mute(alert#14)",
-      "rejects": [
-       "the # replaced by a lookalike",
-       "a base-row digit used for the number (not detectable; the UI never claims it)"
-      ],
-      "feedback": {
-       "wrong_character": "Observed {observed}; the rule must read mute(alert#14)."
+      "facing": "s",
+      "from": {
+        "district": "systems",
+        "link": "link.elevator.systems"
       },
-      "layout": "no overlay; untimed; unlimited retries"
-     },
-     "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+      "note": "The Systems elevator stop opens with the Records seal. The gallery runs south to the hub; the routing machine is south-west, visible down the gallery."
+    },
+    {
+      "id": "panel-stop-return",
+      "cell": [
+        17,
+        14
+      ],
+      "facing": "s",
+      "from": {
+        "district": "systems",
+        "link": "link.panel.systems-nightshift"
+      },
+      "note": "Arrival from Night Shift through the machine's false panel (after level 16), on the world link `link.panel.systems-nightshift`."
     }
-   ],
-   "gestures": [
+  ],
+  "exits": [
     {
-     "id": "S21",
-     "phases": [
-      "recall"
-     ],
-     "scene_id": "systems-side-quiet-alarm"
+      "id": "elevator-exit",
+      "cell": [
+        23,
+        3
+      ],
+      "to": {
+        "district": "systems",
+        "link": "link.elevator.systems"
+      },
+      "note": "Face the elevator (22..24,1) from the mat and interact; the elevator map offers every unlocked district."
     },
     {
-     "id": "S01",
-     "phases": [
-      "recall"
-     ],
-     "scene_id": "systems-side-quiet-alarm"
-    },
-    {
-     "id": "S04",
-     "phases": [
-      "recall"
-     ],
-     "scene_id": "systems-side-quiet-alarm"
-    },
-    {
-     "id": "N01",
-     "phases": [
-      "recall"
-     ],
-     "scene_id": "systems-side-quiet-alarm"
-    },
-    {
-     "id": "N13",
-     "phases": [
-      "recall"
-     ],
-     "scene_id": "systems-side-quiet-alarm"
+      "id": "panel-stop",
+      "cell": [
+        17,
+        14
+      ],
+      "to": {
+        "district": "systems",
+        "link": "link.panel.systems-nightshift"
+      },
+      "requires": "seal:systems",
+      "locked_sign": "The false panel on the machine's face stays shut until the Systems seal is earned.",
+      "note": "Walk into the false panel on the machine's face once the Systems seal is earned: it leads to the Night Shift stop on the world link `link.panel.systems-nightshift`."
     }
-   ],
-   "dialogue": [
-    {
-     "id": "sq-quiet-ask",
-     "speaker": "hal",
-     "portrait": "neutral",
-     "text": "One alert keeps firing, and I need to mute exactly that one. This short rule is wrong; can you correct it at the quiet-alarm panel?",
-     "hint": null,
-     "when": "interact:quiet-alarm-panel",
-     "cue": "Hal neutral: Quiet Alarm"
-    },
-    {
-     "id": "sq-quiet-done",
-     "speaker": "hal",
-     "portrait": "neutral",
-     "text": "That mutes the one alert and nothing else. Thank you; the hall is quieter already.",
-     "hint": null,
-     "when": "scene_success:systems-side-quiet-alarm",
-     "cue": "Hal neutral: Quiet Alarm"
-    }
-   ],
-   "reward": {
-    "kind": "dialogue",
-    "dialogue": "sq-quiet-done",
-    "note": "Dialogue only: no seal, skill, artifact or desk decoration; the alarm hall stays a quick revisit for symbol practice."
-   }
-  }
- ],
- "pace_signs": [
-  {
-   "placement": "pace_sign_bridge",
-   "state": "default",
-   "text": "Glass bridge: extended routes only."
+  ],
+  "elevator": {
+    "cell": [
+      22,
+      0
+    ],
+    "facing": "s",
+    "placement": "elevator",
+    "link": "link.elevator.systems",
+    "arrival_cell": [
+      23,
+      3
+    ],
+    "note": "A north-wall 3x3 module at the head of the gallery (x 22-24, lit mat on row 2) with its call panel at (25,0); the hub and the routing machine lie south-west, down the gallery. The elevator always returns to unlocked districts."
   },
-  {
-   "placement": "pace_sign_payroll",
-   "state": "default",
-   "text": "Payroll: every ID verified by route."
-  },
-  {
-   "placement": "pace_sign_alarm",
-   "state": "repeat",
-   "text": "Alerts are acknowledged. Alerts are acknowledged.",
-   "after_level": "systems-12"
-  }
- ],
- "notes": [
-  "Three conduit families stay visually separate: cobalt (payroll, east), mint (alarm, west), orange (formula, north over the bridge).",
-  "Placements for the landmark: footprint (14..19,10..13); the atlas lamps land on (12,10), (12,12), (13,13) and (20,13); the false panel is on the south face at cells (16..17,13); the service walkway part lands on (20..21,11..12).",
-  "Gates: the bridge and return walkway (gate cells (15..16,6..7) and (10..11,6..7)) open after level 12, the maintenance door after 14, the relay door after 15.",
-  "Landmark parts (nodes, beacon, ports, stubs, core, walkway, panel) exist only as before and after states, so progressive machine lighting in levels 12 to 14 uses conduits, node lamps, the warning lamp and room lamps instead; see NEEDS_ART.md for the intermediate landmark states that would let the machine itself light per level."
- ]
+  "light_states": [
+    {
+      "id": "circuit-cobalt-lit",
+      "description": "After level 12: the payroll keypad nodes and the cobalt conduit from hub to payroll wing are lit; the payroll wing lamp comes on.",
+      "applies_when": "t12-complete",
+      "changes": [
+        {
+          "placement": "lamp_payroll",
+          "state": "on"
+        },
+        {
+          "placement": "conduit_cobalt_01",
+          "state": "lit"
+        },
+        {
+          "placement": "payroll_keypad",
+          "state": "lit"
+        }
+      ]
+    },
+    {
+      "id": "warning-steady",
+      "description": "After level 13: the machine's warning light steadies, the ledger room lamp comes on and the courier chute shows a slip.",
+      "applies_when": "t13-complete",
+      "changes": [
+        {
+          "placement": "warning_lamp",
+          "state": "on"
+        },
+        {
+          "placement": "lamp_ledger",
+          "state": "on"
+        }
+      ]
+    },
+    {
+      "id": "circuit-mint-lit",
+      "description": "After level 14: the mint conduit lights from the hub to the alarm hall, the six alarm lights take six hues and the alarm hall lamp comes on.",
+      "applies_when": "t14-complete",
+      "changes": [
+        {
+          "placement": "lamp_alarm",
+          "state": "on"
+        },
+        {
+          "placement": "conduit_mint_01",
+          "state": "lit"
+        },
+        {
+          "placement": "alarm_board",
+          "state": "separated"
+        }
+      ]
+    },
+    {
+      "id": "circuit-orange-sightline",
+      "description": "After level 15: the orange conduit lights, the formula wall is fully lit (kit state lit), the bridge shutters open to a clear sight line back to the machine and the formula room lamp comes on.",
+      "applies_when": "t15-complete",
+      "changes": [
+        {
+          "placement": "lamp_formula",
+          "state": "on"
+        },
+        {
+          "placement": "bridge_shutter",
+          "state": "open"
+        },
+        {
+          "placement": "conduit_orange_01",
+          "state": "lit"
+        },
+        {
+          "placement": "formula_wall",
+          "state": "lit"
+        },
+        {
+          "placement": "bridge_shutter_b",
+          "state": "open"
+        }
+      ]
+    },
+    {
+      "id": "all-circuits",
+      "description": "After level 16: the machine lights in sequence (landmark after state), hub lamps widen to the pulse glow, the relay conduits are lit and the relay room lamp comes on.",
+      "applies_when": "t16-complete",
+      "changes": [
+        {
+          "placement": "routing_machine",
+          "state": "after"
+        },
+        {
+          "placement": "lamp_hub_1",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_hub_2",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_hub_3",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_hub_4",
+          "state": "pulse"
+        },
+        {
+          "placement": "lamp_relay",
+          "state": "on"
+        },
+        {
+          "placement": "conduit_relay_cobalt_1",
+          "state": "lit"
+        },
+        {
+          "placement": "conduit_relay_orange_1",
+          "state": "lit"
+        },
+        {
+          "placement": "conduit_relay_mint_1",
+          "state": "lit"
+        }
+      ]
+    }
+  ],
+  "ambient": "Low ventilation, relay clicks and bridge footfalls; routing clicks build a sequence one circuit at a time, with no failure alarm over text. After the review the circuits illuminate in sequence, a service walkway opens, and the Night Shift elevator stop is revealed.",
+  "side_quests": [
+    {
+      "id": "quiet-alarm",
+      "title": "Quiet Alarm",
+      "giver": "hal",
+      "available_after": "systems-15",
+      "interactions": [
+        "quiet-alarm-panel"
+      ],
+      "terminal_scenes": [
+        {
+          "id": "systems-side-quiet-alarm",
+          "kind": "editor",
+          "task_summary": "Quiet Alarm: correct a short expression so one alert can be muted accurately. Add the closing bracket, then repair the transposed alert number with Caps navigation and editing.",
+          "success_criteria": [
+            "Text equals mute(alert#14)",
+            "The # and ( stay as typed; only the bracket and the number change"
+          ],
+          "retry": "instant",
+          "position_cue": false,
+          "confidence": "output-observed",
+          "task": {
+            "prompt": "The mute rule reads 'mute(alert#41'. Close the bracket and make the alert number 14.",
+            "initial": "mute(alert#41",
+            "target": "mute(alert#14)",
+            "steps": [
+              "Type ) at the end with held Space + P",
+              "Caps + H moves Left once, before the )",
+              "Caps + M deletes the 1 and the 4",
+              "Type 1 then 4 with held Space + A and held Space + F"
+            ],
+            "accepts": "text equals mute(alert#14)",
+            "rejects": [
+              "the # replaced by a lookalike",
+              "a base-row digit used for the number (not detectable; the UI never claims it)"
+            ],
+            "feedback": {
+              "wrong_character": "Observed {observed}; the rule must read mute(alert#14)."
+            },
+            "layout": "no overlay; untimed; unlimited retries"
+          },
+          "note": "Output observed: the editor sees the resulting characters, not the physical Space hold or the active layer."
+        }
+      ],
+      "gestures": [
+        {
+          "id": "S21",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "systems-side-quiet-alarm"
+        },
+        {
+          "id": "S01",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "systems-side-quiet-alarm"
+        },
+        {
+          "id": "S04",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "systems-side-quiet-alarm"
+        },
+        {
+          "id": "N01",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "systems-side-quiet-alarm"
+        },
+        {
+          "id": "N13",
+          "phases": [
+            "recall"
+          ],
+          "scene_id": "systems-side-quiet-alarm"
+        }
+      ],
+      "dialogue": [
+        {
+          "id": "sq-quiet-ask",
+          "speaker": "hal",
+          "portrait": "neutral",
+          "text": "One alert keeps firing, and I need to mute exactly that one. This short rule is wrong; can you correct it at the quiet-alarm panel?",
+          "hint": null,
+          "when": "interact:quiet-alarm-panel",
+          "cue": "Hal neutral: Quiet Alarm"
+        },
+        {
+          "id": "sq-quiet-done",
+          "speaker": "hal",
+          "portrait": "neutral",
+          "text": "That mutes the one alert and nothing else. Thank you; the hall is quieter already.",
+          "hint": null,
+          "when": "scene_success:systems-side-quiet-alarm",
+          "cue": "Hal neutral: Quiet Alarm"
+        }
+      ],
+      "reward": {
+        "kind": "dialogue",
+        "dialogue": "sq-quiet-done",
+        "note": "Dialogue only: no seal, skill, artifact or desk decoration; the alarm hall stays a quick revisit for symbol practice."
+      }
+    }
+  ],
+  "pace_signs": [
+    {
+      "placement": "pace_sign_bridge",
+      "state": "default",
+      "text": "Glass bridge: extended routes only."
+    },
+    {
+      "placement": "pace_sign_payroll",
+      "state": "default",
+      "text": "Payroll: every ID verified by route."
+    },
+    {
+      "placement": "pace_sign_alarm",
+      "state": "repeat",
+      "text": "Alerts are acknowledged. Alerts are acknowledged.",
+      "after_level": "systems-12"
+    }
+  ],
+  "notes": [
+    "Three conduit families stay visually separate: cobalt (payroll, east), mint (alarm, west), orange (formula, north over the bridge).",
+    "Placements for the landmark: footprint (14..19,10..13); the atlas lamps land on (12,10), (12,12), (13,13) and (20,13); the false panel is on the south face at cells (16..17,13); the service walkway part lands on (20..21,11..12).",
+    "Gates: the bridge and return walkway (gate cells (15..16,6..7) and (10..11,6..7)) open after level 12, the maintenance door after 14, the relay door after 15.",
+    "Landmark parts (nodes, beacon, ports, stubs, core, walkway, panel) exist only as before and after states, so progressive machine lighting in levels 12 to 14 uses conduits, node lamps, the warning lamp and room lamps instead; see NEEDS_ART.md for the intermediate landmark states that would let the machine itself light per level."
+  ]
 }
