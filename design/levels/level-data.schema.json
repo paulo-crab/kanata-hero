@@ -51,7 +51,8 @@
           "properties": {
             "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["elevator", "door"]},
             "between": {"type": "array", "items": {"$ref": "#/$defs/district_id"}, "minItems": 1, "maxItems": 2},
-            "seal_required": {"type": ["string", "null"]}, "label": {"$ref": "#/$defs/text"}
+            "seal_required": {"type": ["string", "null"]}, "label": {"$ref": "#/$defs/text"},
+            "cells": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cell"}, "description": "door links: the door cell in each district, keyed by district id; a district exit on this link must use its cell"}
           }}},
         "seals": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
           "type": "object", "required": ["id", "name", "level", "unlocks"], "additionalProperties": false,
@@ -247,7 +248,7 @@
       "properties": {
         "id": {"$ref": "#/$defs/id"}, "speaker": {"$ref": "#/$defs/id"},
         "speaker_kind": {"enum": ["character", "object"]},
-        "portrait": {"type": ["string", "null"], "description": "neutral | concerned | pleased | signature name; null for object speakers"},
+        "portrait": {"type": ["string", "null"], "description": "the expression suffix: neutral | concerned | pleased | the signature suffix (laugh, grin, unimpressed, puzzled, softened). The validator looks up <speaker>_<portrait> in portraits-atlas.json, so noor_unimpressed is written as unimpressed. null for object speakers"},
         "text": {"$ref": "#/$defs/text"}, "hint": {"anyOf": [{"$ref": "#/$defs/hint"}, {"type": "null"}]},
         "when": {"type": "string", "description": "start grammar: step:<id>, trigger:<id>, scene_success:<id>, interact:<id>, on_request:<dialogue id>"},
         "cue": {"type": "string", "description": "why this portrait: the Portrait cue map row used"},

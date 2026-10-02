@@ -1095,6 +1095,9 @@ class DistrictCheck:
                 rep.err(wd, f"exit {ex['id']}: link {ex['to']['link']!r} not in world.json")
             elif ex["to"]["district"] not in lk["between"] or self.id not in lk["between"]:
                 rep.err(wd, f"exit {ex['id']}: link {lk['id']} is between {lk['between']}")
+            link_cell = (lk or {}).get("cells", {}).get(self.id)
+            if link_cell and list(ex["cell"]) != list(link_cell):
+                rep.err(wd, f"exit {ex['id']}: cell {ex['cell']} differs from world.json link {lk['id']} cell {link_cell} for {self.id}")
             if not in_bounds(ex["cell"], size):
                 rep.err(wd, f"exit {ex['id']}: cell out of bounds")
             elif not self.walkable(ex["cell"]) and tuple(ex["cell"]) not in gate_cells_all:

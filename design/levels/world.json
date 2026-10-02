@@ -160,7 +160,17 @@
     "records"
    ],
    "seal_required": "orientation",
-   "label": "Orientation east door (sliding glass, RECORDS mat) to the Records entrance door"
+   "label": "Orientation east door (sliding glass, RECORDS mat) to the Records entrance door",
+   "cells": {
+    "orientation": [
+     26,
+     6
+    ],
+    "records": [
+     0,
+     8
+    ]
+   }
   }
  ],
  "seals": [
