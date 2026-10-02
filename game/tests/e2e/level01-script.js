@@ -18,7 +18,7 @@ function fail(msg) { throw new Error(`level01 script: ${msg}`); }
  *   wrongTries: false skips the deliberate wrong outputs in the popup and label scenes (a clean run for the stars)
  *   wrongDetours: extra wrong-direction steps at the start of the lap (clean-run measure)
  *   recallHint: ask for the hint during the recall walk and confirm the forfeit card
- *   stopAfter: 'setup'|'arrival'|'popup'|'keys'|'lap-leg-1'|'lap'|'stops'|'recall' to stop early (resume tests)
+ *   stopAfter: 'setup'|'arrival'|'popup'|'keys-hint'|'keys'|'lap-leg-1'|'lap'|'stops'|'recall' to stop early (resume tests)
  * @returns {{log:object[], events:object[], checkpoints:object}} everything needed to compare two runs
  */
 export function playLevel01(game, opts = {}) {
@@ -110,6 +110,7 @@ export function playLevel01(game, opts = {}) {
   cp.journalOpened = rec.of('vm:journal').at(-1) != null && machine.top?.kind === 'journal';
   player.tap('q');                                         // Q closes it again
   player.tap('Backquote');
+  if (done('keys-hint')) return { log: player.log, events: rec.events, checkpoints: cp };
   player.tap('?');
   cp.layoutHelpOpened = machine.top?.kind === 'layout-help';
   player.tap('Escape');                                    // back

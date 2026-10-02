@@ -2,7 +2,7 @@
 // `createGame` boot export exist (see harness/game-factory.js); then it runs unchanged.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildHeadlessGame, MemoryStorage } from '../harness/index.js';
+import { buildHeadlessGame, MemoryStorage, ScriptedInput } from '../harness/index.js';
 import { playLevel01, SCRIPT_DATA } from './level01-script.js';
 
 
@@ -83,6 +83,20 @@ test('reload mid-lap restores step, avatar and world state from local progress',
   assert.equal(second.game.rules.currentStep.id, 'o01.s.loop');
   assert.deepEqual([...second.game.world.avatar.cell], cellBefore);
   assert.equal(second.game.world.npc('ivo').pose, 'ivo_wave_s');
+});
+
+test('reload in the middle of the key lines shows the pending instruction, so the step can still finish', async () => {
+  const storage = new MemoryStorage();
+  await run({ stopAfter: 'keys-hint' }, storage);       // journal and hint key done; the Layout help line is on screen
+  const second = await buildHeadlessGame({ storage });
+  const { game } = second;
+  assert.equal(game.rules.currentStep.id, 'o01.s.keys');
+  assert.equal(game.dialogue.instruction().id, 'o01.d.layout-help', 'the line the player was on comes back');
+  const player = new ScriptedInput({ target: game.interpreter, advance: (ms) => { game.clock.advance(ms); game.loop.advance(ms); } });
+  player.tap('?');
+  player.tap('Escape');
+  player.wait(4);
+  assert.ok(game.rules.stepsDone.includes('o01.s.keys'), 'the keys step completes after the reload');
 });
 
 test('blocked storage falls back to memory and the scenario still plays', async () => {
