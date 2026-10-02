@@ -12,8 +12,10 @@ Same method as records_kit.py, with the dark-floor rules of PALETTES_SPEC.md ("N
   3. Night-Shift-only pieces: lamp pools (light layer, where_color), route arrows, the break-room counter,
      the noticeboard, the security vestibule gate, the ledger desk and the landmark.
 
-People get their warm rim (accent step 3) from the renderer, as ADA_SPEC.md decision 1. Props get a
-cool silver edge (glass step 3), so a person and a piece of furniture never share an edge colour.
+People get a cool moonlight rim (glass step 2, #8E96B8) from the renderer by the per-pixel rule `night_rim`
+(palettes/night_rim.py, player decision 2026-10-02), which replaced the warm #F9D79A people rim. Props get a
+silver edge (glass step 3), so a person and a piece of furniture never share an edge colour. The landmark's
+coworker silhouettes behind the lit window keep the warm rim: the room behind them is lit.
 """
 import os
 import sys
@@ -28,6 +30,7 @@ import records_kit as rk  # noqa: E402  (recolour, from_orientation: read only)
 import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
+import night_rim as nr  # noqa: E402  (the people rim: one reference implementation)
 import environment as env  # noqa: E402
 
 T = 16
@@ -60,7 +63,9 @@ def rgb(c):
 FLOOR, WALL, GLASS, WOOD, FOLI, ACC = (_ramp(r) for r in ("floor", "wall", "glass", "wood", "foliage", "accent"))
 FLOOR_FILL, FLOOR_JOINT = FLOOR[3], FLOOR[2]
 SILVER = GLASS[3]            # prop edge light
-RIM = ACC[3]                 # the people's rim, drawn by the renderer
+RIM = ACC[3]                 # WARM rim: only the landmark's backlit window silhouettes use it (draw_figs). Never people.
+PEOPLE_RIM = GLASS[2]        # people's cool moonlight rim, #8E96B8 = dp.NIGHT_RIM (the single source of truth)
+assert PEOPLE_RIM.upper() == dp.DISTRICTS[dp.NIGHT_RIM[0]][dp.NIGHT_RIM[1]][dp.NIGHT_RIM[2]].upper()
 MIN_EDGE = 3.0               # WCAG contrast an upper-left silhouette edge must reach on the dark floor
 
 ORIENT_ATLAS = os.path.join(HERE, "orientation-atlas.json")
@@ -70,23 +75,9 @@ CORAL_S = dp.ORIENTATION_EXTRA["coral"]
 
 # ------------------------------------------------------------------ colour maths
 
-def _lin(c):
-    c = np.asarray(c, float) / 255.0
-    return np.where(c <= 0.03928, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
-
-
-def luminance(rgb):
-    r, g, b = _lin(rgb)
-    return float(0.2126 * r + 0.7152 * g + 0.0722 * b)
-
-
-def contrast(a, b):
-    """WCAG contrast ratio of two colours (hex strings or RGB triples)."""
-    a = kitlib.hex2rgb(a) if isinstance(a, str) else a
-    b = kitlib.hex2rgb(b) if isinstance(b, str) else b
-    la, lb = luminance(a), luminance(b)
-    hi, lo = max(la, lb), min(la, lb)
-    return (hi + 0.05) / (lo + 0.05)
+luminance, contrast = nr.luminance, nr.contrast   # WCAG maths shared with the people rim (palettes/night_rim.py)
+night_rim = nr.night_rim                           # reference implementation of the people rim, see night_rim.py
+night_rim_on_scene = nr.night_rim_on_scene
 
 
 # ------------------------------------------------------------------ night shadows
@@ -150,25 +141,6 @@ def edge_light(sprite, rim=SILVER, bg=FLOOR_FILL, shadow=None, skip_rows=None, m
         near = sum(pad[1 + dy:1 + dy + lit.shape[0], 1 + dx:1 + dx + lit.shape[1]] for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dx, dy) != (0, 0))
         lone = lit & (near == 0)
         out[lone, :3] = sprite[lone, :3]
-    return out
-
-
-def rim_light_ext(sprite, rim_hex=RIM, bg=FLOOR_FILL, minimum=MIN_EDGE):
-    """PROPOSED extension of the renderer's Night Shift rim (not used by the room render): the approved rule lights
-    only outline pixels (#202337) with a transparent pixel above or to the left. This also lights any other
-    upper-left silhouette pixel below `minimum`:1 against the floor fill, i.e. the contour-only darkest steps
-    (the Engineer's hair A and jacket p). The baked key R and anything already bright enough is left alone."""
-    out = sprite.copy()
-    a = sprite[:, :, 3] > 0
-    up = np.ones_like(a)
-    lf = np.ones_like(a)
-    up[1:] = ~a[:-1]
-    lf[:, 1:] = ~a[:, :-1]
-    rimc = rgb(rim_hex)
-    for y, x in zip(*np.nonzero(a & (up | lf))):
-        c = sprite[y, x, :3]
-        if np.array_equal(c, INK[0]) or contrast(c, bg) < minimum:
-            out[y, x, :3] = rimc
     return out
 
 
@@ -644,7 +616,8 @@ SHOULDERS = [9, 12, 14, 14, 14]
 
 def draw_figs(r, figs):
     """Silhouettes of three coworkers behind the glass, cropped by the sill. Ink fill, ink outline, and the
-    renderer-style warm rim (accent step 3) on the upper-left edge, so they read as people lit by the room."""
+    WARM rim (accent step 3, `RIM`) on the upper-left edge: they are backlit by the warm room, unlike the cool-rimmed
+    people on the floor (PEOPLE_RIM)."""
     p = P(r)
     m = np.zeros(r.img.shape[:2], bool)
     for pi, fx, head in figs:

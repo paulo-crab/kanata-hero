@@ -7,7 +7,8 @@ Run: python3 check_palettes.py            (needs numpy only; exit code 1 on any 
   (c) floor       WCAG-style luminance contrast >= 3:1 of the person outline against the floor
                   mid and fill steps (light floors); the cast's mid tones are tabulated, and at
                   least 45% of each sprite's body pixels must reach 3:1 against the floor fill.
-                  Dark Night Shift floor: the edge-light rule instead (rim, pool, shadow tests)
+                  Dark Night Shift floor: the edge-light rule instead (cool moonlight rim >= 2.4:1 on the
+                  floor, ink outline >= 3:1 in a lamp pool, shadow tests; per-pixel rule in night_rim.py)
   (g) violet      no floor or wall step in hue 260-320 degrees with saturation > 12%; floor mid dE from #9477AF is reported
   (f) ramps       adjacent steps of every district ramp are dE >= 8 apart
   (d) shared      ink and violet ramps are identical in every district
@@ -28,6 +29,7 @@ OUTLINE = "#202337"
 MIN_DE_MARKER = 10.0
 MIN_DE_CAST = 12.0
 MIN_CONTRAST = 3.0
+MIN_RIM_CONTRAST = 2.4   # Night Shift people rim (cool moonlight #8E96B8) against the floor: the moonlight level, below the 3:1 of light floors
 MIN_DL_HAIR_SKIN = 12.0  # L* gap between a hair fill step and the skin step it touches
 
 
@@ -215,8 +217,8 @@ def run(verbose=True):
             f"{r['worst']:7.2f} ({r['worst_key']:10}) {r['low']}/{r['n']}  {r['cov'] * 100:6.0f}% / {r['cov_mid'] * 100:3.0f}%")
         bucket = info if r["district"] == "orientation" else fails
         if is_dark_floor(r["district"]):
-            if r["rim"] < MIN_CONTRAST:
-                bucket.append(f"(c) {r['district']}: rim {rim_hex()} only {r['rim']:.2f}:1 against the floor")
+            if r["rim"] < MIN_RIM_CONTRAST:
+                bucket.append(f"(c) {r['district']}: rim {rim_hex()} only {r['rim']:.2f}:1 against the floor (moonlight level {MIN_RIM_CONTRAST}:1)")
         else:
             if r["outline"] < MIN_CONTRAST:
                 bucket.append(f"(c) {r['district']}: outline only {r['outline']:.2f}:1 against the floor")

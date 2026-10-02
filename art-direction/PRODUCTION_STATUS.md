@@ -50,6 +50,7 @@ This is the living production file. **Developers start at [ART_HANDOFF.md](ART_H
 | Night Shift kit (61 entries), long interior window before/after, reference room, readability report | [kit/NIGHTSHIFT_KIT_SPEC.md](kit/NIGHTSHIFT_KIT_SPEC.md) | kit/nightshift_kit.py | 2026-10-02 (director) |
 | Developer handoff: asset index, formats, anchors, layers, tokens, rebuild (build_all.py, check_handoff.py) | [ART_HANDOFF.md](ART_HANDOFF.md) | build_all.py, check_handoff.py | 2026-10-02 (director) |
 | Final consistency pass: Orientation shelving and partitions added (53 entries), statuses, briefs, Pace layer names, handoff | ART_HANDOFF.md, kit/ORIENTATION_KIT_SPEC.md | kit/orientation_kit.py | 2026-10-02 (director) |
+| Night Shift edge light revised (player): cool moonlight on the floor, warm head and shoulders in lamp pools and from Ada's lantern | palettes/PALETTES_SPEC.md, kit/NIGHTSHIFT_KIT_SPEC.md, cast/ADA_SPEC.md | palettes/night_rim.py | 2026-10-02 (director) |
 
 ## Plan
 
@@ -61,3 +62,4 @@ The plan lives in the OpenSpec change [`complete-art-production`](../openspec/ch
 - Hair must never read as a helmet: tufts and strand clusters, an uneven fringe, and ears or nape showing. Never a flat rim line. This came from Ivo.
 - Doors must read as doors: an opening you can see through or a sliding glass door, a frame, lamps, and a lit mat with lettering. This came from the review room.
 - Match the finish and density of reference 08, not the sparse scale-test.
+- Rim and edge lights on characters stay quiet and ambient, never a bright full-edge halo. The warm cream Night Shift rim read like a "selected" highlight and sat close to discovery gold. It became a cool moonlight edge on the open floor, applied only where it beats the plain outline, plus a warm edge on the head and shoulders only where a warm source lights someone (lamp pools, Ada's lantern) (2026-10-02). This came from the Night Shift review.

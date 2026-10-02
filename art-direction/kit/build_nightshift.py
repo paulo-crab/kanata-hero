@@ -13,6 +13,7 @@ Writes into this folder:
   nightshift-reference-room-route.png           collision grid, the BFS routes and the inset, for review
   nightshift-readability.png                    people and furniture edges at x8 with the measured contrast
   nightshift-readability.json                   the same numbers
+  nightshift-rim-final.png                      before (warm rim everywhere) and now (moonlight on the floor, warm head and shoulders in pools), x4
 Then runs the programmatic review (route BFS, inset, doorway and route brightness, palette, landmark, shadow
 and lit-edge readability of every prop, wall top and person, strap contrast) and exits 1 on any failure.
 """
@@ -41,7 +42,9 @@ T = 16
 W_CELLS, H_CELLS = 20, 12
 NIGHT = dp.DISTRICTS["nightshift"]
 FILL, JOINT, POOL = NIGHT["floor"][3], NIGHT["floor"][2], NIGHT["accent"][1]
-RIM_HEX = NIGHT["accent"][3]
+RIM_HEX = nk.PEOPLE_RIM.upper()         # the people's cool moonlight rim (= dp.NIGHT_RIM); the warm rim is only the window silhouettes'
+MIN_FLOOR_EDGE, MIN_POOL_EDGE, MIN_WARM_EDGE = 2.4, 4.0, 2.5   # upper-left people edge: moonlight on the slate; in a pool the warm head-and-shoulders rim (>= 2.5) and the kept ink body outline (>= 4.0)
+HEAD_ROWS = nk.nr.WARM_RIM_ROWS             # sprite rows 0-12: head and shoulders
 BACK = {"floor", "rear_wall", "floor_marking", "rear_prop", "shadow"}
 FRONT = {"front_prop", "light"}
 STATES_BEFORE = {"service_door": "closed", "lamp": "on", "interior_window": "before", "vestibule_gate": "closed",
@@ -186,17 +189,23 @@ def with_states(layout, **st):
 
 # ------------------------------------------------------------------ people
 
-def person_sprite(mod, frame):
-    return bp.rim_light(g.frame_rgba(frame, mod.PAL), RIM_HEX)
+def person_sprite(mod, frame, canvas=None, ax=None, ay=None, bg_hex=None):
+    """A person with the moonlight rim by the per-pixel rule (nk.night_rim): judged against the scene under the
+    frame when a canvas and anchor are given, else against a flat floor or pool colour."""
+    raw = g.frame_rgba(frame, mod.PAL)
+    if canvas is not None:
+        return nk.night_rim_on_scene(canvas, raw, ax, ay, RIM_HEX)
+    return nk.night_rim(raw, nk.nr.flat(raw.shape, bg_hex or FILL), RIM_HEX)
 
 
 def place_person(canvas, mod, frame, ax, ay):
-    """Night Shift renderer order (ADA_SPEC decision 1): contact shadow, sprite, rim over the outline pixels
-    that have a transparent pixel above or to the left. The baked key R is not outline, so it is skipped."""
+    """Night Shift renderer order: contact shadow, then the sprite with the cool moonlight rim by the per-pixel rule
+    against the scene under it (cool on the slate, ink kept in a pool), then the paste. Ada's baked key R is never
+    recoloured."""
     bp.shadow(canvas, ax, ay, NIGHT["floor"][0], dp.INK[0])
     c = type("C", (), {})()
     c.img = canvas
-    g.place_px(c, person_sprite(mod, frame), ax, ay, shadow=False)
+    g.place_px(c, person_sprite(mod, frame, canvas, ax, ay), ax, ay, shadow=False)
 
 
 def render(layout, atlas, states, people=True, layers_back=BACK, layers_front=FRONT):
@@ -286,23 +295,36 @@ def lower_right_edge(sprite):
     return a & (dn | rt) & ~upper_left_edge(sprite)
 
 
-def person_contrast(mod, frame, floor_hex, ext=False):
-    """A person drawn on a flat floor colour. rim: the pixels the renderer recoloured (outline pixels with a
-    transparent pixel above or to the left, per ADA_SPEC decision 1); their min and mean contrast. cover: the
-    share of the upper-left silhouette that is lit, i.e. rimmed, baked or at least 3:1 on its own; gaps: the
-    darkest upper-left pixels that are not lit (contour-only darkest steps such as the Engineer's hair A and
-    jacket p). shade: the lower-right plain outline, which the rim never reaches."""
+def person_contrast(mod, frame, floor_hex, rim=True):
+    """A person drawn on a flat floor or pool colour, with the Night Shift rim by the per-pixel rules (nk.night_rim) or,
+    with rim=False, the plain outline. Threshold: MIN_FLOOR_EDGE on the slate; in a pool MIN_WARM_EDGE on the head
+    and shoulders (rows 0-12, warm rim) and MIN_POOL_EDGE for the kept ink outline of the body rows.
+    edge_*: the upper-left silhouette (opaque pixels with a transparent pixel above or to the left) after the rim.
+    cover: share of it at or above the threshold; gap_px: pixels below it (body colours the rule cannot improve).
+    worse_px: edge pixels that ended up lower than the plain outline version (must be 0).
+    rim_*: the pixels the rim recoloured. head_*: edge pixels on rows 0-12, body_min: rows 13-23. ink_*: the plain-ink outline pixels of the edge (in a pool: body rows only, kept at >= 4:1).
+    shade: the lower-right plain outline, which the rim never reaches."""
     raw = g.frame_rgba(frame, mod.PAL)
-    sp = nk.rim_light_ext(raw, RIM_HEX, floor_hex) if ext else bp.rim_light(raw, RIM_HEX)
+    sp = person_sprite(mod, frame, bg_hex=floor_hex) if rim else raw
     ul, lr = upper_left_edge(sp), lower_right_edge(sp)
-    changed = np.any(sp != raw, axis=2) & ul
-    rim_c = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in zip(*np.nonzero(changed))]
-    thr = 3.0 if floor_hex == FILL else 2.5     # in a pool the approved baseline for a rim is 2.7:1
-    lit = [nk.contrast(sp[y, x, :3], floor_hex) >= thr for y, x in zip(*np.nonzero(ul))]
-    gaps = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in zip(*np.nonzero(ul)) if nk.contrast(sp[y, x, :3], floor_hex) < thr and not changed[y, x]]
+    pool = floor_hex != FILL
+    pts = list(zip(*np.nonzero(ul)))
+    thr_of = (lambda y: MIN_WARM_EDGE if y < HEAD_ROWS else MIN_POOL_EDGE) if pool else (lambda y: MIN_FLOOR_EDGE)
+    edge_c = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in pts]
+    plain_c = [nk.contrast(raw[y, x, :3], floor_hex) for y, x in pts]
+    changed = [(y, x) for y, x in pts if np.any(sp[y, x] != raw[y, x])]
+    rim_c = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in changed]
+    ink = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in pts if tuple(raw[y, x, :3]) == nk.rgb(dp.INK[0]) and (not pool or y >= HEAD_ROWS)]
+    head = [c for (y, x), c in zip(pts, edge_c) if y < HEAD_ROWS]
+    body = [c for (y, x), c in zip(pts, edge_c) if y >= HEAD_ROWS]
+    gaps = [c for (y, x), c in zip(pts, edge_c) if c < thr_of(y)]
     lr_c = [nk.contrast(sp[y, x, :3], floor_hex) for y, x in zip(*np.nonzero(lr))]
-    return {"rim_min": min(rim_c), "rim_mean": float(np.mean(rim_c)), "rim_px": len(rim_c),
-            "cover": float(np.mean(lit)), "gap_px": len(gaps), "gap_min": min(gaps) if gaps else 99.0,
+    return {"edge_min": min(edge_c), "edge_mean": float(np.mean(edge_c)), "edge_px": len(edge_c),
+            "cover": float(np.mean([c >= thr_of(y) for (y, x), c in zip(pts, edge_c)])),
+            "head_min": min(head) if head else 99.0, "head_px": len(head), "body_min": min(body) if body else 99.0, "gap_px": len(gaps), "gap_min": min(gaps) if gaps else 99.0,
+            "worse_px": sum(1 for (y, x), a_, b_ in zip(pts, edge_c, plain_c) if a_ < b_ - 1e-9 and not (pool and y < HEAD_ROWS)),   # in a pool the warm head rim deliberately trades 4.19 for 2.68
+            "rim_px": len(rim_c), "rim_min": min(rim_c) if rim_c else 99.0,
+            "ink_px": len(ink), "ink_min": min(ink) if ink else 99.0,
             "shade_min": min(lr_c), "shade_mean": float(np.mean(lr_c))}
 
 
@@ -577,25 +599,92 @@ def route_image(layout, atlas, canvas):
     Image.alpha_composite(img, ov).convert("RGB").save(os.path.join(HERE, "nightshift-reference-room-route.png"))
 
 
+def legacy_ada_rim(frame_rows, facing):
+    """Ada's previous baked rim, for the before/after comparison only: the outermost contour pixel of each lantern
+    row (13-18) on the lantern's side was R."""
+    out = [list(r) for r in frame_rows]
+    for y in range(13, 19):
+        cols = [x for x, ch in enumerate(out[y]) if ch == "o"]
+        if cols:
+            out[y][max(cols) if facing in "se" else min(cols)] = "R"
+    return ["".join(r) for r in out]
+
+
+def rim_final_image():
+    """nightshift-rim-final.png: open slate floor (left) and a lamp pool (right) at x4, Engineer, Ada, Mira and the
+    Engineer walking. Row 1 is the previous treatment (warm rim everywhere: the extended rule with the warm colour judged
+    against the floor fill, and Ada's lantern rim down her body). Row 2 is the real current rule: night_rim against the
+    scene under each sprite (moonlight on the floor, warm head and shoulders in the pool), Ada's rim on her head and shoulders."""
+    Z, W_, H_ = 4, 112, 40
+    people = [(eng, eng.IDLE["s"][0], None), (ada, ada.IDLE["s"][0], "s"), (mira, mira.IDLE["s"][0], None), (eng, eng.WALK["e"][1], None)]
+    warm = nk.nr.WARM_RIM
+
+    def floor_img(pool):
+        img = np.zeros((H_, W_, 3), np.uint8)
+        img[:] = kitlib.hex2rgb(FILL)
+        img[::16, :] = kitlib.hex2rgb(JOINT)
+        img[:, ::16] = kitlib.hex2rgb(JOINT)
+        if pool:
+            yy, xx = np.mgrid[0:H_, 0:W_]
+            m = ((xx - W_ / 2) / (W_ * 0.48)) ** 2 + ((yy - H_ * 0.62) / (H_ * 0.42)) ** 2 <= 1
+            j = m & np.all(img == kitlib.hex2rgb(JOINT), axis=2)
+            img[m & ~j] = kitlib.hex2rgb(POOL)
+            img[j] = kitlib.hex2rgb(NIGHT["accent"][0])
+        return img
+
+    rows = []
+    for label, now in (("before: warm rim everywhere (previous)", False), ("now: moonlight on the floor, warm head and shoulders in pools", True)):
+        panels = []
+        for pool in (False, True):
+            img = floor_img(pool)
+            for i, (mod, fr, ada_f) in enumerate(people):
+                ax, ay = 14 + i * 26, 34
+                bp.shadow(img, ax, ay, NIGHT["floor"][0], dp.INK[0])
+                if now:
+                    sp = nk.night_rim_on_scene(img, g.frame_rgba(fr, mod.PAL), ax, ay, RIM_HEX)
+                else:
+                    rows_ = legacy_ada_rim(ada.finish(ada.RAW[ada_f], ada_f, baked=False), ada_f) if ada_f else fr
+                    raw = g.frame_rgba(rows_, mod.PAL)
+                    sp = nk.night_rim(raw, nk.nr.flat(raw.shape, FILL), warm)
+                c = type("C", (), {})()
+                c.img = img
+                g.place_px(c, sp, ax, ay, shadow=False)
+            panels.append(Image.fromarray(img).resize((W_ * Z, H_ * Z), Image.NEAREST))
+        rows.append((label, panels))
+    pad, lab = 16, 34
+    out = Image.new("RGB", (pad * 3 + W_ * Z * 2, len(rows) * (H_ * Z + lab + pad) + pad + 30), build_kit.BG)
+    d = ImageDraw.Draw(out)
+    d.text((pad, 8), "Night Shift people rim at x4: open slate floor (left) and inside a lamp pool (right). Engineer, Ada, Mira, Engineer walking.",
+           fill="#F4F2EC", font=bst.font(16, bold=True))
+    y = 40
+    for label, panels in rows:
+        d.text((pad, y), label, fill="#E6B750", font=bst.font(20, bold=True))
+        y += lab
+        for k, pn in enumerate(panels):
+            out.paste(pn, (pad + k * (W_ * Z + pad), y))
+        y += H_ * Z + pad
+    out.save(os.path.join(HERE, "nightshift-rim-final.png"))
+
+
 def readability_sheet(canvas):
     """x8 people on the dark floor and in a lamp pool with the measured contrast (left: floor fill, right: pool), the
-    Engineer again with the proposed extended rim, and x5 crops of furniture from the room."""
+    Engineer again with the plain outline for comparison, and x5 crops of furniture from the room."""
     Z = 8
-    people = [("Engineer", eng, eng.IDLE["s"][0], False), ("Engineer, proposed rim", eng, eng.IDLE["s"][0], True),
-              ("Ada (baked R)", ada, ada.IDLE["s"][0], False), ("Ada W", ada, ada.IDLE["w"][0], False),
-              ("Mira (strap)", mira, mira.IDLE["s"][0], False), ("Mira N", mira, mira.IDLE["n"][0], False)]
+    people = [("Engineer", eng, eng.IDLE["s"][0], True), ("Engineer, plain outline", eng, eng.IDLE["s"][0], False),
+              ("Ada (baked R)", ada, ada.IDLE["s"][0], True), ("Ada W", ada, ada.IDLE["w"][0], True),
+              ("Mira (strap)", mira, mira.IDLE["s"][0], True), ("Mira N", mira, mira.IDLE["n"][0], True)]
     cw, chh = 16 * Z + 28, 24 * Z + 66
     W = len(people) * cw * 2 + 40
     sheet = Image.new("RGB", (W, chh + 420), build_kit.BG)
     d = ImageDraw.Draw(sheet)
-    d.text((16, 10), "Night Shift readability at x8. Left half: dark floor fill. Right half: inside a lamp pool. Warm rim = renderer rim (outline pixels) and Ada's baked key R.",
+    d.text((16, 10), "Night Shift readability at x8. Left half: dark floor fill. Right half: inside a lamp pool. Cool rim = moonlight rim #8E96B8 by the per-pixel rule; Ada's baked key R stays warm.",
            font=bst.font(15, bold=True), fill="#F4F2EC")
-    d.text((16, 34), "rim = the recoloured pixels; cover = share of the upper-left silhouette that is lit; shade = the lower-right plain outline (the rim never reaches it).",
+    d.text((16, 34), "rim = the recoloured pixels; edge = the upper-left silhouette (min contrast, cover = share at the threshold: 2.4 floor, 4.0 pool); shade = the lower-right plain outline.",
            font=bst.font(13), fill="#9FB3BD")
     for half, fill_hex in enumerate((FILL, POOL)):
-        for i, (label, mod, frame, ext) in enumerate(people):
+        for i, (label, mod, frame, rim) in enumerate(people):
             raw = g.frame_rgba(frame, mod.PAL)
-            sp = nk.rim_light_ext(raw, RIM_HEX, fill_hex) if ext else bp.rim_light(raw, RIM_HEX)
+            sp = person_sprite(mod, frame, bg_hex=fill_hex) if rim else raw
             tile = np.zeros((24, 16, 3), np.uint8)
             tile[:] = kitlib.hex2rgb(fill_hex)
             a = sp[:, :, 3] > 0
@@ -603,10 +692,10 @@ def readability_sheet(canvas):
             big = Image.fromarray(np.kron(tile, np.ones((Z, Z, 1), np.uint8)))
             x = 16 + (half * len(people) + i) * cw
             sheet.paste(big, (x, 60))
-            c = person_contrast(mod, frame, fill_hex, ext)
+            c = person_contrast(mod, frame, fill_hex, rim)
             ty = 60 + 24 * Z + 4
             d.text((x, ty), label[:24], font=bst.font(12, bold=True), fill="#F4F2EC")
-            d.text((x, ty + 16), f"rim {c['rim_min']:.1f}:1 min, {c['rim_px']} px", font=bst.font(12), fill="#C5CED0")
+            d.text((x, ty + 16), f"edge {c['edge_min']:.2f}:1 min, rim {c['rim_px']} px", font=bst.font(12), fill="#C5CED0")
             d.text((x, ty + 30), f"cover {100 * c['cover']:.0f}%  gaps {c['gap_px']} px", font=bst.font(12), fill="#C5CED0")
             d.text((x, ty + 44), f"shade {c['shade_min']:.1f}:1 min", font=bst.font(12), fill="#C5CED0")
     Z2 = 5
@@ -662,42 +751,66 @@ def main():
         print(("PASS " if cond else "FAIL ") + name + (f": {detail}" if detail else ""))
         ok_ = ok_ and cond
 
-    # ---- people. The rim is the set of recoloured outline pixels; it must read on the floor and in a pool.
-    print("--- people, idle S N E W: rim = pixels the renderer recolours (outline with a transparent pixel above or to the left) plus Ada's baked R")
-    rim_f = rim_p = 99.0
+    # ---- people. Night Shift rim by the per-pixel rules (nk.night_rim): cool moonlight on the slate; in a lamp pool the
+    # warm rim on the head and shoulders only (rows 0-12) and the ink outline kept on the body.
+    print("--- people, idle S N E W, upper-left silhouette edge after the rim pass "
+          f"(moonlight {RIM_HEX} on the slate; warm {nk.nr.WARM_RIM} on head and shoulders in a pool): floor fill >= {MIN_FLOOR_EDGE}:1, "
+          f"pool head and shoulders >= {MIN_WARM_EDGE}:1, pool body ink outline >= {MIN_POOL_EDGE}:1; Ada's baked R is left alone")
+    edge_f, head_p, ink_p, worse = 99.0, 99.0, 99.0, 0
+    cov_f, cov_p = {}, {}
     for label, f in ppl.items():
-        rf = min(v["floor"]["rim_min"] for v in f.values())
-        rp = min(v["pool"]["rim_min"] for v in f.values())
-        cov = min(v["floor"]["cover"] for v in f.values())
-        gaps = max(v["floor"]["gap_px"] for v in f.values())
-        gmin = min(v["floor"]["gap_min"] for v in f.values())
+        ef = min(v["floor"]["edge_min"] for v in f.values())
+        hp = min(v["pool"]["head_min"] for v in f.values())
+        ip = min(v["pool"]["ink_min"] for v in f.values())
+        bp_ = min(v["pool"]["body_min"] for v in f.values())
+        cov_f[label] = min(v["floor"]["cover"] for v in f.values())
+        cov_p[label] = min(v["pool"]["cover"] for v in f.values())
+        w = sum(v[c]["worse_px"] for v in f.values() for c in ("floor", "pool"))
         shade_f = min(v["floor"]["shade_min"] for v in f.values())
-        shade_p = min(v["pool"]["shade_min"] for v in f.values())
-        rim_f, rim_p = min(rim_f, rf), min(rim_p, rp)
-        print(f"     {label:9s} rim: floor fill min {rf:.2f}:1, pool min {rp:.2f}:1 | lit share of upper-left silhouette {100 * cov:.0f}% "
-              f"(unlit gaps up to {gaps} px, darkest {gmin:.2f}:1) | shaded outline: fill {shade_f:.2f}:1, pool {shade_p:.2f}:1")
-    gate("every person's rimmed contour reaches 3:1 against the floor fill (Engineer, Ada, Mira; idle S N E W)", rim_f >= 3.0, f"min {rim_f:.2f}:1")
-    gate("every person's rimmed contour keeps 2.5:1 inside a lamp pool (the approved in-pool baseline is 2.7:1)", rim_p >= 2.5, f"min {rim_p:.2f}:1")
-    ext = {}
-    for label, mod, frame, ax, ay in PEOPLE:
-        ext[label] = [person_contrast(mod, mod.IDLE[f][0], FILL, ext=True) for f in "snew"]
-    print("     proposed extended rim (not applied in the room): lit share of the upper-left silhouette "
-          + ", ".join(f"{k} {100 * min(c['cover'] for c in v):.0f}%" for k, v in ext.items()))
+        rimpx = sum(v["floor"]["rim_px"] for v in f.values())
+        warmpx = sum(v["pool"]["rim_px"] for v in f.values())
+        edge_f, head_p, ink_p, worse = min(edge_f, ef), min(head_p, hp), min(ink_p, ip), worse + w
+        print(f"     {label:9s} floor fill: edge min {ef:.2f}:1, coverage at 2.4:1 {100 * cov_f[label]:.0f}% ({rimpx} rim px over 4 facings) | "
+              f"pool: head and shoulders min {hp:.2f}:1 ({warmpx} warm px over 4 facings), body ink outline min {ip:.2f}:1 (kept), "
+              f"whole body edge min {bp_:.2f}:1, coverage (2.5 head / 4.0 body) {100 * cov_p[label]:.0f}% | "
+              f"shaded outline on the fill {shade_f:.2f}:1 | pixels worse than the plain outline: {w}")
+    gate(f"every person's upper-left edge pixel reaches {MIN_FLOOR_EDGE}:1 against the floor fill (the moonlight level; Engineer, Ada, Mira; idle S N E W)",
+         edge_f >= MIN_FLOOR_EDGE, f"min {edge_f:.2f}:1")
+    gate("no upper-left edge pixel is worse than the plain outline on the floor fill, or on the body rows in a pool", worse == 0, f"{worse} px worse")
+    gate(f"inside a lamp pool the upper-left edge of the head and shoulders (rows 0-{HEAD_ROWS - 1}) reaches >= {MIN_WARM_EDGE}:1 (warm rim)",
+         head_p >= MIN_WARM_EDGE, f"min {head_p:.2f}:1")
+    gate(f"inside a lamp pool the ink outline of the body's upper-left edge (rows {HEAD_ROWS}-23) is kept at >= {MIN_POOL_EDGE}:1",
+         ink_p >= MIN_POOL_EDGE, f"min {ink_p:.2f}:1")
+    rimmed = {label: [person_contrast(mod, mod.IDLE[f][0], FILL) for f in "snew"] for label, mod, frame, ax, ay in PEOPLE}
     # ---- people as placed
     bgimg = render(layout, atlas, STATES_BEFORE, people=False, layers_back={"floor", "floor_marking"}, layers_front={"light"})
     room_vals = {}
     for label, mod, frame, ax, ay in PEOPLE:
         raw = g.frame_rgba(frame, mod.PAL)
-        sp = person_sprite(mod, frame)
-        ul = upper_left_edge(sp)
-        changed = np.any(sp != raw, axis=2) & ul
-        vals = [nk.contrast(sp[y, x, :3], tuple(bgimg[ay - 24 + y, ax - 8 + x])) for y, x in zip(*np.nonzero(changed))]
-        room_vals[label] = (min(vals), float(np.mean(vals)), len(vals))
-    print("--- people as placed in the room: rim pixels against the floor or pool under each pixel")
-    for label, (mn, mean, n) in room_vals.items():
-        print(f"     {label:9s} {n} rim px, min {mn:.2f}:1, mean {mean:.2f}:1")
-    gate("people as placed: every rim pixel >= 2.5:1 against the floor or pool under it", min(v[0] for v in room_vals.values()) >= 2.5,
-         f"min {min(v[0] for v in room_vals.values()):.2f}:1")
+        patch = bgimg[ay - 24:ay, ax - 8:ax + 8]
+        sp = nk.night_rim(raw, patch, RIM_HEX)
+        changed = np.any(sp != raw, axis=2)
+        vals = []
+        for y, x, bg in nk.nr.upper_left_background(raw, patch):
+            c = nk.contrast(sp[y, x, :3], bg)
+            pool = tuple(int(v) for v in bg) in nk.nr.POOL_COLOURS
+            vals.append(dict(c=c, pool=pool, y=y, changed=bool(changed[y, x]),
+                             worse=c < nk.contrast(raw[y, x, :3], bg) - 1e-9 and not (pool and y < HEAD_ROWS),
+                             ink=tuple(raw[y, x, :3]) == nk.rgb(dp.INK[0])))
+        fl = [v["c"] for v in vals if not v["pool"]]
+        ph = [v["c"] for v in vals if v["pool"] and v["y"] < HEAD_ROWS]
+        pb = [v["c"] for v in vals if v["pool"] and v["y"] >= HEAD_ROWS and v["ink"]]
+        room_vals[label] = dict(floor_min=min(fl) if fl else 99.0, floor_px=len(fl), pool_head_min=min(ph) if ph else 99.0, pool_head_px=len(ph),
+                                pool_ink_min=min(pb) if pb else 99.0, pool_ink_px=len(pb),
+                                rim_px=sum(v["changed"] for v in vals), worse=sum(v["worse"] for v in vals), edge_px=len(vals))
+    print("--- people as placed in the room: upper-left edge pixels against the floor or pool actually under each pixel")
+    for label, v in room_vals.items():
+        print(f"     {label:9s} {v['edge_px']} edge px, {v['rim_px']} rim px; on the slate min {v['floor_min']:.2f}:1 ({v['floor_px']} px); "
+              f"pool head and shoulders min {v['pool_head_min']:.2f}:1 ({v['pool_head_px']} px); body ink kept in pool {v['pool_ink_px']} px, min {v['pool_ink_min']:.2f}:1; worse than plain {v['worse']}")
+    mn = lambda k: min(v[k] for v in room_vals.values())  # noqa: E731
+    gate(f"people as placed: bare floor edge >= {MIN_FLOOR_EDGE}:1, pool head and shoulders >= {MIN_WARM_EDGE}:1, pool body ink outline >= {MIN_POOL_EDGE}:1",
+         mn("floor_min") >= MIN_FLOOR_EDGE and mn("pool_head_min") >= MIN_WARM_EDGE and mn("pool_ink_min") >= MIN_POOL_EDGE and sum(v["worse"] for v in room_vals.values()) == 0,
+         f"floor min {mn('floor_min'):.2f}:1, pool head min {mn('pool_head_min'):.2f}:1, pool body ink min {mn('pool_ink_min'):.2f}:1")
     # ---- strap
     mrep = {f: strap_report(mira.IDLE[f][0], mira, FILL) for f in ("s", "n", "e", "w")}
     mpool = {f: strap_report(mira.IDLE[f][0], mira, POOL) for f in ("s", "n", "e", "w")}
@@ -714,12 +827,14 @@ def main():
     with open(os.path.join(HERE, "nightshift-readability.json"), "w") as fh:
         json.dump({"floor_fill": FILL, "pool": POOL,
                    "people_idle": {k: {f: {c: {m: rnd(x) for m, x in v.items()} for c, v in d.items()} for f, d in fs.items()} for k, fs in ppl.items()},
-                   "people_proposed_rim_cover": {k: [round(c["cover"], 2) for c in v] for k, v in ext.items()},
-                   "people_placed_rim": {k: {"min": rnd(v[0]), "mean": rnd(v[1]), "px": v[2]} for k, v in room_vals.items()},
+                   "people_rim_hex": RIM_HEX,
+                   "people_rim_coverage_floor": {k: [round(c["cover"], 3) for c in v] for k, v in rimmed.items()},
+                   "people_placed": {k: {m: rnd(x) for m, x in v.items()} for k, v in room_vals.items()},
                    "mira_strap_vs_floor": {f: {k: {kk: rnd(vv) for kk, vv in v.items()} if isinstance(v, dict) else rnd(v) for k, v in r_.items()} for f, r_ in mrep.items()},
                    "props_in_room": prop_summary}, fh, indent=1)
         fh.write("\n")
     readability_sheet(before)
+    rim_final_image()
     print("NIGHT SHIFT BUILD", "PASSED" if ok_ else "FAILED")
     sys.exit(0 if ok_ else 1)
 

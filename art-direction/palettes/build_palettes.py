@@ -24,6 +24,7 @@ import district_palettes as dp  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
 import environment as env  # noqa: E402
 import ivo_sprites as ivo  # noqa: E402
+import night_rim as nr  # noqa: E402
 
 BG = "#151C2B"
 INK_TXT = "#F4F2EC"
@@ -81,20 +82,11 @@ def palette_swap(img, district):
     return int((~done).sum()), out
 
 
-def rim_light(sprite, rim_hex):
-    """Night Shift edge-light rule: the outline pixels facing the light (upper-left, i.e. with a
-    transparent pixel above or to the left) are drawn in the rim colour."""
-    out = sprite.copy()
-    h, w = sprite.shape[:2]
-    outline = np.array(rgb(dp.INK[0]), np.uint8)
-    for y in range(h):
-        for x in range(w):
-            if sprite[y, x, 3] and np.array_equal(sprite[y, x, :3], outline):
-                up = y == 0 or not sprite[y - 1, x, 3]
-                left = x == 0 or not sprite[y, x - 1, 3]
-                if up or left:
-                    out[y, x, :3] = rgb(rim_hex)
-    return out
+def rim_light(sprite, rim_hex, bg_hex=None):
+    """Night Shift people rim on a flat background (default: the floor fill). A thin wrapper around night_rim.night_rim,
+    the one reference implementation of the per-pixel rule; scenes use night_rim_on_scene with the real background."""
+    bg = bg_hex or dp.DISTRICTS["nightshift"]["floor"][dp.FLOOR_FILL]
+    return nr.night_rim(sprite, nr.flat(sprite.shape, bg), rim_hex)
 
 
 def lamp_pool(img, district, cx, cy, rx, ry):
@@ -132,8 +124,8 @@ def render_tile(district):
     people = [(eng, eng.IDLE["s"][0], 40, 78), (ivo, ivo.IDLE["s"][0], 68, 82)]
     for mod, frame, ax, ay in people:
         sp = g.frame_rgba(frame, mod.PAL)
-        if night:
-            sp = rim_light(sp, dp.DISTRICTS[dp.NIGHT_RIM[0]][dp.NIGHT_RIM[1]][dp.NIGHT_RIM[2]])
+        if night:   # per-pixel rule against the scene under the frame: cool rim on the slate, ink kept in the pool
+            sp = nr.night_rim_on_scene(img, sp, ax, ay, dp.DISTRICTS[dp.NIGHT_RIM[0]][dp.NIGHT_RIM[1]][dp.NIGHT_RIM[2]])
         shadow(img, ax, ay, outer, core)
         g.place_px(c, sp, ax, ay, shadow=False)
     crop = img[:TILE_H, :TILE_W]

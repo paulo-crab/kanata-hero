@@ -30,7 +30,7 @@ The floor fill `#4C5865` is 2.1:1 against the ink outline, so the Orientation sh
 1. **Shadows re-keyed.** Orientation's contact shadows use ink steps 2 and 3, which are lighter than this floor and would read as a glow. Inside each entry's `contact_shadow` rect they become floor step 0 (nearest the base) and `#202337`. `env.Room.cast` is patched the same way for the pieces drawn here. Brightest shadow pixel: luminance 0.018 against 0.095 for the fill.
 2. **Lit edge.** Every upper-left silhouette pixel (transparent above or to the left) that is below 3:1 against the fill becomes muted silver (glass step 3, `#D0D4E4`, 4.9:1). Pixels already bright enough are kept. The top-left outline of a desk, partition, counter, chair, lamp post and planter is therefore a 1 px light step; ragged leaf outlines drop isolated lit pixels so they read as runs, not frost. Tiling walls light only their top edge, so tile joints show no ticks.
 
-People keep the renderer's warm rim (`#F9D79A`), props get silver, so a person and a piece of furniture never share an edge colour.
+People get the renderer's rim by the per-pixel rules `night_rim` (`palettes/night_rim.py`, re-exported as `nightshift_kit.night_rim`): cool moonlight (`#8E96B8`, glass step 2) on the open floor; where a warm source lights someone (a lamp pool, Ada's lantern) the warm edge `#F9D79A` limited to the head and shoulders (sprite rows 0-12, `WARM_RIM_ROWS`). Props get silver, so a person and a piece of furniture never share an edge colour. Player decisions, 2026-10-02: the earlier warm `#F9D79A` people rim everywhere read as a "selected" highlight and sat near discovery gold. An upper-left person pixel is recoloured to the moonlight only if it is `#202337` or below 3:1 against the scene behind it and the rim contrasts with that background more than the pixel does: cool on the slate (2.49:1 against 2.13:1), ink kept on the body inside a pool (4.19:1 against 1.27:1). Over a pool colour, head and shoulders ink becomes warm when that reaches 2.5:1 (2.68:1 on `#B8745A`). Ada's baked lantern rim (R) is warm and baked on the lantern side of her head and shoulders only. The landmark's coworker silhouettes behind the lit window keep their warm rim (`RIM`, accent step 3), because the room behind them is lit; `PEOPLE_RIM` is the separate constant for people.
 
 ## Contents
 
@@ -59,7 +59,7 @@ A pool is two `light` entries with the same mask: `_fill` recolours the bare flo
 | Change after (levels.md 18, 19) | How |
 | --- | --- |
 | The break room behind the glass lights warm | `window_panes_before` (dark indigo glass, empty room) swaps for `window_panes_after` (strip light, pale back wall, wainscot, lit floor, a mug shelf or a pendant lamp per pane) |
-| Coworker silhouettes appear and move | `window_figs_after_a`: three ink busts (crop, bun, cap) with a warm rim; frames `a` and `b` alternate at 700 ms as state set `window_figs` |
+| Coworker silhouettes appear and move | `window_figs_after_a`: three ink busts (crop, bun, cap) with a warm rim (they are backlit by the lit room, so they keep it); frames `a` and `b` alternate at 700 ms as state set `window_figs` |
 | Warm bands fall on the floor below | `window_spill_after` (accent 0) and `window_spill_core_after` (accent 1, only where the first is already drawn), `where_color` on the bare floor fill |
 | End lamps wake | both lamps go from the steady glow to the pulse glow |
 
@@ -67,7 +67,7 @@ The two states differ in 3977 px in the room (`nightshift-landmark-states.png`).
 
 ## Reference room
 
-20×12 cells (view 320×180). Route B (the Caps route, cols 10 to 11 north, then east along rows 4 to 5 to the service door) is lit by three route pools, warm arrows, a doorway pool and silver inlay lines, and lined with lit stations and a terminal nook. Route A (the old route, cols 5 to 6) has only inlay lines, is lined with dark legacy stations and is closed by the vestibule gate. The ledger desk sits at the west end of the window wall, the break counter and noticeboard at the east end. The Engineer, Ada and Mira stand on the routes, drawn by the renderer in the ADA_SPEC order: contact shadow (floor step 0 outer, `#202337` core), sprite, rim pass; `light` layers last.
+20×12 cells (view 320×180). Route B (the Caps route, cols 10 to 11 north, then east along rows 4 to 5 to the service door) is lit by three route pools, warm arrows, a doorway pool and silver inlay lines, and lined with lit stations and a terminal nook. Route A (the old route, cols 5 to 6) has only inlay lines, is lined with dark legacy stations and is closed by the vestibule gate. The ledger desk sits at the west end of the window wall, the break counter and noticeboard at the east end. The Engineer, Ada and Mira stand on the routes, drawn by the renderer in the ADA_SPEC order: contact shadow (floor step 0 outer, `#202337` core), sprite with the moonlight rim pass judged against the scene under it, then the paste; `light` layers last.
 
 Programmatic review (`build_nightshift.py`, all pass):
 
@@ -91,23 +91,27 @@ Programmatic review (`build_nightshift.py`, all pass):
 
 Measured by `build_nightshift.py`, numbers in `nightshift-readability.json`, picture in `nightshift-readability.png`.
 
-| | Rim on the floor fill | Rim in a pool | Shaded outline (fill / pool) | Lit share of the upper-left silhouette |
-| --- | --- | --- | --- | --- |
-| Engineer | 5.26:1 | 2.68:1 | 1.5 / 1.3 | 76% |
-| Ada (rim plus baked R) | 5.26:1 | 2.68:1 | 1.3 / 2.6 | 97% |
-| Mira | 5.26:1 | 2.68:1 | 1.4 / 2.7 | 94% |
+Idle S N E W, upper-left silhouette after the rim pass (moonlight `#8E96B8` on the floor; warm `#F9D79A` on head and shoulders in a pool):
 
-- The rimmed contour (the pixels the approved rim rule recolours) reaches 5.26:1 against the floor for every person and facing, 2.68:1 in a pool, and as placed in the room no rim pixel falls below 2.68:1.
-- **Finding.** The approved rule lights only `#202337` outline pixels. The Engineer's upper-left edge includes contour-only darkest steps (hair A `#2B1E26`, jacket p `#1B4450`, down to 1.2:1), so about a quarter of it stays dark. Ada's sprite keeps ink on every edge, so hers is nearly complete. Mira's is 94%.
+| | Floor fill: edge min / coverage at 2.4:1 | Pool: head and shoulders min (warm) | Pool: body ink outline kept | Pool coverage (2.5 head, 4.0 body) | Shaded outline (fill / pool) |
+| --- | --- | --- | --- | --- | --- |
+| Engineer | 2.49:1 / 100% | 2.68:1 | 4.19:1 | 94% | 1.5 / 1.3 |
+| Ada (baked R on head and shoulders) | 2.49:1 / 100% | 2.68:1 | 4.19:1 | 100% | 1.3 / 2.6 |
+| Mira | 2.49:1 / 100% | 2.68:1 | 4.19:1 | 97% | 1.4 / 2.7 |
+
+- **Gates (people, `build_nightshift.py`).** On the open floor every upper-left edge pixel of each person reaches at least 2.4:1 against the floor fill (the moonlight level; measured 2.49:1). Inside a pool the upper-left edge of the head and shoulders (rows 0-12) reaches at least 2.5:1 (warm rim, measured 2.68:1) and the body's ink outline (rows 13-23) is kept at at least 4.0:1 (measured 4.19:1). No edge pixel is worse than the plain outline on the floor or on the body rows in a pool (0 px). As placed in the room the same gates hold against the floor or pool actually under each pixel: floor min 2.49:1, pool head and shoulders min 2.68:1, pool body ink min 4.19:1.
+- **Coverage, honestly.** Coverage is the share of the upper-left edge at or above the threshold. On the floor it is 100% for all three. In a pool the Engineer is 94% and Mira 97%: the remainder is body colours (skin and jacket steps near the terracotta pool, down to 1.64:1 and 1.87:1 for the whole body edge) that the rule cannot improve; the ink outline pixels themselves are all at 4.19:1. Ada's whole body edge is 4.19:1 because her outline is ink on every edge.
+- **Earlier rules.** The first warm rim measured 5.26:1 on the floor and 2.68:1 in a pool but read as a selection highlight (decision 13); the moonlight-only version (decision 13) left pools with no warm edge at all, so decision 14 added the warm head and shoulders. The Engineer's contour-only darkest steps (hair A `#2B1E26`, jacket p `#1B4450`, down to 1.2:1) are covered by the extended rule: they become the moonlight rim on the floor.
+`nightshift-rim-final.png` shows before (warm rim everywhere) and now at x4, on the slate and in a pool.
 - **Strap.** Mira's coral strap and bag: lit steps `e` 2.6:1 and `f` 4.0:1 against the fill in every facing; `c` and `d` (1.2 and 1.6) are shading steps. Against the jacket it crosses it is 1.0 to 1.8:1, so it reads by hue, as in the approved renders. In a pool the strap loses against the terracotta floor (`e` 1.3:1), but the bag is closed by the ink outline (4.2:1 against a pool).
 - **Furniture.** Silver edge 4.92:1 on the floor. Inside a pool it is 2.50:1, because no palette colour reaches 3:1 against `#B8745A` (white would be 2.5:1 too); the hue difference carries it.
 
 ## Director decisions (proposed)
 
 1. **Reuse by exact hex swap, then two Night Shift passes.** Floor, walls, windows, door, lamp, desks, chair, planters, sofa and side table are the Orientation pieces recoloured; the swap raises on any unmapped pixel. The shadow re-key and the lit edge are the only additions, and they are deterministic functions of the pixels.
-2. **Props get a silver edge, people a warm rim.** One colour per class keeps a person distinct from furniture at a glance. Silver is glass step 3, a palette colour.
+2. **Props get a silver edge, people a moonlight rim.** One colour per class keeps a person distinct from furniture at a glance. Silver is glass step 3 (`#D0D4E4`), the people's rim is glass step 2 (`#8E96B8`), both palette colours; in a pool the head and shoulders take the warm accent step 3 (decision 14). The warm people rim everywhere of the first version was replaced (decision 13).
 3. **Contact shadows are darker than the floor.** Floor step 0 then `#202337`, the PALETTES_SPEC rule 2 applied to props and walls.
-4. **In-pool contrast threshold.** Gates are 3:1 on the dark floor and 2.5:1 in a pool (silver 2.50, rim 2.68), matching the baseline the Ada ruling accepted.
+4. **In-pool contrast threshold.** Prop gates are 3:1 on the dark floor and 2.5:1 in a pool (silver 2.50). People gates are 2.4:1 on the floor (the moonlight rim), 2.5:1 for the warm head-and-shoulder rim in a pool and 4.0:1 for the kept body ink outline in a pool (decisions 13 and 14).
 5. **Lamp pools are fill plus seam pairs.** A pool recolours the floor fill and the joints (PALETTES_SPEC rule 3), as two `where_color` entries; this is atlas data only, no schema change.
 6. **Route language.** A lit route has pools, warm arrows and silver inlay lines; the old route has inlay only. Route B measures 109 luma against 91 for the dead ends.
 7. **Doors: warm frame, silver glass.** The service door keeps Orientation's shapes with the brass ramp swapped for the lamp ramp; a stair icon replaces the folder on the sign (drawn over the recoloured plate). The doorway beyond reads as indigo-silver, not warm; the doorway pool does the warm work.
@@ -115,7 +119,9 @@ Measured by `build_nightshift.py`, numbers in `nightshift-readability.json`, pic
 9. **Stations are a state set.** `station_a/b` dead to lit bundle desk and pool so level 18 can wake them one at a time.
 10. **Shelving and cabinet are in the kit for the ledger room** but the reference room shows only a cabinet. Boxes use warm, indigo, slate and wood clusters.
 11. **Light shaft not included.** `shared_pieces.light_shaft` needs a lit colour at least as bright as the fill; no indigo step is, and the window spill covers the use.
-12. **Proposed renderer extension (not applied here).** Rim also any upper-left silhouette pixel below 3:1 against the floor fill (`nightshift_kit.rim_light_ext`). It brings the Engineer to 100% and does not touch Ada's baked R. See the report for the diff.
+12. **Renderer extension (applied, director decision 2026-10-02).** The people rim also lights any upper-left silhouette pixel below 3:1 against what is behind it, not only `#202337` pixels. It brings the Engineer to 100% on the floor and does not touch Ada's baked R. It now lives inside `night_rim` (the former `rim_light_ext` is gone).
+13. **People rim is cool moonlight (player decision, 2026-10-02).** `#8E96B8` (glass step 2) replaces the warm `#F9D79A`, which read as a "selected" highlight and sat near discovery gold. Per-pixel rule: recolour an upper-left silhouette pixel only if it is `#202337` or below 3:1 against the scene behind it AND the rim beats the pixel's current contrast there. So the rim shows on the slate (2.49:1 against 2.13:1) and the ink outline stays in a pool (4.19:1 against 1.27:1). Ada's baked R and the landmark's window silhouettes stay warm. The single source of truth is `NIGHT_RIM` in `district_palettes.py`; the reference implementation is `night_rim` (`palettes/night_rim.py`); `PEOPLE_RIM` in `nightshift_kit.py` is the people constant, `RIM` the window one.
+14. **Warm head and shoulders where a warm source lights someone (player decision, 2026-10-02).** "Cool moonlight on the open floor; where a warm source lights someone (inside a lamp pool, Ada's lantern), the warm edge is limited to the head and shoulders." `night_rim` therefore recolours head-and-shoulder rows (0 to `WARM_RIM_ROWS - 1` = 12) over a pool colour to `#F9D79A` when that reaches 2.5:1 (2.68:1), and rows 13-23 keep the ink outline. Ada's baked R follows the same limit (rows 5-10, lantern side). `check_gate1.py` gained the opt-in `HEAD_EXTRA_KEYS` read for it.
 
 ## Known gaps and notes
 

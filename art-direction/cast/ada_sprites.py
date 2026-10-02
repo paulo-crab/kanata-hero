@@ -36,7 +36,7 @@ PAL = {
     "u": "#343650", "v": "#535971", "w": "#777A8C",
     # lantern light (Night Shift lamp ramp, steps 2 and 3): glow, core. Never the gold marker, never violet.
     "f": _LAMP[2], "g": _LAMP[3],
-    # baked rim light on the contour beside the lantern (same hex as the renderer rim, step 3)
+    # baked warm rim on the lantern-side contour of the head and shoulders (accent step 3; the cool renderer rim never touches it)
     "R": _LAMP[3],
 }
 
@@ -45,7 +45,14 @@ SLOTS = {"hair": "ABCD", "skin": "klmn", "jacket": "pqrs", "trousers": "OP"}
 HAIR_SKIN_SEPARATED = True   # warm-white hair against deep skin: a k, A or o pixel always sits between them
 GLINT_LIMITS = {"g": 2, "R": 6}   # lantern core: 2 px at most; baked rim: 6 px at most
 
-BAKED_RIM = True   # the ruling, ADA_SPEC.md decision 1: lantern-side contour pixels are baked as R
+BAKED_RIM = True   # the ruling, ADA_SPEC.md decision 1 (amended 2026-10-02): lantern-side contour pixels of the HEAD AND SHOULDERS are baked as R
+# Player decision 2026-10-02: where a warm source lights someone the warm edge is limited to the head and shoulders.
+# Ada's lantern rim is therefore baked on sprite rows 5-10 only (hair edge, cheek, jaw, shoulder), six pixels at most,
+# on the contour of the side the lantern is on. The lower body keeps its plain ink outline.
+HEAD_RIM_ROWS = range(5, 11)
+# R sits on head rows (0-9), which Gate 1's head-key rule otherwise reserves for hair, skin and outline. The checker
+# reads this opt-in flag (check_gate1.py: HEAD_EXTRA_KEYS) so the exception stays Ada's and explicit.
+HEAD_EXTRA_KEYS = "R"
 
 # Raw grids: head, long coat and boots at rest, without the hand and lantern (finish() paints them).
 # Coat: 12 px shoulders, a belt on row 13, a straight fall to row 17, a flared hem on rows 18-19.
@@ -189,9 +196,22 @@ LANTERN = {
 HAND_ROW, LANT_ROW = 12, 13
 
 
+def bake_head_rim(out, facing):
+    """Bake the lantern's warm rim on the head and shoulders: on each row of HEAD_RIM_ROWS the outermost contour
+    pixel ('o') on the lantern's side (screen-right in S and E, screen-left in N and W) turns into R. Rows where the
+    outermost pixel is not outline are skipped. `out` is a list of lists of keys, edited in place."""
+    for y in HEAD_RIM_ROWS:
+        cols = [x for x, ch in enumerate(out[y]) if ch != "."]
+        if not cols:
+            continue
+        x = max(cols) if facing in "se" else min(cols)
+        if out[y][x] == "o":
+            out[y][x] = "R"
+
+
 def finish(frame, facing, dy=0, baked=None):
-    """Paint the hand and lantern over a frame, dy rows lower (the settle). When baked, the contour
-    pixels beside the lantern turn into the rim colour (R); see ADA_SPEC.md decision 1."""
+    """Paint the hand and lantern over a frame, dy rows lower (the settle). When baked, the head-and-shoulder
+    contour on the lantern's side turns into the rim colour (R); see ADA_SPEC.md decision 1."""
     baked = BAKED_RIM if baked is None else baked
     hx, lx, art = LANTERN[facing]
     out = [list(r) for r in frame]
@@ -202,11 +222,8 @@ def finish(frame, facing, dy=0, baked=None):
         for i, ch in enumerate(line):
             if ch != ".":
                 out[LANT_ROW + dy + j][lx + i] = ch
-    if baked:   # the outermost contour pixel of each row beside the lantern, on the lantern's side
-        for y in range(LANT_ROW + dy, LANT_ROW + dy + len(art)):
-            cols = [x for x, ch in enumerate(out[y]) if ch == "o"]
-            if cols:
-                out[y][max(cols) if facing in "se" else min(cols)] = "R"
+    if baked:
+        bake_head_rim(out, facing)
     return ["".join(r) for r in out]
 
 
@@ -246,7 +263,7 @@ WALK = {
 # --- Extra animation sets (approved 2026-10-02) ---------------------------------------------------------------
 # Same format as the Engineer's, Ivo's and Mira's (EXTRA, EXTRA_MS, EXTRA_MODE, EXTRA_ASYMMETRIC). Frames are
 # built from the raw grids above (never the finished IDLE/WALK frames, which are not edited), with hand-placed
-# stamps; the hand and lantern are painted last, so the lantern keeps its shape and its baked rim follows it.
+# stamps; the hand and lantern are painted last, so the lantern keeps its shape; the baked head-and-shoulder rim is added last.
 stamp, stamps, dip = eng.stamp, eng.stamps, eng.dip
 RAW = {"s": S, "n": N, "e": E, "w": W}
 LANT_ART = {"s": LANT_FRONT, "n": LANT_BACK, "e": LANT_FRONT, "w": LANT_FRONT}
@@ -254,9 +271,8 @@ BASE_LX = {f: LANTERN[f][1] for f in "snew"}   # the rest columns of the lantern
 
 
 def hold(frame, facing, lant_row=LANT_ROW, lx=None):
-    """Paint hand and lantern onto a raw frame at any height and column, with the baked rim following it:
-    on each lantern row, the first contour or empty pixel beside the lantern (within 3 px, on the lantern's
-    side) becomes R. At rest this is the same pixel finish() bakes."""
+    """Paint hand and lantern onto a raw frame at any height and column. The baked warm rim stays on the head and
+    shoulders (bake_head_rim), whatever the lantern does: the lower body keeps its ink outline."""
     lx = BASE_LX[facing] if lx is None else lx
     art = LANT_ART[facing]
     out = [list(r) for r in frame]
@@ -266,15 +282,7 @@ def hold(frame, facing, lant_row=LANT_ROW, lx=None):
         for i, ch in enumerate(line):
             if ch != ".":
                 out[lant_row + j][lx + i] = ch
-    right = facing in "se"
-    for j, line in enumerate(art):
-        row = out[lant_row + j]
-        edge = lx + max(i for i, ch in enumerate(line) if ch != ".") if right else lx + min(i for i, ch in enumerate(line) if ch != ".")
-        for step in (1, 2, 3):
-            x = edge + step if right else edge - step
-            if 0 <= x < 16 and row[x] in ".o":
-                row[x] = "R"
-                break
+    bake_head_rim(out, facing)
     return ["".join(r) for r in out]
 
 

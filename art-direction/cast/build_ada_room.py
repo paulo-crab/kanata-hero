@@ -26,20 +26,23 @@ import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import engineer_sprites as eng  # noqa: E402
 import environment as env  # noqa: E402
+import night_rim as nr  # noqa: E402
 
 NIGHT = dp.DISTRICTS["nightshift"]
-RIM_HEX = NIGHT["accent"][3]
+RIM_HEX = NIGHT["glass"][2]          # the people's cool moonlight rim (= dp.NIGHT_RIM); warm light is night_rim's pool rule and Ada's baked R
+assert RIM_HEX == dp.DISTRICTS[dp.NIGHT_RIM[0]][dp.NIGHT_RIM[1]][dp.NIGHT_RIM[2]]
 ZOOM = 4
 
 
 def person(img, mod, frame, ax, ay, night_shadow=(NIGHT["floor"][0], dp.INK[0]), rim=True):
-    """The Night Shift renderer order: contact shadow, sprite, then the rim over every outline pixel
-    that has a transparent pixel above or to the left. Baked pixels (key R) are not outline and are
-    left as drawn."""
+    """The Night Shift renderer order: contact shadow, then the sprite with the moonlight rim by the per-pixel rule
+    (night_rim.night_rim_on_scene, judged against the scene under the frame), then the paste. Cool moonlight on the
+    slate; inside a lamp pool a warm rim on the head and shoulders (rows 0-12) and the ink outline on the body.
+    Baked pixels (key R, her lantern rim on the head and shoulders) are never recoloured."""
     sp = g.frame_rgba(frame, mod.PAL)
-    if rim:
-        sp = bp.rim_light(sp, RIM_HEX)
     bp.shadow(img, ax, ay, *night_shadow)
+    if rim:
+        sp = nr.night_rim_on_scene(img, sp, ax, ay, RIM_HEX)
     holder = type("C", (), {})()
     holder.img = img
     g.place_px(holder, sp, ax, ay, shadow=False)
@@ -88,7 +91,7 @@ def rim_ruling():
     W = 8 * cell_w + 3 * 16 + 24
     im = Image.new("RGB", (W, 2 * cell_h + 2 * lab_h + 36), "#151C2B")
     d = ImageDraw.Draw(im)
-    d.text((12, 8), "Lantern rim-light ruling, idle 0 at x8: A = renderer rim only, B = baked lantern-side rim + renderer rim",
+    d.text((12, 8), "Lantern rim-light ruling, idle 0 at x8: A = renderer rim only, B = baked head-and-shoulder lantern rim + renderer rim",
            font=bst.font(15, bold=True), fill="#F4F2EC")
     for row, (name, floor_hex) in enumerate((("dark floor, Night Shift fill", NIGHT["floor"][3]),
                                              ("inside a lamp pool", NIGHT["accent"][1]))):
@@ -98,7 +101,7 @@ def rim_ruling():
         for group, baked in enumerate((False, True)):
             for i, (f, fr) in enumerate(facings):
                 sp = g.frame_rgba(ada.finish(fr, f, baked=baked), ada.PAL)
-                sp = bp.rim_light(sp, RIM_HEX)
+                sp = bp.rim_light(sp, RIM_HEX, floor_hex)
                 tile = np.zeros((24, 16, 3), np.uint8)
                 tile[:] = bp.rgb(floor_hex)
                 a = sp[:, :, 3] > 0

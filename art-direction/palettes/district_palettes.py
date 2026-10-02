@@ -92,9 +92,11 @@ NAMES = {"orientation": "Orientation", "records": "Records", "systems": "Systems
          "nightshift": "Night Shift", "executive": "Executive"}
 
 # Night Shift edge-light rule (documented in PALETTES_SPEC.md): the floor is too dark for the
-# #202337 outline to carry a silhouette, so the renderer draws a 1 px hard rim on the lit
-# (upper-left) contour of every person, in this accent step.
-NIGHT_RIM = ("nightshift", "accent", 3)
+# #202337 outline to carry a silhouette, so the renderer draws a 1 px hard COOL MOONLIGHT rim on the lit
+# (upper-left) contour of every person, in this glass step (#8E96B8; player decision 2026-10-02, it replaced
+# the warm accent step 3 that read as a selection highlight near discovery gold). Per-pixel rule and the
+# reference implementation: night_rim.py. Single source of truth for the people rim colour.
+NIGHT_RIM = ("nightshift", "glass", 2)
 
 ROLE_NOTES = {
     "ink": "Shared in every district: contours, cool shadows.",

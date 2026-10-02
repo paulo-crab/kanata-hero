@@ -53,7 +53,8 @@ for name, fr in frames.items():
     tol = ASYM_TOL if any(name.startswith(f"extra_{a}_") for a in EXTRA_ASYMMETRIC) else 0.2
     if abs(left - right) / (left + right) > tol:
         fails.append(f"{name}: mass off anchor (L {left} / R {right}, tolerance {tol})")
-    head_keys = set(eng.SLOTS["hair"] + eng.SLOTS["skin"] + "o.")
+    # opt-in: a module may allow extra keys on head rows (Ada's baked lantern rim R, head and shoulders only)
+    head_keys = set(eng.SLOTS["hair"] + eng.SLOTS["skin"] + "o." + getattr(eng, "HEAD_EXTRA_KEYS", ""))
     for y, r in enumerate(fr[:10]):
         bad = set(r) - head_keys
         if bad:
