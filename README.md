@@ -14,6 +14,8 @@ When documents disagree, the owner below wins. Fix the other document instead of
 | Visual style for new art: camera, palette, pixel rules, scale prototype | [`art-direction/STYLE_BIBLE.md`](art-direction/STYLE_BIBLE.md) | Primary visual authority: [`references/08-approved-overhead-direction.png`](art-direction/references/08-approved-overhead-direction.png). Summary board: [`STYLE_BOARD.html`](art-direction/STYLE_BOARD.html). |
 | Current art workflow and gates | [`art-direction/ART_BRIEF.md`](art-direction/ART_BRIEF.md) | Read after the bible. |
 | Art handoff for developers: asset index, atlas/JSON formats, anchors, layers, rebuild | [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md) | Single entry point for implementation. Rebuild and check everything with `art-direction/build_all.py`. |
+| Level data: contract, validator, gesture inventory, world index, five districts | [`design/levels/SCHEMA.md`](design/levels/SCHEMA.md) | `levels.md` owns story and briefs; the data owns coordinates, collision, routes, scenes and coverage. Check with `design/levels/validate_levels.py --all`. |
+| Interface key bindings | [`design/ui-key-bindings.md`](design/ui-key-bindings.md) | Return, Esc, arrows, Q, Backtick, `?`, with the Kanata gesture and where each is taught. |
 | Known gaps, owners, branches and status (producer's register) | [`docs/GAP_REGISTER.md`](docs/GAP_REGISTER.md) | Closes as the review branches merge; lists wave 2 and the open human decisions. |
 | What each reference image teaches | [`art-direction/REFERENCE_NOTES.md`](art-direction/REFERENCE_NOTES.md) | Its scale numbers and review gate are superseded by the bible. |
 
@@ -29,6 +31,8 @@ When documents disagree, the owner below wins. Fix the other document instead of
 ## Decisions
 
 **Gap review (2026-10-02):** the producer verified the art deck's gaps against the repo, found more (level data for every district, UI screens, quest props, elevator, Hal poses), and ran nine team branches in parallel; see [`docs/GAP_REGISTER.md`](docs/GAP_REGISTER.md). Nothing is merged without human review.
+
+**Wave 1 merged (2026-10-02):** UI screens, quest props, Vale/Hal poses, glitch repair, level data for all five districts, and the key bindings (Return, Esc, arrows, Q, Backtick, `?`; [`design/ui-key-bindings.md`](design/ui-key-bindings.md)). Player rulings: using the Hint key in a recall scene costs the third star; Hint is off in Violento after a gesture's introduction; Backtick and `?` are never typed in scenes; "Ride to the hub" is a journal row. Arrival elevators are north-wall modules, so the Orientation elevator moves from the southwest to the north wall, west end. Records level layout: 36x16 map, Noor follows the work, the file wall closes Mira's loop after level 11. Vale softening: all four facings per state. Wave 2 (integration of level data with the art, seated workers) is tracked in the gap register.
 
 **Art production complete (2026-10-02):** developers start at [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md); [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) holds the approvals and pipeline. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
 
