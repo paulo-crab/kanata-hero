@@ -400,6 +400,7 @@ class DistrictCheck:
                         rep.err(wm, f"art_gap_state_sets {sname}/{st}: entry {en!r} unknown")
         # placements
         gap_used = set()
+        gap_count = {}
         for p in m["placements"]:
             pid = p["id"]
             where = f"{wm} placement {pid}"
@@ -425,7 +426,7 @@ class DistrictCheck:
                 if not in_gap:
                     rep.err(where, f"art_gap entry {name!r} has no definition in map.art_gap_entries")
                 else:
-                    rep.warn(where, f"art_gap prop {name!r} (see NEEDS_ART.md)")
+                    gap_count[name] = gap_count.get(name, 0) + 1
             elif not in_kit:
                 rep.err(where, f"entry {name!r} is not in {d['kit']} or the Pace atlas; use art_gap true")
             if p.get("state_set"):
@@ -441,6 +442,8 @@ class DistrictCheck:
                         rep.err(where, f"entry {name!r} is not drawn in any state of {ss!r}")
             elif p.get("state"):
                 rep.err(where, "state given without state_set")
+        for name, n in gap_count.items():
+            rep.warn(wm, f"art_gap prop {name!r} ({n} placement{'s' if n != 1 else ''}; see NEEDS_ART.md)")
         for name in self.gap_entries:
             if name not in gap_used and not any(name in sd["entries"] for s in self.gap_sets.values() for sd in s["states"].values()):
                 rep.warn(wm, f"art_gap_entries {name!r} is defined but never placed")
@@ -1289,6 +1292,23 @@ class DistrictCheck:
                 target_hit = overlaps(tx0, ty0, tx1, ty1)
                 if avatar_hit or target_hit:
                     conflicts.append((iid, "avatar" if avatar_hit else "", "target" if target_hit else ""))
+        # main-route and Mira checkpoint cells: report where the avatar itself would sit under the inset
+        route_hits = []
+        seen = set()
+        for seg in m["routes"]["main"]:
+            for c in seg["cells"]:
+                seen.add(tuple(c))
+        for cells in m["routes"]["mira"].values():
+            for c in cells:
+                seen.add(tuple(c))
+        for c in sorted(seen):
+            ax, ay = c[0] * TILE + 8, c[1] * TILE + 16
+            cx, cy = camera_for(ax, ay)
+            sx, sy = ax - cx, ay - cy
+            if overlaps(sx - 8, sy - 24, sx + 8, sy):
+                route_hits.append(c)
+        if route_hits:
+            rep.warn(self.w("map.json"), f"{len(route_hits)} main-route or checkpoint cells put the avatar under the keyboard inset: " + ", ".join(f"({x},{y})" for x, y in route_hits[:12]) + (" ..." if len(route_hits) > 12 else ""))
         sheet = self.ddir / "LEVEL_SHEET.md"
         text = sheet.read_text(encoding="utf-8") if sheet.exists() else ""
         if conflicts:
