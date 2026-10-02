@@ -14,6 +14,9 @@ Shared:
   bgworkers-in-room.png      the approved review room at x4 (1366x768) with a synced pair mid-loop
   bgworkers-sync-1366x768.gif  that pair walking the same tiny loop in lockstep (16 frames)
   bgworkers-relaxed-1366x768.png  after level 06: the loops have broken into individual idles
+Seated at a desk (written by bgworker_seated_build.py, called at the end of build()):
+  <body>-seated-atlas*.png / .json, bgworkers-seated-sheet.png, bgworkers-seated-room-1366x768.png,
+  bgworkers-seated-1366x768.gif
 """
 import json
 import os
@@ -262,6 +265,8 @@ def build():
     build_sheet()
     build_lineup()
     build_room()
+    import bgworker_seated_build  # seated-at-desk sets and proofs (own module, same folder)
+    bgworker_seated_build.build()
 
 
 if __name__ == "__main__":

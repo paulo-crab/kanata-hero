@@ -16,6 +16,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "..", "gate1"))
+sys.path.insert(0, os.path.join(HERE, "..", "kit"))
 CHECK = os.path.join(HERE, "..", "gate1", "check_gate1.py")
 MARKERS = {"#19AFA2", "#EC776D", "#9876D5", "#E6B750"}
 VIOLET = {"#413755", "#67547C", "#9477AF", "#C3A6D6"}
@@ -51,6 +52,27 @@ def frames_of(mod):
     out = {f"idle_{f}_{i}": fr for f, fs in mod.IDLE.items() for i, fr in enumerate(fs)}
     out.update({f"walk_{f}_{i}": fr for f, fs in mod.WALK.items() for i, fr in enumerate(fs)})
     out.update({f"{k}_{i}": fr for k, fs in mod.IDLE_VARIANTS.items() for i, fr in enumerate(fs)})
+    out.update({f"seated_{k}_{i}": fr for k, fs in mod.SEATED.items() for i, fr in enumerate(fs)})
+    return out
+
+
+def occluder_hidden():
+    """Pixels of the 16x24 seated frame covered by the real desk-front occluder (kit atlas, seat offsets)."""
+    import numpy as np
+    import kitlib
+    at = kitlib.Atlas(os.path.join(HERE, "..", "kit", "orientation-atlas.json"))
+    out = {}
+    for desk in ("desk_a", "desk_b"):
+        e = at.entries[desk + "_front"]
+        spr = at.sprite(desk + "_front")
+        ox, oy = e["footprint"]["origin_px"]
+        mask = np.zeros((24, 16), bool)
+        for y in range(spr.shape[0]):
+            for x in range(spr.shape[1]):
+                fy, fx = (y - oy) + 20 - 0 - 0, (x - ox) - 8   # occluder px relative to desk origin -> frame px
+                if spr[y, x, 3] and 0 <= fy < 24 and 0 <= fx < 16:
+                    mask[fy, fx] = True
+        out[desk] = mask
     return out
 
 
@@ -96,6 +118,29 @@ for body in ("bgworker_a_sprites", "bgworker_b_sprites"):
         fails.append(f"{body}: walk must be 4 frames per facing")
     if any(len(v) != 2 for v in mod.IDLE.values()) or any(len(v) != 2 for v in mod.IDLE_VARIANTS.values()):
         fails.append(f"{body}: idles must be 2 frames")
+
+    # seated sets: everything readable above the occluder, columns 0 and 15 empty below row 14, 2 frames,
+    # and the real desk-front occluders cover no pixel of rows 0-14
+    hidden = occluder_hidden()
+    if set(mod.SEATED) != {"idle", "typing", "phone", "coffee"}:
+        fails.append(f"{body}: SEATED needs idle, typing, phone, coffee")
+    for k, fs in mod.SEATED.items():
+        if len(fs) != 2 or fs[0] == fs[1]:
+            fails.append(f"{body}: seated {k} must be 2 distinct frames")
+        for i, fr in enumerate(fs):
+            nm = f"seated_{k}_{i}"
+            if any(x[0] != "." or x[15] != "." for x in fr[15:]):
+                fails.append(f"{nm}: {body} columns 0/15 used below row 14 (visible beside the occluder)")
+            if any(c in "ghjefi" for x in fr[15:] for c in x):
+                fails.append(f"{nm}: {body} prop key below row 14 (hidden by the occluder)")
+            for desk, mask in hidden.items():
+                for y in range(15):
+                    if any(m and c != "." for m, c in zip(mask[y], fr[y])) and y < 15:
+                        fails.append(f"{nm}: {body} {desk} occluder covers a pixel in row {y}")
+                        break
+            if k in ("phone", "coffee") and not any(c in "ghjefi" for x in fr[:15] for c in x):
+                fails.append(f"{nm}: {body} prop not visible in rows 0-14")
+    print(f"[{body}] seated: 4 sets x 2 frames, occluder rows 15-23 hidden, rows 0-14 clear (checked vs the kit atlas)")
 
     seen = []
     for pname in mod.PALETTES:
