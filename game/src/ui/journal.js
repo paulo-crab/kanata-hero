@@ -20,7 +20,7 @@ function closeButton() {
 }
 
 export function journalView(vm) {
-  const groups = vm.groups.map((g) => html`<div class="group ${g.id}"><h3>${icon(GROUP_ICON[g.id] || 'seal', 24)} ${g.heading}</h3>
+  const groups = vm.groups.filter((g) => g.rows.length).map((g) => html`<div class="group ${g.id}"><h3>${icon(GROUP_ICON[g.id] || 'seal', 24)} ${g.heading}</h3>
     ${g.rows.map((r) => {
       const [ic, word] = STATE[r.state] || STATE.locked;
       return html`<button type="button" class="qrow${r.selected ? ' sel' : ''}" data-fid="row-${r.id}" data-row="${r.id}" aria-current="${r.selected ? 'true' : 'false'}"

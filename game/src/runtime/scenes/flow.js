@@ -26,7 +26,8 @@ const STEP_DIAGRAM = {
   'shift-hold': { gesture: 'B03', held: 'f', target: '/', layer: 'base', timing: 'home-row-hold' },
 };
 
-const cleanLabel = (id) => (id.length === 1 ? id.toUpperCase() : id.replace(/-[LR]$/, ''));
+const SHORT = { Backspace: 'Bksp', Left: '\u2190', Right: '\u2192', Up: '\u2191\u2193', Delete: 'Del' };
+const cleanLabel = (id) => (id.length === 1 ? id.toUpperCase() : SHORT[id] || id.replace(/-[LR]$/, ''));
 
 function diagramFor(ctx, cal, stepId) {
   const { manifest, input } = ctx;
