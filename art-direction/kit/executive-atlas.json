@@ -2888,6 +2888,526 @@
     "light"
    ],
    "note": "after: a warm pool of daylight on the well floor around the planter; paints only on the bare well floor (levels.md 20: window light warms)"
+  },
+  {
+   "name": "branch_name_before",
+   "kind": "wall",
+   "rect": [
+    176,
+    912,
+    48,
+    16
+   ],
+   "size_px": [
+    40,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "nameplate",
+    "branch",
+    "the name",
+    "level 20",
+    "before"
+   ],
+   "note": "the Name branch's nameplate (level 20, The Name: a renamed department), a 40 x 12 copper wall plate. before: Pace's replacement, three orderly pale bars, no name. Place on the navy north wall face; the plain wall already blocks. Also the plate for the Names on the Wall side quest"
+  },
+  {
+   "name": "branch_name_after",
+   "kind": "wall",
+   "rect": [
+    224,
+    912,
+    48,
+    16
+   ],
+   "size_px": [
+    40,
+    12
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "nameplate",
+    "branch",
+    "the name",
+    "level 20",
+    "after"
+   ],
+   "note": "the Name branch's nameplate (level 20, The Name: a renamed department), a 40 x 12 copper wall plate. after: the department's original name in irregular lettering after a small crest. Place on the navy north wall face; the plain wall already blocks. Also the plate for the Names on the Wall side quest"
+  },
+  {
+   "name": "branch_route_before",
+   "kind": "tile",
+   "rect": [
+    272,
+    912,
+    64,
+    32
+   ],
+   "size_px": [
+    64,
+    32
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "route",
+    "branch",
+    "the route",
+    "level 20",
+    "before"
+   ],
+   "note": "the Route branch's floor line (level 20, The Route: a rewarded detour), 4 x 2 cells in copper on the floor markings, west edge to east edge. before: an S of right angles with knots at the corners, a detour that is rewarded. Walkable; lay several end to end for a longer branch"
+  },
+  {
+   "name": "branch_route_after",
+   "kind": "tile",
+   "rect": [
+    336,
+    912,
+    64,
+    32
+   ],
+   "size_px": [
+    64,
+    32
+   ],
+   "footprint": {
+    "cells": [
+     4,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0000",
+    "0000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    32,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "route",
+    "branch",
+    "the route",
+    "level 20",
+    "after"
+   ],
+   "note": "the Route branch's floor line (level 20, The Route: a rewarded detour), 4 x 2 cells in copper on the floor markings, west edge to east edge. after: one straight line with four chevrons pointing east. Walkable; lay several end to end for a longer branch"
+  },
+  {
+   "name": "branch_count_before",
+   "kind": "prop",
+   "rect": [
+    400,
+    912,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    29
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "board",
+    "tally",
+    "branch",
+    "the count",
+    "level 20",
+    "before"
+   ],
+   "contact_shadow": [
+    3,
+    27,
+    29,
+    2
+   ],
+   "note": "the Count branch's tally board (level 20, The Count: a corrected total), 2 x 1 on two walnut feet: a pale panel with four sky-blue bars and a total plate. before: the total reads 47 in a dull plate and the bars do not add up"
+  },
+  {
+   "name": "branch_count_after",
+   "kind": "prop",
+   "rect": [
+    448,
+    912,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    29
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "board",
+    "tally",
+    "branch",
+    "the count",
+    "level 20",
+    "after"
+   ],
+   "contact_shadow": [
+    3,
+    27,
+    29,
+    2
+   ],
+   "note": "the Count branch's tally board (level 20, The Count: a corrected total), 2 x 1 on two walnut feet: a pale panel with four sky-blue bars and a total plate. after: the corrected total 52 in a copper plate with a green tick"
+  },
+  {
+   "name": "place_ivo",
+   "kind": "prop",
+   "rect": [
+    496,
+    912,
+    16,
+    32
+   ],
+   "size_px": [
+    13,
+    23
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     5
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    7,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "place",
+    "ivo",
+    "level 20"
+   ],
+   "contact_shadow": [
+    2,
+    21,
+    11,
+    2
+   ],
+   "note": "Ivo's place: a reception lectern with his tablet on the slanted top (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
+  },
+  {
+   "name": "place_noor",
+   "kind": "prop",
+   "rect": [
+    512,
+    912,
+    32,
+    32
+   ],
+   "size_px": [
+    18,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     4
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    20
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "place",
+    "noor",
+    "level 20"
+   ],
+   "contact_shadow": [
+    1,
+    20,
+    17,
+    2
+   ],
+   "note": "Noor's place: a small walnut table with her stamp and a file tray of copper-tabbed folders (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
+  },
+  {
+   "name": "place_hal",
+   "kind": "prop",
+   "rect": [
+    544,
+    912,
+    16,
+    16
+   ],
+   "size_px": [
+    14,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     -2
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    7,
+    14
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "place",
+    "hal",
+    "level 20"
+   ],
+   "contact_shadow": [
+    2,
+    13,
+    10,
+    1
+   ],
+   "note": "Hal's place: his folding stool with the tool roll leaning on it (the shared drawing, Executive ramps) (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
+  },
+  {
+   "name": "place_ada",
+   "kind": "prop",
+   "rect": [
+    560,
+    912,
+    16,
+    32
+   ],
+   "size_px": [
+    14,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     0
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    7,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "place",
+    "ada",
+    "level 20"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    9,
+    2
+   ],
+   "note": "Ada's place: a copper lantern stand with a lit lantern on a hook arm (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
+  },
+  {
+   "name": "place_mira",
+   "kind": "prop",
+   "rect": [
+    576,
+    912,
+    16,
+    32
+   ],
+   "size_px": [
+    16,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -1,
+     -1
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    7,
+    15
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "place",
+    "mira",
+    "level 20"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    15,
+    2
+   ],
+   "note": "Mira's place: a round navy cushion with her courier satchel and its copper strap (level 20: an arriving coworker's place; the coworker arrives as a silhouette, then as a sprite, standing here), 1 x 1, blocks its cell"
   }
  ],
  "animations": {
@@ -3016,11 +3536,77 @@
    ],
    "ms_per_frame": 300,
    "note": "the light shaft under a window pair: barely-there cool light, then warm daylight"
+  },
+  "branch_name": {
+   "kind": "state_set",
+   "default": "before",
+   "states": {
+    "before": {
+     "entries": [
+      "branch_name_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "branch_name_after"
+     ]
+    }
+   },
+   "play": [
+    "before",
+    "after"
+   ],
+   "ms_per_frame": 250,
+   "note": "level 20, The Name: the renamed department gets its original name back. Pair with landmark state repaired_name (the planter's nameplates become distinct)"
+  },
+  "branch_route": {
+   "kind": "state_set",
+   "default": "before",
+   "states": {
+    "before": {
+     "entries": [
+      "branch_route_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "branch_route_after"
+     ]
+    }
+   },
+   "play": [
+    "before",
+    "after"
+   ],
+   "ms_per_frame": 250,
+   "note": "level 20, The Route: the rewarded detour becomes a straight line. Pair with landmark state repaired_route (the atrium's copper lines straighten and the pots vary)"
+  },
+  "branch_count": {
+   "kind": "state_set",
+   "default": "before",
+   "states": {
+    "before": {
+     "entries": [
+      "branch_count_before"
+     ]
+    },
+    "after": {
+     "entries": [
+      "branch_count_after"
+     ]
+    }
+   },
+   "play": [
+    "before",
+    "after"
+   ],
+   "ms_per_frame": 250,
+   "note": "level 20, The Count: the total is corrected. Pair with landmark state repaired_count and the window_a, window_b and window_light sets going to daylight"
   }
  },
  "landmarks": {
   "atrium_tree": {
-   "note": "Executive landmark: a tall single tree in a raised round planter, inside a sunken atrium well edged with a glass balustrade. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The canopy is its own part (draws over the rail and the trunk); the south rail runs are front_prop so a person on the steps passes behind the newel posts.",
+   "note": "Executive landmark: a tall single tree in a raised round planter, inside a sunken atrium well edged with a glass balustrade. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The canopy is its own part (draws over the rail and the trunk); the south rail runs are front_prop so a person on the steps passes behind the newel posts. The three incident branches of level 20 can be done in any order, so besides before and after there is a state for every combination: repaired_name (The Name: the planter's nameplates become distinct), repaired_route (The Route: the copper floor lines straighten and the corner pots vary), repaired_count (The Count: the warm daylight pool and the lamps), and repaired_name_route, repaired_name_count, repaired_route_count. after is all three.",
    "size_px": [
     176,
     160
@@ -3074,6 +3660,225 @@
       "atrium_rail_back",
       "atrium_planter",
       "atrium_nameplates_after",
+      "atrium_trunk",
+      "atrium_pots_after",
+      "atrium_canopy_shadow",
+      "atrium_daylight_after",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_name": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_before",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_after",
+      "atrium_trunk",
+      "atrium_pots_before",
+      "atrium_canopy_shadow",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_route": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_after",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_before",
+      "atrium_trunk",
+      "atrium_pots_after",
+      "atrium_canopy_shadow",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_count": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_before",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_before",
+      "atrium_trunk",
+      "atrium_pots_before",
+      "atrium_canopy_shadow",
+      "atrium_daylight_after",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_name_route": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_after",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_after",
+      "atrium_trunk",
+      "atrium_pots_after",
+      "atrium_canopy_shadow",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_name_count": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_before",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_after",
+      "atrium_trunk",
+      "atrium_pots_before",
+      "atrium_canopy_shadow",
+      "atrium_daylight_after",
+      "atrium_canopy",
+      "atrium_rail_front"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "pulse",
+      "offsets_px": [
+       [
+        -26,
+        -4
+       ],
+       [
+        -26,
+        50
+       ],
+       [
+        117,
+        -4
+       ],
+       [
+        117,
+        50
+       ]
+      ]
+     }
+    },
+    "repaired_route_count": {
+     "parts": [
+      "atrium_well",
+      "atrium_inlay_after",
+      "atrium_rail_back",
+      "atrium_planter",
+      "atrium_nameplates_before",
       "atrium_trunk",
       "atrium_pots_after",
       "atrium_canopy_shadow",

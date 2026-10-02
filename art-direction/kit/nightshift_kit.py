@@ -32,6 +32,7 @@ import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import night_rim as nr  # noqa: E402  (the people rim: one reference implementation)
 import environment as env  # noqa: E402
+import quest_props as qp  # noqa: E402
 
 T = 16
 KIT = "nightshift"
@@ -352,9 +353,11 @@ def lamp_pools():
     return out
 
 
-def break_counter():
-    """Break-room counter, 3x1: kettle, mugs and a small warm lamp on a dim wood top, cupboard doors on the front."""
+def break_counter(lit=True):
+    """Break-room counter, 3x1: kettle, mugs and a small warm lamp on a dim wood top, cupboard doors on the front.
+    lit=False is the dim state of the break room (quest props): the lamp is off, the kettle cold, no glow on the top plane."""
     sx, sy = 64, 64
+    HOT3, HOT2 = (ACC[3], ACC[2]) if lit else (GLASS[3], GLASS[1])
 
     def draw(r):
         x0, y0 = sx, sy + 3
@@ -376,12 +379,12 @@ def break_counter():
         r.rect(kx + 10, ky + 2, kx + 12, ky + 3, INK[0])
         r.rect(kx + 3, ky, kx + 6, ky + 2, GLASS[3])                           # lid and knob
         r.outline(r.mask(kx + 3, ky, kx + 6, ky + 2))
-        r.rect(kx + 3, ky + 3, kx + 5, ky + 4, ACC[3])                         # warm reflection, one lit step
+        r.rect(kx + 3, ky + 3, kx + 5, ky + 4, HOT3)                         # warm reflection, one lit step
         # mugs
-        for i, (mx, col) in enumerate(((x0 + 22, ACC[2]), (x0 + 28, GLASS[3]))):
+        for i, (mx, col) in enumerate(((x0 + 22, HOT2), (x0 + 28, GLASS[3]))):
             m = r.mask(mx, y0 + 3, mx + 5, y0 + 8)
             r.img[m] = col
-            r.rect(mx, y0 + 3, mx + 5, y0 + 4, ACC[3] if i == 0 else GLASS[3])
+            r.rect(mx, y0 + 3, mx + 5, y0 + 4, HOT3 if i == 0 else GLASS[3])
             r.rect(mx + 4, y0 + 4, mx + 5, y0 + 8, WOOD[1] if i == 0 else GLASS[1])
             r.outline(m)
             r.rect(mx + 5, y0 + 4, mx + 6, y0 + 6, INK[0])
@@ -389,14 +392,16 @@ def break_counter():
         lx, ly = x0 + 37, y0 + 1
         r.rect(lx + 3, ly + 3, lx + 5, ly + 9, INK[1])
         sh = r.mask(lx, ly, lx + 8, ly + 4)
-        r.img[sh] = ACC[2]
-        r.rect(lx, ly, lx + 8, ly + 1, ACC[3])
-        r.rect(lx + 1, ly + 3, lx + 7, ly + 4, ACC[3])
+        r.img[sh] = HOT2
+        r.rect(lx, ly, lx + 8, ly + 1, HOT3)
+        r.rect(lx + 1, ly + 3, lx + 7, ly + 4, HOT3)
         r.outline(sh)
-        r.rect(lx - 1, ly + 7, lx + 9, ly + 9, ACC[1])                         # glow on the top plane
-    p = ok.make("break_counter", draw, (sx, sy + 3), (3, 1), ["111"], "rear_prop", "prop", y_sort=True,
-                note="break-room counter: kettle, two mugs and a small warm lamp on a dim wood top, three cupboard doors; the warm lamp is the focus of the pool_break light",
-                tags=["counter", "break room", "kettle"])
+        if lit:
+            r.rect(lx - 1, ly + 7, lx + 9, ly + 9, ACC[1])                     # glow on the top plane
+    p = ok.make("break_counter" if lit else "break_counter_dim", draw, (sx, sy + 3), (3, 1), ["111"], "rear_prop", "prop", y_sort=True,
+                note=("break-room counter: kettle, two mugs and a small warm lamp on a dim wood top, three cupboard doors; the warm lamp is the focus of the pool_break light" if lit else
+                      "the break-room counter in its dim state (levels 17 and 19: the break room is not yet warm): the same counter with the lamp off, the kettle cold and no glow on the top plane"),
+                tags=["counter", "break room", "kettle"] + ([] if lit else ["dim"]))
     return finish_piece(p)
 
 
@@ -768,6 +773,219 @@ def landmarks():
     }
 
 
+# ------------------------------------------------------------------ 4. quest props (levels 17 to 19 and Mira's route after 18)
+# Audit: QUEST_PROP_AUDIT.md (rows N1 to N18). Night Shift ramps only. Every prop gets the district's two passes
+# (shadow re-keyed darker than the floor, silver lit edge); wall overlays are lit against the indigo wall face. People are
+# untouched: the rim rules of palettes/night_rim.py apply to everything placed in a room, rugs included (a rug is darker
+# than the slate floor, so the moonlight rim shows on it).
+
+QUEST_NAMES = set()
+QS = (64, 64)   # capture origin for every quest prop
+PAL.paper = PAL.glass   # paper, slips and label plates are the silver ramp; read only by quest_props.py
+
+
+def _nq(name, draw, fp, cells, collision, layer, kind, note, tags, y_sort=True, shadow=True, box=None, wall=False, skip_rows=None, shadow_rect=None):
+    """Capture a quest prop and run the Night Shift passes: shadow re-key plus silver edge against the floor fill, or, for a
+    wall overlay (wall=True), against the indigo wall face."""
+    p = ok.make(name, draw, fp, cells, collision, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=tags)
+    if shadow_rect:
+        p.shadow = shadow_rect          # a baked shadow the capture cannot find (a wall's cast rows): known before the passes so they leave it alone
+    if wall:
+        p.sprite = night_shadow(p.sprite, p.shadow)
+        p.sprite = edge_light(p.sprite, bg=WALL[1], shadow=p.shadow)
+    else:
+        finish_piece(p, skip_rows=skip_rows)
+    QUEST_NAMES.add(name)
+    return p
+
+
+def draw_reader_pedestal(r, x0, y0, open_):
+    """A free-standing card-reader pedestal for the security vestibule, 12 x 22: a silver post under a reader head with a
+    slot and a status LED. locked: the LED is a warm amber. open: the LED pair is silver (confirmed)."""
+    r.cast(x0 + 1, x0 + 11, y0 + 22)
+    r.rect(x0 + 2, y0 + 9, x0 + 10, y0 + 22, INK[0])                      # the post
+    r.rect(x0 + 3, y0 + 10, x0 + 9, y0 + 21, GLASS[1])
+    r.rect(x0 + 3, y0 + 10, x0 + 4, y0 + 21, GLASS[2])
+    r.rect(x0 + 8, y0 + 10, x0 + 9, y0 + 21, GLASS[0])
+    r.rect(x0 + 2, y0 + 20, x0 + 10, y0 + 22, GLASS[0])                   # the base plate
+    r.rect(x0 + 2, y0 + 20, x0 + 10, y0 + 21, GLASS[1])
+    r.rect(x0, y0 + 1, x0 + 12, y0 + 11, INK[0])                          # the reader head
+    r.rect(x0 + 1, y0 + 2, x0 + 11, y0 + 10, GLASS[1])
+    r.rect(x0 + 1, y0 + 2, x0 + 11, y0 + 3, GLASS[3])
+    r.rect(x0 + 2, y0 + 4, x0 + 10, y0 + 7, INK[1])                       # the card slot
+    r.rect(x0 + 3, y0 + 5, x0 + 9, y0 + 6, GLASS[2])
+    led = (GLASS[3], GLASS[3]) if open_ else (ACC[3], ACC[2])
+    r.rect(x0 + 3, y0 + 8, x0 + 5, y0 + 9, led[1])
+    r.img[y0 + 8, x0 + 3] = led[0]
+    r.rect(x0 + 7, y0 + 8, x0 + 9, y0 + 9, GLASS[2])
+
+
+def draw_exit_sign(r, x0, y0, lit):
+    """The vestibule's back-exit sign, a 24 x 10 wall plate: a stair and an arrow. dim: a dull plate with the icon barely
+    visible. lit: a warm plate with the icon in ink."""
+    r.rect(x0, y0, x0 + 24, y0 + 10, INK[0])
+    plate, edge, icon = (ACC[3], ACC[2], INK[0]) if lit else (GLASS[1], GLASS[0], GLASS[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 23, y0 + 9, plate)
+    r.rect(x0 + 1, y0 + 8, x0 + 23, y0 + 9, edge)
+    for xa, xb, ya in ((3, 6, 6), (6, 9, 4), (9, 12, 2)):                 # three stair steps
+        r.rect(x0 + xa, y0 + ya, x0 + xb, y0 + 8, icon)
+    r.rect(x0 + 13, y0 + 5, x0 + 20, y0 + 6, icon)                        # the arrow
+    for k in range(4):
+        r.rect(x0 + 18 + k, y0 + 3 + k, x0 + 19 + k, y0 + 8 - k, icon)
+
+
+def draw_north_stair(r, x0, y0, state):
+    """The north stair door of level 18, a north-wall door 2 cells wide and 34 px tall (the wall's own height; it replaces
+    two plain wall tiles and carries their cap). A stair sign on the lintel. closed: a silver lock grille with an amber lock
+    bar. open: the grille is folded to the left and the stair climbs to a warm landing."""
+    t = _wall_tile()
+    for i in range(2):
+        for y in range(6):
+            for x in range(16):
+                if t[y, x, 3]:
+                    r.img[y0 + y, x0 + i * 16 + x] = t[y, x, :3]
+    r.rect(x0, y0 + 6, x0 + 32, y0 + 32, INK[0])
+    r.rect(x0 + 1, y0 + 7, x0 + 3, y0 + 32, GLASS[1])
+    r.rect(x0 + 1, y0 + 7, x0 + 2, y0 + 32, GLASS[3])
+    r.rect(x0 + 29, y0 + 7, x0 + 31, y0 + 32, GLASS[1])
+    r.rect(x0 + 30, y0 + 7, x0 + 31, y0 + 32, GLASS[0])
+    r.rect(x0 + 1, y0 + 7, x0 + 31, y0 + 14, GLASS[1])                    # lintel
+    r.rect(x0 + 3, y0 + 7, x0 + 29, y0 + 8, GLASS[3])
+    r.rect(x0 + 10, y0 + 8, x0 + 22, y0 + 14, ACC[2])                     # the stair sign
+    r.rect(x0 + 10, y0 + 8, x0 + 22, y0 + 9, ACC[3])
+    for xa, xb, ya in ((11, 14, 12), (14, 17, 10), (17, 21, 9)):
+        r.rect(x0 + xa, y0 + ya, x0 + xb, y0 + 14, INK[1])
+    ox0, ox1, oy0, oy1 = x0 + 3, x0 + 29, y0 + 14, y0 + 31
+    if state == "closed":
+        r.rect(ox0, oy0, ox1, oy1, INK[1])
+        for bx in range(ox0 + 1, ox1 - 1, 3):                             # grille bars
+            r.rect(bx, oy0, bx + 1, oy1, GLASS[2])
+            r.rect(bx, oy0, bx + 1, oy0 + 1, GLASS[3])
+        r.rect(ox0 + 1, oy0 + 7, ox1 - 1, oy0 + 9, ACC[2])               # the lock bar
+        r.rect(ox0 + 1, oy0 + 7, ox1 - 1, oy0 + 8, ACC[3])
+        r.rect(ox0, oy1 - 3, ox1, oy1, GLASS[0])
+        r.rect(ox0, oy1 - 3, ox1, oy1 - 2, GLASS[2])
+    else:
+        r.rect(ox0, oy0, ox1, oy1, WALL[0])
+        r.rect(ox0, oy0, ox1, oy0 + 3, ACC[0])                            # the warm landing above
+        r.rect(ox0 + 6, oy0, ox1 - 6, oy0 + 2, ACC[1])
+        surf = [GLASS[2], GLASS[1], WALL[3], WALL[2], WALL[1]]            # five treads, near to far
+        for i in range(5):
+            y = oy1 - 3 - 3 * i
+            r.rect(ox0 + 2, y, ox1 - 2, y + 2, surf[i])
+            r.rect(ox0 + 2, y + 2, ox1 - 2, y + 3, INK[1])
+        r.rect(ox0, oy0, ox0 + 6, oy1, INK[1])                            # the folded grille at the left
+        for bx in (ox0 + 1, ox0 + 3):
+            r.rect(bx, oy0, bx + 1, oy1, GLASS[2])
+            r.rect(bx, oy0, bx + 1, oy0 + 1, GLASS[3])
+    r.rect(x0 + 1, y0 + 31, x0 + 31, y0 + 32, GLASS[0])                   # threshold
+    if state == "closed":
+        r.rect(x0, y0 + 32, x0 + 32, y0 + 33, FLOOR[0])                   # cast shadow, as the wall draws it (darker than the floor)
+        r.rect(x0, y0 + 33, x0 + 32, y0 + 34, INK[0])
+
+
+def _rug(kind):
+    """A 3 x 2 cell rug as a 48 x 32 RGBA sprite. Three patterns so the three desk islands of level 18 are told apart by
+    the floor, not only by the lamps: a (indigo diamonds, blue border), b (warm stripes, wood border), c (green chevrons). Every rug
+    colour is dark enough (under 0.19 luminance) that the silver edge of a desk or chair standing on it keeps 3:1."""
+    H, W = 32, 48
+    yy, xx = np.mgrid[0:H, 0:W]
+    edge0 = (yy == 0) | (yy == H - 1) | (xx == 0) | (xx == W - 1)
+    edge1 = ((yy == 1) | (yy == H - 2) | (xx == 1) | (xx == W - 2)) & ~edge0
+    inner = (yy >= 4) & (yy < H - 4) & (xx >= 4) & (xx < W - 4)
+    if kind == "a":
+        field, border, deep, line = WALL[1], GLASS[1], WALL[0], WALL[2]
+        pat = (((xx + yy) % 8 == 0) | ((xx - yy) % 8 == 0)) & inner
+    elif kind == "b":
+        field, border, deep, line = WOOD[1], WOOD[2], WOOD[0], WOOD[2]
+        pat = (((yy - 4) % 6) < 2) & inner
+    else:
+        field, border, deep, line = FOLI[0], FOLI[2], INK[0], FOLI[1]
+        zig = np.abs((xx % 12) - 6)
+        pat = (((yy + zig) % 8) < 2) & inner
+    rgba = np.zeros((H, W, 4), np.uint8)
+    for m, col in ((np.ones((H, W), bool), field), (pat, line), (edge1, deep), (edge0, border)):
+        rgba[m, :3] = rgb(col)
+    rgba[:, :, 3] = 255
+    if kind == "b":
+        rgba[(((yy - 4) % 6) == 3) & inner, :3] = rgb(WOOD[0])
+    return rgba
+
+
+def quest_pieces():
+    """The Night Shift quest props. Returns (pieces, state sets)."""
+    out = []
+    sx, sy = QS
+    for st in ("locked", "open"):
+        out.append(_nq(f"reader_pedestal_{st}", lambda r, st=st: draw_reader_pedestal(r, sx, sy, st == "open"), (sx, sy + 6), (1, 1), ["1"], "rear_prop", "prop",
+                       "a free-standing card-reader pedestal for the security vestibule, 12 x 22, 1 x 1 (level 17). "
+                       + ("locked: an amber status LED" if st == "locked" else "open: the status LEDs are silver, the reader confirmed")
+                       + ". It blocks its cell in both states (the gate, not the pedestal, opens the way)", ["reader", "vestibule", "security", "level 17", st],
+                       box=(sx, sy, sx + 13, sy + 24)))
+    for st in ("dim", "lit"):
+        out.append(_nq(f"exit_sign_{st}", lambda r, st=st: draw_exit_sign(r, sx, sy, st == "lit"), (sx, sy), (2, 1), ["00"], "rear_wall", "wall",
+                       "the vestibule's back-exit sign (level 17: a vestibule with a clear back exit), a 24 x 10 wall plate with a stair and an arrow. "
+                       + ("dim: a dull plate, the icon barely visible" if st == "dim" else "lit: a warm plate with the icon in ink") + ". Place above the back exit; the plain wall already blocks",
+                       ["sign", "exit", "vestibule", "level 17", st], y_sort=False, shadow=False, wall=True, box=(sx, sy, sx + 24, sy + 10)))
+    for st in ("closed", "open"):
+        out.append(_nq(f"north_stair_{st}", lambda r, st=st: draw_north_stair(r, sx, sy, st), (sx, sy), (2, 2), ["11", "11"] if st == "closed" else ["00", "00"],
+                "rear_wall", "door",
+                "the north stair door of level 18 (Ada opens the north stair), a north-wall door 32 x 34 px that replaces two plain wall tiles and carries their cap: a stair sign on the lintel. "
+                + ("closed: a silver lock grille with an amber lock bar; blocks" if st == "closed" else "open: the grille is folded to the left, the stair climbs to a warm landing; walkable")
+                + ". Do not put plain wall tiles under it", ["door", "stair", "north stair", "level 18", st], y_sort=False, shadow=False, wall=True,
+                box=(sx, sy, sx + 32, sy + 34), shadow_rect=(0, 32, 32, 2) if st == "closed" else None))
+    for k in ("a", "b", "c"):
+        rgba = _rug(k)
+        out.append(_px_piece(f"carpet_cue_{k}", rgba, (3, 2), ["000", "000"], "floor_marking", "tile",
+                             "a 3 x 2 rug on the floor markings (level 18: the Caps route uses varied lamp and carpet cues): "
+                             + {"a": "indigo diamonds with a blue border", "b": "warm stripes with a wood border", "c": "green chevrons with a green border"}[k]
+                             + ". Darker than the slate floor, so people keep the moonlight rim on it; never uses the lamp-pool accent steps 0 and 1. Walkable",
+                             ["rug", "carpet", "level 18", k]))
+        QUEST_NAMES.add(f"carpet_cue_{k}")
+    for st in ("idle", "ready"):
+        out.append(_nq(f"courier_chute_{st}", lambda r, st=st: qp.courier_chute(r, sx, sy, PAL, st == "ready"), (sx, sy + 12), (2, 1), ["11"], "rear_prop", "prop",
+                       "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. "
+                       + ("idle: the lamp is dull, the slot empty" if st == "idle" else "ready (Mira has a route to offer): a slip stands in the slot and the lamp is lit warm")
+                       + ". Silver edge", ["chute", "mira", "courier", st], box=(sx, sy, sx + 34, sy + 30)))
+    out.append(_nq("mira_decor_night_courier", lambda r: qp.mira_decor(r, "night_courier", sx, sy, PAL), (sx - 2, sy + 10 - 16), (1, 1), ["0"], "rear_prop", "prop",
+                   "Night Courier reward (after level 18): a small satchel with a warm strap and a crescent charm; a desk decoration, 1 x 1, no collision. Silver edge",
+                   ["decor", "mira", "desk"], shadow=False))
+    out.append(break_counter(lit=False))
+    QUEST_NAMES.add("break_counter_dim")
+    out += pool_pieces("pool_breaktop", 31, 11, (31 - 24, 11 - 14),
+                       "Break-counter pool, 62x22 px: centre 24 px right and 14 px below the break counter's footprint origin, so a state set can carry the counter and its pool together.",
+                       ["break room", "counter"])
+    for p in out[-2:]:
+        QUEST_NAMES.add(p.name)
+    anims = {
+        "reader_pedestal": {"kind": "state_set", "default": "locked",
+                            "states": {"locked": {"entries": ["reader_pedestal_locked"]}, "open": {"entries": ["reader_pedestal_open"]}},
+                            "play": ["locked", "open"], "ms_per_frame": 200,
+                            "note": "level 17: the vestibule reader confirms; pair with vestibule_gate"},
+        "exit_sign": {"kind": "state_set", "default": "dim",
+                      "states": {"dim": {"entries": ["exit_sign_dim"]}, "lit": {"entries": ["exit_sign_lit"]}},
+                      "play": ["dim", "lit"], "ms_per_frame": 200,
+                      "note": "level 17: the back-exit sign comes on once the player confirms the exit instruction"},
+        "north_stair": {"kind": "state_set", "default": "closed",
+                        "states": {"closed": {"entries": ["north_stair_closed"], "blocked": True}, "open": {"entries": ["north_stair_open"], "blocked": False}},
+                        "play": ["closed", "open"], "ms_per_frame": 200,
+                        "note": "level 18: Ada opens the north stair; open leaves rows 0-1 of its cells walkable"},
+        "courier_chute": {"kind": "state_set", "default": "idle",
+                          "states": {"idle": {"entries": ["courier_chute_idle"]}, "ready": {"entries": ["courier_chute_ready"]}},
+                          "play": ["idle", "ready"], "ms_per_frame": 300,
+                          "note": "Mira's chute: ready while she has a route to offer (Lights-Out Delivery, after level 18)"},
+        "break_room": {"kind": "state_set", "default": "dim",
+                       "states": {"dim": {"entries": ["break_counter_dim"]}, "warm": {"entries": ["break_counter", "pool_breaktop_fill", "pool_breaktop_seam"]}},
+                       "play": ["dim", "warm"], "ms_per_frame": 300,
+                       "note": "levels 17 and 19: the break room's warm-light state. Place at the counter's cell; warm adds the counter's lit lamp and its pool of light. The long window's own light is the interior_window landmark"},
+        "corridor_light": {"kind": "state_set", "default": "dim",
+                           "states": {"dim": {"entries": ["lamp_off"]}, "lit": {"entries": ["lamp", "lamp_glow_on", "pool_route_fill", "pool_route_seam"]}},
+                           "play": ["dim", "lit"], "ms_per_frame": 300,
+                           "note": "level 19: the service corridor lights up. Place one per 4 to 5 cells along the corridor: an unlit lamp, then the lamp with a pool of route light centred on it"},
+    }
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -781,6 +999,8 @@ def build_pieces():
     pieces.append(noticeboard())
     pieces += vestibule_gate()
     pieces += landmark_pieces()
+    qpieces, qanims = quest_pieces()
+    pieces += qpieces
     anims = {
         "service_door": {
             "kind": "state_set", "default": "closed",
@@ -825,11 +1045,14 @@ def build_pieces():
             "note": "the silhouettes behind the interior window in the after state; swap window_figs_after_a for this loop (level 19: silhouettes move independently)",
         },
     }
+    anims.update(qanims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in QUEST_NAMES:
+        return 8
     if n.startswith(("floor_", "route_")):
         return 0
     if n.startswith("wall_"):
@@ -851,7 +1074,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS (lit edges)"), (2, "S
             (3, "LAMP (post, off, glow states)"), (4, "LAMP POOLS (light layer: fill + seam pairs)"),
             (5, "RECOLOURED ORIENTATION PROPS (dead and lit stations, chair, plants, sofa)"),
             (6, "NIGHT SHIFT KIT: shared pieces, break counter, ledger desk, vestibule gate"),
-            (7, "LANDMARK: THE LONG INTERIOR WINDOW (registered parts)")]
+            (7, "LANDMARK: THE LONG INTERIOR WINDOW (registered parts)"),
+            (8, "QUEST PROPS (levels 17 to 19, Mira's route): reader pedestal, exit sign, north stair, rugs, courier chute, dim break counter, Mira decor")]
 
 
 def atlas_json(pieces, rects, anims, lms):

@@ -2744,6 +2744,699 @@
     "light"
    ],
    "note": "after: the brighter core of each band (accent step 1); composited only where the spill band is already accent step 0, so draw it after window_spill_after"
+  },
+  {
+   "name": "reader_pedestal_locked",
+   "kind": "prop",
+   "rect": [
+    384,
+    288,
+    16,
+    32
+   ],
+   "size_px": [
+    13,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     6
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "reader",
+    "vestibule",
+    "security",
+    "level 17",
+    "locked"
+   ],
+   "contact_shadow": [
+    2,
+    22,
+    11,
+    2
+   ],
+   "note": "a free-standing card-reader pedestal for the security vestibule, 12 x 22, 1 x 1 (level 17). locked: an amber status LED. It blocks its cell in both states (the gate, not the pedestal, opens the way)"
+  },
+  {
+   "name": "reader_pedestal_open",
+   "kind": "prop",
+   "rect": [
+    400,
+    288,
+    16,
+    32
+   ],
+   "size_px": [
+    13,
+    24
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     6
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    22
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "reader",
+    "vestibule",
+    "security",
+    "level 17",
+    "open"
+   ],
+   "contact_shadow": [
+    2,
+    22,
+    11,
+    2
+   ],
+   "note": "a free-standing card-reader pedestal for the security vestibule, 12 x 22, 1 x 1 (level 17). open: the status LEDs are silver, the reader confirmed. It blocks its cell in both states (the gate, not the pedestal, opens the way)"
+  },
+  {
+   "name": "exit_sign_dim",
+   "kind": "wall",
+   "rect": [
+    416,
+    288,
+    32,
+    16
+   ],
+   "size_px": [
+    24,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "sign",
+    "exit",
+    "vestibule",
+    "level 17",
+    "dim"
+   ],
+   "note": "the vestibule's back-exit sign (level 17: a vestibule with a clear back exit), a 24 x 10 wall plate with a stair and an arrow. dim: a dull plate, the icon barely visible. Place above the back exit; the plain wall already blocks"
+  },
+  {
+   "name": "exit_sign_lit",
+   "kind": "wall",
+   "rect": [
+    448,
+    288,
+    32,
+    16
+   ],
+   "size_px": [
+    24,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "sign",
+    "exit",
+    "vestibule",
+    "level 17",
+    "lit"
+   ],
+   "note": "the vestibule's back-exit sign (level 17: a vestibule with a clear back exit), a 24 x 10 wall plate with a stair and an arrow. lit: a warm plate with the icon in ink. Place above the back exit; the plain wall already blocks"
+  },
+  {
+   "name": "north_stair_closed",
+   "kind": "door",
+   "rect": [
+    480,
+    288,
+    32,
+    48
+   ],
+   "size_px": [
+    32,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "11",
+    "11"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "stair",
+    "north stair",
+    "level 18",
+    "closed"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    32,
+    2
+   ],
+   "note": "the north stair door of level 18 (Ada opens the north stair), a north-wall door 32 x 34 px that replaces two plain wall tiles and carries their cap: a stair sign on the lintel. closed: a silver lock grille with an amber lock bar; blocks. Do not put plain wall tiles under it"
+  },
+  {
+   "name": "north_stair_open",
+   "kind": "door",
+   "rect": [
+    512,
+    288,
+    32,
+    48
+   ],
+   "size_px": [
+    32,
+    34
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00",
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "door",
+    "stair",
+    "north stair",
+    "level 18",
+    "open"
+   ],
+   "note": "the north stair door of level 18 (Ada opens the north stair), a north-wall door 32 x 34 px that replaces two plain wall tiles and carries their cap: a stair sign on the lintel. open: the grille is folded to the left, the stair climbs to a warm landing; walkable. Do not put plain wall tiles under it"
+  },
+  {
+   "name": "carpet_cue_a",
+   "kind": "tile",
+   "rect": [
+    544,
+    288,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    32
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "rug",
+    "carpet",
+    "level 18",
+    "a"
+   ],
+   "note": "a 3 x 2 rug on the floor markings (level 18: the Caps route uses varied lamp and carpet cues): indigo diamonds with a blue border. Darker than the slate floor, so people keep the moonlight rim on it; never uses the lamp-pool accent steps 0 and 1. Walkable"
+  },
+  {
+   "name": "carpet_cue_b",
+   "kind": "tile",
+   "rect": [
+    592,
+    288,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    32
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "rug",
+    "carpet",
+    "level 18",
+    "b"
+   ],
+   "note": "a 3 x 2 rug on the floor markings (level 18: the Caps route uses varied lamp and carpet cues): warm stripes with a wood border. Darker than the slate floor, so people keep the moonlight rim on it; never uses the lamp-pool accent steps 0 and 1. Walkable"
+  },
+  {
+   "name": "carpet_cue_c",
+   "kind": "tile",
+   "rect": [
+    0,
+    352,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    32
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "floor_marking",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "rug",
+    "carpet",
+    "level 18",
+    "c"
+   ],
+   "note": "a 3 x 2 rug on the floor markings (level 18: the Caps route uses varied lamp and carpet cues): green chevrons with a green border. Darker than the slate floor, so people keep the moonlight rim on it; never uses the lamp-pool accent steps 0 and 1. Walkable"
+  },
+  {
+   "name": "courier_chute_idle",
+   "kind": "prop",
+   "rect": [
+    48,
+    352,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "chute",
+    "mira",
+    "courier",
+    "idle"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. idle: the lamp is dull, the slot empty. Silver edge"
+  },
+  {
+   "name": "courier_chute_ready",
+   "kind": "prop",
+   "rect": [
+    96,
+    352,
+    48,
+    32
+   ],
+   "size_px": [
+    34,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     12
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    28
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "chute",
+    "mira",
+    "courier",
+    "ready"
+   ],
+   "contact_shadow": [
+    1,
+    28,
+    33,
+    2
+   ],
+   "note": "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. ready (Mira has a route to offer): a slip stands in the slot and the lamp is lit warm. Silver edge"
+  },
+  {
+   "name": "mira_decor_night_courier",
+   "kind": "prop",
+   "rect": [
+    144,
+    352,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -2,
+     -6
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    6,
+    10
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "decor",
+    "mira",
+    "desk"
+   ],
+   "note": "Night Courier reward (after level 18): a small satchel with a warm strap and a crescent charm; a desk decoration, 1 x 1, no collision. Silver edge"
+  },
+  {
+   "name": "break_counter_dim",
+   "kind": "prop",
+   "rect": [
+    160,
+    352,
+    48,
+    32
+   ],
+   "size_px": [
+    48,
+    18
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    24,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "counter",
+    "break room",
+    "kettle",
+    "dim"
+   ],
+   "contact_shadow": [
+    1,
+    16,
+    47,
+    2
+   ],
+   "note": "the break-room counter in its dim state (levels 17 and 19: the break room is not yet warm): the same counter with the lamp off, the kettle cold and no glow on the top plane"
+  },
+  {
+   "name": "pool_breaktop_fill",
+   "kind": "light",
+   "rect": [
+    208,
+    352,
+    64,
+    32
+   ],
+   "size_px": [
+    62,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     7,
+     -3
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    15,
+    13
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#4C5865"
+   },
+   "tags": [
+    "light",
+    "pool",
+    "break room",
+    "counter"
+   ],
+   "note": "Break-counter pool, 62x22 px: centre 24 px right and 14 px below the break counter's footprint origin, so a state set can carry the counter and its pool together. This entry recolours the bare floor fill (#4C5865) to #B8745A; place it with pool_breaktop_seam."
+  },
+  {
+   "name": "pool_breaktop_seam",
+   "kind": "light",
+   "rect": [
+    272,
+    352,
+    64,
+    32
+   ],
+   "size_px": [
+    62,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     7,
+     -3
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "light",
+   "y_sort": false,
+   "anchor": [
+    15,
+    13
+   ],
+   "composite": {
+    "mode": "where_color",
+    "color": "#364049"
+   },
+   "tags": [
+    "light",
+    "pool",
+    "break room",
+    "counter"
+   ],
+   "note": "Break-counter pool, 62x22 px: centre 24 px right and 14 px below the break counter's footprint origin, so a state set can carry the counter and its pool together. This entry recolours the slab joints and wear chips (#364049) to #7A4A4A; place it with pool_breaktop_fill."
   }
  ],
  "animations": {
@@ -2900,6 +3593,145 @@
    ],
    "ms_per_frame": 700,
    "note": "the silhouettes behind the interior window in the after state; swap window_figs_after_a for this loop (level 19: silhouettes move independently)"
+  },
+  "reader_pedestal": {
+   "kind": "state_set",
+   "default": "locked",
+   "states": {
+    "locked": {
+     "entries": [
+      "reader_pedestal_locked"
+     ]
+    },
+    "open": {
+     "entries": [
+      "reader_pedestal_open"
+     ]
+    }
+   },
+   "play": [
+    "locked",
+    "open"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 17: the vestibule reader confirms; pair with vestibule_gate"
+  },
+  "exit_sign": {
+   "kind": "state_set",
+   "default": "dim",
+   "states": {
+    "dim": {
+     "entries": [
+      "exit_sign_dim"
+     ]
+    },
+    "lit": {
+     "entries": [
+      "exit_sign_lit"
+     ]
+    }
+   },
+   "play": [
+    "dim",
+    "lit"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 17: the back-exit sign comes on once the player confirms the exit instruction"
+  },
+  "north_stair": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "north_stair_closed"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "north_stair_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "open"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 18: Ada opens the north stair; open leaves rows 0-1 of its cells walkable"
+  },
+  "courier_chute": {
+   "kind": "state_set",
+   "default": "idle",
+   "states": {
+    "idle": {
+     "entries": [
+      "courier_chute_idle"
+     ]
+    },
+    "ready": {
+     "entries": [
+      "courier_chute_ready"
+     ]
+    }
+   },
+   "play": [
+    "idle",
+    "ready"
+   ],
+   "ms_per_frame": 300,
+   "note": "Mira's chute: ready while she has a route to offer (Lights-Out Delivery, after level 18)"
+  },
+  "break_room": {
+   "kind": "state_set",
+   "default": "dim",
+   "states": {
+    "dim": {
+     "entries": [
+      "break_counter_dim"
+     ]
+    },
+    "warm": {
+     "entries": [
+      "break_counter",
+      "pool_breaktop_fill",
+      "pool_breaktop_seam"
+     ]
+    }
+   },
+   "play": [
+    "dim",
+    "warm"
+   ],
+   "ms_per_frame": 300,
+   "note": "levels 17 and 19: the break room's warm-light state. Place at the counter's cell; warm adds the counter's lit lamp and its pool of light. The long window's own light is the interior_window landmark"
+  },
+  "corridor_light": {
+   "kind": "state_set",
+   "default": "dim",
+   "states": {
+    "dim": {
+     "entries": [
+      "lamp_off"
+     ]
+    },
+    "lit": {
+     "entries": [
+      "lamp",
+      "lamp_glow_on",
+      "pool_route_fill",
+      "pool_route_seam"
+     ]
+    }
+   },
+   "play": [
+    "dim",
+    "lit"
+   ],
+   "ms_per_frame": 300,
+   "note": "level 19: the service corridor lights up. Place one per 4 to 5 cells along the corridor: an unlit lamp, then the lamp with a pool of route light centred on it"
   }
  },
  "landmarks": {

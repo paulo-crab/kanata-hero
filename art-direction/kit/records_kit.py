@@ -22,6 +22,7 @@ import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
+import quest_props as qp  # noqa: E402
 
 T = 16
 KIT = "records"
@@ -528,6 +529,340 @@ def landmarks():
     }
 
 
+# ------------------------------------------------------------------ 4. quest props (levels 07, 08, 09, 10, 11 and Mira's routes)
+# Audit: QUEST_PROP_AUDIT.md (rows R1 to R30). Everything here is drawn from the Records ramps.
+
+QUEST_NAMES = set()
+QS = (64, 64)   # capture origin for every quest prop
+
+
+def _quest(name, draw, fp, cells, collision, layer, kind, note, tags, y_sort=True, shadow=True, box=None, composite=None):
+    p = ok.make(name, draw, fp, cells, collision, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=tags)
+    if composite:
+        p.composite = composite
+    QUEST_NAMES.add(name)
+    return p
+
+
+def _text_window(r, x, y, kind):
+    """A door text window, 11 x 8: kind 'a' the address line with the cursor, 'b' the two sides of the cursor."""
+    G, W, A = PAL.glass, PAL.wall, PAL.accent
+    r.rect(x, y, x + 11, y + 8, INK[0])
+    r.rect(x + 1, y + 1, x + 10, y + 7, W[3] if kind == "a" else W[2])
+    if kind == "a":
+        for bx in (1, 3, 7, 9):                                       # thin characters either side of the cursor
+            r.rect(x + bx, y + 2, x + bx + 1, y + 6, INK[2])
+            r.rect(x + bx, y + 2, x + bx + 1, y + 3, INK[1])
+        r.rect(x + 2, y + 4, x + 3, y + 5, INK[2])                    # a crossbar joins the first pair, as in a typed word
+        r.rect(x + 8, y + 4, x + 9, y + 5, INK[2])
+    else:
+        r.rect(x + 6, y + 1, x + 10, y + 7, W[3])                     # the forward side is the lighter half
+        for dx, dy in ((3, 2), (2, 3), (3, 4)):                       # chevron left: Backspace side
+            r.img[y + dy, x + dx] = A[1]
+        for dx, dy in ((7, 2), (8, 3), (7, 4)):                       # chevron right: Forward Delete side
+            r.img[y + dy, x + dx] = G[2]
+    r.rect(x + 5, y + 1, x + 6, y + 6, A[2])                          # the cursor, between the two sides
+    r.img[y + 1, x + 5] = A[3]
+
+
+def _door_leaf(r, x, y, w):
+    """One cherry leaf with a glass pane, rows y..y+13."""
+    G, WD = PAL.glass, PAL.wood
+    r.rect(x, y, x + w, y + 14, INK[0])
+    r.rect(x + 1, y + 1, x + w - 1, y + 13, WD[1])
+    r.rect(x + 1, y + 1, x + w - 1, y + 2, WD[2])
+    r.rect(x + 1, y + 1, x + 2, y + 13, WD[2])
+    if w >= 8:
+        px0, px1 = x + 3, x + w - 2
+        r.rect(px0, y + 3, px1, y + 12, G[2])
+        r.rect(px0, y + 9, px1, y + 12, G[1])
+        for k in range(5):
+            if px0 + 2 + k < px1:
+                r.img[y + 3 + k, px0 + 2 + k] = G[3]
+
+
+def draw_repair_door(r, x0, y0, state):
+    """The repair door of level 07, a north-wall door 2 cells wide and 34 px tall (the wall's own height, so it
+    replaces two plain wall tiles). Above the leaves a display band holds the two text windows: the address line
+    with its cursor, and the two sides of the cursor (Backspace to the left, Forward Delete to the right).
+    states: closed, half (leaves 6 px into the jamb pockets), open (leaves 12 px in, a lit archive beyond)."""
+    G, W, WD, F, A = PAL.glass, PAL.wall, PAL.wood, PAL.floor, PAL.accent
+    w = 32
+    r.rect(x0, y0, x0 + w, y0 + 1, INK[2])                             # the wall's cap, as wall_n_plain draws it
+    r.rect(x0, y0 + 1, x0 + w, y0 + 4, INK[1])
+    r.rect(x0, y0 + 4, x0 + w, y0 + 5, G[2])
+    r.rect(x0, y0 + 5, x0 + w, y0 + 6, INK[0])
+    r.rect(x0, y0 + 6, x0 + w, y0 + 32, INK[0])                        # frame mass
+    r.rect(x0 + 1, y0 + 7, x0 + 3, y0 + 31, WD[1])                      # jambs, lit on the left
+    r.rect(x0 + 1, y0 + 7, x0 + 2, y0 + 31, WD[2])
+    r.rect(x0 + w - 3, y0 + 7, x0 + w - 1, y0 + 31, WD[1])
+    r.rect(x0 + w - 2, y0 + 7, x0 + w - 1, y0 + 31, WD[0])
+    r.rect(x0 + 1, y0 + 7, x0 + w - 1, y0 + 18, WD[1])                  # display band
+    r.rect(x0 + 1, y0 + 7, x0 + w - 1, y0 + 8, WD[2])
+    r.rect(x0 + 3, y0 + 17, x0 + w - 3, y0 + 18, WD[0])
+    _text_window(r, x0 + 4, y0 + 8, "a")
+    _text_window(r, x0 + 17, y0 + 8, "b")
+    # opening: rows 18..31, x 3..28
+    ox0, ox1, oy0, oy1 = x0 + 3, x0 + w - 3, y0 + 18, y0 + 31
+    if state == "closed":
+        _door_leaf(r, ox0, oy0, 13)
+        _door_leaf(r, ox0 + 13, oy0, 13)
+        for px_ in (ox0 + 10, ox0 + 15):                                 # pulls by the seam
+            r.rect(px_, oy0 + 6, px_ + 1, oy0 + 10, W[3])
+    else:
+        # the lit archive beyond: back wall, shelf-end stripes, a pale floor with a mat
+        r.rect(ox0, oy0, ox1, oy1, W[1])
+        r.rect(ox0, oy0, ox1, oy0 + 1, INK[1])
+        r.rect(ox0, oy0 + 1, ox1, oy0 + 2, INK[2])
+        r.rect(ox0, oy0 + 6, ox1, oy1, F[3])
+        r.rect(ox0, oy0 + 6, ox1, oy0 + 7, F[2])
+        for sx in range(ox0 + 2, ox1 - 1, 6):
+            r.rect(sx, oy0 + 2, sx + 2, oy0 + 6, A[1])
+            r.rect(sx, oy0 + 2, sx + 1, oy0 + 6, A[2])
+        r.rect(ox0 + 7, oy0 + 9, ox1 - 7, oy0 + 12, F[2])
+        if state == "half":
+            _door_leaf(r, ox0, oy0, 7)
+            _door_leaf(r, ox1 - 7, oy0, 7)
+        else:
+            _door_leaf(r, ox0, oy0, 2)
+            _door_leaf(r, ox1 - 2, oy0, 2)
+    r.rect(x0 + 1, y0 + 31, x0 + w - 1, y0 + 32, WD[0])                 # threshold
+    if state != "open":
+        r.rect(x0, y0 + 32, x0 + w, y0 + 33, INK[2])                    # cast shadow, as the wall draws it
+        r.rect(x0, y0 + 33, x0 + w, y0 + 34, INK[3])
+    else:
+        r.rect(x0 + 3, y0 + 32, x0 + w - 3, y0 + 33, F[2])             # the lit threshold continues onto the floor line
+
+
+def shelf_end_light(r, x0, y0, on):
+    """An end-of-shelf light, 6 x 12: an ink strip with a tall pane. Off: dull sea-blue glass. On: a linen core with a
+    peach edge (never gold: gold is the UI's opened-route marker)."""
+    G, W, A = PAL.glass, PAL.wall, PAL.accent
+    r.rect(x0, y0, x0 + 6, y0 + 12, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 5, y0 + 9, G[1])
+    if on:
+        r.rect(x0 + 1, y0 + 1, x0 + 5, y0 + 9, A[3])
+        r.rect(x0 + 2, y0 + 2, x0 + 4, y0 + 8, W[3])
+        r.img[y0 + 1, x0 + 1] = W[3]
+    else:
+        r.rect(x0 + 1, y0 + 1, x0 + 5, y0 + 2, G[2])
+        r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 9, G[2])
+    r.rect(x0 + 1, y0 + 9, x0 + 5, y0 + 11, G[0])
+    r.rect(x0 + 1, y0 + 10, x0 + 5, y0 + 11, G[1])
+
+
+FOLDER_DRIFT = [(0, 1), (3, 0), (1, 2), (4, 0), (2, 1), (0, 2)]   # (tab rise, tab x shift) per folder
+
+
+def draw_folder_rack(r, x0, y0, state):
+    """A low open file rack, 2 cells wide: six sea-blue folders standing on a cherry top plane behind a front lip.
+    drift: tabs at uneven heights and shifts, folders of uneven height, dull linen labels. aligned: every tab on one line
+    in a regular rhythm, labels linen with a coral mark."""
+    G, W, WD, A = PAL.glass, PAL.wall, PAL.wood, PAL.accent
+    env.block(r, x0, y0 + 11, x0 + 32, y0 + 27, 7, WD, WD)
+    for i in range(6):
+        fx = x0 + 1 + 5 * i
+        rise, shift = FOLDER_DRIFT[i] if state == "drift" else (0, i % 2)
+        top = y0 + 9 + (rise // 2 if state == "drift" else 0)
+        bot = y0 + 19
+        r.rect(fx, top, fx + 4, bot, G[2])
+        r.rect(fx, top, fx + 1, bot, G[3])
+        r.rect(fx + 3, top, fx + 4, bot, G[1])
+        ty = top - 2 - (rise if state == "drift" else 1)
+        tx = fx + (shift if state == "drift" else 0)
+        r.rect(tx, ty, tx + 3, top, W[2] if state == "drift" else W[3])
+        r.outline(r.mask(tx, ty, tx + 3, top + 1) | r.mask(fx, top, fx + 4, bot), INK[0])
+        if state == "aligned":
+            r.img[ty + 1, tx + 1] = A[2]
+    r.rect(x0 + 1, y0 + 19, x0 + 31, y0 + 20, WD[3])                    # the front lip hides the folders' feet
+    r.rect(x0 + 1, y0 + 20, x0 + 31, y0 + 21, WD[1])
+
+
+def draw_ledger_table(r, x0, y0, state):
+    """The two-sided ledger table of level 09, 4 cells wide: a long cherry table with one long open folio lying along
+    it. before: Pace's revision put both sign-offs in the middle and the table is dull. after: the sign-offs sit at
+    both margins and both ends of the table are lit (lit wood and bright pages)."""
+    W, WD, A = PAL.wall, PAL.wood, PAL.accent
+    env.block(r, x0, y0 + 6, x0 + 64, y0 + 22, 6, WD, WD)
+    if state == "after":
+        for ex0, ex1 in ((x0 + 2, x0 + 20), (x0 + 44, x0 + 62)):        # the lit wood at each end
+            r.rect(ex0, y0 + 7, ex1, y0 + 15, WD[3])
+    fol = r.mask(x0 + 4, y0 + 7, x0 + 60, y0 + 15)
+    r.img[fol] = W[2]
+    r.rect(x0 + 31, y0 + 8, x0 + 33, y0 + 14, W[1])                      # the spine
+    if state == "after":
+        r.rect(x0 + 5, y0 + 8, x0 + 18, y0 + 14, W[3])
+        r.rect(x0 + 46, y0 + 8, x0 + 59, y0 + 14, W[3])
+    for sx in list(range(x0 + 6, x0 + 30, 4)) + list(range(x0 + 35, x0 + 59, 4)):   # ruled text, short runs
+        r.rect(sx, y0 + 9, sx + 3, y0 + 10, INK[2])
+        r.rect(sx, y0 + 12, sx + 3, y0 + 13, INK[2])
+    marks = [(x0 + 24, y0 + 10), (x0 + 36, y0 + 10)] if state == "before" else [(x0 + 6, y0 + 10), (x0 + 52, y0 + 10)]
+    for mx, my in marks:                                                 # the sign-off: a coral scrawl on the line
+        r.rect(mx, my, mx + 6, my + 2, A[2])
+        r.rect(mx, my + 1, mx + 6, my + 2, A[1])
+        r.img[my, mx + 1] = A[3]
+        r.img[my - 1, mx + 4] = A[2]
+    r.outline(fol, INK[0])
+
+
+def draw_rolling_ladder(r, x0, y0, state):
+    """The rolling ladder of level 09, a 4-cell gallery wall: a shelf cell at each end, a two-cell opening that shows
+    the stair to the upper gallery, a rail across the top, and a cherry ladder hung from the rail. closed: the
+    ladder stands across the opening. open: it has rolled in front of the left shelf and the stair is free."""
+    G, W, WD, F = PAL.glass, PAL.wall, PAL.wood, PAL.floor
+    sp.shelf(r, x0, y0 + 4, 1, PAL, 5)
+    sp.shelf(r, x0 + 48, y0 + 4, 1, PAL, 6)
+    # the opening: dark back, seven treads receding into the gallery, cherry posts either side
+    r.rect(x0 + 16, y0 + 4, x0 + 48, y0 + 32, INK[0])
+    r.rect(x0 + 17, y0 + 5, x0 + 47, y0 + 32, INK[1])
+    surf = [F[3], F[2], F[2], F[1], F[1], F[0], F[0]]
+    riser = [F[2], F[1], F[1], F[0], F[0], INK[2], INK[2]]
+    for i in range(7):
+        yb = y0 + 31 - 3 * i
+        r.rect(x0 + 19, yb - 1, x0 + 45, yb, surf[i])
+        r.rect(x0 + 19, yb - 2, x0 + 45, yb - 1, surf[i])
+        r.rect(x0 + 19, yb, x0 + 45, yb + 1, riser[i])
+    r.rect(x0 + 17, y0 + 5, x0 + 19, y0 + 32, WD[1])
+    r.rect(x0 + 17, y0 + 5, x0 + 18, y0 + 32, WD[2])
+    r.rect(x0 + 45, y0 + 5, x0 + 47, y0 + 32, WD[1])
+    r.rect(x0 + 46, y0 + 5, x0 + 47, y0 + 32, WD[0])
+    # the rail the ladder hangs from
+    r.rect(x0, y0, x0 + 64, y0 + 4, INK[0])
+    r.rect(x0, y0 + 1, x0 + 64, y0 + 3, G[2])
+    r.rect(x0, y0 + 1, x0 + 64, y0 + 2, G[3])
+    r.rect(x0, y0 + 3, x0 + 64, y0 + 4, G[1])
+    lx = x0 + 22 if state == "closed" else x0 + 3
+    for rx in (lx, lx + 15):                                             # the two ladder rails
+        r.rect(rx, y0 + 2, rx + 3, y0 + 32, INK[0])
+        r.rect(rx + 1, y0 + 3, rx + 2, y0 + 32, WD[2])
+        r.rect(rx + 1, y0 + 3, rx + 2, y0 + 4, WD[3])
+    for ry in range(y0 + 8, y0 + 31, 4):                                 # rungs
+        r.rect(lx + 3, ry, lx + 15, ry + 1, WD[3])
+        r.rect(lx + 3, ry + 1, lx + 15, ry + 2, WD[0])
+    for rx in (lx + 1, lx + 16):                                          # the wheels on the rail
+        r.rect(rx - 1, y0, rx + 2, y0 + 4, INK[0])
+        r.rect(rx, y0 + 1, rx + 1, y0 + 3, G[3])
+
+
+def draw_report_table(r, x0, y0, state):
+    """The report table of level 10, 2 cells wide: a cherry table with Pace's grey summary (three orderly bars). after:
+    the original report lies beside it, a cherry cover with a coral spine and a linen label."""
+    W, WD, A = PAL.wall, PAL.wood, PAL.accent
+    env.block(r, x0, y0, x0 + 34, y0 + 16, 5, WD, WD)
+    sm = r.mask(x0 + 5, y0 + 2, x0 + 16, y0 + 9)
+    r.img[sm] = W[2]
+    r.rect(x0 + 5, y0 + 2, x0 + 16, y0 + 3, W[3])
+    for by in (4, 6):                                                    # Pace's orderly horizontal bars
+        r.rect(x0 + 7, y0 + by, x0 + 14, y0 + by + 1, INK[2])
+    r.outline(sm)
+    if state == "after":
+        om = r.mask(x0 + 19, y0 + 3, x0 + 30, y0 + 10)
+        r.img[om] = WD[1]
+        r.rect(x0 + 19, y0 + 3, x0 + 30, y0 + 4, WD[2])
+        r.rect(x0 + 19, y0 + 3, x0 + 22, y0 + 10, A[2])
+        r.rect(x0 + 19, y0 + 3, x0 + 20, y0 + 10, A[3])
+        r.rect(x0 + 24, y0 + 5, x0 + 29, y0 + 8, W[3])
+        r.rect(x0 + 25, y0 + 6, x0 + 28, y0 + 7, INK[1])
+        r.outline(om)
+
+
+def decor_piece(name, kind, note, tags, pal=None):
+    w, h = {"courier_loop": (12, 12), "archive_folder": (12, 10)}[kind]
+    x0, y0 = QS
+    return _quest(name, lambda r: qp.mira_decor(r, kind, x0, y0, pal or PAL), (x0 - (16 - w) // 2, y0 + h - 16), (1, 1), ["0"], "rear_prop", "prop",
+                  note, tags, shadow=False)
+
+
+def quest_pieces():
+    """The Records quest props. Returns (pieces, state sets)."""
+    out = []
+    sx, sy = QS
+    door_notes = {"closed": "both cherry leaves shut: the leaves meet at a seam with pulls and glass panes",
+                  "half": "leaves slid 6 px into the jamb pockets: the lit archive shows in the gap",
+                  "open": "leaves nearly in the pockets: a lit archive with shelf-end stripes and a mat shows through, and the threshold is lit"}
+    for st in ("closed", "half", "open"):
+        p = _quest(f"repair_door_{st}", lambda r, st=st: draw_repair_door(r, sx, sy, st), (sx, sy), (2, 2),
+                   ["11", "11"] if st != "open" else ["00", "00"], "rear_wall", "door",
+                   "the level 07 repair door, a north-wall door 32 x 34 px that replaces two plain wall tiles: a display band with two clear text windows "
+                   "(the address line with its cursor, and the two sides of the cursor: Backspace chevron left, Forward Delete chevron right), then "
+                   "cherry leaves with glass panes. " + door_notes[st] + ". Closed and half block; open walks. No flashing failure state",
+                   ["door", "repair door", "level 07", st], y_sort=False, shadow=False, box=(sx, sy, sx + 32, sy + 34))
+        if st != "open":
+            p.shadow = (0, 32, 32, 2)
+        out.append(p)
+    for st in ("off", "on"):
+        out.append(_quest(f"shelf_end_light_{st}", lambda r, st=st: shelf_end_light(r, sx, sy, st == "on"), (sx - 5, sy - 4), (1, 1), ["0"], "rear_prop", "prop",
+                          "a 6 x 12 end-of-shelf light (level 07: shelf-end lights change when the door answers). "
+                          + ("off: dull sea-blue glass" if st == "off" else "on: a linen core with a peach edge (not gold: gold is the UI's opened-route marker)")
+                          + ". Place against the end of a shelf unit, one cell wide, no collision", ["light", "shelf", "level 07", st], shadow=False, box=(sx, sy, sx + 6, sy + 12)))
+    for st in ("idle", "ready"):
+        out.append(_quest(f"courier_chute_{st}", lambda r, st=st: qp.courier_chute(r, sx, sy, PAL, st == "ready"), (sx, sy + 12), (2, 1), ["11"], "rear_prop", "prop",
+                          "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. "
+                          + ("idle: the lamp is dull, the slot empty" if st == "idle" else "ready (Mira has a route to offer): a slip stands in the slot and the lamp is lit in coral"),
+                          ["chute", "mira", "courier", st], box=(sx, sy, sx + 34, sy + 30)))
+    for st in ("drift", "aligned"):
+        out.append(_quest(f"folder_rack_{st}", lambda r, st=st: draw_folder_rack(r, sx, sy, st), (sx, sy + 11), (2, 1), ["11"], "rear_prop", "prop",
+                          "a low open file rack, 2 x 1 (level 08): six sea-blue folders. "
+                          + ("drift: label tabs at uneven heights and shifts, uneven folders, dull labels" if st == "drift"
+                             else "aligned: every tab on one line in a regular rhythm, linen labels with a coral mark"),
+                          ["folder", "file rack", "level 08", st], box=(sx, sy + 5, sx + 34, sy + 29)))
+    for st in ("before", "after"):
+        out.append(_quest(f"ledger_table_{st}", lambda r, st=st: draw_ledger_table(r, sx, sy, st), (sx, sy + 6), (4, 1), ["1111"], "rear_prop", "prop",
+                          "the two-sided ledger table, 4 x 1 (level 09): a long cherry table with an open folio along it. "
+                          + ("before: both sign-offs sit in the middle, the table is dull" if st == "before"
+                             else "after: sign-offs at both margins, both ends lit (lit wood, bright pages)")
+                          + ". Put one or two light_shaft entries across it for the beam of daylight", ["table", "ledger", "level 09", st], box=(sx, sy + 6, sx + 66, sy + 24)))
+    for st in ("closed", "open"):
+        out.append(_quest(f"rolling_ladder_{st}", lambda r, st=st: draw_rolling_ladder(r, sx, sy, st), (sx, sy + 16), (4, 1),
+                          ["1111"] if st == "closed" else ["1001"], "rear_prop", "prop",
+                          "the rolling ladder gallery wall, 4 x 1 (level 09): a shelf cell at each end, a two-cell opening onto the stair to the upper gallery, a rail with wheels, a cherry ladder. "
+                          + ("closed: the ladder stands across the opening (cols 0-3 block)" if st == "closed"
+                             else "open: the ladder has rolled in front of the left shelf; cols 1-2 are free"),
+                          ["ladder", "gallery", "level 09", st], box=(sx, sy, sx + 66, sy + 34)))
+    for st in ("before", "after"):
+        out.append(_quest(f"report_table_{st}", lambda r, st=st: draw_report_table(r, sx, sy, st), (sx, sy), (2, 1), ["11"], "rear_prop", "prop",
+                          "the report table, 2 x 1 (level 10): a cherry table. "
+                          + ("before: Pace's grey summary alone (three orderly bars)" if st == "before"
+                             else "after: Noor has placed the original report beside the summary (cherry cover, coral spine, linen label)"),
+                          ["table", "report", "level 10", st], box=(sx, sy, sx + 36, sy + 18)))
+    out.append(decor_piece("mira_decor_courier_loop", "courier_loop",
+                           "Courier Loop reward (after level 07): a loop-arrow medal on a small stand; a desk decoration, 1 x 1, no collision", ["decor", "mira", "desk"]))
+    out.append(decor_piece("mira_decor_archive_folder", "archive_folder",
+                           "Archive Loop reward (after level 11): a coral desk folder with a lit tab and a sheet showing; a desk decoration, 1 x 1, no collision", ["decor", "mira", "desk"]))
+    anims = {
+        "repair_door": {"kind": "state_set", "default": "closed",
+                        "states": {"closed": {"entries": ["repair_door_closed"], "blocked": True}, "half": {"entries": ["repair_door_half"], "blocked": True},
+                                   "open": {"entries": ["repair_door_open"], "blocked": False}},
+                        "play": ["closed", "half", "open"], "ms_per_frame": 120,
+                        "note": "level 07: the door retracts when the address is accepted; play forward, backward when the player leaves. Only open is walkable. Do not place plain wall tiles under it"},
+        "shelf_end_light": {"kind": "state_set", "default": "off",
+                            "states": {"off": {"entries": ["shelf_end_light_off"]}, "on": {"entries": ["shelf_end_light_on"]}},
+                            "play": ["off", "on"], "ms_per_frame": 200,
+                            "note": "level 07: the shelf-end lights come on when the repair door answers"},
+        "courier_chute": {"kind": "state_set", "default": "idle",
+                          "states": {"idle": {"entries": ["courier_chute_idle"]}, "ready": {"entries": ["courier_chute_ready"]}},
+                          "play": ["idle", "ready"], "ms_per_frame": 300,
+                          "note": "Mira's chute: ready while she has a route to offer"},
+        "folder_rack": {"kind": "state_set", "default": "drift",
+                        "states": {"drift": {"entries": ["folder_rack_drift"]}, "aligned": {"entries": ["folder_rack_aligned"]}},
+                        "play": ["drift", "aligned"], "ms_per_frame": 150,
+                        "note": "level 08: the repaired folders align"},
+        "ledger_table": {"kind": "state_set", "default": "before",
+                         "states": {"before": {"entries": ["ledger_table_before"]}, "after": {"entries": ["ledger_table_after"]}},
+                         "play": ["before", "after"], "ms_per_frame": 200,
+                         "note": "level 09: correct margins light both ends of the ledger table"},
+        "rolling_ladder": {"kind": "state_set", "default": "closed",
+                           "states": {"closed": {"entries": ["rolling_ladder_closed"], "blocked": True}, "open": {"entries": ["rolling_ladder_open"], "blocked": False}},
+                           "play": ["closed", "open"], "ms_per_frame": 200,
+                           "note": "level 09: the rolling ladder moves and reveals the stair to the upper gallery (slide it about 19 px over 4 steps)"},
+        "report_table": {"kind": "state_set", "default": "before",
+                         "states": {"before": {"entries": ["report_table_before"]}, "after": {"entries": ["report_table_after"]}},
+                         "play": ["before", "after"], "ms_per_frame": 200,
+                         "note": "level 10: Noor places the original report beside the summary"},
+    }
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -537,6 +872,8 @@ def build_pieces():
     pieces += shared_pieces()
     pieces += file_wall()
     pieces += landmark_pieces()
+    qpieces, qanims = quest_pieces()
+    pieces += qpieces
     anims = {
         "archive_door": {
             "kind": "state_set", "default": "closed",
@@ -562,11 +899,14 @@ def build_pieces():
                     "the open state leaves a two-cell corridor.",
         },
     }
+    anims.update(qanims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in QUEST_NAMES:
+        return 7
     if n.startswith(("floor_", "route_")):
         return 0
     if n.startswith("wall_"):
@@ -585,7 +925,8 @@ def group_rank(p):
 SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "WALLS"), (2, "SLIDING GLASS DOOR (closed, half, open)"),
             (3, "LAMP (post, off, glow states)"), (4, "REUSED ORIENTATION PROPS (recoloured)"),
             (5, "NEW SHARED KIT: shelving, partition, terminal desk, cabinet, file wall, light"),
-            (6, "LANDMARK: THE CIRCULAR ARCHIVE DESK (registered parts)")]
+            (6, "LANDMARK: THE CIRCULAR ARCHIVE DESK (registered parts)"),
+            (7, "QUEST PROPS (levels 07 to 11, Mira's routes): repair door, shelf-end light, courier chute, folder rack, ledger table, rolling ladder, report table, Mira decor")]
 
 
 def atlas_json(pieces, rects, anims, lms):

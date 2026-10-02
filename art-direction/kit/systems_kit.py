@@ -27,10 +27,12 @@ import shared_pieces as sp  # noqa: E402
 import build_scale_test as bst  # noqa: E402
 import district_palettes as dp  # noqa: E402
 import environment as env  # noqa: E402
+import quest_props as qp  # noqa: E402
 
 T = 16
 KIT = "systems"
 PAL = sp.Pal("systems")
+PAL.paper = PAL.floor      # paper, slips and label plates are porcelain (the wall ramp is steel blue); read only by quest_props.py
 S = dp.DISTRICTS["systems"]
 O = dp.DISTRICTS["orientation"]
 INK, shifted = bst.INK, bst.shifted
@@ -894,6 +896,342 @@ def landmarks():
     }
 
 
+# ------------------------------------------------------------------ 5. quest props (levels 12 to 16 and Mira's routes after 13 and 16)
+# Audit: QUEST_PROP_AUDIT.md (rows S1 to S25). Systems ramps only; safety orange stays trim, mint is circuit light.
+
+QUEST_NAMES = set()
+QS = (64, 64)   # capture origin for every quest prop
+
+
+def _quest(name, draw, fp, cells, collision, layer, kind, note, tags, y_sort=True, shadow=True, box=None):
+    p = ok.make(name, draw, fp, cells, collision, layer, kind, box=box, shadow=shadow, y_sort=y_sort, note=note, tags=tags)
+    QUEST_NAMES.add(name)
+    return p
+
+
+def _key(r, x, y, lit):
+    """One keypad node, 4 x 3: dark glass, or a mint-lit node with a pale head."""
+    r.rect(x - 1, y - 1, x + 5, y + 4, INK[0])
+    if lit:
+        r.rect(x, y, x + 4, y + 3, MINT[2])
+        r.rect(x, y, x + 2, y + 1, MINT[3])
+    else:
+        r.rect(x, y, x + 4, y + 3, GLASS[1])
+        r.rect(x, y, x + 4, y + 1, GLASS[2])
+
+
+def draw_payroll_keypad(r, x0, y0, n_lit):
+    """The relocated payroll keypad of level 12, 2 cells wide: a glass-backed ID tray (five cards behind a cobalt pane),
+    a steel top plane with ten key nodes in two rows, a cobalt face with ten progress lights. n_lit nodes are lit
+    (row-major: the first row is digits 1-5, the second 6-0)."""
+    r.cast(x0, x0 + 32, y0 + 30)
+    r.rect(x0, y0, x0 + 32, y0 + 30, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 31, y0 + 11, GLASS[1])                  # the ID tray's back panel
+    r.rect(x0 + 2, y0 + 2, x0 + 30, y0 + 10, GLASS[2])
+    for i in range(5):                                                  # five ID cards standing in the tray
+        cx = x0 + 4 + i * 5
+        r.rect(cx, y0 + 3, cx + 4, y0 + 10, FLOOR[3])
+        r.rect(cx, y0 + 3, cx + 4, y0 + 4, FLOOR[2])
+        r.rect(cx + 1, y0 + 5, cx + 3, y0 + 7, GLASS[1])                # the photo block
+        r.rect(cx, y0 + 8, cx + 4, y0 + 9, ORANGE[2] if i == 2 else GLASS[2])
+    for k in range(6):                                                  # one reflection band across the glass
+        r.img[y0 + 2 + k, x0 + 22 + k // 2: x0 + 25 + k // 2] = GLASS[3]
+    r.rect(x0 + 1, y0 + 10, x0 + 31, y0 + 11, GLASS[0])
+    r.rect(x0 + 1, y0 + 12, x0 + 31, y0 + 22, WALL[2])                  # steel top plane
+    r.rect(x0 + 1, y0 + 12, x0 + 31, y0 + 13, WALL[3])
+    for i in range(10):
+        _key(r, x0 + 4 + (i % 5) * 5 + 2, y0 + 14 + (i // 5) * 4, i < n_lit)
+    r.rect(x0 + 27, y0 + 14, x0 + 30, y0 + 20, WALL[1])                 # a card slot at the right of the keys
+    r.rect(x0 + 28, y0 + 15, x0 + 29, y0 + 19, INK[1])
+    r.rect(x0 + 1, y0 + 22, x0 + 31, y0 + 29, GLASS[1])                 # cobalt face
+    r.rect(x0 + 1, y0 + 22, x0 + 31, y0 + 23, GLASS[2])
+    for i in range(10):                                                 # ten progress lights, one per node
+        r.rect(x0 + 3 + i * 3, y0 + 25, x0 + 5 + i * 3, y0 + 27, MINT[3] if i < n_lit else GLASS[0])
+    r.rect(x0 + 1, y0 + 28, x0 + 4, y0 + 29, ORANGE[1])                 # orange trim at the ends
+    r.rect(x0 + 28, y0 + 28, x0 + 31, y0 + 29, ORANGE[1])
+    r.rect(x0 + 1, y0 + 29, x0 + 31, y0 + 30, GLASS[0])
+    r.outline(r.mask(x0, y0, x0 + 32, y0 + 30))
+
+
+def draw_bridge_span(r, x0, y0, state):
+    """The glass bridge's span of level 12, 4 x 2 cells on the floor markings: a deck tile at each end, a steel-trussed
+    pit between them. retracted: the middle two cells are open pit (a service conduit shows below). extended: deck
+    from end to end. Orange hazard stripes mark the two long edges either way."""
+    cells_x = range(4)
+    for j in range(2):
+        for i in cells_x:
+            if state == "extended" or i in (0, 3):
+                bridge_deck(r, x0 + 16 * i, y0 + 16 * j)
+    if state == "retracted":
+        r.rect(x0 + 16, y0, x0 + 48, y0 + 32, INK[0])                    # the pit
+        r.rect(x0 + 17, y0 + 2, x0 + 47, y0 + 30, INK[1])
+        r.rect(x0 + 17, y0 + 2, x0 + 47, y0 + 4, INK[0])                 # shadow under the north lip
+        for gy in (y0 + 8, y0 + 24):                                     # girders across the pit
+            r.rect(x0 + 17, gy, x0 + 47, gy + 2, WALL[1])
+            r.rect(x0 + 17, gy, x0 + 47, gy + 1, WALL[2])
+        r.rect(x0 + 17, y0 + 14, x0 + 47, y0 + 18, GLASS[0])             # a cobalt service conduit at the bottom of the pit
+        r.rect(x0 + 17, y0 + 15, x0 + 47, y0 + 17, GLASS[1])
+        r.rect(x0 + 17, y0 + 15, x0 + 47, y0 + 16, GLASS[2])
+        r.rect(x0 + 16, y0, x0 + 17, y0 + 32, WALL[2])                   # lit west lip
+        r.rect(x0 + 47, y0, x0 + 48, y0 + 32, WALL[0])
+    for k in range(0, 64, 4):                                           # hazard stripes on the long edges
+        for ey in (y0, y0 + 30):
+            r.rect(x0 + k, ey, x0 + k + 2, ey + 2, ORANGE[2])
+            r.rect(x0 + k + 2, ey, x0 + k + 4, ey + 2, INK[0])
+
+
+def draw_refund_sign(r, x0, y0, green):
+    """The refund sign of level 13, a 24 x 14 wall plate. red (the ledger turned a refund into a charge): a safety-orange
+    plate with a plus. green (the sign is restored): a mint plate with a minus. Systems has no pure red or green, so
+    red is the orange trim ramp and green the mint circuit ramp; the glyph (plus or minus) carries the meaning."""
+    body, lit, deep = (MINT[2], MINT[3], MINT[0]) if green else (ORANGE[1], ORANGE[3], ORANGE[0])
+    r.rect(x0, y0, x0 + 24, y0 + 14, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 23, y0 + 13, deep)
+    r.rect(x0 + 2, y0 + 2, x0 + 22, y0 + 12, body)
+    r.rect(x0 + 2, y0 + 2, x0 + 22, y0 + 3, lit)
+    r.rect(x0 + 2, y0 + 2, x0 + 3, y0 + 12, lit)
+    r.rect(x0 + 2, y0 + 11, x0 + 22, y0 + 12, deep)
+    gx, gy = x0 + 4, y0 + 4                                               # a 7 x 7 sign glyph, porcelain with a shadow step
+    bars = [(gx, gy + 2, 7, 2)] + ([] if green else [(gx + 2, gy, 2, 6)])    # a minus is one bar, a plus adds the upright
+    for (bx, by, bw, bh) in bars:
+        r.rect(bx + 1, by + 1, bx + bw + 1, by + bh + 1, deep)
+    for (bx, by, bw, bh) in bars:
+        r.rect(bx, by, bx + bw, by + bh, FLOOR[3])
+    for k, ch in enumerate("85"):                                         # the amount, so the plate reads as a price tag, not a first-aid cross
+        for yy, row in enumerate(qp.FONT[ch]):
+            for xx, v in enumerate(row):
+                if v == "X":
+                    r.img[y0 + 5 + yy + 1, x0 + 13 + k * 4 + xx + 1] = deep
+                    r.img[y0 + 5 + yy, x0 + 13 + k * 4 + xx] = FLOOR[3]
+    r.rect(x0 + 13, y0 + 11, x0 + 21, y0 + 12, deep)
+
+
+def draw_calc_display(r, x0, y0, refund):
+    """The inset calculator display of level 13, 2 cells wide: a steel desk top with a display sunk into it (ink bezel,
+    lit digits with the sign in front) and an open ledger beside it. charge: '+85' in orange; refund: '-85' in mint."""
+    env.block(r, x0, y0, x0 + 34, y0 + 16, 5, WALL, GLASS)
+    r.rect(x0 + 3, y0 + 1, x0 + 23, y0 + 10, INK[0])                      # the bezel, sunk: lit lower and right edge
+    r.rect(x0 + 4, y0 + 2, x0 + 22, y0 + 9, INK[1])
+    r.rect(x0 + 22, y0 + 2, x0 + 23, y0 + 10, WALL[3])
+    r.rect(x0 + 3, y0 + 10, x0 + 23, y0 + 11, WALL[3])
+    sign_col = MINT[3] if refund else ORANGE[3]
+    qp.text(r, x0 + 6, y0 + 3, "-" if refund else "+", sign_col)
+    qp.text(r, x0 + 11, y0 + 3, "85", FLOOR[3])
+    r.rect(x0 + 17, y0 + 7, x0 + 21, y0 + 8, GLASS[2])                    # a unit bar
+    pg = r.mask(x0 + 25, y0 + 2, x0 + 33, y0 + 11)                       # the open ledger
+    r.img[pg] = FLOOR[3]
+    r.rect(x0 + 29, y0 + 2, x0 + 30, y0 + 11, FLOOR[1])
+    for ly in (4, 6, 8):
+        r.rect(x0 + 26, y0 + ly, x0 + 29, y0 + ly + 1, GLASS[1])
+    r.rect(x0 + 30, y0 + 5, x0 + 32, y0 + 8, sign_col if refund else ORANGE[2])
+    r.rect(x0 + 30, y0 + 6, x0 + 32, y0 + 7, MINT[1] if refund else ORANGE[0])
+    r.outline(pg)
+
+
+def draw_folding_stool(r, x0, y0):
+    """Hal's folding stool (the shared drawing in quest_props.py, Systems ramps): a sand canvas seat on crossed steel legs with his orange tool roll."""
+    qp.folding_stool(r, x0, y0, PAL)
+
+
+ALARM_LIGHTS = [GLASS[2], MINT[2], ORANGE[2], WOOD[3], GLASS[3], MINT[3]]   # blue, green, orange, sand, pale blue, pale green
+PICTO = {
+    0: ("XXXXX", "XXXXX", "XXXXX", "XXXXX"),   # solid block
+    1: (".XXX.", "X...X", "X...X", ".XXX."),   # ring
+    2: ("..X..", ".XXX.", ".XXX.", "XXXXX"),   # triangle
+    3: ("XXXXX", "X...X", "X...X", "XXXXX"),   # square
+    4: ("..X..", ".X.X.", ".X.X.", "..X.."),   # diamond
+    5: ("X...X", ".X.X.", "..X..", ".X.X."),   # cross
+}
+PICTO_ORDER = [1, 2, 3, 4, 5, 0]    # ring, triangle, square, diamond, cross, bar
+
+
+def draw_alarm_strip(r, x0, y0, state):
+    """The alarm hall's strip of level 14, 64 x 18: six alert cells, each a lamp above a porcelain label plate.
+    merged (Pace lost the labels): six identical cobalt lamps over blank plates, so two alerts look the same.
+    separated: six lamps in six hues (blue, green, orange, sand, pale blue, pale green) and six pictograms (ring, triangle,
+    square, diamond, cross, bar). muted (the Quiet Alarm side quest): separated, with the sixth lamp dark and slashed."""
+    r.rect(x0, y0, x0 + 64, y0 + 18, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 63, y0 + 17, GLASS[1])
+    r.rect(x0 + 1, y0 + 1, x0 + 63, y0 + 2, GLASS[3])
+    r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 17, GLASS[2])
+    for i in range(6):
+        cx = x0 + 3 + i * 10
+        merged = state == "merged"
+        dark = state == "muted" and i == 5
+        col = GLASS[2] if merged else (GLASS[0] if dark else ALARM_LIGHTS[i])
+        r.rect(cx, y0 + 3, cx + 9, y0 + 9, INK[0])
+        r.rect(cx + 1, y0 + 4, cx + 8, y0 + 8, col)
+        if not dark:
+            r.rect(cx + 1, y0 + 4, cx + 8, y0 + 5, GLASS[3] if merged else FLOOR[3])
+            r.img[y0 + 4, cx + 1] = FLOOR[3]
+        r.rect(cx, y0 + 10, cx + 9, y0 + 17, FLOOR[3])                      # the porcelain label plate
+        r.rect(cx, y0 + 10, cx + 9, y0 + 11, FLOOR[2])
+        r.rect(cx, y0 + 16, cx + 9, y0 + 17, FLOOR[1])
+        if not merged:
+            for yy, row in enumerate(PICTO[PICTO_ORDER[i]]):
+                for xx, ch in enumerate(row):
+                    if ch == "X":
+                        r.img[y0 + 11 + yy, cx + 2 + xx] = INK[1]
+        if dark:
+            for k in range(4):                                                # a mute slash across the plate
+                r.img[y0 + 11 + k, cx + 6 - k] = ORANGE[1]
+    r.outline(r.mask(x0, y0, x0 + 64, y0 + 18))
+
+
+def draw_bridge_shutter(r, x0, y0, state):
+    """A shutter for the glass bridge's window (level 15), 30 x 20, drawn like the window overlay. closed: steel louvres
+    cover the whole pane. open: the louvres are stacked at both sides and the cobalt pane shows."""
+    r.rect(x0, y0, x0 + 30, y0 + 20, INK[0])
+    r.rect(x0 + 2, y0 + 2, x0 + 28, y0 + 17, GLASS[1])
+    if state == "closed":
+        for k, yy in enumerate(range(y0 + 2, y0 + 17, 3)):
+            r.rect(x0 + 2, yy, x0 + 28, yy + 1, WALL[3])
+            r.rect(x0 + 2, yy + 1, x0 + 28, yy + 2, WALL[2])
+            r.rect(x0 + 2, yy + 2, x0 + 28, yy + 3, INK[1])
+        r.rect(x0 + 13, y0 + 17, x0 + 17, y0 + 18, ORANGE[2])             # the pull tag
+    else:
+        r.rect(x0 + 6, y0 + 2, x0 + 24, y0 + 17, GLASS[2])
+        r.rect(x0 + 6, y0 + 11, x0 + 24, y0 + 17, GLASS[1])
+        for k in range(8):
+            r.img[y0 + 2 + k, x0 + 9 + k: x0 + 11 + k] = GLASS[3]
+        for xa, xb in ((x0 + 2, x0 + 6), (x0 + 24, x0 + 28)):              # the stacked louvres
+            for k, yy in enumerate(range(y0 + 2, y0 + 17, 3)):
+                r.rect(xa, yy, xb, yy + 1, WALL[3])
+                r.rect(xa, yy + 1, xb, yy + 3, WALL[1])
+    r.rect(x0, y0 + 18, x0 + 30, y0 + 20, WALL[2])
+    r.rect(x0, y0 + 18, x0 + 30, y0 + 19, WALL[3])
+    r.rect(x0, y0 + 19, x0 + 30, y0 + 20, INK[0])
+
+
+FORMULA_GLYPHS = "&*()_+"
+
+
+def draw_formula_wall(r, x0, y0, n_lit):
+    """The formula wall of level 15, 96 x 22: six clause boxes joined by traces, each holding one symbol (& * ( ) _ +)
+    at double size. n_lit boxes are lit from the left (mint glyph and trace); the rest are dark glass."""
+    r.rect(x0, y0, x0 + 96, y0 + 22, INK[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 95, y0 + 21, GLASS[0])
+    r.rect(x0 + 1, y0 + 1, x0 + 95, y0 + 2, GLASS[2])
+    r.rect(x0 + 1, y0 + 1, x0 + 2, y0 + 21, GLASS[2])
+    for i in range(6):
+        bx = x0 + 4 + i * 15
+        lit = i < n_lit
+        if i < 5:                                                          # the trace to the next box
+            r.rect(bx + 13, y0 + 10, bx + 17, y0 + 12, MINT[2] if (lit and i + 1 < n_lit) else GLASS[1])
+        r.rect(bx, y0 + 3, bx + 13, y0 + 19, INK[0])
+        r.rect(bx + 1, y0 + 4, bx + 12, y0 + 18, FOLIAGE0 if lit else GLASS[1])
+        if lit:
+            r.rect(bx + 1, y0 + 4, bx + 12, y0 + 5, MINT[1])
+            r.rect(bx + 1, y0 + 4, bx + 2, y0 + 18, MINT[1])
+        qp.text(r, bx + 3, y0 + 6, FORMULA_GLYPHS[i], MINT[3] if lit else GLASS[2], scale=2)
+    r.rect(x0 + 1, y0 + 21, x0 + 95, y0 + 22, INK[0])
+
+
+FOLIAGE0 = MINT[0]
+
+
+def decor_piece(name, kind, w, h, note, tags):
+    x0, y0 = QS
+    return _quest(name, lambda r: qp.mira_decor(r, kind, x0, y0, PAL), (x0 - (16 - w) // 2, y0 + h - 16), (1, 1), ["0"], "rear_prop", "prop",
+                  note, tags, shadow=False)
+
+
+def quest_pieces():
+    """The Systems quest props. Returns (pieces, state sets)."""
+    out = []
+    sx, sy = QS
+    for st, n in (("off", 0), ("half", 5), ("lit", 10)):
+        out.append(_quest(f"payroll_keypad_{st}", lambda r, n=n: draw_payroll_keypad(r, sx, sy, n), (sx, sy + 14), (2, 1), ["11"], "rear_prop", "prop",
+                          "the relocated payroll keypad of level 12, 2 x 1: a glass-backed ID tray with five cards, a steel top plane with ten key nodes, a cobalt face with ten progress lights. "
+                          + {"off": "off: every node dark", "half": "half: the first five nodes (digits 1-5) lit mint", "lit": "lit: all ten nodes lit mint"}[st],
+                          ["keypad", "payroll", "level 12", st], box=(sx, sy, sx + 34, sy + 32)))
+    for st in ("retracted", "extended"):
+        out.append(_quest(f"bridge_span_{st}", lambda r, st=st: draw_bridge_span(r, sx, sy, st), (sx, sy), (4, 2),
+                          ["0110", "0110"] if st == "retracted" else ["0000", "0000"], "floor_marking", "tile",
+                          "the glass bridge's span, 4 x 2 (level 12: the first completed batch extends the bridge toward Mira's chute). "
+                          + ("retracted: a deck tile at each end and an open trussed pit between them with a cobalt conduit below; the two middle columns block"
+                             if st == "retracted" else "extended: deck from end to end, all cells walkable")
+                          + ". Orange hazard stripes on both long edges; add `bridge_rail` entries along them", ["bridge", "walkway", "level 12", st],
+                          y_sort=False, shadow=False, box=(sx, sy, sx + 64, sy + 32)))
+    for st in ("red", "green"):
+        out.append(_quest(f"refund_sign_{st}", lambda r, st=st: draw_refund_sign(r, sx, sy, st == "green"), (sx, sy), (2, 1), ["00"], "rear_wall", "wall",
+                          "the refund sign of level 13, a 24 x 14 wall plate. "
+                          + ("red: a safety-orange plate with a plus, the ledger turned a refund into a charge" if st == "red"
+                             else "green: a mint plate with a minus, the sign restored")
+                          + ". Systems has no pure red or green: red is the orange trim ramp, green the mint circuit ramp; the glyph carries the meaning. "
+                            "Place on the north wall face (the plain wall already blocks)",
+                          ["sign", "refund", "level 13", st], y_sort=False, shadow=False, box=(sx, sy, sx + 24, sy + 14)))
+    for st in ("charge", "refund"):
+        out.append(_quest(f"calc_display_{st}", lambda r, st=st: draw_calc_display(r, sx, sy, st == "refund"), (sx, sy), (2, 1), ["11"], "rear_prop", "prop",
+                          "the inset calculator display of level 13, 2 x 1: a steel desk top with a display sunk into it and an open ledger beside it. "
+                          + ("charge: '+85' in orange, the ledger marked with an orange plus" if st == "charge" else "refund: '-85' in mint, the ledger marked with a mint minus"),
+                          ["calculator", "display", "level 13", st], box=(sx, sy, sx + 36, sy + 18)))
+    out.append(_quest("folding_stool", lambda r: draw_folding_stool(r, sx, sy), (sx, sy), (1, 1), ["1"], "rear_prop", "prop",
+                      "Hal's folding stool, 1 x 1 (level 13: Hal sits instead of crouching): a sand canvas seat on crossed steel legs with his orange tool roll leaning on it",
+                      ["stool", "hal", "level 13"]))
+    for st in ("merged", "separated", "muted"):
+        out.append(_quest(f"alarm_strip_{st}", lambda r, st=st: draw_alarm_strip(r, sx, sy, st), (sx, sy), (4, 2), ["0000", "0000"], "rear_wall", "wall",
+                          "the alarm hall strip of level 14, a 64 x 18 wall overlay: six lamps above six porcelain label plates. "
+                          + {"merged": "merged: six identical cobalt lamps over blank plates (Pace lost the labels, two alerts look the same)",
+                             "separated": "separated: six hues (blue, green, orange, sand, pale blue, pale green) and six pictograms (ring, triangle, square, diamond, cross, bar), so colour is never the only cue",
+                             "muted": "muted (Quiet Alarm): as separated, with the sixth lamp dark and slashed in orange"}[st],
+                          ["alarm", "strip", "level 14", st], y_sort=False, shadow=False, box=(sx, sy, sx + 64, sy + 18)))
+    for st in ("closed", "open"):
+        out.append(_quest(f"bridge_shutter_{st}", lambda r, st=st: draw_bridge_shutter(r, sx, sy, st), (sx, sy), (2, 2), ["00", "00"], "rear_wall", "wall",
+                          "a bridge window shutter of level 15, a 30 x 20 wall overlay like the window overlay. "
+                          + ("closed: steel louvres cover the pane" if st == "closed" else "open: the louvres are stacked at both sides and the cobalt pane shows"),
+                          ["shutter", "bridge", "level 15", st], y_sort=False, shadow=False, box=(sx, sy, sx + 30, sy + 20)))
+    for st, n in (("dark", 0), ("half", 3), ("lit", 6)):
+        out.append(_quest(f"formula_wall_{st}", lambda r, n=n: draw_formula_wall(r, sx, sy, n), (sx, sy), (6, 2), ["000000", "000000"], "rear_wall", "wall",
+                          "the formula wall of level 15, a 96 x 22 wall overlay: six clause boxes joined by traces, each with one symbol (& * ( ) _ +). "
+                          + {"dark": "dark: every box dark glass", "half": "half: the first three boxes and the traces between them lit mint", "lit": "lit: all six lit"}[st],
+                          ["formula", "wall", "level 15", st], y_sort=False, shadow=False, box=(sx, sy, sx + 96, sy + 22)))
+    for st in ("idle", "ready"):
+        out.append(_quest(f"courier_chute_{st}", lambda r, st=st: qp.courier_chute(r, sx, sy, PAL, st == "ready"), (sx, sy + 12), (2, 1), ["11"], "rear_prop", "prop",
+                          "Mira's courier chute, 2 x 1: a metal cabinet with a slot, a tube rising into the ceiling, a catch tray and an indicator lamp. "
+                          + ("idle: the lamp is dull, the slot empty" if st == "idle" else "ready (Mira has a route to offer): a slip stands in the slot and the lamp is lit orange"),
+                          ["chute", "mira", "courier", st], box=(sx, sy, sx + 34, sy + 30)))
+    out.append(decor_piece("mira_decor_signed_sent", "signed_sent", 13, 9,
+                           "Signed and Sent reward (after level 13): an envelope with a stamped seal and a signature line; a desk decoration, 1 x 1, no collision", ["decor", "mira", "desk"]))
+    out.append(decor_piece("mira_decor_relay", "relay", 12, 11,
+                           "Signal Keeper reward (after level 16): a miniature relay, a cobalt block with a copper coil, two terminals and a mint LED; a desk decoration, 1 x 1, no collision", ["decor", "mira", "desk"]))
+    anims = {
+        "payroll_keypad": {"kind": "state_set", "default": "off",
+                           "states": {"off": {"entries": ["payroll_keypad_off"]}, "half": {"entries": ["payroll_keypad_half"]}, "lit": {"entries": ["payroll_keypad_lit"]}},
+                           "play": ["off", "half", "lit"], "ms_per_frame": 200,
+                           "note": "level 12: each correct digit lights its node and progress light; off, half (five digits), lit (ten). Light individual conduits with the conduit_* state sets"},
+        "bridge_span": {"kind": "state_set", "default": "retracted",
+                        "states": {"retracted": {"entries": ["bridge_span_retracted"], "blocked": True}, "extended": {"entries": ["bridge_span_extended"], "blocked": False}},
+                        "play": ["retracted", "extended"], "ms_per_frame": 200,
+                        "note": "level 12: the first completed payroll batch extends the bridge; retracted blocks the two middle columns, extended is walkable. Rails stay as bridge_rail entries"},
+        "refund_sign": {"kind": "state_set", "default": "red",
+                        "states": {"red": {"entries": ["refund_sign_red"]}, "green": {"entries": ["refund_sign_green"]}},
+                        "play": ["red", "green"], "ms_per_frame": 200,
+                        "note": "level 13: the refund sign flips to green when the minus is restored (orange plate with a plus, then mint plate with a minus)"},
+        "calc_display": {"kind": "state_set", "default": "charge",
+                         "states": {"charge": {"entries": ["calc_display_charge"]}, "refund": {"entries": ["calc_display_refund"]}},
+                         "play": ["charge", "refund"], "ms_per_frame": 200,
+                         "note": "level 13: the inset calculator display reverses from a charge to a refund"},
+        "alarm_strip": {"kind": "state_set", "default": "merged",
+                        "states": {"merged": {"entries": ["alarm_strip_merged"]}, "separated": {"entries": ["alarm_strip_separated"]}, "muted": {"entries": ["alarm_strip_muted"]}},
+                        "play": ["merged", "separated"], "ms_per_frame": 250,
+                        "note": "level 14: correct labels separate the alarms into six hues and pictograms; muted is the Quiet Alarm side quest"},
+        "bridge_shutter": {"kind": "state_set", "default": "closed",
+                           "states": {"closed": {"entries": ["bridge_shutter_closed"]}, "open": {"entries": ["bridge_shutter_open"]}},
+                           "play": ["closed", "open"], "ms_per_frame": 200,
+                           "note": "level 15: the bridge shutters open; place one per window"},
+        "formula_wall": {"kind": "state_set", "default": "dark",
+                         "states": {"dark": {"entries": ["formula_wall_dark"]}, "half": {"entries": ["formula_wall_half"]}, "lit": {"entries": ["formula_wall_lit"]}},
+                         "play": ["dark", "half", "lit"], "ms_per_frame": 250,
+                         "note": "level 15: as clauses become valid the connected parts of the formula illuminate (dark, half, lit)"},
+        "courier_chute": {"kind": "state_set", "default": "idle",
+                          "states": {"idle": {"entries": ["courier_chute_idle"]}, "ready": {"entries": ["courier_chute_ready"]}},
+                          "play": ["idle", "ready"], "ms_per_frame": 300,
+                          "note": "Mira's chute: ready while she has a route to offer"},
+    }
+    return out, anims
+
+
 # ------------------------------------------------------------------ assembly
 
 def build_pieces():
@@ -904,6 +1242,8 @@ def build_pieces():
     pieces += shared_pieces()
     pieces += racks_and_wall_pieces()
     pieces += landmark_pieces()
+    qpieces, qanims = quest_pieces()
+    pieces += qpieces
     anims = {
         "service_door": {
             "kind": "state_set", "default": "closed",
@@ -922,11 +1262,14 @@ def build_pieces():
         },
     }
     anims.update(conduit_anims())
+    anims.update(qanims)
     return pieces, anims, landmarks()
 
 
 def group_rank(p):
     n = p.name
+    if n in QUEST_NAMES:
+        return 8
     if n.startswith(("floor_", "route_")):
         return 0
     if n.startswith("conduit_"):
@@ -948,7 +1291,8 @@ SECTIONS = [(0, "FLOOR, ROUTE AND WAYFINDING"), (1, "FLOOR CONDUITS: three famil
             (2, "WALLS AND STATUS BOARD"), (3, "SLIDING GLASS DOOR (closed, half, open)"),
             (4, "LAMP (post, off, glow states)"), (5, "REUSED ORIENTATION PROPS (recoloured)"),
             (6, "SHARED AND SYSTEMS PROPS: shelving, partition, terminal, locker, server racks, bridge deck and rail"),
-            (7, "LANDMARK: THE ROUTING MACHINE (registered parts)")]
+            (7, "LANDMARK: THE ROUTING MACHINE (registered parts)"),
+            (8, "QUEST PROPS (levels 12 to 16, Mira's routes): payroll keypad, bridge span, refund sign, calculator display, stool, alarm strip, shutter, formula wall, courier chute, Mira decor")]
 
 
 def atlas_json(pieces, rects, anims, lms):

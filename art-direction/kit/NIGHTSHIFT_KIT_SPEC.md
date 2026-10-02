@@ -129,3 +129,63 @@ Idle S N E W, upper-left silhouette after the rim pass (moonlight `#8E96B8` on t
 - The doorway interior reads dark blue, brighter than its walls (99 against 56 luma) but not warm; a region-aware recolour would need a column mask.
 - `pool_*` entries are not state sets: waking a pool means adding both entries to the layout (or using `station_a/b`).
 - The reference room is one screen (20×12). The 34×20 floor of game-design is a level-data task; every piece needed for it is in the atlas.
+
+## Quest props (levels 17 to 19, Mira's route after 18)
+
+**Status:** built 2026-10-02 by the district-kits team (branch `feat/art-district-quest-props`). The audit of every named prop is [QUEST_PROP_AUDIT.md](QUEST_PROP_AUDIT.md) (rows N1 to N18); this section is the Night Shift half of its "New" rows. The 61 entries above, the reference room, the readability report and every file listed in the first table are unchanged (the atlas gained 15 entries after the landmark parts, so no earlier rect moved; `break_counter` was parameterised for its dim twin and still draws pixel for pixel the same). Drawing helpers shared with the other districts (the courier chute, the Mira decorations) live in `quest_props.py`; the Night Shift recipes are in the "quest props" section of `nightshift_kit.py`.
+
+New outputs: `nightshift-quest-props-room.json` (a second composition built only from `nightshift-atlas`, 67 placements), `nightshift-quest-props-before-native.png` and `-before-1366x768.png` (every new prop in its first state: Ada by the locked north stair, the Engineer at the dim break counter, Mira by the idle chute), and `nightshift-quest-props-after-native.png` and `-after-1366x768.png` (every state set switched: stair open, exit sign lit, readers open, gate open, stations awake, break room warm, corridor lamps lit, chute ready). The atlas is now 76 entries and 12 state sets. `build_nightshift.py` runs the quest review (below), after all the original gates, and exits 1 on a failure.
+
+### Entries
+
+| Entry | Size px | Footprint, collision | Layer | y_sort | Anchor | Contact shadow |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reader_pedestal_locked` | 13x24 | 1x1, `1` | rear_prop | yes | [8, 22] | [2, 22, 11, 2] |
+| `reader_pedestal_open` | 13x24 | 1x1, `1` | rear_prop | yes | [8, 22] | [2, 22, 11, 2] |
+| `exit_sign_dim` | 24x10 | 2x1, `00` | rear_wall | no | [16, 16] | none |
+| `exit_sign_lit` | 24x10 | 2x1, `00` | rear_wall | no | [16, 16] | none |
+| `north_stair_closed` | 32x34 | 2x2, `11/11` | rear_wall | no | [16, 32] | [0, 32, 32, 2] |
+| `north_stair_open` | 32x34 | 2x2, `00/00` | rear_wall | no | [16, 32] | none |
+| `carpet_cue_a` | 48x32 | 3x2, `000/000` | floor_marking | no | [24, 32] | none |
+| `carpet_cue_b` | 48x32 | 3x2, `000/000` | floor_marking | no | [24, 32] | none |
+| `carpet_cue_c` | 48x32 | 3x2, `000/000` | floor_marking | no | [24, 32] | none |
+| `courier_chute_idle` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `courier_chute_ready` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `mira_decor_night_courier` | 12x10 | 1x1, `0` | rear_prop | yes | [6, 10] | none |
+| `break_counter_dim` | 48x18 | 3x1, `111` | rear_prop | yes | [24, 16] | [1, 16, 47, 2] |
+| `pool_breaktop_fill` | 62x22 | 1x1, `0` | light | no | [15, 13] | none |
+| `pool_breaktop_seam` | 62x22 | 1x1, `0` | light | no | [15, 13] | none |
+
+State sets (each pair is cropped to one shared box): `reader_pedestal` (locked, open), `exit_sign` (dim, lit), `north_stair` (closed blocks, open walks), `courier_chute` (idle, ready), `break_room` (dim: `break_counter_dim`; warm: `break_counter` plus `pool_breaktop_fill` and `_seam`, placed at the counter's cell), `corridor_light` (dim: `lamp_off`; lit: `lamp`, `lamp_glow_on`, `pool_route_fill`, `pool_route_seam`, one per 4 to 5 cells along the service corridor).
+
+| Prop | What it is |
+| --- | --- |
+| Reader pedestal (17) | A free-standing card reader for the security vestibule: a silver post under a head with a slot and a status LED. Locked: an amber LED. Open: silver LEDs. It blocks its cell in both states; the `vestibule_gate` is what opens. |
+| Exit sign (17) | A 24x10 wall plate with a stair and an arrow, for the vestibule's back exit. Dim: a dull plate, the icon barely visible. Lit: a warm plate with the icon in ink. |
+| North stair (18) | A north-wall door 2 cells wide and 34 px tall (the wall's own height; it carries the wall's cap and replaces two plain wall tiles) with a stair sign on the lintel. Closed: a silver lock grille with an amber lock bar, blocks. Open: the grille folded to the left, five treads climbing to a warm landing, walkable. |
+| Rugs (18) | Three 3x2 floor markings so the desk islands of the Caps route are told apart by the floor as well as the lamps: `carpet_cue_a` indigo diamonds, `carpet_cue_b` warm stripes, `carpet_cue_c` green chevrons. Each is darker than the slate (so a person keeps the moonlight rim on it) and none uses the lamp-pool accent steps 0 and 1 (so the warm rim never fires on a rug). A lamp pool paints only the bare floor fill, so it lights the floor around a rug, not the rug. |
+| Courier chute (18, Mira) | Mira's chute from `quest_props.courier_chute` in the Night Shift ramps, with a silver edge. Ready: a slip in the slot and a warm lamp. |
+| Night Courier decor | A small satchel with a warm strap and a crescent charm; a desk decoration, no collision. |
+| Break room (17, 19) | `break_counter_dim` is the same counter with the lamp off and the kettle cold; the `break_room` state set pairs it with the lit counter and a new `pool_breaktop` pair (a pool whose origin is set so placing it at the counter's cell centres it on the counter top, as the reference room does by hand). |
+
+### Review (`build_nightshift.py`, after the original gates)
+
+| Check | Result |
+| --- | --- |
+| Original gates | all unchanged and still passing with the new entries in the atlas: palette (28 colours, no violet), every contact shadow darker than the floor fill, every prop and wall overlay with a lit upper-left edge (now 42 entries checked), people gates |
+| Coverage | all 15 new entries are drawn in the quest room (a placed state set counts all its states) |
+| North stair | closed blocks its four cells and open frees them; a two-cell-wide way in when open, none when closed |
+| Rugs | all three are floor markings with no blocked cell |
+| Prop edges in the room | every free-standing prop's upper-left edge against the floor or rug under it, both states: min 3.41:1 (limit 3:1); in a lamp pool min 2.50:1 (limit 2.5:1) |
+| People | Ada, the Engineer and Mira as placed on slate, rug and pool in both states: bare edge min 2.49:1 (limit 2.4), warm head and shoulders in a pool min 2.68:1 (limit 2.5), kept ink body outline in a pool min 4.19:1 (limit 4.0), no pixel worse than the plain outline. The Engineer stands in the break counter's pool, so the before state shows the moonlight rim and the after state the warm head and shoulders. |
+| Inset | stair, sign, readers, gate, rugs and desks, break counter, chute, cabinet: none intersect the keyboard inset |
+| Layout | `check_atlas.check_layout` on `nightshift-quest-props-room.json` is clean |
+
+### Director decisions (quest props)
+
+1. **Every new prop takes the district's two passes.** The shadow re-key and the silver lit edge run on all of them (wall overlays against the indigo wall face), so the existing atlas-level gates cover them without change.
+2. **Rugs are darker than the slate and avoid accent steps 0 and 1.** The rim rule recolours a person's edge only when the rim beats the ink outline; on a rug darker than the slate it always does, and a rug that used a lamp-pool colour would wrongly trigger the warm head-and-shoulders rim. Rug colours are also dark enough (under 0.19 luminance) that the silver edge of furniture standing on a rug keeps 3:1.
+3. **The break room's warm state is a pair plus a pool, not a new landmark.** The window landmark already carries "the break room lights up" from outside; `break_room` is the counter end of the same room and works for level 17 (warm from the start) and level 19 (the lit state after the review).
+4. **The north stair is a north-wall door, like the repair door.** It carries the wall's cap and shadow rows exactly as `wall_n_plain` draws them, so it replaces two wall tiles without a seam. The existing `service_door` keeps its stair sign on the east wall for the service corridor.
+5. **Reader pedestals are separate from the gate.** `vestibule_gate` already has readers on its posts; the pedestals are free-standing extras the level designer can put at either end of the vestibule, and they do not change the gate's collision.
+6. **`corridor_light` and `break_room` reuse existing entries.** They are named state sets over entries that were already in the atlas (plus `break_counter_dim` and `pool_breaktop`), so "the service corridor lights up" is a state change, not repainting.

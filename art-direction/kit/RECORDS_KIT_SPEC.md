@@ -104,3 +104,65 @@ Programmatic review (`build_records.py`, all pass):
 - The desk's `contact_shadow` rectangle is the bounding box of a ring-shaped shadow, so it is a loose hint.
 - The atlas sheet shows each landmark part alone; `records-landmark-states.png` shows them composed.
 - `terminal_desk`, `cabinet` and `partition` footprints round the body to cells; chairs and planters block.
+
+## Quest props (levels 07 to 11, Mira's routes after 07 and 11)
+
+**Status:** built 2026-10-02 by the district-kits team (branch `feat/art-district-quest-props`). The audit of every named prop is [QUEST_PROP_AUDIT.md](QUEST_PROP_AUDIT.md) (rows R1 to R30); this section is the Records half of its "New" rows. The 48 entries above, the reference room and every file listed in the first table are unchanged (the atlas gained 17 entries after the landmark parts, so no earlier rect moved). Drawing helpers shared with the other three districts live in `quest_props.py`; the Records recipes are in the "quest props" section of `records_kit.py`.
+
+New outputs: `records-quest-props-room.json` (a second composition built only from `records-atlas`, 92 placements), `records-quest-props-before-native.png` and `-before-1366x768.png` (every new prop in its first state, Mira beside the chute, the Engineer in the corridor), and `records-quest-props-after-native.png` and `-after-1366x768.png` (every state set switched: door open, shelf lights on, chute ready, folders aligned, ledger lit, ladder rolled, original report down). The atlas is now 65 entries and 10 state sets. `build_records.py` runs the same programmatic review for this room (below) and exits 1 on a failure.
+
+### Entries
+
+| Entry | Size px | Footprint, collision | Layer | y_sort | Anchor | Contact shadow |
+| --- | --- | --- | --- | --- | --- | --- |
+| `repair_door_closed` | 32x34 | 2x2, `11/11` | rear_wall | no | [16, 32] | [0, 32, 32, 2] |
+| `repair_door_half` | 32x34 | 2x2, `11/11` | rear_wall | no | [16, 32] | [0, 32, 32, 2] |
+| `repair_door_open` | 32x34 | 2x2, `00/00` | rear_wall | no | [16, 32] | none |
+| `shelf_end_light_off` | 6x12 | 1x1, `0` | rear_prop | yes | [3, 12] | none |
+| `shelf_end_light_on` | 6x12 | 1x1, `0` | rear_prop | yes | [3, 12] | none |
+| `courier_chute_idle` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `courier_chute_ready` | 34x30 | 2x1, `11` | rear_prop | yes | [16, 28] | [1, 28, 33, 2] |
+| `folder_rack_drift` | 34x24 | 2x1, `11` | rear_prop | yes | [16, 22] | [1, 22, 33, 2] |
+| `folder_rack_aligned` | 34x24 | 2x1, `11` | rear_prop | yes | [16, 22] | [1, 22, 33, 2] |
+| `ledger_table_before` | 66x18 | 4x1, `1111` | rear_prop | yes | [32, 16] | [1, 16, 65, 2] |
+| `ledger_table_after` | 66x18 | 4x1, `1111` | rear_prop | yes | [32, 16] | [1, 16, 65, 2] |
+| `rolling_ladder_closed` | 66x34 | 4x1, `1111` | rear_prop | yes | [32, 32] | [1, 32, 65, 2] |
+| `rolling_ladder_open` | 66x34 | 4x1, `1001` | rear_prop | yes | [32, 32] | [1, 32, 65, 2] |
+| `report_table_before` | 36x18 | 2x1, `11` | rear_prop | yes | [16, 16] | [1, 16, 35, 2] |
+| `report_table_after` | 36x18 | 2x1, `11` | rear_prop | yes | [16, 16] | [1, 16, 35, 2] |
+| `mira_decor_courier_loop` | 12x12 | 1x1, `0` | rear_prop | yes | [6, 12] | none |
+| `mira_decor_archive_folder` | 12x9 | 1x1, `0` | rear_prop | yes | [6, 9] | none |
+
+State sets (switching entries inside a set never moves a pixel: each pair is cropped to one shared box): `repair_door` (closed, half, open; 120 ms per state), `shelf_end_light` (off, on), `courier_chute` (idle, ready), `folder_rack` (drift, aligned), `ledger_table` (before, after), `rolling_ladder` (closed, open; blocked is true when closed), `report_table` (before, after).
+
+| Prop | What it is |
+| --- | --- |
+| Repair door (level 07) | A north-wall door that replaces two plain wall tiles (it carries the wall's own cap, 34 px tall). A display band holds two clear text windows: the address line with a coral cursor between typed characters, and the two sides of the cursor (a Backspace chevron to the left, a Forward Delete chevron to the right). Below, two cherry leaves with glass panes; half slides them 6 px into the jamb pockets, open 12 px, showing a lit archive with shelf-end stripes and a mat. No flashing failure state. Do not put plain wall tiles under it: open leaves rows 0-1 of its cells walkable. |
+| Shelf-end light (07) | A 6x12 strip: dull sea-blue glass off, a linen core with a peach edge on. Gold is a UI marker hex and never appears in world art, so the "gold" of levels.md is linen and peach here (decision 6 above still holds). |
+| Courier chute (07, 11) | Mira's chute, 2x1: a metal cabinet with a coral-lipped slot, a tube rising into the ceiling, a catch tray with a stack of slips, an indicator lamp. Ready (Mira has a route): a slip stands in the slot and the lamp is lit coral. |
+| Folder rack (08) | A low cherry rack with six sea-blue folders behind a front lip. Drift: tabs at uneven heights and shifts, dull labels. Aligned: one tab line in a regular rhythm, linen labels with a coral mark. |
+| Ledger table (09) | A 4-cell cherry table with one long open folio. Before: both sign-offs in the middle, dull wood. After: sign-offs at both margins, both ends lit (lit wood, bright pages). Lay one or two `light_shaft` entries across it for the beam of daylight. |
+| Rolling ladder (09, 10) | A 4-cell gallery wall: a shelf cell at each end, a two-cell opening onto the stair to the upper gallery, a rail with wheels and a cherry ladder. Closed: the ladder stands across the opening and all four cells block. Open: it has rolled in front of the left shelf (about 19 px) and cells 1-2 are free. Also the "elevator-like rolling shelf" of level 10. |
+| Report table (10) | A 2-cell cherry table with Pace's grey summary (three orderly bars). After: the original report lies beside it (cherry cover, coral spine, linen label). |
+| Mira decor | Courier Loop: a linen medal with a coral loop arrow on a small stand. Archive Loop: a coral desk folder with a lit tab and a sheet showing. One cell, no collision, set on a desk, cabinet or table top. |
+
+### Review (`build_records.py`, quest room)
+
+| Check | Result |
+| --- | --- |
+| Coverage | all 17 new entries are drawn in the room (a placed state set counts all its states, so the door's half frame is covered) |
+| Corridor | with the door open a two-cell-wide walkway of 11 steps from (8,10) to (8,0) (the door's cells); with it closed there is none |
+| Props | the corridor cells are free of props |
+| Inset | door, tables, chute, ladder, rack, shelf lights, corridor start: none intersect the keyboard inset |
+| Palette | the existing check covers the atlas: every colour is a Records ramp step (27 colours now), no violet, `check_atlas.py` rejects the four marker hexes |
+| Layout | `check_atlas.check_layout` on `records-quest-props-room.json` is clean |
+
+### Director decisions (quest props)
+
+1. **The repair door is a front-facing door, not a recolour of `archive_door`.** The existing door is an east-wall door seen from the side with a RECORDS sign. The brief's door asks for two text windows, a visible cursor and the deletion side, so it is a new north-wall door; a level designer can use either orientation for any door.
+2. **The text windows are a display band above the leaves, not on them.** The leaves slide away; the windows stay so the player can keep reading the address while the door answers.
+3. **No gold on shelf-end lights.** Linen with a peach edge reads as lit against the sea-blue strip and keeps the marker hex out of world art.
+4. **`rolling_ladder` doubles as the elevator-like rolling shelf of level 10.** It is a rail-mounted shelf run with a movable ladder; the stair opening is the gallery access. One entry pair, no separate lift.
+5. **Mira's chute is one cabinet per district, recoloured by palette.** The drawing is shared (`quest_props.courier_chute`), so Records, Systems and Night Shift chutes read as the same object.
+6. **Decor is a desk decoration, not a furniture entry.** Courier Loop and Archive Loop are 12 px objects set on a desk top; levels.md names the Archive Loop "desk folder" explicitly, the Courier Loop token is the matching plaque for the first route.
+7. **State pairs share a crop box.** `folder_rack_drift` has taller tabs than `folder_rack_aligned`; both are cropped to one box so the rack body never shifts when the state swaps.

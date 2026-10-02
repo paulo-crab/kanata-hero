@@ -28,6 +28,7 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import build_kit  # noqa: E402
+import build_records as br  # noqa: E402
 import kitlib  # noqa: E402
 import nightshift_kit as nk  # noqa: E402
 import build_gate1 as g  # noqa: E402
@@ -713,6 +714,144 @@ def readability_sheet(canvas):
     sheet.crop((0, 0, W, min(sheet.height, y0 + 20 + 350))).save(os.path.join(HERE, "nightshift-readability.png"))
 
 
+# ------------------------------------------------------------------ quest props: second composition and proofs
+# QUEST_PROP_AUDIT.md rows N1 to N18. The reference room above is untouched. The quest room places every new Night Shift quest
+# entry in its before and after state. People get the same per-pixel rim rules as everywhere (place_person); the helpers
+# for the layout file, the images and the shared checks come from build_records (br).
+
+QUEST_BEFORE = {"north_stair": "closed", "exit_sign": "dim", "reader_pedestal": "locked", "courier_chute": "idle", "break_room": "dim",
+                "corridor_light": "dim", "vestibule_gate": "closed", "station_a": "dead", "station_b": "dead"}
+QUEST_AFTER = {"north_stair": "open", "exit_sign": "lit", "reader_pedestal": "open", "courier_chute": "ready", "break_room": "warm",
+               "corridor_light": "lit", "vestibule_gate": "open", "station_a": "lit", "station_b": "lit"}
+QUEST_PEOPLE = [("Ada", ada, ada.IDLE["n"][0], 48, 54), ("Engineer", eng, eng.IDLE["w"][0], 252, 64), ("Mira", mira, mira.IDLE["s"][0], 222, 152)]
+QUEST_REQUIRED = {"north stair": (32, 0, 64, 34), "exit sign": (74, 11, 98, 21), "left reader": (36, 68, 48, 96), "right reader": (124, 68, 136, 96),
+                  "gate": (56, 60, 120, 92), "rug and desk c": (24, 92, 72, 124), "rug and station a": (140, 92, 188, 124), "rug and station b": (196, 92, 244, 124),
+                  "break counter": (236, 34, 284, 56), "courier chute": (236, 120, 270, 163), "cabinet and decor": (258, 82, 276, 116)}
+
+
+def quest_layout():
+    import random
+    pl = []
+
+    def entry(name, x, y):
+        pl.append({"entry": name, **at(x, y)})
+
+    def anim(name, x, y):
+        pl.append({"anim": name, **at(x, y)})
+
+    rnd = random.Random(53)
+    n = 0
+    while n < 14:
+        x, y = rnd.randrange(4, 300), rnd.randrange(40, 180)
+        entry("floor_chip", x, y)
+        n += 1
+    for c in range(W_CELLS):
+        if c not in (2, 3):                      # the north stair door replaces two wall tiles
+            entry("wall_n_plain", c * T, 0)
+    for nm, x in (("wall_n_window_a", 124), ("wall_n_window_b", 168)):
+        entry(nm, x, 9)
+    for y in range(34, H_CELLS * T, T):
+        entry("wall_e_plain", 288, y)
+    anim("north_stair", 32, 0)
+    anim("exit_sign", 74, 11)
+    # the break room: the counter and its pool travel together as a state set
+    anim("break_room", 236, 38)
+    # the security vestibule: a closed gate flanked by two reader pedestals
+    anim("vestibule_gate", 56, 70)
+    anim("reader_pedestal", 36, 74)
+    anim("reader_pedestal", 124, 74)
+    # three desk islands, each on its own rug: the old route's dead desk, then two stations that wake
+    entry("carpet_cue_c", 24, 92)
+    entry("desk_dead_b", 30, 96)
+    entry("chair", 41, 114)
+    entry("carpet_cue_a", 140, 92)
+    anim("station_a", 146, 96)
+    entry("chair", 157, 114)
+    entry("carpet_cue_b", 196, 92)
+    anim("station_b", 202, 96)
+    entry("chair", 213, 114)
+    # Mira's chute with a cabinet carrying her Night Courier decoration, and the service corridor's lamps
+    anim("courier_chute", 236, 132)
+    entry("cabinet_1x1", 258, 100)
+    entry("mira_decor_night_courier", 259, 82)
+    anim("corridor_light", 196, 148)
+    anim("corridor_light", 276, 168)
+    for nm, x, y in (("pot_plant_a", 4, 150), ("pot_plant_b", 100, 146), ("pot_plant_c", 270, 54)):
+        entry(nm, x, y + 4)
+    return {
+        "kit": "nightshift", "atlas": "nightshift-atlas.json", "tile": T, "size_cells": [W_CELLS, H_CELLS],
+        "note": "Night Shift quest-prop room, built only from nightshift-atlas (QUEST_PROP_AUDIT.md N1-N18). Every new quest entry appears in it; "
+                "the state sets are switched between the before and after renders. The north stair door (cells 2-3), the vestibule gate with its two "
+                "reader pedestals, three desk islands on three rugs, the break counter and Mira's chute. People are added by the renderer (rim rules).",
+        "states": dict(QUEST_BEFORE),
+        "floor": {"legend": {"J": "floor_j", "H": "floor_h", "V": "floor_v", "P": "floor_p"}, "rows": floor_rows()},
+        "placements": pl,
+    }
+
+
+def render_quest(layout, atlas, states):
+    lay = with_states(layout, **states)
+    canvas = np.zeros((H_CELLS * T, W_CELLS * T, 3), np.uint8)
+    kitlib.render_layout(lay, atlas, layers=BACK, base=canvas)
+    for _, mod, frame, ax, ay in sorted(QUEST_PEOPLE, key=lambda p: p[4]):
+        place_person(canvas, mod, frame, ax, ay)
+    kitlib.render_layout(lay, atlas, layers=FRONT, base=canvas)
+    return canvas
+
+
+def quest_people_report(layout, atlas, states):
+    """People as placed in the quest room, judged against the floor, rug or pool actually under each edge pixel (the same
+    gates as the reference room)."""
+    bgimg = render(layout, atlas, states, people=False, layers_back={"floor", "floor_marking"}, layers_front={"light"})
+    out = {}
+    for label, mod, frame, ax, ay in QUEST_PEOPLE:
+        raw = g.frame_rgba(frame, mod.PAL)
+        patch = bgimg[ay - 24:ay, ax - 8:ax + 8]
+        sp = nk.night_rim(raw, patch, RIM_HEX)
+        changed = np.any(sp != raw, axis=2)
+        vals = []
+        for y, x, bg in nk.nr.upper_left_background(raw, patch):
+            c = nk.contrast(sp[y, x, :3], bg)
+            pool = tuple(int(v) for v in bg) in nk.nr.POOL_COLOURS
+            vals.append(dict(c=c, pool=pool, y=y, worse=c < nk.contrast(raw[y, x, :3], bg) - 1e-9 and not (pool and y < HEAD_ROWS),
+                             ink=tuple(raw[y, x, :3]) == nk.rgb(dp.INK[0]), changed=bool(changed[y, x])))
+        fl = [v["c"] for v in vals if not v["pool"]]
+        ph = [v["c"] for v in vals if v["pool"] and v["y"] < HEAD_ROWS]
+        pb = [v["c"] for v in vals if v["pool"] and v["y"] >= HEAD_ROWS and v["ink"]]
+        out[label] = dict(floor_min=min(fl) if fl else 99.0, pool_head_min=min(ph) if ph else 99.0, pool_ink_min=min(pb) if pb else 99.0,
+                          worse=sum(v["worse"] for v in vals), rim_px=sum(v["changed"] for v in vals))
+    return out
+
+
+def quest_proofs(atlas, meta):
+    layout = quest_layout()
+    layout_ok = br.write_quest_layout("nightshift", layout, meta)
+    before, after = br.quest_images("nightshift", layout, atlas, QUEST_BEFORE, QUEST_AFTER, render_quest, to_screen_fn=to_screen)
+    print(f"nightshift quest props: {len(layout['placements'])} placements; before/after differ in {int(np.any(before != after, axis=2).sum())} px")
+    grid_b = blocked_grid(layout, atlas, QUEST_BEFORE)
+    grid_a = blocked_grid(layout, atlas, QUEST_AFTER)
+    stair = [(2, 0), (3, 0), (2, 1), (3, 1)]
+    rep = prop_edge_report(layout, atlas, QUEST_BEFORE)
+    rep_a = prop_edge_report(layout, atlas, QUEST_AFTER)
+    fmin = min([min(d["floor"]) for d in list(rep.values()) + list(rep_a.values()) if "floor" in d] or [99.0])
+    pmin = min([min(d["pool"]) for d in list(rep.values()) + list(rep_a.values()) if "pool" in d] or [99.0])
+    pe = [quest_people_report(layout, atlas, st) for st in (QUEST_BEFORE, QUEST_AFTER)]
+    pmins = [min(v[k] for s in pe for v in s.values()) for k in ("floor_min", "pool_head_min", "pool_ink_min")]
+    pworse = sum(v["worse"] for s in pe for v in s.values())
+    rims = {k: sum(s[k]["rim_px"] for s in pe) for k in ("Ada", "Engineer", "Mira")}
+    extra = [("the closed north stair blocks its four cells and the open stair frees them", all(grid_b[y, x] for x, y in stair) and not any(grid_a[y, x] for x, y in stair), "cells (2-3, 0-1)"),
+             ("the open north stair is a two-cell-wide way in (BFS on the collision grid)", br.corridor_route(grid_a, (2, 2), (2, 0)) is not None, ""),
+             ("the closed north stair has no way in", br.corridor_route(grid_b, (2, 2), (2, 0)) is None, ""),
+             ("rugs never block: all three rug entries are floor markings with no blocked cell", all(set(atlas.entries[f"carpet_cue_{k}"]["collision"]) == {"000"} and atlas.entries[f"carpet_cue_{k}"]["layer"] == "floor_marking" for k in "abc"), "3 rugs"),
+             ("every free-standing quest prop's upper-left edge reaches >= 3:1 against the floor or rug under it (rendered room, both states)", fmin >= 3.0, f"min {fmin:.2f}:1"),
+             ("furniture edges inside a lamp pool keep >= 2.5:1 (both states)", pmin >= 2.5, f"min {pmin:.2f}:1"),
+             (f"people as placed on slate, rug and pool: bare edge >= {MIN_FLOOR_EDGE}:1, pool head and shoulders >= {MIN_WARM_EDGE}:1, pool body ink >= {MIN_POOL_EDGE}:1, none worse than the plain outline",
+              pmins[0] >= MIN_FLOOR_EDGE and pmins[1] >= MIN_WARM_EDGE and pmins[2] >= MIN_POOL_EDGE and pworse == 0,
+              f"floor min {pmins[0]:.2f}:1, pool head min {pmins[1]:.2f}:1, pool ink min {pmins[2]:.2f}:1, rim px {rims}")]
+    ok_ = br.quest_review("nightshift", layout, atlas, nk.QUEST_NAMES, QUEST_BEFORE, QUEST_AFTER, QUEST_REQUIRED, extra=extra)
+    return ok_ and layout_ok
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -835,6 +974,8 @@ def main():
         fh.write("\n")
     readability_sheet(before)
     rim_final_image()
+    qok = quest_proofs(atlas, meta)
+    ok_ = ok_ and qok
     print("NIGHT SHIFT BUILD", "PASSED" if ok_ else "FAILED")
     sys.exit(0 if ok_ else 1)
 

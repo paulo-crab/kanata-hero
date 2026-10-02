@@ -1,0 +1,817 @@
+{
+ "kit": "executive",
+ "atlas": "executive-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Executive quest-prop room, built only from executive-atlas (QUEST_PROP_AUDIT.md E1-E11). The atrium landmark at cell (2, 3) takes its state from the three branches (before, repaired_name_count, after); the nameplate on the north wall, the floor line and the tally board are the three branch props; the five places stand along the north side of the corridor. Vale, the Engineer and (after) the arrived coworkers are added by the renderer.",
+ "states": {
+  "final_door": "closed",
+  "lamp": "on",
+  "atrium_tree": "before",
+  "window_a": "overcast",
+  "window_b": "overcast",
+  "window_light": "overcast",
+  "branch_name": "before",
+  "branch_route": "before",
+  "branch_count": "before"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    11,
+    3
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    14,
+    9
+   ],
+   "offset": [
+    0,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    7
+   ],
+   "offset": [
+    8,
+    15
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    8,
+    10
+   ],
+   "offset": [
+    7,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    8
+   ],
+   "offset": [
+    9,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    9
+   ],
+   "offset": [
+    8,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    4
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    6
+   ],
+   "offset": [
+    4,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    15,
+    11
+   ],
+   "offset": [
+    10,
+    3
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    0,
+    7
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    9
+   ],
+   "offset": [
+    6,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    10
+   ],
+   "offset": [
+    15,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    18,
+    8
+   ],
+   "offset": [
+    3,
+    7
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    3,
+    8
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    10
+   ],
+   "offset": [
+    8,
+    10
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    2,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    3,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    7,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    8,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    12,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    13,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    0,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    1,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    2,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    3,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    4,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    5,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    6,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    7,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    8,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    9,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    10,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    11,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    12,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    13,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    14,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    15,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    16,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    17,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    18,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "wall_n_trim",
+   "cell": [
+    19,
+    1
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "anim": "window_a",
+   "cell": [
+    0,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "anim": "window_b",
+   "cell": [
+    2,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "anim": "branch_name",
+   "cell": [
+    6,
+    0
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    2
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    6
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    7
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    8
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    9
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    10
+   ]
+  },
+  {
+   "entry": "wall_e_plain",
+   "cell": [
+    18,
+    11
+   ]
+  },
+  {
+   "anim": "final_door",
+   "cell": [
+    18,
+    3
+   ],
+   "offset": [
+    0,
+    10
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    17,
+    2
+   ],
+   "offset": [
+    5,
+    13
+   ]
+  },
+  {
+   "anim": "lamp",
+   "cell": [
+    17,
+    7
+   ],
+   "offset": [
+    5,
+    3
+   ]
+  },
+  {
+   "anim": "window_light",
+   "cell": [
+    0,
+    2
+   ],
+   "offset": [
+    4,
+    2
+   ]
+  },
+  {
+   "landmark": "atrium_tree",
+   "cell": [
+    2,
+    3
+   ]
+  },
+  {
+   "entry": "place_ivo",
+   "cell": [
+    9,
+    3
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "entry": "place_noor",
+   "cell": [
+    11,
+    3
+   ],
+   "offset": [
+    2,
+    4
+   ]
+  },
+  {
+   "entry": "place_hal",
+   "cell": [
+    12,
+    3
+   ],
+   "offset": [
+    14,
+    4
+   ]
+  },
+  {
+   "entry": "place_ada",
+   "cell": [
+    14,
+    3
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "place_mira",
+   "cell": [
+    16,
+    3
+   ],
+   "offset": [
+    6,
+    4
+   ]
+  },
+  {
+   "anim": "branch_route",
+   "cell": [
+    10,
+    6
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "anim": "branch_count",
+   "cell": [
+    14,
+    7
+   ],
+   "offset": [
+    12,
+    12
+   ]
+  },
+  {
+   "entry": "pot_plant_a",
+   "cell": [
+    6,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "pot_plant_c",
+   "cell": [
+    16,
+    9
+   ],
+   "offset": [
+    12,
+    10
+   ]
+  }
+ ]
+}
