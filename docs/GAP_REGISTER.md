@@ -27,7 +27,7 @@ Merge order: the base `feat/art-production` first, then the eight team branches 
 3. Name reconciliation: `mail_chute_*` (Records data) vs `courier_chute_*` (kit); the duplicate stool (`folding_stool` in the Systems kit, `stool_folding` in the Hal prop atlas; keep the Hal geometry, the seat offset depends on it); Systems and Night Shift `art_gap` names vs the quest-prop names.
 4. Level data to the art: glitch placements to the district table (Systems first glitch is level 12, a stapler; variants `standard`, `plum`, `dusk`); Hal and Vale animation names replace the stand-ins; a link for the false-panel stop (`link.panel.systems-nightshift`); schema `any_of` or `count` trigger atoms and a first-class "NPC not yet present" state.
 5. Seated background workers drawn to the seat convention in `kit/ORIENTATION_KIT_SPEC.md`.
-6. Add `design/levels/validate_levels.py --all` to `art-direction/build_all.py` (producer decision).
+6. Fix the validator errors that appear only once the art and level branches are merged together (trial merge of all ten branches: art build 43/43, level validator 30 errors, none in Night Shift or Executive): Orientation collision grid vs the real elevator, turnstile and conference-door footprints (16); Records ladder states (`parked`, `moved` vs `closed`, `open`) (3); Systems `formula_wall` states (`dim`, `clause_1` to `clause_6` vs `dark`, `half`, `lit`) and four collision cells near the machine (11). Then add `design/levels/validate_levels.py --all` to `art-direction/build_all.py` (producer decision) so this cannot drift again.
 
 ## Needs a human decision
 
