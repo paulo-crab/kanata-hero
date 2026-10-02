@@ -59,7 +59,7 @@
       "task": "Deliver the corrected slips at the mail chute.",
       "scene_id": "records-courier-s5-deliver",
       "correction": "immediate, no penalty",
-      "interaction": "mail_chute"
+      "interaction": "courier_chute"
     }
   ],
   "destinations": [
@@ -71,7 +71,7 @@
   ],
   "medal_rule": "clean baseline then personal target, never gates story",
   "reward_patch": "clear_address",
-  "desk_decoration": "None beyond the Clear Address patch.",
+  "desk_decoration": "`mira_decor_courier_loop`: a linen medal with a coral loop arrow on a small stand, beside the Clear Address patch.",
   "map_design_note": "A longer loop past the repair door and the chute: pocket, east desk, around the circular desk to the west desk, west through the repair door to the annex desk, and back. The pocket's chute and the closed file wall are visible from the first run, so the later opening reads as a shortcut the player remembers.",
   "terminal_scenes": [
     {

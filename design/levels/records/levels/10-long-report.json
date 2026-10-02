@@ -519,6 +519,11 @@
       "then": [
         {
           "op": "set_state",
+          "target": "report_table",
+          "state": "after"
+        },
+        {
+          "op": "set_state",
           "target": "review_door",
           "state": "open"
         },
@@ -583,6 +588,13 @@
         "from": "records-09",
         "to": "records-10",
         "note": "Places the original report, then waits in the chamber."
+      },
+      {
+        "kind": "placement_state",
+        "target": "report_table",
+        "from": "before",
+        "to": "after",
+        "note": "Noor lays the original report beside Pace's grey summary."
       }
     ]
   },

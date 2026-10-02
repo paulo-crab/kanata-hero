@@ -966,8 +966,8 @@
         },
         {
           "op": "set_state",
-          "target": "mail_chute",
-          "state": "active"
+          "target": "courier_chute",
+          "state": "ready"
         },
         {
           "op": "light_state",
@@ -1041,6 +1041,13 @@
         "from": "records-10",
         "to": "records-11",
         "note": "Fully upright, back at the hub."
+      },
+      {
+        "kind": "placement_state",
+        "target": "courier_chute",
+        "from": "idle",
+        "to": "ready",
+        "note": "The chute light steadies and a slip stands in the slot."
       }
     ]
   },

@@ -367,6 +367,11 @@
         },
         {
           "op": "set_state",
+          "target": "log_folders",
+          "state": "aligned"
+        },
+        {
+          "op": "set_state",
           "target": "archive_ledger_mark",
           "state": "accepted"
         },
@@ -427,6 +432,13 @@
         "from": "records-07",
         "to": "records-08",
         "note": "Stamp-down in the margin room."
+      },
+      {
+        "kind": "placement_state",
+        "target": "log_folders",
+        "from": "drift",
+        "to": "aligned",
+        "note": "Sea-blue folders in the log room rack stand on one tab line."
       }
     ]
   },
@@ -454,7 +466,8 @@
       13
     ],
     "interaction": "log_glitch",
-    "note": "A harmless folded-form glitch loose in the log room; repair per GLITCHES_SPEC, no scored scene."
+    "note": "A harmless folded-form glitch loose in the log room: palette standard (token fix), behaviour drift (glitches-atlas.json `districts.records.first_glitch`; 1 of the room limit 2). Repair per GLITCHES_SPEC, no scored scene.",
+    "variant": "standard"
   },
   "pace_copy": [
     {
