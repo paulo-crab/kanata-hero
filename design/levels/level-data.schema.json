@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kanata-hero/level-data.schema.json",
+  "title": "Kanata Hero level data",
+  "description": "One schema file, many shapes. validate_levels.py picks the definition by file: district.json -> district, map.json -> map, levels/NN-*.json -> level, mira/NN-*.json -> mira_route, coverage.json -> coverage, world.json -> world, gesture-inventory.json -> inventory. See SCHEMA.md for meaning.",
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$", "maxLength": 80},
+    "text": {"type": "string", "minLength": 1},
+    "cell": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 2, "maxItems": 2},
+    "cells": {"type": "array", "items": {"$ref": "#/$defs/cell"}},
+    "offset": {"type": "array", "items": {"type": "integer", "minimum": 0, "maximum": 15}, "minItems": 2, "maxItems": 2},
+    "facing": {"enum": ["n", "s", "e", "w"]},
+    "district_id": {"enum": ["orientation", "records", "systems", "nightshift", "executive"]},
+    "level_id": {"type": "string", "pattern": "^(orientation|records|systems|nightshift|executive)-(0[1-9]|1[0-9]|20)$"},
+    "gesture_id": {"type": "string", "pattern": "^[BNSV][0-9]{2}$"},
+    "rows": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "rect_cells": {"type": "object", "required": ["x", "y", "w", "h"], "additionalProperties": false,
+      "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}, "w": {"type": "integer", "minimum": 1}, "h": {"type": "integer", "minimum": 1}}},
+    "size_cells": {"type": "array", "items": {"type": "integer", "minimum": 4}, "minItems": 2, "maxItems": 2},
+    "link_ref": {"type": "object", "required": ["district", "link"], "additionalProperties": false,
+      "properties": {"district": {"$ref": "#/$defs/district_id"}, "link": {"$ref": "#/$defs/id"}}},
+
+    "hint": {"type": "object", "required": ["action", "key", "gesture"], "additionalProperties": false,
+      "properties": {
+        "action": {"type": "string", "pattern": "^To .+you need to press .+\\.$", "description": "Full first sentence: To <action>, you need to press <key>."},
+        "key": {"$ref": "#/$defs/text"},
+        "gesture": {"$ref": "#/$defs/text"}
+      }},
+
+    "world": {
+      "type": "object",
+      "required": ["version", "districts", "links", "seals", "mira_routes", "state_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "version": {"type": "string"},
+        "note": {"type": "string"},
+        "districts": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
+          "type": "object", "required": ["id", "name", "order", "levels", "size_cells", "elevator_stop"], "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/district_id"}, "name": {"$ref": "#/$defs/text"}, "order": {"type": "integer", "minimum": 1, "maximum": 5},
+            "levels": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 20}, "minItems": 2, "maxItems": 2, "description": "first and last level number"},
+            "size_cells": {"anyOf": [{"$ref": "#/$defs/size_cells"}, {"type": "null"}]},
+            "size_hint": {"type": "string"},
+            "elevator_stop": {"type": "object", "required": ["link", "unlocked_by"], "additionalProperties": false,
+              "properties": {"link": {"$ref": "#/$defs/id"}, "unlocked_by": {"type": ["string", "null"], "description": "seal id, null for the first stop"}}},
+            "review_level": {"$ref": "#/$defs/level_id"},
+            "mira_routes": {"type": "array", "items": {"$ref": "#/$defs/id"}}
+          }}},
+        "links": {"type": "array", "items": {
+          "type": "object", "required": ["id", "kind", "between", "label"], "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["elevator", "door"]},
+            "between": {"type": "array", "items": {"$ref": "#/$defs/district_id"}, "minItems": 1, "maxItems": 2},
+            "seal_required": {"type": ["string", "null"]}, "label": {"$ref": "#/$defs/text"},
+            "cells": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cell"}, "description": "door links: the door cell in each district, keyed by district id; a district exit on this link must use its cell"}
+          }}},
+        "seals": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
+          "type": "object", "required": ["id", "name", "level", "unlocks"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}, "level": {"$ref": "#/$defs/level_id"},
+            "unlocks": {"type": ["string", "null"], "description": "district id of the next elevator stop; null for the final seal"}}}},
+        "mira_routes": {"type": "array", "items": {
+          "type": "object", "required": ["id", "name", "district", "available_after", "patch"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}, "district": {"$ref": "#/$defs/district_id"},
+            "available_after": {"$ref": "#/$defs/level_id"}, "patch": {"$ref": "#/$defs/id"}, "reward_extra": {"type": "string"}}}},
+        "state_ids": {"type": "object", "required": ["levels_done", "seals", "artifacts", "patches", "flags"], "additionalProperties": false,
+          "properties": {
+            "levels_done": {"type": "array", "items": {"$ref": "#/$defs/level_id"}},
+            "seals": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "artifacts": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "patches": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "mira_routes_cleared": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "flags": {"type": "array", "items": {"$ref": "#/$defs/id"}}
+          }}
+      }
+    },
+
+    "inventory": {
+      "type": "object", "required": ["version", "source", "rows"], "additionalProperties": false,
+      "properties": {
+        "version": {"type": "string"}, "source": {"type": "string"}, "note": {"type": "string"},
+        "rows": {"type": "array", "items": {
+          "type": "object", "required": ["id", "layer", "input", "output", "notes", "source_line", "introduced_in", "external_only", "player_confirmed"], "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/gesture_id"},
+            "layer": {"enum": ["base", "nav", "numbers-symbols", "practice"]},
+            "input": {"$ref": "#/$defs/text"}, "output": {"$ref": "#/$defs/text"}, "notes": {"$ref": "#/$defs/text"},
+            "source_line": {"type": "integer", "minimum": 1},
+            "introduced_in": {"type": "integer", "minimum": 1, "maximum": 20},
+            "reviewed_in": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 20}},
+            "external_only": {"type": "boolean"}, "player_confirmed": {"type": "boolean"},
+            "confidence": {"enum": ["output-observed", "player-confirmed", "external-only"]},
+            "group": {"type": "string"}
+          }}}
+      }
+    },
+
+    "district": {
+      "type": "object",
+      "required": ["id", "name", "size_cells", "kit", "palette", "camera_bounds", "hub_cell", "entrances", "exits", "elevator", "light_states", "ambient"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/district_id"}, "name": {"$ref": "#/$defs/text"}, "size_cells": {"$ref": "#/$defs/size_cells"},
+        "kit": {"type": "string", "description": "path to the kit atlas JSON, relative to the repo root"},
+        "palette": {"$ref": "#/$defs/text"},
+        "camera_bounds": {"$ref": "#/$defs/rect_cells"},
+        "hub_cell": {"$ref": "#/$defs/cell"},
+        "entrances": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "cell", "facing", "from"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"}, "from": {"$ref": "#/$defs/link_ref"}, "note": {"type": "string"}}}},
+        "exits": {"type": "array", "items": {"type": "object", "required": ["id", "cell", "to"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "cell": {"$ref": "#/$defs/cell"}, "to": {"$ref": "#/$defs/link_ref"}, "gate": {"$ref": "#/$defs/id"}, "requires": {"type": "string"}, "locked_sign": {"type": "string"}, "note": {"type": "string"}}}},
+        "elevator": {"type": "object", "required": ["cell", "facing", "placement", "link"], "additionalProperties": false,
+          "properties": {"cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"}, "placement": {"$ref": "#/$defs/id"}, "link": {"$ref": "#/$defs/id"}, "arrival_cell": {"$ref": "#/$defs/cell"}, "note": {"type": "string"}}},
+        "light_states": {"type": "array", "items": {"type": "object", "required": ["id", "description", "applies_when", "changes"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "description": {"$ref": "#/$defs/text"}, "applies_when": {"$ref": "#/$defs/id"},
+            "changes": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["placement", "state"], "additionalProperties": false,
+              "properties": {"placement": {"$ref": "#/$defs/id"}, "state": {"$ref": "#/$defs/id"}, "note": {"type": "string"}}}}}}},
+        "ambient": {"$ref": "#/$defs/text"},
+        "side_quests": {"type": "array", "items": {"$ref": "#/$defs/side_quest"}},
+        "pace_signs": {"type": "array", "items": {"type": "object", "required": ["placement", "state"], "additionalProperties": false,
+          "properties": {"placement": {"$ref": "#/$defs/id"}, "state": {"enum": ["default", "repeat", "optional"]}, "text": {"type": "string"}, "after_level": {"$ref": "#/$defs/level_id"}}}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+
+    "side_quest": {
+      "type": "object", "required": ["id", "title", "giver", "available_after", "interactions", "terminal_scenes", "reward"], "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "title": {"$ref": "#/$defs/text"}, "giver": {"$ref": "#/$defs/id"},
+        "available_after": {"$ref": "#/$defs/level_id"}, "interactions": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1},
+        "terminal_scenes": {"type": "array", "items": {"$ref": "#/$defs/terminal_scene"}, "minItems": 1},
+        "gestures": {"type": "array", "items": {"$ref": "#/$defs/gesture_use"}},
+        "dialogue": {"type": "array", "items": {"$ref": "#/$defs/dialogue"}},
+        "reward": {"type": "object"}
+      }
+    },
+
+    "placement": {
+      "type": "object", "required": ["id", "cell"], "additionalProperties": false,
+      "oneOf": [{"required": ["entry"]}, {"required": ["landmark"]}],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "entry": {"type": "string"}, "landmark": {"type": "string"},
+        "cell": {"$ref": "#/$defs/cell"}, "offset": {"$ref": "#/$defs/offset"},
+        "state_set": {"type": "string"}, "state": {"type": "string"},
+        "art_gap": {"type": "boolean"}, "note": {"type": "string"}
+      }
+    },
+
+    "art_gap_entry": {
+      "type": "object", "required": ["footprint", "layer", "purpose"], "additionalProperties": false,
+      "properties": {
+        "footprint": {"type": "object", "required": ["cells", "collision"], "additionalProperties": false,
+          "properties": {"cells": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 2, "maxItems": 2},
+            "collision": {"$ref": "#/$defs/rows"}}},
+        "layer": {"enum": ["floor", "rear_wall", "floor_marking", "rear_prop", "shadow", "actor", "front_prop", "light"]},
+        "purpose": {"$ref": "#/$defs/text"},
+        "states": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+
+    "map": {
+      "type": "object",
+      "required": ["size_cells", "floor", "floor_legend", "placements", "collision", "zones", "interactions", "npcs", "routes", "spawns"],
+      "additionalProperties": false,
+      "properties": {
+        "size_cells": {"$ref": "#/$defs/size_cells"},
+        "floor": {"$ref": "#/$defs/rows"},
+        "floor_legend": {"type": "object", "additionalProperties": {"type": "string"}, "minProperties": 1},
+        "placements": {"type": "array", "items": {"$ref": "#/$defs/placement"}},
+        "art_gap_entries": {"type": "object", "additionalProperties": {"$ref": "#/$defs/art_gap_entry"}},
+        "art_gap_state_sets": {"type": "object", "additionalProperties": {
+          "type": "object", "required": ["default", "states"], "additionalProperties": false,
+          "properties": {"default": {"type": "string"}, "states": {"type": "object", "additionalProperties": {
+            "type": "object", "required": ["entries"], "additionalProperties": false,
+            "properties": {"entries": {"type": "array", "items": {"type": "string"}}, "blocked": {"type": "boolean"}}}}}}},
+        "implicit_walls": {"type": "array", "items": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 4, "maxItems": 4}, "description": "[x, y, w, h] cell rects that block movement with no placement art (map edge the camera never shows)"},
+        "collision": {"$ref": "#/$defs/rows"},
+        "gates": {"type": "array", "items": {
+          "type": "object", "required": ["id", "kind", "cells", "opens_after", "visible_change"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["door", "shortcut"]}, "cells": {"$ref": "#/$defs/cells"},
+            "opens_after": {"$ref": "#/$defs/level_id"}, "placement": {"$ref": "#/$defs/id"}, "visible_change": {"$ref": "#/$defs/text"}, "locked_hint": {"type": "string"}}}},
+        "zones": {"type": "array", "items": {
+          "type": "object", "required": ["id", "kind", "rect"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["hub", "branch", "task_room", "corridor", "review"]},
+            "rect": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 4, "maxItems": 4},
+            "level": {"$ref": "#/$defs/level_id"}, "note": {"type": "string"}}}},
+        "interactions": {"type": "array", "items": {
+          "type": "object", "required": ["id", "kind", "cells", "marker"], "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["npc", "terminal", "artifact", "door", "glitch", "mira", "elevator", "sign"]},
+            "cells": {"$ref": "#/$defs/cells"}, "marker": {"enum": ["conversation", "terminal", "route", "glitch", "none"]},
+            "approach": {"type": "array", "items": {"type": "object", "required": ["cell", "facing"], "additionalProperties": false,
+              "properties": {"cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"}}}},
+            "scene_id": {"$ref": "#/$defs/id"}, "dialogue_id": {"$ref": "#/$defs/id"}, "level": {"$ref": "#/$defs/level_id"},
+            "requires": {"type": "array", "items": {"type": "string"}}, "npc": {"$ref": "#/$defs/id"}, "placement": {"$ref": "#/$defs/id"},
+            "label": {"type": "string"}, "visible_when": {"type": "string"}
+          }}},
+        "npcs": {"type": "array", "items": {
+          "type": "object", "required": ["id", "character", "start_cell", "facing", "poses_by_state"], "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/id"}, "character": {"enum": ["engineer", "ivo", "mira", "noor", "hal", "ada", "vale", "bgworker_a", "bgworker_b"]},
+            "start_cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"},
+            "patrol": {"$ref": "#/$defs/cells"}, "patrol_clock": {"type": "string"},
+            "poses_by_state": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}},
+            "cells_by_state": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cell"}},
+            "note": {"type": "string"}
+          }}},
+        "routes": {"type": "object", "required": ["main", "backtrack", "mira"], "additionalProperties": false,
+          "properties": {
+            "main": {"type": "array", "items": {"type": "object", "required": ["level", "from", "to", "cells"], "additionalProperties": false,
+              "properties": {"level": {"$ref": "#/$defs/level_id"}, "from": {"$ref": "#/$defs/cell"}, "to": {"$ref": "#/$defs/cell"}, "cells": {"$ref": "#/$defs/cells"},
+                "min_width": {"type": "integer", "minimum": 1, "maximum": 3}, "label": {"type": "string"}}}},
+            "backtrack": {"type": "array", "items": {"type": "object", "required": ["id", "from", "to", "cells"], "additionalProperties": false,
+              "properties": {"id": {"$ref": "#/$defs/id"}, "from": {"$ref": "#/$defs/cell"}, "to": {"$ref": "#/$defs/cell"}, "cells": {"$ref": "#/$defs/cells"},
+                "after": {"$ref": "#/$defs/level_id"}, "label": {"type": "string"}}}},
+            "mira": {"type": "object", "additionalProperties": {"$ref": "#/$defs/cells"}}
+          }},
+        "spawns": {"type": "array", "items": {"type": "object", "required": ["id", "cell", "facing", "when"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "cell": {"$ref": "#/$defs/cell"}, "facing": {"$ref": "#/$defs/facing"}, "when": {"$ref": "#/$defs/text"}}}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+
+    "gesture_use": {
+      "type": "object", "required": ["id", "phases", "scene_id"], "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/gesture_id"},
+        "phases": {"type": "array", "items": {"enum": ["guided", "variation", "recall"]}, "minItems": 1, "uniqueItems": true},
+        "scene_id": {"$ref": "#/$defs/id"}, "note": {"type": "string"}
+      }
+    },
+
+    "terminal_scene": {
+      "type": "object", "required": ["id", "kind", "task_summary", "success_criteria", "retry"], "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["editor", "form", "log", "keypad", "label", "walk"]},
+        "task_summary": {"$ref": "#/$defs/text"},
+        "success_criteria": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1},
+        "retry": {"const": "instant"},
+        "position_cue": {"type": "boolean", "description": "true while the scene shows the physical-position cue; recall scenes must be false"},
+        "confidence": {"enum": ["output-observed", "player-confirmed", "external-only", "mixed"]},
+        "task": {"type": "object", "description": "concrete task data: prompt, initial text, targets, accepted outputs. Free-form per kind; see SCHEMA.md"},
+        "note": {"type": "string"}
+      }
+    },
+
+    "dialogue": {
+      "type": "object", "required": ["id", "speaker", "portrait", "text", "hint"], "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "speaker": {"$ref": "#/$defs/id"},
+        "speaker_kind": {"enum": ["character", "object"]},
+        "portrait": {"type": ["string", "null"], "description": "the expression suffix: neutral | concerned | pleased | the signature suffix (laugh, grin, unimpressed, puzzled, softened). The validator looks up <speaker>_<portrait> in portraits-atlas.json, so noor_unimpressed is written as unimpressed. null for object speakers"},
+        "text": {"$ref": "#/$defs/text"}, "hint": {"anyOf": [{"$ref": "#/$defs/hint"}, {"type": "null"}]},
+        "when": {"type": "string", "description": "start grammar: step:<id>, trigger:<id>, scene_success:<id>, interact:<id>, on_request:<dialogue id>"},
+        "cue": {"type": "string", "description": "why this portrait: the Portrait cue map row used"},
+        "next": {"type": "string"}, "on_request": {"type": "boolean"}
+      }
+    },
+
+    "trigger": {
+      "type": "object", "required": ["id", "when", "then"], "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "when": {"$ref": "#/$defs/text"},
+        "then": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "required": ["op"], "properties": {"op": {"enum": ["set_state", "npc_state", "unlock_gate", "grant", "light_state", "start_dialogue", "spawn_glitch", "journal", "set_flag", "complete_level"]}}}}
+      }
+    },
+
+    "level": {
+      "type": "object",
+      "required": ["id", "number", "title", "district", "kind", "requires", "story", "steps", "gestures", "terminal_scenes", "dialogue", "triggers", "state_changes", "rewards", "review_notes"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/level_id"}, "number": {"type": "integer", "minimum": 1, "maximum": 20}, "title": {"$ref": "#/$defs/text"},
+        "district": {"$ref": "#/$defs/district_id"}, "kind": {"enum": ["main", "review"]},
+        "requires": {"type": "array", "items": {"type": "string"}},
+        "story": {"$ref": "#/$defs/text"},
+        "steps": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "required": ["id", "objective", "interaction", "completes_when"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "objective": {"$ref": "#/$defs/text"}, "interaction": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+            "completes_when": {"$ref": "#/$defs/text"}, "target_cell": {"$ref": "#/$defs/cell"}, "optional": {"type": "boolean"}}}},
+        "gestures": {"type": "array", "items": {"$ref": "#/$defs/gesture_use"}, "minItems": 1},
+        "terminal_scenes": {"type": "array", "items": {"$ref": "#/$defs/terminal_scene"}, "minItems": 1},
+        "dialogue": {"type": "array", "items": {"$ref": "#/$defs/dialogue"}},
+        "triggers": {"type": "array", "items": {"$ref": "#/$defs/trigger"}},
+        "state_changes": {"type": "object", "required": ["before", "after", "visible_changes"], "additionalProperties": false,
+          "properties": {"before": {"$ref": "#/$defs/text"}, "after": {"$ref": "#/$defs/text"},
+            "visible_changes": {"type": "array", "items": {
+              "type": "object", "required": ["kind", "target", "to"], "additionalProperties": false,
+              "properties": {"kind": {"enum": ["placement_state", "npc_pose", "light_state", "gate", "landmark_state"]}, "target": {"$ref": "#/$defs/id"},
+                "from": {"type": "string"}, "to": {"type": "string"}, "note": {"type": "string"}}}}}},
+        "rewards": {"type": "object", "additionalProperties": false,
+          "properties": {"seal": {"$ref": "#/$defs/id"}, "artifact": {"$ref": "#/$defs/id"}, "patch": {"$ref": "#/$defs/id"}, "desk_decoration": {"type": "string"}, "unlocks": {"type": "array", "items": {"type": "string"}}}},
+        "optional_artifact": {"type": "object", "required": ["id", "name", "interaction", "caption"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}, "interaction": {"$ref": "#/$defs/id"}, "placement": {"$ref": "#/$defs/id"},
+            "caption": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 2, "maxItems": 4}, "engineer_portrait": {"enum": ["neutral", "concerned", "pleased"]}}},
+        "glitch": {"type": "object", "required": ["archetype", "cell"], "additionalProperties": false,
+          "properties": {"archetype": {"enum": ["stapler", "chair", "form"]}, "variant": {"type": "string"}, "cell": {"$ref": "#/$defs/cell"}, "interaction": {"$ref": "#/$defs/id"}, "scene_id": {"$ref": "#/$defs/id"}, "note": {"type": "string"}}},
+        "pace_copy": {"type": "array", "items": {"type": "object", "required": ["text", "state"], "additionalProperties": false,
+          "properties": {"text": {"$ref": "#/$defs/text"}, "state": {"enum": ["default", "repeat", "optional"]}, "placement": {"$ref": "#/$defs/id"}}}},
+        "review_notes": {"$ref": "#/$defs/text"}
+      }
+    },
+
+    "mira_route": {
+      "type": "object",
+      "required": ["id", "district", "available_after", "skills_required", "start_cell", "checkpoints", "destinations", "medal_rule", "reward_patch", "desk_decoration", "map_design_note"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "name": {"type": "string"}, "district": {"$ref": "#/$defs/district_id"}, "available_after": {"$ref": "#/$defs/level_id"},
+        "skills_required": {"type": "array", "items": {"$ref": "#/$defs/gesture_id"}, "minItems": 1},
+        "start_cell": {"$ref": "#/$defs/cell"},
+        "checkpoints": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "required": ["id", "cell", "task", "scene_id", "correction"], "additionalProperties": false,
+          "properties": {"id": {"$ref": "#/$defs/id"}, "cell": {"$ref": "#/$defs/cell"}, "task": {"$ref": "#/$defs/text"}, "scene_id": {"$ref": "#/$defs/id"},
+            "correction": {"const": "immediate, no penalty"}, "interaction": {"$ref": "#/$defs/id"}}}},
+        "destinations": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1},
+        "medal_rule": {"const": "clean baseline then personal target, never gates story"},
+        "reward_patch": {"$ref": "#/$defs/id"}, "desk_decoration": {"$ref": "#/$defs/text"}, "map_design_note": {"$ref": "#/$defs/text"},
+        "terminal_scenes": {"type": "array", "items": {"$ref": "#/$defs/terminal_scene"}},
+        "gestures": {"type": "array", "items": {"$ref": "#/$defs/gesture_use"}},
+        "dialogue": {"type": "array", "items": {"$ref": "#/$defs/dialogue"}},
+        "baseline_note": {"type": "string"}
+      }
+    },
+
+    "coverage": {
+      "type": "object", "required": ["district", "levels", "uncovered"], "additionalProperties": false,
+      "properties": {
+        "district": {"$ref": "#/$defs/district_id"},
+        "note": {"type": "string"},
+        "levels": {"type": "object", "additionalProperties": {
+          "type": "object", "required": ["owned", "gestures"], "additionalProperties": false,
+          "properties": {
+            "owned": {"type": "array", "items": {"$ref": "#/$defs/gesture_id"}},
+            "gestures": {"type": "object", "additionalProperties": {
+              "type": "object", "additionalProperties": false,
+              "properties": {"guided": {"$ref": "#/$defs/id"}, "variation": {"$ref": "#/$defs/id"}, "recall": {"$ref": "#/$defs/id"},
+                "confidence": {"type": "string"}, "note": {"type": "string"}}}}}}},
+        "mira": {"type": "object", "additionalProperties": {"type": "object", "additionalProperties": {
+          "type": "object", "additionalProperties": false,
+          "properties": {"guided": {"$ref": "#/$defs/id"}, "variation": {"$ref": "#/$defs/id"}, "recall": {"$ref": "#/$defs/id"}, "note": {"type": "string"}}}}},
+        "uncovered": {"type": "array", "items": {"type": "object", "required": ["level", "gesture", "missing"], "properties": {
+          "level": {"type": "string"}, "gesture": {"$ref": "#/$defs/gesture_id"}, "missing": {"type": "array", "items": {"type": "string"}}}}}
+      }
+    }
+  }
+}

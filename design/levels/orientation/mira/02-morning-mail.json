@@ -1,0 +1,236 @@
+{
+ "id": "morning-mail",
+ "name": "Morning Mail",
+ "district": "orientation",
+ "available_after": "orientation-02",
+ "skills_required": [
+  "B01",
+  "B02"
+ ],
+ "start_cell": [
+  20,
+  14
+ ],
+ "checkpoints": [
+  {
+   "id": "mm.cp.west",
+   "cell": [
+    7,
+    10
+   ],
+   "task": "Deliver the west slip: type wren 04",
+   "scene_id": "mm-west",
+   "correction": "immediate, no penalty",
+   "interaction": "mm_checkpoint_west"
+  },
+  {
+   "id": "mm.cp.north",
+   "cell": [
+    9,
+    4
+   ],
+   "task": "Deliver the north slip: type umi tex",
+   "scene_id": "mm-north",
+   "correction": "immediate, no penalty",
+   "interaction": "mm_checkpoint_north"
+  },
+  {
+   "id": "mm.cp.east",
+   "cell": [
+    19,
+    10
+   ],
+   "task": "Deliver the east slip: type bea, vn",
+   "scene_id": "mm-east",
+   "correction": "immediate, no penalty",
+   "interaction": "mm_checkpoint_east"
+  }
+ ],
+ "destinations": [
+  "west desk (7,10)",
+  "north desk (9,4)",
+  "east desk (19,10)"
+ ],
+ "medal_rule": "clean baseline then personal target, never gates story",
+ "reward_patch": "first_delivery",
+ "desk_decoration": "mail tray (mail_tray) for the player's desk",
+ "map_design_note": "Start at the mailroom counter (20,14), through the open turnstile (opened by level 01), west along the south band, up to the west desk, along the north band to the north desk, then down the east band to the east desk and back to the mailroom. A simple loop around the garden with no hidden door; the cut-through shortens it after level 06 but is not needed. Checkpoints show on the world map after a first attempt.",
+ "baseline_note": "The first clean run records the run's duration as a baseline and grants the First Delivery patch; later runs may show an adjustable personal target about 5% below the baseline. Accuracy gates the medal, speed never gates story.",
+ "terminal_scenes": [
+  {
+   "id": "mm-west",
+   "kind": "label",
+   "task_summary": "Type the label on the west desk's slip and deliver it.",
+   "success_criteria": [
+    "The text equals wren 04"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Slip for the west desk.",
+    "items": [
+     {
+      "id": "s1",
+      "prompt": "Type the slip",
+      "target": "wren 04"
+     }
+    ],
+    "accepts": "text equals target",
+    "feedback": {
+     "other": "The observed text is shown above the slip. Correct it right here and continue; nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "mm-north",
+   "kind": "label",
+   "task_summary": "Type the label on the north desk's slip and deliver it.",
+   "success_criteria": [
+    "The text equals umi tex"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Slip for the north desk.",
+    "items": [
+     {
+      "id": "s2",
+      "prompt": "Type the slip",
+      "target": "umi tex"
+     }
+    ],
+    "accepts": "text equals target",
+    "feedback": {
+     "other": "The observed text is shown above the slip. Correct it right here and continue; nothing is lost."
+    }
+   }
+  },
+  {
+   "id": "mm-east",
+   "kind": "label",
+   "task_summary": "Type the label on the east desk's slip and deliver it.",
+   "success_criteria": [
+    "The text equals bea, vn"
+   ],
+   "retry": "instant",
+   "position_cue": false,
+   "confidence": "output-observed",
+   "task": {
+    "prompt": "Slip for the east desk.",
+    "items": [
+     {
+      "id": "s3",
+      "prompt": "Type the slip",
+      "target": "bea, vn"
+     }
+    ],
+    "accepts": "text equals target",
+    "feedback": {
+     "other": "The observed text is shown above the slip. Correct it right here and continue; nothing is lost."
+    }
+   }
+  }
+ ],
+ "gestures": [
+  {
+   "id": "B01",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "mm-west"
+  },
+  {
+   "id": "B01",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "mm-north"
+  },
+  {
+   "id": "B02",
+   "phases": [
+    "recall"
+   ],
+   "scene_id": "mm-east"
+  }
+ ],
+ "dialogue": [
+  {
+   "id": "mm.d.intro",
+   "speaker": "mira",
+   "portrait": "grin",
+   "text": "Mira, courier. Learn the loop first: three slips, three desks. No clock this time; I only write down how long your first clean run takes, as your baseline.",
+   "hint": null,
+   "when": "interact:mira",
+   "cue": "Mira: the Morning Mail introduction (mira_grin)"
+  },
+  {
+   "id": "mm.d.offer",
+   "speaker": "mira",
+   "portrait": "neutral",
+   "text": "Take the slips from the tray whenever you are ready.",
+   "hint": null,
+   "when": "dialogue_done:mm.d.intro",
+   "cue": "Mira: offering any route"
+  },
+  {
+   "id": "mm.d.hint-west",
+   "speaker": "slip_card",
+   "portrait": null,
+   "text": "To write the number on the west slip, you need to press 0, then 4.",
+   "hint": {
+    "action": "To write the number on the west slip, you need to press 0, then 4.",
+    "key": "0, then 4",
+    "gesture": "tap 0, tap 4. Plain taps stay digits on base."
+   },
+   "speaker_kind": "object",
+   "when": "interact:mm_checkpoint_west"
+  },
+  {
+   "id": "mm.d.hint-north",
+   "speaker": "slip_card",
+   "portrait": null,
+   "text": "To write the u in the north slip, you need to press U.",
+   "hint": {
+    "action": "To write the u in the north slip, you need to press U.",
+    "key": "U",
+    "gesture": "tap U. It only pages up while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "interact:mm_checkpoint_north"
+  },
+  {
+   "id": "mm.d.hint-east",
+   "speaker": "slip_card",
+   "portrait": null,
+   "text": "To separate the east slip's two names, you need to press comma.",
+   "hint": {
+    "action": "To separate the east slip's two names, you need to press comma.",
+    "key": "comma",
+    "gesture": "tap comma. It only deletes forward while nav is held."
+   },
+   "speaker_kind": "object",
+   "when": "interact:mm_checkpoint_east"
+  },
+  {
+   "id": "mm.d.fix",
+   "speaker": "mira",
+   "portrait": "neutral",
+   "text": "That slip says something else. Try the letters again; nothing is lost.",
+   "hint": null,
+   "when": "interact:mira",
+   "cue": "Mira: neutral"
+  },
+  {
+   "id": "mm.d.baseline",
+   "speaker": "mira",
+   "portrait": "pleased",
+   "text": "Clean run. That is your baseline, and I'll sew on the patch. A quicker loop is there if you want it; it never gates anything.",
+   "hint": null,
+   "when": "interact:mira",
+   "cue": "Mira: each patch, earned on a route's first clean baseline (pleased)"
+  }
+ ]
+}
