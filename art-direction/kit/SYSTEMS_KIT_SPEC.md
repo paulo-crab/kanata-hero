@@ -190,3 +190,25 @@ State sets (each pair or triple is cropped to one shared box, so a swap never mo
 5. **Shutters and the formula wall are wall overlays.** They sit on the north wall face like the window overlays and the status board; the plain wall tiles keep the collision.
 6. **The chute, the desk decorations and the 3x5 font are shared drawings.** They live in `quest_props.py` and take the district's `Pal`; Systems sets `PAL.paper` to the porcelain ramp (its wall ramp is steel blue) so slips and envelopes read as paper.
 7. **State sets share a crop box.** Pairs and triples whose bounding boxes differ (the keypad's progress lights, the strip's lamps) are cropped to one box, so a state swap never shifts a pixel.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `systems-integration-room.json` and `systems-integration-proof-{before,after}-{native,1366x768}.png` (elevators, seated worker with occluder, artifacts, the formula wall, a wall band with the alarm board, refund ledger and ten node lamps, Hal's stool); `systems-landmark-steps.png` shows the machine at before, after_12, after_13, after_14 and after.
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed/_half/_open` (set `elevator`), `elevator_call_panel` | 3x3 and 1x2 | rear_wall | Orientation geometry, Systems ramps |
+| `desk_a_front`, `desk_b_front` | 2x1, `00` | front_prop | Cut from the district desk (drawn with a Pal whose paper is the porcelain floor ramp, as the desk recolour maps stone to floor); asserted pixel-equal |
+| `artifact_id_envelope`, `artifact_alarm_strip`, `artifact_scoring_proof`, `artifact_original_routing_diagram` | 1x1, `0` | front_prop | `artifact_prop` with paper = porcelain ramp (the Systems wall ramp is steel blue) |
+| `routing_node_dark` / `routing_node_lit` (set `routing_node`) | 1x1, `0` | rear_wall | 10x10 lamp centred in its cell; place ten, one per digit. Lit: mint with a pale head |
+| `refund_ledger_charge` / `refund_ledger_refund` (set `refund_ledger`) | 2x1, `00` | rear_wall | 30x14 wall inset: calculator display and open ledger with three sign markers. Charge: `+85` orange, markers staggered. Refund: `-85` mint, markers calm. No pure red or green in this palette; the sign glyph carries the meaning |
+| `alarm_board_blank`, `alarm_board_labeled_1` to `_6` (set `alarm_board`) | 3x2, `000/000` | rear_wall | 46x30, six lamp-over-plate cells. Blank: empty slots, six dull lamps with two identical pairs. Each label restores one pictogram (ring, triangle, square, diamond, cross, bar) and its own hue |
+| `formula_wall_dim`, `formula_wall_clause_1` to `_6` | 6x2 | rear_wall | Joined to the existing `formula_wall` state set (beside dark, half, lit). `dim` has the pixels of `dark`; `clause_6` those of `lit` |
+| `folding_stool`, `folding_stool_open`, `folding_stool_folded` (set `folding_stool`: folded, open) | 1x1, `1` | rear_prop | See below |
+
+**One stool.** `folding_stool` and `folding_stool_open` are built from `hal_sprites.STOOL` (imported, no Hal file edited) and are pixel for pixel the Hal prop atlas's `stool_folding`: 16x10, footprint 1x1 whose top-left is 6 px above the sprite (`origin_px [0, -6]`), collision `1`, rear_prop, y-sort, contact shadow `[1, 9, 14, 1]`, anchor `[8, 10]`. The build compares the pixels against `cast/hal-props-atlas.png` and the geometry against its JSON. Hal's seat offset depends on this: seated Hal's anchor (8, 24) lands on the stool cell's anchor (8, 16), so the sprite's top-left is at (0, 14) in Hal's 16x24 frame (`stool_sprite_in_frame_px`). Do not move the anchor or resize either sprite. `folding_stool_folded` is a narrow packed stool in the same box and geometry (the old `folding_stool` drawing with the orange tool roll is retired; the roll is Hal's carried prop).
+
+**Machine intermediate states** (landmark `routing_machine`, registered parts only, no new pixels): `after_12` = nodes and stubs lit; `after_13` = `after_12` plus the beacon steady (`routing_beacon_after`); `after_14` = `after_13` plus the ports lit; `after` (level 16) adds the core, walkway and open panel. Lamps stay `on` until `after`.
+
+The miniature relay desk item already exists (`mira_decor_relay`), so nothing new was needed. Decisions: `dim` and `clause_6` are duplicates by design so the level data's names resolve; `refund_ledger` is a wall inset (data: wall overlay) while the older `calc_display` desk piece stays for the reference room. Contradictions with the map: the elevator is 3x3 (data 3x1); `formula_wall` is 6x2 cells (data 8x2); `bridge_shutter` is 2x2 (data 4x1); `routing_node` is 1x1 as declared.

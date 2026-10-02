@@ -3919,54 +3919,6 @@
    "note": "the inset calculator display of level 13, 2 x 1: a steel desk top with a display sunk into it and an open ledger beside it. refund: '-85' in mint, the ledger marked with a mint minus"
   },
   {
-   "name": "folding_stool",
-   "kind": "prop",
-   "rect": [
-    592,
-    704,
-    16,
-    16
-   ],
-   "size_px": [
-    14,
-    14
-   ],
-   "footprint": {
-    "cells": [
-     1,
-     1
-    ],
-    "origin_px": [
-     -1,
-     -2
-    ]
-   },
-   "collision": [
-    "1"
-   ],
-   "layer": "rear_prop",
-   "y_sort": true,
-   "anchor": [
-    7,
-    14
-   ],
-   "composite": {
-    "mode": "over"
-   },
-   "tags": [
-    "stool",
-    "hal",
-    "level 13"
-   ],
-   "contact_shadow": [
-    2,
-    13,
-    10,
-    1
-   ],
-   "note": "Hal's folding stool, 1 x 1 (level 13: Hal sits instead of crouching): a sand canvas seat on crossed steel legs with his orange tool roll leaning on it"
-  },
-  {
    "name": "alarm_strip_merged",
    "kind": "wall",
    "rect": [
@@ -4499,6 +4451,1424 @@
     "desk"
    ],
    "note": "Signal Keeper reward (after level 16): a miniature relay, a cobalt block with a copper coil, two terminals and a mint LED; a desk decoration, 1 x 1, no collision"
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    32,
+    880,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front. Orientation's module in the systems ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    80,
+    880,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Orientation's module in the systems ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    128,
+    880,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Orientation's module in the systems ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    176,
+    880,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "wave 2"
+   ],
+   "note": "wall call panel for the elevator, systems ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "desk_a_front",
+   "kind": "prop",
+   "rect": [
+    192,
+    880,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_a: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "desk_b_front",
+   "kind": "prop",
+   "rect": [
+    240,
+    880,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_b: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "artifact_id_envelope",
+   "kind": "prop",
+   "rect": [
+    288,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "id_envelope",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    4,
+    13,
+    11,
+    1
+   ],
+   "note": "ID envelope (Systems level 12): an envelope with an address block and a stamp for a vanished department. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_alarm_strip",
+   "kind": "prop",
+   "rect": [
+    304,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "alarm_strip",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    4,
+    11,
+    12,
+    1
+   ],
+   "note": "Alarm strip (Systems level 14): a paper strip of six alert pictograms with one extra department mark. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_scoring_proof",
+   "kind": "prop",
+   "rect": [
+    320,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "scoring_proof",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Scoring proof (Systems level 15): a proof sheet with three rising bars (a longer route scores higher). 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_original_routing_diagram",
+   "kind": "prop",
+   "rect": [
+    336,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "original_routing_diagram",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Original routing diagram (Systems level 16): a diagram of nodes and traces with three signatures. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "routing_node_dark",
+   "kind": "wall",
+   "rect": [
+    352,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    10,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -3,
+     -3
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    5,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "node",
+    "lamp",
+    "payroll",
+    "level 12",
+    "dark"
+   ],
+   "note": "one of the ten routing-node lamps on the payroll wing wall (level 12), a 10 x 10 wall overlay centred in its cell, no collision. dark: dull cobalt glass in an ink bezel. Place ten, one per digit, and light each as its digit is entered"
+  },
+  {
+   "name": "routing_node_lit",
+   "kind": "wall",
+   "rect": [
+    368,
+    880,
+    16,
+    16
+   ],
+   "size_px": [
+    10,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     -3,
+     -3
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    5,
+    13
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "node",
+    "lamp",
+    "payroll",
+    "level 12",
+    "lit"
+   ],
+   "note": "one of the ten routing-node lamps on the payroll wing wall (level 12), a 10 x 10 wall overlay centred in its cell, no collision. lit: mint with a pale head and a deeper lower edge. Place ten, one per digit, and light each as its digit is entered"
+  },
+  {
+   "name": "refund_ledger_charge",
+   "kind": "wall",
+   "rect": [
+    384,
+    880,
+    32,
+    16
+   ],
+   "size_px": [
+    30,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "refund",
+    "level 13",
+    "charge"
+   ],
+   "note": "the refund ledger of level 13, 2 x 1: a wall inset with a calculator display and an open ledger carrying three sign markers. charge: '+85' in orange, the markers orange and staggered. Systems has no pure red or green: orange trim and mint circuit light carry the pair; the sign glyph carries the meaning. No collision (the wall already blocks)"
+  },
+  {
+   "name": "refund_ledger_refund",
+   "kind": "wall",
+   "rect": [
+    416,
+    880,
+    32,
+    16
+   ],
+   "size_px": [
+    30,
+    14
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    16,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "refund",
+    "level 13",
+    "refund"
+   ],
+   "note": "the refund ledger of level 13, 2 x 1: a wall inset with a calculator display and an open ledger carrying three sign markers. refund: '-85' in mint, the markers mint and calm on one line. Systems has no pure red or green: orange trim and mint circuit light carry the pair; the sign glyph carries the meaning. No collision (the wall already blocks)"
+  },
+  {
+   "name": "alarm_board_blank",
+   "kind": "wall",
+   "rect": [
+    448,
+    880,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "blank"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. blank: six empty pictogram slots and six dull lamps, two pairs of them identical. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_1",
+   "kind": "wall",
+   "rect": [
+    496,
+    880,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_1"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_1: the first 1 cell restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_2",
+   "kind": "wall",
+   "rect": [
+    544,
+    880,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_2"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_2: the first 2 cells restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_3",
+   "kind": "wall",
+   "rect": [
+    592,
+    880,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_3"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_3: the first 3 cells restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_4",
+   "kind": "wall",
+   "rect": [
+    0,
+    928,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_4"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_4: the first 4 cells restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_5",
+   "kind": "wall",
+   "rect": [
+    48,
+    928,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_5"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_5: the first 5 cells restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "alarm_board_labeled_6",
+   "kind": "wall",
+   "rect": [
+    96,
+    928,
+    48,
+    32
+   ],
+   "size_px": [
+    46,
+    30
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "alarm",
+    "board",
+    "level 14",
+    "labeled_6"
+   ],
+   "note": "the alarm hall board of level 14, a 46 x 30 wall overlay (3 x 2 cells): six cells, each a lamp over a porcelain label plate. labeled_6: the first 6 cells restored, each with its pictogram (ring, triangle, square, diamond, cross, bar) and its own hue, the rest still blank. Colour is never the only cue: every restored cell also has a pictogram"
+  },
+  {
+   "name": "formula_wall_dim",
+   "kind": "wall",
+   "rect": [
+    144,
+    928,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "dim"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: dim: every box dark glass (the same pixels as formula_wall_dark). Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_1",
+   "kind": "wall",
+   "rect": [
+    240,
+    928,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_1"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_1: the first 1 clause box and the traces between them lit mint. Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_2",
+   "kind": "wall",
+   "rect": [
+    336,
+    928,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_2"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_2: the first 2 clause boxes and the traces between them lit mint. Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_3",
+   "kind": "wall",
+   "rect": [
+    432,
+    928,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_3"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_3: the first 3 clause boxes and the traces between them lit mint. Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_4",
+   "kind": "wall",
+   "rect": [
+    528,
+    928,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_4"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_4: the first 4 clause boxes and the traces between them lit mint. Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_5",
+   "kind": "wall",
+   "rect": [
+    0,
+    960,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_5"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_5: the first 5 clause boxes and the traces between them lit mint. Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "formula_wall_clause_6",
+   "kind": "wall",
+   "rect": [
+    96,
+    960,
+    96,
+    32
+   ],
+   "size_px": [
+    96,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     6,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "000000",
+    "000000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    48,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "formula",
+    "wall",
+    "level 15",
+    "clause_6"
+   ],
+   "note": "the formula wall of level 15, a 96 x 22 wall overlay (6 x 2 cells), a clause state: clause_6: the first 6 clause boxes and the traces between them lit mint (all six: the same pixels as formula_wall_lit). Joins the formula_wall state set beside dark, half and lit"
+  },
+  {
+   "name": "folding_stool",
+   "kind": "prop",
+   "rect": [
+    192,
+    960,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     -6
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    10
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "hal",
+    "level 13"
+   ],
+   "contact_shadow": [
+    1,
+    9,
+    14,
+    1
+   ],
+   "note": "Hal's folding stool, the same sprite as hal-props-atlas.json stool_folding (imported from hal_sprites.py), seat open, for him to sit on at the end of level 13. 16 x 10 px, footprint 1 x 1 whose top-left is 6 px above the sprite, anchor [8, 10] (the footprint's bottom centre). Hal's seat offset depends on this geometry: seated Hal's anchor (8, 24) lands on the anchor (8, 16) of the stool's cell, so the sprite's top-left sits at (0, 14) in Hal's 16 x 24 frame (hal-atlas.json stool_sprite_in_frame_px). Do not change it here"
+  },
+  {
+   "name": "folding_stool_open",
+   "kind": "prop",
+   "rect": [
+    208,
+    960,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     -6
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    10
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "hal",
+    "level 13",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    1,
+    9,
+    14,
+    1
+   ],
+   "note": "state `open` of the folding_stool set: identical to folding_stool (Hal's stool_folding), seat open"
+  },
+  {
+   "name": "folding_stool_folded",
+   "kind": "prop",
+   "rect": [
+    224,
+    960,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    10
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     -6
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    10
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "seating",
+    "hal",
+    "level 13",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    9,
+    8,
+    1
+   ],
+   "note": "state `folded` of the folding_stool set: the stool packed up, legs and seat in one narrow bundle, ink-ramp steel and canvas like Hal's. Same 16 x 10 box, footprint, collision, anchor [8, 10] and layer as the open stool, so the swap never shifts a pixel"
   }
  ],
  "animations": {
@@ -4989,6 +6359,41 @@
      "entries": [
       "formula_wall_lit"
      ]
+    },
+    "dim": {
+     "entries": [
+      "formula_wall_dim"
+     ]
+    },
+    "clause_1": {
+     "entries": [
+      "formula_wall_clause_1"
+     ]
+    },
+    "clause_2": {
+     "entries": [
+      "formula_wall_clause_2"
+     ]
+    },
+    "clause_3": {
+     "entries": [
+      "formula_wall_clause_3"
+     ]
+    },
+    "clause_4": {
+     "entries": [
+      "formula_wall_clause_4"
+     ]
+    },
+    "clause_5": {
+     "entries": [
+      "formula_wall_clause_5"
+     ]
+    },
+    "clause_6": {
+     "entries": [
+      "formula_wall_clause_6"
+     ]
     }
    },
    "play": [
@@ -4997,7 +6402,7 @@
     "lit"
    ],
    "ms_per_frame": 250,
-   "note": "level 15: as clauses become valid the connected parts of the formula illuminate (dark, half, lit)"
+   "note": "level 15: as clauses become valid the connected parts of the formula illuminate (dark, half, lit). Wave 2 adds the level data's names: dim (same pixels as dark) and clause_1 to clause_6 (the first k boxes lit; clause_6 has the same pixels as lit), so one clause lights at a time"
   },
   "courier_chute": {
    "kind": "state_set",
@@ -5020,11 +6425,160 @@
    ],
    "ms_per_frame": 300,
    "note": "Mira's chute: ready while she has a route to offer"
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"
+  },
+  "routing_node": {
+   "kind": "state_set",
+   "default": "dark",
+   "states": {
+    "dark": {
+     "entries": [
+      "routing_node_dark"
+     ]
+    },
+    "lit": {
+     "entries": [
+      "routing_node_lit"
+     ]
+    }
+   },
+   "play": [
+    "dark",
+    "lit"
+   ],
+   "ms_per_frame": 150,
+   "note": "level 12: one lamp per correct digit; place ten and switch each on its own"
+  },
+  "refund_ledger": {
+   "kind": "state_set",
+   "default": "charge",
+   "states": {
+    "charge": {
+     "entries": [
+      "refund_ledger_charge"
+     ]
+    },
+    "refund": {
+     "entries": [
+      "refund_ledger_refund"
+     ]
+    }
+   },
+   "play": [
+    "charge",
+    "refund"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 13: the ledger turns the charge into a refund, orange to mint"
+  },
+  "alarm_board": {
+   "kind": "state_set",
+   "default": "blank",
+   "states": {
+    "blank": {
+     "entries": [
+      "alarm_board_blank"
+     ]
+    },
+    "labeled_1": {
+     "entries": [
+      "alarm_board_labeled_1"
+     ]
+    },
+    "labeled_2": {
+     "entries": [
+      "alarm_board_labeled_2"
+     ]
+    },
+    "labeled_3": {
+     "entries": [
+      "alarm_board_labeled_3"
+     ]
+    },
+    "labeled_4": {
+     "entries": [
+      "alarm_board_labeled_4"
+     ]
+    },
+    "labeled_5": {
+     "entries": [
+      "alarm_board_labeled_5"
+     ]
+    },
+    "labeled_6": {
+     "entries": [
+      "alarm_board_labeled_6"
+     ]
+    }
+   },
+   "play": [
+    "blank",
+    "labeled_1",
+    "labeled_2",
+    "labeled_3",
+    "labeled_4",
+    "labeled_5",
+    "labeled_6"
+   ],
+   "ms_per_frame": 250,
+   "note": "level 14: each correct label restores one pictogram and its hue; six labels, six states after blank"
+  },
+  "folding_stool": {
+   "kind": "state_set",
+   "default": "folded",
+   "states": {
+    "folded": {
+     "entries": [
+      "folding_stool_folded"
+     ]
+    },
+    "open": {
+     "entries": [
+      "folding_stool_open"
+     ]
+    }
+   },
+   "play": [
+    "folded",
+    "open"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 13: the stool stands folded, then Hal opens it to sit; same geometry in both states (Hal's seat offset depends on it)"
   }
  },
  "landmarks": {
   "routing_machine": {
-   "note": "Systems landmark: the large routing machine. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The body carries the collision (6x4 cells); the stubs and walkway are floor markings; the other parts are small quest-state overlays.",
+   "note": "Systems landmark: the large routing machine. Every part is a full-size sprite registered at one footprint origin, so a state is a list of parts; place them all at the same cell. The body carries the collision (6x4 cells); the stubs and walkway are floor markings; the other parts are small quest-state overlays. Wave 2 intermediate states (no new pixels, registered parts only): after_12 = nodes and stubs lit; after_13 = after_12 plus the beacon steady; after_14 = after_13 plus the ports lit; the dome core, walkway and open panel arrive with `after` at level 16.",
    "size_px": [
     160,
     144
@@ -5044,6 +6598,108 @@
       "routing_nodes_before",
       "routing_beacon_before",
       "routing_ports_before",
+      "routing_panel_closed"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -22,
+        2
+       ],
+       [
+        -22,
+        34
+       ],
+       [
+        -6,
+        60
+       ],
+       [
+        106,
+        60
+       ]
+      ]
+     }
+    },
+    "after_12": {
+     "parts": [
+      "routing_deck_plate",
+      "routing_stubs_after",
+      "routing_machine",
+      "routing_core_before",
+      "routing_nodes_after",
+      "routing_beacon_before",
+      "routing_ports_before",
+      "routing_panel_closed"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -22,
+        2
+       ],
+       [
+        -22,
+        34
+       ],
+       [
+        -6,
+        60
+       ],
+       [
+        106,
+        60
+       ]
+      ]
+     }
+    },
+    "after_13": {
+     "parts": [
+      "routing_deck_plate",
+      "routing_stubs_after",
+      "routing_machine",
+      "routing_core_before",
+      "routing_nodes_after",
+      "routing_beacon_after",
+      "routing_ports_before",
+      "routing_panel_closed"
+     ],
+     "lamps": {
+      "anim": "lamp",
+      "state": "on",
+      "offsets_px": [
+       [
+        -22,
+        2
+       ],
+       [
+        -22,
+        34
+       ],
+       [
+        -6,
+        60
+       ],
+       [
+        106,
+        60
+       ]
+      ]
+     }
+    },
+    "after_14": {
+     "parts": [
+      "routing_deck_plate",
+      "routing_stubs_after",
+      "routing_machine",
+      "routing_core_before",
+      "routing_nodes_after",
+      "routing_beacon_after",
+      "routing_ports_after",
       "routing_panel_closed"
      ],
      "lamps": {
