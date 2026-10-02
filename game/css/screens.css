@@ -10,7 +10,7 @@
 .overlay .top .grow { flex: 1; }
 .overlay .close { white-space: nowrap; }
 .tabs { display: flex; gap: var(--space-2); }
-.tab { padding: var(--space-2) var(--space-4); border-radius: var(--radius-pill); border: 2px solid var(--border); background: transparent; font: var(--weight-bold) var(--text-sm)/1.2 var(--font-mono); color: var(--text); }
+.tab { white-space: nowrap; padding: var(--space-2) var(--space-4); border-radius: var(--radius-pill); border: 2px solid var(--border); background: transparent; font: var(--weight-bold) var(--text-sm)/1.2 var(--font-mono); color: var(--text); }
 .tab[aria-selected="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 
 /* ---- Journal ------------------------------------------------------------------------------------------------- */
@@ -43,7 +43,7 @@
 .also { display: flex; flex-direction: column; gap: var(--space-2); }
 
 /* ---- Layout help ---------------------------------------------------------------------------------------------- */
-.lh-overlay { left: 16px; right: 16px; top: 16px; bottom: 16px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
+.lh-overlay { overflow-y: auto; --key-unit: 46px; left: 16px; right: 16px; top: 16px; bottom: 16px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
 .lh-overlay .top { gap: var(--space-4); }
 .lh-overlay .top h2 { font-size: var(--text-xl); }
 .lh-how { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
@@ -54,7 +54,7 @@
 .kh-lk { width: calc(var(--key-unit) * var(--w, 1) + var(--key-gap) * (var(--w, 1) - 1)); height: var(--key-unit); border-radius: var(--radius-sm); background: var(--key-dim-face); color: var(--key-dim-text); border: 0; box-shadow: 0 3px 0 var(--key-dim-edge);
   display: flex; flex-direction: column; align-items: center; justify-content: center; font: var(--weight-regular) var(--text-sm)/1.15 var(--font-mono); position: relative; margin-bottom: 3px; flex: none; padding: 0; }
 .kh-lk .l { font-size: var(--text-base); }
-.kh-lk .s { font: var(--weight-bold) var(--text-sm)/1.1 var(--font-body); white-space: nowrap; }
+.kh-lk .s { max-width: 100%; overflow: hidden; text-overflow: ellipsis; font: var(--weight-bold) var(--text-sm)/1.1 var(--font-body); white-space: nowrap; }
 .kh-lk.map { background: var(--key-face); color: var(--key-text); box-shadow: 0 4px 0 var(--key-edge); font-weight: var(--weight-bold); }
 .kh-lk.map::before { content: ""; position: absolute; left: 8px; right: 8px; top: 0; height: 4px; background: var(--key-held-edge); border-radius: 0 0 3px 3px; }
 .kh-lk.layerkey { background: var(--key-held-face); color: var(--key-held-text); box-shadow: 0 1px 0 var(--key-held-edge); top: 3px; font-weight: var(--weight-bold); }
@@ -62,7 +62,9 @@
 .kh-lk.silent .l { font-weight: var(--weight-bold); }
 .kh-lk.focus { outline: 2px solid var(--focus); outline-offset: 3px; }
 .lh-detail { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-2) var(--space-5); align-items: start; background: var(--panel-raised); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-2) var(--space-5); }
-.lh-detail .big .kh-key { min-width: 64px; height: 64px; font-size: var(--text-2xl); }
+.lh-detail .big .kh-key { min-width: 48px; height: 48px; font-size: var(--text-xl); }
+.lh-detail.empty { padding: var(--space-1) var(--space-5); }
+.lh-detail.empty p { margin: 0; }
 .lh-detail dl { margin: 0; display: grid; gap: var(--space-1); }
 .lh-detail dd { margin: 0; font-size: var(--text-base); }
 .lh-legend { display: flex; gap: var(--space-4); align-items: center; font-size: var(--text-sm); color: var(--text-muted); flex-wrap: wrap; }
@@ -75,7 +77,8 @@
 .lh-card .kh-label { display: flex; align-items: center; gap: var(--space-2); }
 .lh-card .seq { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 .lh-card.locked { border-style: dashed; background: var(--panel-sunken); }
-.lh-remap { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: var(--text-sm); justify-content: center; }
+.lh-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+.lh-remap { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: var(--text-sm); }
 .lh-remap span { display: inline-flex; align-items: center; gap: var(--space-2); }
 .lh-device { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); color: var(--text-muted); }
 

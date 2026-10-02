@@ -55,7 +55,7 @@ test('layout help: nav tab shows the held layer key, the key card, the toggle-ou
   assert.match(m, /kh-lk layerkey[^>]*data-key="Caps"/);
   assert.match(textOf(m), /Control \+ Alt \+ GUI \+ V/);
   assert.match(m, /data-card="emergency-exit"/);
-  assert.match(textOf(m), /Emergency exit .*Unverified\./);
+  assert.match(textOf(m), /Emergency exit \(unverified\) Shown after its runtime behaviour is verified\./);
   assert.match(m, /lh-card locked/);
   assert.match(m, /kh-lk [^"]*focus" style="--w:1" data-fid="key-l"/);
   assert.match(textOf(m), /Tap: Right/);

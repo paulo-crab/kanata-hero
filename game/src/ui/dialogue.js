@@ -31,7 +31,6 @@ export function dialogueView(vm, assetBase = '/') {
     : '';
   const footer = (vm.footer || []).map((f) => html`<button type="button" class="ctl-btn" data-fid="footer-${f.action.toLowerCase()}" ${cmdAttr(FOOTER_COMMAND[f.action] || { type: 'continue' })}>
       <b>${f.action}</b> ${keycap(f.key, { sm: true })} <span class="g">${f.gesture}</span></button>`);
-  const note = conversation ? '' : html`<span class="keep">Instruction line: stays until the step is done. Movement and Esc stay live.</span>`;
   const label = conversation ? `Conversation with ${vm.speakerName}` : `Instruction from ${vm.speakerName}`;
   const roleAttrs = conversation
     ? html`role="dialog" aria-modal="true" tabindex="-1" data-autofocus`
@@ -43,7 +42,7 @@ export function dialogueView(vm, assetBase = '/') {
     <div class="who">${vm.speakerName}${vm.role ? html` <span class="role">${vm.role}</span>` : ''}</div>
     <p class="say">${vm.text}</p>
     ${hint}
-    <div class="ctl">${footer}${note}</div>
+    <div class="ctl">${footer}</div>
   </div>
 </section>`;
 }

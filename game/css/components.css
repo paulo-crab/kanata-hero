@@ -69,7 +69,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .line { fill: var(--ink); stroke: var(--ink); stroke-width: 5; stroke-linejoin: round; }
 
 /* ---- Keyboard teaching inset: x 16..588, bottom 16 (INSET_STAGE_RECT) -------------------------------------- */
-.kh-inset { position: absolute; z-index: var(--z-inset); left: var(--stage-margin); bottom: var(--stage-margin); width: 572px; padding: var(--space-3) var(--space-4); border-color: var(--border-strong); display: flex; flex-direction: column; gap: var(--space-2); }
+.kh-inset { position: absolute; z-index: var(--z-inset); left: var(--stage-margin); bottom: var(--stage-margin); width: 572px; padding: var(--space-3) var(--space-4) calc(var(--space-3) - 1px); border-color: var(--border-strong); display: flex; flex-direction: column; gap: var(--space-2); }
 .kh-inset .head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
 .kh-inset .head h3 { font-size: var(--text-xl); }
 .kh-inset .head .layer { font-size: var(--text-sm); color: var(--accent-terminal); font-weight: var(--weight-bold); }
@@ -92,12 +92,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .kh-dialogue .body { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .kh-dialogue .who { display: flex; align-items: center; gap: var(--space-2); font: var(--weight-bold) var(--text-xl)/var(--leading-tight) var(--font-display); }
 .kh-dialogue .who .role { font: var(--weight-regular) var(--text-sm)/1 var(--font-body); color: var(--text-muted); }
-.kh-dialogue .say { margin: var(--space-2) 0 0; font-size: var(--text-base); line-height: var(--leading-body); }
+.kh-dialogue .say { margin: var(--space-1) 0 0; font-size: var(--text-base); line-height: var(--leading-body); }
 .kh-dialogue .hint { margin: var(--space-1) 0 0; font-size: var(--text-base); color: var(--text-muted); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 .kh-dialogue .hint b { color: var(--text); }
-.kh-dialogue .ctl { margin-top: auto; display: flex; flex-wrap: wrap; row-gap: var(--space-1); gap: var(--space-4); font-size: var(--text-sm); color: var(--text-muted); align-items: center; }
+.kh-dialogue .ctl { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0 var(--space-4); font-size: var(--text-sm); color: var(--text-muted); align-items: center; }
 .kh-dialogue .ctl b { color: var(--text); }
-.kh-dialogue .ctl-btn { display: inline-flex; align-items: center; gap: var(--space-2); background: transparent; border: 0; padding: 0; color: var(--text-muted); font-size: var(--text-sm); white-space: nowrap; }
+.kh-dialogue .ctl-btn { min-height: 32px; display: inline-flex; align-items: center; gap: var(--space-2); background: transparent; border: 0; padding: 0; color: var(--text-muted); font-size: var(--text-sm); white-space: nowrap; }
 .kh-dialogue .ctl-btn .g { font-family: var(--font-mono); }
 .kh-dialogue.object .who::before { content: ""; }
 

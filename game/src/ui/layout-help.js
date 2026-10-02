@@ -80,14 +80,14 @@ export function layoutHelpView(vm) {
     <span class="lh-device">${LAYOUT_HELP_COPY.keyboard} <div class="seg" role="group" aria-label="Keyboard type">${variants}</div></span>
     <button type="button" class="close kh-btn" data-fid="close" ${cmdAttr({ type: 'back' })}>Close ${keycap(CLOSE.key, { sm: true })} <span class="g">${CLOSE.gesture}</span></button></div>
   <p class="lh-how">${LAYOUT_HELP_COPY.how}</p>
-  <div class="kh-lh">${diagramView(vm.keys)}${remap}
+  <div class="kh-lh">${diagramView(vm.keys)}
     ${cardView(vm.card)}
-    <div class="lh-legend">${legend}</div>
+    <div class="lh-foot"><div class="lh-legend">${legend}</div>${remap}</div>
     <div class="lh-cards">
       <div class="lh-card" data-card="toggle-out"><span class="kh-label">${LAYOUT_HELP_COPY.toggleOut}</span>
         <div class="seq">${sequence(vm.toggleOut.keys)}</div><p>${vm.toggleOut.text}</p></div>
-      <div class="lh-card locked" data-card="emergency-exit"><span class="kh-label">${icon('lock', 20)} ${LAYOUT_HELP_COPY.emergency}</span>
-        <p>${ee.text}</p>${ee.unverified !== false ? html`<p><b>Unverified.</b> ${LAYOUT_HELP_COPY.emergencyNote}</p>` : ''}</div>
+      <div class="lh-card locked" data-card="emergency-exit"><span class="kh-label">${icon('lock', 20)} ${LAYOUT_HELP_COPY.emergency}${ee.unverified !== false ? ' (unverified)' : ''}</span>
+        <p>${ee.text}</p></div>
     </div>
   </div>
 </section>`;
