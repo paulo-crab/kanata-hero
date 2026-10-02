@@ -74,7 +74,7 @@ b, strong { font-weight: var(--weight-bold); }
   box-shadow: 0 0 0 2px var(--ink);
 }
 
-.stage:focus { outline: none; box-shadow: none; }
+.stage:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; }
 
 /* ---- Live region ----------------------------------------------------------------------------------- */
 .visually-hidden {
