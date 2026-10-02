@@ -1,6 +1,6 @@
 # Portraits: seven characters, chibi direction C
 
-**Status:** Candidate, pending director review.
+**Status:** Approved by the player 2026-10-02.
 
 **Sources:** player decision 2026-10-02 (direction C, "Chibi icon"; "each person should have their own emotion/reactions"), `design/characters/*.md`, `levels.md`, `docs/game-design.md`, the approved sprite modules, STYLE_BIBLE §3-5 and §7, [PORTRAIT_RULES.md](PORTRAIT_RULES.md), [PORTRAIT_PERSONAS.md](PORTRAIT_PERSONAS.md). The exploration that led to the choice is in `explore/` (kept as a record). The previous realistic portraits are replaced.
 
@@ -31,7 +31,7 @@ Atlas JSON keeps its format: `frame`, `columns`, `rows`, `zoom`, `origin`, `mira
 | Engineer | standard round | brown swept, long right fringe | teal jacket, badge | observant baseline; left brow a pixel high | none |
 | Ivo | wide soft jaw | silver clusters, side tufts | cardigan, tablet | polite and exact; small oval eyes, laugh lines | `ivo_laugh` |
 | Mira | pointed chin | dome plus a separate bun | green/ochre jacket, coral strap | playful; cocked brow, smirk, sparkle eyes | `mira_grin` |
-| Noor | tall, narrow | blue-black crop, two tufts | linen shirt, coral folder | dry and defiant; half-lids, mismatched brows | `noor_unimpressed` |
+| Noor | tall, narrow | blue-black crop, two tufts | linen shirt, coral folder held at the shoulder | dry and defiant; half-lids, mismatched brows | `noor_unimpressed` |
 | Hal | broad, low | sandy mop, three spikes | cobalt vest, tool roll | practical, anxious, focused; slanted brows, sweat | `hal_puzzled` |
 | Ada | soft round | warm-white scalloped cloud | moss coat, lantern | calm and kind; heavy lids, serene mouth | none |
 | Vale | square, flat | graphite, cowlick, part | navy suit, tie, badge | rigid, softening; squared eyes, no blush at rest | `vale_softened` |
@@ -52,6 +52,7 @@ Atlas JSON keeps its format: `frame`, `columns`, `rows`, `zoom`, `origin`, `mira
 12. **Signatures only where the docs support them.** Ivo's laugh (cast table), Mira's playful grin (mira.md), Noor's unimpressed reaction (noor.md), Hal's puzzled reaction (hal.md), Vale's softening (vale.md). Engineer and Ada: none specified.
 13. **Dropped from the realistic rules:** the 1 px head tilt, lit-edge outline swaps, the ear and neck rows, and the hair-against-skin separators. In the flat style the fringe's shade row and the hair hexes carry that separation. The darkest-step contour rule stays.
 14. **Dialogue lines** are from levels.md (Ivo level 01, Mira level 05, Noor level 08, Hal level 12, Ada level 18, Vale level 20, the Engineer's journal from the Unissued badge artifact), one expression each.
+15. **Noor's folder (player review).** The first corner box read as a stray red box. It is now her coral file folder held against the left shoulder: a flat 12×8 rectangle (cols 5-16, rows 41-47) with two sea-blue tabs, a coral face and a pale label, overlapping the shirt edge so it is clearly held. Same sprite keys (`j`, `J`, `d`, `e`, `f`); small enough not to compete with the face; identical in all four Noor expressions.
 
 ## Acceptance criteria
 
@@ -66,10 +67,10 @@ Automated (`check_portraits.py`, 50 portraits, 0 failures):
 - [x] Mira's bun notch, blush off the coral, six patch states
 
 Coordinator review (to be completed by the director):
-- [ ] The seven read as one style at ×4 (`portraits-compare.png`)
-- [ ] The seven read as seven personalities; no two concerned or pleased faces look alike
-- [ ] Each portrait reads as the same person as its sprite (hair, costume, prop)
-- [ ] Hair never reads as a helmet
-- [ ] Mira's six patch icons are distinct at ×4 (`../cast/mira-patches-sheet.png`)
+- [x] The seven read as one style at ×4 (`portraits-compare.png`)
+- [x] The seven read as seven personalities; no two concerned or pleased faces look alike
+- [x] Each portrait reads as the same person as its sprite (hair, costume, prop)
+- [x] Hair never reads as a helmet
+- [x] Mira's six patch icons are distinct at ×4 (`../cast/mira-patches-sheet.png`)
 
 Review history: one self-review pass. The first rollout had Ivo's and Hal's hair as flat caps (rebuilt as clusters and spikes), a stray hair row beyond Noor's head, Mira's blush as a dark bruise (now `D`), brows lost on Hal's skin (now ink), a Hal pocket in the darkest vest step (now `q`), and Vale's pleased too close to neutral (brows lifted).

@@ -2,7 +2,7 @@
 
 Status: Candidate, pending director review. A longer, narrower head (chin on row 38) and the narrowest
 shoulders in the cast; blue-black crop with two crown tufts of different size and a notch between
-them; the coral folder behind the left (screen-left) shoulder. Persona: precise, dry, quietly
+them; the coral folder held against the left (screen-left) shoulder. Persona: precise, dry, quietly
 defiant. Half-lidded eyes with a flat upper lid, brows that never match, a flat mouth with one corner.
 Signature: noor_unimpressed (flat lids, a sidelong glance, a dead-flat mouth).
 Every key is a key of noor_sprites.PAL (hair ABCD, skin klmn, shirt pqrs, folder cdef and jlJ).
@@ -50,9 +50,11 @@ def cloth(r, c, a, b, spans):
     return k
 
 
-# The coral folder sits behind her left (screen-left) shoulder: a sea-blue tab, a coral face with a pale highlight.
+# The coral folder is held against her left (screen-left) shoulder, overlapping the shirt edge: two sea-blue
+# tabs, a coral face, a pale label.
 PROPS = [
-    (40, 2, [".oooo..", "ojJJjo.", "ooooooo", "odeeeeo", "odefeeo", "odeeeeo", "odddddo", "ooooooo"]),
+    (41, 5, [".oooo.oooo..", "ojJjoojJjo..", "oooooooooooo", "odeeeeeeeeeo", "odeeffffeeeo",
+             "odeeejjjeeeo", "odeeeeeeeeeo", "oddddddddddo"]),
 ]
 
 HAIR = rle_hair(6, 36, 2, [

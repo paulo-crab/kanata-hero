@@ -59,7 +59,7 @@ Head 34-36 px wide and 32-36 px tall; tiny shoulders in rows 38-47; flat shading
 
 ## Noor
 
-**(a) Physical.** The tall, narrow cast member: the longest, narrowest head (cols 8-39, chin on row 38) and the narrowest shoulders (cols 10-37). Blue-black crop with two crown tufts of different size and a notch between, a heavy left lock and a stepped right hairline. Linen shirt with a V neck and a dark neck line. The coral folder sits behind her left (screen-left) shoulder. (levels.md calls Noor "she"; the sheet says they/them. The portrait does not depend on it.)
+**(a) Physical.** The tall, narrow cast member: the longest, narrowest head (cols 8-39, chin on row 38) and the narrowest shoulders (cols 10-37). Blue-black crop with two crown tufts of different size and a notch between, a heavy left lock and a stepped right hairline. Linen shirt with a V neck and a dark neck line. The coral folder is held against her left (screen-left) shoulder, overlapping the shirt edge. (levels.md calls Noor "she"; the sheet says they/them. The portrait does not depend on it.)
 
 **(b) Emotional profile.** "Precise, with dry humor; quietly defiant" (noor.md); "Pace insists the copy is equivalent" and Noor corrects it anyway (level 11). Understated: the feelings are small and sideways.
 

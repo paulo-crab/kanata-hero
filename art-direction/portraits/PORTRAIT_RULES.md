@@ -1,6 +1,6 @@
 # Portrait rules (48×48 chibi icon)
 
-**Status:** Candidate, pending director review. Player decision 2026-10-02: direction C, "Chibi icon", replaces the earlier realistic head-and-shoulders portraits (too serious, too real). These rules apply to every recurring character's dialogue portrait and extend the person rules in the [Gate 1 spec](../gate1/GATE1_ENGINEER_SPEC.md). Geometry and helpers live in `chibi.py`; per-character choices in [PORTRAIT_PERSONAS.md](PORTRAIT_PERSONAS.md). The template sheet is `portrait-template.png`.
+**Status:** Approved by the player 2026-10-02. Player decision 2026-10-02: direction C, "Chibi icon", replaces the earlier realistic head-and-shoulders portraits (too serious, too real). These rules apply to every recurring character's dialogue portrait and extend the person rules in the [Gate 1 spec](../gate1/GATE1_ENGINEER_SPEC.md). Geometry and helpers live in `chibi.py`; per-character choices in [PORTRAIT_PERSONAS.md](PORTRAIT_PERSONAS.md). The template sheet is `portrait-template.png`.
 
 ## Frame and display
 
