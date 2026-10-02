@@ -1,0 +1,502 @@
+{
+ "kit": "records",
+ "atlas": "records-atlas.json",
+ "tile": 16,
+ "size_cells": [
+  20,
+  12
+ ],
+ "note": "Records integration proof room, built only from records-atlas: the shared elevator set (closed, half, open) and call panel, a seated worker behind desk_a with its occluder, artifacts on desk_b and on cabinets, the cabinet gate, the log cabinets, the address panel and the ledger mark overlay on a desk. People are added by the renderer.",
+ "states": {
+  "elevator": "closed",
+  "cabinet_gate": "misaligned",
+  "cabinet_labels": "offset",
+  "ledger_mark": "rejected",
+  "lamp": "on"
+ },
+ "floor": {
+  "legend": {
+   "J": "floor_j",
+   "H": "floor_h",
+   "V": "floor_v",
+   "P": "floor_p"
+  },
+  "rows": [
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV",
+   "JHJHJHJHJHJHJHJHJHJH",
+   "VPVPVPVPVPVPVPVPVPVP",
+   "HJHJHJHJHJHJHJHJHJHJ",
+   "PVPVPVPVPVPVPVPVPVPV"
+  ]
+ },
+ "placements": [
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    2,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    16,
+    6
+   ],
+   "offset": [
+    14,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    5,
+    6
+   ],
+   "offset": [
+    10,
+    4
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    5
+   ],
+   "offset": [
+    7,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    0,
+    13
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    1,
+    6
+   ],
+   "offset": [
+    12,
+    6
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    7,
+    7
+   ],
+   "offset": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    6,
+    5
+   ],
+   "offset": [
+    9,
+    5
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    4,
+    4
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    10,
+    7
+   ],
+   "offset": [
+    6,
+    9
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    2,
+    6
+   ],
+   "offset": [
+    0,
+    2
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    9,
+    4
+   ],
+   "offset": [
+    2,
+    11
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    17,
+    6
+   ],
+   "offset": [
+    15,
+    12
+   ]
+  },
+  {
+   "entry": "floor_chip",
+   "cell": [
+    12,
+    7
+   ],
+   "offset": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    0,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    4,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    5,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    9,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    10,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    14,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    15,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    16,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    17,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    18,
+    0
+   ]
+  },
+  {
+   "entry": "wall_n_plain",
+   "cell": [
+    19,
+    0
+   ]
+  },
+  {
+   "anim": "elevator",
+   "cell": [
+    1,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_half",
+   "cell": [
+    6,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_open",
+   "cell": [
+    11,
+    0
+   ]
+  },
+  {
+   "entry": "elevator_call_panel",
+   "cell": [
+    4,
+    0
+   ],
+   "offset": [
+    4,
+    9
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    2,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_a",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_a_front",
+   "cell": [
+    2,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "chair",
+   "cell": [
+    7,
+    4
+   ],
+   "offset": [
+    8,
+    8
+   ]
+  },
+  {
+   "entry": "desk_b",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "desk_b_front",
+   "cell": [
+    7,
+    5
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "artifact_carbon_copy_a",
+   "cell": [
+    8,
+    4
+   ],
+   "offset": [
+    3,
+    15
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    11,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_margin_stamp",
+   "cell": [
+    11,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    13,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_uncut_index",
+   "cell": [
+    13,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "entry": "cabinet_1x1",
+   "cell": [
+    15,
+    9
+   ],
+   "offset": [
+    0,
+    6
+   ]
+  },
+  {
+   "entry": "artifact_noor_annotation",
+   "cell": [
+    15,
+    8
+   ],
+   "offset": [
+    0,
+    4
+   ]
+  },
+  {
+   "anim": "cabinet_gate",
+   "cell": [
+    12,
+    4
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "anim": "cabinet_labels",
+   "cell": [
+    15,
+    4
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "entry": "door_panel_address_idle",
+   "cell": [
+    14,
+    0
+   ],
+   "offset": [
+    6,
+    15
+   ]
+  },
+  {
+   "entry": "desk_b",
+   "cell": [
+    14,
+    6
+   ],
+   "offset": [
+    0,
+    8
+   ]
+  },
+  {
+   "anim": "ledger_mark",
+   "cell": [
+    15,
+    6
+   ],
+   "offset": [
+    6,
+    10
+   ]
+  }
+ ]
+}

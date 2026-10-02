@@ -166,3 +166,21 @@ State sets (switching entries inside a set never moves a pixel: each pair is cro
 5. **Mira's chute is one cabinet per district, recoloured by palette.** The drawing is shared (`quest_props.courier_chute`), so Records, Systems and Night Shift chutes read as the same object.
 6. **Decor is a desk decoration, not a furniture entry.** Courier Loop and Archive Loop are 12 px objects set on a desk top; levels.md names the Archive Loop "desk folder" explicitly, the Courier Loop token is the matching plaque for the first route.
 7. **State pairs share a crop box.** `folder_rack_drift` has taller tabs than `folder_rack_aligned`; both are cropped to one box so the rack body never shifts when the state swaps.
+
+
+## District integration (wave 2)
+
+Branch `feat/art-district-integration`. Proof room: `records-integration-room.json` and `records-integration-proof-{before,after}-{native,1366x768}.png` (three elevators closed, half and open with the call panel, a seated worker behind `desk_a` with its occluder over the actor, an artifact on `desk_b` and three on cabinets, the cabinet gate, the log cabinets, the address panel, the ledger mark on a desk).
+
+| New entry | Footprint, collision | Layer | Notes |
+| --- | --- | --- | --- |
+| `elevator_closed`, `elevator_half`, `elevator_open` (state set `elevator`) | 3x3, `111/111/000` (open `111/101/000`) | rear_wall | Orientation's module (`shared_pieces.elevator_doors`) in the Records ramps; geometry asserted equal to `orientation-atlas.json` |
+| `elevator_call_panel` | 1x2, `0/0` | rear_wall | `shared_pieces.elevator_call_panel`, Records ramps |
+| `desk_a_front`, `desk_b_front` | 2x1, `00` | front_prop | Cut from the district desk at the Orientation fit rows (monitor plus 8 px of top plane); the build asserts zero differing pixels against `desk_a` / `desk_b` |
+| `artifact_carbon_copy_a`, `artifact_margin_stamp`, `artifact_uncut_index`, `artifact_noor_annotation` | 1x1, `0` | front_prop | `shared_pieces.artifact_prop`, 16x16 with glint cue. The slug is `noor_annotation` (data name); the drawing kind is `noors_annotation` |
+| `cabinet_gate_misaligned` / `cabinet_gate_aligned` (state set `cabinet_gate`) | 2x1, `11` / `00` | rear_prop | Two file cabinets pushed crooked across the doorway, then squared and pushed 14 px back. Same sprite box in both states |
+| `cabinet_labels_offset` / `cabinet_labels_aligned` (state set `cabinet_labels`) | 2x1, `11` | rear_prop | Cherry log cabinet, sea-blue folders with linen tabs at uneven shifts, then on one line with a coral mark |
+| `archive_ledger_mark_rejected` / `archive_ledger_mark_accepted` (state set `ledger_mark`) | 1x1, `0` | rear_prop | Opaque 12x7 overlay, the landmark's own ledger pixels (build asserts equality with `archive_ledger_before` / `_after`). Place at the landmark footprint origin + (26, 4), after the landmark parts. It covers the landmark ledger, so level 08 can accept the mark before the folders and ring change at level 11 |
+| `door_panel_address_idle` | 1x1, `1` | rear_prop | Wall plate 15x27: two text windows (address line with cursor; Backspace and Forward Delete sides), slot, dull idle lamp |
+
+Decisions: (1) The ledger mark is a full-ledger overlay, not a bare mark, so a state swap can never show two marks. (2) `mail_chute_*` and `rolling_ladder_parked/moved` in the level data are the kit's `courier_chute_idle/ready` and `rolling_ladder_closed/open` (art names win); no new entries. (3) Records has no occluder gaps: both desks get fronts. (4) The level data declares the elevator as 2x1 with collision `11`; the kit module is 3x3 per the player's decision, so the map must adopt the 3x3 footprint.

@@ -2977,6 +2977,814 @@
     "desk"
    ],
    "note": "Archive Loop reward (after level 11): a coral desk folder with a lit tab and a sheet showing; a desk decoration, 1 x 1, no collision"
+  },
+  {
+   "name": "elevator_closed",
+   "kind": "door",
+   "rect": [
+    128,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "closed",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, doors shut: two steel leaves meet at a centre seam, a casing with two lamps, a lit floor indicator, a lit LIFT mat in front. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_half",
+   "kind": "door",
+   "rect": [
+    176,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "111",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "half",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves slid 6 px into the jamb pockets: the warm cab shows between them. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_open",
+   "kind": "door",
+   "rect": [
+    224,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    48,
+    48
+   ],
+   "footprint": {
+    "cells": [
+     3,
+     3
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "111",
+    "101",
+    "000"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    24,
+    48
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "door",
+    "sliding",
+    "open",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    0,
+    32,
+    48,
+    2
+   ],
+   "note": "elevator, leaves fully in the pockets (11 px, a 1 px lip stays): the cab is open and the centre cell walks in. Orientation's module in the records ramps (shared_pieces.elevator_doors): 3 x 3 cells, rows 0-1 are the north wall, row 2 the lit mat. Replaces three wall_n_plain columns"
+  },
+  {
+   "name": "elevator_call_panel",
+   "kind": "wall",
+   "rect": [
+    272,
+    368,
+    16,
+    32
+   ],
+   "size_px": [
+    12,
+    22
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     2
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0",
+    "0"
+   ],
+   "layer": "rear_wall",
+   "y_sort": false,
+   "anchor": [
+    8,
+    32
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "elevator",
+    "panel",
+    "interact",
+    "wave 2"
+   ],
+   "note": "wall call panel for the elevator, records ramps (shared_pieces.elevator_call_panel): steel plate, small lit display, up and down buttons. Overlay on wall_n_plain (no collision of its own); place it on the wall face 9 px below the wall top, one cell beside the elevator"
+  },
+  {
+   "name": "desk_a_front",
+   "kind": "prop",
+   "rect": [
+    288,
+    368,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_a: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "desk_b_front",
+   "kind": "prop",
+   "rect": [
+    336,
+    368,
+    48,
+    16
+   ],
+   "size_px": [
+    35,
+    13
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     5
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "front_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    21
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "desk",
+    "front",
+    "occluder",
+    "wave 2"
+   ],
+   "note": "occluder for desk_b: the desk's monitor and first 8 px of top plane redrawn on front_prop so a seated worker's lower body is hidden; seamless over the desk (same pixels). Place at the desk origin after the actors; seat convention in ORIENTATION_KIT_SPEC"
+  },
+  {
+   "name": "artifact_carbon_copy_a",
+   "kind": "prop",
+   "rect": [
+    384,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "carbon_copy_a",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    15,
+    10,
+    1
+   ],
+   "note": "Carbon copy A (Records level 08): a sheet with a coral header over its carbon copy. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_margin_stamp",
+   "kind": "prop",
+   "rect": [
+    400,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "margin_stamp",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    14,
+    9,
+    1
+   ],
+   "note": "Margin stamp (Records level 09): a ruled sheet with a round coral stamp in the margin. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_uncut_index",
+   "kind": "prop",
+   "rect": [
+    416,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "uncut_index",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    6,
+    14,
+    8,
+    1
+   ],
+   "note": "Uncut index (Records level 10): an index sheet with four tabs along its long edge. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "artifact_noor_annotation",
+   "kind": "prop",
+   "rect": [
+    432,
+    368,
+    16,
+    16
+   ],
+   "size_px": [
+    16,
+    16
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "front_prop",
+   "y_sort": false,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "artifact",
+    "inspectable",
+    "noor_annotation",
+    "wave 2"
+   ],
+   "contact_shadow": [
+    5,
+    12,
+    10,
+    1
+   ],
+   "note": "Noor's annotation (Records level 11): a page with a dry coral underline and a margin note over a second sheet. 16 x 16 px with a baked contact shadow and a small pale glass-step glint at the upper left as the inspectable cue (never a UI marker colour). No collision: lay it on a desk, a table or a blocked cell"
+  },
+  {
+   "name": "cabinet_gate_misaligned",
+   "kind": "prop",
+   "rect": [
+    448,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    36,
+    45
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     25
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    41
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "gate",
+    "cabinet",
+    "level 08",
+    "misaligned"
+   ],
+   "contact_shadow": [
+    1,
+    40,
+    35,
+    5
+   ],
+   "note": "the level 08 gate, 2 x 1: two one-cell file cabinets pushed crooked across the margin-room doorway: one low, one high, a dark crack between (blocks both cells). Same sprite box in both states, so a swap never shifts a pixel"
+  },
+  {
+   "name": "cabinet_gate_aligned",
+   "kind": "prop",
+   "rect": [
+    496,
+    368,
+    48,
+    48
+   ],
+   "size_px": [
+    36,
+    45
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     25
+    ]
+   },
+   "collision": [
+    "00"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    41
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "gate",
+    "cabinet",
+    "level 08",
+    "aligned"
+   ],
+   "contact_shadow": [
+    1,
+    27,
+    33,
+    2
+   ],
+   "note": "the level 08 gate, 2 x 1: the same cabinets squared up side by side and pushed 14 px back against the shelf line: the doorway cells are free. Same sprite box in both states, so a swap never shifts a pixel"
+  },
+  {
+   "name": "cabinet_labels_offset",
+   "kind": "prop",
+   "rect": [
+    544,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    35,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "labels",
+    "level 08",
+    "offset"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "the level 08 log cabinets, 2 x 1: cherry log cabinet, sea-blue folders with a linen label tab each at uneven shifts and heights. Same box and footprint as cabinet_2x1"
+  },
+  {
+   "name": "cabinet_labels_aligned",
+   "kind": "prop",
+   "rect": [
+    592,
+    368,
+    48,
+    32
+   ],
+   "size_px": [
+    35,
+    28
+   ],
+   "footprint": {
+    "cells": [
+     2,
+     1
+    ],
+    "origin_px": [
+     0,
+     10
+    ]
+   },
+   "collision": [
+    "11"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    16,
+    26
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "cabinet",
+    "labels",
+    "level 08",
+    "aligned"
+   ],
+   "contact_shadow": [
+    1,
+    26,
+    33,
+    2
+   ],
+   "note": "the level 08 log cabinets, 2 x 1: the same cabinet with every label tab on one line at the same inset and a coral mark on each. Same box and footprint as cabinet_2x1"
+  },
+  {
+   "name": "archive_ledger_mark_rejected",
+   "kind": "prop",
+   "rect": [
+    0,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    7
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "mark",
+    "level 08",
+    "rejected"
+   ],
+   "note": "the circular desk's open ledger with Noor's stamp mark, 12 x 7 px, an opaque overlay that covers the landmark's own ledger: a coral cross, the mark rejected (levels 07 to 08; the same pixels as archive_ledger_before). Place at the landmark footprint origin + (26, 4), after the landmark's parts; it lets level 08 accept the mark before the folders and ring change at level 11"
+  },
+  {
+   "name": "archive_ledger_mark_accepted",
+   "kind": "prop",
+   "rect": [
+    16,
+    416,
+    16,
+    16
+   ],
+   "size_px": [
+    12,
+    7
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     0
+    ]
+   },
+   "collision": [
+    "0"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    16
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "ledger",
+    "mark",
+    "level 08",
+    "accepted"
+   ],
+   "note": "the circular desk's open ledger with Noor's stamp mark, 12 x 7 px, an opaque overlay that covers the landmark's own ledger: a coral tick and a round seal, the mark accepted (the same pixels as archive_ledger_after). Place at the landmark footprint origin + (26, 4), after the landmark's parts; it lets level 08 accept the mark before the folders and ring change at level 11"
+  },
+  {
+   "name": "door_panel_address_idle",
+   "kind": "prop",
+   "rect": [
+    32,
+    416,
+    16,
+    32
+   ],
+   "size_px": [
+    15,
+    27
+   ],
+   "footprint": {
+    "cells": [
+     1,
+     1
+    ],
+    "origin_px": [
+     0,
+     11
+    ]
+   },
+   "collision": [
+    "1"
+   ],
+   "layer": "rear_prop",
+   "y_sort": true,
+   "anchor": [
+    8,
+    27
+   ],
+   "composite": {
+    "mode": "over"
+   },
+   "tags": [
+    "panel",
+    "address",
+    "door",
+    "level 07",
+    "idle"
+   ],
+   "note": "the address panel beside the repair door (level 07), 1 x 1: a wall plate 15 x 27 with two clear text windows (the address line with its cursor; the two sides of the cursor, Backspace chevron left and Forward Delete chevron right), an input slot and a dull idle lamp. Blocks its cell; the player reads it from the cell in front"
   }
  ],
  "animations": {
@@ -3230,6 +4038,105 @@
    ],
    "ms_per_frame": 200,
    "note": "level 10: Noor places the original report beside the summary"
+  },
+  "elevator": {
+   "kind": "state_set",
+   "default": "closed",
+   "states": {
+    "closed": {
+     "entries": [
+      "elevator_closed"
+     ],
+     "blocked": true
+    },
+    "half": {
+     "entries": [
+      "elevator_half"
+     ],
+     "blocked": true
+    },
+    "open": {
+     "entries": [
+      "elevator_open"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "closed",
+    "half",
+    "open"
+   ],
+   "ms_per_frame": 120,
+   "note": "play forward on approach or arrival, backward on leave; only open lets the centre cell through (the same set as Orientation's, in the district ramps)"
+  },
+  "cabinet_gate": {
+   "kind": "state_set",
+   "default": "misaligned",
+   "states": {
+    "misaligned": {
+     "entries": [
+      "cabinet_gate_misaligned"
+     ],
+     "blocked": true
+    },
+    "aligned": {
+     "entries": [
+      "cabinet_gate_aligned"
+     ],
+     "blocked": false
+    }
+   },
+   "play": [
+    "misaligned",
+    "aligned"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 08: the cabinets square up and open the margin-room doorway; misaligned blocks both cells, aligned frees them"
+  },
+  "cabinet_labels": {
+   "kind": "state_set",
+   "default": "offset",
+   "states": {
+    "offset": {
+     "entries": [
+      "cabinet_labels_offset"
+     ]
+    },
+    "aligned": {
+     "entries": [
+      "cabinet_labels_aligned"
+     ]
+    }
+   },
+   "play": [
+    "offset",
+    "aligned"
+   ],
+   "ms_per_frame": 150,
+   "note": "level 08: the repaired label tabs line up (both states block)"
+  },
+  "ledger_mark": {
+   "kind": "state_set",
+   "default": "rejected",
+   "states": {
+    "rejected": {
+     "entries": [
+      "archive_ledger_mark_rejected"
+     ]
+    },
+    "accepted": {
+     "entries": [
+      "archive_ledger_mark_accepted"
+     ]
+    }
+   },
+   "play": [
+    "rejected",
+    "accepted"
+   ],
+   "ms_per_frame": 200,
+   "note": "level 08: Noor's stamp mark goes from rejected to accepted. An opaque overlay on the landmark's ledger, at footprint origin + (26, 4)"
   }
  },
  "landmarks": {
