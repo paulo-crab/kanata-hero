@@ -1,5 +1,10 @@
-/* Kanata Hero base stylesheet. Tokens come from the UI kit by path (contract section 6). */
+/* Kanata Hero base stylesheet. Tokens come from the UI kit by path (contract section 6).
+   Colours, spacing, radii, type and layers use kit tokens only: css lint in tests/ui/css.test.js enforces it. */
 @import url("/art-direction/ui-kit/tokens.css");
+@import url("/game/css/components.css");
+@import url("/game/css/screens.css");
+
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -8,6 +13,7 @@ html, body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: var(--text-base);
+  line-height: var(--leading-body);
 }
 
 body {
@@ -15,6 +21,12 @@ body {
   place-items: center;
 }
 
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: var(--leading-tight); margin: 0; }
+b, strong { font-weight: var(--weight-bold); }
+.mono { font-family: var(--font-mono); }
+[hidden] { display: none !important; }
+
+/* ---- Stage: 1280x720 at integer world zoom, z-layers from the kit ------------------------------- */
 .stage {
   position: relative;
   width: var(--stage-w);
@@ -32,11 +44,14 @@ body {
   z-index: var(--z-world);
 }
 
+/* #ui holds every component host; hosts add no box, so component z-indexes sort inside #ui. */
 .ui {
   position: absolute;
   inset: 0;
-  z-index: var(--z-hud);
+  z-index: var(--z-world-fx);
 }
+
+.ui-host { display: contents; }
 
 .skeleton-note {
   position: absolute;
@@ -51,11 +66,16 @@ body {
   z-index: var(--z-overlay);
 }
 
+/* ---- Focus: 2 px ring plus a 2 px ink gap ---------------------------------------------------------- */
 :focus-visible {
   outline: 2px solid var(--focus);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ink);
 }
 
+.stage:focus { outline: none; box-shadow: none; }
+
+/* ---- Live region ----------------------------------------------------------------------------------- */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -63,4 +83,36 @@ body {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* ---- Display settings, set on #stage from vm:settings --------------------------------------------- */
+/* Larger text: the kit says body 18 px to 22 px; the other sizes keep their ratio. */
+.stage.large-text {
+  --text-sm: 18px;
+  --text-base: 22px;
+  --text-lg: 24px;
+  --text-xl: 28px;
+}
+
+/* High contrast: plain panels and paper borders, built from kit tokens only. */
+.stage.hc {
+  --border: var(--paper);
+  --text-muted: var(--paper);
+  --panel-bg: var(--ink);
+  --panel-raised: var(--ink);
+  --scrim: var(--letterbox);
+  --key-dim-text: var(--paper);
+  --key-silent-text: var(--paper);
+}
+
+.stage.hc .kh-panel, .stage.hc .kh-hud, .stage.hc .kh-prompt { border-width: 3px; }
+
+/* Reduced motion: nothing animates. The class follows the setting; the media query follows the OS. */
+.stage.rm *, .stage.rm *::before, .stage.rm *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
