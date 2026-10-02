@@ -21,7 +21,7 @@ Each action has one primary binding and, where it helps, one alternative. The mo
 | Move, and choose in a list | **Arrow keys** | tap-hold Caps + H, J, K, L | Setup step 1 (Caps + H); level 01 loop teaches all four | works / is the nav layer / works |
 | Show hint | **`** (Backtick) | tap `, a plain tap | Plain tap; Ivo introduces it at level 01 and the first Focused prompt shows it | works / works / works |
 | Journal | **Q** | tap Q, a plain tap | Plain letter tap (base typing, level 02); Ivo introduces it at level 01 | works / works / works |
-| Layout help | **?** | tap-hold F (Shift), then tap `/` | Setup step 5 (F as Shift); named at level 01 (Ivo's tablet) | works / works / works |
+| Layout help | **?** | tap-hold F (Shift), then tap `/` | Setup step 5 (F as Shift); named at level 01 (Ivo's tablet) | works / release Caps first (F types `f` on nav) / works |
 | Elevator: open the map | **Return** at the call panel | tap-hold Caps + N | Interact | works / is the nav layer / works |
 | Elevator: pick a floor, confirm, go back | **Up / Down**, **Return**, **Esc** | tap-hold Caps + K / J, tap-hold Caps + N, tap Caps | Setup step 2; level 01 | works / works / works |
 | Retry (glitch duel, after a wrong result) | **Return** | tap-hold Caps + N | Setup step 2 | works / is the nav layer / works |
@@ -109,7 +109,7 @@ Read-only check of `~/.config/kanata/kanata.kbd` (nothing copied or changed):
 - **Return** is `nav-enter`: `(input real caps)` then `(unmod ret)`. Works from `base` and `practice` because `caps` is the same `tap-hold-press` in both and the `nav` layer is shared. Physical Return is `XX` in `practice`.
 - **Esc** is the tap of `caps` (`tap-hold-press 200 200 esc @nav`): released inside 200 ms it is Esc; held longer, or with another key pressed, it is nav and no Esc. Caps + `[` is `nav-escape` with no timing. Physical Esc is `XX` in `practice`.
 - **Arrows** are `@left @down @up @right` on H J K L in `nav`. Physical arrows are `XX` in `practice`.
-- **Q** and **Backtick** are not in `defsrc`; `process-unmapped-keys yes` passes them on every layer, including `practice` (`docs/game-design.md`, number-row coverage: grave, minus and equals still type).
+- **Q** and **Backtick** are not in `defsrc`; `process-unmapped-keys yes` passes them on `base`, `nav` and `practice` (on `numbers-symbols` Q types `!`; Backtick is only used where no layer key is held) (`docs/game-design.md`, number-row coverage: grave, minus and equals still type).
 - **`?`**: F is `tap-hold-tap-keys` with the left-hand key list, so `/` (a right-hand key) lets F wait for its 200 ms hold and then Shift applies. J is right-hand and `/` is in `right-hand-keys`, so J + `/` types `j/`. Only the left hand's holds make `?`, and the hold must be established before `/`.
 - **Right Command and N:** `nav-enter` needs a real Caps, so Right Command + N is Command + N (new window), not Return. No hint may say "Right Command + N". The Microsoft keyboard's right Alt also reaches `nav` through `rnav`, and the same applies.
 
