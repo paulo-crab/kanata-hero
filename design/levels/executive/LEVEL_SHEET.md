@@ -83,6 +83,18 @@ All five are by the final door when it opens. They walk in from the elevator sid
 
 `ls-20-name-repaired`, `ls-20-route-repaired`, `ls-20-count-repaired`, `ls-20-door-open`, `ls-20-epilogue`. Daylight is the kit `window_a/b` and `window_light` state sets plus the landmark daylight pool; there is no extra light layer.
 
+## Mixed-layer review coverage (base, Caps, held Space, home-row modifiers)
+
+What each scene claims in the level files (the validator replays this for the owned gestures; the mixed-layer reviews are claimed here too).
+
+| Scene | Phase | Gestures |
+| --- | --- | --- |
+| `n20-t1-the-name` | variation (cue) | B01-B08, N01-N08, N13-N14, N17, N19-N20 |
+| `n20-t2-the-route` | variation (cue) | B09-B12, N09-N12, N15-N16, N18, N21, S10 |
+| `n20-t3-the-count` | variation (cue) | B01-B02, S01-S26 |
+| `n20-t4-final-audit` | recall (no cue) | B01-B12, N01-N21, S01-S26 |
+| `n20-t5-operations-cards` | recall (no cue) | B13-B14, V01, V06 |
+
 ## Epilogue and the ending
 
 After `tr-20-audit-done` (seal Department of Motion) the same map stays walkable in its restored state; the ending never needs a courier medal. Mira's optional final scene is `int-mira-final` (pleased), available when the epilogue is reached and every courier route has been cleared (its `requires` list the six routes). Names on the Wall and the Public audit copy are available after level 20. The operations cards stay available at the credenza.

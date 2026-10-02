@@ -60,6 +60,34 @@ Every main-route cell has a free 2x2 block (validator-checked with the vestibule
 
 `ls-17-glass-open`, `ls-18-ticket-1..5`, `ls-18-stair-open`, `ls-19-lit`. Pools follow the kit: warm pool under each lit station and the landing, route inlay and arrows on route B only. Warm head-and-shoulders rim for people inside pools, cool rim on the open floor (ART_HANDOFF Night Shift rim pass); props get silver edges. Desk and station states: `station_a/b` dead to lit (the Desk for Dawn desk lights with the level 19 break-room lighting).
 
+## Mixed-layer review coverage (base, Caps, held Space, home-row modifiers)
+
+What each scene claims in the level files (the validator replays this for the owned gestures; the mixed-layer reviews are claimed here too).
+
+| Scene | Phase | Gestures |
+| --- | --- | --- |
+| `n17-t1-enter-practice` | guided (cue) | B14, V01 |
+| `n17-t2-self-check` | guided (cue) | V02 |
+| `n17-t3-leave-practice` | variation (cue) | B14, V01 |
+| `n17-t4-operations-cards` | guided (cue) | B13, V06 |
+| `n17-t5-recovery-scenarios` | variation (cue) | B13, V06 |
+| `n17-t6-vestibule-glass` | variation (cue) | B14, V02 |
+| `n18-t0-practice-checkin` | recall (no cue) | B14, V01 |
+| `n18-t1-left-hold-repairs` | guided (cue) | B01-B03, B05, V03 |
+| `n18-t2-right-hold-repairs` | guided (cue) | B04 |
+| `n18-t2-right-hold-repairs` | variation (cue) | B02, B05, V03 |
+| `n18-t3-lit-route-walk` | guided (cue) | N01-N04, V04 |
+| `n18-t4-navigate-ticket` | guided (cue) | N05-N12 |
+| `n18-t4-navigate-ticket` | variation (cue) | B01, N01-N04, V04 |
+| `n18-t5-edit-and-select` | guided (cue) | N13-N20 |
+| `n18-t5-edit-and-select` | variation (cue) | B03-B04, N05-N20 |
+| `n18-t6-recall-desk` | recall (no cue) | B01-B05, N01-N20, V03-V04 |
+| `n19-t0-ledger-checkin` | recall (no cue) | B13-B14, V01-V02, V06 |
+| `n19-t1-ledger-guided-rerun` | guided (cue) | S01-S26, V05 |
+| `n19-t2-mixed-records` | variation (cue) | S01-S26, V03-V05 |
+| `n19-t3-shuffled-ledger-recall` | recall (no cue) | S01-S24, V05 |
+| `n19-t4-final-correction` | recall (no cue) | S25-S26, V03-V04 |
+
 ## Practice and Violento rules in the data
 
 - Every practice scene is labelled `player-confirmed` or `mixed`; held-Space use is never claimed as observed. Unconfirmed runs stay playable and the journal records them as output-observed only (`n18-t0`, `n19-t0`).
