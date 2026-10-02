@@ -40,7 +40,7 @@ Sources: `levels.md` levels 01, 06, 18, 19, 20 and the Orientation row; ART_BRIE
 | --- | --- |
 | Synced loop walk | 4 frames; deliberately identical timing across workers |
 | Individual idles | 2–3 variants with offset timing (post-review) |
-| Seated work | At desks in glass rooms |
+| Seated work | At desks in glass rooms: drawn, facing the camera from behind the desk (S only), in four sets (idle, typing, phone, coffee) for both bodies and all three palettes. Only the head, shoulders and raised hands show above the desk-front occluder. Before level 06 a seated group types on one shared clock; after, each worker takes their own set at a random offset. See `art-direction/cast/BACKGROUND_WORKERS_SPEC.md`, decisions 14-19. |
 
 ## Open questions
 

@@ -1,0 +1,115 @@
+{
+  "status": "Seated set, director review 2026-10-02 (see BACKGROUND_WORKERS_SPEC.md, seated at desk)",
+  "frame": {
+    "w": 16,
+    "h": 24
+  },
+  "anchor": {
+    "name": "feet_bc",
+    "x": 8,
+    "y": 24
+  },
+  "image": "bgworker_b-seated-atlas.png",
+  "layer": "actor",
+  "animations": {
+    "bgworker_b_seated_idle": {
+      "row": 0,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "loop": true,
+      "pairs_with": "desk_b",
+      "seat": "see top-level seat"
+    },
+    "bgworker_b_seated_typing": {
+      "row": 1,
+      "frames": 2,
+      "ms": 250,
+      "facing": "s",
+      "loop": true,
+      "pairs_with": "desk_b",
+      "seat": "see top-level seat",
+      "note": "hands alternate each frame; no 1 px settle (the head holds still)"
+    },
+    "bgworker_b_seated_phone": {
+      "row": 2,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "loop": true,
+      "pairs_with": "desk_b",
+      "seat": "see top-level seat"
+    },
+    "bgworker_b_seated_coffee": {
+      "row": 3,
+      "frames": 2,
+      "ms": 500,
+      "facing": "s",
+      "loop": true,
+      "pairs_with": "desk_b",
+      "seat": "see top-level seat"
+    }
+  },
+  "seat": {
+    "facing": "s",
+    "pairs_with": {
+      "default_desk": "desk_b",
+      "occluder": "desk_b_front",
+      "chair": "chair",
+      "also_fits": {
+        "desk_a": "desk_a_front",
+        "desk_b": "desk_b_front"
+      },
+      "note": "desk_a and desk_b share the same shape and occluder rows, so either body may sit at either desk"
+    },
+    "chair_offset_from_desk_origin_px": [
+      8,
+      -12
+    ],
+    "feet_bc_offset_from_desk_origin_px": [
+      16,
+      4
+    ],
+    "frame_offset_from_desk_origin_px": [
+      8,
+      -20
+    ],
+    "draw_order": [
+      "desk (rear_prop)",
+      "chair (rear_prop, after the desk)",
+      "worker (actor layer)",
+      "desk front occluder (front_prop, at the desk origin)"
+    ],
+    "visible_rows": [
+      0,
+      14
+    ],
+    "hidden_by_occluder": {
+      "rows_15_19": "columns 1-14",
+      "rows_20_23": "all columns"
+    },
+    "note": "head, shoulders, hands and props live in rows 0-14; rows 15-23 hold the standing lower body, drawn but hidden; columns 0 and 15 are empty below row 14"
+  },
+  "palettes": {
+    "default": "slate",
+    "slate": {
+      "atlas": "bgworker_b-seated-atlas.png"
+    },
+    "olive": {
+      "atlas": "bgworker_b-seated-atlas-olive.png"
+    },
+    "ash": {
+      "atlas": "bgworker_b-seated-atlas-ash.png"
+    },
+    "note": "ramp swaps of one set of grids; slot hexes are in the standing atlas JSON"
+  },
+  "silhouette": {
+    "atlas": "bgworker_b-seated-atlas-silhouette.png",
+    "atlas_lit_edge": "bgworker_b-seated-atlas-silhouette-lit.png"
+  },
+  "sync": {
+    "before_level_06": "every seated worker in a group plays seated_typing on one shared clock, frame = floor(t_ms / 250) % 2, with no per-worker offset",
+    "after_level_06": "each worker takes one of idle, typing, phone or coffee with a random start_offset_ms (0-999) and the shared clock is dropped"
+  },
+  "shadow": "none baked in; the desk and chair carry their own contact shadows"
+}
