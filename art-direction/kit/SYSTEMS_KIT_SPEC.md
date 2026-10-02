@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** this kit was drawn before the rich finish and is queued for re-render (OpenSpec change `adopt-rich-finish`). New and redrawn pieces follow `../rich-finish/RICH_FINISH_SPEC.md`: vivid world palette, deeper ink (`#0E1020` outline), leaf-fan foliage, light passes. Footprints, collision and layers in this spec do not change.
+
 **Sources:** `openspec/changes/complete-art-production/` (environment-kit spec, design decisions 3 and 4), STYLE_BIBLE §3, §6 and §7, PALETTES_SPEC.md (Systems ramps), `levels.md` Systems row and levels 12 to 16, `docs/game-design.md` (district table, "Systems reference layout"), RECORDS_KIT_SPEC.md and ORIENTATION_KIT_SPEC.md (the atlas format and method), `design/characters/hal.md` (flavour: utility vest, orange tool roll, folding stool). **Director decision** marks choices that need recording.
 
 Same atlas format and tooling as Orientation and Records. No shared file was edited: `kitlib.py`, `shared_pieces.py`, `build_kit.py`, `check_atlas.py`, `records_kit.py` and `orientation_kit.py` are untouched. `build_systems.py` imports the renderer, BFS and screen helpers from `build_records.py`.

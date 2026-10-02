@@ -57,10 +57,14 @@ This is the living production file. **Developers start at [ART_HANDOFF.md](ART_H
 
 The plan lives in the OpenSpec change [`complete-art-production`](../openspec/changes/complete-art-production/): `proposal.md` (why and what), `design.md` (cross-cutting decisions), `specs/` (five capability contracts) and `tasks.md` (numbered checkboxes). Tick a task only when its review has passed and its decision records are written. Work the first unticked task unless a dependency says otherwise. The interim `art-direction/production/` folder is retired and must not be used.
 
+## Direction update: rich finish (2026-10-02)
+
+The board asked for more detail and a richer ambience, closer to reference 08, without more objects. Decided with the player: the 16 px grid stays, and Mock 2.1 is the direction. [`rich-finish/RICH_FINISH_SPEC.md`](rich-finish/RICH_FINISH_SPEC.md) is the normative spec, and the OpenSpec change [`adopt-rich-finish`](../openspec/changes/adopt-rich-finish/) lists the re-render. Not adopted: more set pieces (Mock 3), material detail (Mock 2.2), the finer 32 px grid (Mock 2.4). Undecided: the default camera (the wider view stays an optional setting).
+
 ## Carry-forward lessons (player feedback)
 
 - Small props must read as what they are: give them a bezel or frame, a lit face, a detail, and a hand on them where it fits. This came from Ivo's tablet.
 - Hair must never read as a helmet: tufts and strand clusters, an uneven fringe, and ears or nape showing. Never a flat rim line. This came from Ivo.
 - Doors must read as doors: an opening you can see through or a sliding glass door, a frame, lamps, and a lit mat with lettering. This came from the review room.
-- Match the finish and density of reference 08, not the sparse scale-test.
+- Match the finish of reference 08, not the sparse scale-test: vivid colour, deep darks, leafy foliage, light and shadow (rich finish). The board does not want more objects.
 - Rim and edge lights on characters stay quiet and ambient, never a bright full-edge halo. The warm cream Night Shift rim read like a "selected" highlight and sat close to discovery gold. It became a cool moonlight edge on the open floor, applied only where it beats the plain outline, plus a warm edge on the head and shoulders only where a warm source lights someone (lamp pools, Ada's lantern) (2026-10-02). This came from the Night Shift review.

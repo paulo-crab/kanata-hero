@@ -2,6 +2,8 @@
 
 **Status:** APPROVED by the player on 2026-10-02 (STYLE_BIBLE §8). The Director decisions below are now canon for the Engineer, and production may expand to the remaining walk directions and the rest of the cast.
 
+> **Rich finish (2026-10-02):** the outline colour is now `#0E1020` and the ink shoe ramp and renderer shadow move to the deeper ink ramp (`#1C2038` `#3A4160` `#6A7392`). Clothing, skin and hair ramps in this spec stay as approved. The sprites are queued for that recolour (OpenSpec change `adopt-rich-finish`); see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** STYLE_BIBLE §3–8, ART_BRIEF, `design/characters/engineer.md`, `design/characters/README.md`, `docs/game-design.md` "Camera, scale, and sprite rules" and "Characters and UI", `levels.md` cast table. Where this file says **Director decision**, the decision was made under the art-direction authority the player delegated on 2026-10-01. It can be revised at the gate.
 
 ## Deliverables

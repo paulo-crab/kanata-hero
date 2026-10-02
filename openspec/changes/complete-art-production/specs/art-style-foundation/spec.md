@@ -18,14 +18,14 @@ All world art SHALL be authored on one logical grid of 16×16 px tiles, for a 32
 - **THEN** it fails review and is not accepted into an atlas
 
 ### Requirement: Hard-pixel rendering
-Assets SHALL use only hard square pixels of listed palette colours. Assets SHALL NOT contain gradients, antialiasing, blending, soft brushes, bloom haze, scanlines, CRT effects or dithered faces or outlines. Light SHALL come from the upper left in screen space and be shaded in stepped solid clusters. Glows SHALL be one or two hard-edged steps.
+Assets SHALL use only hard square pixels of listed palette colours (the base palette, the district palettes and, for world art, the rich-finish v2 ramps). Assets SHALL NOT contain gradients, antialiasing, blending, soft brushes, bloom haze, scanlines, CRT effects or dithered faces or outlines. Light SHALL come from the upper left in screen space and be shaded in stepped solid clusters. Glows SHALL be one or two hard-edged steps.
 
 #### Scenario: Off-palette pixel
 - **WHEN** an audit of a rendered asset or room finds a colour that is not in the approved palette, character ramps or UI tokens
 - **THEN** the asset fails review
 
 ### Requirement: Palette and district palettes
-The Orientation production palette (32 colours in 8 ramps of 4, STYLE_BIBLE §3) SHALL be the base palette. Each district (Records, Systems, Night Shift, Executive) SHALL have a published hex sheet before any of its assets are drawn. Character skin and hair ramps SHALL be per character and not reused across the cast.
+The Orientation production palette (32 colours in 8 ramps of 4, STYLE_BIBLE §3) SHALL be the base palette. For world art, the ink, wood, glass, garden-green, brass and coral ramps SHALL be the rich-finish v2 ramps defined in `art-direction/rich-finish/RICH_FINISH_SPEC.md`, and stone SHALL keep its base values. Each district (Records, Systems, Night Shift, Executive) SHALL have a published hex sheet before any of its assets are drawn. Character skin and hair ramps SHALL be per character and not reused across the cast.
 
 #### Scenario: District asset without a palette
 - **WHEN** an asset is requested for a district whose hex sheet is not published
@@ -39,7 +39,7 @@ Teal SHALL mark terminals, coral conversations, violet glitches and gold opened 
 - **THEN** that step's HSL saturation is at or below 60%, or the ramp is rejected
 
 ### Requirement: Contour and darkest-step discipline
-The default outer outline SHALL be `#202337`. Lit top and left edges SHALL swap short runs to the part's own dark tone. The darkest step of a ramp SHALL appear only on contours and occlusion edges, never as interior fill.
+The default outer outline SHALL be `#0E1020` (the rich-finish ink; it was `#202337`). Lit top and left edges SHALL swap short runs to the part's own dark tone. The darkest step of a ramp SHALL appear only on contours and occlusion edges, never as interior fill.
 
 #### Scenario: Darkest step as fill
 - **WHEN** a ramp's darkest step is surrounded on all four sides by the same part's fill

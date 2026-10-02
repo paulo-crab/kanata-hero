@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** this kit was drawn before the rich finish and is queued for re-render (OpenSpec change `adopt-rich-finish`). New and redrawn pieces follow `../rich-finish/RICH_FINISH_SPEC.md`: vivid world palette, deeper ink (`#0E1020` outline), leaf-fan foliage, light passes. Footprints, collision and layers in this spec do not change.
+
 **Sources:** `openspec/changes/complete-art-production/` (environment-kit spec, design decision 3), STYLE_BIBLE §3 and §6, `levels.md` Orientation rows and levels 01 and 06, `gate1/environment.py` (the approved room). **Director decision** marks choices made under the delegated art-direction authority.
 
 The atlas is **extracted** from the approved room, not redrawn. Each piece is made by calling the approved drawing function from `environment.py` on two sentinel backgrounds and keeping the pixels it painted. The extraction asserts the piece does not depend on what is underneath it. `build_room.py` then rebuilds the room from the atlas and layout and proves a **zero-pixel diff**. Nothing in `gate1/` is edited.

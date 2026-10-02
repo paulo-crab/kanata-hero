@@ -2,6 +2,8 @@
 
 **Status:** APPROVED 2026-10-02 by the art director, under the player's standing delegation to self-review and approve. The Director decisions below are canon for Mira.
 
+> **Rich finish (2026-10-02):** the outline colour is now `#0E1020` and the ink shoe ramp and renderer shadow move to the deeper ink ramp (`#1C2038` `#3A4160` `#6A7392`). Clothing, skin and hair ramps in this spec stay as approved. The sprites are queued for that recolour (OpenSpec change `adopt-rich-finish`); see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `design/characters/mira.md`, `design/characters/README.md`, `levels.md` (cast table and Mira routes), STYLE_BIBLE §3–7. The shared person rules come from the approved [Gate 1 spec](../gate1/GATE1_ENGINEER_SPEC.md): frame, anchor, idle and walk timing, the contour-only darkest step, and the renderer-drawn shadow. The cast frame rule comes from the approved [Ivo spec](IVO_SPEC.md). **Director decision** marks choices made under the art-direction authority the player delegated.
 
 ## Deliverables

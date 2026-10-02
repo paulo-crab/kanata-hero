@@ -2,6 +2,8 @@
 
 **Status:** governs all new art, 2026-10-01. **Scale decided:** 16×16 tiles and 16×24 people on a 320×180 view, chosen by the player from the side-by-side test in [`scale-test/`](scale-test/). The earlier 48×48 / 72×96 prototype and all previous character and environment drafts are retired. `docs/game-design.md` and `levels.md` carry the same numbers.
 
+**Rich finish (2026-10-02):** the board asked for the world to sit closer to reference 08, with more detail on what exists and no extra objects. The 16 px grid is confirmed and Mock 2.1 is the direction. [`rich-finish/RICH_FINISH_SPEC.md`](rich-finish/RICH_FINISH_SPEC.md) holds the vivid world palette, the leaf-fan foliage and garden recipe, the light passes and the exact rule changes. **Where this bible and that file disagree, that file wins.** The amended passages below carry a pointer.
+
 **Primary visual authority:** [08 — approved overhead direction](references/08-approved-overhead-direction.png). Match its high overhead camera, office setting, open walking routes, compact garden landmark, warm floor, blue glass, and small readable people. The seven player screenshots are secondary craft references. [Visual board](STYLE_BOARD.html) shows the hierarchy, palette, and scale together.
 
 > Asset brief: “Use the approved overhead Kanata Hero image as the authoritative composition and world-style reference. Preserve its camera, visual hierarchy, warm/cool palette relationship, pixel density, selective outlines, and gameplay readability. Use the seven player screenshots for additional pixel craft, material depth, and character expression. Draw original office assets that belong to the same game.”
@@ -10,7 +12,7 @@
 
 Kanata Hero is an **overhead, orthographic, three-quarter pixel-art adventure** in a contemporary office. It uses the craft of a strong SNES-era game: hard square pixels, hand-placed clusters, restrained color ramps, readable silhouettes, and selective dark contours. It does not imitate a side-scrolling fantasy world. Translate worn stone, moss, wood, and brass into paving, the indoor garden, furniture, and wayfinding trim. Teal devices and violet anomalies take the place of magical glow.
 
-All world art shares **one pixel grid**. Draw at native logical resolution with integer coordinates. Render with nearest-neighbor sampling and integer zoom. Do not paint a high-resolution picture and apply a pixel filter. No gradients, antialiasing, soft brushes, smooth vector curves, photoreal surfaces, bloom haze, scanlines, or stray single-pixel noise. A single isolated pixel is permitted when it carries a specific eye, spark, button, or glint.
+All world art shares **one pixel grid**. Draw at native logical resolution with integer coordinates. Render with nearest-neighbor sampling and integer zoom. Do not paint a high-resolution picture and apply a pixel filter. No gradients, antialiasing, soft brushes, smooth vector curves, photoreal surfaces, bloom haze, scanlines, or stray single-pixel noise. A single isolated pixel is permitted when it carries a specific eye, spark, button, or glint, and, under the rich finish, as floor wear specks and sunlit leaf-tip sparkles (see `rich-finish/RICH_FINISH_SPEC.md`).
 
 The world can be richly colored without making every tile busy. Characters and a district landmark receive the most deliberate clusters. Ordinary floors and repeatable furniture stay simpler so routes and interactions remain clear.
 
@@ -31,6 +33,8 @@ The secondary screenshots never overrule the primary image's camera or office se
 
 ## 3. Palette
 
+> **Rich finish (2026-10-02):** the table below is the pre-finish Orientation palette. Stone (floor, walls, joints) and the sprite ramps not listed in `rich-finish/RICH_FINISH_SPEC.md` stay as written. For **world art**, the ink, wood, glass, garden green, brass and coral rows are replaced by the vivid v2 ramps in that file, and the foliage uses five tones. The outline default is now `#0E1020`.
+
 Use the following **32-color starting palette** for Orientation. It is a production palette, not an SNES hardware emulation or a limit on all five districts. Reserve the bright accents for their meaning. Each ordinary sprite or prop should use a compact subset, usually three or four tones per material.
 
 | Group | Shadow → mid → light | Use |
@@ -44,7 +48,7 @@ Use the following **32-color starting palette** for Orientation. It is a product
 | Coral / people | `#71394F` · `#B65761` · `#E67A70` · `#F6B18E` | Conversation accents, upholstery |
 | Violet / anomaly | `#413755` · `#67547C` · `#9477AF` · `#C3A6D6` | Glitches only |
 
-The outer outline defaults to **`#202337`**. Replace short sections with a material's dark tone on a lit edge; use the darkest ink only where silhouettes overlap or forms need separation. Avoid complete thick black rings. Top-left skylight and lamps use the warm stone/brass highlights; cast and recess shadows step through `#535971`, `#343650`, and `#202337`. Skin and hair need separate inclusive ramps chosen per character; do not treat one skin ramp as the entire cast's palette. UI semantic colors in the game brief remain functional anchors, even if world-art shades shift.
+The outer outline defaults to **`#0E1020`** (it was `#202337` before the rich finish; see `rich-finish/RICH_FINISH_SPEC.md`). Replace short sections with a material's dark tone on a lit edge; use the darkest ink only where silhouettes overlap or forms need separation. Avoid complete thick black rings. Top-left skylight and lamps use the warm stone/brass highlights; cast and recess shadows step through the ink ramp (`#3A4160`, `#1C2038`, `#0E1020` in the rich finish; `#535971`, `#343650`, `#202337` before it). Skin and hair need separate inclusive ramps chosen per character; do not treat one skin ramp as the entire cast's palette. UI semantic colors in the game brief remain functional anchors, even if world-art shades shift.
 
 **Clothing vs. interaction markers (decided 2026-10-01).** No person wears violet. Teal may appear on clothing, including the Engineer's default jacket and its customization options, only as a muted ramp: every step with a hue between 160° and 200° keeps HSL saturation at or below 60% (terminal teal `#19AFA2` is about 75%), and no step uses a UI marker hex. Terminals stay distinct through their glow steps and their place inside furniture. Coral and gold on people keep their existing limits: coral is the people/upholstery family and the conversation marker is carried by the speech-bubble shape; gold stays small (badges, latches).
 
@@ -100,11 +104,13 @@ Ordinary floor tiles use broad color groups and occasional wear clusters; do not
 
 Use one clear light direction per room, normally warm light from the upper left. Shade by stepped, solid clusters: highlight, local midtone, cool shadow, deepest occlusion. No continuous gradients. Contact shadows are compact, blue-purple, and darkest at feet or furniture bases. A lamp or terminal may have one or two hard-edged glow steps; reserve broader effects for rare focal moments.
 
-- **Stone / concrete:** broad slabs, sparse edge chips, a few two-tone joints; no all-over grain.
+**Rich finish lighting (2026-10-02).** Rooms also get flat-step passes after they are drawn: slab tone drift with sparse floor wear, a cast shadow patch from every object, a larger canopy shadow from the tree, two warm glow steps on the floor around each lamp, and diagonal window-light bands. Parameters and order are in `rich-finish/RICH_FINISH_SPEC.md`. Still no gradients or bloom haze.
+
+- **Stone / concrete:** broad slabs, sparse edge chips, a few two-tone joints; subtle tone drift between slabs and sparse wear specks (rich finish), but no all-over grain.
 - **Glass:** dark frame, cooler pane, one stepped reflection band, visible interior separation.
 - **Wood:** top plane warmer and lighter than side plane, a few grain clusters, dark underside.
 - **Brass:** small warm highlight and dark edge; use sparingly for doors and wayfinding.
-- **Foliage / moss:** leaf masses in 3–4 value groups, broken contour, clustered warm tips; no random single-pixel confetti.
+- **Foliage / moss:** pointed leaf fans in five tones (deepest green to a sunlit tip), a dark edge between overlapping leaves, a shaded back layer behind a lit front layer, and sparkle pixels only on sunlit tips (rich finish; `rich-finish/RICH_FINISH_SPEC.md`). No random single-pixel confetti.
 - **Devices / anomalies:** solid housing first, then a teal or violet emissive center; glow never erases the silhouette.
 
 Dithering is rare: one short transition on a large stone or shadow plane when a hard band would distract. Never dither faces, outlines, UI, or every material.

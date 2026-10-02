@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** only the outline colour changes (`#0E1020`); glitch violet is unchanged. Queued under OpenSpec change `adopt-rich-finish`; see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `design/characters/glitches.md`, `docs/game-design.md` (sprite table, interaction silhouettes), `levels.md` (level 01 paper-fold glitch), STYLE_BIBLE §3, §7 ("Devices / anomalies: solid housing first, then an emissive centre; glow never erases the silhouette"). **Director decision** marks choices made under the art-direction authority the player delegated.
 
 ## Deliverables

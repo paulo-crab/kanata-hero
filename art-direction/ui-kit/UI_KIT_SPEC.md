@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** the UI tokens do not change. The world backgrounds in the reference page are re-rendered from the new rooms under OpenSpec change `adopt-rich-finish`; see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `openspec/changes/complete-art-production/specs/ui-presentation/spec.md`, `docs/game-design.md` ("Color, materials, and light", "Characters and UI", "Hint grammar", "Layout help"), `levels.md` hint lines, `~/.config/kanata/kanata.kbd` (read only, for key names and the `nav` layer). `art-direction/ui/README_v2.md` was ignored (rejected).
 
 ## Deliverables

@@ -27,6 +27,8 @@ When documents disagree, the owner below wins. Fix the other document instead of
 
 ## Decisions
 
+- **Rich finish (decided 2026-10-02):** after the board asked for richer ambience closer to reference 08, the player confirmed the **16 px grid** and chose **Mock 2.1** as the direction: vivid world palette with deeper darks, leaf-fan foliage and a detailed garden, plus light and atmosphere. More set pieces, material detail and a finer grid were not adopted; the default camera is undecided. Spec: [`art-direction/rich-finish/RICH_FINISH_SPEC.md`](art-direction/rich-finish/RICH_FINISH_SPEC.md); re-render tracked in OpenSpec change `adopt-rich-finish`.
+
 **Art production complete (2026-10-02):** developers start at [`art-direction/ART_HANDOFF.md`](art-direction/ART_HANDOFF.md); [`art-direction/PRODUCTION_STATUS.md`](art-direction/PRODUCTION_STATUS.md) holds the approvals and pipeline. Since 2026-10-02 the player has delegated gate approvals to the art director, who self-reviews and approves.
 
 

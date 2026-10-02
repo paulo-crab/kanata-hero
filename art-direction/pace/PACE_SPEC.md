@@ -2,6 +2,8 @@
 
 **Status:** Approved by the director 2026-10-02.
 
+> **Rich finish (2026-10-02):** only the outline colour changes (`#0E1020`) and the world around the signage is re-rendered. Queued under OpenSpec change `adopt-rich-finish`; see `../rich-finish/RICH_FINISH_SPEC.md`.
+
 **Sources:** `design/characters/pace.md`, `levels.md` (story, cast table), STYLE_BIBLE §3, §6, §7, `gate1/environment.py` (the RECORDS mat and the garden ring squares). **Director decision** marks choices made under the art-direction authority.
 
 Pace is the campus performance system: signage and small UI copy only. It has **no body sprite, no face and no portrait**. This set is its in-world signage, built as environment pieces on the 16 px grid.

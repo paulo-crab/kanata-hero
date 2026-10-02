@@ -12,6 +12,10 @@ At a 1366×768 laptop composition (×4), keep the avatar, two-cell routes, exits
 
 Orientation starts warm and welcoming. Pace's control appears through repeated arrangements and synchronized worker motion; its correction opens a garden cut-through and Records door, lights devices, and lets workers relax. Story interactions are untimed. Mira's courier routes are the optional speed activity.
 
+## Rich finish (2026-10-02)
+
+The board asked for richer ambience: the world closer to the graphics of reference 08, more detail on what is already there, and no extra objects. The player confirmed the 16 px grid and chose the direction named **Mock 2.1**: a vivid world palette with deeper darks, leaf-fan foliage and a detailed garden (bark, limbs, ripples, mossy rocks, blue planters), and light and atmosphere (cast shadows, lamp glow, window light, slab tone drift). Everything is specified in [`rich-finish/RICH_FINISH_SPEC.md`](rich-finish/RICH_FINISH_SPEC.md), which wins over older colour and noise rules. Existing assets are queued for re-render in the OpenSpec change `adopt-rich-finish`.
+
 ## Current workflow
 
 **Art production is complete (2026-10-02).** Gate 1 passed, and the player delegated every later gate to the art director, who self-reviews and approves. Every asset is now approved, and developers start at [`ART_HANDOFF.md`](ART_HANDOFF.md). The pipeline, approvals and carry-forward lessons are in [`PRODUCTION_STATUS.md`](PRODUCTION_STATUS.md). Any new art follows the same loop: hand-placed source module, automated check, ×8 sheet and ×4 in-room review, a spec with Director decisions, then a rebuild with `build_all.py`.
