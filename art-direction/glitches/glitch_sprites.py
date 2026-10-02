@@ -2,7 +2,8 @@
 
 Status: Approved by the director 2026-10-02. Spec: GLITCHES_SPEC.md.
 
-Three archetypes, each with a roam set and a misregister set:
+Three archetypes, each with a roam set, a misregister set, one repaired (snap) frame and
+the ordinary prop it becomes:
   stapler  32x16 (2x1 cells) a grey desk stapler that hops, with a violet outline ghost
   chair    32x16 (2x1 cells) a coral office chair (the room's own chair kit) and its violet, displaced duplicate shadow
   form     16x16 (1x1 cell)  a sheet of paper with a wrong violet-backed fold and drifting print
@@ -160,6 +161,31 @@ def stapler_frame(lift=0, arm=(0, 0), ghost_off=(3, 1), slip_ghost=False, body_g
     return finish(layers, w, h, ghosts)
 
 
+STAPLER_ARM_PLAIN = [r.replace("cdc", "iii") for r in STAPLER_ARM]   # the staple slot, no glow
+STAPLER_ARM_SNAP = [r.replace("cdc", "bbb") for r in STAPLER_ARM]    # glow out, a dim violet afterglow in the slot
+
+
+def halo(mask, w, h, key="b"):
+    """1 px ring just outside `mask` (4-neighbour dilation): the violet 'register ring'."""
+    ring = {(x + ax, y + ay) for x, y in mask for ax, ay in ((1, 0), (-1, 0), (0, 1), (0, -1))} - mask
+    return {p: key for p in ring if 0 <= p[0] < w and 0 <= p[1] < h}
+
+
+def stapler_plain(snap=False):
+    """The ordinary stapler (snap=False) or the one-frame snap into register (snap=True).
+
+    Snap: the arm is back on its base and the glow is out; the violet ghost has collapsed onto
+    the body, leaving a 1 px register ring hugging the silhouette and a dim slot.
+    """
+    w, h = 32, 16
+    arm = STAPLER_ARM_SNAP if snap else STAPLER_ARM_PLAIN
+    body = blank(w, h)
+    paste(body, arm)
+    paste(body, STAPLER_BASE)
+    ghosts = [halo(silhouette(body), w, h)] if snap else []
+    return finish([(STAPLER_BASE, 0, 0), (arm, 0, 0)], w, h, ghosts)
+
+
 STAPLER = {
     "size": (32, 16), "footprint": (2, 1),
     "roam": [  # hop: rest, rise, apex, land. The ghost stays on the floor.
@@ -169,6 +195,8 @@ STAPLER = {
         stapler_frame(0, arm=(2, -1), slip_ghost=True, body_ghost=False),
         stapler_frame(0, arm=(-1, -2), slip_ghost=True, body_ghost=False),
     ],
+    "repaired": [stapler_plain(snap=True)],
+    "ordinary": [stapler_plain()],
 }
 
 
@@ -225,11 +253,23 @@ SHADOW_B = rows_at(5, [       # stretched: the seat shadow is one row taller and
 
 def chair_frame(shadow, dx=0, dy=0):
     g = blank(32, 16)
-    paste(g, shift_grid(shadow, dx, dy))
+    if shadow is not None:
+        paste(g, shift_grid(shadow, dx, dy))
     paste(g, CHAIR_SEAT, CH_X, CH_SEAT_TOP)
     paste(g, CHAIR_BACK, CH_X, CH_BACK_TOP)
     return ["".join(r) for r in g]
 
+
+# Snap: the wrong shadow has slid down to the chair's own foot and lies flat in register there: a
+# low three-row slab at the chair's left foot, joined by a 1 px line along the floor under the seat
+# (the renderer's normal contact shadow sits on that row, so the line replaces it for this one
+# frame). Contour "a" only touches transparency, the fill "b" sits inside; the glow is out and nothing
+# violet is left up and to the left.
+SNAP_SHADOW = rows_at(13, [
+    seg((13, "a" * 6)),
+    seg((12, "a" + "b" * 5 + "a")),
+    seg((12, "a" * 19)),
+])
 
 CHAIR = {
     "size": (32, 16), "footprint": (2, 1),
@@ -240,6 +280,8 @@ CHAIR = {
     "misregister": [  # the shadow jumps 1-2 px away from the chair base
         chair_frame(SHADOW_A, -2, 0), chair_frame(SHADOW_B, -1, -2),
     ],
+    "repaired": [chair_frame(SNAP_SHADOW)],
+    "ordinary": [chair_frame(None)],
 }
 
 
@@ -339,6 +381,43 @@ def form_frame(flap, lift=0, print_off=(0, 0), flap_off=(0, 0), print_ghost=None
     return finish(layers, w, h)
 
 
+# The ordinary sheet the form becomes: flat, the cut corner restored, a block of five printed lines
+# (the folded form's two lines stay where they were; three more fill the part the flap hid).
+FORM_FLAT = [  # page-local rows 0..12, columns 3..13
+    "...ooooooooooo..",   # 0
+    "...orrrrrrrrro..",   # 1  (columns 4..12 are paper)
+    "...orrrrrrrrro..",
+    "...orrrrrrrrro..",
+    "...orrrrrrrrro..",
+    "...orrrrrrrrro..",
+    "...orrrrrrrrqo..",
+    "...orrrrrrrrqo..",
+    "...orrrrrrrrqo..",
+    "...orrrrrrrrqo..",
+    "...orrrrrrrqqo..",
+    "...oqqqqqqqqpo..",
+    "...ooooooooooo..",   # 12
+]
+FORM_FLAT_PRINT = {3: 7, 5: 6, 7: 7, 9: 7, 11: 5}   # page row -> number of ink pixels, from column 4
+# The crease the fold left behind, page-local (x, y), snapped one frame: the glow marks its middle.
+FORM_CREASE = [(6, 1, "b"), (7, 2, "b"), (8, 3, "c"), (9, 4, "c"), (10, 5, "b"), (11, 6, "b")]
+
+
+def form_flat(snap=False):
+    w = h = 16
+    g = blank(w, h)
+    paste(g, FORM_FLAT, 0, FORM_TOP)
+    for row, n in FORM_FLAT_PRINT.items():
+        for x in range(4, 4 + n):
+            g[FORM_TOP + row][x] = "k"
+    if snap:
+        for x, y, ch in FORM_CREASE:   # a 2 px band: the crease and the pixel below it
+            g[FORM_TOP + y][x] = ch
+            if g[FORM_TOP + y + 1][x] in "rqp":
+                g[FORM_TOP + y + 1][x] = "b"
+    return ["".join(r) for r in g]
+
+
 FORM = {
     "size": (16, 16), "footprint": (1, 1),
     "roam": [  # the flap flutters: closed, half, edge-on, half; the page lifts 1-2 px
@@ -351,6 +430,8 @@ FORM = {
         form_frame(FLAP_CLOSED, 0, print_off=(2, 0), print_ghost=(0, 1)),
         form_frame(FLAP_CLOSED, 0, print_off=(-1, 0), print_ghost=(2, 1), flap_off=(1, -1)),
     ],
+    "repaired": [form_flat(snap=True)],
+    "ordinary": [form_flat()],
 }
 
 # ------------------------------------------------------------------ metadata
@@ -362,6 +443,8 @@ ARCHETYPES = {
         "roam": {"ms": 120, "move_px_per_frame": [0, 2, 2, 0], "lift_px": [0, 2, 3, 1],
                  "note": "hop: rise, apex, land; travels 4 px per 480 ms cycle"},
         "misregister": {"ms": 80, "play": "flicker"},
+        "repaired": {"ms": 160, "play": "once", "cue": "a 1 px violet register ring hugs the body, the slot is a dim violet afterglow"},
+        "ordinary": {"collision": ["00"], "note": "a plain stapler lying on the floor; walkable (decor)"},
     },
     "chair": {
         "grid": CHAIR, "anchor": (16, 16),
@@ -369,6 +452,8 @@ ARCHETYPES = {
         "roam": {"ms": 200, "move_px_per_frame": [1, 1, 1, 1], "lift_px": [0, 0, 0, 0],
                  "note": "the chair drifts 4 px per 800 ms cycle; its wrong shadow drifts away up-left and stretches"},
         "misregister": {"ms": 80, "play": "flicker"},
+        "repaired": {"ms": 160, "play": "once", "cue": "the wrong shadow lies flat as a 1 px violet line at the chair's foot"},
+        "ordinary": {"collision": ["01"], "note": "the task chair with only its single correct (renderer) shadow; blocks its own cell"},
     },
     "form": {
         "grid": FORM, "anchor": (8, 16),
@@ -376,11 +461,16 @@ ARCHETYPES = {
         "roam": {"ms": 120, "move_px_per_frame": [0, 2, 2, 0], "lift_px": [0, 1, 2, 0],
                  "note": "flutter: the flap opens edge-on as the page lifts; travels 4 px per 480 ms cycle"},
         "misregister": {"ms": 80, "play": "flicker"},
+        "repaired": {"ms": 160, "play": "once", "cue": "the fold has gone flat; its crease shows as a violet diagonal with a glow centre"},
+        "ordinary": {"collision": ["0"], "note": "a flat sheet of printed paper lying on the floor; walkable (decor)"},
     },
 }
 
+KINDS = ("roam", "misregister", "repaired", "ordinary")
+REPAIRED_MS = 160          # the snap frame: four 40 ms GIF ticks, long enough to read, short enough to be a snap
+
 # Animation names in atlas order.
-ANIMATIONS = [(a, k) for a in ARCHETYPES for k in ("roam", "misregister")]
+ANIMATIONS = [(a, k) for a in ARCHETYPES for k in KINDS]
 
 
 def frames(arch, anim):
@@ -390,6 +480,6 @@ def frames(arch, anim):
 # Import-time sanity: every grid is rectangular and the declared size.
 for _a, _d in ARCHETYPES.items():
     _w, _h = _d["grid"]["size"]
-    for _k in ("roam", "misregister"):
+    for _k in KINDS:
         for _fr in _d["grid"][_k]:
             assert len(_fr) == _h and all(len(r) == _w for r in _fr), (_a, _k)
