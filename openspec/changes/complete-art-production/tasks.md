@@ -11,7 +11,7 @@
 
 ## 2. Planning migration
 
-- [ ] 2.1 Remove `art-direction/production/` and point `PRODUCTION_STATUS.md` at this change; verify that `openspec validate complete-art-production` passes
+- [x] 2.1 Remove `art-direction/production/` and point `PRODUCTION_STATUS.md` at this change; verify that `openspec validate complete-art-production` passes
 
 ## 3. Orientation context sprites
 
