@@ -83,7 +83,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .kh-cell { background: var(--panel-sunken); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); min-width: 0; }
 .kh-cell .kh-label { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); }
 .kh-mini { display: flex; gap: 4px; align-items: flex-end; }
-.kh-mini .kh-key { min-width: 34px; height: 32px; padding: 0; font-size: var(--text-sm); margin-bottom: 3px; }
+.kh-mini .kh-key { min-width: 36px; height: 32px; padding: 0; font-size: var(--text-sm); margin-bottom: 3px; }
 .kh-mini .kh-key.cap { min-width: 58px; }
 .kh-inset .row { display: grid; grid-template-columns: auto auto 1fr; gap: var(--space-2); }
 .kh-hold { display: flex; align-items: flex-start; gap: var(--space-2); }

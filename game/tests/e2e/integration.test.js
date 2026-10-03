@@ -20,6 +20,7 @@ async function start({ storage = new MemoryStorage() } = {}) {
 /** Skip setup and arrival, close the welcome and the popup: the hub on the keys step. */
 function intoHub(t) {
   t.player.tap('Escape');
+  t.player.tap('Enter');
   t.player.wait(90);
   t.player.tap('Enter');
   t.player.tap('Escape');
@@ -31,29 +32,39 @@ function intoHub(t) {
 test('createGame is headless-safe: no window, document or canvas is touched and every first view-model is emitted', async () => {
   assert.equal(typeof globalThis.window, 'undefined');
   const t = await start();
-  for (const topic of ['vm:setup', 'vm:calibration']) assert.ok(t.last(topic), topic);
+  assert.ok(t.last('vm:setup'), 'vm:setup');
   assert.equal(t.game.machine.top.id, 'setup');
   assert.ok(t.game.loop, 'a game loop exists');
   t.game.destroy();
 });
 
-test('the setup screen also carries the calibration steps and the keyboard diagram (positions and characters)', async () => {
+test('the setup screen is the keyboard choice and a diagram of that keyboard; the steps are not listed there', async () => {
   const t = await start();
+  const setup = t.last('vm:setup');
+  assert.equal(setup.keyboards.length, 2);
+  assert.equal(t.last('vm:calibration'), undefined, 'no calibration view-model on the setup screen');
+  assert.ok(setup.diagram.positions.rows.flat().length > 40);
+  assert.ok(setup.diagram.positions.rows.flat().every((k) => k.state === 'plain'), 'nothing is marked on the setup diagram');
+  const bottom = (v) => v.diagram.positions.rows.at(-1).map((k) => k.label).join(' ');
+  t.command({ type: 'selectKeyboard', id: 'microsoft' });
+  const ms = t.last('vm:setup');
+  assert.equal(ms.keyboard, 'microsoft');
+  assert.notEqual(bottom(ms), bottom(setup), 'the Microsoft bottom row differs');
+});
+
+test('calibration view-model: one step with its keycaps, waiting text and the positions and characters diagram', async () => {
+  const t = await start();
+  t.player.tap('Enter');
   const cal = t.last('vm:calibration');
   assert.equal(cal.steps.length, 5);
-  assert.ok(cal.steps.every((s) => s.confirmable === false), 'every calibration gesture is observable, none needs a confirm button');
+  assert.equal(cal.current.id, 'caps-h');
+  assert.deepEqual(cal.current.keys.map((k) => k.label), ['Caps', 'H']);
+  assert.equal(cal.current.waiting, 'Waiting for Left Arrow');
   assert.deepEqual(Object.keys(cal.diagram).filter((k) => ['positions', 'characters'].includes(k)), ['positions', 'characters']);
   const flat = (rows) => rows.flat();
   assert.ok(flat(cal.diagram.positions.rows).some((k) => k.label === 'Caps' && k.state === 'layer'), 'Caps is the held key');
   assert.ok(flat(cal.diagram.positions.rows).some((k) => k.label === 'H' && k.state === 'target'), 'H is ringed');
-  assert.ok(flat(cal.diagram.characters.rows).length > 40);
   assert.match(cal.diagram.positions.caption, /Physical positions: hold Caps about 200 ms, then tap H/);
-  // switching the keyboard in setup redraws the diagram for the Microsoft keyboard (bottom row differs)
-  t.command({ type: 'selectKeyboard', id: 'microsoft' });
-  const ms = t.last('vm:calibration');
-  assert.equal(ms.keyboard, 'microsoft');
-  const bottom = (v) => v.diagram.positions.rows.at(-1).map((k) => k.label).join(' ');
-  assert.notEqual(bottom(ms), bottom(cal));
 });
 
 test('Return on calibration step 2 only settles the step; it does not also continue', async () => {
@@ -65,16 +76,25 @@ test('Return on calibration step 2 only settles the step; it does not also conti
   assert.equal(t.game.machine.top.id, 'calibration', 'still on the calibration screen');
   const cal = t.last('vm:calibration');
   assert.deepEqual(cal.steps.map((s) => s.status), ['observed', 'observed', 'not_started', 'not_started', 'not_started']);
-  assert.equal(cal.steps[2].current, true);
+  assert.equal(cal.current.id, 'space-a');
 });
 
-test('chooseRow selects a calibration step by mouse and leaves the steps before it skipped', async () => {
+test('calibration commands: Skip this step and Skip calibration (confirm card) by mouse; the summary lists Observed or Skipped', async () => {
   const t = await start();
   t.player.tap('Enter');
-  t.command({ type: 'chooseRow', id: 'space-a' });
-  const cal = t.last('vm:calibration');
-  assert.deepEqual(cal.steps.map((s) => s.status), ['skipped', 'skipped', 'not_started', 'not_started', 'not_started']);
-  assert.equal(cal.steps.find((s) => s.current).id, 'space-a');
+  t.player.tap('ArrowLeft');
+  t.command({ type: 'skipStep' });
+  assert.equal(t.last('vm:calibration').steps[1].status, 'skipped');
+  t.command({ type: 'skipCalibration' });
+  assert.equal(t.last('vm:calibration').confirm, true);
+  assert.equal(t.game.machine.top.id, 'calibration', 'the card opens, nothing is skipped yet');
+  t.command({ type: 'back' });
+  assert.equal(t.last('vm:calibration').confirm, false);
+  assert.deepEqual(t.last('vm:calibration').steps.map((s) => s.status), ['observed', 'skipped', 'not_started', 'not_started', 'not_started']);
+  for (const out of ['1', '!', '?']) t.player.tap(out);
+  const sum = t.last('vm:calibration');
+  assert.equal(sum.phase, 'summary');
+  assert.deepEqual(sum.steps.map((s) => s.statusLabel), ['Observed output', 'Skipped', 'Observed output', 'Observed output', 'Observed output']);
 });
 
 test('chooseRow selects journal rows by mouse and opens the Also rows', async () => {

@@ -14,7 +14,7 @@ async function run(opts, storage) {
 
 test('level 01 plays through setup skip, arrival, popup, lap, desks, label and recall', async () => {
   const { checkpoints: c } = await run({});
-  assert.equal(c.afterSetup.setupDone, true, 'Escape in setup skips the whole setup');
+  assert.equal(c.afterSetup.setupDone, true, 'Escape then Return on the confirm card skips the whole setup');
   assert.deepEqual(c.elevatorStates, ['closed', 'half', 'open'], 'elevator plays closed -> half -> open');
   assert.ok(c.elevatorStateMs[1] >= 100 && c.elevatorStateMs[1] <= 150, `the half state lasts about 120 ms, got ${c.elevatorStateMs[1]}`);
   assert.equal(c.elevatorFinal, 'open');

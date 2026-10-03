@@ -15,7 +15,8 @@ export function playLevel(opts = {}) {
 
   session.start();
   assert.equal(top(), 'setup');
-  player.tap('Escape'); // skip the whole setup
+  player.tap('Escape'); // opens the skip confirm card
+  player.tap('Enter'); // yes, skip setup and calibration
   assert.equal(top(), 'arrival');
   player.tick(30); // 500 ms: elevator closed, half, open
   assert.equal(top(), 'dialogue'); // welcome is open over the hub

@@ -1,6 +1,6 @@
 // Setup, calibration and arrival scenes (the first minutes). Contract: game/CONTRACTS.md sections 5.1, 7.
 import { BaseScene } from './base.js';
-import { keycap } from '../common.js';
+import { keycap, observedName } from '../common.js';
 
 const KEYBOARDS = [
   { id: 'macbook', label: 'MacBook keyboard' },
@@ -26,63 +26,95 @@ const STEP_DIAGRAM = {
   'shift-hold': { gesture: 'B03', held: 'f', target: '/', layer: 'base', timing: 'home-row-hold' },
 };
 
-const SHORT = { Backspace: 'Bksp', Left: '\u2190', Right: '\u2192', Up: '\u2191\u2193', Delete: 'Del' };
-const cleanLabel = (id) => (id.length === 1 ? id.toUpperCase() : SHORT[id] || id.replace(/-[LR]$/, ''));
+/** The gesture keycaps drawn on the prompt: the key held (or pressed first), then the key tapped. */
+const STEP_KEYS = {
+  'caps-h': [{ key: 'Caps', label: 'Caps', held: true }, { key: 'h', label: 'H' }],
+  'caps-n': [{ key: 'Caps', label: 'Caps', held: true }, { key: 'n', label: 'N' }],
+  'space-a': [{ key: 'Space', label: 'Space', held: true }, { key: 'a', label: 'A' }],
+  'space-q': [{ key: 'Space', label: 'Space', held: true }, { key: 'q', label: 'Q' }],
+  'shift-hold': [{ key: 'f', label: 'F', held: true }, { key: '/', label: '/' }],
+};
 
-function diagramFor(ctx, cal, stepId) {
+const SHORT = { Backspace: 'Bksp', Left: '←', Right: '→', Up: '↑', Down: '↓', Delete: 'Del' };
+const cleanLabel = (id) => (id.length === 1 ? id.toUpperCase() : SHORT[id] || id.replace(/-[LR]$/, ''));
+const shortLegend = (t) => String(t || '').replace(/\s+([←-↓])/g, '$1').replace(/\s*\|\s*/g, '/');
+
+/** Keyboard diagram for the current step; `plain` draws the keyboard with nothing marked (the setup screen). */
+function diagramFor(ctx, cal, stepId, plain = false) {
   const { manifest, input } = ctx;
   if (!manifest || !manifest.keyboard) return null;
   const variant = cal.result().keyboard;
-  const spec = STEP_DIAGRAM[stepId] || STEP_DIAGRAM['caps-h'];
+  const spec = plain ? { held: null, target: null, layer: 'base', timing: 'caps-hold' } : (STEP_DIAGRAM[stepId] || STEP_DIAGRAM['caps-h']);
   const timing = ((manifest.json && manifest.json.timings) || []).find((t) => t.id === spec.timing) || {};
   const heldId = spec.held;
   const rows = manifest.keyboard(variant).rows.map((row) => row.filter((k) => k.id !== 'Down'));
   const state = (id) => (id === heldId ? 'layer' : id === spec.target ? 'target' : 'plain');
   const characters = (id) => {
     if (id === heldId) return cleanLabel(id);
-    try { return manifest.keyAt(spec.layer, id, variant).legend || cleanLabel(id); } catch { return cleanLabel(id); }
+    try { return shortLegend(manifest.keyAt(spec.layer, id, variant).legend) || cleanLabel(id); } catch { return cleanLabel(id); }
   };
   const build = (mode) => rows.map((row) => row.map((k) => ({
     label: mode === 'positions' ? cleanLabel(k.id) : characters(k.id), state: state(k.id), width_u: k.width_u,
   })));
   const holdMs = timing.hold_ms ? ` about ${timing.hold_ms} ms` : '';
-  return {
+  const out = {
     positions: {
       rows: build('positions'),
-      caption: `Physical positions: hold ${cleanLabel(heldId)}${holdMs}, then tap ${cleanLabel(spec.target)}.`,
-    },
-    characters: {
-      rows: build('characters'),
-      caption: spec.layer === 'base' ? 'Resulting characters: the base layer.' : `Resulting characters on the ${spec.layer} layer.`,
+      caption: plain ? `The ${variant === 'microsoft' ? 'Microsoft' : 'MacBook'} keyboard as the game draws it.`
+        : `Physical positions: hold ${cleanLabel(heldId)}${holdMs}, then tap ${cleanLabel(spec.target)}.`,
     },
     stepId,
     stepCount: input.CALIBRATION_STEPS.length,
   };
+  if (!plain) {
+    out.characters = {
+      rows: build('characters'),
+      caption: spec.layer === 'base' ? 'Resulting characters: the base layer.' : `Resulting characters on the ${spec.layer} layer.`,
+    };
+  }
+  return out;
 }
 
+const NAMED_KEYS = {
+  Down: { key: 'ArrowDown', label: 'Down' },
+  Up: { key: 'ArrowUp', label: 'Up' },
+};
 
-export function calibrationVm(ctx, cal) {
+/**
+ * Calibration view-model. One step at a time: `current` is the prompt on screen, `lastSeen` is the output the page
+ * saw last, `wrong` explains a key that was not the expected one, `success` reports the step just settled.
+ * `phase` is 'steps' while a step is waiting, 'summary' when every step is settled. `confirm` is the skip card.
+ */
+export function calibrationVm(ctx, cal, ui = {}) {
   const { input, manifest } = ctx;
   const res = cal.result();
   const cur = cal.current;
   const toggle = manifest && manifest.sequences
     ? (manifest.sequences().find((s) => s.id === 'violento-toggle') || {}).label : null;
-  const inventory = (manifest && manifest.gesture) ? (id) => { try { return manifest.gesture(id); } catch { return null; } } : () => null;
+  const steps = input.CALIBRATION_STEPS.map((s, i) => {
+    const [action, key] = STEP_COPY[s.id] || [`To observe ${s.expected}, press it.`, s.expected];
+    const status = res.steps[s.id] || 'not_started';
+    return {
+      id: s.id, number: i + 1, gesture: s.gesture, expected: s.expected, expectedName: key, action,
+      hintLine: `${action} Hint: ${key} is ${s.gesture}.`,
+      keys: (STEP_KEYS[s.id] || []).map((k) => ({ ...k })),
+      status, statusLabel: STATUS_LABEL[status], current: cur === s.id,
+    };
+  });
+  const current = steps.find((s) => s.current) || null;
   return {
     keyboard: res.keyboard,
+    phase: current ? 'steps' : 'summary',
+    stepCount: steps.length,
+    steps,
+    current: current ? { ...current, waiting: `Waiting for ${current.expectedName}` } : null,
+    lastSeen: ui.lastSeen || null,
+    wrong: ui.wrong || null,
+    success: ui.success || null,
+    confirm: !!ui.confirm,
+    skipStep: { key: NAMED_KEYS.Down, gesture: 'tap-hold Caps + J' },
+    skipAll: { key: NAMED_KEYS.Up, gesture: 'tap-hold Caps + K' },
     diagram: diagramFor(ctx, cal, cur || 'caps-h'),
-    steps: input.CALIBRATION_STEPS.map((s) => {
-      const [action, key] = STEP_COPY[s.id] || [`To observe ${s.expected}, press it.`, s.expected];
-      const status = res.steps[s.id] || 'not_started';
-      return {
-        id: s.id, gesture: s.gesture, expected: s.expected,
-        hintLine: `${action} Hint: ${key} is ${s.gesture}.`,
-        status, statusLabel: STATUS_LABEL[status], current: cur === s.id,
-        // The game cannot see a gesture the manifest rates player_confirmed; every calibration gesture is observable.
-        confirmable: status === 'not_started' && cur === s.id
-          && ((inventory((STEP_DIAGRAM[s.id] || {}).gesture) || {}).verification === 'player_confirmed'),
-      };
-    }),
     diagramView: 'positions',
     toggleOut: {
       keys: ['Control', 'Alt', 'Meta', 'v'].map((k) => keycap(k)),
@@ -92,11 +124,12 @@ export function calibrationVm(ctx, cal) {
   };
 }
 
-
+/** Setup: only the keyboard choice and a Next button. The calibration steps are not listed here. */
 export class SetupScene extends BaseScene {
   constructor() {
     super('setup', 'setup');
     this.modal = true;
+    this.confirm = false;
     this.keys = { typing: false, enter: 'continue', esc: 'skip', arrows: 'choose', journal: false, hint: false };
   }
 
@@ -113,55 +146,64 @@ export class SetupScene extends BaseScene {
     this.ctx.progress.update((d) => { d.settings.keyboard = this.keyboard; });
   }
 
-  _next(skipped) {
-    const reopened = this.payload && this.payload.reopened;
-    if (skipped) {
-      this.ctx.progress.update((d) => {
-        d.setup.done = true;
-        if (!d.setup.calibration) {
-          d.setup.calibration = { keyboard: this.keyboard, steps: Object.fromEntries(
-            this.ctx.input.CALIBRATION_STEPS.map((s) => [s.id, 'skipped'])) };
-        }
-      });
-    }
-    if (reopened) this.finish({ success: true });
-    else if (skipped) this.finish({ next: this.ctx.actions.afterSetup() });
-    else this.finish({ next: 'calibration', payload: { keyboard: this.keyboard } });
+  /** Both setup and calibration are skipped, only after the explicit confirm card. */
+  _skipAll() {
+    this._store();
+    this.ctx.progress.update((d) => {
+      d.setup.done = true;
+      if (!d.setup.calibration) {
+        d.setup.calibration = { keyboard: this.keyboard, steps: Object.fromEntries(
+          this.ctx.input.CALIBRATION_STEPS.map((s) => [s.id, 'skipped'])) };
+      }
+    });
+    this.finish({ next: this.ctx.actions.afterSetup() });
+  }
+
+  askSkip() {
+    this.confirm = true;
   }
 
   handle(ev) {
     if (ev.phase === 'up' || ev.repeat) return true;
+    const reopened = this.payload && this.payload.reopened;
+    if (this.confirm) {
+      if (ev.action === 'continue') this._skipAll();
+      else if (ev.action === 'skip' || ev.action === 'back') this.confirm = false;
+      return true;
+    }
     if (ev.action === 'choose' && ev.dir) {
       const i = KEYBOARDS.findIndex((k) => k.id === this.keyboard);
       this.keyboard = KEYBOARDS[(i + 1) % KEYBOARDS.length].id;
     } else if (ev.action === 'continue') {
       this._store();
-      this._next(false);
+      if (reopened) this.finish({ success: true });
+      else this.finish({ next: 'calibration', payload: { keyboard: this.keyboard } });
     } else if (ev.action === 'skip') {
-      this._store();
-      this._next(true);
+      if (reopened) { this._store(); this.finish({ success: true }); } else this.askSkip();
     }
     return true;
   }
 
-  /** The setup screen also shows the calibration steps and the keyboard diagram (one panel, as in the kit). */
-  extraViewModels() {
-    const cal = new this.ctx.input.Calibration(this.keyboard);
-    return { 'vm:calibration': calibrationVm(this.ctx, cal) };
-  }
-
   viewModel() {
+    const cal = new this.ctx.input.Calibration(this.keyboard);
     return {
       keyboard: this.keyboard,
       keyboards: KEYBOARDS.map((k) => ({ ...k, selected: k.id === this.keyboard })),
+      confirm: this.confirm,
+      diagram: diagramFor(this.ctx, cal, null, true),
     };
   }
 }
 
+/** Calibration, one step at a time. Every output that is not the expected one is shown, never silently skipped. */
 export class CalibrationScene extends BaseScene {
   constructor() {
     super('calibration', 'calibration');
     this.modal = true;
+    this.confirm = false;
+    this.lastSeen = null;
+    this.wrong = null;
+    this.success = null;
     this.keys = { typing: false, enter: 'continue', esc: 'skip', arrows: 'choose', journal: false, hint: false };
   }
 
@@ -172,12 +214,13 @@ export class CalibrationScene extends BaseScene {
     this.cal = new ctx.input.Calibration(kb);
   }
 
-  /** Mouse selection: a step picked out of order leaves the steps before it skipped (a step left alone is Skipped). */
-  choose(id) {
-    const { CALIBRATION_STEPS } = this.ctx.input;
-    const at = CALIBRATION_STEPS.findIndex((s) => s.id === id);
-    if (at < 0) return;
-    for (const s of CALIBRATION_STEPS.slice(0, at)) this.cal.skip(s.id);
+  _expectedName(id) {
+    const s = this.ctx.input.CALIBRATION_STEPS.find((x) => x.id === id);
+    return (STEP_COPY[id] || [null, s ? s.expected : id])[1];
+  }
+
+  _number(id) {
+    return this.ctx.input.CALIBRATION_STEPS.findIndex((s) => s.id === id) + 1;
   }
 
   _done() {
@@ -188,31 +231,62 @@ export class CalibrationScene extends BaseScene {
     this.finish({ next: this.ctx.actions.afterSetup() });
   }
 
-  handle(ev) {
-    if (ev.phase === 'up' || ev.repeat) return true;
-    if (ev.action === 'skip' || ev.output === 'Escape') {
-      this.cal.skipAll();
-      this._done();
-      return true;
-    }
+  /** The Skip this step button or Down. A step left alone is recorded as Skipped. */
+  skipStep() {
+    const id = this.cal.current;
+    if (id === null) return;
+    this.cal.skipCurrent();
+    this.wrong = null;
+    this.success = { skipped: true, stepId: id, text: `Skipped step ${this._number(id)}.` };
+    this.ctx.bus.emit('vm:announce', { text: this.success.text });
+  }
+
+  /** The Skip calibration button or Up: only opens the confirm card. */
+  askSkip() {
+    this.confirm = true;
+  }
+
+  _observe(ev) {
+    const name = observedName(ev);
+    const id = this.cal.current;
+    this.lastSeen = { name };
     const hit = this.cal.observe(ev);
     if (hit) {
-      if (this.cal.current === null) this.ctx.bus.emit('vm:announce', { text: 'Calibration finished. Press Return to continue.' });
+      this.wrong = null;
+      this.success = { stepId: id, text: `Step ${this._number(id)} done: ${name} observed.`, name };
+      this.ctx.bus.emit('vm:announce', { text: this.cal.current === null ? 'Calibration finished. Press Return to continue.' : this.success.text });
+      return;
+    }
+    const want = this._expectedName(id);
+    const hint = id === 'caps-h' && ev.output === 'Escape'
+      ? 'That was a tap. Hold Caps a moment, then press H.' : null;
+    this.wrong = { got: name, expected: want, text: `Got ${name}, expected ${want}.`, hint };
+    this.success = null;
+    this.ctx.bus.emit('vm:announce', { text: `${this.wrong.text}${hint ? ` ${hint}` : ''}` });
+  }
+
+  handle(ev) {
+    if (ev.phase === 'up' || ev.repeat) return true;
+    if (ev.confidence && ev.confidence !== 'observed') return true;
+    if (this.confirm) {
+      if (ev.action === 'continue') { this.cal.skipAll(); this._done(); }
+      else if (ev.action === 'skip' || ev.action === 'back') this.confirm = false;
       return true;
     }
-    if (this.cal.current === null && ev.action === 'continue') {
-      this._done();
-    } else if (ev.action === 'choose' && ev.dir === 's') {
-      this.cal.skipCurrent();
-    } else if (ev.action === 'continue') {
-      this.cal.skipAll();
-      this._done();
+    if (this.cal.current === null) {
+      if (ev.action === 'continue') this._done();
+      return true;
     }
+    if (ev.output === 'ArrowDown') this.skipStep();
+    else if (ev.output === 'ArrowUp') this.askSkip();
+    else this._observe(ev);
     return true;
   }
 
   viewModel() {
-    return calibrationVm(this.ctx, this.cal);
+    return calibrationVm(this.ctx, this.cal, {
+      lastSeen: this.lastSeen, wrong: this.wrong, success: this.success, confirm: this.confirm,
+    });
   }
 }
 

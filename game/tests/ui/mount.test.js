@@ -253,10 +253,11 @@ test('setup and calibration share one panel; calibration alone draws its own; fe
   t.bus.emit('vm:calibration', F.calibrationVm());
   assert.match(host(t, 'calibration').innerHTML, /data-screen="calibration"/);
   t.bus.emit('vm:setup', F.setupVm());
-  assert.match(host(t, 'setup').innerHTML, /data-screen="setup"[^]*su-step/, 'one panel holds both');
+  assert.match(host(t, 'setup').innerHTML, /data-screen="setup"/, 'the setup panel takes over from calibration');
   assert.equal(host(t, 'calibration').hidden, true);
+  t.bus.emit('vm:setup', null);
   t.bus.emit('vm:feedback', { gesture: null, observed: 'ArrowLeft', effect: 'Step west', confidence: 'observed', confidenceLabel: 'Observed output' });
-  assert.match(host(t, 'setup').innerHTML, /kh-fb observed/);
+  assert.match(host(t, 'calibration').innerHTML, /kh-fb observed/);
   assert.equal(host(t, 'feedback').hidden, true, 'no second card in the side column');
   t.bus.emit('vm:setup', null);
   t.bus.emit('vm:calibration', null);

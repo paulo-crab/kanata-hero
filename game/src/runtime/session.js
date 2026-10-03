@@ -397,6 +397,8 @@ export class Session {
       case 'selectKey': if (top && top.kind === 'layout-help') top.select({ selectedKey: c.id }); break;
       case 'openLayer': if (this.machine.canPush(c.id)) this.machine.push(c.id); break;
       case 'chooseRow': if (top && top.choose) top.choose(c.id); break;
+      case 'skipStep': if (top && top.kind === 'calibration') top.skipStep(); break;
+      case 'skipCalibration': if (top && top.askSkip) top.askSkip(); break;
       case 'setSetting': this.progress.update((d) => { d.settings[c.key] = c.value; }); break;
       case 'resetProgress':
         if (c.confirmed) this.resetProgress();
