@@ -10,7 +10,7 @@ import { makeDom } from './dom-stub.js';
 import * as F from './fixtures.js';
 
 test('a keyed toast replaces the one with the same key and expires after its own 2.5 s', () => {
-  const doc = makeDom();
+  const { doc } = makeDom();
   const host = doc.createElement('div');
   const clock = new FakeClock();
   const toast = new Toast(host, new EventBus(), { clock });
