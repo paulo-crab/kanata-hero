@@ -45,7 +45,9 @@
 
 /* ---- Layout help ---------------------------------------------------------------------------------------------- */
 .lh-overlay { overflow-y: auto; --key-h: 50px; --key-unit: 62px; left: 16px; right: 16px; top: 8px; bottom: 8px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
-.lh-overlay .top { gap: var(--space-4); flex-wrap: wrap; }
+.lh-overlay .top { gap: var(--space-3); flex-wrap: wrap; }
+.lh-overlay .tab { padding: var(--space-1) var(--space-3); }
+.lh-overlay .lh-device { gap: var(--space-2); }
 .lh-overlay .top h2 { font-size: var(--text-xl); }
 .lh-how { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
 .kh-lh { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }

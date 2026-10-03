@@ -11,7 +11,7 @@ python3 game/tools/serve.py          # or: cd game && npm run serve   (add --por
 # open http://127.0.0.1:8000/game/index.html
 ```
 
-Any static server rooted at the repo root works, but `serve.py` guarantees the MIME types for `.json`, `.png`, `.mjs` and sends `no-store`. A first visit shows setup and calibration (Esc skips both), then the arrival and Ivo. Progress is in `localStorage` under `kanata-hero:progress`; Settings, Reset progress clears it. `window.__kanataHero` exposes the running game for the browser checks.
+Any static server rooted at the repo root works, but `serve.py` guarantees the MIME types for `.json`, `.png`, `.mjs` and sends `no-store`. A first visit shows setup (the keyboard choice and Next) and calibration (one step at a time; Down skips a step; Esc on setup or Up on calibration opens a confirm card and Return on the card skips everything), then the arrival and Ivo. Progress is in `localStorage` under `kanata-hero:progress`; Settings, Reset progress clears it. `window.__kanataHero` exposes the running game for the browser checks.
 
 ## Boot
 
