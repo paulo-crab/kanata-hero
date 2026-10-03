@@ -45,6 +45,13 @@ def fan_palette(ramp):
     return [lift(ramp[0], -22)] + [np.asarray(c, np.uint8) for c in ramp] + [lift(ramp[3], 40)]
 
 
+def _edge(m):
+    """Pixels of a mask whose four neighbours are not all in it (the frame border counts as outside)."""
+    p = np.pad(m, 1)
+    inner = p[1:-1, 2:] & p[1:-1, :-2] & p[2:, 1:-1] & p[:-2, 1:-1]
+    return m & ~inner
+
+
 def _shift4(m):
     out = np.zeros_like(m)
     out[:, 1:] |= m[:, :-1]
@@ -74,9 +81,18 @@ def fan(r, cx, cy, rad, seed, P, count=5, spread=None, clip=None, tone_shift=0):
         d = spread * rnd.uniform(0.0, 0.28)
         leaves.append((cy + math.sin(ang) * d * 0.8, cx + math.cos(ang) * d, ang, rad * rnd.uniform(0.95, 1.25)))
     leaves.sort()
-    X, Y = r.x, r.y
     whole = np.zeros(r.img.shape[:2], bool)
+    h, w = r.img.shape[:2]
     for py, px, ang, L in leaves:
+        # Work in a window around the leaf (every pixel the leaf can touch is within L + 3 of its root): the same
+        # per-pixel maths as on the whole frame, on far fewer pixels.
+        ext = L + 3
+        x0, x1 = max(0, int(px - ext)), min(w, int(px + ext) + 2)
+        y0, y1 = max(0, int(py - ext)), min(h, int(py + ext) + 2)
+        if x0 >= x1 or y0 >= y1:
+            continue
+        sl = (slice(y0, y1), slice(x0, x1))
+        X, Y = r.x[sl], r.y[sl]
         ca, sa = math.cos(ang), math.sin(ang)
         u = (X - px) * ca + (Y - py) * sa
         v = -(X - px) * sa + (Y - py) * ca
@@ -84,11 +100,11 @@ def fan(r, cx, cy, rad, seed, P, count=5, spread=None, clip=None, tone_shift=0):
         W = L * 0.36
         m = (u >= 0) & (u <= L) & (np.abs(v) <= W * np.sin(np.pi * t) ** 0.75 + 0.35)
         if clip is not None:
-            m &= clip
+            m &= clip[sl]
         if not m.any():
             continue
         lit = ((X - px) * -0.7 + (Y - py) * -0.7) / max(L, 1)
-        ring = r.edge(m)
+        ring = _edge(m)
         tone = np.full(m.shape, 3)
         tone[lit > 0.05] = 4
         tone[(lit > 0.45) | (t > 0.82)] = 5
@@ -96,15 +112,16 @@ def fan(r, cx, cy, rad, seed, P, count=5, spread=None, clip=None, tone_shift=0):
         tone[lit < -0.6] = 1
         vein = m & (np.abs(v) < 0.5) & (t > 0.18) & (t < 0.72)
         tone = np.maximum(1, tone - tone_shift)
+        img, wh = r.img[sl], whole[sl]
         for k in range(1, 6):
-            r.img[m & (tone == k)] = P[k]
-        r.img[vein] = P[2]
+            img[m & (tone == k)] = P[k]
+        img[vein] = P[2]
         outside = _shift4(m) & ~m
         if clip is not None:
-            outside &= clip
-        r.img[outside & ~whole] = P[0]       # dark edge against what lies behind
-        r.img[ring & (lit < 0.3)] = P[1]     # shaded edge, no hard ring on the lit side
-        whole |= m
+            outside &= clip[sl]
+        img[outside & ~wh] = P[0]       # dark edge against what lies behind
+        img[ring & (lit < 0.3)] = P[1]  # shaded edge, no hard ring on the lit side
+        wh |= m
     return whole
 
 
