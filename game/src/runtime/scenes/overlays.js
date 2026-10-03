@@ -232,7 +232,8 @@ export class ControlsScene extends BaseScene {
   }
 }
 
-const ROWS = ['keyboard', 'reducedMotion', 'largerText', 'highContrast', 'setup', 'reset'];
+const ROWS = ['keyboard', 'reducedMotion', 'largerText', 'highContrast', 'feedback', 'setup', 'reset'];
+const NEXT_FEEDBACK = { scenes: 'always', always: 'off', off: 'scenes' };
 
 export class SettingsScene extends BaseScene {
   constructor() {
@@ -252,6 +253,7 @@ export class SettingsScene extends BaseScene {
   set(key, value) {
     this.ctx.progress.update((d) => { d.settings[key] = value; });
     this.ctx.bus.emit('vm:announce', { text: `${key} set to ${value}` });
+    if (this.ctx.feedback) this.ctx.feedback.onSettings();
   }
 
   handle(ev) {
@@ -268,6 +270,7 @@ export class SettingsScene extends BaseScene {
       if (row === 'keyboard') this.set('keyboard', s.keyboard === 'macbook' ? 'microsoft' : 'macbook');
       else if (row === 'reducedMotion') this.set('reducedMotion', { system: 'on', on: 'off', off: 'system' }[s.reducedMotion]);
       else if (row === 'largerText' || row === 'highContrast') this.set(row, !s[row]);
+      else if (row === 'feedback') this.set('feedback', NEXT_FEEDBACK[s.feedback] || 'always');
       else if (row === 'setup' && this.ctx.machine.canPush('setup')) this.ctx.machine.push('setup', { reopened: true });
       else if (row === 'reset') {
         if (!this.confirmReset) this.confirmReset = true;
@@ -281,7 +284,7 @@ export class SettingsScene extends BaseScene {
     const s = this.ctx.progress.doc.settings;
     return {
       keyboard: s.keyboard, reducedMotion: s.reducedMotion, largerText: s.largerText, highContrast: s.highContrast,
-      confirmReset: this.confirmReset, focus: ROWS[this.sel],
+      feedback: s.feedback || 'scenes', confirmReset: this.confirmReset, focus: ROWS[this.sel],
     };
   }
 }

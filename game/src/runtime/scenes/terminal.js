@@ -53,7 +53,7 @@ class TerminalScene extends BaseScene {
     const gesture = this.ctx.dialogue && this.ctx.dialogue.instruction() && this.ctx.dialogue.instruction().hint
       ? this.ctx.dialogue.instruction().hint.gesture : null;
     this.ctx.bus.emit('scene:feedback', { sceneId: this.id, observed: ev.output, line });
-    this.ctx.bus.emit('vm:feedback', {
+    this.ctx.feedback.scene({
       gesture, observed: `${observedName(ev)} observed`, effect: line || effect,
       confidence: 'observed', confidenceLabel: CONFIDENCE_LABEL[this.def.confidence] || 'Output observed',
     });

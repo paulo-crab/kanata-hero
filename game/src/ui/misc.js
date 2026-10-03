@@ -9,7 +9,7 @@ export const TOAST_MAX = 3;
 
 export function toastsView(toasts) {
   const items = toasts.map((t) => html`<div class="kh-toast ${t.tone === 'warn' ? 'warn' : ''}" data-toast="${t.id}">
-    <span class="ic">${icon(t.tone === 'warn' ? 'warn' : 'seal', 32)}</span>
+    <span class="ic">${icon(t.tone === 'warn' ? 'warn' : t.tone === 'feedback' ? 'eye' : 'seal', 32)}</span>
     <span class="t">${t.text}</span>
   </div>`);
   return html`<div class="kh-toasts" role="status" aria-live="polite">${items}</div>`;
@@ -29,21 +29,26 @@ export class Toast extends Component {
     if (vm === null || vm === undefined) {
       this.clear();
     } else {
+      // A toast with a key replaces the one with the same key (walking updates one toast instead of stacking).
+      if (vm.key) {
+        const same = this.toasts.find((t) => t.key === vm.key);
+        if (same) this.expire(same.id, false);
+      }
       const id = ++this.seq;
-      this.toasts.push({ id, text: vm.text, tone: vm.tone || 'info' });
-      while (this.toasts.length > TOAST_MAX) this.expire(this.toasts[0].id);
+      this.toasts.push({ id, key: vm.key || null, text: vm.text, tone: vm.tone || 'info' });
+      while (this.toasts.length > TOAST_MAX) this.expire(this.toasts[0].id, false);
       const clock = this.opts.clock;
-      if (clock) this.timers.set(id, clock.setTimer(TOAST_MS, () => this.expire(id)));
+      if (clock) this.timers.set(id, clock.setTimer(vm.ms || TOAST_MS, () => this.expire(id)));
     }
     this.paint();
   }
 
-  expire(id) {
+  expire(id, paint = true) {
     this.toasts = this.toasts.filter((t) => t.id !== id);
     const timer = this.timers.get(id);
     if (timer !== undefined && this.opts.clock) this.opts.clock.clearTimer(timer);
     this.timers.delete(id);
-    this.paint();
+    if (paint) this.paint();
   }
 
   clear() {

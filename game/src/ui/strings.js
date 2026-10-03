@@ -64,6 +64,7 @@ export const SETTINGS_COPY = Object.freeze({
   largerText: { name: 'Larger text', desc: 'Body text from 18 px to 22 px.' },
   highContrast: { name: 'High contrast', desc: 'White borders and plain panels.' },
   reducedMotion: { name: 'Reduced motion', desc: 'Holds idle frames and drops fades. System follows your device setting.' },
+  feedback: { name: 'Show output feedback', desc: 'The card that names the output the page saw. In scenes only is the default: it teaches in calibration and typing scenes and stays out of the way while you walk.' },
   keyboard: { name: 'Keyboard type', desc: 'Changes the Layout help diagram and the setup steps.' },
   reset: { name: 'Reset progress', desc: 'Erases seals, stars, patches, artifacts and best scores. Settings stay.' },
   resetQuestion: 'Reset all progress?',

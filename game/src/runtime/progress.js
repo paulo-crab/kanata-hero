@@ -25,7 +25,8 @@ export class ProgressStore {
     return {
       schema: 1,
       worldVersion: this.world.version,
-      settings: { keyboard: 'macbook', reducedMotion: 'system', largerText: false, highContrast: false },
+      settings: { keyboard: 'macbook', reducedMotion: 'system', largerText: false, highContrast: false, feedback: 'scenes' },
+      counters: { feedbackToasts: 0 },
       setup: { done: false, calibration: null },
       flags: [], levelsDone: [], seals: [], artifacts: [], patches: [], miraRoutesCleared: [],
       npc: {}, placements: {}, gatesOpen: [], levels: {}, journal: [], hintUse: [], best: {},
@@ -72,6 +73,8 @@ export class ProgressStore {
     out.journal = (Array.isArray(doc.journal) ? doc.journal : []).filter((x) => typeof x === 'string');
     out.hintUse = Array.isArray(doc.hintUse) ? doc.hintUse : [];
     out.best = doc.best && typeof doc.best === 'object' ? doc.best : {};
+    const uses = doc.counters && Number(doc.counters.feedbackToasts);
+    out.counters = { feedbackToasts: Number.isInteger(uses) && uses > 0 ? uses : 0 };
     this._syncFlags(out);
     return out;
   }
