@@ -49,12 +49,18 @@ function diagramFor(ctx, cal, stepId, plain = false) {
   const heldId = spec.held;
   const rows = manifest.keyboard(variant).rows.map((row) => row.filter((k) => k.id !== 'Down'));
   const state = (id) => (id === heldId ? 'layer' : id === spec.target ? 'target' : 'plain');
-  const characters = (id) => {
+  // A label has to fit its key at 16 px (four characters per unit of width); the full legends are in Layout help.
+  const fits = (text, widthU) => text.length <= Math.floor(widthU * 4.05);
+  const characters = (id, widthU) => {
     if (id === heldId) return cleanLabel(id);
-    try { return shortLegend(manifest.keyAt(spec.layer, id, variant).legend) || cleanLabel(id); } catch { return cleanLabel(id); }
+    let legend = '';
+    try { legend = shortLegend(manifest.keyAt(spec.layer, id, variant).legend); } catch { legend = ''; }
+    if (legend && fits(legend, widthU)) return legend;
+    const name = cleanLabel(id);
+    return fits(name, widthU) ? name : '';
   };
   const build = (mode) => rows.map((row) => row.map((k) => ({
-    label: mode === 'positions' ? cleanLabel(k.id) : characters(k.id), state: state(k.id), width_u: k.width_u,
+    label: mode === 'positions' ? cleanLabel(k.id) : characters(k.id, k.width_u), state: state(k.id), width_u: k.width_u,
   })));
   const holdMs = timing.hold_ms ? ` about ${timing.hold_ms} ms` : '';
   const out = {
