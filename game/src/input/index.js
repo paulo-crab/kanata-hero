@@ -5,6 +5,6 @@ export {
   CALIBRATION_STEPS, Calibration, STATUS_LABELS, STEP_STATUSES, KEYBOARD_TYPES,
 } from './calibration.js';
 export { LayoutManifest } from './layout-manifest.js';
-export { layoutHelpModel } from './layout-help.js';
+export { layoutHelpModel, keyFace, shortLegend } from './layout-help.js';
 export { HINT_CARD_TEXT, HintGate } from './hint-gate.js';
 export { CONFIDENCE_LABELS, confidenceLabel, isConfidence, weakestConfidence } from './confidence.js';

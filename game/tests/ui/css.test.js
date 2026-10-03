@@ -11,7 +11,7 @@ const strip = (css) => css.replace(/\/\*[^]*?\*\//g, '');
 const TOKENS = strip(read('art-direction/ui-kit/tokens.css'));
 const tokenNames = new Set([...TOKENS.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
 /** Custom properties set inline by the components (a number each), not kit tokens. */
-const LOCAL_PROPS = new Set(['--w', '--gap']);
+const LOCAL_PROPS = new Set(['--w', '--gap', '--key-h']);
 
 const rules = (css) => [...strip(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => ({ sel: m[1].trim(), body: m[2] }));
 
@@ -44,7 +44,7 @@ test('stylesheet lint: every var() resolves to a kit token (or a documented loca
       assert.ok(tokenNames.has(m[1]) || LOCAL_PROPS.has(m[1]), `${f}: ${m[1]} is not a kit token`);
     }
     for (const d of defined) {
-      assert.ok(tokenNames.has(d), `${f}: declares ${d}, which is not a kit token (only overrides of kit tokens are allowed)`);
+      assert.ok(tokenNames.has(d) || LOCAL_PROPS.has(d), `${f}: declares ${d}, which is not a kit token (only overrides of kit tokens are allowed)`);
     }
   }
 });

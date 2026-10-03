@@ -44,18 +44,22 @@
 .also { display: flex; flex-direction: column; gap: var(--space-2); flex: none; }
 
 /* ---- Layout help ---------------------------------------------------------------------------------------------- */
-.lh-overlay { overflow-y: auto; --key-unit: 40px; left: 16px; right: 16px; top: 8px; bottom: 8px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
-.lh-overlay .top { gap: var(--space-4); }
+.lh-overlay { overflow-y: auto; --key-h: 50px; --key-unit: 62px; left: 16px; right: 16px; top: 8px; bottom: 8px; gap: 6px; padding: var(--space-2) var(--space-5) var(--space-3); }
+.lh-overlay .top { gap: var(--space-4); flex-wrap: wrap; }
 .lh-overlay .top h2 { font-size: var(--text-xl); }
 .lh-how { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
 .kh-lh { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
 .lh-rows { display: flex; flex-direction: column; gap: var(--key-gap); align-items: center; }
 .lh-row { display: flex; gap: var(--key-gap); align-items: flex-start; }
 .lh-gap { flex: none; width: calc((var(--key-unit) + var(--key-gap)) * var(--gap) - var(--key-gap)); }
-.kh-lk { width: calc(var(--key-unit) * var(--w, 1) + var(--key-gap) * (var(--w, 1) - 1)); height: var(--key-unit); border-radius: var(--radius-sm); background: var(--key-dim-face); color: var(--key-dim-text); border: 0; box-shadow: 0 3px 0 var(--key-dim-edge);
+.kh-lk { width: calc(var(--key-unit) * var(--w, 1) + var(--key-gap) * (var(--w, 1) - 1)); height: var(--key-h, var(--key-unit)); border-radius: var(--radius-sm); background: var(--key-dim-face); color: var(--key-dim-text); border: 0; box-shadow: 0 3px 0 var(--key-dim-edge);
   display: flex; flex-direction: column; align-items: center; justify-content: center; font: var(--weight-regular) var(--text-sm)/1.15 var(--font-mono); position: relative; margin-bottom: 3px; flex: none; padding: 0; }
 .kh-lk .l { font-size: var(--text-base); }
-.kh-lk .s { max-width: 100%; overflow: hidden; text-overflow: ellipsis; font: var(--weight-bold) var(--text-sm)/1.1 var(--font-body); white-space: nowrap; }
+.kh-lk .s { max-width: 100%; font: var(--weight-bold) var(--text-sm)/1.1 var(--font-body); white-space: nowrap; }
+.lh-stack { display: flex; flex-direction: column; gap: 3px; flex: none; width: calc(var(--key-unit) * var(--w, 1)); }
+.lh-stack .kh-lk { width: 100%; height: calc((var(--key-h) - 3px) / 2); margin-bottom: 0; }
+.lh-stack .kh-lk .l { font-size: var(--text-sm); line-height: 1; }
+.stage.large-text .lh-overlay { --key-h: 56px; }
 .kh-lk.map { background: var(--key-face); color: var(--key-text); box-shadow: 0 4px 0 var(--key-edge); font-weight: var(--weight-bold); }
 .kh-lk.map::before { content: ""; position: absolute; left: 8px; right: 8px; top: 0; height: 4px; background: var(--key-held-edge); border-radius: 0 0 3px 3px; }
 .kh-lk.layerkey { background: var(--key-held-face); color: var(--key-held-text); box-shadow: 0 1px 0 var(--key-held-edge); top: 3px; font-weight: var(--weight-bold); }
