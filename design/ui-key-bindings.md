@@ -48,7 +48,7 @@ Rules that apply to all of them:
 - *Rejected:* **Space** (as above) and **a mouse-only button**, which would break the keyboard-only promise.
 
 **Skip: Esc, tap Caps.**
-- *Appears:* the dialogue footer. Skipping ends the conversation. Any instruction it carried is not lost: the step's instruction line is shown, and the journal repeats it. *Changes meaning:* in setup, Esc skips the whole setup; a single calibration step is skipped by moving on with Down (a step left alone is recorded as Skipped).
+- *Appears:* the dialogue footer. Skipping ends the conversation. Any instruction it carried is not lost: the step's instruction line is shown, and the journal repeats it. *Changes meaning:* in setup, Esc on the setup screen opens a skip confirm card (Return = yes, Esc = back); a single calibration step is skipped by moving on with Down (a step left alone is recorded as Skipped).
 - *Rejected:* **Return twice** (mashing Continue would skip by accident) and **Tab**, which is never bound.
 
 **Back, close, leave: Esc, tap Caps; alternative tap-hold Caps + `[` from level 07.**
