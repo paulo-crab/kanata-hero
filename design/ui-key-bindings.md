@@ -190,3 +190,8 @@ These close the open questions in the first version of this document.
 - **Hint does not work in Violento recall scenes.** In Violento the Hint key stays off after a gesture's introduction, including in recall scenes.
 - **"Ride to the hub" is a journal row, not a new key.** The game spec's quick route back to the hub is reached from the journal's "Also from here" row and confirmed with Return.
 - **Backtick and `?` are reserved in typing scenes.** No level may ask the player to type either as text; the level-data validator should reject such a task.
+
+## Playtest 1 changes (2026-10-02)
+
+- In setup and calibration no single key press skips everything. Esc on the setup screen and Up during calibration open a confirm card (Return = yes, Esc = back); Down skips the current calibration step; Return settles step 2 only.
+- Output feedback is shown only in typing scenes and calibration, plus a short toast in the world; it is never a persistent card.
