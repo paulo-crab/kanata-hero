@@ -1,4 +1,6 @@
-// Setup and calibration screens (vm:setup, vm:calibration). One panel when both are present, as in the kit.
+// Setup and calibration screens (vm:setup, vm:calibration).
+// Setup is only the keyboard choice and a Next button. Calibration is one step at a time: a large prompt with the
+// gesture keycaps, what the page is waiting for, the last output it saw, wrong-key feedback, then a success state.
 import { Component } from './component.js';
 import { html, cmdAttr } from './html.js';
 import { icon } from './icons.js';
@@ -22,19 +24,6 @@ function keyboardCards(vm) {
     </button>`)}</div>`;
 }
 
-function stepRow(s, i) {
-  const [cls, ic] = CHIP[s.status] || CHIP.not_started;
-  const confirm = s.confirmable
-    ? html`<button type="button" class="kh-btn" data-fid="confirm-${s.id}" ${cmdAttr({ type: 'playerConfirm', sceneId: 'calibration', choice: 'did' })}>I did this</button>`
-    : '';
-  return html`<button type="button" class="su-step${s.current ? ' cur' : ''}" data-step="${s.id}" data-fid="step-${s.id}" aria-current="${s.current ? 'step' : 'false'}"
-    ${s.current && !s.confirmable ? html`data-autofocus` : ''} ${cmdAttr({ type: 'chooseRow', id: s.id })}>
-    <span class="n">${i + 1}</span>
-    <span class="t">${s.gesture} <span class="mono">${s.expected}</span></span>
-    <span class="kh-chip ${cls}">${icon(ic, 20)} ${STATUS_LABELS[s.status] || s.statusLabel}</span>
-    <span class="d">${s.hintLine}</span></button>${confirm}`;
-}
-
 function diagramBlock(vm, state) {
   const d = vm.diagram;
   if (!d) return '';
@@ -42,9 +31,70 @@ function diagramBlock(vm, state) {
   const part = d[view] || d.positions || d.characters;
   if (!part) return '';
   const rows = part.rows.map((r) => html`<div class="sk-row">${r.map((k) => html`<span class="kh-sk ${k.state && k.state !== 'plain' ? k.state : ''}" style="--w:${k.width_u || 1}">${k.label}</span>`)}</div>`);
-  const seg = ['positions', 'characters'].filter((v) => d[v]).map((v) => html`<button type="button" data-fid="diagram-${v}" aria-pressed="${v === view ? 'true' : 'false'}" data-ui="diagram" data-view="${v}">${v === view ? icon('check', 16) : ''}${v === 'positions' ? 'Physical positions' : 'Resulting characters'}</button>`);
-  return html`<div class="su-diagram"><div class="head"><span class="kh-label">Diagram</span><div class="seg" role="group" aria-label="Diagram view">${seg}</div></div>
+  const views = ['positions', 'characters'].filter((v) => d[v]);
+  const seg = views.length > 1
+    ? html`<div class="seg" role="group" aria-label="Diagram view">${views.map((v) => html`<button type="button" data-fid="diagram-${v}" aria-pressed="${v === view ? 'true' : 'false'}" data-ui="diagram" data-view="${v}">${v === view ? icon('check', 16) : ''}${v === 'positions' ? 'Physical positions' : 'Resulting characters'}</button>`)}</div>`
+    : '';
+  return html`<div class="su-diagram"><div class="head"><span class="kh-label">Diagram</span>${seg}</div>
     <div class="sk-rows" role="img" aria-label="${part.caption || 'Keyboard diagram'}">${rows}</div><p class="cap">${part.caption || ''}</p></div>`;
+}
+
+/** The skip confirm card: Return is yes, Esc goes back. Nothing is skipped until the player says yes. */
+function confirmCard(what) {
+  return html`<div class="scrim card-scrim"></div>
+<section class="kh-panel kh-confirm" role="alertdialog" aria-modal="true" aria-label="Skip ${what}?" data-confirm="skip">
+  <h3>${icon('warn', 24)} Skip ${what}?</h3>
+  <p>${what === 'setup' ? 'Setup and calibration will be left undone. You can run setup again from Settings.' : 'The steps you have not done will be recorded as Skipped. You can run setup again from Settings.'}</p>
+  <div class="btns">
+    <button type="button" class="kh-btn primary" data-fid="skip-yes" data-autofocus ${cmdAttr({ type: 'continue' })}>Yes, skip ${keycap(CONTINUE.key, { sm: true })}</button>
+    <button type="button" class="kh-btn" data-fid="skip-no" ${cmdAttr({ type: 'back' })}>Go back ${keycap(CLOSE.key, { sm: true })}</button>
+  </div>
+</section>`;
+}
+
+function stepProgress(vm) {
+  return html`<ol class="su-dots" aria-label="Calibration progress">${vm.steps.map((s) => html`<li class="${s.current ? 'cur' : ''} ${s.status}" aria-label="Step ${s.number}: ${STATUS_LABELS[s.status] || s.statusLabel}${s.current ? ', now' : ''}">${s.number}</li>`)}</ol>`;
+}
+
+function waitingPrompt(vm) {
+  const c = vm.current;
+  const keys = c.keys.length
+    ? html`<div class="su-gesture" role="group" aria-label="Gesture: ${c.gesture}"><span class="verb">Hold</span>${keycap(c.keys[0])}<span class="plus" aria-hidden="true">+</span><span class="verb">tap</span>${keycap(c.keys[1])}</div>`
+    : '';
+  const last = vm.lastSeen
+    ? html`<p class="su-last" data-last-seen>Last key seen: <b class="mono">${vm.lastSeen.name}</b></p>`
+    : html`<p class="su-last" data-last-seen>Last key seen: <span class="mono">nothing yet</span></p>`;
+  const wrong = vm.wrong
+    ? html`<div class="su-wrong" role="alert" data-wrong>${icon('warn', 24)}<div><b>${vm.wrong.text}</b>${vm.wrong.hint ? html`<p>${vm.wrong.hint}</p>` : ''}</div></div>`
+    : '';
+  const done = vm.success
+    ? html`<div class="su-ok" role="status" data-success>${icon('check', 24)} ${vm.success.text}</div>`
+    : '';
+  return html`<div class="su-prompt">
+    <div class="head"><span class="kh-label">Step ${c.number} of ${vm.stepCount}</span>${stepProgress(vm)}</div>
+    ${done}
+    <p class="su-say">${c.action}</p>
+    ${keys}
+    <p class="su-wait" data-waiting><span class="kh-chip todo">${icon('circle', 20)} ${c.waiting}</span></p>
+    ${last}
+    ${wrong}
+    <div class="btns">
+      <button type="button" class="kh-btn" data-fid="skip-step" ${cmdAttr({ type: 'skipStep' })}>Skip this step ${keycap(vm.skipStep.key, { sm: true })}</button>
+    </div>
+  </div>`;
+}
+
+function summary(vm) {
+  const rows = vm.steps.map((s) => {
+    const [cls, ic] = CHIP[s.status] || CHIP.not_started;
+    return html`<li class="su-sum-row" data-step="${s.id}" data-status="${s.status}"><span class="n">${s.number}</span><span class="t">${s.gesture} <span class="mono">${s.expectedName}</span></span><span class="kh-chip ${cls}">${icon(ic, 20)} ${STATUS_LABELS[s.status] || s.statusLabel}</span></li>`;
+  });
+  return html`<div class="su-prompt summary">
+    <div class="head"><span class="kh-label">Calibration finished</span></div>
+    ${vm.success ? html`<div class="su-ok" role="status" data-success>${icon('check', 24)} ${vm.success.text}</div>` : ''}
+    <ul class="su-sum" aria-label="Calibration summary">${rows}</ul>
+    <p class="su-foot">${SETUP_COPY.footnote}</p>
+  </div>`;
 }
 
 export function calibrationBody(vm, state = createScreenState()) {
@@ -52,29 +102,37 @@ export function calibrationBody(vm, state = createScreenState()) {
   const chip = t.practice === 'player-confirmed'
     ? html`<span class="kh-chip confirmed">${icon('person-check', 20)} Practice layer: player-confirmed</span>`
     : html`<span class="kh-chip unconfirmed">${icon('circle', 20)} Practice layer: unconfirmed</span>`;
-  return html`<div class="su-body"><div class="su-steps"><div class="head"><span class="kh-label">Calibration</span><span class="sub">Five optional steps</span></div>
-    ${vm.steps.map(stepRow)}<p class="su-foot">${SETUP_COPY.footnote}</p></div>
-  <div class="su-side">${state.feedback ? feedbackView(state.feedback) : ''}${diagramBlock(vm, state)}
+  const main = vm.phase === 'summary' || !vm.current ? summary(vm) : waitingPrompt(vm);
+  return html`<div class="su-body"><div class="su-main">${main}${state.feedback ? feedbackView(state.feedback) : ''}</div>
+  <div class="su-side">${diagramBlock(vm, state)}
     <div class="su-toggle"><span class="kh-label">Toggle out of practice</span><div class="seq">${sequence(t.keys)}</div><p>${t.text}</p><div>${chip}</div></div></div></div>`;
 }
 
 export function setupScreenView(state) {
   const { setup, calibration } = state;
   const title = setup ? SETUP_COPY.title : 'Calibration';
+  let actions;
+  if (setup) {
+    actions = html`<button type="button" class="kh-btn" data-fid="skip" ${cmdAttr({ type: 'skip' })}>${SETUP_COPY.skip} ${keycap(CLOSE.key, { sm: true })}</button>
+    <button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Next ${keycap(CONTINUE.key, { sm: true })}</button>`;
+  } else if (calibration.phase === 'summary') {
+    actions = html`<button type="button" class="kh-btn primary" data-fid="continue" data-autofocus ${cmdAttr({ type: 'continue' })}>Next ${keycap(CONTINUE.key, { sm: true })}</button>`;
+  } else {
+    actions = html`<button type="button" class="kh-btn" data-fid="skip-calibration" ${cmdAttr({ type: 'skipCalibration' })}>Skip calibration ${keycap(calibration.skipAll.key, { sm: true })}</button>`;
+  }
+  const confirm = (setup && setup.confirm) ? confirmCard('setup') : (!setup && calibration.confirm ? confirmCard('calibration') : '');
+  const sub = setup ? SETUP_COPY.sub : 'Do each gesture once. Nothing here blocks the story.';
   return html`<div class="scrim"></div>
 <section class="kh-panel overlay su" role="dialog" aria-modal="true" aria-label="${title}" data-screen="${setup ? 'setup' : 'calibration'}">
-  <div class="top"><h2>${title}</h2><span class="sub">${SETUP_COPY.sub}</span><span class="grow"></span>
-    <button type="button" class="kh-btn" data-fid="skip" ${cmdAttr({ type: 'skip' })}>${SETUP_COPY.skip} ${keycap(CLOSE.key, { sm: true })}</button>
-    ${setup
-    ? html`<button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Continue ${keycap(CONTINUE.key, { sm: true })}</button>`
-    // On the calibration screen Return only settles step 2, so the explicit Next control carries no key claim.
-    : html`<button type="button" class="kh-btn primary" data-fid="continue" ${cmdAttr({ type: 'continue' })}>Next</button>`}</div>
+  <div class="top"><h2>${title}</h2><span class="sub">${sub}</span><span class="grow"></span>${actions}</div>
   ${setup ? keyboardCards(setup) : ''}
-  ${calibration ? calibrationBody(calibration, state) : ''}
+  ${setup ? html`<div class="su-body single"><div class="su-side wide">${diagramBlock(setup, state)}</div></div>` : ''}
+  ${calibration && !setup ? calibrationBody(calibration, state) : ''}
+  ${confirm}
 </section>`;
 }
 
-/** Draws the whole panel when a setup vm is present (with calibration inside when both are). */
+/** Draws the whole panel when a setup vm is present. */
 export class Setup extends Component {
   static topic = 'vm:setup';
   static modal = true;

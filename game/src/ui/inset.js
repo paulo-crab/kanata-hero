@@ -17,7 +17,7 @@ function miniRow(keys, target) {
   const caps = keys.map((k) => {
     const lit = k.held || k.lit || k.key === target || k.label === target;
     const k2 = { ...k, dim: !lit };
-    return keycap(k2, { sm: true, cls: k.label === 'Caps' ? 'cap' : '' });
+    return keycap(k2, { sm: true, cls: String(k.label).length > 2 ? 'cap' : '' });
   });
   const names = keys.map((k) => keycapName(k)).join(' ');
   return html`<div class="kh-mini" role="img" aria-label="Key position: ${names}">${caps}</div>`;

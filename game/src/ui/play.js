@@ -11,8 +11,8 @@ import {
 const CHIP_COMMANDS = { journal: { type: 'openLayer', id: 'journal' }, 'layout-help': { type: 'openLayer', id: 'layout-help' } };
 
 export function hudView(vm) {
-  const { title, progress, seals, chips = [] } = vm;
-  const strip = html`<div class="kh-hud obj" role="group" aria-label="Objective">
+  const { title, progress, seals, chips = [], compact = false } = vm;
+  const strip = compact ? '' : html`<div class="kh-hud obj" role="group" aria-label="Objective">
   <span class="title">${title}</span>
   <span class="count" aria-label="Progress ${progress.done} of ${progress.total}">${progress.done} / ${progress.total}</span>
   <span class="sep" aria-hidden="true"></span>

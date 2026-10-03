@@ -96,7 +96,8 @@ export function settingsView(vm) {
   <div class="kh-set"><div class="col"><h3>${S.accessibility}</h3>
     ${toggle('largerText', S.largerText.name, S.largerText.desc, vm.largerText)}
     ${toggle('highContrast', S.highContrast.name, S.highContrast.desc, vm.highContrast)}
-    ${choice('reducedMotion', S.reducedMotion.name, S.reducedMotion.desc, [['system', 'System'], ['on', 'On'], ['off', 'Off']], vm.reducedMotion)}</div>
+    ${choice('reducedMotion', S.reducedMotion.name, S.reducedMotion.desc, [['system', 'System'], ['on', 'On'], ['off', 'Off']], vm.reducedMotion)}
+    ${choice('feedback', S.feedback.name, S.feedback.desc, [['scenes', 'In scenes only'], ['always', 'Always'], ['off', 'Off']], vm.feedback || 'scenes')}</div>
   <div class="col"><h3>${S.keyboard.name}</h3>
     ${choice('keyboard', S.keyboard.name, S.keyboard.desc, Object.entries(KEYBOARD_LABELS), vm.keyboard)}
     <h3>${S.reset.name}</h3>${reset}

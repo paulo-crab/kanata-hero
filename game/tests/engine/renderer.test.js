@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Renderer, orderLayer, LAYER_ORDER } from '../../src/engine/index.js';
+import { Renderer, orderLayer, orderWorld, LAYER_ORDER } from '../../src/engine/index.js';
 import { newWorld, run } from './helpers.js';
 
 function fakeCanvas(w = 0, h = 0) {
@@ -189,4 +189,83 @@ test('a scripted walk then draw is deterministic', async () => {
     return JSON.stringify(buffer.calls.filter(([k]) => k === 'drawImage').map((c) => c.slice(2)));
   };
   assert.equal(await draws(), await draws());
+});
+
+// ---- tall props occlude actors north of them (playtest 1, item 2) ------------------------------------------------
+
+/** Index in draw order of the first draw whose atlas and rect match. */
+function drawIndex(ordered, atlas, rect) {
+  return ordered.findIndex(({ draw }) => draw.atlas === atlas && draw.rect && rect
+    && draw.rect.x === rect[0] && draw.rect.y === rect[1] && draw.rect.w === rect[2] && draw.rect.h === rect[3]);
+}
+
+test('a glass partition draws over an actor standing in the row north of it, and under one standing south of it', async () => {
+  const { world, atlases } = await newWorld();
+  // The real atlas entries: 28 px tall sprites on 16 px cells, y-sorted rear props with the footprint origin at [0,10].
+  const one = atlases.kitEntry('partition_1x1');
+  const two = atlases.kitEntry('partition_2x1');
+  for (const e of [one, two]) {
+    assert.equal(e.layer, 'rear_prop');
+    assert.equal(e.y_sort, true);
+    assert.equal(e.size_px[1], 28);
+    assert.deepEqual(e.footprint.origin_px, [0, 10]);
+  }
+  const rectOf = (e) => [e.rect[0], e.rect[1], e.size_px[0], e.size_px[1]];
+  const order = (cell) => {
+    world.avatar.teleport(cell, 's');
+    const ordered = orderWorld(world.snapshot().layers);
+    const avatar = ordered.findIndex(({ name, draw }) => name === 'actor' && draw.atlas === 'engineer');
+    return { ordered, avatar };
+  };
+  // partition_1x1 at (19,12) and partition_2x1 at (20,12): cells (19,11) and (20,11) are open floor to the north.
+  for (const [cell, e] of [[[19, 11], one], [[20, 11], two]]) {
+    assert.equal(world.isBlocked(cell[0], cell[1]), false, `${cell} is walkable`);
+    const { ordered, avatar } = order(cell);
+    const prop = drawIndex(ordered, 'kit', rectOf(e));
+    assert.ok(prop >= 0 && avatar >= 0);
+    assert.ok(avatar < prop, `an actor north of ${e.name} is drawn behind the glass`);
+    // its contact shadow goes behind the glass too
+    const shadow = ordered.findIndex(({ name, draw }) => name === 'shadow' && draw.anchorY === world.avatar.feetPx.y);
+    assert.ok(shadow >= 0 && shadow < prop && shadow < avatar);
+  }
+  // The 1x1 partition at (25,12) has open floor on both sides: the mail room is to the south.
+  const south = [25, 13];
+  assert.equal(world.isBlocked(south[0], south[1]), false);
+  const { ordered, avatar } = order(south);
+  const prop = ordered.findIndex(({ draw }) => draw.atlas === 'kit' && draw.rect.x === one.rect[0] && draw.rect.y === one.rect[1] && draw.x === 25 * 16);
+  assert.ok(prop >= 0 && avatar > prop, 'an actor south of the glass is drawn over it');
+});
+
+test('orderWorld: static rear props first, then props, shadows and actors by anchor; later layers keep their order', () => {
+  const layers = {
+    rear_wall: [{ id: 'w', anchorY: 5 }],
+    floor_marking: [{ id: 'm', anchorY: 1 }],
+    rear_prop: [
+      { id: 'static', ySort: false, anchorY: 500 },
+      { id: 'tall', ySort: true, anchorY: 208 },
+      { id: 'low', ySort: true, anchorY: 100 },
+    ],
+    shadow: [{ id: 'sh-n', ySort: false, anchorY: 192 }, { id: 'sh-s', ySort: false, anchorY: 224 }],
+    actor: [{ id: 'north', ySort: true, anchorY: 192 }, { id: 'south', ySort: true, anchorY: 224 }],
+    front_prop: [{ id: 'f2', ySort: true, anchorY: 30 }, { id: 'f1', ySort: true, anchorY: 10 }],
+    light: [{ id: 'l' }],
+  };
+  assert.deepEqual(orderWorld(layers).map(({ draw }) => draw.id),
+    ['w', 'm', 'static', 'low', 'sh-n', 'north', 'tall', 'sh-s', 'south', 'f1', 'f2', 'l']);
+  // equal anchors: prop, then shadow, then actor
+  const tie = orderWorld({ rear_prop: [{ id: 'p', ySort: true, anchorY: 8 }], shadow: [{ id: 's', anchorY: 8 }], actor: [{ id: 'a', ySort: true, anchorY: 8 }] });
+  assert.deepEqual(tie.map(({ draw }) => draw.id), ['p', 's', 'a']);
+});
+
+test('the renderer draws the partition after the actor north of it (real draw calls)', async () => {
+  const { world, atlases } = await newWorld();
+  const { r, buffer } = build(atlases);
+  world.avatar.teleport([19, 11], 's');
+  r.draw(world.snapshot());
+  const imgs = buffer.calls.filter(([k]) => k === 'drawImage');
+  const part = atlases.kitEntry('partition_1x1');
+  const at = (pred) => imgs.findIndex(pred);
+  const actor = at((c) => c[1]?.url?.includes('engineer'));
+  const glass = at((c) => c[1]?.url?.includes('orientation-atlas') && c[2] === part.rect[0] && c[3] === part.rect[1] && c[4] === part.size_px[0] && c[5] === part.size_px[1]);
+  assert.ok(actor >= 0 && glass >= 0 && glass > actor, 'glass is blitted after the engineer');
 });

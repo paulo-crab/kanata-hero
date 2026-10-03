@@ -104,3 +104,11 @@ b, strong { font-weight: var(--weight-bold); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Last resort of the camera look-ahead: a panel that still covers the avatar is dimmed to 35 % opacity. */
+.stage[data-faded~="dialogue"] .kh-dialogue,
+.stage[data-faded~="inset"] .kh-inset,
+.stage[data-faded~="hud"] .kh-hud.obj,
+.stage[data-faded~="hud-chips"] .kh-hud.shortcuts,
+.stage[data-faded~="scene-bar"] .kh-term,
+.stage[data-faded~="feedback"] .kh-side { opacity: 0.35; }

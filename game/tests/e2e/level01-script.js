@@ -67,9 +67,12 @@ export function playLevel01(game, opts = {}) {
   };
   const done = (name) => stopAfter === name;
 
-  // ---- 1. Setup is skipped with Escape (whole setup) ----------------------------------------
+  // ---- 1. Setup is skipped with Escape, then Return on the confirm card (never by one key alone) ----
   if (topId() !== 'setup') fail(`expected the setup scene first, found ${topId()}`);
   player.tap('Escape');
+  letGo(2);
+  if (topId() !== 'setup') fail('Escape alone must open the confirm card, not leave setup');
+  player.tap('Enter');
   letGo(4);
   cp.afterSetup = { top: topId(), setupDone: progress.load().setup.done };
   if (done('setup')) return { log: player.log, events: rec.events, checkpoints: cp };

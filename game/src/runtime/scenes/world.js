@@ -116,13 +116,14 @@ export class WalkScene extends BaseScene {
     const output = DIR_OUTPUT[payload.dir] || DIR_OUTPUT[payload.facing];
     this.ctx.evidence.record(this.id, { output, correct, critical: false });
     this.ctx.bus.emit('scene:feedback', { sceneId: this.id, observed: output, line: `Step ${payload.dir}` });
-    this.ctx.bus.emit('vm:feedback', {
+    const step = { n: 'Step north', s: 'Step south', e: 'Step east', w: 'Step west' }[payload.dir] || 'Step';
+    this.ctx.feedback.world({
       gesture: null,
       observed: `${observedName({ output })} observed`,
-      effect: { n: 'Step north', s: 'Step south', e: 'Step east', w: 'Step west' }[payload.dir] || 'Step',
+      effect: step,
       confidence: 'observed',
       confidenceLabel: CONFIDENCE_LABEL[this.def.confidence] || 'Output observed',
-    });
+    }, `${observedName({ output })} observed: ${step.toLowerCase()}`);
     this._reachCheck(cell);
   }
 

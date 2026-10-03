@@ -119,25 +119,50 @@ test('progress: reset clears storage and the document', () => {
 
 // ---- setup flow, journal, settings -------------------------------------------------------------
 
-test('first visit: setup, then calibration, then arrival; returning player goes to the hub', () => {
+test('first visit: setup (keyboard only), then calibration one step at a time, then arrival; returning player goes to the hub', () => {
   const storage = memoryStorage();
   const g = makeGame({ storage });
   g.session.start();
   assert.equal(g.session.machine.top.kind, 'setup');
   assert.equal(g.vms['vm:setup'].keyboard, 'macbook');
+  assert.ok(!g.vms['vm:calibration'], 'the setup screen does not list the calibration steps');
   g.player.tap('ArrowRight');
   assert.equal(g.vms['vm:setup'].keyboard, 'microsoft');
   g.player.tap('Enter');
   assert.equal(g.session.machine.top.kind, 'calibration');
-  const steps = g.vms['vm:calibration'].steps;
-  assert.equal(steps.length, 5);
-  assert.ok(steps[0].current);
-  assert.equal(steps[0].statusLabel, 'Not started');
-  g.player.tap('ArrowLeft'); // observed Caps + H output
-  assert.equal(g.vms['vm:calibration'].steps[0].statusLabel, 'Observed output');
-  g.player.tap('ArrowDown'); // skip the Return step
-  assert.equal(g.vms['vm:calibration'].steps[1].statusLabel, 'Skipped');
-  g.player.tap('Escape'); // skip the rest
+  let cal = g.vms['vm:calibration'];
+  assert.equal(cal.steps.length, 5);
+  assert.equal(cal.current.id, 'caps-h');
+  assert.equal(cal.current.waiting, 'Waiting for Left Arrow');
+  assert.equal(cal.lastSeen, null);
+  // a wrong key is shown, never skips anything
+  g.player.tap('Enter');
+  cal = g.vms['vm:calibration'];
+  assert.equal(cal.current.id, 'caps-h', 'Return alone does not skip the step or the calibration');
+  assert.equal(cal.wrong.text, 'Got Return, expected Left Arrow.');
+  assert.equal(cal.lastSeen.name, 'Return');
+  g.player.tap('Escape');
+  cal = g.vms['vm:calibration'];
+  assert.equal(g.session.machine.top.kind, 'calibration', 'a quick Caps tap (Esc) does not skip calibration');
+  assert.equal(cal.wrong.hint, 'That was a tap. Hold Caps a moment, then press H.');
+  g.player.tap('ArrowLeft');
+  cal = g.vms['vm:calibration'];
+  assert.equal(cal.steps[0].statusLabel, 'Observed output');
+  assert.equal(cal.success.stepId, 'caps-h');
+  assert.equal(cal.wrong, null);
+  assert.equal(cal.current.id, 'caps-n');
+  g.player.tap('ArrowDown'); // skip this step
+  cal = g.vms['vm:calibration'];
+  assert.equal(cal.steps[1].statusLabel, 'Skipped');
+  assert.equal(cal.current.id, 'space-a');
+  // skip the rest only through the confirm card: Up opens it, Esc goes back, Return says yes
+  g.player.tap('ArrowUp');
+  assert.equal(g.vms['vm:calibration'].confirm, true);
+  g.player.tap('Escape');
+  assert.equal(g.vms['vm:calibration'].confirm, false);
+  assert.equal(g.session.machine.top.kind, 'calibration');
+  g.player.tap('ArrowUp');
+  g.player.tap('Enter');
   assert.equal(g.session.machine.top.kind, 'arrival');
   const doc = g.session.progress.doc;
   assert.equal(doc.setup.done, true);
@@ -150,10 +175,33 @@ test('first visit: setup, then calibration, then arrival; returning player goes 
   assert.equal(again.session.machine.top.kind, 'arrival'); // setup done, level not started
 });
 
+test('setup: Esc and Return alone never skip everything; the confirm card does; a finished calibration shows a summary', () => {
+  const g = makeGame();
+  g.session.start();
+  g.player.tap('Escape');
+  assert.equal(g.session.machine.top.kind, 'setup');
+  assert.equal(g.vms['vm:setup'].confirm, true);
+  g.player.tap('Escape');
+  assert.equal(g.vms['vm:setup'].confirm, false, 'Esc goes back from the card');
+  assert.equal(g.session.progress.doc.setup.done, false);
+  g.player.tap('Enter'); // Next
+  assert.equal(g.session.machine.top.kind, 'calibration');
+  for (const out of ['ArrowLeft', 'Enter', '1', '!', '?']) g.player.tap(out);
+  const cal = g.vms['vm:calibration'];
+  assert.equal(cal.phase, 'summary');
+  assert.deepEqual(cal.steps.map((s) => s.status), ['observed', 'observed', 'observed', 'observed', 'observed']);
+  g.player.tap('Escape');
+  assert.equal(g.session.machine.top.kind, 'calibration', 'Esc on the summary does nothing');
+  g.player.tap('Enter');
+  assert.equal(g.session.machine.top.kind, 'arrival');
+  assert.deepEqual(Object.values(g.session.progress.doc.setup.calibration.steps), ['observed', 'observed', 'observed', 'observed', 'observed']);
+});
+
 test('journal: Q opens and closes it, rows and Also-from-here list, Layout help round trip, settings toggles', () => {
   const g = makeGame();
   g.session.start();
   g.player.tap('Escape');
+  g.player.tap('Enter'); // confirm the skip
   g.player.tick(30);
   g.player.tap('Enter');
   g.player.tap('Escape');
@@ -189,6 +237,7 @@ test('Controls scene lists the six keys; Escape in the open world does nothing',
   const g = makeGame();
   g.session.start();
   g.player.tap('Escape');
+  g.player.tap('Enter'); // confirm the skip
   g.player.tick(30);
   g.player.tap('Enter');
   g.player.tap('Escape');

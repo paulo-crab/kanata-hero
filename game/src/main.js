@@ -5,6 +5,7 @@ import * as engine from './engine/index.js';
 import * as input from './input/index.js';
 import * as runtime from './runtime/index.js';
 import * as ui from './ui/index.js';
+import { ViewControl } from './view-control.js';
 
 export const modules = { engine, input, runtime, ui };
 
@@ -69,24 +70,27 @@ export async function createGame(opts = {}) {
       }
     }
   };
+  const viewControl = new ViewControl({ bus, world, zoom: STAGE_ZOOM });
   const loop = new engine.GameLoop({
     clock,
-    update: guarded('update', (ms) => { world.update(ms); session.update(ms); }),
+    update: guarded('update', (ms) => { world.update(ms); session.update(ms); viewControl.update(); }),
     render: guarded('render', () => { if (opts.render) opts.render(); }),
     raf: opts.raf,
     caf: opts.caf,
   });
 
   session.start();
+  viewControl.update();
   applyMotion();
 
   return {
-    bus, clock, data, atlases, world, session, interpreter, loop, manifest,
+    bus, clock, data, atlases, world, session, interpreter, loop, manifest, viewControl,
     rules: session.rules, dialogue: session.dialogue, evidence: session.evidence, progress: session.progress,
     machine: session.machine,
     destroy() {
       loop.stop();
       interpreter.detach();
+      viewControl.destroy();
     },
   };
 }

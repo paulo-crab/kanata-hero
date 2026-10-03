@@ -80,24 +80,73 @@ test('layout help: Microsoft remap strip appears only when the view-model carrie
 });
 
 // ---- Setup and calibration -----------------------------------------------------------------------------------------------
-test('setup and calibration: skip and continue are keyboard-reachable buttons; statuses are exactly the three allowed words', () => {
+test('setup: only the keyboard choice, a diagram, Skip setup and Next; the five steps are not listed', () => {
   const state = createScreenState();
   state.setup = F.setupVm();
-  state.calibration = F.calibrationVm();
   const m = s(setupScreenView(state));
   assert.match(m, /<button type="button" class="kh-btn" data-fid="skip" data-cmd="\{&quot;type&quot;:&quot;skip&quot;\}">Skip setup/);
-  assert.match(m, /data-fid="continue"/);
   assert.match(textOf(m), /Skip setup Esc/);
-  assert.match(textOf(m), /Continue Return/);
+  assert.match(textOf(m), /Next Return/);
   assert.match(textOf(m), /About two minutes\. Nothing here blocks the story\./);
-  const chips = [...m.matchAll(/kh-chip (?:obs|skip|todo)">.*?<\/svg> ([^<]+)</g)].map((x) => x[1]);
-  assert.deepEqual([...new Set(chips)].sort(), ['Not started', 'Observed output', 'Skipped']);
-  assert.doesNotMatch(textOf(m), /detected|verified/i);
-  assert.match(textOf(m), /observed output never proves which key you used/);
-  assert.match(m, /aria-current="step"/);
-  assert.equal((m.match(/class="su-step[" ]/g) || []).length, 5);
-  assert.match(m, /Practice layer: unconfirmed/);
+  assert.doesNotMatch(m, /su-step|data-step=|Not started/);
   assert.match(m, /data-autofocus/);
+  assert.doesNotMatch(m, /data-confirm/);
+  state.setup = F.setupVm('macbook');
+  state.setup.confirm = true;
+  const c = s(setupScreenView(state));
+  assert.match(c, /data-confirm="skip"/);
+  assert.match(textOf(c), /Skip setup\?/);
+  assert.match(textOf(c), /Yes, skip Return/);
+  assert.match(textOf(c), /Go back Esc/);
+});
+
+test('calibration: one big prompt with the gesture keycaps, waiting text, last key seen, wrong key and success', () => {
+  const state = createScreenState();
+  state.calibration = F.calibrationVm({ statuses: ['not_started', 'not_started', 'not_started', 'not_started', 'not_started'] });
+  let m = s(setupScreenView(state));
+  assert.match(m, /data-screen="calibration"/);
+  assert.match(textOf(m), /Step 1 of 5/);
+  assert.match(textOf(m), /Hold Caps\s*\+\s*tap H/);
+  assert.match(textOf(m), /Waiting for Left Arrow/);
+  assert.match(textOf(m), /Last key seen: nothing yet/);
+  assert.match(textOf(m), /Skip this step/);
+  assert.match(m, /aria-label="Down arrow"/);
+  assert.match(textOf(m), /Skip calibration/);
+  assert.match(m, /aria-label="Up arrow"/);
+  assert.doesNotMatch(m, /data-wrong|data-success/);
+  assert.doesNotMatch(textOf(m), /detected|verified/i);
+  state.calibration = F.calibrationVm({
+    statuses: ['not_started', 'not_started', 'not_started', 'not_started', 'not_started'],
+    lastSeen: { name: 'Esc' }, wrong: { text: 'Got Esc, expected Left Arrow.', hint: 'That was a tap. Hold Caps a moment, then press H.' },
+  });
+  m = s(setupScreenView(state));
+  assert.match(textOf(m), /Last key seen: Esc/);
+  assert.match(m, /data-wrong/);
+  assert.match(textOf(m), /Got Esc, expected Left Arrow\./);
+  assert.match(textOf(m), /That was a tap\. Hold Caps a moment, then press H\./);
+  state.calibration = F.calibrationVm({ lastSeen: { name: 'Left Arrow' }, success: { text: 'Step 1 done: Left Arrow observed.' } });
+  m = s(setupScreenView(state));
+  assert.match(m, /data-success/);
+  assert.match(textOf(m), /Step 2 of 5/);
+  assert.match(textOf(m), /Waiting for Return/);
+  state.calibration = F.calibrationVm({ confirm: true });
+  m = s(setupScreenView(state));
+  assert.match(textOf(m), /Skip calibration\?/);
+  assert.match(textOf(m), /Yes, skip Return/);
+});
+
+test('calibration summary: each step is Observed output or Skipped, with a Next button', () => {
+  const state = createScreenState();
+  state.calibration = F.calibrationVm({ statuses: ['observed', 'skipped', 'observed', 'skipped', 'observed'] });
+  const m = s(setupScreenView(state));
+  assert.match(textOf(m), /Calibration finished/);
+  const rows = [...m.matchAll(/data-step="([^"]+)" data-status="([^"]+)"/g)].map((x) => x[2]);
+  assert.deepEqual(rows, ['observed', 'skipped', 'observed', 'skipped', 'observed']);
+  const chips = [...m.matchAll(/kh-chip (?:obs|skip)">.*?<\/svg> ([^<]+)</g)].map((x) => x[1]);
+  assert.deepEqual(chips, ['Observed output', 'Skipped', 'Observed output', 'Skipped', 'Observed output']);
+  assert.match(textOf(m), /Next Return/);
+  assert.match(textOf(m), /observed output never proves which key you used/);
+  assert.match(m, /Practice layer: unconfirmed/);
 });
 
 test('setup: keyboard cards state Selected and Not selected in words; Microsoft selection follows the view-model', () => {
@@ -111,12 +160,11 @@ test('setup: keyboard cards state Selected and Not selected in words; Microsoft 
   assert.match(m, /data-cmd="\{&quot;type&quot;:&quot;selectKeyboard&quot;,&quot;id&quot;:&quot;macbook&quot;\}"/);
 });
 
-test('calibration alone gets its own panel; the feedback card and diagram switch draw inside it', () => {
+test('calibration: the diagram switch and the feedback card draw inside the panel', () => {
   const state = createScreenState();
   state.calibration = F.calibrationVm({ diagram: { positions: { rows: [[{ label: 'Caps', state: 'layer', width_u: 2 }, { label: 'H', state: 'target' }]], caption: 'Physical positions' }, characters: { rows: [[{ label: 'a', state: 'lit' }]], caption: 'Resulting characters' } } });
   state.feedback = { gesture: null, observed: 'ArrowLeft', effect: 'Step west', confidence: 'observed', confidenceLabel: 'Observed output' };
   const m = s(setupScreenView(state));
-  assert.match(m, /data-screen="calibration"/);
   assert.match(m, /kh-fb observed/);
   assert.match(m, /kh-sk target/);
   assert.match(m, /data-ui="diagram" data-view="characters"/);

@@ -53,18 +53,40 @@ export const insetVm = (over = {}) => ({
   ...over,
 });
 
-export const calibrationVm = (over = {}) => ({
-  steps: [
-    { id: 'caps-h', gesture: 'Caps + H', expected: 'Left arrow', hintLine: 'To move left, you need to press Left Arrow. Hint: Left Arrow is tap-hold Caps + H.', status: 'observed', statusLabel: 'Observed output', current: false },
-    { id: 'caps-n', gesture: 'Caps + N', expected: 'Return', hintLine: 'To continue, you need to press Return. Hint: Return is tap-hold Caps + N.', status: 'not_started', statusLabel: 'Not started', current: true },
-    { id: 'space-a', gesture: 'Space + A', expected: '1', hintLine: 'Hint: 1 is tap-hold Space + A.', status: 'skipped', statusLabel: 'Skipped', current: false },
-    { id: 'space-q', gesture: 'Space + Q', expected: '!', hintLine: 'Hint: ! is tap-hold Space + Q.', status: 'not_started', statusLabel: 'Not started', current: false },
-    { id: 'shift-hold', gesture: 'F, then /', expected: '?', hintLine: 'Hint: ? is tap-hold F, then /.', status: 'not_started', statusLabel: 'Not started', current: false },
-  ],
-  diagramView: 'positions',
-  toggleOut: { keys: ['Control', 'Alt', 'GUI', 'V'].map((l) => key(l)), text: 'To leave practice, you need to press Control + Alt + GUI + V.', practice: 'unconfirmed' },
-  ...over,
-});
+const STEPS = [
+  ['caps-h', 'Caps + H', 'Left Arrow', 'To move left, you need to press Left Arrow.', ['Caps', 'H']],
+  ['caps-n', 'Caps + N', 'Return', 'To interact or continue, you need to press Return.', ['Caps', 'N']],
+  ['space-a', 'Space + A', '1', 'To type the digit one, you need to press 1.', ['Space', 'A']],
+  ['space-q', 'Space + Q', '!', 'To type an exclamation mark, you need to press !.', ['Space', 'Q']],
+  ['shift-hold', 'F, then /', '?', 'To type a question mark, you need to press ?.', ['F', '/']],
+];
+
+/** One-step calibration view-model. `statuses` lists the five step statuses; the first not_started step is current. */
+export const calibrationVm = (over = {}) => {
+  const statuses = over.statuses || ['observed', 'not_started', 'not_started', 'not_started', 'not_started'];
+  const label = { not_started: 'Not started', observed: 'Observed output', skipped: 'Skipped' };
+  const cur = statuses.findIndex((x) => x === 'not_started');
+  const steps = STEPS.map(([id, gesture, expectedName, action, keys], i) => ({
+    id, number: i + 1, gesture, expected: expectedName, expectedName, action, hintLine: `${action} Hint: ${expectedName} is ${gesture}.`,
+    keys: keys.map((k, j) => ({ key: k, label: k, ...(j === 0 ? { held: true } : {}) })),
+    status: statuses[i], statusLabel: label[statuses[i]], current: i === cur,
+  }));
+  const { statuses: _drop, ...rest } = over;
+  return {
+    keyboard: 'macbook',
+    phase: cur < 0 ? 'summary' : 'steps',
+    stepCount: 5,
+    steps,
+    current: cur < 0 ? null : { ...steps[cur], waiting: `Waiting for ${steps[cur].expectedName}` },
+    lastSeen: null, wrong: null, success: null, confirm: false,
+    skipStep: { key: { key: 'ArrowDown', label: 'Down' }, gesture: 'tap-hold Caps + J' },
+    skipAll: { key: { key: 'ArrowUp', label: 'Up' }, gesture: 'tap-hold Caps + K' },
+    diagram: null,
+    diagramView: 'positions',
+    toggleOut: { keys: ['Control', 'Alt', 'GUI', 'V'].map((l) => key(l)), text: 'To leave practice, you need to press Control + Alt + GUI + V.', practice: 'unconfirmed' },
+    ...rest,
+  };
+};
 
 export const setupVm = (keyboard = 'macbook') => ({
   keyboard,
@@ -72,6 +94,8 @@ export const setupVm = (keyboard = 'macbook') => ({
     { id: 'macbook', label: 'MacBook', selected: keyboard === 'macbook' },
     { id: 'microsoft', label: 'Microsoft', selected: keyboard === 'microsoft' },
   ],
+  confirm: false,
+  diagram: { positions: { rows: [[{ label: 'Caps', state: 'plain', width_u: 2 }, { label: 'H', state: 'plain' }]], caption: 'The MacBook keyboard as the game draws it.' } },
 });
 
 export const journalVm = (over = {}) => ({

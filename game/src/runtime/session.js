@@ -8,6 +8,7 @@ import { SceneMachine } from './machine.js';
 import { createSceneFactories } from './scenes/index.js';
 import { keycap, KEY_GESTURE } from './common.js';
 import { insetViewModel } from './inset.js';
+import { FeedbackPolicy } from './feedback.js';
 
 const WORLD_TOPS = ['hub', 'walk', 'form', 'label', 'editor'];
 const HUD_HIDDEN = ['setup', 'calibration', 'arrival', 'error'];
@@ -47,8 +48,9 @@ export class Session {
       afterSetup: () => this.afterSetup(),
       resetProgress: () => this.resetProgress(),
     };
+    this.feedback = new FeedbackPolicy({ bus, clock, progress: this.progress });
     this.ctx = {
-      bus, clock, data, world, rules: this.rules, progress: this.progress, input, evidence: this.evidence,
+      bus, clock, data, world, rules: this.rules, progress: this.progress, input, evidence: this.evidence, feedback: this.feedback,
       dialogue: this.dialogue, manifest, actions: this.actions, held: null,
     };
     this.machine = new SceneMachine(this.ctx, createSceneFactories(this.ctx));
@@ -397,7 +399,9 @@ export class Session {
       case 'selectKey': if (top && top.kind === 'layout-help') top.select({ selectedKey: c.id }); break;
       case 'openLayer': if (this.machine.canPush(c.id)) this.machine.push(c.id); break;
       case 'chooseRow': if (top && top.choose) top.choose(c.id); break;
-      case 'setSetting': this.progress.update((d) => { d.settings[c.key] = c.value; }); break;
+      case 'skipStep': if (top && top.kind === 'calibration') top.skipStep(); break;
+      case 'skipCalibration': if (top && top.askSkip) top.askSkip(); break;
+      case 'setSetting': this.progress.update((d) => { d.settings[c.key] = c.value; }); this.feedback.onSettings(); break;
       case 'resetProgress':
         if (c.confirmed) this.resetProgress();
         else if (top && top.kind === 'settings') top.askReset();
@@ -429,7 +433,7 @@ export class Session {
 
   _displayFlags() {
     const s = this.progress.doc.settings;
-    return { reducedMotion: s.reducedMotion, largerText: s.largerText, highContrast: s.highContrast };
+    return { reducedMotion: s.reducedMotion, largerText: s.largerText, highContrast: s.highContrast, feedback: s.feedback };
   }
 
   _hud() {
@@ -445,9 +449,12 @@ export class Session {
       chips.push({ id: 'journal', label: 'Journal', key: keycap('q'), aria: `Journal. Key Q. Hint: Q is ${KEY_GESTURE.journal}.` });
     }
     chips.push({ id: 'layout-help', label: 'Layout help', key: keycap('?'), aria: `Layout help. Key question mark. Hint: ? is ${KEY_GESTURE.layoutHelp}.` });
+    // At most two overlays by default: while a dialogue or the keyboard inset is open, the objective strip steps aside
+    // (the dialogue already states the step's action, and the inset names the key). The shortcut chips stay.
+    const compact = !!this.dialogue.viewModel() || !!this._inset();
     return {
       title: this.level.title, progress: { done, total: required.length },
-      seals: { count: this.progress.doc.seals.length, total: 5 }, chips,
+      seals: { count: this.progress.doc.seals.length, total: 5 }, chips, compact,
     };
   }
 

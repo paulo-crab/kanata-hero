@@ -107,6 +107,7 @@ test('Layout help open and close leaves the hub unchanged (hub, avatar, step, ob
   const g = makeGame();
   g.session.start();
   g.player.tap('Escape');
+  g.player.tap('Enter'); // confirm the skip
   g.player.tick(30);
   g.player.tap('Enter');
   g.player.tap('Escape');
@@ -127,6 +128,7 @@ function atPopup() {
   const g = makeGame();
   g.session.start();
   g.player.tap('Escape');
+  g.player.tap('Enter'); // confirm the skip
   g.player.tick(30);
   g.player.tap('Enter');
   return g;

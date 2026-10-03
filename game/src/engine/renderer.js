@@ -6,6 +6,9 @@ import { chooseZoom } from './camera.js';
 
 export const LAYER_ORDER = ['rear_wall', 'floor_marking', 'rear_prop', 'shadow', 'actor', 'front_prop', 'light'];
 const Y_SORTED = new Set(['rear_prop', 'actor', 'front_prop']);
+/** Layers whose y-sorted draws share one depth sort with the actors: a person north of a tall prop is drawn behind it. */
+const DEPTH_SHARED = ['rear_prop', 'shadow', 'actor'];
+const DEPTH_RANK = { rear_prop: 0, shadow: 1, actor: 2 };
 export const BACKGROUND = '#0E1020';
 
 function hexToRgb(hex) {
@@ -23,6 +26,36 @@ export function orderLayer(name, draws) {
     .sort((a, b) => a[0].anchorY - b[0].anchorY || a[1] - b[1])
     .map(([d]) => d);
   return [...flat, ...sorted];
+}
+
+/**
+ * The draw order of the world pass. Static rear props and the rest of the layers keep the style bible's order, but
+ * the y-sorted rear props, the contact shadows and the actors are sorted together by anchor y, so a prop whose sprite
+ * overhangs the row north of it (the 28 px glass partitions on 16 px cells) covers an actor standing there, and an
+ * actor south of it covers the prop. On equal anchors a prop draws first, then the shadow, then its actor. Pure.
+ * @param {Object<string, object[]>} layers draw lists by layer name
+ * @returns {{name:string, draw:object}[]} in draw order, covering every layer
+ */
+export function orderWorld(layers) {
+  const out = [];
+  for (const name of LAYER_ORDER) {
+    if (name === 'rear_prop') {
+      for (const draw of (layers[name] ?? []).filter((d) => !d.ySort)) out.push({ name, draw });
+    } else if (name === 'shadow') {
+      const shared = [];
+      for (const n of DEPTH_SHARED) {
+        for (const [i, draw] of (layers[n] ?? []).entries()) {
+          if (n === 'rear_prop' && !draw.ySort) continue;
+          shared.push({ name: n, draw, rank: DEPTH_RANK[n], i });
+        }
+      }
+      shared.sort((a, b) => a.draw.anchorY - b.draw.anchorY || a.rank - b.rank || a.i - b.i);
+      for (const s of shared) out.push({ name: s.name, draw: s.draw });
+    } else if (name !== 'actor') {
+      for (const draw of orderLayer(name, layers[name] ?? [])) out.push({ name, draw });
+    }
+  }
+  return out;
 }
 
 function defaultCreateCanvas(w, h) {
@@ -142,9 +175,7 @@ export class Renderer {
     b.fillStyle = BACKGROUND;
     b.fillRect(0, 0, VIEW_W, VIEW_H);
     for (const d of view.floor) this._drawOne(d, cam);
-    for (const name of LAYER_ORDER) {
-      for (const d of orderLayer(name, view.layers[name] ?? [])) this._drawOne(d, cam);
-    }
+    for (const { draw } of orderWorld(view.layers)) this._drawOne(draw, cam);
     const m = this.ctx;
     m.imageSmoothingEnabled = false;
     m.clearRect(0, 0, this.canvas.width, this.canvas.height);

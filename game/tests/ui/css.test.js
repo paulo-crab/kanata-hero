@@ -11,7 +11,7 @@ const strip = (css) => css.replace(/\/\*[^]*?\*\//g, '');
 const TOKENS = strip(read('art-direction/ui-kit/tokens.css'));
 const tokenNames = new Set([...TOKENS.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
 /** Custom properties set inline by the components (a number each), not kit tokens. */
-const LOCAL_PROPS = new Set(['--w', '--gap']);
+const LOCAL_PROPS = new Set(['--w', '--gap', '--key-h', '--portrait-zoom']);
 
 const rules = (css) => [...strip(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => ({ sel: m[1].trim(), body: m[2] }));
 
@@ -44,7 +44,7 @@ test('stylesheet lint: every var() resolves to a kit token (or a documented loca
       assert.ok(tokenNames.has(m[1]) || LOCAL_PROPS.has(m[1]), `${f}: ${m[1]} is not a kit token`);
     }
     for (const d of defined) {
-      assert.ok(tokenNames.has(d), `${f}: declares ${d}, which is not a kit token (only overrides of kit tokens are allowed)`);
+      assert.ok(tokenNames.has(d) || LOCAL_PROPS.has(d), `${f}: declares ${d}, which is not a kit token (only overrides of kit tokens are allowed)`);
     }
   }
 });
@@ -93,7 +93,7 @@ test('accessibility modes exist: .rm, .large-text, .hc, and the OS reduced-motio
   assert.match(main, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
-test('inset and dialogue CSS match the stage geometry (inset rect x 16..588, dialogue starts at 592)', () => {
+test('inset and dialogue CSS match the stage geometry (inset rect x 16..588, the dialogue strip starts at 604 or later)', () => {
   const inset = rules(read('game/css/components.css')).find((r) => r.sel === '.kh-inset').body;
   assert.match(inset, /left:\s*var\(--stage-margin\)/);
   assert.match(inset, /bottom:\s*var\(--stage-margin\)/);
@@ -101,7 +101,9 @@ test('inset and dialogue CSS match the stage geometry (inset rect x 16..588, dia
   assert.equal(width, INSET_STAGE_RECT.w);
   assert.equal(16 + width, INSET_STAGE_RECT.x + INSET_STAGE_RECT.w);
   const dlg = rules(read('game/css/components.css')).find((r) => r.sel === '.kh-dialogue').body;
-  const dw = Number(/width:\s*(\d+)px/.exec(dlg)[1]);
+  const dw = Number(/max-width:\s*(\d+)px/.exec(dlg)[1]);
+  assert.match(dlg, /width:\s*max-content/, 'never wider than its text needs');
+  assert.ok(Number(/max-height:\s*(\d+)px/.exec(dlg)[1]) <= 160, 'the dialogue strip is at most 160 px tall');
   const dialogueLeft = STAGE_W - 16 - dw;
   assert.ok(dialogueLeft >= INSET_STAGE_RECT.x + INSET_STAGE_RECT.w, `dialogue starts at ${dialogueLeft}`);
 });
