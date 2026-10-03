@@ -361,7 +361,7 @@ Opening and closing Layout help, journal or Controls from the hub is push/pop: t
 
 | Scene | enter | esc | arrows | journal | hint | typing |
 | --- | --- | --- | --- | --- | --- | --- |
-| setup, calibration | continue | skip (whole setup) | choose | no | no | no |
+| setup, calibration | continue | open the skip confirm card (never skips on its own) | choose | no | no | no |
 | arrival | none | none | none | no | no | no |
 | hub (open world) | interact | none | move | yes | yes | no |
 | dialogue modal | continue | skip | none | no | yes | no |
@@ -620,3 +620,11 @@ Every Requirement of the four specs, the interface that satisfies it, and where 
 - "Garden markers teal to gold" is not a level-data state change: it is the `o01-loop` marker state (`teal until reached, gold after`, `vm:markers.floor`). "Mailroom gate unlock" is `g.turnstile`, the mailroom entrance, via `unlock_gate`.
 - Level 01 uses ops `set_state, npc_state, unlock_gate, set_flag, complete_level, start_dialogue, spawn_glitch, journal`; `light_state` and `grant` are deliberately unsupported until a level needs them.
 - Fixed step is `1000/60` ms, a cell move is 16 steps.
+
+## 12. Playtest 1 decisions (producer, 2026-10-02)
+
+- Setup is the keyboard choice only. Calibration runs one step at a time, shows the expected output, the last output seen and wrong-key feedback; on step 1 an Escape output shows the tap-versus-hold hint.
+- Skipping: Down skips the current calibration step, Up opens the "skip calibration" confirm card, and Esc (or the Skip setup button) on setup opens the same kind of confirm card (Return = yes, Esc = back). No single key press skips everything.
+- Output feedback (`vm:feedback`) appears only in form, label and editor scenes and is cleared on scene exit; in the world it is a 2.5 s toast for the first three walking bursts. Settings option "Show output feedback": in scenes only (default), always, off.
+- The dialogue is a compact strip (at most 160 px tall); a camera look-ahead keeps the avatar clear of open panels, with a 35 % fade of the covering panel as the last resort.
+- Tall y-sorted props, contact shadows and actors are sorted together by anchor y, so an actor north of a tall prop is drawn behind it.
