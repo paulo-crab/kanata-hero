@@ -101,7 +101,9 @@ export class FormScene extends TerminalScene {
     return true;
   }
 
+  /** No bar while an instruction line already states the same action and key (the popup has no field to show). */
   viewModel() {
+    if (this.ctx.dialogue && this.ctx.dialogue.instruction()) return null;
     return this._bar(null);
   }
 }

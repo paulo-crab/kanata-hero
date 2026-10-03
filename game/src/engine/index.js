@@ -8,3 +8,4 @@ export { Avatar, DIRS } from './avatar.js';
 export { computeCamera, worldToStage, chooseZoom } from './camera.js';
 export { GameLoop, MAX_STEPS_PER_TICK } from './loop.js';
 export { Renderer, orderLayer, orderWorld, LAYER_ORDER } from './renderer.js';
+export { lookAhead, avatarStageRect, AVATAR_SPRITE, FADED_OPACITY, CLEARANCE } from './look-ahead.js';

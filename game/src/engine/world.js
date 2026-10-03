@@ -437,6 +437,16 @@ export class World {
   // ---------------------------------------------------------------- snapshot
 
   camera() {
+    return this._cameraOverride || computeCamera(this.avatar.feetPx, this.data.district.camera_bounds);
+  }
+
+  /** A camera chosen by the look-ahead (map px, already clamped); null returns to the avatar-centred camera. */
+  setCameraOverride(camera) {
+    this._cameraOverride = camera ? { x: camera.x, y: camera.y } : null;
+  }
+
+  /** The avatar-centred camera, ignoring any override. */
+  baseCamera() {
     return computeCamera(this.avatar.feetPx, this.data.district.camera_bounds);
   }
 

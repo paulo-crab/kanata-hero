@@ -43,8 +43,8 @@ export const sameView = (a, b) => a.zoom === b.zoom && a.camera.x === b.camera.x
 // is drawn under the inset while the avatar walks towards it. The inset stays put; the current target is shown as an
 // edge arrow in the free area instead, pointing at where the target is.
 
-/** Dialogue panel on the stage (672x224, 16 px margin, lower right). */
-export const DIALOGUE_STAGE_RECT = Object.freeze({ x: STAGE_W - 16 - 672, y: STAGE_H - 16 - 224, w: 672, h: 224 });
+/** Dialogue strip on the stage: at most 660x160, 16 px margin, docked at the bottom edge beside the inset. */
+export const DIALOGUE_STAGE_RECT = Object.freeze({ x: STAGE_W - 16 - 660, y: STAGE_H - 16 - 160, w: 660, h: 160 });
 export const ARROW_SIZE = 56;
 const GAP = 12;
 

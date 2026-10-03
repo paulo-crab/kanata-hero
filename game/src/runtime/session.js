@@ -449,9 +449,12 @@ export class Session {
       chips.push({ id: 'journal', label: 'Journal', key: keycap('q'), aria: `Journal. Key Q. Hint: Q is ${KEY_GESTURE.journal}.` });
     }
     chips.push({ id: 'layout-help', label: 'Layout help', key: keycap('?'), aria: `Layout help. Key question mark. Hint: ? is ${KEY_GESTURE.layoutHelp}.` });
+    // At most two overlays by default: while a dialogue or the keyboard inset is open, the objective strip steps aside
+    // (the dialogue already states the step's action, and the inset names the key). The shortcut chips stay.
+    const compact = !!this.dialogue.viewModel() || !!this._inset();
     return {
       title: this.level.title, progress: { done, total: required.length },
-      seals: { count: this.progress.doc.seals.length, total: 5 }, chips,
+      seals: { count: this.progress.doc.seals.length, total: 5 }, chips, compact,
     };
   }
 

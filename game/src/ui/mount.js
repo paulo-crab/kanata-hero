@@ -112,6 +112,12 @@ export function mountUi(root, params = {}) {
     components.markers.render(components.markers.vm);
   }));
 
+  // The camera could not clear the avatar of these panels: drop them to 35 % opacity (CSS reads data-faded on the stage).
+  offs.push(bus.on('ui:faded', (e) => {
+    const ids = (e && e.ids) || [];
+    if (stage.setAttribute) stage.setAttribute('data-faded', ids.join(' '));
+  }));
+
   // Objectives and announcements go to the live region.
   offs.push(bus.on('vm:announce', (vm) => { if (vm && vm.text) live.say(vm.text); }));
   offs.push(bus.on('intent', (i) => { if (i && i.type === 'objective' && i.text) live.say(`Objective: ${i.text}`); }));
